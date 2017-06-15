@@ -16,6 +16,6 @@
 /vendor/
 /web/bundles/
 /.idea/
-/node_modules/
-/composer.phar
 /composer.lock
+/composer.phar
+/node_modules/
