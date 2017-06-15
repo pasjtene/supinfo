@@ -6,7 +6,8 @@
   "dependencies": {
     "gulp": "^3.9.1",
     "gulp-copy": "0.0.2",
-    "gulp-sass": "^2.3.2"
+    "gulp-sass": "^2.3.2",
+    "sass": "^1.0.0-beta.1"
   },
   "devDependencies": {
     "gulp-cssnano": "^2.1.2",
