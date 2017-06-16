@@ -1,1 +1,21 @@
-Hello World!
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+
+{% block header %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+{% endblock %}
+
+{% block main %}
+    <div class="row" id="adminHome">
+        back-office home page {# dans cette zone vous etes dans le conteneur  #}
+    </div>
+{% endblock %}
+
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+
