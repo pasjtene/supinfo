@@ -89,12 +89,12 @@ var uglifyTask = function()
 };
 
 gulp.task('default', function(){
-
+    exec('php bin/console assets:install --symlink', logStdOutAndErr);
 });
 
-gulp.task('installAssets', function ()
+gulp.task('asset', function ()
 {
-    exec('php app/console assets:install --symlink', logStdOutAndErr);
+    exec('php bin/console assets:install --symlink', logStdOutAndErr);
 });
 
 gulp.task('cache-dev', function ()
@@ -122,7 +122,7 @@ gulp.task('sass', ['installAssets'], function ()
 
 gulp.task('img', ['installAssets'], function ()
 {
-    currentTask = 'image';
+    currentTask = 'img';
 });
 
 gulp.task('js', ['installAssets'], function()
@@ -149,7 +149,7 @@ var logStdOutAndErr = function (err, stdout, stderr)
     {
         uglifyTask();
     }
-    else if(currentTask == 'image')
+    else if(currentTask == 'img')
     {
         return imageTask();
     }
@@ -164,14 +164,14 @@ gulp.task('watch', function ()
     // Starts the server
     livereload.listen();
 
-    gulp.watch('./src/App/*/Resources/public/sass/**/*.scss', ['installAssets'])
+    gulp.watch('./src/Web/*/Resources/public/sass/**/*.scss', ['installAssets'])
         .on('change', function(event){
             console.log('File '+event.path+' has been '+event.type);
 
             currentTask = 'sass';
         });
 
-    gulp.watch('./src/App/*/Resources/public/js/**/*.js', ['installAssets'])
+    gulp.watch('./src/Web/*/Resources/public/js/**/*.js', ['installAssets'])
         .on('change', function(event){
             console.log('File '+event.path+' has been '+event.type);
 

@@ -1,0 +1,28 @@
+$default-color: yellowgreen;
+$default-color-hover: greenyellow;
+$secondary-color : rgba(0,0,0,.125);
+$default-font-color: #292b2c;
+$secondary-font-color: #ffffff;
+button{
+  border-radius: 6px;
+  padding: 2%;
+}
+.primary-button{
+   background-color: $default-color;
+   color: white;
+}
+.primary-button:hover{
+  background-color: $default-color-hover;
+}
+
+.form-control{
+    border-radius: 0.8em;
+}
+
+.form-control:focus{
+    border: solid 1px $default-color;
+}
+
+.card{
+
+}
