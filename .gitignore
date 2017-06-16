@@ -22,5 +22,6 @@
 /composer.lock
 /composer.phar
 /node_modules/
-/web/data/
-
+/web/data/css/
+web/data/js
+web/data/
