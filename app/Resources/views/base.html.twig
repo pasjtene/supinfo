@@ -92,6 +92,9 @@
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
     <!-- jQuery 3.1 -->
+    <script src="{{ asset('dist/jquery/jquery.js') }}"></script>
+
+    <!-- jQuery  slim 3.1 -->
     <script src="{{ asset('dist/jquery/jquery.slim.js') }}"></script>
 
     <!-- Tether -->
@@ -104,8 +107,12 @@
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
+
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('dist/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('dist/bootstrap/js/bootstrap.js') }}"></script>
+
+
+
 
     <!-- js-translation -->
     <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
