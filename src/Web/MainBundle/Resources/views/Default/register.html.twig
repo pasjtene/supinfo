@@ -1,5 +1,13 @@
 {% extends 'MainBundle::layout.html.twig' %}
 
+{% block meta %}
+    <meta name = "{% trans from 'register' %} refer.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'register' %} refer.description {% endtrans %}" >
+{% endblock %}
+
+{% block title %}
+    {% trans from 'register' %} title {% endtrans %}
+{% endblock  %}
 {% block mycss %}
     {{ parent() }}
     {# mettre le css si la page t'oublige #}
