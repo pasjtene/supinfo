@@ -7,6 +7,20 @@
 {% block mycss %}
     {{ parent() }}
     {# mettre le css si la page t'oublige #}
+<style>
+    .admin_page_title {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        text-align: center;
+        display: block;
+        clear: both;
+        margin-left: 20%;
+        width: 60%;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+</style>
 {% endblock %}
 
 {% block header %}
@@ -14,13 +28,17 @@
 {% endblock %}
 
 {% block main %}
+    {% include 'AdminBundle:Inc:pascalnavbar.html.twig' %}
     <div class="row" id="adminHome">
-        back-office home page {# dans cette zone vous etes dans le conteneur  #}
+        <div class="admin_page_title">
+            Welcome to FunGlobe Admin page
+        </div>
         {% include 'AdminBundle:Inc:pascaladminTabs.html.twig' %}
     </div>
 {% endblock %}
 
 {% block myjs %}
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
+
 {% endblock %}
 
