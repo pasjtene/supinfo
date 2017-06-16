@@ -1,5 +1,9 @@
 {% extends 'AdminBundle::layout.html.twig' %}
 
+{% block title %}
+    {% trans from 'home' %} title {% endtrans %}
+{% endblock  %}
+
 {% block mycss %}
     {{ parent() }}
     {# mettre le css si la page t'oublige #}
