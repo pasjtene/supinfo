@@ -1,13 +1,118 @@
+{# add navigation current nav mark #}
+{% set route = app.request.get('_route') %}
+
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            {% block title %} Funglobe  {% endblock %}
+        </title>
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=yes" />
+        <meta name = "author" content = "contact@funglobe.com (assistance de funglobe en ligne)" />
+        <meta name="copyright" content="© funglobe.com (tous  droits reservés)" />
+
+        <!-- Responsive -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- block pour la traduction -->
+        {% block meta %}
+
+        {% endblock %}
+
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- traduction  -->
+        <link rel="alternate" href="https://www.funglobe.com/fr/" hreflang="fr"/>
+        <link rel="alternate" href="https://www.funglobe.com/en/" hreflang="en"/>
+
+        {% block stylesheets %}
+            <!-- Bootstrap 4 -->
+            <link rel="stylesheet" href="{{ asset('dist/bootstrap/css/bootstrap.min.css') }}">
+            <!-- Font Awesome -->
+            <link rel="stylesheet" href="{{ asset('dist/font-awesome/font-awesome.min.css') }}">
+            <!-- Ionicons -->
+            <link rel="stylesheet" href="{{ asset('dist/ionicons/ionicons.min.css') }}">
+            <!-- funglobe CSS -->
+            <link rel="stylesheet" href="{{ asset('data/css/master.css') }}">
+            <!-- logo -->
+            <link rel="icon" type="image/x-icon" href="{{ asset('logo.ico') }}" />
+
+            <!-- Stylesheets for user -->
+            {% block mycss %}{% endblock %}
+        {% endblock %}
+
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+
+<!-- block  reservé  pour l'entete -->
+{% block header %}{% endblock %}
+<!-- reservé pour les notifications -->
+{% block flash %}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+{% endblock %}
+<!-- reservé pour le contenu  de la page -->
+{% block content %}
+
+{% endblock %}
+
+<!-- reservé pour le footer de la page-->
+{% block footer %}
+
+{% endblock footer %}
+<script>
+    // get locale
+    locale = "{{ app.request.locale }}";
+    // get route
+    route = "{{ route }}";
+</script>
+{% if app.environment == 'dev' %}
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+{% endif %}
+
+{% block javascripts %}
+    <!-- faciliter la manipulation du  controlleur dans le js  -->
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+    <!-- jQuery 3.1 -->
+    <script src="{{ asset('dist/jquery/jquery.slim.js') }}"></script>
+
+    <!-- Tether -->
+    <script src="{{ asset('dist/tether/tether.js') }}"></script>
+
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{ asset('dist/jquery/jquery-ui.min.js') }}"></script>
+
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('dist/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- Funglobe js -->
+    <script src="{{ asset('data/js/master.min.js') }}"></script>
+
+    <!-- Javascript for user -->
+    {% block myjs %}{% endblock %}
+{% endblock %}
+
+</body>
 </html>
