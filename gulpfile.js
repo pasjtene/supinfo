@@ -23,7 +23,7 @@ var supportedBrowsers = [
     'ie >= 10',
     'ff >= 20',
     'ios 6',
-    'android 5'
+    'android 4'
 ];
 
 var scriptTask = function()
@@ -92,7 +92,7 @@ gulp.task('default', function(){
     exec('php bin/console assets:install --symlink', logStdOutAndErr);
 });
 
-gulp.task('asset', function ()
+gulp.task('installAssets', function ()
 {
     exec('php bin/console assets:install --symlink', logStdOutAndErr);
 });
