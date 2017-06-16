@@ -1,17 +1,21 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
-    prefix:   /app
+    prefix:   /
 
 admin:
     resource: "@AdminBundle/Controller/"
     type:     annotation
-    prefix:   /admin
+    prefix:   /{_locale}/admin
+    requirements:
+            _locale: en|fr
 
 main:
     resource: "@MainBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+            _locale: en|fr
 
 # app/config/routing.yml
 fos_js_routing:
