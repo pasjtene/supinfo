@@ -113,6 +113,26 @@
     <!-- Funglobe js -->
     <script src="{{ asset('data/js/master.min.js') }}"></script>
 
+    <!--
+        how to use translations to js
+
+        // the translated message or undefined
+        Translator.trans('key')
+
+        // the translated message or undefined
+        Translator.trans('key', {}, 'DOMAIN_NAME');
+
+        // the translated message or undefined
+        Translator.transChoice('key', 1, {}, 'DOMAIN_NAME');
+
+        // will replace each "%foo%" in the message by "bar".
+        Translator.trans('key', { "foo" : "bar" }, 'DOMAIN_NAME');
+
+        // will replace each "%foo%" in the message by "bar".
+        Translator.transChoice('key', 123, { "foo" : "bar" }, 'DOMAIN_NAME');
+
+     -->
+
     <!-- Javascript for user -->
     {% block myjs %}{% endblock %}
 {% endblock %}
