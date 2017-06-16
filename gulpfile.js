@@ -14,7 +14,7 @@ var plumber = require('gulp-plumber');
 var exec = require('child_process').exec;
 var rename = require('gulp-rename');
 
-var jsPaths = ['./web/bundles/app*/js/*.js'];
+var jsPaths = ['./web/bundles/*/js/*.js'];
 var currentTask = "";
 
 var supportedBrowsers = [
