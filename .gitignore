@@ -19,3 +19,5 @@
 /composer.lock
 /composer.phar
 /node_modules/
+/web/data/
+
