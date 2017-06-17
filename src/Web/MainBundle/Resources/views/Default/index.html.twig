@@ -1,5 +1,14 @@
 {% extends 'MainBundle::layout.html.twig' %}
 
+{% block meta %}
+    <meta name = "{% trans from 'home' %} refer.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'home' %} refer.description {% endtrans %}" >
+{% endblock %}
+
+{% block title %}
+    {% trans from 'home' %} title {% endtrans %}
+{% endblock  %}
+
 {% block mycss %}
     {{ parent() }}
     {# mettre le css si la page t'oublige #}

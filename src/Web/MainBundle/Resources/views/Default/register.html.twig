@@ -1,17 +1,25 @@
 {% extends 'MainBundle::layout.html.twig' %}
 
+{% block meta %}
+    <meta name = "{% trans from 'register' %} refer.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'register' %} refer.description {% endtrans %}" >
+{% endblock %}
+
+{% block title %}
+    {% trans from 'register' %} title {% endtrans %}
+{% endblock  %}
 {% block mycss %}
     {{ parent() }}
     {# mettre le css si la page t'oublige #}
 {% endblock %}
 
 {% block header %}
-    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
 {% endblock %}
 
 {% block main %}
     <div class="row" id="mainRegister">
-        front-office singup page {# dans cette zone vous etes dans le conteneur  #}
+
     </div>
 {% endblock %}
 

@@ -15,9 +15,13 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/.idea
 /.idea/
+/.idea/*
+/.idea/workspace.xml
 /composer.lock
 /composer.phar
 /node_modules/
-/web/data/
-
+/web/data/css/
+web/data/js
+web/data/
