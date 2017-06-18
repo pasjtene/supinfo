@@ -48,7 +48,7 @@
                 $.getJSON('/api/users', function(users){
                     $(function(){
                         var chkbox = '<input class="form-check-input" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">';
-                        
+
                         $('.total_users').append(users.length);
                         $.each(users, function(i, user){
                             //$('.userresult').append('<div class="genusname">Name: '+user.firstName +'</div><div class="genusnumber">Gender: '+user.gender+'</div>');
