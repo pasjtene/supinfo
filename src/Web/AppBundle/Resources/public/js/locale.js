@@ -6,8 +6,5 @@ var AppLocale = {};
 
 $(function()
 {
-    $.get('', function(response)
-    {
-        AppLocale = response.messages;
-    });
+
 });
