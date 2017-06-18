@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, user-scalable=yes" />
         <meta name = "author" content = "contact@funglobe.com (assistance de funglobe en ligne)" />
-        <meta name="copyright" content="© funglobe.com (tous  droits reservés)" />
+        <meta name="copyright" content="ï¿½ funglobe.com (tous  droits reservï¿½s)" />
 
         <!-- Responsive -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -49,9 +49,9 @@
     </head>
     <body>
 
-<!-- block  reservé  pour l'entete -->
+<!-- block  reservï¿½  pour l'entete -->
 {% block header %}{% endblock %}
-<!-- reservé pour les notifications -->
+<!-- reservï¿½ pour les notifications -->
 {% block flash %}
 
     {% for flashMessage in app.session.flashbag.get('notice') %}
@@ -67,12 +67,12 @@
     {% endfor %}
 
 {% endblock %}
-<!-- reservé pour le contenu  de la page -->
+<!-- reservï¿½ pour le contenu  de la page -->
 {% block content %}
 
 {% endblock %}
 
-<!-- reservé pour le footer de la page-->
+<!-- reservï¿½ pour le footer de la page-->
 {% block footer %}
 
 {% endblock footer %}
@@ -91,35 +91,22 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-   {#
-        <!-- jQuery 3.1 -->
-        <script src="{{ asset('dist/jquery/jquery.js') }}"></script>
+    -->
 
-        <!-- jQuery  slim 3.1 -->
-        <script src="{{ asset('dist/jquery/jquery.slim.js') }}"></script>
+    <!-- jQuery 3.1 -->
+    <script src="{{ asset('dist/jquery/jquery-2.2.3.min.js') }}"></script>
 
-        <!-- Tether -->
-        <script src="{{ asset('dist/tether/tether.js') }}"></script>
+    <!-- jQuery  slim 3.1 -->
+    <script src="{{ asset('dist/jquery/jquery.slim.js') }}"></script>
 
-        <!-- Bootstrap 4 -->
-        <script src="{{ asset('dist/bootstrap/js/bootstrap.js') }}"></script>
+    <!-- Tether -->
+    <script src="{{ asset('dist/tether/tether.js') }}"></script>
 
-   #}
-
-    <!-- jQuery UI 1.11.4 -->
-    <script src="{{ asset('dist/jquery/jquery-ui.min.js') }}"></script>
-
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button);
-    </script>
-
-
-
-
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('dist/bootstrap/js/bootstrap.js') }}"></script>
 
     <!-- js-translation -->
     <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>

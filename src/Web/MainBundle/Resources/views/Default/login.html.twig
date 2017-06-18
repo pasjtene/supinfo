@@ -17,11 +17,69 @@
 
 {% block header %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">FunGlobe</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a href="#" class="btn btn-secondary my-2 my-sm-0">Inscription</a>
+            </form>
+        </div>
+    </nav>
 {% endblock %}
 
 {% block main %}
     <div class="row" id="mainLogin">
-        front-office login page {# dans cette zone vous etes dans le conteneur  #}
+        <div class="offset-2 col-8" style="min-height: 50px; border: solid 1px red;">
+                <h2>Connectes toi à FunGlobe</h2>
+
+                <p>
+                    Rencontres des gens qui ont des affinités avec toi ! si tu n'es pas encore inscrit, <a href="#">clique ici</a>
+                </p>
+
+                <form method="post">
+                    <div class="form-group">
+                        <label for="email">Adresse email :</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mot de passe :</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input">
+                                    Se souvenir de moi
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="pull-right">Mot de passe oublié ?</a>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit" id="btn-submit">Connexion</button>
+
+                    <div class="row">
+                        <div class="col-12" id="social-login">
+                            <a href="#"><i class="fa fa-facebook-official"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
     </div>
 
 {% endblock %}
