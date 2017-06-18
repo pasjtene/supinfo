@@ -1,4 +1,18 @@
 refer:
   title: titre pour le referencement de la page
   description:  description pour le referencement de la page
-exemple: test
+title: FunGlobe - Login
+nav:
+  register: Sign up
+body:
+  msgone: Connect to FunGlobe
+  msgtwo: Meet people who have affinities with you! If you are not registered yet,
+  msgthree: click here
+form:
+  lblemail: Email address :
+  hintemail: jt.pascal@yahoo.com
+  ntcemail: We'll never share your email with anyone else
+  lblpswd: Password :
+  remember: Remember me
+  forgotpswd: Forgot password
+  btnlogin: Login
