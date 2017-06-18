@@ -11,6 +11,32 @@
 {% block mycss %}
     {{ parent() }}
     {# mettre le css si la page t'oublige #}
+    <style>
+        .primary-button{
+            background-color: yellowgreen;
+            color: white;
+            border-radius: 0.8em;
+            min-width: 9em !important;
+        }
+        .primary-button:hover{
+            background-color: forestgreen;
+        }
+
+        .form-control{
+            border-radius: 0.7em;
+        }
+
+        .form-control:focus{
+            border: solid 1px yellowgreen;
+        }
+        #mainRegister{
+            margin-top: 4em;
+        }
+        #mainHorizontalNav{
+            background-color: yellowgreen;
+            color: white;
+        }
+    </style>
 {% endblock %}
 
 {% block header %}
@@ -18,8 +44,74 @@
 {% endblock %}
 
 {% block main %}
-    <div class="row" id="mainRegister">
+    <div class="row" id="mainRegister" data-page="mainRegister">
+        <div class="offset-lg-1 col-lg-8 col-sm-12">
+            <form action="">
+                <h3>{% trans from 'register' %} form.title {% endtrans %}</h3>
+                <h5>{% trans from 'register' %} form.content {% endtrans %}</h5>
+                <br>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.name {% endtrans %}</label>
+                    <div class="col-sm-12 col-lg-9">
+                        <input class="form-control" type="text" id="name" placeholder="{% trans from 'register' %} form.placeholder.name {% endtrans %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.email {% endtrans %}</label>
+                    <div class="col-sm-12 col-lg-9">
+                        <input class="form-control" type="email" id="email" placeholder="{% trans from 'register' %} form.placeholder.email {% endtrans %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="birthday" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.birthday {% endtrans %}</label>
+                    <div class="col-sm-12 col-lg-9">
+                        <input class="form-control datepicker" data-date-format="dd-mm-yyyy" autocomplete="off" value="" type="text" id="birthday" placeholder="{% trans from 'register' %} form.placeholder.birthday {% endtrans %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="gender" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.gender {% endtrans %}</label>
+                    <div class="col-sm-12 col-lg-9">
+                        <select class="custom-select form-control " id="gender">
+                            <option selected>{% trans from 'register' %} form.placeholder.gender {% endtrans %}</option>
+                            <option value="1">{% trans from 'register' %} form.body.genderList.1 {% endtrans %}</option>
+                            <option value="2">{% trans from 'register' %} form.body.genderList.2 {% endtrans %}</option>
+                        </select>
+                    </div>
+                </div>
 
+                <div class="form-group row">
+                    <label for="reason" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.reason {% endtrans %}</label>
+                    <div class="col-sm-12 col-lg-9">
+                        <select class="custom-select form-control" id="reason">
+                            <option selected>{% trans from 'register' %} form.placeholder.reason {% endtrans %}</option>
+                            <option value="1">{% trans from 'register' %} form.body.reasonList.1 {% endtrans %}</option>
+                            <option value="2">{% trans from 'register' %} form.body.reasonList.2 {% endtrans %}</option>
+                            <option value="3">{% trans from 'register' %} form.body.reasonList.3 {% endtrans %}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="password" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.password {% endtrans %}</label>
+                    <div class="col-sm-12 col-lg-9">
+                        <input class="form-control" type="password" id="password" placeholder="{% trans from 'register' %} form.placeholder.password {% endtrans %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="confirmpassword" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.confirmpassword {% endtrans %}</label>
+                    <div class="col-sm-12 col-lg-9">
+                        <input class="form-control" type="text" id="confirmpassword" placeholder="{% trans from 'register' %} form.placeholder.confirmpassword {% endtrans %}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn primary-button  pull-right" id="btnregister">Sign in</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
     </div>
 {% endblock %}
 
