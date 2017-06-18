@@ -74,7 +74,7 @@ $(function(){
             };
 
 
-            if (verify(ticket) != null) {
+            if (verify(User) != null) {
                //print error message
             } else {
 

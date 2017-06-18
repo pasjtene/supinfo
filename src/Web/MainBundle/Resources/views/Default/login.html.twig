@@ -17,30 +17,16 @@
 
 {% block header %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#">FunGlobe</a>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <a href="#" class="btn btn-secondary my-2 my-sm-0">Inscription</a>
-            </form>
-        </div>
-    </nav>
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
 {% endblock %}
 
 {% block main %}
     <div class="row" id="mainLogin">
         <div class="offset-2 col-8" style="min-height: 50px; border: solid 1px red;">
-                <h2>Connectes toi à FunGlobe</h2>
+                <h2>Connectes toi Ã  FunGlobe</h2>
 
                 <p>
-                    Rencontres des gens qui ont des affinités avec toi ! si tu n'es pas encore inscrit, <a href="#">clique ici</a>
+                    Rencontres des gens qui ont des affinitÃ©s avec toi ! si tu n'es pas encore inscrit, <a href="#">clique ici</a>
                 </p>
 
                 <form method="post">
@@ -65,7 +51,7 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="pull-right">Mot de passe oublié ?</a>
+                            <a href="#" class="pull-right">Mot de passe oubliÃ© ?</a>
                         </div>
                     </div>
 

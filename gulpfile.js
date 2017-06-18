@@ -20,11 +20,13 @@ var jsPaths = [
     './web/bundles/admin/js/*.js'
 ];
 
-var sassPaths = [
+/*var sassPaths = [
     './web/bundles/app/sass/main.scss',
     './web/bundles/main/sass/main.scss',
     './web/bundles/admin/sass/main.scss'
-];
+];*/
+var sassPaths = './web/bundles/app/sass/master.scss';
+
 var currentTask = "";
 
 var supportedBrowsers = [
