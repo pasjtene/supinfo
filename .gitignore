@@ -24,4 +24,4 @@
 /node_modules/
 /web/data/css/
 web/data/js
-web/data/
+web/data/.idea
