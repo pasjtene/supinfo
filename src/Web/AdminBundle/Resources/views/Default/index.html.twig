@@ -30,44 +30,15 @@
 {% block main %}
     {% include 'AdminBundle:Inc:pascalnavbar.html.twig' %}
     <div class="row" id="adminHome">
-        {% include 'AdminBundle:Inc:pascaladminTabs.html.twig' %}
+        <div class="admin_page_title">
+            Welcome to FunGlobe Admin page
+        </div>
+        {% include 'AdminBundle:Inc:jouaniadminTabs.html.twig' %}
     </div>
 {% endblock %}
 
 {% block myjs %}
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
-    {{ parent() }}
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
-    <script>
-
-        $(document).ready(function(){
-            //alert("data");
-            //$(".user_list").click(function(){
-
-                $.getJSON('/api/users', function(users){
-                    $(function(){
-                        var chkbox = '<input class="form-check-input" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">';
-
-                        $('.total_users').append(users.length);
-                        $.each(users, function(i, user){
-                            //$('.userresult').append('<div class="genusname">Name: '+user.firstName +'</div><div class="genusnumber">Gender: '+user.gender+'</div>');
-
-                            var row = $('<tr>').html("<td>" + (i+1) +
-                                    "</td><td>" + user.firstName +
-                                    "</td><td>" + user.gender +
-                                    "</td>");
-                                    $("<td />").html('<input class="user_select_checkbox" type="checkbox"/>').appendTo(row);
-                                    row.appendTo('.users_table');
-
-
-
-                        });
-                    });
-                });
-            //});
-        });
-    </script>
 
 {% endblock %}
 

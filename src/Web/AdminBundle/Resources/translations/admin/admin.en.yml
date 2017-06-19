@@ -1,0 +1,26 @@
+admin:
+  blocmessage:
+   title: Bloc messages
+
+  members:
+   title: Members
+
+  messages:
+   title: Messages
+
+  photos:
+   title: Pics
+
+  picturedenounced:
+   title: Pictures denounced
+
+  spam:
+   title: Spam users
+
+  statistics:
+   title: statistics
+
+  userdenounced:
+   title: Users denounced
+  users:
+   title: Show all users
