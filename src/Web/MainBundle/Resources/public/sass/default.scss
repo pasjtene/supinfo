@@ -1,5 +1,5 @@
 $default-color: yellowgreen;
-$default-color-hover: greenyellow;
+$default-color-hover: forestgreen;
 $secondary-color : rgba(0,0,0,.125);
 $default-font-color: #292b2c;
 $secondary-font-color: #ffffff;
@@ -10,6 +10,8 @@ button{
 .primary-button{
    background-color: $default-color;
    color: white;
+   border-radius: 0.8em;
+   min-width: 9em !important;
 }
 .primary-button:hover{
   background-color: $default-color-hover;
