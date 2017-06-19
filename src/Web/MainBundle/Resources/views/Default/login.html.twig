@@ -17,48 +17,66 @@
 
 {% block header %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
-    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">FunGlobe</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a href="#" class="btn btn-secondary my-2 my-sm-0" id="btn-main-register">{% trans from 'login' %} nav.register {% endtrans %}</a>
+            </form>
+        </div>
+    </nav>
 {% endblock %}
 
 {% block main %}
     <div class="row" id="mainLogin">
-        <div class="offset-2 col-8" style="min-height: 50px; border: solid 1px red;">
-                <h2>Connectes toi Ã  FunGlobe</h2>
+        <div class="col-sm-12 offset-lg-3 col-lg-6" id="content-login">
+                <h2>{% trans from 'login' %} body.msgone {% endtrans %}</h2>
 
                 <p>
-                    Rencontres des gens qui ont des affinitÃ©s avec toi ! si tu n'es pas encore inscrit, <a href="#">clique ici</a>
+                    {% trans from 'login' %} body.msgtwo {% endtrans %} <a href="#">{% trans from 'login' %} body.msgthree {% endtrans %}</a>
                 </p>
 
                 <form method="post">
                     <div class="form-group">
-                        <label for="email">Adresse email :</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <label for="email">{% trans from 'login' %} form.lblemail {% endtrans %}</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="{% trans from 'login' %} form.hintemail {% endtrans %}">
+                        <small id="emailHelp" class="form-text text-muted">{% trans from 'login' %} form.ntcemail {% endtrans %}</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Mot de passe :</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <label for="password">{% trans from 'login' %} form.lblpswd {% endtrans %}</label>
+                        <input type="password" class="form-control" id="password">
                     </div>
 
-                    <div class="row">
-                        <div class="col-6">
+                    <div class="row" id="login-options">
+                        <div class="col-sm-6 col-lg-6">
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input">
-                                    Se souvenir de moi
+                                    {% trans from 'login' %} form.remember {% endtrans %}
                                 </label>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <a href="#" class="pull-right">Mot de passe oubliÃ© ?</a>
+                        <div class="col-sm-6 col-lg-6">
+                            <a href="#" class="pull-right">{% trans from 'login' %} form.forgotpswd {% endtrans %}</a>
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" type="submit" id="btn-submit">Connexion</button>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button class="btn btn-primary" type="submit" id="btn-submit">{% trans from 'login' %} form.btnlogin {% endtrans %}</button>
+                        </div>
+                    </div>
 
                     <div class="row">
-                        <div class="col-12" id="social-login">
+                        <div class="col-lg-12" id="social-login">
                             <a href="#"><i class="fa fa-facebook-official"></i></a>
                             <a href="#"><i class="fa fa-google-plus"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
@@ -67,7 +85,6 @@
                 </form>
             </div>
     </div>
-
 {% endblock %}
 
 {% block myjs %}
