@@ -15,7 +15,6 @@ var MainHome = function()
             btnsubmit: $("#btnsubmit")
         }
     };
-
 };
 
 

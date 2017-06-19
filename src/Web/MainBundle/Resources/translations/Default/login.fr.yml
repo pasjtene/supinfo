@@ -1,4 +1,18 @@
 refer:
   title: titre pour le referencement de la page
   description:  description pour le referencement de la page
-title: page title here
+title: FunGlobe - Connexion
+nav:
+  register: Inscription
+body:
+  msgone: Connectes toi à FunGlobe
+  msgtwo: Rencontres des gens qui ont des affinités avec toi ! si tu n'es pas encore inscrit,
+  msgthree: clique ici
+form:
+  lblemail: Adresse email :
+  hintemail: jt.pascal@yahoo.com
+  ntcemail: Votre adresse email ne sera jamais partager
+  lblpswd: Mot de passe :
+  remember: Se souvenir de moi
+  forgotpswd: Mot de passe oublié
+  btnlogin: Connexion
