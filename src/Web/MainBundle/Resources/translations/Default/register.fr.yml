@@ -1,4 +1,33 @@
 refer:
   title: titre pour le referencement de la page
   description:  description pour le referencement de la page
-title: page title here
+title: S'enregistrer
+form:
+  title : Creer un nouveau compte
+  content: Joindre plus de 351 million nouveaux amis sur funglobe
+  body:
+    name: Nom
+    birthday: Date de naissance
+    gender: Sexe
+    reason: Vous ête la pour
+    email: Adresse email
+    password: Mot  de passe
+    confirmpassword: Confirmer le mot  de passe
+    profession: Profession
+    btnsignup: S'inscrire
+    reasonList:
+      1: Se faire de nouveaux amis
+      2: Dialoguer
+      3: Date
+    genderList:
+      1: Masculin
+      2: Feminin
+  placeholder:
+    name: Entrer nom
+    birthday: Entrer date de naissance
+    gender: Choisisser votre sexe
+    reason: Choisissez la raison
+    email: Votre adresse email
+    password: Entrer  votre mot  de passe
+    confirmpassword: Resaisir le même mot  de passe
+    profession: Donner votre profession
