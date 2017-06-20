@@ -16,3 +16,6 @@ form:
   remember: Se souvenir de moi
   forgotpswd: Mot de passe oublié
   btnlogin: Connexion
+forgot:
+  msg: Entrez votre adresse email ci-dessous, un lien de reinitialisation de votre mot de passe sera envoyé dans votre boîte mail
+  btnsend: Envoyer le lien

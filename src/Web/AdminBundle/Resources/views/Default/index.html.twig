@@ -7,20 +7,20 @@
 {% block mycss %}
     {{ parent() }}
     {# mettre le css si la page t'oublige #}
-<style>
-    .admin_page_title {
-        margin-top: 50px;
-        margin-bottom: 20px;
-        text-align: center;
-        display: block;
-        clear: both;
-        margin-left: 20%;
-        width: 60%;
-        font-size: 30px;
-        font-weight: bold;
-    }
+    <style>
+        .admin_page_title {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: block;
+            clear: both;
+            margin-left: 20%;
+            width: 60%;
+            font-size: 30px;
+            font-weight: bold;
+        }
 
-</style>
+    </style>
 {% endblock %}
 
 {% block header %}
@@ -30,10 +30,7 @@
 {% block main %}
     {% include 'AdminBundle:Inc:pascalnavbar.html.twig' %}
     <div class="row" id="adminHome">
-        <div class="admin_page_title">
-            Welcome to FunGlobe Admin page
-        </div>
-        {% include 'AdminBundle:Inc:jouaniadminTabs.html.twig' %}
+        {% include 'AdminBundle:Inc:pascaladminTabs.html.twig' %}
     </div>
 {% endblock %}
 

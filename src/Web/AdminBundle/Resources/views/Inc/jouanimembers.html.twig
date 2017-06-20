@@ -1,19 +1,19 @@
 <div class="tab-pane" id="profile" role="tabpanel">
     <br/>
-    <div class="total_users">Number of users: </div><br/>
+    <div class="total_users">{% trans from 'admin' %}admin.members.number {% endtrans %}: </div><br/>
 
     <table class="table table-bordered table-hover table-sm table-striped table-success users_table">
         <tr>
             <th>#</th>
-            <th>First Name</th>
-            <th>Gender</th>
-            <th>Select</th>
+            <th>{% trans from 'admin' %}admin.members.firstname {% endtrans %}</th>
+            <th>{% trans from 'admin' %}admin.members.gender {% endtrans %}</th>
+            <th>{% trans from 'admin' %}admin.members.select {% endtrans %}</th>
         </tr>
     </table>
     <br/>
 
-    <button class="btn btn-sm btn-danger">Delete slected users</button>
-    <button class="btn btn-sm btn-info">Block slected users</button>
-    <button class="btn btn-sm btn-success">Email slected users</button>
+    <button class="btn btn-sm btn-danger">{% trans from 'admin' %}admin.members.delete {% endtrans %}</button>
+    <button class="btn btn-sm btn-info">{% trans from 'admin' %}admin.members.block {% endtrans %}</button>
+    <button class="btn btn-sm btn-success">{% trans from 'admin' %}admin.members.email {% endtrans %}</button>
 
 </div>
