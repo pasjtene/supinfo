@@ -16,3 +16,6 @@ form:
   remember: Remember me
   forgotpswd: Forgot password
   btnlogin: Login
+forgot:
+  msg: Enter your email address below, a reset link will be sent to your mailbox
+  btnsend: Send the link
