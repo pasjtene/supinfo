@@ -1,0 +1,23 @@
+<div class="tab-pane" id="profile" role="tabpanel">
+    <br/>
+    <div class="total_users">{% trans from 'admin' %}admin.members.number {% endtrans %}: </div>
+
+    <div id="nbusers">Number of selected users:
+        <span class="badge badge-pill badge-success nbrofchkbox"></span>
+    </div>
+    <br/>
+    <table id="user_list" class="table table-bordered table-hover table-sm table-striped table-success users_table">
+        <tr>
+            <th>#</th>
+            <th>{% trans from 'admin' %}admin.members.firstname {% endtrans %}</th>
+            <th>{% trans from 'admin' %}admin.members.gender {% endtrans %}</th>
+            <th>{% trans from 'admin' %}admin.members.select {% endtrans %}</th>
+        </tr>
+    </table>
+    <br/>
+
+    <button   class="btn btn-sm btn-danger">{% trans from 'admin' %}admin.members.delete {% endtrans %} <span class="badge badge-pill badge-success nbrofchkbox"></span></button>
+    <button class="btn btn-sm btn-info">{% trans from 'admin' %}admin.members.block {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
+    <button class="btn btn-sm btn-success">{% trans from 'admin' %}admin.members.email {% endtrans %}<span class="badge badge-pill badge-info nbrofchkbox"></span></button>
+
+</div>
