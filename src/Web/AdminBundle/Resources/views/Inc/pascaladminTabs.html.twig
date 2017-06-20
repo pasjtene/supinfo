@@ -28,11 +28,13 @@
             this week, and all other stats...</div>
 
 
-        <div class="tab-pane" id="profile" role="tabpanel">
+        <div  class="tab-pane" id="profile" role="tabpanel">
             <br/>
              <div class="total_users">Number of users: </div><br/>
-
-            <table class="table table-bordered table-hover table-sm table-striped table-success users_table">
+            <div id="nbusers">Number of selected users:
+                <span class="badge badge-pill badge-success nbrofchkbox"></span>
+            </div>
+            <table id="user_list" class="table table-bordered table-hover table-sm table-striped table-success users_table">
                 <tr>
                     <th>#</th>
                     <th>First Name</th>
@@ -42,9 +44,10 @@
             </table>
             <br/>
 
-            <button class="btn btn-sm btn-danger">Delete slected users</button>
-            <button class="btn btn-sm btn-info">Block slected users</button>
-            <button class="btn btn-sm btn-success">Email slected users</button>
+            <button   class="btn btn-sm btn-danger">Delete slected users <span class="badge badge-pill badge-success nbrofchkbox"></span></button>
+            <button class="btn btn-sm btn-info">Block slected users <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
+            <button class="btn btn-sm btn-success">Email slected users<span class="badge badge-pill badge-info nbrofchkbox"></span></button>
+
 
         </div>
         <div class="tab-pane" id="messages" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>
