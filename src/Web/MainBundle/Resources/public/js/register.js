@@ -15,13 +15,16 @@ var MainRegister = function()
             password : $("#password"),
             confirmpassword : $("#confirmpassword"),
             profession : $("#profession"),
+            country : $("#country"),
             btnregister: $("#btnregister")
         },
         api:{
             action :
-                {save: baseUrl +"/v1/register"},
+                {save: baseUrl +"v1/auth/register"},
             method:
-                {post:"POST"}
+                {post:"POST"},
+            headers:
+                {auth: "X-Auth-Token"}
         }
     };
 
@@ -42,14 +45,6 @@ $(function(){
         // rendre le champs birthday  en datepicker
         mainRegister.params.form.birthday.datepicker();
 
-        $.getJSON(baseUrl + "/v1/users" , function (object) {
-            console.log(object);
-        }).fail(
-            function (xhr, status, message) {
-                console.log(xhr.responseText + '\n' + status + '\n' + message);
-            }
-        );
-
 
         mainRegister.params.form.btnregister.click(function (e) {
 
@@ -64,7 +59,8 @@ $(function(){
                 joinReason: mainRegister.params.form.reason.val(),
                 gender: mainRegister.params.form.gender.val(),
                 email: mainRegister.params.form.email.val(),
-                password: mainRegister.params.form.password.val()
+                password: mainRegister.params.form.password.val(),
+                country: mainRegister.params.form.country.val()
                 /*lastName: null,
                 isOnline: false,
                 relationshipStatus: null,
@@ -75,6 +71,7 @@ $(function(){
                 profileVisibility: array
                 */
             };
+            alert(User.gender);
 
 
             if (verify(User) != null) {
@@ -82,10 +79,13 @@ $(function(){
                 alert('no');
             } else {
 
-                alert(mainRegister.params.api.action.save);
+               // alert(mainRegister.params.api.action.save);
+                //jQuery.support.cors = true;
                 $.ajax(
                     {
                         url: mainRegister.params.api.action.save,
+                        crossDomain: true,
+                        headers : {"X-Auth-Token" : tokenbase.value},
                         type: mainRegister.params.api.method.post,
                         data: User,
                         success: function (data) {

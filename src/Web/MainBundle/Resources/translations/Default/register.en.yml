@@ -15,6 +15,7 @@ form:
     confirmpassword: Confirm password
     profession: Profession
     btnsignup: SignUp
+    country: Country
     reasonList:
       1: Make new friend
       2: Chat
@@ -31,3 +32,4 @@ form:
     password: Your password
     confirmpassword: Confirm your password
     profession: Give your profession
+    country:  Choose your County
