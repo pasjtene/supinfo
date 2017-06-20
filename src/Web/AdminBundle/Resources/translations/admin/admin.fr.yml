@@ -4,6 +4,13 @@ admin:
 
   members:
    title: Membres
+   number: Nombre d'utilisateurs
+   firstname: 	Prénom
+   gender: Genre
+   select: 	Selectionner
+   delete: Supprimer les utilisateurs
+   block: Bloquer les utilisateurs
+   email: Ecrire aux utilisateurs
 
   messages:
    title: Messages
