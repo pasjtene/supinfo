@@ -4,6 +4,13 @@ admin:
 
   members:
    title: Members
+   number: Number of users
+   firstname: 	First Name
+   gender: Gender
+   select: 	Select
+   delete: Delete selected users
+   block: Block selected users
+   email: Email selected users
 
   messages:
    title: Messages
