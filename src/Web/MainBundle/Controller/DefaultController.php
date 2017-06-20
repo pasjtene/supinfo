@@ -34,4 +34,13 @@ class DefaultController extends Controller
         $array = [];
         return $this->render('MainBundle:Default:login.html.twig',$array);
     }
+
+    /**
+     * @Route("/forgot-password", name="main_forgot_password")
+     */
+    public function forgotAction(Request $request)
+    {
+        $array = [];
+        return $this->render('MainBundle:Default:forgot-password.html.twig', $array);
+    }
 }
