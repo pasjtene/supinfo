@@ -32,11 +32,14 @@
 
         {% block stylesheets %}
             <!-- Bootstrap 4 -->
-            <link rel="stylesheet" href="{{ asset('dist/bootstrap/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('plugin/bootstrap/css/bootstrap.min.css') }}">
             <!-- Font Awesome -->
-            <link rel="stylesheet" href="{{ asset('dist/font-awesome/font-awesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('plugin/font-awesome/font-awesome.min.css') }}">
             <!-- Ionicons -->
-            <link rel="stylesheet" href="{{ asset('dist/ionicons/ionicons.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('plugin/ionicons/ionicons.min.css') }}">
+
+            <link rel="stylesheet" href="{{ asset('plugin/datepicker/datepicker.css') }}">
+
             <!-- funglobe CSS -->
             <link rel="stylesheet" href="{{ asset('data/css/master.css') }}">
             <!-- logo -->
@@ -92,16 +95,16 @@
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
     <!-- jQuery 3.1 -->
-    <script src="{{ asset('dist/jquery/jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ asset('plugin/jQuery/jquery.js') }}"></script>
 
-    <!-- jQuery  slim 3.1 -->
-    <script src="{{ asset('dist/jquery/jquery.slim.js') }}"></script>
 
     <!-- Tether -->
-    <script src="{{ asset('dist/tether/tether.js') }}"></script>
+    <script src="{{ asset('plugin/tether/tether.js') }}"></script>
 
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('dist/bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('plugin/bootstrap/js/bootstrap.js') }}"></script>
+
+    <script src="{{ asset('plugin/datepicker/bootstrap-datepicker.js') }}"></script>
 
     <!-- js-translation -->
     <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>

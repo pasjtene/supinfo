@@ -12,6 +12,7 @@ var MainRegister = function()
             birthday : $("#birthday"),
             gender : $("#gender"),
             reason : $("#reason"),
+            password : $("#password"),
             confirmpassword : $("#confirmpassword"),
             profession : $("#profession"),
             btnregister: $("#btnregister")
@@ -50,7 +51,9 @@ $(function(){
         );
 
 
-        mainRegister.params.form.btnregister.click(function () {
+        mainRegister.params.form.btnregister.click(function (e) {
+
+            e.preventDefault();
 
             var User =
             {
@@ -76,8 +79,10 @@ $(function(){
 
             if (verify(User) != null) {
                //print error message
+                alert('no');
             } else {
 
+                alert(mainRegister.params.api.action.save);
                 $.ajax(
                     {
                         url: mainRegister.params.api.action.save,
@@ -89,7 +94,7 @@ $(function(){
                             //redirect  here
                         },
                         error: function (xhr, status, message) {
-                            alert(xhr.responseText + '\n' + message);
+                            console.log(status+"\n"+xhr.responseText + '\n' + message );
                         }
                     }
                 );

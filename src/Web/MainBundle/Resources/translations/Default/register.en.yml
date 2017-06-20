@@ -1,7 +1,7 @@
 refer:
   title: titre pour le referencement de la page
   description:  description pour le referencement de la page
-title: page title here
+title: Create new account
 form:
   title : Create new account
   content: Join more than 351 million new funglobe friends.
@@ -14,6 +14,7 @@ form:
     password: Password
     confirmpassword: Confirm password
     profession: Profession
+    btnsignup: SignUp
     reasonList:
       1: Make new friend
       2: Chat
