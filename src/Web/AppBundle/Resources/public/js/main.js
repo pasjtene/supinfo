@@ -4,8 +4,8 @@
 
 
 
-var baseUrl = 'http://127.0.0.1/api/';
-
+//var baseUrl = 'http://127.0.0.1/api/';
+var baseUrl = '/api/';
 
 var   AppMain = function()
     {
