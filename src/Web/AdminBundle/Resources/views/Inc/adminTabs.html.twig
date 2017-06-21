@@ -39,8 +39,8 @@
         <div class="tab-pane active" id="home" role="tabpanel">Admin dasboard will go here. We can see how many user registered today,
             this week, and all other stats...
         </div>
-        <div class="tab-pane" id="profile" role="tabpanel">
-            {% include 'AdminBundle:Inc:members.html.twig' %}
+        <div class="tab-pane" id="profile" role="tabpanel" data-tab="adminMembers">
+            {% include 'AdminBundle:Tab:members.html.twig' %}
         </div>
         <div class="tab-pane" id="messages" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>
         <div class="tab-pane" id="photos" role="tabpanel">All photos will be here, and the moderator can delete or mark as invalid</div>
