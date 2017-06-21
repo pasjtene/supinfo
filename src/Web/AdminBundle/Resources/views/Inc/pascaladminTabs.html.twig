@@ -25,28 +25,14 @@
             <div class="total_users">Number of users: </div><br/>
             <br/>
             Admin dasboard will go here. We can see how many user registered today,
+
             this week, and all other stats...</div>
 
-
+        <!--Members tab details -->
         <div class="tab-pane" id="profile" role="tabpanel">
-            <br/>
-             <div class="total_users">Number of users: </div><br/>
-
-            <table class="table table-bordered table-hover table-sm table-striped table-success users_table">
-                <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Gender</th>
-                    <th>Select</th>
-                </tr>
-            </table>
-            <br/>
-
-            <button class="btn btn-sm btn-danger">Delete slected users</button>
-            <button class="btn btn-sm btn-info">Block slected users</button>
-            <button class="btn btn-sm btn-success">Email slected users</button>
-
+            {% include 'AdminBundle:Inc:pascalmembers.html.twig' %}
         </div>
+
         <div class="tab-pane" id="messages" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>
         <div class="tab-pane" id="settings" role="tabpanel">All photos will go here and we can delete and mark as invalid</div>
     </div>

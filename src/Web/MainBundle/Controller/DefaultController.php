@@ -13,7 +13,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MainBundle:Default:index.html.twig');
+        return $this->redirect($this->generateUrl("main_register"));
     }
 
     /**
@@ -33,5 +33,14 @@ class DefaultController extends Controller
     {
         $array = [];
         return $this->render('MainBundle:Default:login.html.twig',$array);
+    }
+
+    /**
+     * @Route("/forgot-password", name="main_forgot_password")
+     */
+    public function forgotAction(Request $request)
+    {
+        $array = [];
+        return $this->render('MainBundle:Default:forgot-password.html.twig', $array);
     }
 }

@@ -1,0 +1,33 @@
+admin:
+  blocmessage:
+   title: Méssages bloqués
+
+  members:
+   title: Membres
+   number: Nombre d'utilisateurs
+   firstname: 	Prénom
+   gender: Genre
+   select: 	Selectionner
+   delete: Supprimer les utilisateurs
+   block: Bloquer les utilisateurs
+   email: Ecrire aux utilisateurs
+
+  messages:
+   title: Messages
+
+  photos:
+   title: Photos
+
+  picturedenounced:
+   title: Photos dénoncées
+
+  spam:
+   title: Utilisateurs Spam
+
+  statistics:
+   title: statistiques
+
+  userdenounced:
+   title: Utilisateurs dénoncés
+  users:
+   title: Liste des utilisateurs
