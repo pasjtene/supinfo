@@ -13,7 +13,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MainBundle:Default:index.html.twig');
+        return $this->redirect($this->generateUrl("main_register"));
     }
 
     /**

@@ -29,6 +29,22 @@ var MainRegister = function()
                 {post:"POST"},
             headers:
                 {auth: "X-Auth-Token"}
+        },
+        required:{
+            name : $("#block-name"),
+            email : $("#block-email"),
+            birthday : $("#block-birthday"),
+            gender : $("#block-gender"),
+            reason : $("#block-reason"),
+            password : $("#block-password"),
+            confirmpassword : $("#block-confirmpassword"),
+            profession : $("#block-profession"),
+            country : $("#block-country"),
+            btnregister: $("#block-btnregister"),
+            countryList: $("#block-countryList"),
+            day: $('#block-day'),
+            month: $('#block-month'),
+            year: $('#block-year')
         }
     };
 
@@ -52,6 +68,12 @@ $(function(){
     //tester si  nous somme dans la page d'enregistrement
     if(mainRegister.params.page.data('page')=="mainRegister")
     {
+
+
+
+        //donner le focus au chargement  de la page au  champs name
+        mainRegister.params.form.name.focus();
+
         // rendre le champs birthday  en datepicker
        // mainRegister.params.form.birthday.datepicker();
 
@@ -154,6 +176,25 @@ $(function(){
                 );
             }
         });
+
+        // instanciation sz la  classe heper (AppMain) pour recuperer les classe d'erreurs et  success
+        var appMain = new AppMain();
+        //validation du  formualire au touche
+        mainRegister.params.form.name.focus(function(){
+            if($(this).val().trim()==""){
+
+                //ajout  de la classe has-danger
+                appMain.function.addclass(mainRegister.params.required.name,appMain.params.required.has_danger);
+
+                //ajout  de la classe form-control-danger
+                appMain.function.addclass($(this), appMain.params.required.form_control_danger);
+
+                //activation de l'erreur
+                appMain.function.show($("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback))
+
+            }
+        });
+
     }
 
 
