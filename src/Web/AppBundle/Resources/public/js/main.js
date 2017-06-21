@@ -16,16 +16,43 @@ var   AppMain = function()
                 method:
                     {get:"GET"}
             },
-            required:{
+            required:{ //class de base  pour les erreurs et  succees
                 has_danger: "has-danger",
                 has_success: "has-success",
                 form_control_danger: "form-control-danger",
                 form_control_success: "form-control-success",
                 form_control_feedback : "form-control-feedback"
             }
+        },
+        this.function={
+            hasclass: //teste l'existance d'une classe et retourne true si  element  contient classname
+                function hasclass(element, classname)
+                {
+                    if(element.hasClass(classname)){
+                        return true;
+                    }
+                    return false;
+                },
+            addclass: //ajoute la classename a element  si  element  ne possède pas deja cette classe
+                function addclass(elemnent, classname)
+                {
+                    if(! this.hasclass(elemnent,classname)){
+                        elemnent.addClass(classname);
+                    }
+                },
+            show: //affiche un element cache
+                function(element){
+                    element.slideDown();
+                },
+            hide: //cache un element
+                function(element){
+                    element.slideUp();
+                }
         }
 
     };
+
+
 
 
 

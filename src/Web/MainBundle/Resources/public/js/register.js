@@ -68,6 +68,12 @@ $(function(){
     //tester si  nous somme dans la page d'enregistrement
     if(mainRegister.params.page.data('page')=="mainRegister")
     {
+
+
+
+        //donner le focus au chargement  de la page au  champs name
+        mainRegister.params.form.name.focus();
+
         // rendre le champs birthday  en datepicker
        // mainRegister.params.form.birthday.datepicker();
 
@@ -171,7 +177,23 @@ $(function(){
             }
         });
 
+        // instanciation sz la  classe heper (AppMain) pour recuperer les classe d'erreurs et  success
+        var appMain = new AppMain();
         //validation du  formualire au touche
+        mainRegister.params.form.name.focus(function(){
+            if($(this).val().trim()==""){
+
+                //ajout  de la classe has-danger
+                appMain.function.addclass(mainRegister.params.required.name,appMain.params.required.has_danger);
+
+                //ajout  de la classe form-control-danger
+                appMain.function.addclass($(this), appMain.params.required.form_control_danger);
+
+                //activation de l'erreur
+                appMain.function.show($("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback))
+
+            }
+        });
 
     }
 
