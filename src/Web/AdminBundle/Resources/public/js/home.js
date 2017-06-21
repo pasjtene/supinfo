@@ -70,12 +70,23 @@ $(function(){
 
                 //When the table is clicked, we count the number of selected checkboxed
                 updateCount ();
-                adminHome.params.attr.id.user_list.click(function(event){
-                    adminHome.params.attr.class.user_select_checkbox.each(function(){
+                $(adminHome.params.attr.id.user_list).click(function(event){
+
+                    $('.user_select_checkbox').each(function(){
                         $(this).change(updateCount);
                         updateCount();
                     });
+
+                    //la partie suivante est logiquement equivalente a celle du haut et devraie marchee, mais ne marche pas.
+                    //on doit verifier
+
+                    // adminHome.params.attr.class.user_select_checkbox.each(function(){
+                    //   $(this).change(updateCount);
+                    //   updateCount();
+                    //});
+
                 });
+
 
                 //find the users list
                 $.ajax(
