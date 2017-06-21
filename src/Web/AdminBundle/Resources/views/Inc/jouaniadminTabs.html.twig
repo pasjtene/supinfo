@@ -36,14 +36,17 @@
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel">Admin dasboard will go here. We can see how many user registered today,
+        <div class="tab-pane active" id="home" role="tabpanel">
+            {% include 'AdminBundle:Inc:jouanidashboard.html.twig' %}Admin dasboard will go here. We can see how many user registered today,
             this week, and all other stats...
         </div>
         <div class="tab-pane" id="profile" role="tabpanel">
             {% include 'AdminBundle:Inc:jouanimembers.html.twig' %}
         </div>
         <div class="tab-pane" id="messages" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>
-        <div class="tab-pane" id="photos" role="tabpanel">All photos will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="photos" role="tabpanel">
+            {% include 'AdminBundle:Inc:jouanipicture.html.twig' %}
+        </div>
         <div class="tab-pane" id="spam" role="tabpanel">All spam messages will be here, and the moderator can delete or mark as invalid</div>
         <div class="tab-pane" id="userdenounced" role="tabpanel">All user will be here, and the moderator can delete or mark as invalid</div>
         <div class="tab-pane" id="blocmessage" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>
