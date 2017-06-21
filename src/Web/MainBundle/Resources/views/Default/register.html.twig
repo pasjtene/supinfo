@@ -36,16 +36,33 @@
                         <input class="form-control" type="email" id="email" placeholder="{% trans from 'register' %} form.placeholder.email {% endtrans %}">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" >
                     <label for="country" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.country {% endtrans %}</label>
                     <div class="col-sm-12 col-lg-9">
-                        <input class="form-control" type="text" id="country" placeholder="{% trans from 'register' %} form.placeholder.country {% endtrans %}">
+                        <input data-country="{{ asset('dist/country.json') }}" class="form-control" type="text" id="country" list="countryList" placeholder="{% trans from 'register' %} form.placeholder.country {% endtrans %}">
+                        <datalist id="countryList">
+
+                        </datalist>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="birthday" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.birthday {% endtrans %}</label>
                     <div class="col-sm-12 col-lg-9">
-                        <input class="form-control datepicker" data-date-format="dd-mm-yyyy" autocomplete="off" value="" type="text" id="birthday" placeholder="{% trans from 'register' %} form.placeholder.birthday {% endtrans %}">
+                        <div class="col-sm-4">
+                            <select class="custom-select form-control" id="day">
+
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select form-control" id="day">
+
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select form-control" id="day">
+
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">

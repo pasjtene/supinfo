@@ -16,7 +16,8 @@ var MainRegister = function()
             confirmpassword : $("#confirmpassword"),
             profession : $("#profession"),
             country : $("#country"),
-            btnregister: $("#btnregister")
+            btnregister: $("#btnregister"),
+            countryList: $("#countryList")
         },
         api:{
             action :
@@ -45,6 +46,15 @@ $(function(){
         // rendre le champs birthday  en datepicker
         mainRegister.params.form.birthday.datepicker();
 
+
+
+        $.getJSON(mainRegister.params.form.country.data("country"), function(data){
+            mainRegister.params.form.countryList.empty();
+            $.each(data,function(index,vaue){
+                    var option = "<option value='"+index+"'>"+vaue+"</option>"
+                    mainRegister.params.form.countryList.append(option);
+            });
+        });
 
         mainRegister.params.form.btnregister.click(function (e) {
 
