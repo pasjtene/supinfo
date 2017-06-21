@@ -30,6 +30,15 @@
                         <input class="form-control" type="text" id="name" placeholder="{% trans from 'register' %} form.placeholder.name {% endtrans %}">
                     </div>
                 </div>
+                <div class="form-group row" >
+                    <label for="country" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.country {% endtrans %}</label>
+                    <div class="col-sm-12 col-lg-9">
+                        <input data-country="{{ asset('dist/country.json') }}" class="form-control" type="text" id="country" list="countryList" placeholder="{% trans from 'register' %} form.placeholder.country {% endtrans %}">
+                        <datalist id="countryList">
+
+                        </datalist>
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label for="email" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.email {% endtrans %}</label>
                     <div class="col-sm-12 col-lg-9">
@@ -38,15 +47,27 @@
                 </div>
                 <div class="form-group row">
                     <label for="birthday" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.birthday {% endtrans %}</label>
-                    <div class="col-sm-12 col-lg-9">
-                        <input class="form-control datepicker" data-date-format="dd-mm-yyyy" autocomplete="off" value="" type="text" id="birthday" placeholder="{% trans from 'register' %} form.placeholder.birthday {% endtrans %}">
-                    </div>
+                        <div class="col-sm-3 col-lg-3">
+                            <select class="custom-select form-control" id="day">
+                                <option selected value="">{% trans from 'register' %} form.body.birthdayOption.day {% endtrans %}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3 col-lg-3">
+                            <select class="custom-select form-control" id="month">
+                                <option selected value="">{% trans from 'register' %} form.body.birthdayOption.month {% endtrans %}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3 col-lg-3">
+                            <select class="custom-select form-control" id="year">
+                                <option selected value="">{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}</option>
+                            </select>
+                        </div>
                 </div>
                 <div class="form-group row">
                     <label for="gender" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.gender {% endtrans %}</label>
                     <div class="col-sm-12 col-lg-9">
                         <select class="custom-select form-control " id="gender">
-                            <option selected>{% trans from 'register' %} form.placeholder.gender {% endtrans %}</option>
+                            <option selected value="">{% trans from 'register' %} form.placeholder.gender {% endtrans %}</option>
                             <option value="M">{% trans from 'register' %} form.body.genderList.1 {% endtrans %}</option>
                             <option value="F">{% trans from 'register' %} form.body.genderList.2 {% endtrans %}</option>
                         </select>
@@ -57,7 +78,7 @@
                     <label for="reason" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.reason {% endtrans %}</label>
                     <div class="col-sm-12 col-lg-9">
                         <select class="custom-select form-control" id="reason">
-                            <option selected>{% trans from 'register' %} form.placeholder.reason {% endtrans %}</option>
+                            <option selected value="">{% trans from 'register' %} form.placeholder.reason {% endtrans %}</option>
                             <option value="1">{% trans from 'register' %} form.body.reasonList.1 {% endtrans %}</option>
                             <option value="2">{% trans from 'register' %} form.body.reasonList.2 {% endtrans %}</option>
                             <option value="3">{% trans from 'register' %} form.body.reasonList.3 {% endtrans %}</option>

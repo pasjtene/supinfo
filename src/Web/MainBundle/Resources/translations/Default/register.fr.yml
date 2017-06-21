@@ -15,6 +15,7 @@ form:
     confirmpassword: Confirmer le mot  de passe
     profession: Profession
     btnsignup: S'inscrire
+    country:  Pays
     reasonList:
       1: Se faire de nouveaux amis
       2: Dialoguer
@@ -22,6 +23,10 @@ form:
     genderList:
       1: Masculin
       2: Feminin
+     birthdayOption:
+      day: Jour
+      month: Mois
+      year: Année
   placeholder:
     name: Entrer nom
     birthday: Entrer date de naissance
@@ -31,3 +36,8 @@ form:
     password: Entrer  votre mot  de passe
     confirmpassword: Resaisir le même mot  de passe
     profession: Donner votre profession
+    country: Choisissez votre pays
+    birthdayOption:
+      day: Choisir le jour
+      month: Choisir le mois
+      year: Choisir l'année
