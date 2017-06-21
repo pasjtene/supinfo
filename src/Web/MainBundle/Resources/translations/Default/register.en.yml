@@ -23,6 +23,10 @@ form:
     genderList:
       1: Male
       2: Female
+    birthdayOption:
+      day: Day
+      month: Month
+      year: Year
   placeholder:
     name: Your first  name
     birthday: Your birthday
@@ -33,3 +37,7 @@ form:
     confirmpassword: Confirm your password
     profession: Give your profession
     country:  Choose your County
+    birthdayOption:
+      day: Choose the day
+      month: Choose the month
+      year: Choose the year
