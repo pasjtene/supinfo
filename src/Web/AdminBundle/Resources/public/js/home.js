@@ -43,15 +43,20 @@ $(function(){
     if(adminHome.params.page.data('page')=="adminHome")
     {
 
+        // teste si le tokenbase n'ai pas encore modifie chaque 0,1s
         interval = setInterval(function(){
+            //si  le token est deja modifie
            if(tokenbase!=null)
            {
+               //on appel la methode pour charger la partir membre (car la fonction demande que le token exit et ne soit pas null)
                setMember();
-               clearInterval();
+               //puisque le token n'est plus a present il  faut qu'on arrete de tester
+               clearInterval(interval);
            }
        },100);
 
 
+        //methode pour gerer les membres
         function setMember(){
             if(adminHome.params.tab.members.data('tab')=="adminMembers")
             {
