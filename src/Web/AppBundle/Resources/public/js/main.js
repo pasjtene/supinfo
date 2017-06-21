@@ -15,6 +15,13 @@ var   AppMain = function()
                     {find: baseUrl +"v1/app"},
                 method:
                     {get:"GET"}
+            },
+            required:{
+                has_danger: "has-danger",
+                has_success: "has-success",
+                form_control_danger: "form-control-danger",
+                form_control_success: "form-control-success",
+                form_control_feedback : "form-control-feedback"
             }
         }
 

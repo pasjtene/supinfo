@@ -41,3 +41,16 @@ form:
       day: Choose the day
       month: Choose the month
       year: Choose the year
+  required:
+    name: the name is required
+    birthdayOption:
+      day: the the is required
+      month: the month is required
+      year:  the year is required
+    gender: the gender is required
+    reason: the reason is required
+    email: the adresse mail  is required
+    password: the password is required
+    confirmpassword: pleace retape the same password
+    profession: the professsion is required
+    country: the country  is required

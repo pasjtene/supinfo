@@ -29,6 +29,22 @@ var MainRegister = function()
                 {post:"POST"},
             headers:
                 {auth: "X-Auth-Token"}
+        },
+        required:{
+            name : $("#block-name"),
+            email : $("#block-email"),
+            birthday : $("#block-birthday"),
+            gender : $("#block-gender"),
+            reason : $("#block-reason"),
+            password : $("#block-password"),
+            confirmpassword : $("#block-confirmpassword"),
+            profession : $("#block-profession"),
+            country : $("#block-country"),
+            btnregister: $("#block-btnregister"),
+            countryList: $("#block-countryList"),
+            day: $('#block-day'),
+            month: $('#block-month'),
+            year: $('#block-year')
         }
     };
 
@@ -154,6 +170,9 @@ $(function(){
                 );
             }
         });
+
+        //validation du  formualire au touche
+
     }
 
 
