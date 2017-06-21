@@ -36,7 +36,8 @@
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel">Admin dasboard will go here. We can see how many user registered today,
+        <div class="tab-pane active" id="home" role="tabpanel">{% include 'AdminBundle:Inc:jouanidashboard.html.twig' %}
+            Admin dasboard will go here. We can see how many user registered today,
             this week, and all other stats...
         </div>
         <div class="tab-pane" id="profile" role="tabpanel" data-tab="adminMembers">
