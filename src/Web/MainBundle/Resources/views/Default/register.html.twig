@@ -17,9 +17,31 @@
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
 {% endblock %}
 
+ {% block navHead %}
+     {% trans from 'register' %} block.title {% endtrans %}
+ {% endblock %}
 {% block main %}
     <div class="row" id="mainRegister" data-page="mainRegister">
-        <div class="offset-lg-1 col-lg-8 col-sm-12">
+        <div class="col-lg-5 col-sm-12" id="block1">
+            <h4>
+                {% trans from 'register' %} block.title {% endtrans %}
+                <strong> {% trans from 'register' %} block.important {% endtrans %} </strong>
+            </h4>
+            <span> {% trans from 'register' %} block.content {% endtrans %} </span>
+            <br><br><br>
+            <div class="row">
+                <div class="col-sm-8" id="block-btn">
+                    <button class="btn btn-danger">{% trans from 'register' %} block.google {% endtrans %}</button>
+                    <button class="btn btn-primary">{% trans from 'register' %} block.facebook {% endtrans %}</button>
+                </div>
+                <div class="col-sm-4 pull-lg-2" id="block-or">
+                    {% trans from 'register' %} block.signup {% endtrans %}
+                    <div id="or-content">{% trans from 'register' %} block.or {% endtrans %}</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="push-lg-1 col-lg-6 col-sm-12" id="block2">
             <form action="">
                 <h3>{% trans from 'register' %} form.title {% endtrans %}</h3>
                 <h5>{% trans from 'register' %} form.content {% endtrans %}</h5>
@@ -114,7 +136,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn primary-button  pull-right" id="btnregister">{% trans from 'register' %} form.body.btnsignup {% endtrans %}</button>
+                        <button type="submit" class="btn btn-primary  pull-right" id="btnregister">{% trans from 'register' %} form.body.btnsignup {% endtrans %}</button>
                     </div>
                 </div>
 

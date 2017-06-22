@@ -9,14 +9,14 @@ button{
   border-radius: 6px;
   padding: 2%;
 }
-.primary-button{
-   background-color: $default-color;
+.btn{
    color: white;
-   border-radius: 0.8em;
+   border-radius: 0.6em;
    min-width: 9em !important;
 }
-.primary-button:hover{
-  background-color: $default-color-hover;
+.btn:hover{
+  background-color: $highligt;
+  border-color: $highligt;
 }
 
 .form-control{
