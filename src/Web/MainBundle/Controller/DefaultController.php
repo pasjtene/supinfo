@@ -43,4 +43,19 @@ class DefaultController extends Controller
         $array = [];
         return $this->render('MainBundle:Default:forgot-password.html.twig', $array);
     }
+
+    /**
+     * @Route("/reset-password", name="main_reset_password")
+     */
+    public function resetAction(Request $request)
+    {
+        $array = ['valid' => 1];
+
+        $email = $request->get('email');
+        $token = $request->get('confirmationtoken');
+
+        ///TODO Envoyer un requete pour vérifier la validité
+
+        return $this->render('MainBundle:Default:reset-password.html.twig', $array);
+    }
 }

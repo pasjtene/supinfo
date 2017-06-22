@@ -17,5 +17,11 @@ form:
   forgotpswd: Mot de passe oublié
   btnlogin: Connexion
 forgot:
+  title: J'ai oublié mon mot de passe
   msg: Entrez votre adresse email ci-dessous, un lien de reinitialisation de votre mot de passe sera envoyé dans votre boîte mail
   btnsend: Envoyer le lien
+reset:
+  title: Réinitialiser mon mot de passe
+  msg: Entrez un nouveau mot de passe pour réinitialiser
+  lblconfpswd: Confirmation du mot de passe:
+  btnreset: Reinitialiser
