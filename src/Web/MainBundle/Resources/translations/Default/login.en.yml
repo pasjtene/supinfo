@@ -17,5 +17,11 @@ form:
   forgotpswd: Forgot password
   btnlogin: Login
 forgot:
+  title: I forgot my password
   msg: Enter your email address below, a reset link will be sent to your mailbox
   btnsend: Send the link
+reset:
+  title: Reset my password
+  msg: Enter a new password to reset your password
+  lblconfpswd: Confirm the password :
+  btnreset: Reset
