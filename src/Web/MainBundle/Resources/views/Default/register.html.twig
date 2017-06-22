@@ -24,6 +24,8 @@
                 <h3>{% trans from 'register' %} form.title {% endtrans %}</h3>
                 <h5>{% trans from 'register' %} form.content {% endtrans %}</h5>
                 <br>
+                (*)
+                <br>
                 <div class="form-group row" id="block-name">
                     <label for="name" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.name {% endtrans %}*</label>
                     <div class="col-sm-12 col-lg-9">
@@ -69,9 +71,9 @@
                             <div class="form-control-feedback">{% trans from 'register' %} form.required.birthdayOption.year {% endtrans %}</div>
                         </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" id="block-gender">
                     <label for="gender" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.gender {% endtrans %}*</label>
-                    <div class="col-sm-12 col-lg-9" id="block-gender">
+                    <div class="col-sm-12 col-lg-9" >
                         <select class="custom-select form-control " id="gender">
                             <option selected value="">{% trans from 'register' %} form.placeholder.gender {% endtrans %}</option>
                             <option value="M">{% trans from 'register' %} form.body.genderList.1 {% endtrans %}</option>
@@ -81,9 +83,9 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row" id="block-reason">
                     <label for="reason" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.reason {% endtrans %}*</label>
-                    <div class="col-sm-12 col-lg-9" id="block-reason">
+                    <div class="col-sm-12 col-lg-9" >
                         <select class="custom-select form-control" id="reason">
                             <option selected value="">{% trans from 'register' %} form.placeholder.reason {% endtrans %}</option>
                             <option value="1">{% trans from 'register' %} form.body.reasonList.1 {% endtrans %}</option>
