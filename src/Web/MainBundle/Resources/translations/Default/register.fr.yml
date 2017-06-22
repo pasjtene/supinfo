@@ -2,6 +2,8 @@ refer:
   title: titre pour le referencement de la page
   description:  description pour le referencement de la page
 title: S'enregistrer
+nav:
+  register: S'inscrire
 form:
   title : Creer un nouveau compte
   content: Joindre plus de 351 million nouveaux amis sur funglobe

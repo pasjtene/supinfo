@@ -2,6 +2,8 @@ refer:
   title: titre pour le referencement de la page
   description:  description pour le referencement de la page
 title: Create new account
+nav:
+  register: SignUp
 block:
   title: The social network for metting
   important:  new poeples :)
