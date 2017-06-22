@@ -54,3 +54,4 @@ form:
     confirmpassword: pleace retape the same password
     profession: the professsion is required
     country: the country  is required
+    notification: Is required

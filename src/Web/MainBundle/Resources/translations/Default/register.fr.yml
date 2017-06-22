@@ -54,3 +54,4 @@ form:
     confirmpassword: Ressaisir le même mot  de passe
     profession: La profession est obligatoire
     country: Le pays est obligatoire
+    notification: Est obligatoire
