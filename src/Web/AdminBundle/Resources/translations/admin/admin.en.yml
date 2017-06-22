@@ -1,0 +1,33 @@
+admin:
+  blocmessage:
+   title: Bloc messages
+
+  members:
+   title: Members
+   number: Number of users
+   firstname: 	First Name
+   gender: Gender
+   select: 	Select
+   delete: Delete selected users
+   block: Block selected users
+   email: Email selected users
+
+  messages:
+   title: Messages
+
+  photos:
+   title: Pics
+
+  picturedenounced:
+   title: Pictures denounced
+
+  spam:
+   title: Spam users
+
+  statistics:
+   title: statistics
+
+  userdenounced:
+   title: Users denounced
+  users:
+   title: Show all users

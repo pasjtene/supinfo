@@ -1,4 +1,56 @@
 refer:
   title: titre pour le referencement de la page
   description:  description pour le referencement de la page
-title: page title here
+title: Create new account
+form:
+  title : Create new account
+  content: Join more than 351 million new funglobe friends.
+  body:
+    name: Name
+    birthday: Birthday
+    gender: Gender
+    reason: I am  here to
+    email: Email adresse
+    password: Password
+    confirmpassword: Confirm password
+    profession: Profession
+    btnsignup: SignUp
+    country: Country
+    reasonList:
+      1: Make new friend
+      2: Chat
+      3: Date
+    genderList:
+      1: Male
+      2: Female
+    birthdayOption:
+      day: Day
+      month: Month
+      year: Year
+  placeholder:
+    name: Your first  name
+    birthday: Your birthday
+    gender: Your gender
+    reason: choose your reason
+    email: Your email  adress
+    password: Your password
+    confirmpassword: Confirm your password
+    profession: Give your profession
+    country:  Choose your County
+    birthdayOption:
+      day: Choose the day
+      month: Choose the month
+      year: Choose the year
+  required:
+    name: the name is required
+    birthdayOption:
+      day: the the is required
+      month: the month is required
+      year:  the year is required
+    gender: the gender is required
+    reason: the reason is required
+    email: the adresse mail  is required
+    password: the password is required
+    confirmpassword: pleace retape the same password
+    profession: the professsion is required
+    country: the country  is required

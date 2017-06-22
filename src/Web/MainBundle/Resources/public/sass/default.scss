@@ -1,8 +1,9 @@
-$default-color: yellowgreen;
-$default-color-hover: greenyellow;
+$default-color: #0275D8;
+$default-color-hover: forestgreen;
 $secondary-color : rgba(0,0,0,.125);
 $default-font-color: #292b2c;
 $secondary-font-color: #ffffff;
+$badnew-color: #DF534F;
 button{
   border-radius: 6px;
   padding: 2%;
@@ -10,6 +11,8 @@ button{
 .primary-button{
    background-color: $default-color;
    color: white;
+   border-radius: 0.8em;
+   min-width: 9em !important;
 }
 .primary-button:hover{
   background-color: $default-color-hover;
@@ -22,6 +25,15 @@ button{
 .form-control:focus{
     border: solid 1px $default-color;
 }
+
+.form-control-danger{
+  background-color: $badnew-color;
+}
+
+.form-control-danger:focus{
+  border: solid 1px $badnew-color !important;
+}
+
 
 .card{
 

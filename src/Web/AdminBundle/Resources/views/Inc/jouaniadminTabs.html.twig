@@ -1,0 +1,52 @@
+<div class="admin_page_title">
+    Welcome to FunGlobe Admin page
+</div>
+<div class="container">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home" role="tab">{% trans from 'admin' %}admin.statistics.title {% endtrans %}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile" role="tab">{% trans from 'admin' %}admin.members.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#messages" role="tab">{% trans from 'admin' %}admin.messages.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#photos" role="tab">{% trans from 'admin' %}admin.photos.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#spam" role="tab">{% trans from 'admin' %}admin.spam.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#userdenounced" role="tab">
+                {% trans from 'admin' %}admin.userdenounced.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#photosdenounced" role="tab">
+                {% trans from 'admin' %}admin.picturedenounced.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#blocmessage" role="tab">
+                {% trans from 'admin' %}admin.blocmessage.title {% endtrans %}</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel">Admin dasboard will go here. We can see how many user registered today,
+            this week, and all other stats...
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel">
+            {% include 'AdminBundle:Inc:jouanimembers.html.twig' %}
+        </div>
+        <div class="tab-pane" id="messages" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="photos" role="tabpanel">All photos will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="spam" role="tabpanel">All spam messages will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="userdenounced" role="tabpanel">All user will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="blocmessage" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="photosdenounced" role="tabpanel">All photos will be here, and the moderator can delete or mark as invalid</div>
+    </div>
+</div>

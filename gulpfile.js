@@ -14,7 +14,19 @@ var plumber = require('gulp-plumber');
 var exec = require('child_process').exec;
 var rename = require('gulp-rename');
 
-var jsPaths = ['./web/bundles/*/js/*.js'];
+var jsPaths = [
+    './web/bundles/app/js/*.js',
+    './web/bundles/main/js/*.js',
+    './web/bundles/admin/js/*.js'
+];
+
+/*var sassPaths = [
+    './web/bundles/app/sass/main.scss',
+    './web/bundles/main/sass/main.scss',
+    './web/bundles/admin/sass/main.scss'
+];*/
+var sassPaths = './web/bundles/app/sass/master.scss';
+
 var currentTask = "";
 
 var supportedBrowsers = [
@@ -45,7 +57,7 @@ var scriptTask = function()
 
 var sassTask = function()
 {
-    gulp.src('./web/bundles/app/sass/master.scss')
+    gulp.src(sassPaths)
         .pipe(sourcemaps.init())
         .pipe(plumber())
         .pipe(sass({sourceComments: 'map'}))
@@ -90,6 +102,9 @@ var uglifyTask = function()
 
 gulp.task('default', function(){
     exec('php bin/console assets:install --symlink', logStdOutAndErr);
+});
+gulp.task('sass_help', function(){
+    exec('sass --watch web/bundles/app/sass/master.scss:web/data/css', logStdOutAndErr);
 });
 
 gulp.task('installAssets', function ()
