@@ -23,7 +23,7 @@ form:
     genderList:
       1: Masculin
       2: Feminin
-     birthdayOption:
+    birthdayOption:
       day: Jour
       month: Mois
       year: Année
@@ -41,3 +41,16 @@ form:
       day: Choisir le jour
       month: Choisir le mois
       year: Choisir l'année
+  required:
+    name: Le nom  est  requis
+    birthdayOption:
+      day: Le jour est  obligatoire
+      month: Le mois est obligatoire
+      year:  L'année est  obligatoire
+    gender: Le sexe est  obligatoire
+    reason: La raison est obligatoire
+    email: L'adresse email est obligatoire
+    password: the password is required
+    confirmpassword: Ressaisir le même mot  de passe
+    profession: La profession est obligatoire
+    country: Le pays est obligatoire
