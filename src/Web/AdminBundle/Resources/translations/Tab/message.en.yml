@@ -1,0 +1,24 @@
+message:
+  blocmessage:
+   title: Bloc messages
+
+  messages:
+   title: Members
+   number: Number of users
+   firstname: 	First Name
+   gender: Gender
+   select: 	Select
+   select2: Number of messsages
+   delete: Delete selected users
+   block: Block selected users
+   email: Email selected users
+   transmitter: Transmitter
+   receiver: Transmitter ID
+   content: Content
+   date: Date
+   status: Status
+   file: File
+   title: Messages
+
+
+
