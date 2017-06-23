@@ -1,4 +1,6 @@
 services:
-#    app.example:
-#        class: Web\AppBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    tootree_user_provider:
+        class: Web\ApiBundle\Entity\User
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: [Web\ApiBundle\Entity\User]
