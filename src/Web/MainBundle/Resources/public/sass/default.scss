@@ -4,18 +4,19 @@ $secondary-color : rgba(0,0,0,.125);
 $default-font-color: #292b2c;
 $secondary-font-color: #ffffff;
 $badnew-color: #DF534F;
+$highligt: yellowgreen;
 button{
   border-radius: 6px;
   padding: 2%;
 }
-.primary-button{
-   background-color: $default-color;
+.btn{
    color: white;
-   border-radius: 0.8em;
+   border-radius: 0.6em;
    min-width: 9em !important;
 }
-.primary-button:hover{
-  background-color: $default-color-hover;
+.btn:hover{
+  background-color: $highligt;
+  border-color: $highligt;
 }
 
 .form-control{
@@ -23,7 +24,7 @@ button{
 }
 
 .form-control:focus{
-    border: solid 1px $default-color;
+    border: solid 1px $highligt;
 }
 
 .form-control-danger{

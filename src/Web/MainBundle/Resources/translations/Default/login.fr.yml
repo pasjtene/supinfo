@@ -3,7 +3,7 @@ refer:
   description:  description pour le referencement de la page
 title: FunGlobe - Connexion
 nav:
-  register: Inscription
+  login: Connecte toi
 body:
   msgone: Connectes toi à FunGlobe
   msgtwo: Rencontres des gens qui ont des affinités avec toi ! si tu n'es pas encore inscrit,

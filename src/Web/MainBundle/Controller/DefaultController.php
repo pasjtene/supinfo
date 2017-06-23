@@ -31,7 +31,7 @@ class DefaultController extends Controller
      */
     public function loginAction(Request $request)
     {
-        $array = [];
+        $array = ["login"=>"login"];
         return $this->render('MainBundle:Default:login.html.twig',$array);
     }
 
