@@ -12,7 +12,8 @@ var AdminHome = function()
         attr: {
             id:{
                 nbusers: $("#nbusers"),
-                user_list: $("#user_list")
+                user_list: $("#user_list"),
+                users_table_body: $("#users_table_body")
             },
             class:{
                 nbrofchkbox: $('.nbrofchkbox'),
@@ -111,6 +112,7 @@ $(function(){
 
                             //set du  total  des users
                             adminHome.params.attr.class.total_users.append(users.length);
+                            adminHome.params.attr.id.users_table_body.empty();
                             $.each(users, function(i, user){
 
                                 var row = $('<tr>').html("<td>" + (i+1) +
@@ -119,7 +121,8 @@ $(function(){
                                     "</td>");
                                 $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="user_id_to_fix"/>').appendTo(row);
                                 //augmenter les users dans le tableau
-                                row.appendTo('.users_table');
+                                adminHome.params.attr.id.users_table_body.append(row);
+                                //row.appendTo('.users_table');
 
                             });
                         },

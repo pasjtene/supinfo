@@ -6,12 +6,17 @@
     </div>
     <br/>
     <table id="user_list" class="table table-bordered table-hover table-sm table-striped table-success users_table">
-        <tr>
-            <th>#</th>
-            <th>{% trans from 'admin' %}admin.members.firstname {% endtrans %}</th>
-            <th>{% trans from 'admin' %}admin.members.gender {% endtrans %}</th>
-            <th>{% trans from 'admin' %}admin.members.select {% endtrans %}</th>
-        </tr>
+       <thead>
+           <tr>
+               <th>#</th>
+               <th>{% trans from 'admin' %}admin.members.firstname {% endtrans %}</th>
+               <th>{% trans from 'admin' %}admin.members.gender {% endtrans %}</th>
+               <th>{% trans from 'admin' %}admin.members.select {% endtrans %}</th>
+           </tr>
+       </thead>
+        <tbody id="users_table_body">
+
+        </tbody>
     </table>
     <br/>
 
