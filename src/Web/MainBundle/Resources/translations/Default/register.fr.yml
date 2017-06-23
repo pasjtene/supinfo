@@ -44,7 +44,7 @@ form:
       month: Choisir le mois
       year: Choisir l'année
   required:
-    name: Le nom  est  requis
+    name: Le nom  est  requis (min  3 caractères)
     birthdayOption:
       day: Le jour est  obligatoire
       month: Le mois est obligatoire
@@ -52,8 +52,8 @@ form:
     gender: Le sexe est  obligatoire
     reason: La raison est obligatoire
     email: L'adresse email est obligatoire
-    password: the password is required
+    password: the password is required (min  5 caractères)
     confirmpassword: Ressaisir le même mot  de passe
-    profession: La profession est obligatoire
+    profession: La profession est obligatoire (min  3 charaters)
     country: Le pays est obligatoire
     notification: Est obligatoire
