@@ -27,10 +27,6 @@ button{
     border: solid 1px $highligt;
 }
 
-.form-control-danger{
-  background-color: $badnew-color;
-}
-
 .form-control-danger:focus{
   border: solid 1px $badnew-color !important;
 }
