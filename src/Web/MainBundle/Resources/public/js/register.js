@@ -62,7 +62,16 @@ $(function(){
     //fonction de verifications des valeurs saisies par l'utilisateur
     function verify(user)
     {
-
+        var appMain = new AppMain();
+        var test = '';
+        test+= appMain.function.validation(user.firstname,3,100);
+        test+= appMain.function.validation(user.country,1,100);
+        test+= appMain.function.validation(user.email,8,100);
+        test+= appMain.function.validation(user.birthDate,10,10);
+        test+= appMain.function.validation(user.gender,1,8);
+        test+= appMain.function.validation(user.joinReason,1,100);
+        test+= appMain.function.validation(user.password,5,100);
+        return test;
     }
 
     //tester si  nous somme dans la page d'enregistrement
@@ -148,11 +157,11 @@ $(function(){
             };
 
             //verifier si  tous les champs sont remplis
-            if (verify(User) != null) {
+            if (verify(User) != '') {
                //print error message
-                alert('no');
+                alert(verify(User));
             } else {
-
+                alert("kckl");
                // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
 
@@ -236,30 +245,28 @@ $(function(){
 
         // 8- validation du champs sexe
         mainRegister.params.form.gender.focus(function(){
-            appMain.function.validate(mainRegister.params.required.gender,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.gender,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.gender,appMain.params.required.form_control_feedback,2,100);
+            appMain.function.validate(mainRegister.params.required.gender,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.gender,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.gender,appMain.params.required.form_control_feedback,1,100);
         });
         mainRegister.params.form.gender.keyup(function(){
-            appMain.function.validate(mainRegister.params.required.gender,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.gender,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.gender,appMain.params.required.form_control_feedback,2,100);
+            appMain.function.validate(mainRegister.params.required.gender,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.gender,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.gender,appMain.params.required.form_control_feedback,1,100);
         });
 
 
         // 8- validation du champs reason
         mainRegister.params.form.reason.focus(function(){
-            appMain.function.validate(mainRegister.params.required.reason,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.reason,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.reason,appMain.params.required.form_control_feedback,2,100);
+            appMain.function.validate(mainRegister.params.required.reason,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.reason,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.reason,appMain.params.required.form_control_feedback,1,100);
         });
         mainRegister.params.form.reason.keyup(function(){
-            appMain.function.validate(mainRegister.params.required.reason,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.reason,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.reason,appMain.params.required.form_control_feedback,2,100);
+            appMain.function.validate(mainRegister.params.required.reason,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.reason,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.reason,appMain.params.required.form_control_feedback,1,100);
         });
 
         // 9- validation du champs password
         mainRegister.params.form.password.focus(function(){
-            appMain.function.validate(mainRegister.params.required.password,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.password,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.password,appMain.params.required.form_control_feedback,2,100);
+            appMain.function.validate(mainRegister.params.required.password,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.password,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.password,appMain.params.required.form_control_feedback,5,100);
         });
         mainRegister.params.form.password.keyup(function(){
-            appMain.function.validate(mainRegister.params.required.password,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.password,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.password,appMain.params.required.form_control_feedback,2,100);
+            appMain.function.validate(mainRegister.params.required.password,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.password,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.password,appMain.params.required.form_control_feedback,5,100);
         });
-
-
     }
 
 

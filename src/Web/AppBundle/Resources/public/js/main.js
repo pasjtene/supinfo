@@ -55,6 +55,14 @@ var   AppMain = function()
                 function(element){
                     element.slideUp();
                 },
+            validation: //teste si  un champs est valide retourne error si ce n'est  pas le cas et  '' si  c'est bon
+                function(element, minLength, maxLenght){
+                    if(element.trim()=="" || element.length<minLength || element.length>maxLenght)
+                    {
+                        return "error";
+                    }
+                    return '';
+                },
             validate:
                 function(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError, minLenght, maxLenght){
                     if (childElement.val().trim() == "" || childElement.val().length<minLenght || childElement.val().length>maxLenght) {
