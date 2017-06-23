@@ -50,7 +50,7 @@ $(function(){
            {
                //on appel la methode pour charger la partir membre (car la fonction demande que le token exit et ne soit pas null)
                setMember();
-               //puisque le token n'est plus a present il  faut qu'on arrete de tester
+               //puisque le token n'est plus null a present il  faut qu'on arrete de tester
                clearInterval(interval);
            }
        },100);
@@ -70,12 +70,23 @@ $(function(){
 
                 //When the table is clicked, we count the number of selected checkboxed
                 updateCount ();
-                adminHome.params.attr.id.user_list.click(function(event){
-                    adminHome.params.attr.class.user_select_checkbox.each(function(){
+                $(adminHome.params.attr.id.user_list).click(function(event){
+
+                    $('.user_select_checkbox').each(function(){
                         $(this).change(updateCount);
                         updateCount();
                     });
+
+                    //la partie suivante est logiquement equivalente a celle du haut et devraie marchee, mais ne marche pas.
+                    //on doit verifier
+
+                    // adminHome.params.attr.class.user_select_checkbox.each(function(){
+                    //   $(this).change(updateCount);
+                    //   updateCount();
+                    //});
+
                 });
+
 
                 //find the users list
                 $.ajax(
@@ -88,6 +99,7 @@ $(function(){
                             console.log(users);
                             var chkbox = '<input class="form-check-input" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">';
 
+                            //set du  total  des users
                             adminHome.params.attr.class.total_users.append(users.length);
                             $.each(users, function(i, user){
 
@@ -96,17 +108,17 @@ $(function(){
                                     "</td><td>" + user.gender +
                                     "</td>");
                                 $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="user_id_to_fix"/>').appendTo(row);
+                                //augmenter les users dans le tableau
                                 row.appendTo('.users_table');
 
                             });
                         },
-                        error: function (xhr, status, message) {
+                        error: function (xhr, status, message) { //en cas d'erreur
                             console.log(status+"\n"+xhr.responseText + '\n' + message );
                         }
                     }
                 );
 
-                clearInterval(interval);
             }
         }
     }

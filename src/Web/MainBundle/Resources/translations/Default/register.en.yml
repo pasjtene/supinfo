@@ -2,9 +2,19 @@ refer:
   title: titre pour le referencement de la page
   description:  description pour le referencement de la page
 title: Create new account
+nav:
+  register: SignUp
+block:
+  title: The social network for metting
+  important:  new poeples :)
+  content: Millions of people are having fun  and making new friend on Funglobe every day. you  can too!
+  google: Login with  google
+  facebook: Login with  facebook
+  or: Or
+  signup: Signup  with  your email today
 form:
   title : Create new account
-  content: Join more than 351 million new funglobe friends.
+  content: Join more than 351 million new funglobe friends
   body:
     name: Name
     birthday: Birthday
@@ -54,3 +64,4 @@ form:
     confirmpassword: pleace retape the same password
     profession: the professsion is required
     country: the country  is required
+    notification: Is required

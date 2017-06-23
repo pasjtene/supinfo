@@ -19,10 +19,32 @@
 
 {% block main %}
     <div class="row" id="mainRegister" data-page="mainRegister">
-        <div class="offset-lg-1 col-lg-8 col-sm-12">
+        <div class="col-lg-5 col-sm-12" id="block1">
+            <h4>
+                {% trans from 'register' %} block.title {% endtrans %}
+                <strong> {% trans from 'register' %} block.important {% endtrans %} </strong>
+            </h4>
+            <span> {% trans from 'register' %} block.content {% endtrans %} </span>
+            <br><br><br>
+            <div class="row">
+                <div class="col-sm-8" id="block-btn">
+                    <button class="btn btn-danger">{% trans from 'register' %} block.google {% endtrans %}</button>
+                    <button class="btn btn-primary">{% trans from 'register' %} block.facebook {% endtrans %}</button>
+                </div>
+                <div class="col-sm-4 pull-lg-2" id="block-or">
+                    {% trans from 'register' %} block.signup {% endtrans %}
+                    <div id="or-content">{% trans from 'register' %} block.or {% endtrans %}</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="push-lg-1 col-lg-6 col-sm-12" id="block2">
             <form action="">
                 <h3>{% trans from 'register' %} form.title {% endtrans %}</h3>
                 <h5>{% trans from 'register' %} form.content {% endtrans %}</h5>
+                <br>
+               <h3> (*) {% trans from 'register' %} form.required.notification {% endtrans %}</h3>
+                <br>
                 <br>
                 <div class="form-group row" id="block-name">
                     <label for="name" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.name {% endtrans %}*</label>
@@ -69,9 +91,9 @@
                             <div class="form-control-feedback">{% trans from 'register' %} form.required.birthdayOption.year {% endtrans %}</div>
                         </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" id="block-gender">
                     <label for="gender" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.gender {% endtrans %}*</label>
-                    <div class="col-sm-12 col-lg-9" id="block-gender">
+                    <div class="col-sm-12 col-lg-9" >
                         <select class="custom-select form-control " id="gender">
                             <option selected value="">{% trans from 'register' %} form.placeholder.gender {% endtrans %}</option>
                             <option value="M">{% trans from 'register' %} form.body.genderList.1 {% endtrans %}</option>
@@ -81,9 +103,9 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row" id="block-reason">
                     <label for="reason" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.reason {% endtrans %}*</label>
-                    <div class="col-sm-12 col-lg-9" id="block-reason">
+                    <div class="col-sm-12 col-lg-9" >
                         <select class="custom-select form-control" id="reason">
                             <option selected value="">{% trans from 'register' %} form.placeholder.reason {% endtrans %}</option>
                             <option value="1">{% trans from 'register' %} form.body.reasonList.1 {% endtrans %}</option>
@@ -111,7 +133,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn primary-button  pull-right" id="btnregister">{% trans from 'register' %} form.body.btnsignup {% endtrans %}</button>
+                        <button type="submit" class="btn btn-primary  pull-right" id="btnregister">{% trans from 'register' %} form.body.btnsignup {% endtrans %}</button>
                     </div>
                 </div>
 

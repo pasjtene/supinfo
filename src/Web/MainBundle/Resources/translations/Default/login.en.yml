@@ -3,7 +3,7 @@ refer:
   description:  description pour le referencement de la page
 title: FunGlobe - Login
 nav:
-  register: Sign up
+  login: SignIn
 body:
   msgone: Connect to FunGlobe
   msgtwo: Meet people who have affinities with you! If you are not registered yet,
@@ -17,5 +17,11 @@ form:
   forgotpswd: Forgot password
   btnlogin: Login
 forgot:
+  title: I forgot my password
   msg: Enter your email address below, a reset link will be sent to your mailbox
   btnsend: Send the link
+reset:
+  title: Reset my password
+  msg: Enter a new password to reset your password
+  lblconfpswd: Confirm the password :
+  btnreset: Reset
