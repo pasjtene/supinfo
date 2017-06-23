@@ -9,23 +9,27 @@
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <div class="dropdown show my-2 my-sm-0">
+            <div class="dropdown show my-2 my-sm-0" id="nav-language">
                 <a class="btn btn-primary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {% trans from 'home' %} language.title {% endtrans %}
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="{{ path('main_register') }}">{% trans from 'home' %} language.fr {% endtrans %}</a>
-                    <a class="dropdown-item" href="{{ path('main_login') }}">{% trans from 'home' %} language.en {% endtrans %}</a>
+                    <a class="dropdown-item" href="{{ path('app_locale_fr') }}">{% trans from 'home' %} language.fr {% endtrans %}</a>
+                    <a class="dropdown-item" href="{{ path('app_locale_en') }}">{% trans from 'home' %} language.en {% endtrans %}</a>
                 </div>
             </div>
-            <a href="#" class="btn btn-primary my-2 my-sm-0">
-                {% if login is defined %}
+
+            {% if login is defined %}
+                <a href={{ path('main_register') }}"" class="btn btn-primary my-2 my-sm-0">
                     {% trans from 'register' %} nav.register {% endtrans %}
-                {% else %}
+                </a>
+            {% else %}
+                <a href="{{ path('main_login') }}" class="btn btn-primary my-2 my-sm-0">
                     {% trans from 'login' %} nav.login {% endtrans %}
-                {% endif %}
-            </a>
+                 </a>
+            {% endif %}
+
         </form>
     </div>
 </nav>
