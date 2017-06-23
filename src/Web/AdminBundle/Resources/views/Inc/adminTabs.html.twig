@@ -42,7 +42,9 @@
         <div class="tab-pane" id="profile" role="tabpanel" data-tab="adminMembers">
             {% include 'AdminBundle:Tab:members.html.twig' %}
         </div>
-        <div class="tab-pane" id="messages" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="messages" role="tabpanel">
+            {% include 'AdminBundle:Tab:message.html.twig' %}
+        </div>
         <div class="tab-pane" id="photos" role="tabpanel">All photos will be here, and the moderator can delete or mark as invalid</div>
         <div class="tab-pane" id="spam" role="tabpanel">All spam messages will be here, and the moderator can delete or mark as invalid</div>
         <div class="tab-pane" id="userdenounced" role="tabpanel">All user will be here, and the moderator can delete or mark as invalid</div>
