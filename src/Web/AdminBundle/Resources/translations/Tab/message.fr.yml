@@ -1,0 +1,24 @@
+message:
+  blocmessage:
+   title: Méssages bloqués
+
+  messages:
+   title: Membres
+   number: Nombre d'utilisateurs
+   firstname: 	Prénom
+   gender: Genre
+   select: 	Selectionner
+   select2: Nombre de messages selectionnés
+   delete: Supprimer les utilisateurs
+   block: Bloquer les utilisateurs
+   email: Ecrire aux utilisateurs
+   transmitter: Emétteur
+   receiver:  ID de l'émetteur
+   content: Contenu
+   date: Date
+   status: Statut
+   file: Fichiers
+   title: Messages
+
+
+
