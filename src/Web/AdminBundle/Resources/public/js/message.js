@@ -2,12 +2,12 @@
  * Created by Danick takam on 16/06/2017.
  */
 
-var AdminHome = function()
+var AdminMessage = function()
 {
     this.params = {
-        page : $('#adminHome'),
+        page : $('#adminMessage'),
         tab:{
-            message: $("#message")
+            message: $("#tabmessages")
         },
         attr: {
             id:{
@@ -36,11 +36,11 @@ var AdminHome = function()
 
 $(function(){
 
-    // instanciation  de la classe AdminHome
-    var adminHome = new AdminHome();
+    // instanciation  de la classe AdminMessage
+    var adminMessage = new AdminMessage();
 
-    //tester si  la page actuelle c'est adminHome
-    if(adminHome.params.page.data('page')=="adminHome")
+    //tester si  la page actuelle c'est adminMessage
+    if(adminMessage.params.page.data('page')=="adminHome")
     {
 
         // teste si le tokenbase n'ai pas encore modifie chaque 0,1s
@@ -58,20 +58,21 @@ $(function(){
 
         //methode pour gerer les membres
         function setMessage(){
-            if(adminHome.params.tab.message.data('tab')=="adminMessage")
+
+            if(adminMessage.params.tab.message.data('tab')=="adminMessages")
             {
 
                 //This function counts the number of checkboxes that are checked
                 function updateCount () {
                     var count = $("input[type=checkbox]:checked").length;
-                    adminHome.params.attr.class.nbrofchkbox.text(count);
-                    adminHome.params.attr.id.nbmessage.toggle(count > 0);
+                    adminMessage.params.attr.class.nbrofchkbox.text(count);
+                    adminMessage.params.attr.id.nbmessage.toggle(count > 0);
                 }
 
                 //When the table is clicked, we count the number of selected checkboxed
                 updateCount ();
-                adminHome.params.attr.id.message_list.click(function(event){
-                    adminHome.params.attr.class.message_select_checkbox.each(function(){
+                adminMessage.params.attr.id.message_list.click(function(event){
+                    adminMessage.params.attr.class.message_select_checkbox.each(function(){
                         $(this).change(updateCount);
                         updateCount();
                     });
@@ -80,15 +81,15 @@ $(function(){
                 //find the users list
                 $.ajax(
                     {
-                        url: adminHome.params.api.action.findall,
-                        type: adminHome.params.api.method.get,
+                        url: adminMessage.params.api.action.findall,
+                        type: adminMessage.params.api.method.get,
                         headers : {"X-Auth-Token" : tokenbase.value},
                         crossDomain: true,
                         success: function (users) {
                             console.log(users);
                             var chkbox = '<input class="form-check-input" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">';
 
-                            adminHome.params.attr.class.total_message.append(message.length);
+                            adminMessage.params.attr.class.total_message.append(message.length);
                             $.each(users, function(i, user){
 
                                 var row = $('<tr>').html("<td>" + (i+1) +
