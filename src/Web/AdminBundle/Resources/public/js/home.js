@@ -111,7 +111,7 @@ $(function(){
                             var chkbox = '<input class="form-check-input" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">';
 
                             //set du  total  des users
-                            adminHome.params.attr.class.total_users.append(users.length);
+                            adminHome.params.attr.class.total_users.replaceWith(users.length);
                             adminHome.params.attr.id.users_table_body.empty();
                             $.each(users, function(i, user){
 
