@@ -103,7 +103,7 @@ $(function(){
                                     "</td><td>" + message.file +
                                     "</td>");
                                 $("<td />").html('<input class="message_select_checkbox" type="checkbox" name="message_id_to_fix"/>').appendTo(row);
-                                row.appendTo('.users_table');
+                                row.appendTo('.messages_table');
 
                             });
                         },

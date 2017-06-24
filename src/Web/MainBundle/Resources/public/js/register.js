@@ -6,6 +6,8 @@ var MainRegister = function()
 {
     this.params = {
         page : $('#mainRegister'),
+        modalSave: $("#modalSave"),
+        modal_body : $("#modalSave .modal-body center"),
         form: {
             name : $("#name"),
             email : $("#email"),
@@ -44,7 +46,9 @@ var MainRegister = function()
             countryList: $("#block-countryList"),
             day: $('#block-day'),
             month: $('#block-month'),
-            year: $('#block-year')
+            year: $('#block-year'),
+            errorMessage: $("#errorMessage"),
+            errorMessageText: $("#errorMessage span"),
         }
     };
 
@@ -63,14 +67,55 @@ $(function(){
     function verify(user)
     {
         var appMain = new AppMain();
-        var test = '';
-        test+= appMain.function.validation(user.firstname,3,100);
-        test+= appMain.function.validation(user.country,1,100);
-        test+= appMain.function.validation(user.email,8,100);
-        test+= appMain.function.validation(user.birthDate,10,10);
-        test+= appMain.function.validation(user.gender,1,8);
-        test+= appMain.function.validation(user.joinReason,1,100);
-        test+= appMain.function.validation(user.password,5,100);
+        var  test= false;
+        test= appMain.function.notValid(user.firstname,3,100);
+        if(test){
+            return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+        }
+
+        test= notValidMail(user.email);
+        if(test){
+            return  $("#"+mainRegister.params.required.email.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+        }
+
+        test= appMain.function.notValid(user.country,1,100);
+        if(test){
+            return  $("#"+mainRegister.params.required.country.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+        }
+
+        test= appMain.function.notValid(mainRegister.params.form.day.val(),1,10);
+        if(test){
+            return  $("#"+mainRegister.params.required.day.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+        }
+
+        test= appMain.function.notValid(mainRegister.params.form.month.val(),1,10);
+        if(test){
+            return  $("#"+mainRegister.params.required.month.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+        }
+
+        test= appMain.function.notValid(mainRegister.params.form.year.val(),1,10);
+        if(test){
+            return  $("#"+mainRegister.params.required.year.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+        }
+
+        test= appMain.function.notValid(user.gender,1,8);
+        if(test){
+            return  $("#"+mainRegister.params.required.gender.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+        }
+        test= appMain.function.notValid(user.joinReason,1,100);
+        if(test){
+            return  $("#"+mainRegister.params.required.reason.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+        }
+        test= appMain.function.notValid(user.password,5,100);
+        if(test){
+            return  $("#"+mainRegister.params.required.password.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+        }
+
+        test= notConfirm(mainRegister.params.form.confirmpassword,mainRegister.params.form.password);
+        if(test){
+            return  $("#"+mainRegister.params.required.confirmpassword.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+        }
+
         return test;
     }
 
@@ -142,7 +187,7 @@ $(function(){
                 type: "Normal",
                 joinReason: mainRegister.params.form.reason.val(),
                 gender: mainRegister.params.form.gender.val(),
-                email: mainRegister.params.form.email.val(),
+                email: mainRegister.params.form.email.val().trim(),
                 password: mainRegister.params.form.password.val(),
                 country: mainRegister.params.form.country.val()
                 /*lastName: null,
@@ -157,14 +202,17 @@ $(function(){
             };
 
             //verifier si  tous les champs sont remplis
-            if (verify(User) != '') {
+            if (verify(User)) {
                //print error message
-                alert(verify(User));
+               // alert(verify(User));
+
+                mainRegister.params.required.errorMessage.slideDown();
+                mainRegister.params.required.errorMessageText.text(verify(User));
             } else {
-                alert("kckl");
                // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
 
+                mainRegister.params.modalSave.modal('show');
                 // implementer l'enregistrement  proprement  dit avec ajax
                 $.ajax(
                     {
@@ -174,8 +222,10 @@ $(function(){
                         type: mainRegister.params.api.method.post,
                         data: User,
                         success: function (data) { //lorsque tout c'est bien passe
-                            console.log("ajout réussi !");
-                            alert("ajout réussi !");
+
+                            mainRegister.params.modal_body.empty();
+                            mainRegister.params.modal_body.text(mainRegister.params.modalSave.data('confirm'));
+                            //mainRegister.params.modalSave.modal('hide');
                             //redirect  here
                         },
                         error: function (xhr, status, message) { //en cas d'erreur
@@ -197,23 +247,48 @@ $(function(){
         mainRegister.params.form.name.keyup(function(){
             appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         });
+        mainRegister.params.form.name.mouseleave(function(){
+            appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
+        });
 
 
-        // 2- validation du champs county
+        // 2- validation du champs email
+
+       /* mainRegister.params.form.email.focus(function(){
+            appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+        });
+        mainRegister.params.form.email.keyup(function(){
+            appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+        });
+        mainRegister.params.form.email.mouseleave(function(){
+            appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+        });
+        */
+        //email format
+
+        mainRegister.params.form.email.focus(function(){
+           emailFormat(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+        });
+        mainRegister.params.form.email.keyup(function(){
+            emailFormat(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+        });
+        mainRegister.params.form.email.mouseleave(function(){
+            emailFormat(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+        });
+
+
+        // 3- validation du champs county
         mainRegister.params.form.country.focus(function(){
             appMain.function.validate(mainRegister.params.required.country,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.country,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.country,appMain.params.required.form_control_feedback,1,100);
         });
         mainRegister.params.form.country.keyup(function(){
             appMain.function.validate(mainRegister.params.required.country,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.country,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.country,appMain.params.required.form_control_feedback,1,100);
         });
+        mainRegister.params.form.country.mouseleave(function(){
+            appMain.function.validate(mainRegister.params.required.country,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.country,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.country,appMain.params.required.form_control_feedback,1,100);
+        });
 
-        // 3- validation du champs email
-        mainRegister.params.form.email.focus(function(){
-            appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
-        });
-        mainRegister.params.form.email.keyup(function(){
-            appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
-        });
+
 
 
         // 4- validation du champs jour
@@ -221,6 +296,9 @@ $(function(){
             appMain.function.validate(mainRegister.params.required.day,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.day,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.day,appMain.params.required.form_control_feedback,1,100);
         });
         mainRegister.params.form.day.keyup(function(){
+            appMain.function.validate(mainRegister.params.required.day,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.day,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.day,appMain.params.required.form_control_feedback,1,100);
+        });
+        mainRegister.params.form.day.mouseleave(function(){
             appMain.function.validate(mainRegister.params.required.day,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.day,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.day,appMain.params.required.form_control_feedback,1,100);
         });
 
@@ -232,6 +310,9 @@ $(function(){
         mainRegister.params.form.month.keyup(function(){
             appMain.function.validate(mainRegister.params.required.month,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.month,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.month,appMain.params.required.form_control_feedback,1,100);
         });
+        mainRegister.params.form.month.mouseleave(function(){
+            appMain.function.validate(mainRegister.params.required.month,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.month,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.month,appMain.params.required.form_control_feedback,1,100);
+        });
 
 
         // 6- validation du champs année
@@ -239,6 +320,9 @@ $(function(){
             appMain.function.validate(mainRegister.params.required.year,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.year,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.year,appMain.params.required.form_control_feedback,4,100);
         });
         mainRegister.params.form.year.keyup(function(){
+            appMain.function.validate(mainRegister.params.required.year,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.year,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.year,appMain.params.required.form_control_feedback,4,100);
+        });
+        mainRegister.params.form.year.mouseleave(function(){
             appMain.function.validate(mainRegister.params.required.year,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.year,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.year,appMain.params.required.form_control_feedback,4,100);
         });
 
@@ -250,6 +334,9 @@ $(function(){
         mainRegister.params.form.gender.keyup(function(){
             appMain.function.validate(mainRegister.params.required.gender,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.gender,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.gender,appMain.params.required.form_control_feedback,1,100);
         });
+        mainRegister.params.form.gender.mouseleave(function(){
+            appMain.function.validate(mainRegister.params.required.gender,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.gender,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.gender,appMain.params.required.form_control_feedback,1,100);
+        });
 
 
         // 8- validation du champs reason
@@ -257,6 +344,9 @@ $(function(){
             appMain.function.validate(mainRegister.params.required.reason,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.reason,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.reason,appMain.params.required.form_control_feedback,1,100);
         });
         mainRegister.params.form.reason.keyup(function(){
+            appMain.function.validate(mainRegister.params.required.reason,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.reason,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.reason,appMain.params.required.form_control_feedback,1,100);
+        });
+        mainRegister.params.form.reason.mouseleave(function(){
             appMain.function.validate(mainRegister.params.required.reason,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.reason,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.reason,appMain.params.required.form_control_feedback,1,100);
         });
 
@@ -267,6 +357,120 @@ $(function(){
         mainRegister.params.form.password.keyup(function(){
             appMain.function.validate(mainRegister.params.required.password,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.password,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.password,appMain.params.required.form_control_feedback,5,100);
         });
+        mainRegister.params.form.password.mouseleave(function(){
+            appMain.function.validate(mainRegister.params.required.password,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.password,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.password,appMain.params.required.form_control_feedback,5,100);
+        });
+
+
+        // 10 - cinfirm password
+
+        mainRegister.params.form.confirmpassword.focus(function(){
+            confirmPass(mainRegister.params.required.confirmpassword,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.confirmpassword,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.confirmpassword,appMain.params.required.form_control_feedback,mainRegister.params.form.password);
+        });
+        mainRegister.params.form.confirmpassword.keyup(function(){
+            confirmPass(mainRegister.params.required.confirmpassword,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.confirmpassword,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.confirmpassword,appMain.params.required.form_control_feedback,mainRegister.params.form.password);
+        });
+        mainRegister.params.form.confirmpassword.mouseleave(function(){
+            confirmPass(mainRegister.params.required.confirmpassword,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.confirmpassword,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.confirmpassword,appMain.params.required.form_control_feedback,mainRegister.params.form.password);
+        });
+
+
+
+        function confirmPass(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError,compare)
+        {
+                if (childElement.val().trim() == "" || childElement.val() != compare.val()) {
+                    //supprimer la classe success si  elle exite dans le parent
+                    appMain.function.removeclass(fatherElement,fatherSuccess);
+
+                    //ajout  de la classe has-danger
+                    appMain.function.addclass(fatherElement,fatherError);
+
+                    //supprimer la classe success si  elle exite dans le controle enfant
+                    appMain.function.removeclass(childElement,childSuccess);
+
+                    //ajout  de la classe form-control-danger
+                    appMain.function.addclass(childElement, childError);
+
+                    //activation de l'erreur
+                    appMain.function.show($("#"+errorElement.attr('id')+" ."+classError))
+
+                }
+                else {
+                    //supprimer la classe error si  elle exite dans le parent
+                    appMain.function.removeclass(fatherElement,fatherError);
+
+                    //ajout  de la classe has-success
+                    appMain.function.addclass(fatherElement,fatherSuccess);
+
+                    //supprimer la classe error si  elle exite dans le controle enfant
+                    appMain.function.removeclass(childElement,childError);
+
+                    //ajout  de la classe form-control-success
+                    appMain.function.addclass(childElement, childSuccess);
+
+                    //cacher le message d'erreur
+                    appMain.function.hide($("#"+errorElement.attr('id')+" ."+classError))
+                }
+        }
+
+        function notConfirm(element,compare)
+        {
+            if (element.val().trim() == "" || element.val() != compare.val()) {
+               return true;
+            }
+           return false;
+        }
+
+
+        function emailFormat(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError)
+        {
+            if (notValidMail(childElement.val())) {
+                //supprimer la classe success si  elle exite dans le parent
+                appMain.function.removeclass(fatherElement,fatherSuccess);
+
+                //ajout  de la classe has-danger
+                appMain.function.addclass(fatherElement,fatherError);
+
+                //supprimer la classe success si  elle exite dans le controle enfant
+                appMain.function.removeclass(childElement,childSuccess);
+
+                //ajout  de la classe form-control-danger
+                appMain.function.addclass(childElement, childError);
+
+                //activation de l'erreur
+                appMain.function.show($("#"+errorElement.attr('id')+" ."+classError))
+
+            }
+            else {
+                //supprimer la classe error si  elle exite dans le parent
+                appMain.function.removeclass(fatherElement,fatherError);
+
+                //ajout  de la classe has-success
+                appMain.function.addclass(fatherElement,fatherSuccess);
+
+                //supprimer la classe error si  elle exite dans le controle enfant
+                appMain.function.removeclass(childElement,childError);
+
+                //ajout  de la classe form-control-success
+                appMain.function.addclass(childElement, childSuccess);
+
+                //cacher le message d'erreur
+                appMain.function.hide($("#"+errorElement.attr('id')+" ."+classError))
+            }
+        }
+
+        function notValidMail(email) {
+            var motif = "^([ ]{0,}?)([a-zA-Z]([0-9]*)?[._-]?){2,}[@]([a-zA-Z]([0-9]*)?[._-]?){2,}[.][a-z]{2,4}$"
+            var  expression = new RegExp(motif,"gi");
+            var test =expression.test(email)
+            if (email=="" || test==false)
+            {
+               return true
+            }
+
+            return false;
+        }
+
     }
 
 

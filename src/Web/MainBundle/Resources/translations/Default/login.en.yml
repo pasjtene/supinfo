@@ -25,3 +25,5 @@ reset:
   msg: Enter a new password to reset your password
   lblconfpswd: Confirm the password :
   btnreset: Reset
+  msgerror: Click to send a new request
+  msgsuccess: Click here to login

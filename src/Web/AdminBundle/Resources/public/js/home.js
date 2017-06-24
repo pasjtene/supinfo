@@ -12,12 +12,14 @@ var AdminHome = function()
         attr: {
             id:{
                 nbusers: $("#nbusers"),
-                user_list: $("#user_list")
+                user_list: $("#user_list"),
+                users_table_body: $("#users_table_body")
             },
             class:{
                 nbrofchkbox: $('.nbrofchkbox'),
                 user_select_checkbox: $('.user_select_checkbox'),
-                total_users: $(".total_users")
+                total_users: $(".total_users"),
+                showtab: 'shown.bs.tab'
             }
         },
         api:{
@@ -43,17 +45,26 @@ $(function(){
     if(adminHome.params.page.data('page')=="adminHome")
     {
 
-        // teste si le tokenbase n'ai pas encore modifie chaque 0,1s
-        interval = setInterval(function(){
-            //si  le token est deja modifie
-           if(tokenbase!=null)
-           {
-               //on appel la methode pour charger la partir membre (car la fonction demande que le token exit et ne soit pas null)
-               setMember();
-               //puisque le token n'est plus null a present il  faut qu'on arrete de tester
-               clearInterval(interval);
-           }
-       },100);
+
+
+
+        var activeTab = null;
+        $('a[data-toggle="tab"]').on(adminHome.params.attr.class.showtab, function (e) {
+            activeTab = e.target;
+            if ($('.nav-tabs .active').text()==="Members"){
+                // teste si le tokenbase n'ai pas encore modifie chaque 0,1s
+                interval = setInterval(function(){
+                    //si  le token est deja modifie
+                    if(tokenbase!=null)
+                    {
+                        //on appel la methode pour charger la partir membre (car la fonction demande que le token exit et ne soit pas null)
+                        setMember();
+                        //puisque le token n'est plus null a present il  faut qu'on arrete de tester
+                        clearInterval(interval);
+                    }
+                },100);
+            }
+        })
 
 
         //methode pour gerer les membres
@@ -100,7 +111,8 @@ $(function(){
                             var chkbox = '<input class="form-check-input" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">';
 
                             //set du  total  des users
-                            adminHome.params.attr.class.total_users.append(users.length);
+                            adminHome.params.attr.class.total_users.replaceWith(users.length);
+                            adminHome.params.attr.id.users_table_body.empty();
                             $.each(users, function(i, user){
 
                                 var row = $('<tr>').html("<td>" + (i+1) +
@@ -109,7 +121,8 @@ $(function(){
                                     "</td>");
                                 $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="user_id_to_fix"/>').appendTo(row);
                                 //augmenter les users dans le tableau
-                                row.appendTo('.users_table');
+                                adminHome.params.attr.id.users_table_body.append(row);
+                                //row.appendTo('.users_table');
 
                             });
                         },
