@@ -15,6 +15,10 @@ block:
 form:
   title : Create new account
   content: Join more than 351 million new funglobe friends
+  notification:
+    title: Notification
+    content: Wait  about  a few moment
+    success: Save as successfull
   body:
     name: Name
     birthday: Birthday

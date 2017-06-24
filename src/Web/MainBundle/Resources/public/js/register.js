@@ -6,6 +6,8 @@ var MainRegister = function()
 {
     this.params = {
         page : $('#mainRegister'),
+        modalSave: $("#modalSave"),
+        modal_body : $("#modalSave .modal-body center"),
         form: {
             name : $("#name"),
             email : $("#email"),
@@ -203,12 +205,14 @@ $(function(){
             if (verify(User)) {
                //print error message
                // alert(verify(User));
+
                 mainRegister.params.required.errorMessage.slideDown();
                 mainRegister.params.required.errorMessageText.text(verify(User));
             } else {
                // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
 
+                mainRegister.params.modalSave.modal('show');
                 // implementer l'enregistrement  proprement  dit avec ajax
                 $.ajax(
                     {
@@ -218,8 +222,10 @@ $(function(){
                         type: mainRegister.params.api.method.post,
                         data: User,
                         success: function (data) { //lorsque tout c'est bien passe
-                            console.log("ajout réussi !");
-                            alert("ajout réussi !");
+
+                            mainRegister.params.modal_body.empty();
+                            mainRegister.params.modal_body.text(mainRegister.params.modalSave.data('confirm'));
+                            //mainRegister.params.modalSave.modal('hide');
                             //redirect  here
                         },
                         error: function (xhr, status, message) { //en cas d'erreur

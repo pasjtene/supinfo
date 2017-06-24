@@ -7,6 +7,10 @@ nav:
 form:
   title : Creer un nouveau compte
   content: Joindre plus de 351 million nouveaux amis sur funglobe
+  notification:
+    title: Notification
+    content: vieullez patienter un petit  moment
+    success: Enregistrement effectué avec succès
   body:
     name: Nom
     birthday: Date de naissance
