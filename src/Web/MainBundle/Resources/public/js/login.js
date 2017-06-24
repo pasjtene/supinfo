@@ -72,6 +72,8 @@ $(function(){
                                 type: mainLogin.params.api.method,
                                 data: Data,
                                 success: function (data) { //lorsque tout c'est bien passe
+
+                                    console.log(data);
                                     alert("faire ta redirection car tout  est deja ok");
                                 },
                                 error: function (xhr, status, message) { //en cas d'erreur
