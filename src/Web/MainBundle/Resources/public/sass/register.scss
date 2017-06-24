@@ -32,8 +32,15 @@
      }
 
      #block-or{
-      @media screen and (min-width: 560px) {
-        border-left: 2px solid $highligt;
+
+       #img-content {
+         div {
+           height: 100px;
+           width: 100px;
+         }
+       }
+      @media screen and (min-width: 978px) {
+        border-left: 2px solid $default-color;
         #or-content{
           position: relative;
           left: -4.55em;
@@ -44,13 +51,31 @@
           text-align: center;
         }
         #img-content{
-          position: relative;
-          left: 7em;
-          top: -2em;
+            position: relative;
+            left: 4em;
+            top: -3em;
+            height: 59px;
+            #bottom-img{
+              display: none;
+            }
+            #left-img{
+            display: block;
+          }
         }
-        padding-left: 3em;
-        padding-top: 1.5em;
+        }
+       @media screen and (max-width: 977px) {
+
+           #img-content{
+             #left-img{
+               display: none;
+             }
+             #bottom-img{
+               display: block;
+             }
+           }
       }
+       padding-left: 3em;
+       padding-top: 1.5em;
      }
    }
 }
