@@ -2,11 +2,12 @@
  * Created by Danick takam on 16/06/2017.
  */
 
-//var baseUrl = 'http://127.0.0.1:8000/';
-var baseUrl = '/api/';
 
 
-var AppMain = function()
+var baseUrl = 'http://127.0.0.1:8000/';
+//var baseUrl = '/api/';
+
+var   AppMain = function()
 {
     this.params ={
         api:{
@@ -54,54 +55,55 @@ var AppMain = function()
                 function(element){
                     element.slideUp();
                 },
-            validation: //teste si  un champs est valide retourne error si ce n'est  pas le cas et  '' si  c'est bon
+            notValid: //teste si  un champs est valide retourne error si ce n'est  pas le cas et  '' si  c'est bon
                 function(element, minLength, maxLenght){
                     if(element.trim()=="" || element.length<minLength || element.length>maxLenght)
                     {
-                        return "error";
+                        return true;
                     }
-                    return '';
+                    return false;
                 },
             validate:
-                function(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError, minLenght, maxLenght)
-                {
-                    if (childElement.val().trim() == "" || childElement.val().length < minLenght || childElement.val().length > maxLenght)
-                    {
+                function(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError, minLenght, maxLenght){
+                    if (childElement.val().trim() == "" || childElement.val().length<minLenght || childElement.val().length>maxLenght) {
                         //supprimer la classe success si  elle exite dans le parent
-                        this.removeclass(fatherElement, fatherSuccess);
+                        this.removeclass(fatherElement,fatherSuccess);
 
                         //ajout  de la classe has-danger
-                        this.addclass(fatherElement, fatherError);
+                        this.addclass(fatherElement,fatherError);
 
                         //supprimer la classe success si  elle exite dans le controle enfant
-                        this.removeclass(childElement, childSuccess);
+                        this.removeclass(childElement,childSuccess);
 
                         //ajout  de la classe form-control-danger
                         this.addclass(childElement, childError);
 
+                        //activation de l'erreur
+                        this.show($("#"+errorElement.attr('id')+" ."+classError))
+
                     }
-                    else
-                    {
+                    else {
                         //supprimer la classe error si  elle exite dans le parent
-                        this.removeclass(fatherElement, fatherError);
+                        this.removeclass(fatherElement,fatherError);
 
                         //ajout  de la classe has-success
-                        this.addclass(fatherElement, fatherSuccess);
+                        this.addclass(fatherElement,fatherSuccess);
 
                         //supprimer la classe error si  elle exite dans le controle enfant
-                        this.removeclass(childElement, childError);
+                        this.removeclass(childElement,childError);
 
                         //ajout  de la classe form-control-success
                         this.addclass(childElement, childSuccess);
 
                         //cacher le message d'erreur
-                        this.hide($("#" + errorElement.attr('id') + " ." + classError))
+                        this.hide($("#"+errorElement.attr('id')+" ."+classError))
                     }
-
-
                 }
         }
+
 };
+
+
 var tokenbase =null;
 var appMain = new AppMain();
 $.ajax(
