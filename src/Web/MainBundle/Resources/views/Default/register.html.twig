@@ -34,9 +34,6 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
-        </button>
 
         <div class="row">
            <div class="col-lg-5 col-sm-12" id="block1">
@@ -55,7 +52,10 @@
                        {% trans from 'register' %} block.signup {% endtrans %}
                        <div id="or-content">{% trans from 'register' %} block.or {% endtrans %}</div>
                        <div id="img-content">
-                           <img src="{{ asset('data/img/arrow.png') }}" alt="">
+                           <div  style="background: url('{{ asset('data/img/left.png') }}') no-repeat;" id="left-img">
+                           </div>
+                           <div  style="background: url('{{ asset('data/img/bottom.png') }}') no-repeat;" id="bottom-img">
+                           </div>
                        </div>
                    </div>
                </div>

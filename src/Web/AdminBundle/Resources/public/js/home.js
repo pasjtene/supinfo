@@ -24,7 +24,7 @@ var AdminHome = function()
         },
         api:{
             action :
-            {findall: baseUrl +"v1/auth/users"},
+            {findall: baseUrl +"v1/auth/members"},
             method:
             {get:"GET"},
             headers:

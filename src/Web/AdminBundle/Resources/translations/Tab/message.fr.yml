@@ -1,19 +1,19 @@
 message:
   blocmessage:
-   title: Méssages bloqués
+   title: MÃ©ssages bloquÃ©s
 
   messages:
    title: Membres
    number: Nombre d'utilisateurs
-   firstname: 	Prénom
+   firstname: 	PrÃ©nom
    gender: Genre
    select: 	Selectionner
-   select2: Nombre de messages selectionnés
+   select2: Nombre de messages selectionnÃ©s
    delete: Supprimer les utilisateurs
    block: Bloquer les utilisateurs
    email: Ecrire aux utilisateurs
-   transmitter: Emétteur
-   receiver:  ID de l'émetteur
+   transmitter: EmÃ©tteur
+   receiver:  ID de l'Ã©metteur
    content: Contenu
    date: Date
    status: Statut

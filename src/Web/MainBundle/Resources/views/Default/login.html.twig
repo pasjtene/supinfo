@@ -16,11 +16,27 @@
 
 {% block header %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
-    {% include 'MainBundle:Inc:navbar-anonymous.html.twig' %}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
 {% endblock %}
 
 {% block main %}
-    <div class="row" id="mainLogin">
+    <div class="row" id="mainLogin" data-page="mainLogin">
+
+        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-confirm="{% trans from 'register' %} form.notification.success {% endtrans %}">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content bg-success">
+                    <div class="modal-body text-white">
+                        <center>
+                            <h4 class="card-title">{% trans from 'register' %} form.notification.content {% endtrans %}</h4>
+                            <p class="card-text">
+                                <img src="{{ asset('bundles/main/img/loading.gif') }}" alt="">
+                            </p>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-sm-12 offset-lg-3 col-lg-6" id="content-login">
                 <h2>{% trans from 'login' %} body.msgone {% endtrans %}</h2>
 
@@ -31,13 +47,13 @@
                 <form method="post">
                     <div class="form-group">
                         <label for="email">{% trans from 'login' %} form.lblemail {% endtrans %}</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="{% trans from 'login' %} form.hintemail {% endtrans %}">
+                        <input type="email" class="form-control" id="_username" aria-describedby="emailHelp" placeholder="{% trans from 'login' %} form.hintemail {% endtrans %}">
                         <small id="emailHelp" class="form-text text-muted">{% trans from 'login' %} form.ntcemail {% endtrans %}</small>
                     </div>
 
                     <div class="form-group">
                         <label for="password">{% trans from 'login' %} form.lblpswd {% endtrans %}</label>
-                        <input type="password" class="form-control" id="password">
+                        <input type="password" class="form-control" id="_password">
                     </div>
 
                     <div class="row" id="login-options">
