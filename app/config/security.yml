@@ -8,14 +8,14 @@ security:
             algorithm: sha1
             encode_as_base64: false
             iterations: 1
-        role_hierarchy:
-            ROLE_USER:        [ROLE_USER]
-            ROLE_MODERATOR:   [ROLE_USER]
-            ROLE_ADMIN:       [ROLE_MODERATOR]
-            ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-        providers:
-           users_provider:
-               id: funglobe_user_provider
+    providers:
+       users_provider:
+           id: funglobe_user_provider
+    role_hierarchy:
+        ROLE_USER:        [ROLE_USER]
+        ROLE_MODERATOR:   [ROLE_USER]
+        ROLE_ADMIN:       [ROLE_MODERATOR]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -23,12 +23,9 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        user:
-            pattern: ^(fr|en)/profile
-            security: true
-        admin:
-            pattern: ^(fr|en)/admin
-            security: true
     access_control:
-        - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/admin, roles: ROLE_MODERATOR }
+        - { path: ^/[^/]+/admin, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/[^/]+/, roles: ROLE_USER }
+        - { path: ^/profile, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }

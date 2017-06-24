@@ -1,12 +1,8 @@
 <?php
 
-namespace App\Rest;
+namespace Web\AppBundle\Tools;
 
-/**
- * Interface RestInterface.
- *
- *  @author Eric Cabrel TIOGO <tericcabrel@yahoo.com>
- */
+
 interface RestInterface
 {
     public function getBaseUrl();

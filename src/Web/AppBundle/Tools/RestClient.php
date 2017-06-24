@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Rest;
+namespace Web\AppBundle\Tools;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use JMS\Serializer\Tests\Fixtures\Log;
 
-/**
- * Class RestClient.
- *
- *  @author Eric Cabrel TIOGO <tericcabrel@yahoo.com>
- */
+
 class RestClient extends AbstractRest implements RestInterface
 {
     public static $POST_METHOD = 'POST';
@@ -59,8 +55,6 @@ class RestClient extends AbstractRest implements RestInterface
 
             $this->setStatusCode(!is_null($response) ? $response->getStatusCode() : 500);
             $this->setContent(!is_null($response) ? $response->getBody()->getContents() : null);
-
-            Log::error($ex->getMessage());
         }
 
     }

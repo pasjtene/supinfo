@@ -1,14 +1,10 @@
 <?php
 
-namespace App\Rest;
+namespace Web\AppBundle\Tools;
 
 use GuzzleHttp\Client;
 
-/**
- * Class AbstractRest.
- *
- *  @author Eric Cabrel TIOGO <tericcabrel@yahoo.com>
- */
+
 abstract class AbstractRest
 {
     /**
@@ -25,7 +21,7 @@ abstract class AbstractRest
     /**
      * @var string
      */
-    protected $baseUrl = 'http://127.0.0.1:8001/v1/';
+    protected $baseUrl = 'http://127.0.0.1:8000/v1/';
 
     /**
      * @return Client

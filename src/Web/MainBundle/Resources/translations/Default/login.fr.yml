@@ -25,3 +25,5 @@ reset:
   msg: Entrez un nouveau mot de passe pour réinitialiser
   lblconfpswd: Confirmation du mot de passe:
   btnreset: Reinitialiser
+  msgerror: Cliquez ici pour réinitialiser
+  msgsuccess: Cliquez ici pour vous connecter
