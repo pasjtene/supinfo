@@ -42,7 +42,7 @@ $(function(){
             e.preventDefault();
 
             //instanicier du credential
-            var Credential =
+            var Data =
             {
                 _username: mainLogin.params.form.login.val(),
                 _password: mainLogin.params.form.password.val()
@@ -55,6 +55,12 @@ $(function(){
                 interval= setInterval(function(){
                     if(tokenbase!=null)
                     {
+                        /*
+                         xhrFields: {
+                         withCredentials: true
+                         },
+                         */
+
                         // envoi d'une requete ajax au serveur pour login
                         jQuery.support.cors = true;
                         $.ajax(
@@ -62,12 +68,9 @@ $(function(){
                                 url:mainLogin.params.api.action,
                                 crossOrigin: true,
                                 crossDomain: true,
-                                xhrFields: {
-                                    withCredentials: true
-                                },
                                 headers : {"X-Auth-Token" : tokenbase.value},
                                 type: mainLogin.params.api.method,
-                                data: Credential,
+                                data: Data,
                                 success: function (data) { //lorsque tout c'est bien passe
                                     alert("faire ta redirection car tout  est deja ok");
                                 },
