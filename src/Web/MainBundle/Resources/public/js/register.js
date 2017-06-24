@@ -227,6 +227,10 @@ $(function(){
                             mainRegister.params.modal_body.text(mainRegister.params.modalSave.data('confirm'));
                             //mainRegister.params.modalSave.modal('hide');
                             //redirect  here
+                            t =setInterval(function(){
+                                window.location.href = Routing.generate('main_profile',{_locale:locale});
+                                clearInterval(t);
+                            },2000);
                         },
                         error: function (xhr, status, message) { //en cas d'erreur
                             console.log(status+"\n"+xhr.responseText + '\n' + message );
