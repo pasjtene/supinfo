@@ -1,0 +1,30 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block meta %}
+    <meta name = "{% trans from 'privacy' %} refer.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'privacy' %} refer.description {% endtrans %}" >
+{% endblock %}
+
+{% block title %}
+    {% trans from 'privacy' %} title {% endtrans %}
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+
+{% block header %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+{% endblock %}
+
+{% block main %}
+    <div class="row" id="mainUserProfile" data-page="mainUserProfile">
+        front-office default profile page {# dans cette zone vous etes dans le conteneur  #}
+    </div>
+{% endblock %}
+
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+
