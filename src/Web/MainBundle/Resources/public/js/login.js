@@ -14,7 +14,7 @@ var MainLogin = function()
         },
         api:
         {
-            action: "v1/auth/login",
+            action: baseUrl+  "v1/auth/login",
             method: "POST"
         }
     };
@@ -45,7 +45,7 @@ $(function(){
             var Credential =
             {
                 _username: mainLogin.params.form.login.val(),
-                _password: mainLogin.params.form.password.val(),
+                _password: mainLogin.params.form.password.val()
             };
 
                 // afficher le preloader d'attente
@@ -55,12 +55,16 @@ $(function(){
                 interval= setInterval(function(){
                     if(tokenbase!=null)
                     {
-
                         // envoi d'une requete ajax au serveur pour login
+                        jQuery.support.cors = true;
                         $.ajax(
                             {
-                                url: mainLogin.params.api.action,
+                                url:mainLogin.params.api.action,
+                                crossOrigin: true,
                                 crossDomain: true,
+                                xhrFields: {
+                                    withCredentials: true
+                                },
                                 headers : {"X-Auth-Token" : tokenbase.value},
                                 type: mainLogin.params.api.method,
                                 data: Credential,
