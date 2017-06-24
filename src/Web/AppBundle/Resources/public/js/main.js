@@ -101,20 +101,19 @@ var AppMain = function()
                 }
         }
 };
-
-    var tokenbase =null;
-    var appMain = new AppMain();
-    $.ajax(
-        {
-            url: appMain.params.api.action.find,
-            type: appMain.params.api.method.get,
-            crossDomain: true,
-            success: function (data) {
-                tokenbase = data;
-                console.log(tokenbase);
-            },
-            error: function (xhr, status, message) {
-                console.log(status+"\n"+xhr.responseText + '\n' + message );
-            }
+var tokenbase =null;
+var appMain = new AppMain();
+$.ajax(
+    {
+        url: appMain.params.api.action.find,
+        type: appMain.params.api.method.get,
+        crossDomain: true,
+        success: function (data) {
+            tokenbase = data;
+            console.log(tokenbase);
+        },
+        error: function (xhr, status, message) {
+            console.log(status+"\n"+xhr.responseText + '\n' + message );
         }
-    );
+    }
+);
