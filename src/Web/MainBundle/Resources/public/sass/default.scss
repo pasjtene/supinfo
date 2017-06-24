@@ -37,9 +37,9 @@ button{
   margin-top: 4em;
   .card{
     background-color: rgba(49, 83, 255, 0.06) !important;
-    .col-lg-1{
-      flex: 0 0 6%; !important;
-    }
+      .col-lg-1{
+        flex: 0 0 6% !important;
+      }
     a{
       color: $text-default ;
     }
