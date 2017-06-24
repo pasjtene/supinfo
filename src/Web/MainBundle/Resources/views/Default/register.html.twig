@@ -56,6 +56,13 @@
                         <div class="form-control-feedback">{% trans from 'register' %} form.required.name {% endtrans %}</div>
                     </div>
                 </div>
+                <div class="form-group row" id="block-email">
+                    <label for="email" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.email {% endtrans %}*</label>
+                    <div class="col-sm-12 col-lg-9">
+                        <input class="form-control" type="email" id="email" placeholder="{% trans from 'register' %} form.placeholder.email {% endtrans %}">
+                        <div class="form-control-feedback">{% trans from 'register' %} form.required.email {% endtrans %}</div>
+                    </div>
+                </div>
                 <div class="form-group row" id="block-country">
                     <label for="country" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.country {% endtrans %}*</label>
                     <div class="col-sm-12 col-lg-9" id="block-email">
@@ -64,13 +71,6 @@
 
                         </datalist>
                         <div class="form-control-feedback">{% trans from 'register' %} form.required.country {% endtrans %}</div>
-                    </div>
-                </div>
-                <div class="form-group row" id="block-email">
-                    <label for="email" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.email {% endtrans %}*</label>
-                    <div class="col-sm-12 col-lg-9">
-                        <input class="form-control" type="email" id="email" placeholder="{% trans from 'register' %} form.placeholder.email {% endtrans %}">
-                        <div class="form-control-feedback">{% trans from 'register' %} form.required.email {% endtrans %}</div>
                     </div>
                 </div>
                 <div class="form-group row" id="block-birdthday">
@@ -132,6 +132,11 @@
                         <input class="form-control" type="password" id="confirmpassword" placeholder="{% trans from 'register' %} form.placeholder.confirmpassword {% endtrans %}">
                         <div class="form-control-feedback">{% trans from 'register' %} form.required.confirmpassword {% endtrans %}</div>
                     </div>
+                </div>
+
+                <div class="alert alert-danger" role="alert" id="errorMessage" style="display: none;">
+                    <strong>{% trans from 'register' %} form.required.error {% endtrans %}</strong>
+                    <span></span>
                 </div>
 
                 <div class="form-group row">

@@ -57,3 +57,4 @@ form:
     profession: La profession est obligatoire (min  3 charaters)
     country: Le pays est obligatoire
     notification: Est obligatoire
+    error: oh  erreur !

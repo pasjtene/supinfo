@@ -54,7 +54,7 @@ form:
   required:
     name: the name is required (min  3 charaters)
     birthdayOption:
-      day: the the is required
+      day: the day is required
       month: the month is required
       year:  the year is required
     gender: the gender is required
@@ -65,3 +65,4 @@ form:
     profession: the professsion is required (min  3 charaters)
     country: the country  is required
     notification: Is required
+    error: Oh error !

@@ -4,8 +4,8 @@
 
 
 
-//var baseUrl = 'http://127.0.0.1:8000/';
-var baseUrl = '/api/';
+var baseUrl = 'http://127.0.0.1:8000/';
+//var baseUrl = '/api/';
 
 var   AppMain = function()
     {
@@ -55,13 +55,21 @@ var   AppMain = function()
                 function(element){
                     element.slideUp();
                 },
-            validation: //teste si  un champs est valide retourne error si ce n'est  pas le cas et  '' si  c'est bon
+            notValid: //teste si  un champs est valide retourne true si ce n'est  pas le cas et true si  c'est bon
                 function(element, minLength, maxLenght){
                     if(element.trim()=="" || element.length<minLength || element.length>maxLenght)
                     {
-                        return "error";
+                        return true;
                     }
-                    return '';
+                    return false;
+                },
+            notValids: //teste si  un champs est valide retourne true si ce n'est  pas le cas et true si  c'est bon
+                function(element){
+                    if(element.trim()=="")
+                    {
+                        return true;
+                    }
+                    return false;
                 },
             validate:
                 function(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError, minLenght, maxLenght){
