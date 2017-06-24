@@ -15,6 +15,10 @@ block:
 form:
   title : Create new account
   content: Join more than 351 million new funglobe friends
+  notification:
+    title: Notification
+    content: Wait  about  a few moment
+    success: Save as successfull
   body:
     name: Name
     birthday: Birthday
@@ -52,16 +56,17 @@ form:
       month: Choose the month
       year: Choose the year
   required:
-    name: the name is required
+    name: the name is required (min  3 charaters)
     birthdayOption:
-      day: the the is required
+      day: the day is required
       month: the month is required
       year:  the year is required
     gender: the gender is required
     reason: the reason is required
     email: the adresse mail  is required
-    password: the password is required
+    password: the password is required (min  5 charaters)
     confirmpassword: pleace retape the same password
-    profession: the professsion is required
+    profession: the professsion is required (min  3 charaters)
     country: the country  is required
     notification: Is required
+    error: Oh error !
