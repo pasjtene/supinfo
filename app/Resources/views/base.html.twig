@@ -70,15 +70,17 @@
     {% endfor %}
 
 {% endblock %}
-<!-- reserv� pour le contenu  de la page -->
-{% block content %}
+<div id="body">
+    <!-- reserv� pour le contenu  de la page -->
+    {% block content %}
 
-{% endblock %}
+    {% endblock %}
 
-<!-- reserv� pour le footer de la page-->
-{% block footer %}
+    <!-- reserv� pour le footer de la page-->
+    {% block footer %}
 
-{% endblock footer %}
+    {% endblock footer %}
+</div>
 <script>
     // get locale
     locale = "{{ app.request.locale }}";

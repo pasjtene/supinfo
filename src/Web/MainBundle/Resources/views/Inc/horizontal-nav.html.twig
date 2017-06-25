@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary" id="mainHorizontalNav">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary" id="mainHorizontalNav" data-menu="mainHorizontalNav">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,7 +21,7 @@
             </div>
 
             {% if login is defined %}
-                <a href={{ path('main_register') }}"" class="btn btn-primary my-2 my-sm-0">
+                <a href="{{ path('main_register') }}" class="btn btn-primary my-2 my-sm-0">
                     {% trans from 'register' %} nav.register {% endtrans %}
                 </a>
             {% else %}
