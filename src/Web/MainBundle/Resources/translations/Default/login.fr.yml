@@ -4,6 +4,7 @@ refer:
 title: FunGlobe - Connexion
 nav:
   login: Connecte toi
+  member_question: Déjà membre ?
 body:
   msgone: Connectes toi à FunGlobe
   msgtwo: Rencontres des gens qui ont des affinités avec toi ! si tu n'es pas encore inscrit,
