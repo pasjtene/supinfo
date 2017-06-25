@@ -2,6 +2,7 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="container">
     <a class="navbar-brand" href="#">FunGlobe</a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -24,12 +25,13 @@
                 <a href={{ path('main_register') }}"" class="btn btn-primary my-2 my-sm-0">
                     {% trans from 'register' %} nav.register {% endtrans %}
                 </a>
-            {% else %}
+            {% else %} <span id="nav_member_question">{% trans from 'login' %} nav.member_question {% endtrans %}</span>
                 <a href="{{ path('main_login') }}" class="btn btn-primary my-2 my-sm-0">
                     {% trans from 'login' %} nav.login {% endtrans %}
                  </a>
             {% endif %}
 
         </form>
+    </div>
     </div>
 </nav>
