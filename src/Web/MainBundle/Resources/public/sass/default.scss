@@ -5,6 +5,7 @@ $default-font-color: #292b2c;
 $secondary-font-color: #ffffff;
 $badnew-color: #DF534F;
 $highligt: yellowgreen;
+$text-default: #292b2c;
 button{
   border-radius: 6px;
   padding: 2%;
@@ -31,10 +32,22 @@ button{
   border: solid 1px $badnew-color !important;
 }
 
-
 #footer{
   margin-top: 4em;
   .card{
     background-color: rgba(49, 83, 255, 0.06) !important;
+      .col-lg-1{
+        flex: 0 0 6% !important;
+      }
+    a{
+      color: $text-default ;
+    }
+    a:hover{
+      color: $default-color;
+    }
   }
+}
+
+body{
+
 }

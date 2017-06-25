@@ -19,4 +19,12 @@ class FooterController extends Controller
         return $this->render('MainBundle:Footer:index.html.twig');
     }
 
+    /**
+     * @Route("/privacy", name="main_footer_privacy"))
+     */
+    public function privacyAction()
+    {
+        return $this->render('MainBundle:Footer:privacy.html.twig');
+    }
+
 }

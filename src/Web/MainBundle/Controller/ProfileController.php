@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ProfileController extends Controller
 {
     /**
-     * @Route("/", name="main_profile"))
+     * @Route("/", name="main_profile", options={"expose"=true})
      */
     public function indexAction()
     {
