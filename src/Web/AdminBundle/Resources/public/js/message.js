@@ -93,11 +93,14 @@ $(function(){
                             $.each(users, function(i, user){
 
                                 var row = $('<tr>').html("<td>" + (i+1) +
-                                    "</td><td>" + message.message_parent_id +
-                                    "</td><td>" + message.sender_id +
+                                    "</td><td>" + message.messageParent +
+                                    "</td><td>" + message.id +
                                     "</td><td>" + message.content +
                                     "</td><td>" + message.createDate +
                                     "</td><td>" + message.isValid +
+                                    "</td><td>" + message.subMessages +
+                                    "</td><td>" + message.sender +
+                                    "</td><td>" + message.file +
                                     "</td>");
                                 $("<td />").html('<input class="message_select_checkbox" type="checkbox" name="message_id_to_fix"/>').appendTo(row);
                                 row.appendTo('.messages_table');
