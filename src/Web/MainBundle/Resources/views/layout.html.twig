@@ -4,14 +4,14 @@
    {# include header here #}
 {% endblock %}
 
+
 {% block content %}
-    <div class="container">
+    <div class="container" id="content">
         {% block main %}
             {# it's conatiner page #}
         {% endblock %}
     </div>
 {% endblock %}
-
 {% block footer %}
     {# include the block  footer here#}
     {% include "MainBundle:Footer:index.html.twig" %}

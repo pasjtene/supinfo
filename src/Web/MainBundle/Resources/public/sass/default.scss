@@ -32,8 +32,23 @@ button{
   border: solid 1px $badnew-color !important;
 }
 
+
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+}
+#body{
+ height: 100%;
+}
+
+#content{
+  min-height: 100%;
+}
+
 #footer{
-  margin-top: 4em;
+  height: 3em;
   .card{
     background-color: rgba(49, 83, 255, 0.06) !important;
       .col-lg-1{
@@ -48,6 +63,13 @@ button{
   }
 }
 
-body{
 
+
+
+.fixebar{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 9999999999999999999999999999;
 }
