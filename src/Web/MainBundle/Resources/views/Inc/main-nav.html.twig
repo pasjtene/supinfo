@@ -49,10 +49,11 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">
-                <a class="nav-link" href="#">{% trans from "main-nav" %}<span class="fa fa-shopping-cart"></span> profile {% endtrans %}</a>
+                <a class="nav-link" href="#">{% trans from "main-nav" %}<span class="fa fa-user"></span> profile {% endtrans %}</a>
             </a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">{% trans from "main-nav" %}<span class="fa fa-wrench"></span> parameter {% endtrans %}</a>
+            <a class="dropdown-item" href="#">{% trans from "main-nav" %}<span class="fa fa-power-off"></span> deconnection {% endtrans %}</a>
         </div>
     </li>
 </ul>
+{% include "MainBundle:Inc:matches.html.twig" %}

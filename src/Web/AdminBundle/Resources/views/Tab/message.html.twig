@@ -1,0 +1,27 @@
+<div class="row">
+
+    <div class="total_messages">{% trans from 'message' %}message.messages.select2 {% endtrans %}: </div>
+    <div id="nbmessages">Number of selected messages:
+        <span class="badge badge-pill badge-success nbrofchkbox"></span>
+    </div>
+    <br/>
+    <table id="message_list" class="table table-bordered table-hover table-sm table-striped table-success messages_table">
+        <tr>
+            <th>#</th>
+            <th>{% trans from 'message' %}message.messages.transmitter {% endtrans %}</th>
+            <th>{% trans from 'message' %}message.messages.receiver {% endtrans %}</th>
+            <th>{% trans from 'message' %}message.messages.select {% endtrans %}</th>
+            <th>{% trans from 'message' %}message.messages.date {% endtrans %}</th>
+            <th>{% trans from 'message' %}message.messages.content {% endtrans %}</th>
+            <th>{% trans from 'message' %}message.messages.status {% endtrans %}</th>
+            <th>{% trans from 'message' %}message.messages.file {% endtrans %}</th>
+            <th>{% trans from 'message' %}message.messages.content {% endtrans %}</th>
+        </tr>
+    </table>
+    <br/>
+
+    <button   class="btn btn-sm btn-danger">{% trans from 'message' %}amessage.members.delete {% endtrans %} <span class="badge badge-pill badge-success nbrofchkbox"></span></button>
+    <button class="btn btn-sm btn-info">{% trans from 'message' %}message.members.block {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
+    <button class="btn btn-sm btn-success">{% trans from 'message' %}message.members.email {% endtrans %}<span class="badge badge-pill badge-info nbrofchkbox"></span></button>
+
+</div>
