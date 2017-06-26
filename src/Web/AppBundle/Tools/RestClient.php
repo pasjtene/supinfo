@@ -43,7 +43,7 @@ class RestClient extends AbstractRest implements RestInterface
         {
             $this->client = new Client($options);
 
-            $this->response = $this->client->request($method, $this->baseUrl . $endpoint, ['verify' => false]);
+            $this->response = $this->client->request($method, $this->baseUrl . $endpoint);
 
             $this->setStatusCode($this->response->getStatusCode());
 
