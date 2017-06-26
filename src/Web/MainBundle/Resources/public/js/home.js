@@ -23,7 +23,9 @@ $(function(){
 
     if(mainHome.params.carousel.data("menu")!="undefined" && mainHome.params.carousel.data("menu")=="matches")
     {
-        //mainHome.params.carouselClass.carousel();
+        mainHome.params.carouselClass.carousel({
+            interval: 10000
+        });
     }
     if(mainHome.params.mainHorizontalNav.data("menu")!="undefined" && mainHome.params.mainHorizontalNav.data("menu")=="mainHorizontalNav")
     {
