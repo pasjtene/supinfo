@@ -1,5 +1,5 @@
 
-<ul class="nav justify-content-center bg-primary" id="nav">
+<ul class="nav justify-content-center bg-primary" id="nav" data-menu="nav">
     <li class="nav-item" id="logo">
         <a class="nav-link active" href="#">Funglobe</a>
     </li>
@@ -43,10 +43,16 @@
         <span class="fa fa-2x fa-money"></span> <br>
         <a class="nav-link" href="#">{% trans from "main-nav" %} vip {% endtrans %}</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#">
             <span class="fa fa-2x fa-user"></span> <br>
-            <span class="fa fa-caret-down"></span> <br>
         </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">
+                <a class="nav-link" href="#">{% trans from "main-nav" %}<span class="fa fa-shopping-cart"></span> profile {% endtrans %}</a>
+            </a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
     </li>
 </ul>

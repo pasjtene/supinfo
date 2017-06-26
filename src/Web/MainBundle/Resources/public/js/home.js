@@ -8,7 +8,8 @@ var MainHome = function()
         mainHorizontalNav : $('#mainHorizontalNav'),
         classname: "fixebar",
         footer: $("#footer"),
-        content: $('#content')
+        content: $('#content'),
+        nav: $("#nav")
     };
 };
 
@@ -20,6 +21,12 @@ $(function(){
     {
         setScroll(mainHome.params.mainHorizontalNav, mainHome.params.classname);
     }
+    $('.dropdown-toggle').dropdown();
+    if(mainHome.params.nav.data("menu")!="undefined" && mainHome.params.mainHorizontalNav.data("menu")=="nav")
+    {
+        setScroll(mainHome.params.nav, mainHome.params.classname);
+    }
+
     function setScroll(menu, classFixed)
     {
         // On recupere la position du bloc par rapport au haut du site
