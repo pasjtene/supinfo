@@ -15,16 +15,24 @@
 {% endblock %}
 
 {% block header %}
-    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
-{% endblock %}
-
-{% block main %}
+    {% include "MainBundle:Inc:main-nav.html.twig" %}
     <div class="row" id="mainUserProfile" data-page="mainUserProfile">
         front-office default profile page {# dans cette zone vous etes dans le conteneur  #}
     </div>
 {% endblock %}
 
+
+{% block footer %}
+
+{% endblock %}
 {% block myjs %}
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
+    <script>
+        $(function(){
+            $('.carousel').carousel({
+                interval: 2000
+            });
+        })
+    </script>
 {% endblock %}
 

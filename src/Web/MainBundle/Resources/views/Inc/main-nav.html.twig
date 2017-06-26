@@ -1,0 +1,59 @@
+
+<ul class="nav justify-content-center bg-primary" id="nav" data-menu="nav">
+    <li class="nav-item" id="logo">
+        <a class="nav-link active" href="#">Funglobe</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="#">
+            <span class="fa fa-2x fa-search"></span> <br>
+            {% trans from "main-nav" %} matches {% endtrans %}
+        </a>
+
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <span class="fa fa-2x fa-comment"></span> <br>
+            {% trans from "main-nav" %} messages {% endtrans %}
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <span class="fa fa-2x fa-bell"></span> <br>
+        <a class="nav-link" href="#">{% trans from "main-nav" %} notification {% endtrans %}</a>
+    </li>
+
+    <li class="nav-item">
+        <span class="fa fa-2x fa-camera"></span> <br>
+        <a class="nav-link" href="#">{% trans from "main-nav" %} photos {% endtrans %}</a>
+    </li>
+    <li class="nav-item">
+        <span class="fa fa-2x fa-users"></span> <br>
+        <a class="nav-link" href="#">{% trans from "main-nav" %} friend {% endtrans %}</a>
+    </li>
+
+    <li class="nav-item">
+        <span class="fa fa-2x fa-credit-card"></span> <br>
+        <a class="nav-link" href="#">{% trans from "main-nav" %} credits {% endtrans %}</a>
+    </li>
+    <li class="nav-item">
+        <span class="fa fa-2x fa-shopping-cart"></span> <br>
+        <a class="nav-link" href="#">{% trans from "main-nav" %} publicity {% endtrans %}</a>
+    </li>
+    <li class="nav-item">
+        <span class="fa fa-2x fa-money"></span> <br>
+        <a class="nav-link" href="#">{% trans from "main-nav" %} vip {% endtrans %}</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#">
+            <span class="fa fa-2x fa-user"></span> <br>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">
+                <a class="nav-link" href="#">{% trans from "main-nav" %}<span class="fa fa-user"></span> profile {% endtrans %}</a>
+            </a>
+            <a class="dropdown-item" href="#">{% trans from "main-nav" %}<span class="fa fa-wrench"></span> parameter {% endtrans %}</a>
+            <a class="dropdown-item" href="#">{% trans from "main-nav" %}<span class="fa fa-power-off"></span> deconnection {% endtrans %}</a>
+        </div>
+    </li>
+</ul>
+{% include "MainBundle:Inc:matches.html.twig" %}

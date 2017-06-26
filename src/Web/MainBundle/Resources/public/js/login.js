@@ -72,9 +72,8 @@ $(function(){
                                 type: mainLogin.params.api.method,
                                 data: Data,
                                 success: function (data) { //lorsque tout c'est bien passe
-
                                     console.log(data);
-                                    alert("faire ta redirection car tout  est deja ok");
+                                    window.location.href = Routing.generate('main_profile',{_locale:locale});
                                 },
                                 error: function (xhr, status, message) { //en cas d'erreur
                                     console.log(status+"\n"+xhr.responseText + '\n' + message );
