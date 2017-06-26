@@ -1,8 +1,9 @@
-about: Apropos
-mobile: Mobile
-terms: Terms
-privacy: Privacy
-quick: Quick links
-cities: Cities
-help: Help
-press: Press
+footer:
+  about: Apropos
+  mobile:  Téléphone Mobile
+  terms: CGUF
+  privacy: Confidentialité
+  quick: Liens Rapides
+  cities: Villes
+  help: Aide
+  press: Presse

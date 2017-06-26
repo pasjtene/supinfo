@@ -16,7 +16,7 @@ use Web\AppBundle\Tools\RestClient;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="main_homepage")
+     * @Route("/", name="main_homepage", options={"expose"=true})
      */
     public function indexAction()
     {

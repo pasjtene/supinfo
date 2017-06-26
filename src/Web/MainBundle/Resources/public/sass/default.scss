@@ -32,8 +32,23 @@ button{
   border: solid 1px $badnew-color !important;
 }
 
+
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+}
+#body{
+ //height: 100%;
+}
+
+#content{
+ // min-height: 100%;
+}
+
 #footer{
-  margin-top: 4em;
+ // height: 3em;
   .card{
     background-color: rgba(49, 83, 255, 0.06) !important;
       .col-lg-1{
@@ -45,5 +60,60 @@ button{
     a:hover{
       color: $default-color;
     }
+
   }
+}
+
+#footer {
+  position:fixed;
+  left:0px;
+  bottom:0px;
+}
+
+
+
+
+.fixebar{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 9999999999999999999999999999;
+}
+
+
+#nav{
+  @extend  .fixebar;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  li{
+    text-align: center;
+    color: white;
+   line-height: 1em;
+    font-size: 0.7em;
+    a{
+      line-height: inherit;
+      font-size: inherit;
+      color: inherit;
+      text-align: inherit;
+    }
+  }
+  #logo{
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+}
+
+#carousel{
+  margin-top: 4.7em;
+  height: 112px;
+  border-top: 1px solid $secondary-color;
+  .action{
+    color: $default-color;
+  }
+  img{
+    margin-top: 1em;
+    height: 75px;
+  }
+
 }

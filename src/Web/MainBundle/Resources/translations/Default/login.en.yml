@@ -3,7 +3,8 @@ refer:
   description:  description pour le referencement de la page
 title: FunGlobe - Login
 nav:
-  login: SignIn
+  login: Sign In
+  member_question: Already a member ?
 body:
   msgone: Connect to FunGlobe
   msgtwo: Meet people who have affinities with you! If you are not registered yet,

@@ -5,20 +5,20 @@ title: Create new account
 nav:
   register: SignUp
 block:
-  title: The social network for metting
+  title: The social network for having fun and metting
   important:  new poeples :)
-  content: Millions of people are having fun  and making new friend on Funglobe every day. you  can too!
+  content: Over 51 Million people are having fun  and making new friends on Funglobe every day. Jump in !
   google: Login with  google
   facebook: Login with  facebook
   or: Or
   signup: Signup  with  your email today
 form:
-  title : Create new account
-  content: Join more than 351 million new funglobe friends
+  title : Create your account
+  content: It's 100% free.
   notification:
     title: Notification
-    content: Wait  about  a few moment
-    success: Save as successfull
+    content: Wait a few moment
+    success: Registration successfull
   body:
     name: Name
     birthday: Birthday
