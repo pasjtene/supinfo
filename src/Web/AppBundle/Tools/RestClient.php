@@ -35,7 +35,7 @@ class RestClient extends AbstractRest implements RestInterface
 
         if(!is_null($token)){
 
-            $headers['Authorization'] = 'Bearer '.$token;
+            $headers['X-Auth-Token'] = $token;
         }
         $options['headers'] = $headers;
 
