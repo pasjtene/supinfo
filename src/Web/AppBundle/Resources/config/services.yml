@@ -1,6 +1,11 @@
 services:
-    tootree_user_provider:
-        class: Web\ApiBundle\Entity\User
-        factory_service: doctrine.orm.entity_manager
-        factory_method: getRepository
-        arguments: [Web\ApiBundle\Entity\User]
+    funglobe_user_provider:
+        class: Web\AppBundle\Tools\FunglobeUserProvider
+        arguments:
+            $container: "@service_container"
+    funglobe_authenticator:
+        class: Web\AppBundle\Security\FormAuthenticator
+        arguments: ["@router"]
+    logout_listener:
+            class: Web\AppBundle\EventListener\LogoutHandler
+            arguments: ['@doctrine.orm.entity_manager']
