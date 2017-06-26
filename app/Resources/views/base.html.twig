@@ -1,5 +1,6 @@
 {# add navigation current nav mark #}
 {% set route = app.request.get('_route') %}
+{% set baseRoute = app.request.baseUrl %}
 
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
@@ -135,6 +136,12 @@
      -->
 
     <!-- Javascript for user -->
+
+    <script>
+        $(function(){
+            baseRoute = Routing.generate('main_homepage',{_locale:locale},true);
+        });
+    </script>
     {% block myjs %}{% endblock %}
 {% endblock %}
 
