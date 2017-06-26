@@ -60,6 +60,7 @@ body{
     a:hover{
       color: $default-color;
     }
+
   }
 }
 
@@ -72,4 +73,28 @@ body{
   left: 0px;
   width: 100%;
   z-index: 9999999999999999999999999999;
+}
+
+
+#nav{
+  @extend  .fixebar;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  li{
+    text-align: center;
+    color: white;
+   line-height: 1em;
+    font-size: 0.7em;
+    a{
+      line-height: inherit;
+      font-size: inherit;
+      color: inherit;
+      text-align: inherit;
+    }
+  }
+  #logo{
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: "FORTE";
+  }
 }

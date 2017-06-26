@@ -25,7 +25,8 @@
                 <a href="{{ path('main_register') }}" class="btn btn-primary my-2 my-sm-0">
                     {% trans from 'register' %} nav.register {% endtrans %}
                 </a>
-            {% else %} <span id="nav_member_question">{% trans from 'login' %} nav.member_question {% endtrans %}</span>
+            {% else %}
+                <span id="nav_member_question">{% trans from 'login' %} nav.member_question {% endtrans %}</span>
                 <a href="{{ path('main_login') }}" class="btn btn-primary my-2 my-sm-0">
                     {% trans from 'login' %} nav.login {% endtrans %}
                  </a>
