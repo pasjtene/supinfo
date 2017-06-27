@@ -66,3 +66,10 @@ form:
     error: oh  erreur !
   help:
     lastname: Les gens aiment votre prénom
+    confirmEmail:
+      objet: Confirme ton adresse email
+      reason: Se faire  des bon amis   n'a jamais été aussi  facile
+      to: A
+      content: |
+       Avec funglobe revivez c'est  l'objectif. <br>
+       Découvrez des nouveaux amis et  profiter pour entrer en contact avec des professionnels. <br>
