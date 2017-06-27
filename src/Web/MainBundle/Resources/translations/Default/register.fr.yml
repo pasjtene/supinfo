@@ -22,6 +22,7 @@ form:
     profession: Profession
     btnsignup: S'inscrire
     country:  Pays
+    lastname: Prénom
     reasonList:
       1: Se faire de nouveaux amis
       2: Dialoguer
