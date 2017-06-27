@@ -75,5 +75,5 @@ form:
     error: Oh error !
   help:
     lastname: The poeples like your last name
-    confirmEmail:
+    emailConfirm:
       objet: confirm your email  address

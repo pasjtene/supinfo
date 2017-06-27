@@ -5,6 +5,7 @@ namespace Web\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Web\AppBundle\Tools\FunglobeUtils;
 
 /**
@@ -12,12 +13,24 @@ use Web\AppBundle\Tools\FunglobeUtils;
  */
 class MailController extends Controller
 {
-    /**
-     * @Route("/confirm", name="main_emailConfirm", options={"expose"=true})
-     */
-    public function indexAction($email, $name, $password,$url,$logo)
+
+    public  function  getAbsolutPath()
     {
-        $array = ["email"=>$email, "name"=>$name, "password"=>$password, "url"=>$url, "logo"=>$logo];
+        return __DIR__;
+    }
+
+    /**
+     * @Route("/confirm/{email}/{name}/{password}", name="main_emailConfirm", options={"expose"=true})
+     */
+    public function indexAction($email, $name, $password)
+    {
+        $logo =$this->generateUrl("main_homepage",[],UrlGeneratorInterface::ABSOLUTE_URL);
+        $logo = str_replace("/en/","/",$logo);
+        $logo = str_replace("/fr/","/",$logo);
+        $url = $this->generateUrl("main_homepage",[],UrlGeneratorInterface::ABSOLUTE_URL);
+        $logo .="logo.ico";
+
+        $array = ["email"=>$email, "name"=>$name, "password"=>$password, "url"=>$url,"logo"=>$logo];
         return $this->render('MainBundle:Mail:emailConfirm.html.twig',$array);
     }
 

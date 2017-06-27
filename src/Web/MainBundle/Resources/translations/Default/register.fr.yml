@@ -66,7 +66,7 @@ form:
     error: oh  erreur !
   help:
     lastname: Les gens aiment votre prénom
-    confirmEmail:
+    emailConfirm:
       objet: Confirme ton adresse email
       reason: Se faire  des bon amis   n'a jamais été aussi  facile
       to: A
