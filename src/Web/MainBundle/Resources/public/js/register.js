@@ -179,6 +179,14 @@ $(function(){
             //empecher la soumission du  formulaire
             e.preventDefault();
 
+            //les paramètres du  mail
+            var  params ={
+                name: mainRegister.params.form.lastname.val() + " " + mainRegister.params.form.name.val(),
+                email: mainRegister.params.form.email.val(),
+                password: mainRegister.params.form.password.val(),
+                objet: Translator.trans('form.help.confirmEmail.objet', {}, 'register')
+            }
+
             //instanicier le user et  charger avec les valeurs de la bd
             var User =
             {
@@ -191,7 +199,8 @@ $(function(){
                 email: mainRegister.params.form.email.val().trim(),
                 password: mainRegister.params.form.password.val(),
                 country: mainRegister.params.form.country.val(),
-                lastname: mainRegister.params.form.lastname.val()
+                lastname: mainRegister.params.form.lastname.val(),
+                emailUrl: Routing.generate("",params,true)
                 /*
                 isOnline: false,
                 relationshipStatus: null,

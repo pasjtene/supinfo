@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title> {% trans from "register" %} form.help.emailConfirm.objet {% endtrans %} </title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <div id="from">Funglobe< <a href="#">contact@funglobe.com</a> ></div>
+                    <br>
+                    <div id="to">
+                        {% trans from "register" %} form.help.emailConfirm.to {% endtrans %}
+                        <a href="#"> {{ email }}</a>
+                    </div>
+                </td>
+                <td>
+                    <div id="date">{{ ''|date() }}</div>
+                </td>
+            </tr>
+        </table>
+        <div id="reason">
+            {% trans from "register" %} form.help.emailConfirm.reason {% endtrans %}
+        </div>
+        <hr>
+        <div id="content">
+            {% trans from "register" %} form.help.emailConfirm.content {% endtrans %}
+        </div>
+        <br>
+        <img src="{{ logo }}" alt="">
+        <hr>
+        <div id="body">
+            {% trans with {'name':email, 'url':url} from "register"  %} form.help.emailConfirm.body {% endtrans %}
+        </div>
+
+    </body>
+</html>
