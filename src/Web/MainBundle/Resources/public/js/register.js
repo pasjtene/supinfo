@@ -19,7 +19,7 @@ var MainRegister = function()
             profession : $("#profession"),
             country : $("#country"),
             lastname : $("#lastname"),
-            btnregister: $("#btnregister"),
+            btnregister: $("#btnsave"),
             countryList: $("#countryList"),
             day: $('#day'),
             month: $('#month'),
@@ -200,7 +200,7 @@ $(function(){
                 password: mainRegister.params.form.password.val(),
                 country: mainRegister.params.form.country.val(),
                 lastname: mainRegister.params.form.lastname.val(),
-                emailUrl: Routing.generate("",params,true)
+                emailUrl: Routing.generate("main_register",params,true)
                 /*
                 isOnline: false,
                 relationshipStatus: null,

@@ -2,40 +2,56 @@
     <head>
         <title> {% trans from "register" %} form.help.emailConfirm.objet {% endtrans %} </title>
         <style>
+            body{
+               width: 100%;
+                //text-align: center;
+            }
             #body{
                 width: 50%;
                 border: solid 1px black;
-                padding: 1em;
+                padding: 2em;
+            }
+            table{
+                width: 100%;
             }
             table tr td:last-child{
                 text-align: right;
             }
-            #date{
+            table #to a, #date {
                 color: darkgray;
             }
             #reason{
                 font-weight: bold;
             }
+            #message{
+                margin: 2%;
+                padding: 1em;
+                background-color: #0275D8;
+                min-height: 150px;
+            }
+            img{
+                min-height: 30px;
+            }
         </style>
     </head>
     <body>
-       <div id="body">
+       <div id="body" valign="center">
            <table>
                <tr>
                    <td>
                        <div id="from">Funglobe <<a href="#">contact@funglobe.com</a>></div>
-                       <br>
                        <div id="to">
                            {% trans from "register" %} form.help.emailConfirm.to {% endtrans %}
                            <a href="#"> {{ email }}</a>
                        </div>
                    </td>
-                   <td id="date">
-                       <div >{{ ''|date() }}</div>
+                   <td>
+                       <div id="date" >{{ ''|date() }}</div>
                    </td>
                </tr>
            </table>
            <hr>
+
            <div id="reason">
                {% trans from "register" %} form.help.emailConfirm.reason {% endtrans %}
            </div>
