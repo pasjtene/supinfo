@@ -18,6 +18,7 @@ var MainRegister = function()
             confirmpassword : $("#confirmpassword"),
             profession : $("#profession"),
             country : $("#country"),
+            lastname : $("#lastname"),
             btnregister: $("#btnregister"),
             countryList: $("#countryList"),
             day: $('#day'),
@@ -189,8 +190,9 @@ $(function(){
                 gender: mainRegister.params.form.gender.val(),
                 email: mainRegister.params.form.email.val().trim(),
                 password: mainRegister.params.form.password.val(),
-                country: mainRegister.params.form.country.val()
-                /*lastName: null,
+                country: mainRegister.params.form.country.val(),
+                lastname: mainRegister.params.form.lastname.val()
+                /*
                 isOnline: false,
                 relationshipStatus: null,
                 joinDate: new Date(),

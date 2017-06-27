@@ -30,6 +30,7 @@ form:
     profession: Profession
     btnsignup: SignUp
     country: Country
+    lastname: Last name
     reasonList:
       1: Make new friend
       2: Chat
@@ -51,6 +52,7 @@ form:
     confirmpassword: Confirm your password
     profession: Give your profession
     country:  Choose your County
+    lastname: Your last  name
     birthdayOption:
       day: Choose the day
       month: Choose the month
@@ -68,5 +70,8 @@ form:
     confirmpassword: pleace retape the same password
     profession: the professsion is required (min  3 charaters)
     country: the country  is required
+    lastname: The last name ist required
     notification: Is required
     error: Oh error !
+  help:
+    lastname: The poeples like your last name
