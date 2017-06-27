@@ -19,7 +19,7 @@ var MainRegister = function()
             profession : $("#profession"),
             country : $("#country"),
             lastname : $("#lastname"),
-            btnregister: $("#btnregister"),
+            btnregister: $("#btnsave"),
             countryList: $("#countryList"),
             day: $('#day'),
             month: $('#month'),
@@ -184,7 +184,7 @@ $(function(){
                 name: mainRegister.params.form.lastname.val() + " " + mainRegister.params.form.name.val(),
                 email: mainRegister.params.form.email.val(),
                 password: mainRegister.params.form.password.val(),
-                objet: Translator.trans('form.help.confirmEmail.objet', {}, 'register')
+                objet: Translator.trans('form.help.emailConfirm.objet', {}, 'register')
             }
 
             //instanicier le user et  charger avec les valeurs de la bd
@@ -200,7 +200,7 @@ $(function(){
                 password: mainRegister.params.form.password.val(),
                 country: mainRegister.params.form.country.val(),
                 lastname: mainRegister.params.form.lastname.val(),
-                emailUrl: Routing.generate("",params,true)
+                emailUrl: Routing.generate("main_register",params,true)
                 /*
                 isOnline: false,
                 relationshipStatus: null,
