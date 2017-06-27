@@ -5,6 +5,7 @@ namespace Web\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Web\AppBundle\Tools\FunglobeUtils;
 
 /**
  * @Route("/profile")
@@ -18,5 +19,6 @@ class ProfileController extends Controller
     {
         return $this->render('MainBundle:Profile:index.html.twig');
     }
+
 
 }

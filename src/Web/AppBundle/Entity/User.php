@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Web\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use FOS\UserBundle\Model\User as BaseUser;
+use Web\AppBundle\Entity\BaseUser;
 
 /**
  * User
@@ -13,7 +13,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User extends  BaseUser implements UserInterface, EquatableInterface
+class User extends BaseUser
 {
     /**
      * @var int
@@ -147,6 +147,12 @@ class User extends  BaseUser implements UserInterface, EquatableInterface
     private $profileVisibility;
 
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255, nullable=true)
+     */
+    private $token;
 
     /**
      * @var array
@@ -156,6 +162,20 @@ class User extends  BaseUser implements UserInterface, EquatableInterface
     private $confirmPassword;
 
 
+
+    /**
+     * Set id
+     *
+     * @param string $id
+     *
+     * @return User
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * Get id
@@ -569,6 +589,29 @@ class User extends  BaseUser implements UserInterface, EquatableInterface
     }
 
     /**
+     * Set token
+     *
+     * @param string $token
+     * @return User
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
      * The equality comparison should neither be done by referential equality
      * nor by comparing identities (i.e. getId() === getId()).
      *
@@ -588,7 +631,7 @@ class User extends  BaseUser implements UserInterface, EquatableInterface
             return false;
         }
 
-        if($this->email !== $user->getUsername()){
+        if($this->username !== $user->getUsername()){
             return false;
         }
 

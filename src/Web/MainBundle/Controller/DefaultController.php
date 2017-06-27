@@ -3,7 +3,11 @@
 namespace Web\MainBundle\Controller;
 
 use AppBundle\Entity\User;
-use AppBundle\Tools\FunglobeUtils;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Security;
+use Web\AppBundle\Tools\FunglobeUserProvider;
+use Web\AppBundle\Tools\FunglobeUtils;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,32 +38,28 @@ class DefaultController extends Controller
      */
     public function loginAction(Request $request)
     {
-        $array = ["login"=>"login"];
+        $datas = ['error' => '', 'username' => ''];
 
-        if($request->isMethod("POST"))
-        {
-            $param = json_decode($request->getContent(), true);
+        /** @var AuthenticationException $error */
+        $error = $request->getSession()->get(Security::AUTHENTICATION_ERROR);
 
-            $em = $this->getDoctrine()->getManager();
+        if(!is_null($error)){
+            $datas['error'] = $error->getMessage();
+            $datas['username'] = $request->getSession()->get(Security::LAST_USERNAME);
 
-            /** @var User $user */
-            $user = $em->getRepository('ApiBundle:User')->loadUserByUsername($param['email']);
-
-            if($user != null)
-            {
-                $password = FunglobeUtils::encodePassword($this->container, new User(), $request->get('password'), $user->getSalt());
-
-                if($user->getPassword() === $password)
-                {
-                    //$session_id = $em->getRepository('TootreeApiBundle:TootreeSession')->createSession($user->getId());
-                    //$session = $em->getRepository('TootreeApiBundle:TootreeSession')->find($session_id);
-                    return $this->redirect($this->generateUrl("main_profile"));
-                }
-            }
-
-            return null;
+            $request->getSession()->remove(Security::AUTHENTICATION_ERROR);
+            $request->getSession()->remove(Security::LAST_USERNAME);
         }
-        return $this->render('MainBundle:Default:login.html.twig',$array);
+
+        return $this->render('MainBundle:Default:login.html.twig', $datas);
+    }
+
+    /**
+     * @Route("/logout", name="main_logout")
+     */
+    public function logoutAction(Request $request)
+    {
+        $this->get('security.context')->setToken(null);
     }
 
     /**
