@@ -33,6 +33,7 @@
                 min-height: 150px;
                 color: white;
                 text-align: center;
+                border-radius: 6px;
             }
             img{
                 min-height: 30px;
@@ -49,6 +50,7 @@
                 padding: 1%;
                 text-align: center;
                 margin: 2%;
+                border-radius: 6px;
             }
             #message #btn{
                 background-color: yellowgreen;
@@ -59,6 +61,15 @@
             }
             #message #btn:hover{
                 background-color: green;
+            }
+            #help{
+                color: darkgrey;
+                padding: 2%;
+                min-height: 50px;
+                font-size: 0.8em;
+            }
+            #help strong{
+                color: black;
             }
         </style>
     </head>
@@ -102,6 +113,34 @@
                <a href="{{ url }}" id="btn">{% trans from "register" %} form.help.emailConfirm.button {% endtrans %}</a>
            </div>
 
+           <hr>
+           <div id="footer">
+               <table>
+                   <tr>
+                       <td>
+                           <strong>{% trans from 'register' %} form.help.emailConfirm.phone {% endtrans %}:</strong> <br> 0044 1344 573229
+
+                           <br>
+                           <strong>{% trans from 'register' %} form.help.emailConfirm.adress {% endtrans %}: </strong>  <br>
+                           <span>
+                                6 Jaguar Lane, Bracknell, RG12 9PE, <br>
+                                Berkshire, United Kingdom.
+                            </span>
+                       </td>
+                       <td>
+                           <strong>{% trans from 'register' %} form.help.emailConfirm.contact {% endtrans %}: <br> </strong> <span>contact@funglobe.com</span> <br>
+                           <strong>{% trans from 'register' %} form.help.emailConfirm.website {% endtrans %}:
+                               <br></strong> <span><a href="#">www.funglobe.com</a></span>
+                       </td>
+                   </tr>
+               </table>
+
+           </div>
+           <div id="help">
+               {% trans with {'passwords':password, "urlPassword":urlPassword} from "register"  %} form.help.emailConfirm.curentpassword {% endtrans %}
+               <br>
+               {% trans with {'url':url} from "register"  %} form.help.emailConfirm.app {% endtrans %}
+           </div>
        </div>
     </body>
 </html>
