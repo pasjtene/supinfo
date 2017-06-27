@@ -5,11 +5,11 @@ title: S'enregistrer
 nav:
   register: S'inscrire
 block:
-  title: The social network for having fun and metting
-  important:  new poeples :)
-  content: Over 51 Million people are having fun  and making new friends on Funglobe every day. Jump in !
-  google: Login with  google
-  facebook: Login with  facebook
+  title: Le réseau social pour s'amuser et rencontrer
+  important:  de nouveaux amis :)
+  content: Plus de 51 millions de personnes s'amusent et font de nouveaux amis sur Funglobe tous les jours. Entrez!
+  google: Utiliser  google
+  facebook: Utiliser facebook
   or: Or
   signup: Signup  with  your email today
 form:
