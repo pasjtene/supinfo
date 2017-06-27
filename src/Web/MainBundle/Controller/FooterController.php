@@ -26,5 +26,12 @@ class FooterController extends Controller
     {
         return $this->render('MainBundle:Footer:privacy.html.twig');
     }
+    /**
+     * @Route("/phone", name="main_footer_phone"))
+     */
+    public function phoneAction()
+    {
+        return $this->render('MainBundle:Footer:phone.html.twig');
+    }
 
 }

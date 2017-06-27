@@ -1,0 +1,121 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block meta %}
+    <meta name = "{% trans from 'privacy' %} refer.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'privacy' %} refer.description {% endtrans %}" >
+{% endblock %}
+
+{% block title %}
+    {% trans from 'privacy' %} title {% endtrans %}
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+
+{% block header %}
+    {% include 'AdminBundle:Inc:pascalnavbar.html.twig' %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+    <style>
+        .element{
+            background-color:#0275D8;
+            height: 55%;
+            color: white;
+            padding-left: 3%;
+
+        }
+        .elem{
+            height: 10%;
+            width: 15%;
+        }
+    </style>
+    <div class="element">
+       <div class="row" id="main_privacy">
+        <div class="row">
+            <div class ="col-sm-12 col  col-lg-6" >
+
+              <div class="container">
+    <h2>Identify your here for dowload ours apps</h2>
+    <form class="form-horizontal" action="#">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Email or Phone Number:</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" placeholder="Enter email or phone Number" name="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Password:</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password " name="pwd">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="remember"> Remember me</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+            </div>
+             <div class="col col-lg-6">
+                    <h4 > {% trans from 'privacy' %}privacy.title  {% endtrans %} </h4>
+                    <b><h5><p> {% trans from 'privacy' %}privacy.title2  {% endtrans %}</p></h5></b>
+             </div>
+         </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col">
+
+                     {% trans from 'privacy' %}  privacy.title421 {% endtrans %}:
+
+            </div>
+            <div class="col">
+                <p>
+                    <a   href="{{ path('main_footer_privacy') }}"> <i class="fa fa-android"></i>{% trans from 'privacy' %}  privacy.title42 {% endtrans %} </a>
+                </p>
+            </div>
+           <div class="col">
+               <p>
+                   <a  href="{{ path('main_footer_privacy') }}"><i class="fa fa-windows"></i> {% trans from 'privacy' %} privacy.title43 {% endtrans %} </a>
+               </p>
+            </div>
+            <div class="col">
+                  <p>
+                    <a  href="{{ path('main_footer_privacy') }}"><i class="fa fa-windows"></i> {% trans from 'privacy' %} privacy.title44 {% endtrans %} </a>
+                 </p>
+            </div>
+
+  </div>
+
+
+
+{% endblock %}
+
+{% block main %}
+
+    <div class="col col-lg-4">
+
+    <div>
+        <div class="row">
+            <div class="col"><img  class="banner_img" src="{{ asset('data/img/prin.jpg') }}" alt=""></div>
+
+            <div class="col">Ou</div>
+
+            <div class="col"> ou visite notre site sur ton mobile : mo.funglobe.com</div>
+            <div class="col"></div>
+        </div>
+{% endblock %}
+
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+
