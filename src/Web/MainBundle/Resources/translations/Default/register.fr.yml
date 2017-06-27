@@ -76,10 +76,16 @@ form:
   help:
     lastname: Les gens aiment votre prénom
     emailConfirm:
-      title:  Funglobe ':'  Le réseau social pour s'amuser et rencontrer de nouveaux amis
+      title:  <strong> Funglobe </strong>( réseau social pour s'amuser et rencontrer de nouveaux amis)
       objet: Confirme ton adresse email
       reason: Se faire  des bon amis   n'a jamais été aussi  facile
       to: A
       content: |
        Avec funglobe revivez c'est  l'objectif. <br>
        Découvrez des nouveaux amis et  profiter pour entrer en contact avec plus de 51 millions professionnels repondant  a vos besoins. <br>
+      message: |
+       <h3> name, </h3>
+        vous êtes le bienvenue parmis plus de 350 millions d'utilisateurs de <strong>funglobe </strong>. <br/> <br/>
+       pour plusieurs raisons,  nous voulons se rassurer que l'adresse email  <a href=''> emails </a> vous appartient  vraiment.  <br/>
+       Veillez  cliquer sur le bouton  vert pour valider votre adresse email.
+      button: Confirmer votre adresse email

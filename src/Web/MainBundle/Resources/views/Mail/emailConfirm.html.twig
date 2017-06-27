@@ -4,12 +4,15 @@
         <style>
             body{
                width: 100%;
-                //text-align: center;
+                font-size: 1.5em;
             }
             #body{
                 width: 50%;
                 border: solid 1px black;
                 padding: 2em;
+                -webkit-box-shadow:  0 0 0 2px  yellowgreen, 0 0 0 4px white, 0 0 0 6px #0275D8;
+                -moz-box-shadow:  0 0 0 2px  yellowgreen, 0 0 0 4px white, 0 0 0 6px  #0275D8;
+                box-shadow:  0 0 0 2px  yellowgreen , 0 0 0 4px white, 0 0 0 6px   #0275D8;
             }
             table{
                 width: 100%;
@@ -28,9 +31,34 @@
                 padding: 1em;
                 background-color: #0275D8;
                 min-height: 150px;
+                color: white;
+                text-align: center;
             }
             img{
                 min-height: 30px;
+            }
+
+            a{
+                color:yellowgreen;
+            }
+
+            #title{
+               background-color:#0275D8;
+                color:  white;
+                font-weight: bold;
+                padding: 1%;
+                text-align: center;
+                margin: 2%;
+            }
+            #message #btn{
+                background-color: yellowgreen;
+                color: white;
+                padding: 2%;
+                border-radius: 6px;
+                text-decoration: none;
+            }
+            #message #btn:hover{
+                background-color: green;
             }
         </style>
     </head>
@@ -52,6 +80,10 @@
            </table>
            <hr>
 
+           <div id="title">
+               {% trans from "register" %} form.help.emailConfirm.title {% endtrans %}
+           </div>
+
            <div id="reason">
                {% trans from "register" %} form.help.emailConfirm.reason {% endtrans %}
            </div>
@@ -63,7 +95,11 @@
            <img src="{{ logo }}" alt="">
            <hr>
            <div id="message">
-               {% trans with {'name':email, 'url':url} from "register"  %} form.help.emailConfirm.body {% endtrans %}
+               {% trans with {'name':name, 'url':url, "emails":email} from "register"  %} form.help.emailConfirm.message {% endtrans %}
+               <br>
+               <br>
+               <br>
+               <a href="{{ url }}" id="btn">{% trans from "register" %} form.help.emailConfirm.button {% endtrans %}</a>
            </div>
 
        </div>
