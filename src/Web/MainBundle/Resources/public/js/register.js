@@ -200,7 +200,7 @@ $(function(){
                 password: mainRegister.params.form.password.val(),
                 country: mainRegister.params.form.country.val(),
                 lastname: mainRegister.params.form.lastname.val(),
-                emailUrl: Routing.generate("main_register",params,true)
+                emailUrl: Routing.generate("main_emailConfirm",params,true)
                 /*
                 isOnline: false,
                 relationshipStatus: null,
