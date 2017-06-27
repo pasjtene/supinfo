@@ -43,6 +43,7 @@ form:
     confirmpassword: Resaisir le même mot  de passe
     profession: Donner votre profession
     country: Choisissez votre pays
+    lastname: Entrer votre prénom
     birthdayOption:
       day: Choisir le jour
       month: Choisir le mois
@@ -60,5 +61,8 @@ form:
     confirmpassword: Ressaisir le même mot  de passe
     profession: La profession est obligatoire (min  3 charaters)
     country: Le pays est obligatoire
+    lastname: Le prénom est obkigatoire
     notification: Est obligatoire
     error: oh  erreur !
+  help:
+    lastname: Les gens aiment votre prénom

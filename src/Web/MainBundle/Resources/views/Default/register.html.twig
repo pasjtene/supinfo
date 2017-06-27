@@ -72,13 +72,20 @@
                               <h5>{% trans from 'register' %} form.content {% endtrans %}</h5>
                               <br>
                               <br>
-                              <div class="form-group row" id="block-name">
-                                  <label for="name" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.name {% endtrans %}*</label>
-                                  <div class="col-sm-12 col-lg-9">
-                                      <input class="form-control" type="text" id="name" placeholder="{% trans from 'register' %} form.placeholder.name {% endtrans %}">
-                                      <div class="form-control-feedback">{% trans from 'register' %} form.required.name {% endtrans %}</div>
-                                  </div>
-                              </div>
+                             <div class="row">
+                                 <div class="form-group col-12 col-lg-6" id="block-name">
+                                     <label for="name">{% trans from 'register' %} form.body.name {% endtrans %}*</label>
+                                     <input class="form-control" type="text" id="name" placeholder="{% trans from 'register' %} form.placeholder.name {% endtrans %}">
+                                     <div class="form-control-feedback">{% trans from 'register' %} form.required.name {% endtrans %}</div>
+                                 </div>
+                                 <div class="form-group col" id="block-lastname">
+                                     <label for="lastname">{% trans from 'register' %} form.body.lastname {% endtrans %}</label>
+                                     <input aria-describedby="lastnameHelp" class="form-control" type="text" id="lastname" placeholder="{% trans from 'register' %} form.placeholder.lastname {% endtrans %}">
+                                     <small id="lastnameHelp" class="form-text text-muted">{% trans from 'register' %} form.help.lastname {% endtrans %}</small>
+                                     <div class="form-control-feedback">{% trans from 'register' %} form.required.lastname {% endtrans %}</div>
+                                 </div>
+                             </div>
+
                               <div class="form-group row" id="block-email">
                                   <label for="email" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.email {% endtrans %}*</label>
                                   <div class="col-sm-12 col-lg-9">
