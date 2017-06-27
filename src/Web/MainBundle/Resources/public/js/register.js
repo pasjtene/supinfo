@@ -18,6 +18,7 @@ var MainRegister = function()
             confirmpassword : $("#confirmpassword"),
             profession : $("#profession"),
             country : $("#country"),
+            lastname : $("#lastname"),
             btnregister: $("#btnregister"),
             countryList: $("#countryList"),
             day: $('#day'),
