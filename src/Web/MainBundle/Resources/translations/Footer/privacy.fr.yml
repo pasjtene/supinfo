@@ -112,7 +112,7 @@ privacy:
    interdit d’utiliser les informations personnelles d’autres utilisateurs à des fins commerciales, pour leur envoyer des spams, les harceler ou les menacer. Funglobe se
    réserve le droit de fermer votre compte, ou de limiter l'accès à ses fonctionnalités, en cas d’usage abusif des informations d’autres utilisateurs.
   title9: Certains de mes amis souhaitent voir les personnes avec qui je suis en contact sur le chat. Puis-je leur communiquer mon mot
-  de passe et les laisser se connecter à mon compte ?
+   de passe et les laisser se connecter à mon compte ?
   block27:  |
    Non, ce n’est pas permis. Vous seul êtes autorisé à accéder à votre compte Funglobe. Pour des raisons de sécurité, vous ne devez en aucun cas partager votre mot de passe
    et laisser une autre personne accéder à votre compte. Vos données personnelles et le Contenu que vous avez publié sur Funglobe risqueraient d’être compromis. Vous êtes
@@ -251,7 +251,7 @@ privacy:
    aucune obligation de vous donner un préavis ou de vous rembourser les services non utilisés
   block59: 1. de suspendre ou résilier votre inscription (le cas échéant) et votre droit d'accès, d'utilisation et/ou de publication de Contenu sur Funglobe, et
   block60: 2.de faire usage de moyens opérationnels, technologiques, juridiques ou autres pour faire respecter nos Conditions générales (y compris, mais sans s’y limiter,
-  en bloquant des adresses IP spécifiques).
+   en bloquant des adresses IP spécifiques).
   block61:  |
    Le cas échéant, nous essaierons (mais sans aucune obligation de notre part) de vous informer si votre accès et/ou votre profil Funglobe doit être ou a été suspendu ou
    résilié. Nous conserverons une trace de votre non-respect de nos Conditions afin, le cas échéant, de vous empêcher toute tentative d'utiliser ou d'accéder à Funglobe et
@@ -381,5 +381,5 @@ privacy:
   title41: Entrée en vigueur
   block90: Dernière mise à jour des Conditions générales d’utilisation; 26 juin 2017
   title42: Application android
-  title42: Application iphone
-  title42: Application windows phone
+  title43: Application iphone
+  title44: Application windows phone
