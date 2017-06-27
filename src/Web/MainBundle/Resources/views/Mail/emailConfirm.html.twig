@@ -7,8 +7,8 @@
                 border: solid 1px black;
                 padding: 1em;
             }
-            table tr td{
-
+            table tr td:last-child{
+                text-align: right;
             }
             #date{
                 color: darkgray;
@@ -30,8 +30,8 @@
                            <a href="#"> {{ email }}</a>
                        </div>
                    </td>
-                   <td>
-                       <div id="date">{{ ''|date() }}</div>
+                   <td id="date">
+                       <div >{{ ''|date() }}</div>
                    </td>
                </tr>
            </table>
