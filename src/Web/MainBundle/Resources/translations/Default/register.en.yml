@@ -1,75 +1,79 @@
 refer:
   title: titre pour le referencement de la page
   description:  description pour le referencement de la page
-title: S'enregistrer
+title: Create new account
 nav:
-  register: S'inscrire
+  register: SignUp
+block:
+  title: The social network for having fun and metting
+  important:  new poeples :)
+  content: Over 51 Million people are having fun  and making new friends on Funglobe every day. Jump in !
+  google: Login with  google
+  facebook: Login with  facebook
+  or: Or
+  signup: Signup  with  your email today
 form:
-  title : Inscription
-  content: C'est 100% gratuit.
+  title : Create your account
+  content: It's 100% free.
   notification:
     title: Notification
-    content: vieullez patienter un petit  moment
-    success: Enregistrement effectué avec succès
+    content: Wait a few moment
+    success: Registration successfull
   body:
-    name: Nom
-    birthday: Date de naissance
-    gender: Sexe
-    reason: Vous ête la pour
-    email: Adresse email
-    password: Mot  de passe
-    confirmpassword: Confirmer le mot  de passe
+    name: Name
+    birthday: Birthday
+    gender: Gender
+    reason: I am  here to
+    email: Email adresse
+    password: Password
+    confirmpassword: Confirm password
     profession: Profession
-    btnsignup: S'inscrire
-    country:  Pays
+    btnsignup: SignUp
+    country: Country
+    lastname: Last name
     reasonList:
-      1: Se faire de nouveaux amis
-      2: Dialoguer
-      3: faire des rencontres
+      1: Make new friend
+      2: Chat
+      3: Date
     genderList:
-      1: Masculin
-      2: Feminin
+      1: Male
+      2: Female
     birthdayOption:
-      day: Jour
-      month: Mois
-      year: Année
+      day: Day
+      month: Month
+      year: Year
   placeholder:
-    name: Entrer nom
-    birthday: Entrer date de naissance
-    gender: Choisisser votre sexe
-    reason: Choisissez la raison
-    email: Votre adresse email
-    password: Entrer  votre mot  de passe
-    confirmpassword: Resaisir le même mot  de passe
-    profession: Donner votre profession
-    country: Choisissez votre pays
-    lastname: Entrer votre prénom
+    name: Your first  name
+    birthday: Your birthday
+    gender: Your gender
+    reason: choose your reason
+    email: Your email  adress
+    password: Your password
+    confirmpassword: Confirm your password
+    profession: Give your profession
+    country:  Choose your County
+    lastname: Your last  name
     birthdayOption:
-      day: Choisir le jour
-      month: Choisir le mois
-      year: Choisir l'année
+      day: Choose the day
+      month: Choose the month
+      year: Choose the year
   required:
-    name: Le nom  est  requis (min  3 caractères)
+    name: the name is required (min  3 charaters)
     birthdayOption:
-      day: Le jour est  obligatoire
-      month: Le mois est obligatoire
-      year:  L'année est  obligatoire
-    gender: Le sexe est  obligatoire
-    reason: La raison est obligatoire
-    email: L'adresse email est obligatoire
-    password: the password is required (min  5 caractères)
-    confirmpassword: Ressaisir le même mot  de passe
-    profession: La profession est obligatoire (min  3 charaters)
-    country: Le pays est obligatoire
-    lastname: Le prénom est obkigatoire
-    notification: Est obligatoire
-    error: oh  erreur !
+      day: the day is required
+      month: the month is required
+      year:  the year is required
+    gender: the gender is required
+    reason: the reason is required
+    email: the adresse mail  is required
+    password: the password is required (min  5 charaters)
+    confirmpassword: pleace retape the same password
+    profession: the professsion is required (min  3 charaters)
+    country: the country  is required
+    lastname: The last name ist required
+    notification: Is required
+    error: Oh error !
   help:
-    lastname: Les gens aiment votre prénom
+    lastname: The poeples like your last name
     emailConfirm:
-      objet: Confirme ton adresse email
-      reason: Se faire  des bon amis   n'a jamais été aussi  facile
-      to: A
-      content: |
-       Avec funglobe revivez c'est  l'objectif. <br>
-       Découvrez des nouveaux amis et  profiter pour entrer en contact avec des professionnels. <br>
+      objet: confirm your email  address
