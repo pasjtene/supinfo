@@ -262,11 +262,13 @@ $(function(){
                                 window.location.href = Routing.generate('main_profile',{_locale:locale});
                                 clearInterval(t);
                             },2000);
-                          /*  t =setInterval(function(){
+
+                           /* t =setInterval(function(){
                                 window.location.href = Routing.generate('main_checkauth',{_locale:locale,token:tokenbase.value,password:User.password, email:User.email});
                                 clearInterval(t);
                             },2000);
                             */
+
                         },
                         error: function (xhr, status, message) { //en cas d'erreur
                             console.log(status+"\n"+xhr.responseText + '\n' + message );
