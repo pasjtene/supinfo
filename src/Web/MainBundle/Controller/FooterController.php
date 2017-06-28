@@ -33,5 +33,21 @@ class FooterController extends Controller
     {
         return $this->render('MainBundle:Footer:phone.html.twig');
     }
+    /**
+     * @Route("/about", name="main_footer_about"))
+     */
+    public function aboutAction()
+    {
+        return $this->render('MainBundle:Footer:about.html.twig');
+    }
+
+    /**
+     * @Route("/test2", name="main_footer_test2"))
+     */
+    public function test2Action()
+    {
+        return $this->render('MainBundle:Footer:test2.html.twig');
+    }
+
 
 }

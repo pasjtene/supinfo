@@ -1,0 +1,108 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block meta %}
+    <meta name = "{% trans from 'privacy' %} refer.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'privacy' %} refer.description {% endtrans %}" >
+{% endblock %}
+
+{% block title %}
+    {% trans from 'privacy' %} title {% endtrans %}
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+
+{% block header %}
+    {% include 'AdminBundle:Inc:pascalnavbar.html.twig' %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+    <style>
+        .element{
+            background-color:#0275D8;
+            height: 50%;
+            color: white;
+            padding-left: 3%;
+
+        }
+
+    </style>
+    <div class="element">
+       <div class="row" id="main_privacy">
+        <div class="row">
+            <div class ="col-sm-12 col  col-lg-6" >
+
+              <div class="container">
+    <h4>{% trans from 'privacy' %} privacy.block93 {% endtrans %}</h4>
+    <form class="form-horizontal" action="#">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">{% trans from 'privacy' %} privacy.block96 {% endtrans %}:</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" placeholder={% trans from 'privacy' %} privacy.block99 {% endtrans %} name="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">{% trans from 'privacy' %} privacy.block94 {% endtrans %}</button>
+            </div>
+        </div>
+    </form>
+</div>
+            </div>
+             <div class="col col-lg-6">
+                    <h4 align="center" > {% trans from 'privacy' %}Fun  {% endtrans %} </h4>
+
+             </div>
+         </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col">
+
+                     {% trans from 'privacy' %}  privacy.title421 {% endtrans %}:
+
+            </div>
+            <div class="col">
+                <p>
+                    <a   href="{{ path('main_footer_privacy') }}"> <i class="fa fa-android"></i>{% trans from 'privacy' %}  privacy.title42 {% endtrans %} </a>
+                </p>
+            </div>
+           <div class="col">
+               <p>
+                   <a  href="{{ path('main_footer_privacy') }}"><i class="fa fa-windows"></i> {% trans from 'privacy' %} privacy.title43 {% endtrans %} </a>
+               </p>
+            </div>
+            <div class="col">
+                  <p>
+                    <a  href="{{ path('main_footer_privacy') }}"><i class="fa fa-windows"></i> {% trans from 'privacy' %} privacy.title44 {% endtrans %} </a>
+                 </p>
+            </div>
+
+  </div>
+
+
+
+{% endblock %}
+
+{% block main %}
+
+    <div class="col col-lg-4">
+
+    <div>
+        <div class="row">
+            <div class="col"><img  class="banner_img" src="{{ asset('data/img/prin.jpg') }}" alt=""></div>
+
+            <div class="col">{% trans from 'privacy' %} privacy.block101 {% endtrans %}</div>
+
+            <div class="col"> {% trans from 'privacy' %} privacy.block95 {% endtrans %} : <a href="#">mob.funglobe.com </a></div>
+            <div class="col"></div>
+        </div>
+{% endblock %}
+
+{% block myjs %}
+    {% include "MainBundle:Footer:index.html.twig" %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+
+
+
