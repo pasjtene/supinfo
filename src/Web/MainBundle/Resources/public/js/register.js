@@ -112,11 +112,11 @@ $(function(){
             return  $("#"+mainRegister.params.required.password.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
         }
 
-        test= notConfirm(mainRegister.params.form.confirmpassword,mainRegister.params.form.password);
+       /* test= notConfirm(mainRegister.params.form.confirmpassword,mainRegister.params.form.password);
         if(test){
             return  $("#"+mainRegister.params.required.confirmpassword.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
         }
-
+        */
         return test;
     }
 
@@ -328,9 +328,10 @@ $(function(){
 
 
         // 10 - cinfirm password
-        mainRegister.params.form.confirmpassword.keyup(function(){
+       /* mainRegister.params.form.confirmpassword.keyup(function(){
             confirmPass(mainRegister.params.required.confirmpassword,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.confirmpassword,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.confirmpassword,appMain.params.required.form_control_feedback,mainRegister.params.form.password);
         });
+        */
 
 
         function confirmPass(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError,compare)
