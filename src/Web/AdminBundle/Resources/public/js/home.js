@@ -117,6 +117,7 @@ $(function(){
 
                                 var row = $('<tr>').html("<td>" + (i+1) +
                                     "</td><td>" + user.firstName +
+                                    "</td><td>" + user.email +
                                     "</td><td>" + user.gender +
                                     "</td>");
                                 $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="user_id_to_fix"/>').appendTo(row);
