@@ -46,7 +46,7 @@ $(function(){
         }, 1000);
 
         // evenement  du  clique sur le bouton d'enregistrement
-        mainLogin.params.form            .btnsubmit.click(function (evt) {
+        mainLogin.params.form.btnsubmit.click(function (evt) {
 
             //empecher la soumission du  formulaire
             evt.preventDefault();
