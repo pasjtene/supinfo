@@ -85,7 +85,7 @@ class DefaultController extends Controller
             $array['valid'] = 0;
             $array['message'] = $client->getContent();
         }
-        return $this->renderView($this->generateUrl("main_profile"));
+        return $this->redirect($this->generateUrl("main_profile"));
     }
 
     /**
@@ -93,7 +93,7 @@ class DefaultController extends Controller
      */
     public function loginAction(Request $request)
     {
-        $datas = ['error' => '', 'username' => ''];
+        $datas = ['error' => '', 'username' => '', "login"=>"ok"];
 
         /** @var AuthenticationException $error */
         $error = $request->getSession()->get(Security::AUTHENTICATION_ERROR);
