@@ -175,7 +175,8 @@ $(function(){
 
         //evenement  du  clic  sur le bouton enregistre
         mainRegister.params.form.btnregister.click(function (e) {
-
+            alert("Register clicked ..."+tokenbase);
+            console.log("Register clicked ..."+tokenbase.value);
             //empecher la soumission du  formulaire
             e.preventDefault();
 
@@ -200,7 +201,7 @@ $(function(){
                 password: mainRegister.params.form.password.val(),
                 country: mainRegister.params.form.country.val(),
                 lastname: mainRegister.params.form.lastname.val(),
-                emailUrl: Routing.generate("main_emailConfirm",params,true)
+                emailUrl: Routing.generate("main_emailConfirm",{_locale:locale},params,true)
                 /*
                 isOnline: false,
                 relationshipStatus: null,
@@ -229,6 +230,7 @@ $(function(){
                     {
                         url: mainRegister.params.api.action.save,
                         crossDomain: true,
+                        //headers : {"X-Auth-Token" : tokenbase},
                         headers : {"X-Auth-Token" : tokenbase.value},
                         type: mainRegister.params.api.method.post,
                         data: User,
