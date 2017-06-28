@@ -179,12 +179,29 @@ $(function(){
             //empecher la soumission du  formulaire
             e.preventDefault();
 
+            //url
+            var  url =  Routing.generate("main_emailConfirm",
+                        {   _locale:locale,
+                            name: mainRegister.params.form.lastname.val() + " " + mainRegister.params.form.name.val(),
+                            email: mainRegister.params.form.email.val(),
+                            password: mainRegister.params.form.password.val(),
+                            objet: Translator.trans('form.help.emailConfirm.objet', {}, 'register')
+                        },true);
+            var logo = Routing.generate("main_homepage", {_locale:locale}, true);
+            logo = logo.replace("/en/","/");
+            logo = logo.replace("/fr/","/");
+            logo += "logo.ico";
+
+
             //les paramètres du  mail
             var  params ={
                 name: mainRegister.params.form.lastname.val() + " " + mainRegister.params.form.name.val(),
                 email: mainRegister.params.form.email.val(),
                 password: mainRegister.params.form.password.val(),
-                objet: Translator.trans('form.help.emailConfirm.objet', {}, 'register')
+                objet:"",
+                logo: logo,
+                url: url,
+                urlPassword: Routing.generate("main_forgot_password",{_locale:locale}, true)
             }
 
             //instanicier le user et  charger avec les valeurs de la bd
@@ -200,8 +217,7 @@ $(function(){
                 password: mainRegister.params.form.password.val(),
                 country: mainRegister.params.form.country.val(),
                 lastname: mainRegister.params.form.lastname.val(),
-                //emailUrl: Routing.generate("main_emailConfirm",params,true)
-                emailUrl: Routing.generate("main_emailConfirm",{_locale:locale},params,true)
+                params: JSON.stringify(params)
                 /*
                 isOnline: false,
                 relationshipStatus: null,
@@ -224,13 +240,14 @@ $(function(){
                // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
 
+                //console.log(params);
+                //alert(params);
                 mainRegister.params.modalSave.modal('show');
                 // implementer l'enregistrement  proprement  dit avec ajax
                 $.ajax(
                     {
                         url: mainRegister.params.api.action.save,
                         crossDomain: true,
-                        //headers : {"X-Auth-Token" : tokenbase},
                         headers : {"X-Auth-Token" : tokenbase.value},
                         type: mainRegister.params.api.method.post,
                         data: User,
@@ -241,7 +258,7 @@ $(function(){
                             //mainRegister.params.modalSave.modal('hide');
                             //redirect  here
                             t =setInterval(function(){
-                                window.location.href = Routing.generate('main_profile',{_locale:locale});
+                                window.location.href = Routing.generate('main_checkauth',{_locale:locale,token:tokenbase.value,password:User.password, email:User.email});
                                 clearInterval(t);
                             },2000);
                         },

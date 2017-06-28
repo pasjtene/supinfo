@@ -38,7 +38,7 @@ $(function(){
         var interval = setInterval(function ()
         {
             if(tokenbase !== null){
-                mainLogin.params.form.btoken.val(tokenbase);
+                mainLogin.params.form.btoken.val(tokenbase.value);
                 clearInterval(interval);
                 console.log("Token Applied");
             }
@@ -46,7 +46,7 @@ $(function(){
         }, 1000);
 
         // evenement  du  clique sur le bouton d'enregistrement
-        mainLogin.params.form.btnsubmit.click(function (evt) {
+        mainLogin.params.form            .btnsubmit.click(function (evt) {
 
             //empecher la soumission du  formulaire
             evt.preventDefault();
@@ -57,7 +57,6 @@ $(function(){
                 btoken = mainLogin.params.form.btoken.val();
 
             console.log(username, password, btoken);
-
             if(username.length > 0 && password.length > 0 && btoken.length > 0){
                 mainLogin.params.form.id.submit();
             }

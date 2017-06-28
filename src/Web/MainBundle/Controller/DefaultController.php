@@ -45,7 +45,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/register", name="main_register")
+     * @Route("/register", name="main_register", options={"expose"=true})
      */
     public function registerAction(Request $request)
     {
@@ -53,6 +53,40 @@ class DefaultController extends Controller
         return $this->render('MainBundle:Default:register.html.twig',$array);
     }
 
+
+
+    /**
+     * @Route("/check-auth", name="main_checkauth",options={"expose"=true})
+     */
+    public function check_authAction(Request $request)
+    {
+
+        $email = $request->get('email');
+        $token = $request->get('token');
+        $password = $request->get('password');
+
+        //si  l'email ou  le token ou le password  n'existe pas il  faut  qu'il  se connecte via main_login
+        if(!isset($email) || !isset($token)){
+            return $this->redirect($this->generateUrl("main_login"));
+        }
+
+        $data = ['email' => $email, 'password' => $password];
+
+        $client = new RestClient(RestClient::$POST_METHOD, 'auth/login', $token, $data);
+
+        if($client->getStatusCode() == 200)
+        {
+            $contents = \GuzzleHttp\json_decode($client->getContent());
+
+            $array['valid'] = 2;
+            $array['message'] = $client->getContent();
+        }
+        else{
+            $array['valid'] = 0;
+            $array['message'] = $client->getContent();
+        }
+        return $this->renderView($this->generateUrl("main_profile"));
+    }
 
     /**
      * @Route("/login", name="main_login")
@@ -84,7 +118,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/forgot-password", name="main_forgot_password")
+     * @Route("/forgot-password", name="main_forgot_password", options={"expose"=true})
      */
     public function forgotAction(Request $request)
     {
@@ -93,7 +127,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/reset-password", name="main_reset_password")
+     * @Route("/reset-password", name="main_reset_password", options={"expose"=true})
      */
     public function resetAction(Request $request)
     {
