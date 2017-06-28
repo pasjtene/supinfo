@@ -186,7 +186,6 @@ class FunglobeUserProvider implements UserProviderInterface
             $obj->setConfirmationToken($data->user->confirmationToken);
             $obj->setRoles($data->user->roles);
             $obj->setEnabled($data->user->enabled);
-            $obj->setSuperAdmin($data->user->superAdmin);
             $obj->setPasswordRequestedAt($data->user->passwordRequestedAt);
 
             return $obj;

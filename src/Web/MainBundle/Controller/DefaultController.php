@@ -23,6 +23,27 @@ class DefaultController extends Controller
         return $this->redirect($this->generateUrl("main_register"));
     }
 
+
+    /**
+     * @Route("/confirm/email", name="main_confirm", options={"expose"=true})
+     */
+    public function confirmAction(Request $request)
+    {
+        $email = $request->get("email");
+        $password = $request->get("password");
+        $lastkey = $request->get("key");
+        $key = md5($password.$email);
+
+        if($key==$lastkey)
+        {
+            $array = ["code"=>"ok"];
+        }
+        else{
+            $array = ["code"=>"n==bad"];
+        }
+        return $this->render('MainBundle:Default:register.html.twig',$array);
+    }
+
     /**
      * @Route("/register", name="main_register")
      */

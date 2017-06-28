@@ -16,5 +16,11 @@ class DefaultController extends Controller
     }
 
 
-
+    /**
+     * @Route("/home")
+     */
+    public function homeAction()
+    {
+        return $this->render('AdminBundle:Default:index.html.twig');
+    }
 }
