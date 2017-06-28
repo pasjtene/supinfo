@@ -15,7 +15,7 @@ security:
 
     role_hierarchy:
         ROLE_MEMBER:           [ROLE_MEMBER]
-        ROLE_MODERATOR:        [ROLE_MEMBER,ROLE_MODERATOR]
+        ROLE_MODERATOR:        [ROLE_MEMBER, ROLE_MODERATOR]
         ROLE_ADMIN:            [ROLE_MODERATOR, ROLE_ALLOWED_TO_SWITCH]
 
     firewalls:
@@ -42,5 +42,6 @@ security:
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/[^/]+/admin, roles: ROLE_ADMIN }
+        - { path: ^/reset-password, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[^/]+/profile, role: ROLE_MEMBER }
+        - { path: ^/[^/]+/admin, roles: [ROLE_MODERATOR, ROLE_ADMIN] }
