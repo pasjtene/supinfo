@@ -269,11 +269,11 @@ $(function(){
                             //redirect  here
 
                             console.log(data);
-                           /* t =setInterval(function(){
+                            t =setInterval(function(){
                                 window.location.href = Routing.generate('main_profile',{_locale:locale});
                                 clearInterval(t);
                             },2000);
-                                */
+
                            /* t =setInterval(function(){
                                 window.location.href = Routing.generate('main_checkauth',{_locale:locale,token:tokenbase.value,password:User.password, email:User.email});
                                 clearInterval(t);
