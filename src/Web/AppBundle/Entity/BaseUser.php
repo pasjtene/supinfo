@@ -15,6 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Web\AppBundle\Tools\FunglobeUtils;
 
 /**
  * Storage agnostic user object.
@@ -271,9 +272,9 @@ abstract class BaseUser implements UserInterface, EquatableInterface
         $roles = $this->roles;
 
         // we need to make sure to have at least one role
-        $roles[] = static::ROLE_DEFAULT;
+        //$roles[] = static::ROLE_DEFAULT;
 
-        return array_unique($roles);
+        return $roles;
     }
 
     /**
@@ -485,7 +486,7 @@ abstract class BaseUser implements UserInterface, EquatableInterface
         $this->roles = array();
 
         foreach ($roles as $role) {
-            $this->addRole($role);
+            $this->roles[] = $role;
         }
 
         return $this;
