@@ -2,9 +2,13 @@
    /* Remove the navbar's default margin-bottom and rounded borders */
    #principal{
 
-     .item{
-       height: 400px;
+     .carousel-inner
+     {
+       .item{
+         height: 400px;
+       }
      }
+
      .banner_im{
        height: 98%;
        width: 100%;
