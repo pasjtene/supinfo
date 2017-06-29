@@ -96,8 +96,11 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
     public function getCredentials(Request $request)
     {
 
-        if (!strstr($request->getPathInfo(),'/login') || !$request->isMethod('POST')) {
-            return;
+
+        if (!strstr($request->getPathInfo(),'/check-auth') || !$request->isMethod('GET')) {
+            if (!strstr($request->getPathInfo(),'/login') || !$request->isMethod('POST')) {
+                return;
+            };
         }
 
         if ($request->request->has('username')) {

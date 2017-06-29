@@ -112,11 +112,11 @@ $(function(){
             return  $("#"+mainRegister.params.required.password.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
         }
 
-        test= notConfirm(mainRegister.params.form.confirmpassword,mainRegister.params.form.password);
+       /* test= notConfirm(mainRegister.params.form.confirmpassword,mainRegister.params.form.password);
         if(test){
             return  $("#"+mainRegister.params.required.confirmpassword.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
         }
-
+        */
         return test;
     }
 
@@ -145,33 +145,33 @@ $(function(){
         });
 
         //charger tous les jours
-        for(var i= 1;i<32;i++)
+        /*for(var i= 1;i<32;i++)
         {
             var option = "<option value='"+ (i<10? "0"+i: i) +"'>"+ (i<10? "0"+i: i) +"</option>"
             mainRegister.params.form.day.append(option);
-        }
+        }*/
 
         //charger tous les mois
-        for(var i= 1;i<13;i++)
+       /* for(var i= 1;i<13;i++)
         {
             var option = "<option value='"+ (i<10? "0"+i: i) +"'>"+ (i<10? "0"+i: i) +"</option>"
             mainRegister.params.form.month.append(option);
-        }
+        }*/
 
         //recuperer la date du  jour
-        var today=new Date();
+       // var today=new Date();
         //recuperer le mois du  jour
-        var currentyear = today.getFullYear();
+       // var currentyear = today.getFullYear();
 
         //accorder les enfants ages d'au moins 5ans à   s'enregistrer
-        currentyear-=5;
+        //currentyear-=5;
 
         //charger les annees par ordre décroissant
-        for(var i= currentyear;i>1959;i--)
+       /* for(var i= currentyear;i>1959;i--)
         {
             var option = "<option value='"+i+"'>"+i+"</option>"
             mainRegister.params.form.year.append(option);
-        }
+        }*/
 
         //evenement  du  clic  sur le bouton enregistre
         mainRegister.params.form.btnregister.click(function (e) {
@@ -179,12 +179,38 @@ $(function(){
             //empecher la soumission du  formulaire
             e.preventDefault();
 
+            //url
+            var  url =  Routing.generate("main_emailConfirm",
+                {   _locale:locale,
+                    name: mainRegister.params.form.lastname.val() + " " + mainRegister.params.form.name.val(),
+                    email: mainRegister.params.form.email.val(),
+                    password: mainRegister.params.form.password.val(),
+                },true);
+
+            var  confirm =  Routing.generate("main_confirm",
+                {   _locale:locale,
+                    email: mainRegister.params.form.email.val(),
+                    password: mainRegister.params.form.password.val(),
+                    pkeyfs: mainRegister.params.form.password.val()+mainRegister.params.form.email.val()
+                },true);
+
+            var logo = Routing.generate("main_homepage", {_locale:locale}, true);
+            logo = logo.replace("/en/","/");
+            logo = logo.replace("/fr/","/");
+            logo += "logo.ico";
+
+
             //les paramètres du  mail
             var  params ={
                 name: mainRegister.params.form.lastname.val() + " " + mainRegister.params.form.name.val(),
                 email: mainRegister.params.form.email.val(),
                 password: mainRegister.params.form.password.val(),
-                objet: Translator.trans('form.help.emailConfirm.objet', {}, 'register')
+                objet:"",
+                logo: logo,
+                url: url,
+                confirm: confirm,
+                locale:locale,
+                urlPassword: Routing.generate("main_forgot_password",{_locale:locale}, true)
             }
 
             //instanicier le user et  charger avec les valeurs de la bd
@@ -200,8 +226,7 @@ $(function(){
                 password: mainRegister.params.form.password.val(),
                 country: mainRegister.params.form.country.val(),
                 lastname: mainRegister.params.form.lastname.val(),
-                //emailUrl: Routing.generate("main_emailConfirm",params,true)
-                emailUrl: Routing.generate("main_emailConfirm",{_locale:locale},params,true)
+                params: JSON.stringify(params)
                 /*
                 isOnline: false,
                 relationshipStatus: null,
@@ -224,6 +249,8 @@ $(function(){
                // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
 
+                //console.log(params);
+                //alert(params);
                 mainRegister.params.modalSave.modal('show');
                 // implementer l'enregistrement  proprement  dit avec ajax
                 $.ajax(
@@ -240,10 +267,19 @@ $(function(){
                             mainRegister.params.modal_body.text(mainRegister.params.modalSave.data('confirm'));
                             //mainRegister.params.modalSave.modal('hide');
                             //redirect  here
+
+                            console.log(data);
                             t =setInterval(function(){
                                 window.location.href = Routing.generate('main_profile',{_locale:locale});
                                 clearInterval(t);
                             },2000);
+
+                           /* t =setInterval(function(){
+                                window.location.href = Routing.generate('main_checkauth',{_locale:locale,token:tokenbase.value,password:User.password, email:User.email});
+                                clearInterval(t);
+                            },2000);
+                            */
+
                         },
                         error: function (xhr, status, message) { //en cas d'erreur
                             console.log(status+"\n"+xhr.responseText + '\n' + message );
@@ -328,9 +364,10 @@ $(function(){
 
 
         // 10 - cinfirm password
-        mainRegister.params.form.confirmpassword.keyup(function(){
+       /* mainRegister.params.form.confirmpassword.keyup(function(){
             confirmPass(mainRegister.params.required.confirmpassword,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.confirmpassword,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.confirmpassword,appMain.params.required.form_control_feedback,mainRegister.params.form.password);
         });
+        */
 
 
         function confirmPass(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError,compare)
