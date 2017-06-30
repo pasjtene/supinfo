@@ -5,13 +5,13 @@
                <div class="card-block">
                    <div class="row justify-content-center ">
                        <div class="col-6 col-md-3 col-lg-1">
-                           <a href="{{ path('main_footer_privacy') }}">{% trans from 'footer' %} footer.about {% endtrans %}</a>
+                           <a href="{{ path('main_footer_about') }}">{% trans from 'footer' %} footer.about {% endtrans %}</a>
                        </div>
                        <div class="col-6 col-md-3 col-lg-1">
                            <a href="{{ path('main_footer_phone') }}">{% trans from 'footer' %} footer.mobile {% endtrans %}</a>
                        </div>
                        <div class="col-6 col-md-3 col-lg-1">
-                           <a href="">{% trans from 'footer' %} footer.terms {% endtrans %}</a>
+                           <a href="{{ path('main_footer_privacy') }}">{% trans from 'footer' %} footer.terms {% endtrans %}</a>
                        </div>
                        <div class="col-6 col-md-3 col-lg-1">
                            <a href="{{ path('main_footer_privacy') }}">{% trans from 'footer' %} footer.privacy {% endtrans %}</a>

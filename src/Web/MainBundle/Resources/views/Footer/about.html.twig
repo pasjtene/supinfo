@@ -1,4 +1,3 @@
-
 {% extends 'MainBundle::layout.html.twig' %}
 {% block meta %}
     <meta name = "{% trans from 'home' %} refer.title {% endtrans %}" >
@@ -9,8 +8,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
 {% endblock %}
 {% block title %}
 
@@ -22,13 +19,13 @@
     {# mettre le css si la page t'oublige #}
 {% endblock %}
 {% block header %}
-    {% include 'AdminBundle:Inc:pascalnavbar.html.twig' %}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
 {% endblock %}
 
 {% block  main %}
 
-
+<div id="principal">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -67,12 +64,12 @@
 </div>
 
 <div class="container text-center">
-    <h2>{% trans from 'about' %} about.block1 {% endtrans %}</h2><br>
-    <h4>{% trans from 'about' %} about.block2 {% endtrans %}</h4><br>
+    <strong><h1>{% trans from 'about' %} about.block1 {% endtrans %}</h1></strong><br>
+    <strong><h3>{% trans from 'about' %} about.block2 {% endtrans %}</h3><br></strong>
     <div class="row">
         <div class="col-sm-4">
             <a href="#"><h2><strong><p>{% trans from 'about' %} about.title4 {% endtrans %}</p></strong></h2></a>
-            <img src="{{ asset('data/img/emploi1.jpg') }}" class="img-responsive" style="width:100%" alt="Image">
+            <a href="#"><img src="{{ asset('data/img/emploi1.jpg') }}" class="img-responsive" style="width:100%" alt="Image"></a>
 
         </div>
         <div class="col-sm-4">
@@ -129,14 +126,12 @@
         </div>
     </div>
 </div>
+</div>
 {% endblock %}
 {% block myjs %}
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
 {% endblock %}
 
-{% block footer %}
-    {# include the block  footer here#}
-    {% include "MainBundle:footer:index.html.twig" %}
-{% endblock %}
+
 
 

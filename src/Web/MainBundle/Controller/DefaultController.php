@@ -31,17 +31,42 @@ class DefaultController extends Controller
     {
         $email = $request->get("email");
         $password = $request->get("password");
-        $lastkey = $request->get("key");
-        $key = md5($password.$email);
+        $lastkey = $request->get("pkeyfs");
+        $key = ($password.$email);
 
-        if($key==$lastkey)
+        if($key!=$lastkey)
         {
-            $array = ["code"=>"ok"];
+            return $this->redirect($this->generateUrl("main_confirm_cancel"));
+        }
+
+        $data = ['email' => $email];
+
+        $client = new RestClient(RestClient::$PUT_METHOD, 'confirm-email', [], $data);
+
+        if($client->getStatusCode() == 200)
+        {
+            $contents = \GuzzleHttp\json_decode($client->getContent());
+
+            $array['valid'] = 2;
+            $array['message'] = $client->getContent();
         }
         else{
-            $array = ["code"=>"bad"];
+            $array['valid'] = 0;
+            $array['message'] = $client->getContent();
+            return $this->render('MainBundle:Default:cancel.html.twig',$array);
         }
-        return $this->render('MainBundle:Default:register.html.twig',$array);
+
+        return $this->redirect($this->generateUrl("main_login"));
+    }
+
+
+    /**
+     * @Route("/confirm/cancel", name="main_confirm_cancel", options={"expose"=true})
+     */
+    public function confirmCancelAction(Request $request)
+    {
+        $array = ["message"=>"Bad request "];
+        return $this->render('MainBundle:Default:cancel.html.twig',$array);
     }
 
     /**
