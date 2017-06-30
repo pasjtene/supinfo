@@ -1,16 +1,13 @@
 {% extends 'MainBundle::layout.html.twig' %}
+
 {% block meta %}
     <meta name = "{% trans from 'home' %} refer.title {% endtrans %}" >
     <meta name = "keywords" content = "{% trans from 'home' %} refer.description {% endtrans %}" >
-    <title>About Funglobe</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 {% endblock %}
 {% block title %}
-
+    <title>About Funglobe</title>
 {% endblock  %}
 
 {% block mycss %}
@@ -19,8 +16,10 @@
     {# mettre le css si la page t'oublige #}
 {% endblock %}
 {% block header %}
+    <div id="principal">
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+    </div>
 {% endblock %}
 
 {% block  main %}
