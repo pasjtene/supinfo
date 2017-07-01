@@ -184,7 +184,7 @@ $(function(){
                 {   _locale:locale,
                     name: mainRegister.params.form.lastname.val() + " " + mainRegister.params.form.name.val(),
                     email: mainRegister.params.form.email.val(),
-                    password: mainRegister.params.form.password.val(),
+                    password: mainRegister.params.form.password.val()
                 },true);
 
             var  confirm =  Routing.generate("main_confirm",
@@ -269,10 +269,9 @@ $(function(){
                             //redirect  here
 
                             console.log(data);
-                            t =setInterval(function(){
+                            $.post(Routing.generate('main_login', {_locale:locale}), {username:User.email, password:User.password, basetoken:tokenbase.value}, function(e){
                                 window.location.href = Routing.generate('main_profile',{_locale:locale});
-                                clearInterval(t);
-                            },2000);
+                            });
 
                            /* t =setInterval(function(){
                                 window.location.href = Routing.generate('main_checkauth',{_locale:locale,token:tokenbase.value,password:User.password, email:User.email});

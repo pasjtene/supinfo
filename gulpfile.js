@@ -13,6 +13,7 @@ var minify = require('gulp-minifier');
 var plumber = require('gulp-plumber');
 var exec = require('child_process').exec;
 var rename = require('gulp-rename');
+var concat = require('gulp-concat');
 
 var jsPaths = [
     './web/bundles/app/js/*.js',
@@ -43,8 +44,8 @@ var scriptTask = function()
     gulp.src(jsPaths)
         .pipe(minify({
             minify: true,
-            collapseWhitespace: true,
-            conservativeCollapse: true,
+            collapseWhitespace: false,
+            conservativeCollapse: false,
             minifyJS: true,
             minifyCSS: false,
             getKeptComment: function (content, filePath) {
@@ -98,6 +99,15 @@ var uglifyTask = function()
         .pipe(livereload());
 
     console.log('Uglify JS files successfull !');
+};
+
+var concatJsTask = function()
+{
+    console.log('Concatening JS files !');
+
+    return gulp.src(jsPaths)
+            .pipe(concat('master.min.js'))
+            .pipe(gulp.dest('./web/data/js'));
 };
 
 gulp.task('default', function(){
@@ -156,19 +166,19 @@ var logStdOutAndErr = function (err, stdout, stderr)
     //console.log(stdout + stderr);
     console.log("Assets installed !!!");
 
-    if(currentTask == 'sass')
+    if(currentTask === 'sass')
     {
         sassTask();
     }
-    else if(currentTask == 'js')
+    else if(currentTask === 'js')
     {
         uglifyTask();
     }
-    else if(currentTask == 'img')
+    else if(currentTask === 'img')
     {
         return imageTask();
     }
-    else if(currentTask == 'file')
+    else if(currentTask === 'file')
     {
         uglifyTask();
     }

@@ -12,7 +12,7 @@ var MainLogin = function()
             login : $("#username"),
             password : $("#password"),
             btoken : $("#btoken"),
-            btnsubmit: $("#btn-submit")
+            btnsubmit: $("#btn-login")
         },
         api:
         {

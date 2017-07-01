@@ -129,7 +129,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/login", name="main_login")
+     * @Route("/login", name="main_login", options={"expose"=true})
      */
     public function loginAction(Request $request)
     {
