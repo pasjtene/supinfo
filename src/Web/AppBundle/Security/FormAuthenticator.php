@@ -226,10 +226,16 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
             $url = $session->get(self::REFERER_URL_KEY);
             $session->remove(self::REFERER_URL_KEY);
         }
-        $response = new RedirectResponse($url);
 
+        if($request->get("begin")!=null)
+        {
+            $response =new RedirectResponse($this->router->generate("main_photo_request"));
+        }
+        else
+        {
+            $responseBegin = new RedirectResponse($url);
+        }
         $cookieValue = $this->user->getId() .'|'. $this->user->getToken();
-
         $response->headers->setCookie(new Cookie('fgckcusrcnt', $cookieValue, time()+31556900));
 
         return $response;
