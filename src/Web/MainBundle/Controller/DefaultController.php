@@ -27,9 +27,19 @@ class DefaultController extends Controller
 
 
     /**
-     * @Route("/photo/request", name="main_photo_request", options={"expose"=true})
+     * @Route("/profile/photo/request", name="main_photo_request", options={"expose"=true})
      */
-    public function confirmRequestAction()
+    public function photoRequestAction()
+    {
+        $array = [];
+        return $this->render('MainBundle:Default:photo-request.html.twig', $array);
+    }
+
+
+    /**
+     * @Route("/profile/email/request", name="main_email_request", options={"expose"=true})
+     */
+    public function emailRequestAction()
     {
         $array = [];
         return $this->render('MainBundle:Default:photo-request.html.twig', $array);

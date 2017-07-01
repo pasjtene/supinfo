@@ -233,7 +233,7 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
         }
         else
         {
-            $responseBegin = new RedirectResponse($url);
+            $response = new RedirectResponse($url);
         }
         $cookieValue = $this->user->getId() .'|'. $this->user->getToken();
         $response->headers->setCookie(new Cookie('fgckcusrcnt', $cookieValue, time()+31556900));
