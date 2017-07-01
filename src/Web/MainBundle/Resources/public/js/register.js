@@ -269,8 +269,8 @@ $(function(){
                             //redirect  here
 
                             console.log(data);
-                            $.post(Routing.generate('main_login', {_locale:locale}), {username:User.email, password:User.password, basetoken:tokenbase.value}, function(e){
-                                window.location.href = Routing.generate('main_profile',{_locale:locale});
+                            $.post(Routing.generate('main_login', {_locale:locale}), {username:User.email, password:User.password, basetoken:tokenbase.value, begin:"ok"}, function(e){
+                                window.location.href = Routing.generate('main_photo_request',{_locale:locale});
                             });
 
                            /* t =setInterval(function(){
