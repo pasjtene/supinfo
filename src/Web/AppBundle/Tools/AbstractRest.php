@@ -18,15 +18,17 @@ abstract class AbstractRest
 
     protected $response;
 
+    public  $option = ['http://www.funglobe.com/api/v1/','127.0.0.1:8000/v1/','127.0.0.1:8000/api/v1/'];
+
     /**
      * @var string
      */
+    protected $baseUrl='127.0.0.1:8000/v1/';
 
-
-   protected $baseUrl = 'http://www.funglobe.com/api/v1/';
-
-    //protected $baseUrl = 'http://localhost/api/v1/';
-    //protected $baseUrl = '127.0.0.1:8000/v1/';
+    public  function  __construct(){
+        //modifier l'option suivant  la spécification
+        $this->baseUrl = $this->option[1];
+    }
 
     /**
      * @return Client

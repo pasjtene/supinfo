@@ -257,7 +257,6 @@ $(function(){
                     {
                         url: mainRegister.params.api.action.save,
                         crossDomain: true,
-                        //headers : {"X-Auth-Token" : tokenbase},
                         headers : {"X-Auth-Token" : tokenbase.value},
                         type: mainRegister.params.api.method.post,
                         data: User,
@@ -267,17 +266,35 @@ $(function(){
                             mainRegister.params.modal_body.text(mainRegister.params.modalSave.data('confirm'));
                             //mainRegister.params.modalSave.modal('hide');
                             //redirect  here
-
                             console.log(data);
-                            $.post(Routing.generate('main_login', {_locale:locale}), {username:User.email, password:User.password, basetoken:tokenbase.value, begin:"ok"}, function(e){
-                                window.location.href = Routing.generate('main_photo_request',{_locale:locale});
-                            });
+                            params  ={
+                                username:User.email,
+                                password:User.password,
+                                basetoken:tokenbase.value,
+                                begin:"ok"};
+                            $.ajax(
+                                {
+                                    url: Routing.generate('main_login', {_locale:locale}),
+                                    crossDomain: true,
+                                    type: mainRegister.params.api.method.post,
+                                    data: params,
+                                    success: function (reponse) { //lorsque tout c'est bien passe
 
-                           /* t =setInterval(function(){
-                                window.location.href = Routing.generate('main_checkauth',{_locale:locale,token:tokenbase.value,password:User.password, email:User.email});
-                                clearInterval(t);
-                            },2000);
-                            */
+                                        console.log(reponse);
+
+                                        window.location.href = Routing.generate('main_photo_request',{_locale:locale});
+
+                                    },
+                                    error: function (xhr, status, message) { //en cas d'erreur
+                                        console.log(status+"\n"+xhr.responseText + '\n' + message );
+                                    }
+                                }
+                            );
+
+                          /*  $.post(Routing.generate('main_login', {_locale:locale}),{  username:User.email, password:User.password, basetoken:tokenbase.value, begin:"ok"} , function(e){
+                                window.location.href = Routing.generate('main_photo_request',{_locale:locale});
+                            });*/
+
 
                         },
                         error: function (xhr, status, message) { //en cas d'erreur
