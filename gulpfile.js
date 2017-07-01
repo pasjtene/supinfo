@@ -44,8 +44,8 @@ var scriptTask = function()
     gulp.src(jsPaths)
         .pipe(minify({
             minify: true,
-            collapseWhitespace: false,
-            conservativeCollapse: false,
+            collapseWhitespace: true,
+            conservativeCollapse: true,
             minifyJS: true,
             minifyCSS: false,
             getKeptComment: function (content, filePath) {
@@ -155,6 +155,12 @@ gulp.task('js', ['installAssets'], function()
     currentTask = 'js';
 });
 
+//run the following task if you don't want to minify the scripts
+gulp.task('jsdev', ['installAssets'], function()
+{
+    currentTask = 'jsdev';
+});
+
 gulp.task('file', ['installAssets'], function()
 {
     currentTask = 'file';
@@ -173,6 +179,10 @@ var logStdOutAndErr = function (err, stdout, stderr)
     else if(currentTask === 'js')
     {
         uglifyTask();
+
+    } else if (currentTask === 'jsdev')
+    {
+        concatJsTask();
     }
     else if(currentTask === 'img')
     {
