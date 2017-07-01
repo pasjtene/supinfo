@@ -48,11 +48,11 @@ class DefaultController extends Controller
             $contents = \GuzzleHttp\json_decode($client->getContent());
 
             $array['valid'] = 2;
-            $array['message'] = $client->getContent();
+            $array['message'] = $client->getResponse();
         }
         else{
             $array['valid'] = 0;
-            $array['message'] = $client->getContent();
+            $array['message'] = $client->getStatusCode();
             return $this->render('MainBundle:Default:cancel.html.twig',$array);
         }
 
