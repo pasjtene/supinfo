@@ -41,22 +41,20 @@ class DefaultController extends Controller
 
         $data = ['email' => $email];
 
-        $client = new RestClient(RestClient::$PUT_METHOD, 'confirm-email', [], $data);
+        $client = new RestClient(RestClient::$PUT_METHOD, 'confirm/email', [], $data);
 
         if($client->getStatusCode() == 200)
         {
             $contents = \GuzzleHttp\json_decode($client->getContent());
 
             $array['valid'] = 2;
-            $array['message'] = $client->getContent();
-        }
-        else{
-            $array['valid'] = 0;
-            $array['message'] = $client->getContent();
-            return $this->render('MainBundle:Default:cancel.html.twig',$array);
+            $array['message'] = \GuzzleHttp\json_decode($client->getContent());
+            return $this->render('MainBundle:Default:success.html.twig',$array);
         }
 
-        return $this->redirect($this->generateUrl("main_login"));
+        $array['valid'] = 0;
+        $array['message'] =\GuzzleHttp\json_decode($client->getContent());
+        return $this->render('MainBundle:Default:cancel.html.twig',$array);
     }
 
 
