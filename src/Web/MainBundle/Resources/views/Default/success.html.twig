@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    {% trans from 'cancel' %}  title {% endtrans %}
+    {% trans from 'success' %}  title {% endtrans %}
 {% endblock  %}
 
 
@@ -17,14 +17,13 @@
 {% endblock %}
 
 {% block main %}
-    <div class="row" id="mainCancel">
-        <div class="card">
+    <div class="row" id="mainSucces">
+        <div class="card bg-success">
             <div class="card-block">
-                <h4 class="card-title">{% trans from 'cancel' %} body.title  {% endtrans %}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">{% trans from 'cancel' %} context  {% endtrans %}</h6>
-                <p class="card-text">{{  message }}</p>
-                <a href="#" class="card-link">{% trans from 'cancel' %} body.link1  {% endtrans %}</a>
-                <a href="#" class="card-link">{% trans from 'cancel' %} body.link2 {% endtrans %}</a>
+                <h4 class="card-title">{% trans from 'success' %} body.title  {% endtrans %}</h4>
+                <h6 class="card-subtitle mb-2 text-muted">{% trans from 'success' %} body.context  {% endtrans %}</h6>
+                <p class="card-text">{% trans with {'emailadress':message.email} from 'success' %} body.content  {% endtrans %}</p>
+                <a href="{{ path('main_profile') }}" class="card-link">{% trans from 'success' %} body.link1  {% endtrans %}</a>
             </div>
         </div>
     </div>
