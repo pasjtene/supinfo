@@ -1,0 +1,85 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block meta %}
+    <meta name = "{% trans from 'privacy' %} refer.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'privacy' %} refer.description {% endtrans %}" >
+{% endblock %}
+
+{% block title %}
+    {% trans from 'privacy' %} privacy {% endtrans %}
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+    <style>
+        .bann{
+            width: 100%;
+            height: 69%;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+
+{% endblock %}
+
+{% block main %}
+      <div class="bann">
+          <img src="{{ asset('data/img/presse1.jpg') }}" alt="Paris" width="400" height="300">
+      </div>
+
+    <div class="row" id="main_privacy">
+
+        <div class="row">
+            <div class ="col-sm-12 col  col-lg-6" >
+
+                <h4 class="center-align"> {% trans from 'privacy' %} privacy.title45 {% endtrans %} </h4>
+
+
+                <p>
+                    <a class="center-align" href="{{ path('main_footer_privacy') }}" > {% trans from 'privacy' %}  privacy.title64 {% endtrans %} </a>
+                </p>
+            </div>
+
+            <div class="col col-lg-6">
+                <div class="text-justify">
+
+                    <h5><p> {% trans from 'privacy' %}privacy.title41  {% endtrans %}</p></h5>
+                    <p align=""> {% trans from 'privacy' %}privacy.block92 {% endtrans %}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col">
+
+            {% trans from 'privacy' %}  privacy.title421 {% endtrans %}: </a>
+
+        </div>
+        <div class="col">
+            <p>
+                <a   href="{{ path('main_footer_privacy') }}"> <i class="fa fa-android"></i>{% trans from 'privacy' %}  privacy.title42 {% endtrans %} </a>
+            </p>
+        </div>
+        <div class="col">
+            <p>
+                <a  href="{{ path('main_footer_privacy') }}"> <i class="fa fa-apple"></i> {% trans from 'privacy' %}  privacy.title43 {% endtrans %} </a>
+            </p>
+        </div>
+        <div class="col">
+            <p>
+                <a  href="{{ path('main_footer_privacy') }}"><i class="fa fa-windows"></i> {% trans from 'privacy' %} privacy.title44 {% endtrans %} </a>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+
