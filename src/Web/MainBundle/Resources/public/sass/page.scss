@@ -1,0 +1,27 @@
+#mainCancel{
+  margin-top: 8%;
+}
+
+#mainSucces{
+  margin-top: 8%;
+}
+
+#photoZone
+{
+  text-align: center;
+  div{
+    text-align: center;
+  }
+}
+#mainPicture{
+  margin-top: 8%;
+  #drapAnddrop{
+    margin: 2%;
+    margin-top: 4%;
+    padding: 2%;
+    border: dashed 2px $highligt;
+    min-height: 200px;
+    border-radius: 6px;
+  }
+}
+

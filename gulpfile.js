@@ -13,6 +13,7 @@ var minify = require('gulp-minifier');
 var plumber = require('gulp-plumber');
 var exec = require('child_process').exec;
 var rename = require('gulp-rename');
+var concat = require('gulp-concat');
 
 var jsPaths = [
     './web/bundles/app/js/*.js',
@@ -100,6 +101,15 @@ var uglifyTask = function()
     console.log('Uglify JS files successfull !');
 };
 
+var concatJsTask = function()
+{
+    console.log('Concatening JS files !');
+
+    return gulp.src(jsPaths)
+            .pipe(concat('master.min.js'))
+            .pipe(gulp.dest('./web/data/js'));
+};
+
 gulp.task('default', function(){
     exec('php bin/console assets:install --symlink', logStdOutAndErr);
 });
@@ -145,6 +155,12 @@ gulp.task('js', ['installAssets'], function()
     currentTask = 'js';
 });
 
+//run the following task if you don't want to minify the scripts
+gulp.task('jsdev', ['installAssets'], function()
+{
+    currentTask = 'jsdev';
+});
+
 gulp.task('file', ['installAssets'], function()
 {
     currentTask = 'file';
@@ -156,19 +172,23 @@ var logStdOutAndErr = function (err, stdout, stderr)
     //console.log(stdout + stderr);
     console.log("Assets installed !!!");
 
-    if(currentTask == 'sass')
+    if(currentTask === 'sass')
     {
         sassTask();
     }
-    else if(currentTask == 'js')
+    else if(currentTask === 'js')
     {
         uglifyTask();
+
+    } else if (currentTask === 'jsdev')
+    {
+        concatJsTask();
     }
-    else if(currentTask == 'img')
+    else if(currentTask === 'img')
     {
         return imageTask();
     }
-    else if(currentTask == 'file')
+    else if(currentTask === 'file')
     {
         uglifyTask();
     }

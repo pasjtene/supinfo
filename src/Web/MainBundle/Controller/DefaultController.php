@@ -24,6 +24,28 @@ class DefaultController extends Controller
     }
 
 
+
+
+    /**
+     * @Route("/profile/photo/request", name="main_photo_request", options={"expose"=true})
+     */
+    public function photoRequestAction()
+    {
+        $array = [];
+        return $this->render('MainBundle:Default:photo-request.html.twig', $array);
+    }
+
+
+    /**
+     * @Route("/profile/email/request", name="main_email_request", options={"expose"=true})
+     */
+    public function emailRequestAction()
+    {
+        $array = [];
+        return $this->render('MainBundle:Default:photo-request.html.twig', $array);
+    }
+
+
     /**
      * @Route("/confirm/email", name="main_confirm", options={"expose"=true})
      */
@@ -31,35 +53,107 @@ class DefaultController extends Controller
     {
         $email = $request->get("email");
         $password = $request->get("password");
-        $lastkey = $request->get("key");
-        $key = md5($password.$email);
+        $lastkey = $request->get("pkeyfs");
+        $key = ($password.$email);
 
-        if($key==$lastkey)
+        if($key!=$lastkey)
         {
-            $array = ["code"=>"ok"];
+            return $this->redirect($this->generateUrl("main_confirm_cancel"));
         }
-        else{
-            $array = ["code"=>"n==bad"];
+
+        $data = ['email' => $email];
+
+        $client = new RestClient(RestClient::$PUT_METHOD, 'confirm/email', [], $data);
+
+        if($client->getStatusCode() == 200)
+        {
+            $contents = \GuzzleHttp\json_decode($client->getContent());
+
+            $array['valid'] = 2;
+            $array['message'] = \GuzzleHttp\json_decode($client->getContent());
+            return $this->render('MainBundle:Default:success.html.twig',$array);
         }
-        return $this->render('MainBundle:Default:register.html.twig',$array);
+
+        $array['valid'] = 0;
+        $array['message'] =\GuzzleHttp\json_decode($client->getContent());
+        return $this->render('MainBundle:Default:cancel.html.twig',$array);
+    }
+
+
+    /**
+     * @Route("/confirm/cancel", name="main_confirm_cancel", options={"expose"=true})
+     */
+    public function confirmCancelAction(Request $request)
+    {
+        $array = ["message"=>"Bad request "];
+        return $this->render('MainBundle:Default:cancel.html.twig',$array);
     }
 
     /**
-     * @Route("/register", name="main_register")
+     * @Route("/register", name="main_register", options={"expose"=true})
      */
     public function registerAction(Request $request)
     {
-        $array = [];
+        $days =[];
+        $months =[];
+        $years =[];
+
+        for($i=1; $i<32;$i++){
+            $days[] = $i<10? "0".$i:$i;
+        }
+        for($i=1; $i<13;$i++){
+            $months[] = $i<10? "0".$i:$i;
+        }
+        $year = (int)date("Y");
+        $year = $year -5;
+        for($i=$year; $i>1960;$i--){
+            $years[] = $i;
+        }
+        $array = ["days"=>$days,"months"=>$months, "years"=>$years];
         return $this->render('MainBundle:Default:register.html.twig',$array);
     }
 
 
+
     /**
-     * @Route("/login", name="main_login")
+     * @Route("/check-auth", name="main_checkauth",options={"expose"=true})
+     */
+    public function check_authAction(Request $request)
+    {
+
+        $email = $request->get('email');
+        $token = $request->get('token');
+        $password = $request->get('password');
+
+        //si  l'email ou  le token ou le password  n'existe pas il  faut  qu'il  se connecte via main_login
+        if(!isset($email) || !isset($token)){
+            return $this->redirect($this->generateUrl("main_login"));
+        }
+
+        $data = ['email' => $email, 'password' => $password];
+
+        $client = new RestClient(RestClient::$POST_METHOD, 'auth/login', $token, $data);
+
+        if($client->getStatusCode() == 200)
+        {
+            $contents = \GuzzleHttp\json_decode($client->getContent());
+
+            $array['valid'] = 2;
+            $array['message'] = $client->getContent();
+        }
+        else{
+            $array['valid'] = 0;
+            $array['message'] = $client->getContent();
+        }
+        return $this->redirect($this->generateUrl("main_profile"));
+    }
+
+    /**
+     * @Route("/login", name="main_login", options={"expose"=true})
      */
     public function loginAction(Request $request)
     {
-        $datas = ['error' => '', 'username' => ''];
+        $datas = ['error' => '', 'username' => '', "login"=>"ok"];
 
         /** @var AuthenticationException $error */
         $error = $request->getSession()->get(Security::AUTHENTICATION_ERROR);
@@ -84,7 +178,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/forgot-password", name="main_forgot_password")
+     * @Route("/forgot-password", name="main_forgot_password", options={"expose"=true})
      */
     public function forgotAction(Request $request)
     {
@@ -93,7 +187,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/reset-password", name="main_reset_password")
+     * @Route("/reset-password", name="main_reset_password", options={"expose"=true})
      */
     public function resetAction(Request $request)
     {

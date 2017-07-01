@@ -1,0 +1,35 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+
+{% block title %}
+    {% trans from 'success' %}  title {% endtrans %}
+{% endblock  %}
+
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+
+{% block header %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="row" id="mainSucces">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">{% trans from 'success' %} body.title  {% endtrans %}</h4>
+            <p class="card-text">{% trans with {'emailadress':message.email} from 'success' %} body.content  {% endtrans %}</p>
+            <a href="{{ path('main_profile') }}" class="card-link">{% trans from 'success' %} body.link1  {% endtrans %}</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+
