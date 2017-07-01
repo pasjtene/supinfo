@@ -21,9 +21,9 @@ abstract class AbstractRest
     /**
      * @var string
      */
-    protected $baseUrl = 'http://www.funglobe.com/api/v1/';
+    //protected $baseUrl = 'http://www.funglobe.com/api/v1/';
 
-    //protected $baseUrl = '127.0.0.1:8000/v1/';
+    protected $baseUrl = '127.0.0.1:8000/v1/';
 
     /**
      * @return Client
