@@ -15,7 +15,6 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/web/parameters.js
 /.idea
 /.idea/
 /.idea/*
@@ -26,3 +25,4 @@
 /web/data/css/
 web/data/js
 web/data/
+/src/Web/AppBundle/Resources/public/js/Inc/
