@@ -1,0 +1,249 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block meta %}
+    <meta name = "{% trans from 'phone' %} refer.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'phone' %} refer.description {% endtrans %}" >
+{% endblock %}
+
+{% block title %}
+    <div>
+        {% trans from 'phone' %} phone.block16 {% endtrans %}
+    </div>
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+    <style>
+
+
+        }
+    </style>
+
+{% endblock %}
+
+{% block header %}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+
+
+             <img  class="banner_im" src="{{ asset('data/img/ban.jpg') }}" alt="">
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container text-center">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="">
+                    <img  class="banner_im" src="{{ asset('data/img/rencontre2.jpg') }}" alt="" style="width:100%" alt="Image" class="img-responsive">
+
+               <strong> <p>L'enquête de Funglobe relatif aux comportements de rendez-vous à travers le monde via Funglobe</p></strong></a>
+            </div>
+            <div class="col-sm-4">
+
+                <a href="">
+                    <img  class="banner_im" src="{{ asset('data/img/femme2.jpg') }}" alt="" class="img-responsive" style="width:100%">
+
+                <strong><p>Toutes les filles et  dames célibataires, rejoins la communauté et fais des rencontres extraordinaires</p></strong></a>
+            </div>
+            <div class="col-sm-4">
+                <div class="well">
+                    <h1><p><strong>Contactez-nous: </strong></p></h1>
+                    <h4><p><strong><a href="mailto:pascal4400@gmail.com">press@funglobe.com</a>!</strong></p></h4>
+                </div>
+                <div class="well">
+                    <h2><strong><p>Dossier de presse Funglobe:</p></strong></h2>
+                    <h4><p><strong><a href="monfichier.zip">Télécharger le fichier</a></strong></p></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-sm-4">
+       <div>
+       </div>
+    </div>
+    <div class="col-sm-4">
+        <div>
+            <a href=""><button type="button" class="btn btn-primary" style="background-color: #0275D8">Découvrez l'actualité</button></a>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div>
+
+            <h2><strong>SUIVEZ-NOUS</strong></h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-1">
+                <div>
+                    <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div>
+                    <a href="https://twitter.com/signup?lang=fr"><i class="fa fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div>
+                    <a href="https://accounts.google.com/SignUp?hl=fr"><i class="fa fa-google"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+    <br>
+<div class="row">
+    <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+        <div>
+            <h3 style="text-align: center"><p><strong>À PROPOS DE FUNGLOBE</strong></p></h3>
+
+            De nos jours, Funglobe est le  site de rencontre par excellence dans le monde, disponible en 60
+            langues et comptant plus de 53 millions d'utilisateurs dans 173 pays.
+        </div>
+
+    </div>
+    <div class="col-sm-2">
+    </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="container text-center">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <a href=""><img  class="banner_im" src="{{ asset('data/img/t2.jpg') }}" alt="" class="img-responsive" style="width:100%">
+                </a>
+                    <p></p>
+            </div>
+            <div class="col-sm-4">
+                <a HREF=""><img  class="banner_im" src="{{ asset('data/img/t1.jpg') }}" alt="" class="img-responsive" style="width:100%"></a>
+
+                    <p></p>
+            </div>
+            <div class="col-sm-4">
+                <a HREF=""><img  class="banner_im" src="{{ asset('data/img/t3.jpg') }}" alt="" class="img-responsive" style="width:100%"></a>
+
+                    <p></p>
+            </div>
+
+        </div>
+    </div>
+    <br>
+
+<div class="row">
+    <div class="col-sm-1" >
+        </div>
+    <div class="col-sm-5" id="bat2">
+        Funglobe met à votre disposition les meilleures technologies pour que les personnes se rencontrent. Nous pouvons avoir  Chaque jour, plus de 100 000 nouveaux utilisateurs, plus de 150 millions
+        de messages sont envoyés et 10 millions de photos sont ajoutées sur la plateforme Funglobe.
+    </div>
+    <div class="col-sm-5" id="bat1">
+        La plus part de nos utilisateurs passent en moyenne 2h h sur Funglobe quotidiennement, ce qui génère plus de 4 milliards de votes par
+        jour. Funglobe est également disponible sous plusieurs licences en marque blanche pour différentes marques internationales.
+        Pour plus d'informations, contactez-nous via <a href="mailto:pascal4400@gmail.com">press@funglobe.com.</a>
+    </div>
+    <div class="col-sm-1">
+    </div>
+</div>
+    <br>
+    <br>
+<div class="row">
+    <div class="col-sm-2" >
+    </div>
+    <div class="col-sm-8" >
+        <h2><strong><p style="text-align: center">SALLE DE PRESSE</p></strong></h2>
+        Pour obtenir des images de Funglobe en haute résolution, vous pouvez télécharger notre dossier de presse.
+        Pour toute incompréhension, merci de nous contacter via <a href="mailto:pascal4400@gmail.com">press@funglobe.com</a>.
+        Nous vous répondrons dans les 24 heures qui suivent.
+    </div>
+    <div class="col-sm-2" >
+    </div>
+</div>
+    <br>
+    <br>
+
+
+{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-sm-2" >
+        </div>
+        <div class="col-sm-8" >
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-4" >
+
+                        <div class="container">
+
+                            <form action="/action_page.php">
+                                <div class="form-group">
+                                    <label for="email">Nom:</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Entrer votre Nom" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd">Société:</label>
+                                    <input type="text" class="form-control" id="pwd" placeholder="Entrer le nom de la société" name="pwd">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="container">
+
+                            <form action="/action_page.php" style="border-color: #0000fe">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                                </div>
+                                <div class="form-group" >
+                                    <label for="pwd">Téléphone:</label>
+                                    <input type="tel" class="form-control" id="pwd" placeholder="Entrer votre Numéro" name="pwd">
+                                </div>
+                                Comment: <textarea name="comment" rows="5" cols="45" placeholder="laisser votre commentaire ici"></textarea>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="remember"> Remember me</label>
+                                </div>
+                                <button type="submit" class="btn btn-default" style="background-color: #0275D8">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2" >
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-2" >
+        </div>
+        <div class="col-sm-7" >
+            En continuant, tu confirmes avoir lu et accepté nos <a href="{{ path('main_footer_privacy') }}">Conditions Générales d'Utilisation</a>,<a href="">notre Politique de
+                Confidentialité</a>  ainsi que notre <a href="">Politique en matière de Cookies</a>
+        </div>
+        <div class="col-sm-2" >
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block myjs %}
+
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+
+
+
