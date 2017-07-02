@@ -16,9 +16,13 @@
 
 {% block header %}
     {% include "MainBundle:Inc:main-nav.html.twig" %}
+
+    {% if not app.user.isEmailVerified %}
+        {% include "MainBundle:Modal:confirm-email.html.twig" %}
+    {% endif %}
+
     <div class="row" id="mainUserProfile" data-page="mainUserProfile">
-        front-office default profile page {# dans cette zone vous etes dans le conteneur  #}
-        <a href="{{ path('main_logout') }}">Déconnexion</a>
+
     </div>
 {% endblock %}
 

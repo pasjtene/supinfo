@@ -68,6 +68,7 @@ class FunglobeUserProvider implements UserProviderInterface
             $this->user = $user;
         }
         else {
+            //FunglobeUtils::dump($client->getContent());
             throw new UsernameNotFoundException();
         }
 

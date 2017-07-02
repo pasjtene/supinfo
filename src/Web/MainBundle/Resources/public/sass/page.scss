@@ -1,0 +1,47 @@
+#mainCancel{
+  margin-top: 8%;
+}
+
+#mainSucces{
+  margin-top: 8%;
+}
+
+#photoZone
+{
+  text-align: center;
+  div{
+    text-align: center;
+  }
+}
+#mainPicture{
+  margin-top: 8%;
+
+  #photo-request{
+    #file{
+      display: none;
+    }
+    #uploadfile{
+      margin: 2%;
+      margin-top: 4%;
+      padding: 2%;
+      border: dashed 3px $highligt;
+      height: auto;
+      min-height: 200px;
+      border-radius: 6px;
+      /* Thumbnail */
+      .thumbnail{
+        width: 80px;
+        height: 80px;
+        padding: 2px;
+        border: 2px solid lightgray;
+        border-radius: 3px;
+        float: left;
+      }
+      .size{
+        font-size:12px;
+      }
+    }
+  }
+
+}
+

@@ -108,18 +108,27 @@
                                   <div class="col-sm-3 col-lg-3" id="block-day">
                                       <select class="custom-select form-control" id="day">
                                           <option selected value="">{% trans from 'register' %} form.body.birthdayOption.day {% endtrans %}</option>
+                                          {% for item in days %}
+                                              <option value="{{ item }}"> {{ item }}</option>
+                                          {% endfor %}
                                       </select>
                                       <div class="form-control-feedback">{% trans from 'register' %} form.required.birthdayOption.day {% endtrans %}</div>
                                   </div>
                                   <div class="col-sm-3 col-lg-3" id="block-month">
                                       <select class="custom-select form-control" id="month">
                                           <option selected value="">{% trans from 'register' %} form.body.birthdayOption.month {% endtrans %}</option>
+                                          {% for item in months %}
+                                              <option value="{{ item }}"> {{ item }}</option>
+                                          {% endfor %}
                                       </select>
                                       <div class="form-control-feedback">{% trans from 'register' %} form.required.birthdayOption.month {% endtrans %}</div>
                                   </div>
                                   <div class="col-sm-3 col-lg-3" id="block-year">
                                       <select class="custom-select form-control" id="year">
                                           <option selected value="">{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}</option>
+                                          {% for item in years %}
+                                              <option value="{{ item }}"> {{ item }}</option>
+                                          {% endfor %}
                                       </select>
                                       <div class="form-control-feedback">{% trans from 'register' %} form.required.birthdayOption.year {% endtrans %}</div>
                                   </div>

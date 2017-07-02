@@ -8,6 +8,7 @@
 
 namespace Web\AppBundle\Security;
 
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,9 +21,16 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
+use Web\AppBundle\Tools\FunglobeUtils;
 
 class FormAuthenticator extends AbstractFormLoginAuthenticator
 {
+    const USER_COOKIE_NAME = "fgckcusrcnt";
+    const REFERER_URL_KEY = "referer_url";
+    const LOGIN_PATH = "/login";
+    const LOGIN_ROUTE_NAME = "main_login";
+    const PROFILE_ROUTE_NAME = "main_profile";
+
     /**
      * @var \Symfony\Component\Routing\RouterInterface
      */
@@ -34,6 +42,11 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
      * @var string
      */
     private $failMessage = 'Invalid credentials';
+
+    /**
+     * @var UserInterface
+     */
+    private $user = null;
 
     /**
      * Creates a new instance of FormAuthenticator
@@ -62,7 +75,13 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        $url = $this->router->generate('main_login');
+        $url = $this->router->generate(self::LOGIN_ROUTE_NAME);
+
+        $refererUrl = $request->getSchemeAndHttpHost().$request->getRequestUri();
+
+        if(!strstr($request->getPathInfo(),self::LOGIN_PATH)){
+            $request->getSession()->set(self::REFERER_URL_KEY, $refererUrl);
+        }
 
         return new RedirectResponse($url);
     }
@@ -95,9 +114,8 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function getCredentials(Request $request)
     {
-
-        if (!strstr($request->getPathInfo(),'/login') || !$request->isMethod('POST')) {
-            return;
+        if (!strstr($request->getPathInfo(),self::LOGIN_PATH) || !$request->isMethod('POST')) {
+                return;
         }
 
         if ($request->request->has('username')) {
@@ -131,7 +149,8 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
             /** @var UserInterface $user */
             $user = $userProvider->loadUserByUsername($credentials['username']);
 
-            //FunglobeUtils::dump($user);
+            $this->user = $user;
+
             return $user;
         }
         catch (UsernameNotFoundException $e) {
@@ -178,7 +197,7 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
     {
         $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
         $request->getSession()->set(Security::LAST_USERNAME, $request->request->get('username'));
-        $url = $this->router->generate('main_login');
+        $url = $this->router->generate(self::LOGIN_ROUTE_NAME);
         return new RedirectResponse($url);
     }
 
@@ -199,8 +218,27 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        $url = $this->router->generate('main_profile');
-        return new RedirectResponse($url);
+        $url = $this->router->generate(self::PROFILE_ROUTE_NAME);
+
+        $session = $request->getSession();
+
+        if($session->has(self::REFERER_URL_KEY)){
+            $url = $session->get(self::REFERER_URL_KEY);
+            $session->remove(self::REFERER_URL_KEY);
+        }
+
+        if($request->get("begin")!=null)
+        {
+            $response =new RedirectResponse($this->router->generate("main_photo_request"));
+        }
+        else
+        {
+            $response = new RedirectResponse($url);
+        }
+        $cookieValue = $this->user->getId() .'|'. $this->user->getToken();
+        $response->headers->setCookie(new Cookie('fgckcusrcnt', $cookieValue, time()+31556900));
+
+        return $response;
     }
 
     /**
@@ -228,6 +266,6 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
      */
     protected function getLoginUrl()
     {
-        return $this->router->generate('main_login');
+        return $this->router->generate(self::LOGIN_ROUTE_NAME);
     }
 }

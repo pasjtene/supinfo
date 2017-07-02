@@ -26,6 +26,7 @@ class RestClient extends AbstractRest implements RestInterface
      */
     public function __construct($method, $endpoint, $token = null, $data = null, $contentType = null)
     {
+        parent::__construct();
         $options = [];
         $headers = ['Accept' => is_null($contentType) ? 'application/json' : $contentType];
 

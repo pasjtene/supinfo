@@ -12,11 +12,11 @@ var MainLogin = function()
             login : $("#username"),
             password : $("#password"),
             btoken : $("#btoken"),
-            btnsubmit: $("#btn-submit")
+            btnsubmit: $("#btn-login")
         },
         api:
         {
-            action: baseUrl+  "v1/auth/login",
+            action: baseUrl+  "auth/login",
             method: "POST"
         }
     };
@@ -38,7 +38,7 @@ $(function(){
         var interval = setInterval(function ()
         {
             if(tokenbase !== null){
-                mainLogin.params.form.btoken.val(tokenbase);
+                mainLogin.params.form.btoken.val(tokenbase.value);
                 clearInterval(interval);
                 console.log("Token Applied");
             }
@@ -57,7 +57,6 @@ $(function(){
                 btoken = mainLogin.params.form.btoken.val();
 
             console.log(username, password, btoken);
-
             if(username.length > 0 && password.length > 0 && btoken.length > 0){
                 mainLogin.params.form.id.submit();
             }

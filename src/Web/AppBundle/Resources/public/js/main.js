@@ -2,17 +2,15 @@
  * Created by Danick takam on 16/06/2017.
  */
 
-
-
-//var baseUrl = 'http://127.0.0.1:8000/';
-var baseUrl = '/api/';
+var baseUrl = api.baseUrl;
+var baseHost = api.baseHost;
 
 var   AppMain = function()
 {
     this.params ={
         api:{
             action :
-            {find: baseUrl +"v1/app"},
+            {find: baseUrl +"app"},
             method:
             {get:"GET"}
         },
