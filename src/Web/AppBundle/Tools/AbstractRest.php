@@ -24,11 +24,12 @@ abstract class AbstractRest
     /**
      * @var string
      */
-    protected $baseUrl='127.0.0.1:8000/v1/';
+    protected $baseUrl;   //='127.0.0.1:8000/v1/';
 
     public  function  __construct(){
         //modifier l'option suivant  la spécification
-        $this->baseUrl = $this->container->getParameter('upload_rep');;
+        $this->setBaseUrl($this->option[1]);
+        //$this->baseUrl = $this->container->getParameter('baseUrl');;
     }
 
     /**
