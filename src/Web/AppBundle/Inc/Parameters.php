@@ -15,5 +15,5 @@ class Parameters
     /**
      * @var string
      */
-    public static  $baseUrl = 'http://www.funglobe.com/api/v1/';
+    public static  $baseUrl = 'http://localhost/api/v1/';
 }
