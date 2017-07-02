@@ -15,5 +15,5 @@ class Parameters
     /**
      * @var string
      */
-    public static  $baseUrl = 'http://www.funglobe.com/api/v1/';
+    public static  $baseUrl = '127.0.0.1:8000/v1/';
 }
