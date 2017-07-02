@@ -15,7 +15,7 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/web/parameters.jss
+/web/parameters.js
 /.idea
 /.idea/
 /.idea/*
