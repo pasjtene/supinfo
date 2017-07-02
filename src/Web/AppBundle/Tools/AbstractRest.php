@@ -4,6 +4,7 @@ namespace Web\AppBundle\Tools;
 
 use Bazinga\Bundle\JsTranslationBundle\Controller\Controller;
 use GuzzleHttp\Client;
+use Web\AppBundle\Inc\Parameters;
 
 
 abstract class AbstractRest
@@ -28,7 +29,8 @@ abstract class AbstractRest
 
     public  function  __construct(){
         //modifier l'option suivant  la spécification
-        $this->setBaseUrl($this->option[1]);
+        $this->setBaseUrl(Parameters::$baseUrl);
+        //$this->setBaseUrl($this->option[1]);
         //$this->baseUrl = $this->container->getParameter('baseUrl');;
     }
 
