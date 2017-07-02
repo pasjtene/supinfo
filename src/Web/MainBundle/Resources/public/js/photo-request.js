@@ -100,8 +100,8 @@ $(function(){
 
            for(var i=0; i<inputfile[0].files.length; i++)
            {
-               var files = inputfile[0].files[i];
-               fd.append('file',files);
+               var file = inputfile[0].files[i];
+               fd.append('file',file);
                uploadData(fd);
            }
 

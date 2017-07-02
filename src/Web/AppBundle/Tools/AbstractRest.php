@@ -2,7 +2,9 @@
 
 namespace Web\AppBundle\Tools;
 
+use Bazinga\Bundle\JsTranslationBundle\Controller\Controller;
 use GuzzleHttp\Client;
+use Web\AppBundle\Inc\Parameters;
 
 
 abstract class AbstractRest
@@ -18,12 +20,19 @@ abstract class AbstractRest
 
     protected $response;
 
+    public  $option = ['http://www.funglobe.com/api/v1/','127.0.0.1:8000/v1/','127.0.0.1:8000/api/v1/'];
+
     /**
      * @var string
      */
-    protected $baseUrl = 'http://www.funglobe.com/api/v1/';
-//protected $baseUrl = '127.0.0.1:8000/v1/';
-    //protected $baseUrl = '127.0.0.1:8000/v1/';
+    protected $baseUrl;   //='127.0.0.1:8000/v1/';
+
+    public  function  __construct(){
+        //modifier l'option suivant  la spécification
+        $this->setBaseUrl(Parameters::$baseUrl);
+        //$this->setBaseUrl($this->option[1]);
+        //$this->baseUrl = $this->container->getParameter('baseUrl');;
+    }
 
     /**
      * @return Client
