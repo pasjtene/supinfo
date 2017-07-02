@@ -7,6 +7,6 @@
 //Ce fichier doit etre refferencer dans app/Resources/views/base.html.twig avant master.min.js
 
 var api = {
-    baseUrl: "/api/",
+    baseUrl: "/api/v1/",
     //baseUrl: 'http://127.0.0.1:8000/'
 }

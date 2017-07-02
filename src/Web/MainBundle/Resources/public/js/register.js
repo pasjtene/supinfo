@@ -27,7 +27,7 @@ var MainRegister = function()
         },
         api:{
             action :
-                {save: baseUrl +"v1/auth/register"},
+                {save: baseUrl +"auth/register"},
             method:
                 {post:"POST"},
             headers:

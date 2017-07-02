@@ -22,7 +22,7 @@ var AdminMessage = function()
         },
         api:{
             action :
-            {findall: baseUrl +"v1/auth/message"},
+            {findall: baseUrl +"auth/message"},
             method:
             {get:"GET"},
             headers:
