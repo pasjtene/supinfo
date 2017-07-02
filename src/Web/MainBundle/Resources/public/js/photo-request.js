@@ -109,14 +109,14 @@ $(function(){
 
        // Sending AJAX request and upload file
        function uploadData(formdata){
-           var  photo = {
+          /* var  photo = {
                id : app.user.id,
                photo : formdata
-           }
+           }*/
            $.ajax({
                url: mainPhotoRequest.params.api.url,
                type:  mainPhotoRequest.params.api.method,
-               data: photo,
+               data: formdata,
                contentType: false,
                processData: false,
                dataType:  mainPhotoRequest.params.api.type,
