@@ -6,9 +6,7 @@
 {% endblock %}
 
 {% block title %}
-    <div>
-        {% trans from 'phone' %} phone.block16 {% endtrans %}
-    </div>
+
 {% endblock  %}
 
 {% block mycss %}
@@ -16,8 +14,6 @@
     {# mettre le css si la page t'oublige #}
     <style>
 
-
-        }
     </style>
 
 {% endblock %}
@@ -40,23 +36,23 @@
                 <a href="">
                     <img  class="banner_im" src="{{ asset('data/img/rencontre2.jpg') }}" alt="" style="width:100%" alt="Image" class="img-responsive">
 
-               <strong> <p>L'enquête de Funglobe relatif aux comportements de rendez-vous à travers le monde via Funglobe</p></strong></a>
+               <strong> <p>{% trans from 'presse' %} presse.block1 {% endtrans %}</p></strong></a>
             </div>
             <div class="col-sm-4">
 
                 <a href="">
                     <img  class="banner_im" src="{{ asset('data/img/femme2.jpg') }}" alt="" class="img-responsive" style="width:100%">
 
-                <strong><p>Toutes les filles et  dames célibataires, rejoins la communauté et fais des rencontres extraordinaires</p></strong></a>
+                <strong><p>{% trans from 'presse' %} presse.block2 {% endtrans %}</p></strong></a>
             </div>
             <div class="col-sm-4">
                 <div class="well">
-                    <h1><p><strong>Contactez-nous: </strong></p></h1>
+                    <h1><p><strong>{% trans from 'presse' %} presse.block3 {% endtrans %}: </strong></p></h1>
                     <h4><p><strong><a href="mailto:pascal4400@gmail.com">press@funglobe.com</a>!</strong></p></h4>
                 </div>
                 <div class="well">
-                    <h2><strong><p>Dossier de presse Funglobe:</p></strong></h2>
-                    <h4><p><strong><a href="monfichier.zip">Télécharger le fichier</a></strong></p></h4>
+                    <h2><strong><p>{% trans from 'presse' %} presse.block4 {% endtrans %}:</p></strong></h2>
+                    <h4><p><strong><a href="monfichier.zip">{% trans from 'presse' %} presse.block5 {% endtrans %}</a></strong></p></h4>
                 </div>
             </div>
         </div>
@@ -68,13 +64,13 @@
     </div>
     <div class="col-sm-4">
         <div>
-            <a href=""><button type="button" class="btn btn-primary" style="background-color: #0275D8">Découvrez l'actualité</button></a>
+            <a href=""><button type="button" class="btn btn-primary" style="background-color: #0275D8">{% trans from 'presse' %} presse.block6 {% endtrans %}</button></a>
         </div>
     </div>
     <div class="col-sm-4">
         <div>
 
-            <h2><strong>SUIVEZ-NOUS</strong></h2>
+            <h2><strong>{% trans from 'presse' %} presse.block7 {% endtrans %}</strong></h2>
         </div>
         <div class="row">
             <div class="col-sm-1">
@@ -102,10 +98,9 @@
         </div>
         <div class="col-sm-8">
         <div>
-            <h3 style="text-align: center"><p><strong>À PROPOS DE FUNGLOBE</strong></p></h3>
+            <h3 style="text-align: center"><p><strong>{% trans from 'presse' %} presse.block8 {% endtrans %}</strong></p></h3>
 
-            De nos jours, Funglobe est le  site de rencontre par excellence dans le monde, disponible en 60
-            langues et comptant plus de 53 millions d'utilisateurs dans 173 pays.
+            {% trans from 'presse' %} presse.block9 {% endtrans %}
         </div>
 
     </div>
@@ -142,13 +137,10 @@
     <div class="col-sm-1" >
         </div>
     <div class="col-sm-5" id="bat2">
-        Funglobe met à votre disposition les meilleures technologies pour que les personnes se rencontrent. Nous pouvons avoir  Chaque jour, plus de 100 000 nouveaux utilisateurs, plus de 150 millions
-        de messages sont envoyés et 10 millions de photos sont ajoutées sur la plateforme Funglobe.
+        {% trans from 'presse' %} presse.block10 {% endtrans %}
     </div>
     <div class="col-sm-5" id="bat1">
-        La plus part de nos utilisateurs passent en moyenne 2h h sur Funglobe quotidiennement, ce qui génère plus de 4 milliards de votes par
-        jour. Funglobe est également disponible sous plusieurs licences en marque blanche pour différentes marques internationales.
-        Pour plus d'informations, contactez-nous via <a href="mailto:pascal4400@gmail.com">press@funglobe.com.</a>
+        {% trans from 'presse' %} presse.block11 {% endtrans %} <a href="mailto:pascal4400@gmail.com">press@funglobe.com.</a>
     </div>
     <div class="col-sm-1">
     </div>
@@ -159,10 +151,9 @@
     <div class="col-sm-2" >
     </div>
     <div class="col-sm-8" >
-        <h2><strong><p style="text-align: center">SALLE DE PRESSE</p></strong></h2>
-        Pour obtenir des images de Funglobe en haute résolution, vous pouvez télécharger notre dossier de presse.
-        Pour toute incompréhension, merci de nous contacter via <a href="mailto:pascal4400@gmail.com">press@funglobe.com</a>.
-        Nous vous répondrons dans les 24 heures qui suivent.
+        <h2><strong><p style="text-align: center">{% trans from 'presse' %} presse.block12 {% endtrans %}</p></strong></h2>
+        {% trans from 'presse' %} presse.block13 {% endtrans %} <a href="mailto:pascal4400@gmail.com">press@funglobe.com</a>.
+        {% trans from 'presse' %} presse.block14 {% endtrans %}.
     </div>
     <div class="col-sm-2" >
     </div>
@@ -176,52 +167,52 @@
 {% block main %}
 
     <div class="row">
-        <div class="col-sm-2" >
+        <div class="col-sm-1" >
         </div>
-        <div class="col-sm-8" >
+        <div class="col-sm-10" >
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-4" >
+                    <div class="col-sm-5" >
 
                         <div class="container">
 
                             <form action="/action_page.php">
                                 <div class="form-group">
-                                    <label for="email">Nom:</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Entrer votre Nom" name="email">
+                                    <label for="email">{% trans from 'presse' %} presse.block15 {% endtrans %}:</label>
+                                    <input type="text" class="form-control" id="email" placeholder={% trans from 'presse' %} presse.block29 {% endtrans %} name="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="pwd">Société:</label>
-                                    <input type="text" class="form-control" id="pwd" placeholder="Entrer le nom de la société" name="pwd">
+                                    <label for="pwd">{% trans from 'presse' %} presse.block16 {% endtrans %}:</label>
+                                    <input type="text" class="form-control" id="pwd" placeholder={% trans from 'presse' %} presse.block30 {% endtrans %} name="pwd">
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
 
                         <div class="container">
 
                             <form action="/action_page.php" style="border-color: #0000fe">
                                 <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                                    <label for="email">{% trans from 'presse' %} presse.block17 {% endtrans %}:</label>
+                                    <input type="email" class="form-control" id="email" placeholder={% trans from 'presse' %} presse.block27 {% endtrans %} name="email">
                                 </div>
                                 <div class="form-group" >
-                                    <label for="pwd">Téléphone:</label>
-                                    <input type="tel" class="form-control" id="pwd" placeholder="Entrer votre Numéro" name="pwd">
+                                    <label for="pwd">{% trans from 'presse' %} presse.block18 {% endtrans %}:</label>
+                                    <input type="tel" class="form-control" id="pwd" placeholder={% trans from 'presse' %} presse.block28 {% endtrans %} name="pwd">
                                 </div>
-                                Comment: <textarea name="comment" rows="5" cols="45" placeholder="laisser votre commentaire ici"></textarea>
+                                {% trans from 'presse' %} presse.block19 {% endtrans %}: <textarea name="comment" rows="5" cols="39" placeholder={% trans from 'presse' %} presse.block31 {% endtrans %}></textarea>
                                 <div class="checkbox">
-                                    <label><input type="checkbox" name="remember"> Remember me</label>
+                                    <label><input type="checkbox" name="remember"> {% trans from 'presse' %} presse.block20 {% endtrans %}</label>
                                 </div>
-                                <button type="submit" class="btn btn-default" style="background-color: #0275D8">Submit</button>
+                                <button type="submit" class="btn btn-default" style="background-color: #0275D8">{% trans from 'presse' %} presse.block21 {% endtrans %}</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-2" >
+        <div class="col-sm-1" >
         </div>
     </div>
     <br>
@@ -231,8 +222,7 @@
         <div class="col-sm-2" >
         </div>
         <div class="col-sm-7" >
-            En continuant, tu confirmes avoir lu et accepté nos <a href="{{ path('main_footer_privacy') }}">Conditions Générales d'Utilisation</a>,<a href="">notre Politique de
-                Confidentialité</a>  ainsi que notre <a href="">Politique en matière de Cookies</a>
+            {% trans from 'presse' %} presse.block22 {% endtrans %} <a href="{{ path('main_footer_privacy') }}">{% trans from 'presse' %} presse.block23 {% endtrans %}</a>,<a href="">{% trans from 'presse' %} presse.block24 {% endtrans %}</a>  {% trans from 'presse' %} presse.block25 {% endtrans %} <a href="">{% trans from 'presse' %} presse.block26 {% endtrans %}</a>
         </div>
         <div class="col-sm-2" >
         </div>
