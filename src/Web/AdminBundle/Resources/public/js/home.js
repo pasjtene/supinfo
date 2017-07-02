@@ -26,8 +26,8 @@ var AdminHome = function()
         api:{
             action :
             {
-                findall: baseUrl +"v1/auth/members",
-                delete_users: baseUrl +"v1/auth/members/delete/"
+                findall: baseUrl +"auth/members",
+                delete_users: baseUrl +"auth/members/delete/"
             },
             method:
             {get:"GET"},

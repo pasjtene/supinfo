@@ -16,7 +16,7 @@ var MainLogin = function()
         },
         api:
         {
-            action: baseUrl+  "v1/auth/login",
+            action: baseUrl+  "auth/login",
             method: "POST"
         }
     };

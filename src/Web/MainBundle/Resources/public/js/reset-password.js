@@ -25,7 +25,7 @@ $(function()
            }
            $.ajax(
            {
-               url: baseUrl + 'v1/reset-password-request ',
+               url: baseUrl + 'reset-password-request ',
                crossDomain: true,
                //headers : {"X-Auth-Token" : tokenbase.value},
                type: 'post',
