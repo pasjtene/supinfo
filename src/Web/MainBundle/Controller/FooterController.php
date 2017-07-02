@@ -49,5 +49,14 @@ class FooterController extends Controller
         return $this->render('MainBundle:Footer:test2.html.twig');
     }
 
+    /**
+     * @Route("/presse", name="main_footer_presse"))
+     */
+    public function presseAction()
+    {
+        return $this->render('MainBundle:Footer:presse.html.twig');
+    }
+
+
 
 }
