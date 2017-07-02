@@ -21,6 +21,10 @@ var jsPaths = [
     './web/bundles/admin/js/*.js'
 ];
 
+var jsParamsPaths = [
+    './web/bundles/app/js/Inc/*.js'
+];
+
 /*var sassPaths = [
     './web/bundles/app/sass/main.scss',
     './web/bundles/main/sass/main.scss',
@@ -38,7 +42,7 @@ var supportedBrowsers = [
     'ios 6',
     'android 4'
 ];
-
+/*
 var scriptTask = function()
 {
     gulp.src(jsPaths)
@@ -55,7 +59,7 @@ var scriptTask = function()
         })).pipe(gulp.dest('./web/data/js'))
         .pipe(livereload());
 };
-
+*/
 var sassTask = function()
 {
     gulp.src(sassPaths)
@@ -99,6 +103,18 @@ var uglifyTask = function()
         .pipe(livereload());
 
     console.log('Uglify JS files successfull !');
+};
+
+var paramsTask = function()
+{
+    gulp.src(jsParamsPaths)
+        .pipe(uglify('parameters.js', {
+            outSourceMap: true
+        }))
+        .pipe(gulp.dest('web/data/js'))
+        .pipe(livereload());
+
+    console.log('Uglify JS Parameters files successfull !');
 };
 
 var concatJsTask = function()
@@ -179,10 +195,12 @@ var logStdOutAndErr = function (err, stdout, stderr)
     else if(currentTask === 'js')
     {
         uglifyTask();
+        paramsTask();
 
     } else if (currentTask === 'jsdev')
     {
         concatJsTask();
+        paramsTask();
     }
     else if(currentTask === 'img')
     {
