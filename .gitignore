@@ -26,3 +26,4 @@
 web/data/js
 web/data/
 /src/Web/AppBundle/Resources/public/js/Inc/
+/src/Web/AppBundle/Inc/
