@@ -2,6 +2,7 @@
 
 namespace Web\AppBundle\Tools;
 
+use Bazinga\Bundle\JsTranslationBundle\Controller\Controller;
 use GuzzleHttp\Client;
 
 
@@ -27,7 +28,7 @@ abstract class AbstractRest
 
     public  function  __construct(){
         //modifier l'option suivant  la spécification
-        $this->baseUrl = $this->option[1];
+        $this->baseUrl = $this->container->getParameter('upload_rep');;
     }
 
     /**
