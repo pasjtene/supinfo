@@ -1,17 +1,19 @@
 {% extends 'MainBundle::layout.html.twig' %}
 
 {% block meta %}
-    <meta name = "{% trans from 'privacy' %} refer.title {% endtrans %}" >
-    <meta name = "keywords" content = "{% trans from 'privacy' %} refer.description {% endtrans %}" >
+    <meta name = "{% trans from 'phone' %} refer.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'phone' %} refer.description {% endtrans %}" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% endblock %}
 
 {% block title %}
-    {% trans from 'privacy' %} privacy {% endtrans %}
+
 {% endblock  %}
 
 {% block mycss %}
     {{ parent() }}
     {# mettre le css si la page t'oublige #}
+
 {% endblock %}
 
 {% block header %}
@@ -25,9 +27,9 @@
     <div class="row" id="main_privacy">
 
         <div class="row">
-            <div class ="col-sm-12 col  col-lg-4" >
+            <div class ="col-sm-12 col  col-lg-3" >
 
-                <h4 class="center-align"> {% trans from 'privacy' %} privacy.title45 {% endtrans %} </h4>
+               <strong> <h3 class="center-align"> {% trans from 'privacy' %} privacy.title45 {% endtrans %} </h3></strong>
 
                 <p>
                     <a class="center-align"  href="{{ path('main_footer_privacy') }}" > {% trans from 'privacy' %}  privacy.title46 {% endtrans %} </a>
@@ -88,71 +90,183 @@
                 </p>
             </div>
 
-            <div class="col col-lg-8">
+            <div class="col col-lg-9">
                 <div class="text-justify">
-                    <h4 > que  pouvons-nous faire pour  t'aider ? </h4>
-
-                    <p align=""> bienvenue sur Funglobe, bien vouloir renseigné un mot clé ou un point non compris pour avoir
-                        plus d'informations à ce sujet </p>
+                    <h3 style="alignment: center" > <strong>{% trans from 'help' %} help.block1 {% endtrans %}</strong> </h3>
                     <br>
-                    <input type="search" class="form-control" id="email" placeholder="entrer un mot cléà rechercher" name="email">
+
+                    <p align=""> {% trans from 'help' %} help.block2 {% endtrans %} </p>
                     <br>
-                    <button type="submit" class="btn btn-default" style="background-color: #0275D8">{% trans from 'presse' %} Rechercher {% endtrans %}</button>
+                    <input type="search" class="form-control" id="email" placeholder="{% trans from 'help' %} help.block50 {% endtrans %}" name="email">
                     <br>
-                    <!DOCTYPE html>
-                    <html>
-                    <head>
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                        <script>
-                            $(document).ready(function(){
-                                $("#flip").click(function(){
-                                    $("#panel").slideToggle("slow");
-                                });
-                            });
-                        </script>
+                    <button type="submit" class="btn btn-default" style="background-color: #0275D8"> {% trans from 'help' %} help.block3 {% endtrans %} </button>
+                    <br>
+                    <h1>{% trans from 'help' %} help.block4 {% endtrans %} </h1>
+                    <div class="position_wrapper">
+                        <div class="position_title">
+                            <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block5 {% endtrans %}</h3></div>
+                            <div  class="location" style="text-align: center"><h1>1</h1></div>
+                        </div>
+                        <br>
+                        <div class="position_details">
+                            <p>
+                            <h5> {% trans from 'help' %} help.block6 {% endtrans %}</h5>
+                            </p>
 
-                        <style>
-                            #panel, #flip {
-                                padding: 5px;
-                                text-align: center;
-                                background-color: #e5eecc;
-                                border: solid 1px #c3c3c3;
-                            }
+                            <h6><em> {% trans from 'help' %} help.block7 {% endtrans %} <a href="">{% trans from 'help' %} help.block8 {% endtrans %}</a>  {% trans from 'help' %} help.block9 {% endtrans %}
+                                    </em></h6>
+                        </div>
+                    </div>
+                    <div class="position_wrapper">
+                        <div class="position_title">
+                            <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block10 {% endtrans %}</h3></div>
+                            <div  class="location" style="text-align: center"><h1>2</h1></div>
+                        </div>
+                        <br>
+                        <div class="position_details">
+                            <p>
+                            <h5> {% trans from 'help' %} help.block11 {% endtrans %}l</h5>
+                            </p>
 
-                            #panel {
-                                padding: 50px;
-                                display: none;
-                            }
-                        </style>
-                    </head>
+                            <h6><em> {% trans from 'help' %} help.block12 {% endtrans %}, <a href="">{% trans from 'help' %} help.block13 {% endtrans %}</a>  {% trans from 'help' %} help.block14 {% endtrans %} <a href="">{% trans from 'help' %} help.block15 {% endtrans %}</a> . {% trans from 'help' %} help.block16 {% endtrans %}
+                                   </em>
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="position_wrapper">
+                        <div class="position_title">
+                            <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block17 {% endtrans %}</h3></div>
+                            <div  class="location" style="text-align: center"><h1>3</h1></div>
+                        </div>
+                        <br>
+                        <div class="position_details">
+                            <p>
+                            <h5> {% trans from 'help' %} help.block18 {% endtrans %}</h5>
+                            </p>
 
-                   <h1>les questions les plus posées </h1>
-                    <div id="flip">1. comment changer mon profil</div>
-                    <div id="panel">Hello world!</div>
-                    <div id="flip">2. comment recupére mon mot de passe</div>
-                    <div id="panel">Hello world!</div>
-                    <div id="flip">3. comment  consulter les modérateurs</div>
-                    <div id="panel">Hello world!</div>
-                    <div id="flip">4. comment changer ma localisation c</div>
-                    <div id="panel">Hello world!</div>
-                    <div id="flip">5. comment changer la raison de l'inscription sur Funglobe?</div>
-                    <div id="panel">Hello world!</div>
-                    <div id="flip">6. comment changer mon mot de passe</div>
-                    <div id="panel">Hello world!</div>
-                    <div id="flip">7. comment s'incrire sur Funglobe</div>
-                    <div id="panel">Hello world!</div>
-                    <div id="flip">8. guide de depannage</div>
-                    <div id="panel">Hello world!</div>
+                            <h6><em> {% trans from 'help' %} help.block19 {% endtrans %} <a
+                                            href="">{% trans from 'help' %} help.block20 {% endtrans %}</a> .
+                                </em></h6>
+                        </div>
+                    </div>
+                    <div class="position_wrapper">
+                        <div class="position_title">
+                            <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block21 {% endtrans %}</h3></div>
+                            <div  class="location" style="text-align: center"><h1>4</h1></div>
+                        </div>
+                        <br>
+                        <div class="position_details">
+                            <p>
+                            <h5> {% trans from 'help' %} help.block22 {% endtrans %}</h5>
+                            </p>
 
+                            <h6><em> {% trans from 'help' %} help.block23 {% endtrans %}
+                                </em></h6>
+                        </div>
+                    </div>
+                    <div class="position_wrapper">
+                        <div class="position_title">
+                            <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block24 {% endtrans %}</h3></div>
+                            <div  class="location" style="text-align: center"><h1>5</h1></div>
+                        </div>
+                        <br>
+                        <div class="position_details">
+                            <p>
+                            <h5> {% trans from 'help' %} help.block25 {% endtrans %}</h5>
+                            </p>
+
+                            <h6><em> {% trans from 'help' %} help.block26 {% endtrans %}
+                                    <br>
+                                    {% trans from 'help' %} help.block27 {% endtrans %} <a href="">{% trans from 'help' %} help.block28 {% endtrans %}</a> {% trans from 'help' %} help.block29 {% endtrans %}
+                                </em></h6>
+                        </div>
+                    </div>
+                    <div class="position_wrapper">
+                        <div class="position_title">
+                            <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block30 {% endtrans %}</h3></div>
+                            <div  class="location" style="text-align: center"><h1>6</h1></div>
+                        </div>
+                        <br>
+                        <div class="position_details">
+                            <p>
+                            <h5> {% trans from 'help' %} help.block31 {% endtrans %}</h5>
+                            </p>
+
+                            <h6><em> {% trans from 'help' %} help.block32 {% endtrans %}
+                                </em></h6>
+                        </div>
+                    </div>
+                    <div class="position_wrapper">
+                        <div class="position_title">
+                            <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block33 {% endtrans %}</h3></div>
+                            <div  class="location" style="text-align: center"><h1>7</h1></div>
+                        </div>
+                        <br>
+                        <div class="position_details">
+                            <p>
+                            <h5> {% trans from 'help' %} help.block34 {% endtrans %}</h5>
+                            </p>
+
+                            <h6><em> {% trans from 'help' %} help.block35 {% endtrans %} <a href="">{% trans from 'help' %} help.block36 {% endtrans %}</a>.
+                                </em></h6>
+                        </div>
+                    </div>
+                    <div class="position_wrapper">
+                        <div class="position_title">
+                            <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block37 {% endtrans %}</h3></div>
+                            <div  class="location" style="text-align: center"><h1>8</h1></div>
+                        </div>
+                        <br>
+                        <div class="position_details">
+                            <p>
+                            <h5> {% trans from 'help' %} help.block38 {% endtrans %}</h5>
+                            </p>
+
+                            <h6><em> {% trans from 'help' %} help.block39 {% endtrans %}
+                                    <br>
+                                    <br>
+                                    {% trans from 'help' %} help.block40 {% endtrans %} :
+                                    <br>
+                                    <br>
+                                    1. {% trans from 'help' %} help.block41 {% endtrans %}
+                                    <br>
+                                    <br>
+                                    2. {% trans from 'help' %} help.block42 {% endtrans %}
+                                    <br>
+                                    <br>
+                                    3. {% trans from 'help' %} help.block43 {% endtrans %}
+                                    <br>
+                                    <br>
+                                    4. {% trans from 'help' %} help.block44 {% endtrans %}
+                                    <br>
+                                    <br>
+                                    {% trans from 'help' %} help.block45 {% endtrans %}:
+                                    <br>
+                                    - {% trans from 'help' %} help.block46 {% endtrans %}
+                                    <br>
+                                    <br>
+                                    -{% trans from 'help' %} help.block47 {% endtrans %}
+                                    <br>
+                                    <br>
+                                    -{% trans from 'help' %} help.block8 {% endtrans %}
+                                    <br>
+                                    <br>
+                                    {% trans from 'help' %} help.block49 {% endtrans %}
+                                </em></h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
+    <br>
+    <br>
+    <br>
+
     <div class="row">
         <div class="col">
 
-            {% trans from 'privacy' %}  privacy.title421 {% endtrans %}: </a>
+            {% trans from 'privacy' %}  privacy.title421 {% endtrans %}:
 
         </div>
         <div class="col">
@@ -176,5 +290,16 @@
 
 {% block myjs %}
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
+    <script>
+        $( document ).ready(function() {
+
+            $(".position_details").slideUp();
+
+            $(".position_title").click(function(){
+                $(this).siblings(".position_details").slideToggle(1500);
+            });
+        });
+    </script>
+
 {% endblock %}
 
