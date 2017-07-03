@@ -57,6 +57,14 @@ class FooterController extends Controller
         return $this->render('MainBundle:Footer:presse.html.twig');
     }
 
+    /**
+     * @Route("/help", name="main_footer_help"))
+     */
+    public function helpAction()
+    {
+        return $this->render('MainBundle:Footer:help.html.twig');
+    }
+
 
 
 }
