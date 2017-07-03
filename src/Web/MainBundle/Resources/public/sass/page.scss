@@ -31,15 +31,18 @@
       /* Thumbnail */
       .thumbnail{
         padding: 1%;
-        margin-bottom: 2%;
+        margin-bottom: 2em;
         img{
           height: 150px;
         }
-        .node{
-          margin-bottom: 2%;
+        .col{
+          margin-bottom: 2em;
         }
         .size{
-          font-size:12px;
+          position: relative;
+          top: 156px;
+          right: 198px;
+          font-size: 12px;
         }
       }
 
