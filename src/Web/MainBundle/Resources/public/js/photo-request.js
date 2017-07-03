@@ -150,7 +150,7 @@ $(function(){
         // Added thumbnail
         function addThumbnail(data){
             //mainPhotoRequest.params.id.uploadfile_context.empty();
-            mainPhotoRequest.params.id.uploadfile_h1.slideDown();
+            mainPhotoRequest.params.id.uploadfile_context.slideDown();
             var len = mainPhotoRequest.params.class.upload_area_thumbnail.length;
             var num = Number(len);
             num = num + 1;
