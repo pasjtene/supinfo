@@ -117,11 +117,13 @@
 
     <script>
     // Quelques informations sur l'utilisateur connecté
-        var currentUser = {
-            id : '{{ app.user.id }}',
-            token : '{{ app.user.token }}',
-            name : '{{ app.user.firstname }}' + ' ' + '{{ app.user.lastname }}'
-        }
+        {% if app.user!=null %}
+            var currentUser = {
+                id : '{{ app.user.id }}',
+                token : '{{ app.user.token }}',
+                name : '{{ app.user.firstname }}' + ' ' + '{{ app.user.lastname }}'
+            }
+        {% endif %}
         // le chemin par defaut pour le projet
         baseRoute = Routing.generate('main_homepage',{_locale:locale},true);
     </script>
