@@ -72,6 +72,18 @@
 
 {% endblock %}
 <div id="body">
+
+    <!-- baground en  cas d"evenement -->
+    <div id="bg">
+        <div id="loading">
+            <img src="{{ asset('data/img/loading.gif') }}" alt="">
+            <div id="bloc_message" class='text-info'>
+
+            </div>
+        </div>
+    </div>
+
+
     <!-- reserv� pour le contenu  de la page -->
     {% block content %}
 
