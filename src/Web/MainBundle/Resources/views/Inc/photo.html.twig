@@ -18,17 +18,19 @@
                         {% trans from 'photo' %} body.option.2  {% endtrans %}
                     </div>
                 </div>
-                <input type="file" name="file" id="file" multiple="multiple">
-                <div class="row align-items-center bg-faded upload-area" id="uploadfile">
-                    <div class="col-12">
-                       <div id="context">
-                           <button class="btn btn-lg btn-primary" >{% trans from 'photo' %} body.option.3  {% endtrans %}</button>
-                           <br>
-                           {% trans from 'photo' %} body.option.4  {% endtrans %}
-                       </div>
-                        <h1></h1>
+                {#<form  method="post" id="form" name="form" enctype="multipart/form-data">#}
+                    <input type="file" name="file" id="file" multiple="multiple">
+                    <div class="row align-items-center bg-faded upload-area" id="uploadfile">
+                        <div class="col-12">
+                            <div id="context">
+                                <button class="btn btn-lg btn-primary" >{% trans from 'photo' %} body.option.3  {% endtrans %}</button>
+                                <br>
+                                {% trans from 'photo' %} body.option.4  {% endtrans %}
+                            </div>
+                            <h1></h1>
+                        </div>
                     </div>
-                </div>
+               {# </form>#}
             </div>
         </div>
     </div>
