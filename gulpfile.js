@@ -231,3 +231,24 @@ gulp.task('watch', function ()
             currentTask = 'js';
         });
 });
+
+
+gulp.task('watchdev', function ()
+{
+    // Starts the server
+    livereload.listen();
+
+    gulp.watch('./src/Web/*/Resources/public/sass/**/*.scss', ['installAssets'])
+        .on('change', function(event){
+            console.log('File '+event.path+' has been '+event.type);
+
+            currentTask = 'sass';
+        });
+
+    gulp.watch('./src/Web/*/Resources/public/js/**/*.js', ['installAssets'])
+        .on('change', function(event){
+            console.log('File '+event.path+'dev has been  '+event.type);
+
+            currentTask = 'jsdev';
+        });
+});

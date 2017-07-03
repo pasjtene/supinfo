@@ -10,7 +10,7 @@ var MainPhotoRequest = function()
         api:{
             url : baseUrl+"auth/upload",
             method: "POST",
-            type: "JSON"
+            type: "json"
         },
         id: {
             uploadfile : $("#uploadfile"),
@@ -18,7 +18,8 @@ var MainPhotoRequest = function()
             file: $("#file"),
             uploadfile_context: $("#uploadfile .col-12 #context"),
             uploadfile_h1: $("#uploadfile .col-12 h1"),
-            uploadfile_btn: $("#uploadfile .col-12 button")
+            uploadfile_btn: $("#uploadfile .col-12 button"),
+            form : $("form")
         },
         class:{
             upload_area: $(".upload-area"),
@@ -75,17 +76,12 @@ $(function(){
 
            var files = e.originalEvent.dataTransfer.files;
            var fd = new FormData();
-
-           // fd.append('file', file[0]);
-
-           //uploadData(fd);
-
            for(var i=0; i<files.length; i++)
            {
                var file = files[i];
                fd.append('file',file);
-               uploadData(fd);
            }
+           uploadData(fd);
        });
 
        // Open file selector on button click
@@ -94,36 +90,63 @@ $(function(){
        });
 
        // file selected
-       mainPhotoRequest.params.id.file.change(function(){
+       mainPhotoRequest.params.id.file.change(function(e){
+           e.stopPropagation();
+           e.preventDefault();
+
            var fd = new FormData();
+           //var fd = new FormData(mainPhotoRequest.params.id.form);
             var  inputfile  =mainPhotoRequest.params.id.file;
 
            for(var i=0; i<inputfile[0].files.length; i++)
            {
                var files = inputfile[0].files[i];
                fd.append('file',files);
-               uploadData(fd);
+              // console.log(fd.get('file'));
+               //uploadData(fd);
            }
 
+           //console.log(fd.getAll('file'));
+           uploadData(fd);
        });
 
        // Sending AJAX request and upload file
        function uploadData(formdata){
-          /* var  photo = {
-               id : app.user.id,
-               photo : formdata
-           }*/
-           $.ajax({
-               url: mainPhotoRequest.params.api.url,
-               type:  mainPhotoRequest.params.api.method,
-               data: formdata,
-               contentType: false,
-               processData: false,
-               dataType:  mainPhotoRequest.params.api.type,
-               success: function(response){
-                   addThumbnail(response);
+
+          var t =setInterval(function(){
+               if(tokenbase!=null)
+               {
+                   clearInterval(t);
+                   console.log("apply tokenbase");
+
+                   var  datas = {
+                       id : 0,
+                       photo : formdata
+                   };
+
+                   $.ajax({
+                       url: mainPhotoRequest.params.api.url,
+                       type:  mainPhotoRequest.params.api.method,
+                       data: formdata,
+                       crossDomain: true,
+                       headers : {"X-Auth-Token" : tokenbase.value},
+                       contentType: false,
+                       processData: false,
+                       dataType:  mainPhotoRequest.params.api.type,
+                       success: function(response){
+                           console.log(response);
+                           // addThumbnail(response);
+                       },
+                       error: function (xhr, status, message) { //en cas d'erreur
+                           console.log(status+"\n"+xhr.responseText + '\n' + message );
+                       },
+                       complete:function(){
+                           console.log("Request finished.");
+                       }
+
+                   });
                }
-           });
+           },100);
        }
 
        // save the upload zone content
@@ -132,20 +155,19 @@ $(function(){
        function addThumbnail(data){
            lastcontent = lastcontent==null? mainPhotoRequest.params.class.upload_area_col.html():lastcontent;
            mainPhotoRequest.params.class.upload_area_col.empty();
-           var len = mainPhotoRequest.params.class.upload_area_thumbnail.length;
 
-           var num = Number(len);
-           num = num + 1;
-
-           var name = data.name;
-           var size = convertSize(data.size);
-           var src = baseHost+data.src;
-
-           // Creating an thumbnail
-           mainPhotoRequest.params.id.uploadfile_col.append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-           $("#thumbnail_"+num).append('<img src="'+src+'" width="100%" height="78%">');
-           $("#thumbnail_"+num).append('<span class="size">'+size+'<span>');
-
+           $.each(data,function(index,value){
+               var len = mainPhotoRequest.params.class.upload_area_thumbnail.length;
+               var num = Number(len);
+               num = num + 1;
+               var name = value.name;
+               var size = convertSize(value.size);
+               var src = baseHost+value.src;
+               // Creating an thumbnail
+               mainPhotoRequest.params.id.uploadfile_col.append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
+               $("#thumbnail_"+num).append('<img src="'+src+'" width="100%" height="78%">');
+               $("#thumbnail_"+num).append('<span class="size">'+size+'<span>');
+           });
        }
 
 
