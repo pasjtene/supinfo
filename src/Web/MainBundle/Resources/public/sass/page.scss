@@ -30,16 +30,19 @@
       border-radius: 6px;
       /* Thumbnail */
       .thumbnail{
-        width: 80px;
-        height: 80px;
-        padding: 2px;
-        border: 2px solid lightgray;
-        border-radius: 3px;
-        float: left;
+        padding: 1%;
+        margin-bottom: 2%;
+        img{
+          height: 150px;
+        }
+        .node{
+          margin-bottom: 2%;
+        }
+        .size{
+          font-size:12px;
+        }
       }
-      .size{
-        font-size:12px;
-      }
+
     }
   }
 

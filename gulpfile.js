@@ -212,7 +212,7 @@ var logStdOutAndErr = function (err, stdout, stderr)
     }
 };
 
-gulp.task('watch', function ()
+gulp.task('watchprod', function ()
 {
     // Starts the server
     livereload.listen();
@@ -233,7 +233,7 @@ gulp.task('watch', function ()
 });
 
 
-gulp.task('watchdev', function ()
+gulp.task('watch', function ()
 {
     // Starts the server
     livereload.listen();

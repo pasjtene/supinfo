@@ -9,6 +9,8 @@
 var api = {
    // baseUrl: "/api/v1/",
     baseUrl: 'http://127.0.0.1:8000/v1/',
+
+    // le chemin de base de l'api  pour facililter la tache lors de l'affichage des photos depuis le serveur
     baseHost: 'http://127.0.0.1:8000/'
     //baseUrl: 'http://127.0.0.1/Site/funglobeapi/web/v1',
    // baseHost: 'http://127.0.0.1/Site/funglobeapi/web/'

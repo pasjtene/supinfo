@@ -80,8 +80,8 @@ $(function(){
            {
                var file = files[i];
                fd.append('file',file);
+               uploadData(fd);
            }
-           uploadData(fd);
        });
 
        // Open file selector on button click
@@ -103,71 +103,66 @@ $(function(){
                var files = inputfile[0].files[i];
                fd.append('file',files);
               // console.log(fd.get('file'));
-               //uploadData(fd);
+               uploadData(fd);
            }
 
            //console.log(fd.getAll('file'));
-           uploadData(fd);
+          // uploadData(fd);
        });
 
        // Sending AJAX request and upload file
        function uploadData(formdata){
 
-          var t =setInterval(function(){
-               if(tokenbase!=null)
-               {
-                   clearInterval(t);
-                   console.log("apply tokenbase");
+           //console.log("apply User current where id :"+ currentUser.id);
 
-                   var  datas = {
-                       id : 0,
-                       photo : formdata
-                   };
 
-                   $.ajax({
-                       url: mainPhotoRequest.params.api.url,
-                       type:  mainPhotoRequest.params.api.method,
-                       data: formdata,
-                       crossDomain: true,
-                       headers : {"X-Auth-Token" : tokenbase.value},
-                       contentType: false,
-                       processData: false,
-                       dataType:  mainPhotoRequest.params.api.type,
-                       success: function(response){
-                           console.log(response);
-                           // addThumbnail(response);
-                       },
-                       error: function (xhr, status, message) { //en cas d'erreur
-                           console.log(status+"\n"+xhr.responseText + '\n' + message );
-                       },
-                       complete:function(){
-                           console.log("Request finished.");
-                       }
-
-                   });
+           formdata.append('id',currentUser.id);
+          // alert(mainPhotoRequest.params.api.url);
+           // console.log(formdata.get("file"));
+           $.ajax({
+               url: mainPhotoRequest.params.api.url,
+               type:  mainPhotoRequest.params.api.method,
+               data: formdata,
+               crossDomain: true,
+               headers : {"X-Auth-Token" : currentUser.token},
+               contentType: false,
+               processData: false,
+               dataType:  mainPhotoRequest.params.api.type,
+               success: function(response){
+                   console.log(response);
+                   addThumbnail(response);
+               },
+               error: function (xhr, status, message) { //en cas d'erreur
+                   console.log(status+"\n"+xhr.responseText + '\n' + message );
+               },
+               complete:function(){
+                   console.log("Request finished.");
                }
-           },100);
+
+           });
+
+
        }
 
        // save the upload zone content
-        var lastcontent = null;
+        var lastcontent = lastcontent==null? mainPhotoRequest.params.id.uploadfile_context.html():lastcontent;
+
        // Added thumbnail
        function addThumbnail(data){
-           lastcontent = lastcontent==null? mainPhotoRequest.params.class.upload_area_col.html():lastcontent;
-           mainPhotoRequest.params.class.upload_area_col.empty();
 
-           $.each(data,function(index,value){
-               var len = mainPhotoRequest.params.class.upload_area_thumbnail.length;
-               var num = Number(len);
-               num = num + 1;
-               var name = value.name;
-               var size = convertSize(value.size);
-               var src = baseHost+value.src;
-               // Creating an thumbnail
-               mainPhotoRequest.params.id.uploadfile_col.append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-               $("#thumbnail_"+num).append('<img src="'+src+'" width="100%" height="78%">');
-               $("#thumbnail_"+num).append('<span class="size">'+size+'<span>');
-           });
+           mainPhotoRequest.params.id.uploadfile_context.empty();
+           var len = mainPhotoRequest.params.class.upload_area_thumbnail.length;
+           var num = Number(len);
+           num = num + 1;
+           var name = data.name;
+           var size = convertSize(data.size);
+           var src = baseHost+data.src;
+           // Creating an thumbnail
+           mainPhotoRequest.params.id.uploadfile_col.append('<div class="thumbnail row" id="thumbnail_'+num+'"'+'></div>');
+
+           $("#thumbnail_"+num).append('<div class="col node"> <img src="'+src+'" >');
+           $("#thumbnail_"+num).append('<div class="size">'+size+'</div></div>');
+
        }
 
 
