@@ -35,149 +35,144 @@ $(function(){
 
     var mainPhotoRequest = new MainPhotoRequest();
 
-   if(mainPhotoRequest.params.page.data('inc')=="photo-request")
-   {
-       // preventing page from redirecting
-       mainPhotoRequest.params.html.on("dragover", function(e) {
-           e.preventDefault();
-           e.stopPropagation();
-           // hide the  upload button
-           mainPhotoRequest.params.id.uploadfile_context.slideUp();
-           mainPhotoRequest.params.id.uploadfile_h1.text("Drag here");
-       });
+    if(mainPhotoRequest.params.page.data('inc')=="photo-request")
+    {
+        // preventing page from redirecting
+        mainPhotoRequest.params.html.on("dragover", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            // hide the  upload button
+            mainPhotoRequest.params.id.uploadfile_context.slideUp();
+            mainPhotoRequest.params.id.uploadfile_h1.text("Drag here");
+        });
 
-       mainPhotoRequest.params.html.on("drop", function(e) { e.preventDefault(); e.stopPropagation(); });
-
-
-       // Drag enter
-       mainPhotoRequest.params.class.upload_area.on('dragenter', function (e) {
-           e.stopPropagation();
-           e.preventDefault();
-           mainPhotoRequest.params.id.uploadfile_h1.text("Drop");
-           //mainPhotoRequest.params.id.uploadfile_h1.text("");
-       });
-
-       // Drag over
-       mainPhotoRequest.params.class.upload_area.on('dragover', function (e) {
-           e.stopPropagation();
-           e.preventDefault();
-           mainPhotoRequest.params.id.uploadfile_h1.text("Drop");
-       });
+        mainPhotoRequest.params.html.on("drop", function(e) { e.preventDefault(); e.stopPropagation(); });
 
 
-       // Drop
-       mainPhotoRequest.params.class.upload_area.on('drop', function (e) {
-           e.stopPropagation();
-           e.preventDefault();
+        // Drag enter
+        mainPhotoRequest.params.class.upload_area.on('dragenter', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            mainPhotoRequest.params.id.uploadfile_h1.text("Drop");
+            //mainPhotoRequest.params.id.uploadfile_h1.text("");
+        });
 
-           //show the upload button
-           mainPhotoRequest.params.id.uploadfile_h1.slideDown();
-           mainPhotoRequest.params.id.uploadfile_h1.text("");
+        // Drag over
+        mainPhotoRequest.params.class.upload_area.on('dragover', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            mainPhotoRequest.params.id.uploadfile_h1.text("Drop");
+        });
 
-           var files = e.originalEvent.dataTransfer.files;
-           var fd = new FormData();
-           for(var i=0; i<files.length; i++)
-           {
-               var file = files[i];
-               fd.append('file',file);
-           }
-           uploadData(fd);
-       });
 
-       // Open file selector on button click
-       mainPhotoRequest.params.id.uploadfile_btn.click(function(){
-           mainPhotoRequest.params.id.file.click();
-       });
+        // Drop
+        mainPhotoRequest.params.class.upload_area.on('drop', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
 
-       // file selected
-       mainPhotoRequest.params.id.file.change(function(e){
-           e.stopPropagation();
-           e.preventDefault();
+            //show the upload button
+            mainPhotoRequest.params.id.uploadfile_h1.slideDown();
+            mainPhotoRequest.params.id.uploadfile_h1.text("");
 
-           var fd = new FormData();
-           //var fd = new FormData(mainPhotoRequest.params.id.form);
+            var files = e.originalEvent.dataTransfer.files;
+            var fd = new FormData();
+            for(var i=0; i<files.length; i++)
+            {
+                var file = files[i];
+                fd.append('file',file);
+                uploadData(fd);
+            }
+        });
+
+        // Open file selector on button click
+        mainPhotoRequest.params.id.uploadfile_btn.click(function(){
+            mainPhotoRequest.params.id.file.click();
+        });
+
+        // file selected
+        mainPhotoRequest.params.id.file.change(function(e){
+            e.stopPropagation();
+            e.preventDefault();
+
+            var fd = new FormData();
+            //var fd = new FormData(mainPhotoRequest.params.id.form);
             var  inputfile  =mainPhotoRequest.params.id.file;
 
-           for(var i=0; i<inputfile[0].files.length; i++)
-           {
-               var files = inputfile[0].files[i];
-               fd.append('file',files);
-              // console.log(fd.get('file'));
-               //uploadData(fd);
-           }
+            for(var i=0; i<inputfile[0].files.length; i++)
+            {
+                var files = inputfile[0].files[i];
+                fd.append('file',files);
+                // console.log(fd.get('file'));
+                uploadData(fd);
+            }
 
-           //console.log(fd.getAll('file'));
-           uploadData(fd);
-       });
+            //console.log(fd.getAll('file'));
+            // uploadData(fd);
+        });
 
-       // Sending AJAX request and upload file
-       function uploadData(formdata){
+        // Sending AJAX request and upload file
+        function uploadData(formdata){
 
-          var t =setInterval(function(){
-               if(tokenbase!=null)
-               {
-                   clearInterval(t);
-                   console.log("apply tokenbase");
-
-                   var  datas = {
-                       id : 0,
-                       photo : formdata
-                   };
-
-                   $.ajax({
-                       url: mainPhotoRequest.params.api.url,
-                       type:  mainPhotoRequest.params.api.method,
-                       data: formdata,
-                       crossDomain: true,
-                       headers : {"X-Auth-Token" : tokenbase.value},
-                       contentType: false,
-                       processData: false,
-                       dataType:  mainPhotoRequest.params.api.type,
-                       success: function(response){
-                           console.log(response);
-                           // addThumbnail(response);
-                       },
-                       error: function (xhr, status, message) { //en cas d'erreur
-                           console.log(status+"\n"+xhr.responseText + '\n' + message );
-                       },
-                       complete:function(){
-                           console.log("Request finished.");
-                       }
-
-                   });
-               }
-           },100);
-       }
-
-       // save the upload zone content
-        var lastcontent = null;
-       // Added thumbnail
-       function addThumbnail(data){
-           lastcontent = lastcontent==null? mainPhotoRequest.params.class.upload_area_col.html():lastcontent;
-           mainPhotoRequest.params.class.upload_area_col.empty();
-
-           $.each(data,function(index,value){
-               var len = mainPhotoRequest.params.class.upload_area_thumbnail.length;
-               var num = Number(len);
-               num = num + 1;
-               var name = value.name;
-               var size = convertSize(value.size);
-               var src = baseHost+value.src;
-               // Creating an thumbnail
-               mainPhotoRequest.params.id.uploadfile_col.append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-               $("#thumbnail_"+num).append('<img src="'+src+'" width="100%" height="78%">');
-               $("#thumbnail_"+num).append('<span class="size">'+size+'<span>');
-           });
-       }
+            //console.log("apply User current where id :"+ currentUser.id);
 
 
-       // Bytes conversion
-       function convertSize(size) {
-           var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-           if (size == 0) return '0 Byte';
-           var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
-           return Math.round(size / Math.pow(1024, i), 2) + ' ' + sizes[i];
-       }
+            formdata.append('id',currentUser.id);
+            // alert(mainPhotoRequest.params.api.url);
+            // console.log(formdata.get("file"));
+            $.ajax({
+                url: mainPhotoRequest.params.api.url,
+                type:  mainPhotoRequest.params.api.method,
+                data: formdata,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                contentType: false,
+                processData: false,
+                dataType:  mainPhotoRequest.params.api.type,
+                success: function(response){
+                    console.log(response);
+                    addThumbnail(response);
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
 
-   }
+            });
+
+
+        }
+
+        // save the upload zone content
+        var lastcontent = lastcontent==null? mainPhotoRequest.params.id.uploadfile_context.html():lastcontent;
+
+        // Added thumbnail
+        function addThumbnail(data){
+            //mainPhotoRequest.params.id.uploadfile_context.empty();
+            mainPhotoRequest.params.id.uploadfile_h1.slideDown();
+            var len = mainPhotoRequest.params.class.upload_area_thumbnail.length;
+            var num = Number(len);
+            num = num + 1;
+            var name = data.name;
+            var size = convertSize(data.size);
+            var src = baseHost+data.src;
+            // Creating an thumbnail
+            mainPhotoRequest.params.id.uploadfile_col.prepend('<div class="thumbnail row" id="thumbnail_'+num+'"'+'></div>');
+
+            $("#thumbnail_"+num).append('<div class="col node"> <img src="'+src+'" >');
+            $("#thumbnail_"+num).append('<div class="size">'+size+'</div></div>');
+
+        }
+
+
+        // Bytes conversion
+        function convertSize(size) {
+            var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            if (size == 0) return '0 Byte';
+            var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
+            return Math.round(size / Math.pow(1024, i), 2) + ' ' + sizes[i];
+        }
+
+    }
 });
