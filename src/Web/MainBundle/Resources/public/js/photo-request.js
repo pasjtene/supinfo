@@ -53,7 +53,7 @@ $(function(){
         var currentIndex = 0;
 
         //image courent
-        var currentImg = null;
+        var currentImg = [];
 
 
 
@@ -111,7 +111,7 @@ $(function(){
             {
                 var fd = new FormData();
                 var file = files[i];
-                currentImg = file.name;
+                currentImg.push(file.name);
                 fd.append('file',file);
                 uploadData(fd);
             }
@@ -147,7 +147,7 @@ $(function(){
             {
                 var fd = new FormData();
                 var file = files[i];
-                currentImg = file.name;
+                currentImg.push(file.name);
                 fd.append('file',file);
                 // console.log(fd.get('file'));
                 uploadData(fd);
@@ -161,7 +161,7 @@ $(function(){
             //console.log("apply User current where id :"+ currentUser.id);
 
             mainPhotoRequest.params.id.bg_message.empty();
-            mainPhotoRequest.params.id.bg_message.html("Traitement  du  fichier <span class='text-danger'>"+ currentImg+ "</span> ... ");
+            mainPhotoRequest.params.id.bg_message.html("Traitement  du  fichier <span class='text-danger'>"+ currentImg[0]+ "</span> ... ");
 
             formdata.append('id',currentUser.id);
             // alert(mainPhotoRequest.params.api.url);
@@ -179,6 +179,11 @@ $(function(){
                     console.log(response);
                     //incrementer l'index
                     currentIndex++;
+                    if(currentImg[currentIndex]!=null)
+                    {
+                        mainPhotoRequest.params.id.bg_message.empty();
+                        mainPhotoRequest.params.id.bg_message.html("Traitement  du  fichier <span class='text-danger'>"+ currentImg[currentIndex]+ "</span> ... ");
+                    }
                     addThumbnail(response);
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
