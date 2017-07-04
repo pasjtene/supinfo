@@ -22,6 +22,10 @@ var MainPhotoRequest = function()
             form : $("form"),
             bg: $("#bg"),
             bg_message: $("#bg #bloc_message"),
+            modal_photo : $("#modal-photo"),
+            modal_photo_content_message : $("#modal-photo #content_message"),
+            modal_photo_content_photo : $("#modal-photo #content_photo")
+
         },
         class:{
             upload_area: $(".upload-area"),
@@ -54,6 +58,14 @@ $(function(){
 
         //image courent
         var currentImg = [];
+
+        // force le background a ne pas reagir au cours du  click
+        mainPhotoRequest.params.id.modal_photo.click(function(){
+          if(!$(this).hasclass("show"))
+          {
+              $(this).addClass("show");
+          }
+        });
 
 
 
@@ -128,7 +140,7 @@ $(function(){
             e.preventDefault();
 
             //declancher le procussus de telechargerment
-            mainPhotoRequest.params.id.bg.height($(window).height()+50+"px");
+            mainPhotoRequest.params.id.bg.css({height:$(window).height()+50+"px"});
            // alert( "lengt : " + mainPhotoRequest.params.id.bg.height() + " ---"+$(window).height());
             mainPhotoRequest.params.id.bg.slideDown();
 
@@ -209,6 +221,7 @@ $(function(){
             var size = convertSize(data.size);
             var src = baseHost+data.src;
 
+            //au  debut  on cree un div pour contenir toutes les photos
             if(currentIndex==1)
             {
                 // Creating an thumbnail
@@ -219,14 +232,30 @@ $(function(){
             $("#thumbnail_"+num).append('<div class="size">'+size+'</div></div>');
 
 
+            // on teste si  le countfile a attient l'index max du  tableau  de fichier
             if(countfile==currentIndex)
             {
+                //on cache le bg
                mainPhotoRequest.params.id.bg.slideUp();
-                mainPhotoRequest.params.class.upload_area_col.remove(mainPhotoRequest.params.id.uploadfile_context);
-                var  html = ' <div id="context"></div>';
-                html.append(lastcontent);
-                mainPhotoRequest.params.class.upload_area_col.append(html);
-                mainPhotoRequest.params.id.uploadfile_context.slideDown();
+
+
+                var result =Translator.trans('content',{'count':(currentIndex-1)},"modal-photo");
+                //modifie le texte de notification
+                mainPhotoRequest.params.id.modal_photo_content_message.html(result);
+
+                result = Translator.trans('photo',{'count':(currentIndex-1)},"modal-photo")+ "<br/>"
+                // on affiche le texte pour le nombre de photo
+                mainPhotoRequest.params.id.modal_photo_content_photo.html(result);
+
+                result = '<div class="thumbnail row" id="thumbnail_1"'+'>' +
+                            $("#thumbnail_1").html()
+                         +'</div>';
+                //on charge les photos sur la page
+                mainPhotoRequest.params.id.modal_photo_content_photo.append(result);
+
+                // affiche le modal pour la notification
+               mainPhotoRequest.params.id.modal_photo.modal("show");
+
             }
 
         }
