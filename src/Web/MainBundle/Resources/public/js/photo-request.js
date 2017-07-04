@@ -22,9 +22,7 @@ var MainPhotoRequest = function()
             form : $("form"),
             bg: $("#bg"),
             bg_message: $("#bg #bloc_message"),
-            modal_photo : $("#modal-photo"),
-            modal_photo_content_message : $("#modal-photo #content_message"),
-            modal_photo_content_photo : $("#modal-photo #content_photo")
+            modal_photo : $("#modal-photo")
 
         },
         class:{
@@ -238,20 +236,6 @@ $(function(){
                 //on cache le bg
                mainPhotoRequest.params.id.bg.slideUp();
 
-
-                var result =Translator.trans('content',{'count':(currentIndex-1)},"modal-photo");
-                //modifie le texte de notification
-                mainPhotoRequest.params.id.modal_photo_content_message.html(result);
-
-                result = Translator.trans('photo',{'count':(currentIndex-1)},"modal-photo")+ "<br/>"
-                // on affiche le texte pour le nombre de photo
-                mainPhotoRequest.params.id.modal_photo_content_photo.html(result);
-
-                result = '<div class="thumbnail row" id="thumbnail_1"'+'>' +
-                            $("#thumbnail_1").html()
-                         +'</div>';
-                //on charge les photos sur la page
-                mainPhotoRequest.params.id.modal_photo_content_photo.append(result);
 
                 // affiche le modal pour la notification
                mainPhotoRequest.params.id.modal_photo.modal("show");
