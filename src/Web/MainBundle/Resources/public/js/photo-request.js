@@ -72,8 +72,10 @@ $(function(){
             e.preventDefault();
             e.stopPropagation();
 
+            var  message = Translator.trans('drag', {}, 'photo');
+            alert(message);
             mainPhotoRequest.params.id.uploadfile_context.slideDown();
-            mainPhotoRequest.params.id.uploadfile_h1.text("Drag here");
+            mainPhotoRequest.params.id.uploadfile_h1.text(message);
         });
 
         mainPhotoRequest.params.html.on("drop", function(e) { e.preventDefault(); e.stopPropagation(); });
@@ -83,7 +85,8 @@ $(function(){
             e.stopPropagation();
             e.preventDefault();
             mainPhotoRequest.params.id.uploadfile_context.slideUp();
-            mainPhotoRequest.params.id.uploadfile_h1.text("Drop");
+            var  message = Translator.trans('drop', {}, 'photo');
+            mainPhotoRequest.params.id.uploadfile_h1.text(message);
             //mainPhotoRequest.params.id.uploadfile_h1.text("");
         });
 
@@ -91,7 +94,8 @@ $(function(){
         mainPhotoRequest.params.class.upload_area.on('dragover', function (e) {
             e.stopPropagation();
             e.preventDefault();
-            mainPhotoRequest.params.id.uploadfile_h1.text("Drop");
+            var  message = Translator.trans('drop', {}, 'photo');
+            mainPhotoRequest.params.id.uploadfile_h1.text(message);
         });
 
 
@@ -171,7 +175,8 @@ $(function(){
             //console.log("apply User current where id :"+ currentUser.id);
 
             mainPhotoRequest.params.id.bg_message.empty();
-            mainPhotoRequest.params.id.bg_message.html("Traitement  du  fichier <span class='text-danger'>"+ currentImg[0]+ "</span> ... ");
+            var  message = Translator.trans('processing', {}, 'photo');
+            mainPhotoRequest.params.id.bg_message.html(message+"<span class='text-danger'>"+ currentImg[0]+ "</span> ... ");
 
             formdata.append('id',currentUser.id);
             // alert(mainPhotoRequest.params.api.url);
@@ -192,7 +197,8 @@ $(function(){
                     if(currentImg[currentIndex]!=null)
                     {
                         mainPhotoRequest.params.id.bg_message.empty();
-                        mainPhotoRequest.params.id.bg_message.html("Traitement  du  fichier <span class='text-danger'>"+ currentImg[currentIndex]+ "</span> ... ");
+                        var  message = Translator.trans('processing', {}, 'photo');
+                        mainPhotoRequest.params.id.bg_message.html( message+"<span class='text-danger'>"+ currentImg[currentIndex]+ "</span> ... ");
                     }
                     addThumbnail(response);
                 },
