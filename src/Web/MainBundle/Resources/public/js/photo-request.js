@@ -22,9 +22,7 @@ var MainPhotoRequest = function()
             form : $("form"),
             bg: $("#bg"),
             bg_message: $("#bg #bloc_message"),
-            modal_photo : $("#modal-photo"),
-            modal_photo_content_message : $("#modal-photo #content_message"),
-            modal_photo_content_photo : $("#modal-photo #content_photo")
+            modal_photo : $("#modal-photo")
 
         },
         class:{
@@ -67,15 +65,15 @@ $(function(){
           }
         });
 
-
-
         // preventing page from redirecting
         mainPhotoRequest.params.html.on("dragover", function(e) {
             e.preventDefault();
             e.stopPropagation();
 
+            var  message = Translator.trans('drag', {}, 'photo');
+            //alert(message);
             mainPhotoRequest.params.id.uploadfile_context.slideDown();
-            mainPhotoRequest.params.id.uploadfile_h1.text("Drag here");
+            mainPhotoRequest.params.id.uploadfile_h1.text(message);
         });
 
         mainPhotoRequest.params.html.on("drop", function(e) { e.preventDefault(); e.stopPropagation(); });
@@ -85,7 +83,8 @@ $(function(){
             e.stopPropagation();
             e.preventDefault();
             mainPhotoRequest.params.id.uploadfile_context.slideUp();
-            mainPhotoRequest.params.id.uploadfile_h1.text("Drop");
+            var  message = Translator.trans('drop', {}, 'photo');
+            mainPhotoRequest.params.id.uploadfile_h1.text(message);
             //mainPhotoRequest.params.id.uploadfile_h1.text("");
         });
 
@@ -93,7 +92,8 @@ $(function(){
         mainPhotoRequest.params.class.upload_area.on('dragover', function (e) {
             e.stopPropagation();
             e.preventDefault();
-            mainPhotoRequest.params.id.uploadfile_h1.text("Drop");
+            var  message = Translator.trans('drop', {}, 'photo');
+            mainPhotoRequest.params.id.uploadfile_h1.text(message);
         });
 
 
@@ -173,7 +173,8 @@ $(function(){
             //console.log("apply User current where id :"+ currentUser.id);
 
             mainPhotoRequest.params.id.bg_message.empty();
-            mainPhotoRequest.params.id.bg_message.html("Traitement  du  fichier <span class='text-danger'>"+ currentImg[0]+ "</span> ... ");
+            var  message = Translator.trans('processing', {}, 'photo');
+            mainPhotoRequest.params.id.bg_message.html(message+"<span class='text-danger'>"+ currentImg[0]+ "</span> ... ");
 
             formdata.append('id',currentUser.id);
             // alert(mainPhotoRequest.params.api.url);
@@ -194,7 +195,8 @@ $(function(){
                     if(currentImg[currentIndex]!=null)
                     {
                         mainPhotoRequest.params.id.bg_message.empty();
-                        mainPhotoRequest.params.id.bg_message.html("Traitement  du  fichier <span class='text-danger'>"+ currentImg[currentIndex]+ "</span> ... ");
+                        var  message = Translator.trans('processing', {}, 'photo');
+                        mainPhotoRequest.params.id.bg_message.html( message+"<span class='text-danger'>"+ currentImg[currentIndex]+ "</span> ... ");
                     }
                     addThumbnail(response);
                 },
@@ -238,20 +240,6 @@ $(function(){
                 //on cache le bg
                mainPhotoRequest.params.id.bg.slideUp();
 
-
-                var result =Translator.trans('content',{'count':(currentIndex-1)},"modal-photo");
-                //modifie le texte de notification
-                mainPhotoRequest.params.id.modal_photo_content_message.html(result);
-
-                result = Translator.trans('photo',{'count':(currentIndex-1)},"modal-photo")+ "<br/>"
-                // on affiche le texte pour le nombre de photo
-                mainPhotoRequest.params.id.modal_photo_content_photo.html(result);
-
-                result = '<div class="thumbnail row" id="thumbnail_1"'+'>' +
-                            $("#thumbnail_1").html()
-                         +'</div>';
-                //on charge les photos sur la page
-                mainPhotoRequest.params.id.modal_photo_content_photo.append(result);
 
                 // affiche le modal pour la notification
                mainPhotoRequest.params.id.modal_photo.modal("show");

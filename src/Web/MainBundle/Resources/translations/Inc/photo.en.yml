@@ -1,8 +1,8 @@
 body:
-  title: on aimerait savoir à quoi vous ressemblez !
+  title: On would like to know what you look like!
   content: |
-   Sur ta photo de profil, ton visage doit être bien visible et reconnaissable. L'âge et le genre indiqués sur
-   ton profil doivent correspondre à tes photos de profil. Les photos de profil ne peuvent contenir de nudité.
+   On your profile picture, your face must be clearly visible and recognizable. The age and gender
+   Your profile must match your profile photos. Profile photos can not contain nudity.
   required: Minimal  file size ( 400 x 400 pixels)
   option:
     1: Use your facebook
@@ -10,3 +10,6 @@ body:
     3: Click to select files
     4: Or Drag and Drop files here
   link1: Ou passer
+  drop : Drop
+  drag:  Drag here
+  processing:  File processing

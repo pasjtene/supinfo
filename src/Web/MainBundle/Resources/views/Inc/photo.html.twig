@@ -36,7 +36,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="modal-photo" tabindex="-1" role="dialog" aria-labelledby="modal-photoLabel" aria-hidden="true">
+    <div class="modal fade" id="modal-photo" tabindex="-1" role="dialog" aria-labelledby="modal-photoLabel" aria-hidden="true" data-target=".bd-example-modal-lg">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -46,8 +46,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="content_message"></div>
-                    <div id="content_photo"></div>
+                    <div id="content_message">
+                        {% trans from  'modal-photo' %} content {% endtrans %}
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <a href="{{ path('main_profile') }}" class="btn btn-primary">{% trans from  'modal-photo' %} next {% endtrans %}</a>
