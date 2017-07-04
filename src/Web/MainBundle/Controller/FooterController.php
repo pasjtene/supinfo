@@ -65,6 +65,14 @@ class FooterController extends Controller
         return $this->render('MainBundle:Footer:help.html.twig');
     }
 
+    /**
+     * @Route("/city", name="main_footer_city"))
+     */
+    public function cityAction()
+    {
+        return $this->render('MainBundle:Footer:city.html.twig');
+    }
+
 
 
 }
