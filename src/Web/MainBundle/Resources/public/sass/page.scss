@@ -28,12 +28,19 @@
       height: auto;
       min-height: 200px;
       border-radius: 6px;
+      h1{
+        text-blink: blue($highligt);
+      }
+      #context{
+
+      }
       /* Thumbnail */
       .thumbnail{
+        margin-top: 2em;
         padding: 1%;
-        margin-bottom: 2em;
         img{
           height: 150px;
+          max-width: 200px;
         }
         .col{
           margin-bottom: 2em;

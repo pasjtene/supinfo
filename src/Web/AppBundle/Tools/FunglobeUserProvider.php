@@ -183,7 +183,7 @@ class FunglobeUserProvider implements UserProviderInterface
             $obj->setEmailCanonical($data->user->emailCanonical);
             $obj->setPassword($data->user->password);
             $obj->setPlainPassword($data->user->plainPassword);
-            $obj->setLastLogin($data->user->lastLogin);
+            $obj->setLastLogin(new \DateTime($data->user->lastLogin));
             $obj->setConfirmationToken($data->user->confirmationToken);
             $obj->setRoles($data->user->roles);
             $obj->setEnabled($data->user->enabled);
