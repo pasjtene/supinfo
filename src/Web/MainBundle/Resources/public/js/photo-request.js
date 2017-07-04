@@ -65,15 +65,13 @@ $(function(){
           }
         });
 
-
-
         // preventing page from redirecting
         mainPhotoRequest.params.html.on("dragover", function(e) {
             e.preventDefault();
             e.stopPropagation();
 
             var  message = Translator.trans('drag', {}, 'photo');
-            alert(message);
+            //alert(message);
             mainPhotoRequest.params.id.uploadfile_context.slideDown();
             mainPhotoRequest.params.id.uploadfile_h1.text(message);
         });
