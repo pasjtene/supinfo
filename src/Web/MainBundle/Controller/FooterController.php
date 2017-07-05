@@ -73,6 +73,14 @@ class FooterController extends Controller
         return $this->render('MainBundle:Footer:city.html.twig');
     }
 
+    /**
+     * @Route("/confid", name="main_footer_confid"))
+     */
+    public function confidAction()
+    {
+        return $this->render('MainBundle:Footer:confid.html.twig');
+    }
+
 
 
 }
