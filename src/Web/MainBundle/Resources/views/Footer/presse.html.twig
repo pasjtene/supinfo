@@ -21,7 +21,7 @@
 {% block header %}
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
-
+<div id="main_presse">
 
              <img class="forme1"  src="{{ asset('data/img/forma.jpg') }}" alt="">
 
@@ -147,7 +147,7 @@
 </div>
     <br>
     <br>
-<div class="row">
+    <div class="row">
     <div class="col-sm-2" >
     </div>
     <div class="col-sm-8" >
@@ -157,15 +157,15 @@
     </div>
     <div class="col-sm-2" >
     </div>
+    </div>
+    <br>
+    <br>
 </div>
-    <br>
-    <br>
-
 
 {% endblock %}
 
 {% block main %}
-
+<div id="main_presse">
     <div class="row">
         <div class="col-sm-1" >
         </div>
@@ -227,7 +227,7 @@
         <div class="col-sm-2" >
         </div>
     </div>
-
+</div>
 {% endblock %}
 
 {% block myjs %}
