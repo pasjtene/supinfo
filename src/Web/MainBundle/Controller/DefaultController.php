@@ -55,13 +55,17 @@ class DefaultController extends Controller
         if($client->getStatusCode() == 200)
         {
             $contents = \GuzzleHttp\json_decode($client->getContent());
-            $array['successMessage'] = $this->get('translator')->trans('success.requestMail',["email_resp"=>$user->getEmail()],'alert');
-            return $this->redirect($this->generateUrl("main_profile",$array));
+            $message= $this->get('translator')->trans('success.requestMail',["email_resp"=>$user->getEmail()],'alert');
+            $array['successMessage'] = $message;
+             //var_dump($array['successMessage']);
+            // die();
+            return $this->redirectToRoute("main_profile",$array);
         }
 
         $error =\GuzzleHttp\json_decode($client->getContent());
-        $array['successMessage'] = $this->get('translator')->trans('error.requestMail',[],'alert');
-        return $this->redirect($this->generateUrl("main_profile",$array));
+        $message =$this->get('translator')->trans('error.requestMail',[],'alert');
+        $array['successMessage'] = $message;
+        return $this->redirectToRoute("main_profile",$array);;
     }
 
 

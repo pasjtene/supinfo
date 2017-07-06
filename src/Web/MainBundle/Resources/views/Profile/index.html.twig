@@ -15,21 +15,56 @@
 {% endblock %}
 
 {% block header %}
-    {% include "MainBundle:Inc:main-nav.html.twig" %}
-
-    {% if app.request.get("next")=="yes" %}
-        {% if  app.user.isEmailVerified==0 %}
-            {% include "MainBundle:Modal:confirm-email.html.twig" %}
-        {% endif %}
-    {% endif %}
-    <div class="row" id="mainUserProfile" data-page="mainUserProfile">
-        <div class="col-sm-12 col">
+   <div id="profile-nav">
+       {% include "MainBundle:Inc:main-nav.html.twig" %}
+       {#  {% include "MainBundle:Inc:matches.html.twig" %}#}
+       {% if app.request.get("next")=="yes" %}
+           {% if  app.user.isEmailVerified==0 %}
+               {% include "MainBundle:Modal:confirm-email.html.twig" %}
+           {% endif %}
+       {% endif %}
+   </div>
+    <div class="row bg-faded" id="mainUserProfile" data-page="mainUserProfile">
+        <div class="col col-md-2" id="important">
 
         </div>
-        <div class="col-sm-12 col-6">
+        <div class="col-md-8 col-sm-12 card" id="main-body">
+            <div class="card-block">
+                <div class="row" id="notification-alert">
+                    {% include "MainBundle:Alert:include.html.twig" %}
+                </div>
+                <div id="search" class="row">
 
+                </div>
+                <div id="content" class="row">
+                    Connaissez vous?
+                    <br>
+                    <div class="row">
+                        {% for i in 1..10  %}
+                            <div class="col-sm-12 col-md-4 col-lg-3">
+                               <div class="card">
+                                   <div class="card-block">
+                                       <img src="{{ asset('data/img/avatar.png') }}" alt="not found" class="img-thumbnail">
+                                       <br>
+                                       <div class="row">
+                                           <div class="col-1">
+                                               <div class="rounded-circle {% if i%2==0 %}connect {% else %} no-connect {% endif %}" ></div>
+                                           </div>
+                                           <div class="col name"> <strong > Danick takam (40ans)   &nbsp;</strong></div>
+                                           <div class="col-12">
+                                               <span class="text-muted country">Cameroun</span>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-12 col">
+
+        <div class="col" id="publicity">
 
         </div>
     </div>

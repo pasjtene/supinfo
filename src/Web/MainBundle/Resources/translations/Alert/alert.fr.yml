@@ -1,4 +1,4 @@
 success:
   requestMail: Nous vous avons envoyés à  nouveau un mail  à  l'adresse email_resp
 error:
-  requestMail: Echec  de l'envoi  du  mail. Il  parrait  que le serveur à  rencontré un problème n'hésitez pas de retenter après.
+  requestMail: Echec  de l'envoi  du  mail. Il  parait  que le serveur à  rencontré un problème n'hésitez pas de retenter après.
