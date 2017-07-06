@@ -80,6 +80,20 @@ class FooterController extends Controller
     {
         return $this->render('MainBundle:Footer:confid.html.twig');
     }
+    /**
+     * @Route("/job", name="main_footer_job"))
+     */
+    public function jobAction()
+    {
+        return $this->render('MainBundle:Footer:job.html.twig');
+    }
+    /**
+     * @Route("/safety", name="main_footer_safety"))
+     */
+    public function safetyAction()
+    {
+        return $this->render('MainBundle:Footer:safety.html.twig');
+    }
 
 
 
