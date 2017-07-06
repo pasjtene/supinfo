@@ -17,12 +17,21 @@
 {% block header %}
     {% include "MainBundle:Inc:main-nav.html.twig" %}
 
-    {% if not app.user.isEmailVerified %}
-        {% include "MainBundle:Modal:confirm-email.html.twig" %}
+    {% if app.request.get("next")=="yes" %}
+        {% if  app.user.isEmailVerified==0 %}
+            {% include "MainBundle:Modal:confirm-email.html.twig" %}
+        {% endif %}
     {% endif %}
-
     <div class="row" id="mainUserProfile" data-page="mainUserProfile">
+        <div class="col-sm-12 col">
 
+        </div>
+        <div class="col-sm-12 col-6">
+
+        </div>
+        <div class="col-sm-12 col">
+
+        </div>
     </div>
 {% endblock %}
 

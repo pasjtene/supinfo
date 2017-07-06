@@ -57,7 +57,7 @@ $(function(){
         //image courent
         var currentImg = [];
 
-        // force le background a ne pas reagir au cours du  click
+        // force le background a ne pas reagir lorsqu'on   clic
         mainPhotoRequest.params.id.modal_photo.click(function(){
           if(!$(this).hasclass("show"))
           {
