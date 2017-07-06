@@ -1,0 +1,96 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}
+    {% trans from 'member' %} member.title {% endtrans %}
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+
+{% block header %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+{% endblock %}
+
+{% block main %}
+    {% include 'AdminBundle:Inc:pascalnavbar.html.twig' %}
+
+    <div class="row" id="adminMember" data-page="adminMember">
+        <div class="admin_page_title">
+            {% trans from 'member' %} member.page_title {% endtrans %}
+        </div>
+        <div class="container">
+            <div class="col-sm-12" id="mb-header">
+                <span>{{ member.firstName ~ member.lastName }}</span>
+                <button id="btn-role-action" data-edit="0" data-mid="{{ member.id }}" class="btn btn-primary pull-right">
+                    {% trans from 'member' %} member.change_role {% endtrans %}
+                </button>
+            </div>
+            <div class="col-sm-12">
+                {% set member_role = member.roles[0] %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>{% trans from 'member' %} member.th_property {% endtrans %}</th>
+                            <th>{% trans from 'member' %} member.th_value {% endtrans %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            {% trans from 'member' %} member.lbl_role {% endtrans %}
+                        </td>
+                        <td>
+                            <select id="cb-roles" class="form-control" data-role="{{ member_role }}" disabled>
+                                {% for role in roles %}
+                                    <option value="{{ role['value'] }}" {% if member_role == role['value'] %}selected{% endif %}>{{ role['name_'~app.request.locale] }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{% trans from 'member' %} member.lbl_email {% endtrans %}</td>
+                        <td>{{ member.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans from 'member' %} member.lbl_birth {% endtrans %}</td>
+                        <td>{{ member.birthDate|date('d/m/Y') }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans from 'member' %} member.lbl_gender {% endtrans %}</td>
+                        <td>
+                            {% if member.gender == 'M'  %}
+                                {% trans from 'member' %} member.val_male {% endtrans %}
+                            {% else %}
+                                {% trans from 'member' %} member.val_female {% endtrans %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{% trans from 'member' %} member.lbl_profession {% endtrans %}</td>
+                        <td>{{ member.profession == null ? 'N/C' : member.profession }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans from 'member' %} member.last_login {% endtrans %}</td>
+                        <td>{{ member.lastLogin == null ? 'N/C' : member.lastLogin|date('d/m/Y h:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <a href="{{ path('admin_home') }}">
+                                <span class="glyphicon glyphicon-arrow-left"></span> {% trans from 'member' %} member.lbl_back_home {% endtrans %}
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+
+{% endblock %}
+
