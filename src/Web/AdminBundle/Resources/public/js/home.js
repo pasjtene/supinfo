@@ -166,7 +166,6 @@ $(function(){
 
                 });
 
-
                 //find the users list
                 $.ajax(
                     {
@@ -180,7 +179,7 @@ $(function(){
                             $.each(users, function(i, user){
 
                                 var row = $('<tr>').html("<td>" + (i+1) +
-                                    "</td><td>" + user.firstName +
+                                    "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
                                     "</td><td>" + user.email +
                                     "</td><td>" + user.gender +
                                     "</td>");
