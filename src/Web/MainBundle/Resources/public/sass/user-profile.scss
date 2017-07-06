@@ -6,12 +6,28 @@
   }
   margin-top: 2em;
   padding: 1em;
+
+  #important{
+    margin-top: 4em;
+    color: white;
+    .card{
+      margin-bottom: 2em ;
+      img{
+        height: 100px;
+        max-width: 100px;
+      }
+    }
+  }
+
   #main-body{
     padding: 1em;
     margin-top: 4em;
+
     #content{
+      margin-top: 2em;
       .card{
         margin-bottom: 2em;
+        height: 340px;
         img{
           height: 200px;
           max-width: 200px;
