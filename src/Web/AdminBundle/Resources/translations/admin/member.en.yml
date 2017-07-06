@@ -1,0 +1,15 @@
+member:
+  title: Member's info
+  page_title: View member info
+  change_role: Change role
+  th_property: Properties
+  th_value: Values
+  lbl_role: Member's role :
+  lbl_email: Email address :
+  lbl_birth: Birth date :
+  lbl_gender: Gender :
+  val_male: Male
+  val_female: Female
+  lbl_profession: Profession :
+  lbl_last_login: Last login date :
+  lbl_back_home : Back
