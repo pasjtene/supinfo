@@ -17,7 +17,7 @@
 {% block header %}
    <div id="profile-nav">
        {% include "MainBundle:Inc:main-nav.html.twig" %}
-       {#  {% include "MainBundle:Inc:matches.html.twig" %}#}
+        {% include "MainBundle:Inc:matches.html.twig" %}
        {% if app.request.get("next")=="yes" %}
            {% if  app.user.isEmailVerified==0 %}
                {% include "MainBundle:Modal:confirm-email.html.twig" %}

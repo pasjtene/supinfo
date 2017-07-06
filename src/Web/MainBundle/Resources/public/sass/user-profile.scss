@@ -4,7 +4,7 @@
     border: 1px solid red;
     height: 30px;
   }
-  margin-top: 2em;
+  margin-top: 0em;
   padding: 1em;
 
   #important{
@@ -13,7 +13,7 @@
 
   #main-body{
     padding: 1em;
-    margin-top: 4em;
+    margin-top: 2em;
 
     #content{
       margin-top: 2em;
@@ -57,7 +57,7 @@
 }
 
 #important-block{
-  margin-top: 2em;
+  margin-top: 1em;
   color: white;
   .card{
     margin-bottom: 2em ;
@@ -75,5 +75,5 @@
 }
 
 #publicity-block{
-  margin-top: 2em;
+  margin-top: 1em;
 }
