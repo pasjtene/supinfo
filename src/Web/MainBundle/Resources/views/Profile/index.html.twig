@@ -24,28 +24,9 @@
            {% endif %}
        {% endif %}
    </div>
-    <div class="row bg-faded" id="mainUserProfile" data-page="mainUserProfile">
+    <div class="row bg-faded profile" id="mainUserProfile" data-page="mainUserProfile">
         <div class="col col-md-2" id="important">
-            <div class="card bg-info img-thumbnail">
-                <div class="card-block">
-                    <img src="{{ asset('data/img/avatar.png') }}" alt="" class="img-thumbnail rounded-circle mx-auto d-block">
-                    <div id="" class="text-center">
-                        <strong>{{ app.user.firstname }}</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-info img-thumbnail">
-                <div class="card-block">
-                    {% trans from 'user-profile' %} important.vip {% endtrans %}
-
-                    <div class="text-center">
-                        <br>
-                        <a href="" class="btn btn-primary">
-                            {% trans from 'user-profile' %} important.active {% endtrans %}
-                        </a>
-                    </div>
-                </div>
-            </div>
+            {% include "MainBundle:Inc:important.html.twig" %}
         </div>
         <div class="col-md-8 col-sm-12 card" id="main-body">
             <div class="card-block">
@@ -109,7 +90,7 @@
         </div>
 
         <div class="col" id="publicity">
-
+            {% include "MainBundle:Inc:publicity.html.twig" %}
         </div>
     </div>
 {% endblock %}

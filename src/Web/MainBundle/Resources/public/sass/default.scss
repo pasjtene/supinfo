@@ -1,6 +1,7 @@
 $default-color: #0275D8;
 $default-color-hover: forestgreen;
 $secondary-color : rgba(0,0,0,.125);
+$color-default : #F7F7F7;
 $default-font-color: #292b2c;
 $secondary-font-color: #ffffff;
 $badnew-color: #DF534F;
@@ -98,4 +99,8 @@ body{
 
 .text-grey{
   color: darkgrey;
+}
+
+body{
+  background-color: $color-default;
 }

@@ -8,15 +8,7 @@
   padding: 1em;
 
   #important{
-    margin-top: 4em;
-    color: white;
-    .card{
-      margin-bottom: 2em ;
-      img{
-        height: 100px;
-        max-width: 100px;
-      }
-    }
+    @extend #important-block;
   }
 
   #main-body{
@@ -58,4 +50,30 @@
       }
     }
   }
+
+  #publicity{
+    @extend #publicity-block;
+  }
+}
+
+#important-block{
+  margin-top: 2em;
+  color: white;
+  .card{
+    margin-bottom: 2em ;
+    img{
+      height: 100px;
+      max-width: 100px;
+    }
+    #detail{
+      border-radius: 6px;
+      border: solid 4px $secondary-color;
+      padding: 1em;
+      margin-top: 1em;
+    }
+  }
+}
+
+#publicity-block{
+  margin-top: 2em;
 }

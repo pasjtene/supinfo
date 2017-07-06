@@ -8,4 +8,15 @@ search:
 important:
   vip: Vous voulez vous amuser a chaque instant, ne perdez pas le temps soyez vip
   active: Devenir vip
+  credit:  Crédit
+  friends: Amis
+  popularity: Popularité
+  bonus: Bonus
+  photo: Telecharger les photos
+  popularity_option:
+    1: Trop  faible
+    2: Faible
+    3: Moyenne
+    4: Forte
+    5: Excelente
 

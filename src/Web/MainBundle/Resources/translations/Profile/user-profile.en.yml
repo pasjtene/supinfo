@@ -8,4 +8,15 @@ search:
 important:
   vip: You want to have fun every moment, do not waste time be vip
   active: Become vip
+  credits: Credits
+  friends: Friends
+  popularity: Popularity
+  bonus: Bonus
+  photo: Upload the pictures
+  popularity_option:
+    1: Too bad
+    2: bad
+    3: Moyen
+    4: Strong
+    5: Excelent
 
