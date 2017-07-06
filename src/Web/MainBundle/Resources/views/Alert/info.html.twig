@@ -1,0 +1,8 @@
+<div class="alert alert-info" role="alert" id="infoMessage">
+    <strong>Heads up!</strong>
+    {% if infoMessage is defined %}
+        {{ infoMessage }}
+    {% else %}
+        {{ app.request.get("infoMessage") }}
+    {% endif %}
+</div>

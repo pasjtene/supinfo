@@ -6,7 +6,9 @@ var MainUserProfile = function()
 {
     this.params = {
         page: $("#mainUserProfile"),
-        modalEmail: $("#modalEmail")
+        id:{
+            modalEmail: $("#modalEmail")
+        }
     };
 
 };
@@ -18,6 +20,14 @@ $(function(){
 
    if(mainUserProfile.params.page.data('page')=="mainUserProfile")
    {
-       mainUserProfile.params.modalEmail.modal('show');
+       // force le background a ne pas reagir lorsqu'on   clic
+       mainUserProfile.params.id.modalEmail.click(function(){
+           if(!$(this).hasclass("show"))
+           {
+               $(this).addClass("show");
+           }
+       });
+
+       mainUserProfile.params.id.modalEmail.modal('show');
    }
 });
