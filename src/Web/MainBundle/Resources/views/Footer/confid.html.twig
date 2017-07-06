@@ -6,30 +6,34 @@
 {% endblock %}
 
 {% block title %}
-    {% trans from 'home' %} title {% endtrans %}
+
 {% endblock  %}
 
 {% block mycss %}
     {{ parent() }}
     {# mettre le css si la page t'oublige #}
     <style>
-        .col-sm-12{
-            padding-left: 2cm;
-        }
-        .col-lg-8{
-            padding-left: 3cm;
-        }
+
     </style>
 {% endblock %}
 
 {% block header %}
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
-    <div class="row" id="main_privacy">
+
+{% endblock %}
+
+{% block main %}
+
+
+        {# dans cette zone vous etes dans le conteneur  #}
+    <br>
+    <br>
+    <div class="row" id="main_confid">
 
         <div class="row">
 
-            <div class ="col-sm-12 col  col-lg-4" >
+            <div class ="col-sm-12 col  col-lg-2" >
 
                 <strong> <h3 class="center-align"> {% trans from 'privacy' %} privacy.title45 {% endtrans %} </h3></strong>
 
@@ -92,21 +96,180 @@
                 </p>
             </div>
 
-            <div class="col col-lg-8">
+            <div class="col col-lg-10">
                 <div class="text-justify">
-                    <h3 style="alignment: center" > <strong>POLITIQUE DE CONFIDENTIALITÉ Funglobe</strong> </h3>
+                    <h3 style="alignment: center" > <strong>{% trans from 'confid' %}  confid.title1 {% endtrans %}</strong> </h3>
+                    <p>
+                        {% trans from 'confid' %}  confid.block1 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.title2 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.title3 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block2 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block3 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block4  {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block5 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block6 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block7 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block8 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block9 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block10 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.title4 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.title5 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block11 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block12 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block13 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block14 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block15 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.title4 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.title5 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block16 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block17 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block18 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block19 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block20 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block21 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.title7 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block22 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block23 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.title8 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block24 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block25 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.title9 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block26 {% endtrans %}
+                        {% trans from 'confid' %}  confid.block27 {% endtrans %}.
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.title10 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block28 {% endtrans %}
+
+                        <a href="">{% trans from 'confid' %}  confid.block29 {% endtrans %}</a>
+
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block30 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block31 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block32 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block33 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block34 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block35 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block36 {% endtrans %}
+                        <br>
+                        <a href="">{% trans from 'confid' %}  confid.block37 {% endtrans %}</a>
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block38 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'confid' %}  confid.block39 {% endtrans %}
+                    </p>
+
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+    <div class="row">
+        <div class="col">
 
-{% block main %}
+            {% trans from 'phone' %}  phone.block5 {% endtrans %}:
 
-
-        {# dans cette zone vous etes dans le conteneur  #}
-
-
+        </div>
+        <div class="col">
+            <p>
+                <a   href="{{ path('main_footer_phone') }}"> <i class="fa fa-android"></i>{% trans from 'phone' %}  phone.block6 {% endtrans %} </a>
+            </p>
+        </div>
+        <div class="col">
+            <p>
+                <a  href="{{ path('main_footer_phone') }}"><i class="fa fa-windows"></i> {% trans from 'phone' %} phone.block7 {% endtrans %} </a>
+            </p>
+        </div>
+        <div class="col">
+            <p>
+                <a  href="{{ path('main_footer_phone') }}"><i class="fa fa-windows"></i> {% trans from 'phone' %} phone.block8 {% endtrans %} </a>
+            </p>
+        </div>
+    </div>
 
 {% endblock %}
 
