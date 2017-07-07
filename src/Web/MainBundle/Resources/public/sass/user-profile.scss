@@ -58,7 +58,9 @@
 
 #important-block{
   margin-top: 1em;
+  text-wrap: normal;
   color: white;
+  padding: 0;
   .card{
     margin-bottom: 2em ;
     img{
@@ -68,7 +70,7 @@
     #detail{
       border-radius: 6px;
       border: solid 4px $secondary-color;
-      padding: 1em;
+      padding: 0.2em;
       margin-top: 1em;
     }
   }
