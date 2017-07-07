@@ -4,7 +4,24 @@ refer:
 title: Fublobe | Welcome
 see: See to
 search:
- title: I am here to make new friends and deal with bargains with intellectuals and experienced
+  title: I am here to make new friends and deal with bargains with intellectuals and experienced
+  zone:
+    title: Appropriete zone
+    ville: Cities
+  age:
+    title:  Tranche d'age
+    min: Min age
+    max: Max age
+  surface:
+    title: Search  to  superficie
+    min: Min postion
+    max: Max postion
+  sex: Sex
+  profession: Profession
+
+like: I like
+comment: Comment
+share: Share
 important:
   vip: You want to have fun every moment, do not waste time be vip
   active: Become vip
@@ -19,4 +36,5 @@ important:
     3: Moyen
     4: Strong
     5: Excelent
+
 

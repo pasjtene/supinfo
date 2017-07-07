@@ -44,7 +44,78 @@
                     </div>
                     <div class="collapse show col-12" id="filter">
                         <div class="card card-block bg-faded">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                            <form>
+                               <div class="row">
+                                   <fieldset class="form-group col-sm-12">
+                                       <legend>Zone appropriée </legend>
+                                       <div class="row">
+                                           <div class=" col-sm-12 col-md-6">
+                                               <div class="form-group">
+                                                   <label for="exampleInputEmail1">Email address</label>
+                                                   <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
+                                                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </fieldset>
+                                   <fieldset class="form-group col-sm-12">
+                                       <legend>Tranche d'age </legend>
+                                       <div class="row">
+                                           <div class=" col-sm-12 col-md-6">
+                                               <div class="form-group">
+                                                   <label for="exampleInputEmail1">Email address</label>
+                                                   <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
+                                                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                               </div>
+                                           </div>
+                                           <div class=" col-sm-12 col-md-6">
+                                               <div class="form-group">
+                                                   <label for="exampleInputEmail1">Email address</label>
+                                                   <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
+                                                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </fieldset>
+                                   <fieldset class="form-group col-sm-12">
+                                       <legend>Rechercher dans les périmètres </legend>
+                                     <div class="row">
+                                         <div class=" col-sm-12 col-md-6">
+                                             <div class="form-group">
+                                                 <label for="exampleInputEmail1">Email address</label>
+                                                 <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
+                                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                             </div>
+                                         </div>
+                                         <div class=" col-sm-12 col-md-6">
+                                             <div class="form-group">
+                                                 <label for="exampleInputEmail1">Email address</label>
+                                                 <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
+                                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                             </div>
+                                         </div>
+                                     </div>
+                                   </fieldset>
+
+                                   <div class=" col-sm-12 col-md-6">
+                                       <div class="form-group">
+                                           <label for="exampleInputEmail1">Profession</label>
+                                           <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
+                                           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                       </div>
+                                   </div>
+
+                                   <div class=" col-sm-12 col-md-6">
+                                       <div class="form-group">
+                                           <label for="exampleInputEmail1">Sexe</label>
+                                           <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
+                                           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                       </div>
+                                   </div>
+
+                               </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -74,12 +145,19 @@
                                                <div class="col name text-left"> <strong > Danick takam (40ans)   &nbsp;</strong></div>
                                                <div class="col-12 text-left">
                                                    <span class="text-muted country ">Cameroun</span>
-                                                   <br>
                                                    <span class="text-grey pull-right">{% trans from 'user-profile' %} see {% endtrans %} {{  i ~'/11/2017' }}</span>
                                                </div>
                                            </div>
                                        {% endif %}
 
+                                       <div class="row text-left bg-white">
+                                           <div class="col">
+                                               <a href=""><span class="fa fa-thumbs-o-up">{% trans from 'user-profile' %} like {% endtrans %}</span></a>
+                                           </div>
+                                           <div class="col" style="display: none;">
+                                               <a href=""><span class="fa fa-comment-o">{% trans from 'user-profile' %} comment {% endtrans %}</span></a>
+                                           </div>
+                                       </div>
                                    </div>
                                </div>
                             </div>

@@ -5,6 +5,20 @@ title: Fublobe | Bienvenue
 see: Vu le
 search:
   title: je suis là pour me faire des nouveaux amis et traiter de bonnes affaires avec des intellectuelles et experimentés
+  ville: Cities
+  age:
+    title: Tranche d'age
+    min: Age minimal
+    max: Age maximal
+  surface:
+    title: Rechercher dans les périmètres
+    min: Position min
+    max: Position max
+  sex: Sexe
+  profession: Profession
+like: J'aime
+comment: Commenter
+share: Partager
 important:
   vip: Vous voulez vous amuser a chaque instant, ne perdez pas le temps soyez vip
   active: Devenir vip
