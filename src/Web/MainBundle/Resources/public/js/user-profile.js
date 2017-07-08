@@ -8,6 +8,9 @@ var MainUserProfile = function()
         page: $("#mainUserProfile"),
         id:{
             modalEmail: $("#modalEmail")
+        },
+        class:{
+            carousel: $('.carousel')
         }
     };
 
@@ -29,5 +32,8 @@ $(function(){
        });
 
        mainUserProfile.params.id.modalEmail.modal('show');
+       mainUserProfile.params.class.carousel.carousel({
+           interval: 2000
+       });
    }
 });
