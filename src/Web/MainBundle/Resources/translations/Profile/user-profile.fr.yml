@@ -5,7 +5,7 @@ title: Fublobe | Bienvenue
 see: Vu le
 search:
   title: je suis là pour me faire des nouveaux amis et traiter de bonnes affaires avec des intellectuelles et experimentés
-  ville: Cities
+  cities: Cities
   age:
     title: Tranche d'age
     min: Age minimal
@@ -16,6 +16,7 @@ search:
     max: Position max
   sex: Sexe
   profession: Profession
+  btn: Valider
 like: J'aime
 comment: Commenter
 share: Partager

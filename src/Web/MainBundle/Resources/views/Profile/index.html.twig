@@ -46,75 +46,125 @@
                         <div class="card card-block bg-faded">
                             <form>
                                <div class="row">
-                                   <fieldset class="form-group col-sm-12">
-                                       <legend>Zone appropriée </legend>
-                                       <div class="row">
-                                           <div class=" col-sm-12 col-md-6">
-                                               <div class="form-group">
-                                                   <label for="exampleInputEmail1">Email address</label>
-                                                   <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
-                                                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </fieldset>
-                                   <fieldset class="form-group col-sm-12">
-                                       <legend>Tranche d'age </legend>
-                                       <div class="row">
-                                           <div class=" col-sm-12 col-md-6">
-                                               <div class="form-group">
-                                                   <label for="exampleInputEmail1">Email address</label>
-                                                   <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
-                                                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                               </div>
-                                           </div>
-                                           <div class=" col-sm-12 col-md-6">
-                                               <div class="form-group">
-                                                   <label for="exampleInputEmail1">Email address</label>
-                                                   <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
-                                                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </fieldset>
-                                   <fieldset class="form-group col-sm-12">
-                                       <legend>Rechercher dans les périmètres </legend>
-                                     <div class="row">
-                                         <div class=" col-sm-12 col-md-6">
-                                             <div class="form-group">
-                                                 <label for="exampleInputEmail1">Email address</label>
-                                                 <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
-                                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                             </div>
-                                         </div>
-                                         <div class=" col-sm-12 col-md-6">
-                                             <div class="form-group">
-                                                 <label for="exampleInputEmail1">Email address</label>
-                                                 <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
-                                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                             </div>
-                                         </div>
-                                     </div>
-                                   </fieldset>
 
-                                   <div class=" col-sm-12 col-md-6">
-                                       <div class="form-group">
-                                           <label for="exampleInputEmail1">Profession</label>
-                                           <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
-                                           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                   <div id="accordion" role="tablist" aria-multiselectable="true" class="col-sm-12">
+                                       <div class="card">
+                                           <div class="card-header bg-white text-gray-dark" role="tab" id="headingOne">
+                                               <h5 class="mb-0">
+                                                   <a class="text-gray-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                       {% trans from 'user-profile' %} search.zone.title {% endtrans %}
+                                                   </a>
+                                               </h5>
+                                           </div>
+
+                                           <div id="collapseOne" class="collapse bg-faded" role="tabpanel" aria-labelledby="headingOne">
+                                               <div class="card-block">
+                                                   <div class=" col-sm-12">
+                                                       <div class="form-group">
+                                                           <label for="cities"> {% trans from 'user-profile' %} search.zone.cities {% endtrans %}</label>
+                                                           <select class="form-control" id="cities" aria-describedby="cities-help">
+                                                               <option>1</option>
+                                                               <option>2</option>
+                                                               <option>3</option>
+                                                               <option>4</option>
+                                                               <option>5</option>
+                                                           </select>
+                                                           <small id="cities-help" class="form-text text-muted"> {% trans from 'user-profile' %} search.zone.cities_text {% endtrans %}</small>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="card">
+                                           <div class="card-header  bg-white text-gray-dark" role="tab" id="headingTwo">
+                                               <h5 class="mb-0">
+                                                   <a class="collapsed text-gray-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                       {% trans from 'user-profile' %} search.age.title {% endtrans %}
+                                                   </a>
+                                               </h5>
+                                           </div>
+                                           <div id="collapseTwo" class="collapse bg-faded" role="tabpanel" aria-labelledby="headingTwo">
+                                               <div class="card-block">
+                                                  <div class="row">
+                                                      <div class=" col-sm-12 col-md-6">
+                                                          <div class="form-group">
+                                                              <label for="age-min"> {% trans from 'user-profile' %} search.age.min {% endtrans %}</label>
+                                                              <input type="number" class="form-control" id="age-min" aria-describedby="age-min-help" placeholder="" min="0">
+                                                              <small id="age-min-help" class="form-text text-muted"> {% trans from 'user-profile' %} search.age.min_text {% endtrans %}</small>
+                                                          </div>
+                                                      </div>
+                                                      <div class=" col-sm-12 col-md-6">
+                                                          <div class="form-group">
+                                                              <label for="age-max"> {% trans from 'user-profile' %} search.age.max {% endtrans %}</label>
+                                                              <input type="number" class="form-control" id="age-max" aria-describedby="age-max-help" placeholder="" min="0">
+                                                              <small id="age-max-help" class="form-text text-muted"> {% trans from 'user-profile' %} search.age.max_text {% endtrans %}</small>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="card">
+                                           <div class="card-header  bg-white text-gray-dark" role="tab" id="headingThree">
+                                               <h5 class="mb-0">
+                                                   <a class="collapsed text-gray-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                       {% trans from 'user-profile' %} search.surface.title {% endtrans %}
+                                                   </a>
+                                               </h5>
+                                           </div>
+                                           <div id="collapseThree" class="collapse bg-faded" role="tabpanel" aria-labelledby="headingThree">
+                                               <div class="card-block">
+                                                  <div class="row">
+                                                      <div class=" col-sm-12 col-md-6">
+                                                          <div class="form-group">
+                                                              <label for="surface-min"> {% trans from 'user-profile' %} search.surface.min {% endtrans %}</label>
+                                                              <input type="number" class="form-control" id="surface-min" aria-describedby="age-min-help" placeholder="" min="0">
+                                                              <small id="surface-min-help" class="form-text text-muted"> {% trans from 'user-profile' %} search.surface.min_text {% endtrans %}</small>
+                                                          </div>
+                                                      </div>
+                                                      <div class=" col-sm-12 col-md-6">
+                                                          <div class="form-group">
+                                                              <label for="surface-max"> {% trans from 'user-profile' %} search.surface.max {% endtrans %}</label>
+                                                              <input type="number" class="form-control" id="surface-max" aria-describedby="surface-max-help" placeholder="" min="0">
+                                                              <small id="surface-max-help" class="form-text text-muted"> {% trans from 'user-profile' %} search.surface.max_text {% endtrans %}</small>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                               </div>
+                                           </div>
                                        </div>
                                    </div>
 
                                    <div class=" col-sm-12 col-md-6">
                                        <div class="form-group">
-                                           <label for="exampleInputEmail1">Sexe</label>
-                                           <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" min="0">
-                                           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                           <label for="professsion">{% trans from 'user-profile' %} search.profession {% endtrans %}</label>
+                                           <select class="form-control" id="professsion" aria-describedby="professsion-help">
+                                               <option>1</option>
+                                               <option>2</option>
+                                               <option>3</option>
+                                               <option>4</option>
+                                               <option>5</option>
+                                           </select>
+                                           <small id="professsion-Help" class="form-text text-muted">{% trans from 'user-profile' %} search.profession_text {% endtrans %}</small>
+                                       </div>
+                                   </div>
+
+                                   <div class=" col-sm-12 col-md-6">
+                                       <div class="form-group">
+                                           <label for="sex">{% trans from 'user-profile' %} search.sex {% endtrans %}</label>
+                                           <select class="form-control" id="sex" aria-describedby="sex-help">
+                                               <option>1</option>
+                                               <option>2</option>
+                                               <option>3</option>
+                                               <option>4</option>
+                                               <option>5</option>
+                                           </select>
+                                           <small id="sex-Help" class="form-text text-muted">{% trans from 'user-profile' %} search.sex_text {% endtrans %}</small>
                                        </div>
                                    </div>
 
                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">{% trans from 'user-profile' %} search.btn {% endtrans %}</button>
                             </form>
                         </div>
                     </div>

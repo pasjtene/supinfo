@@ -6,18 +6,19 @@ see: See to
 search:
   title: I am here to make new friends and deal with bargains with intellectuals and experienced
   zone:
-    title: Appropriete zone
-    ville: Cities
+    title: Appropriate area
+    cities: Cities
   age:
     title:  Tranche d'age
     min: Min age
     max: Max age
   surface:
-    title: Search  to  superficie
-    min: Min postion
-    max: Max postion
+    title: Search in the perimeters
+    min: Min position
+    max: Max position
   sex: Sex
   profession: Profession
+  btn: Valid
 
 like: I like
 comment: Comment
