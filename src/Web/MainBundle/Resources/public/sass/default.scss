@@ -2,6 +2,7 @@ $default-color: #0275D8;
 $default-color-hover: forestgreen;
 $secondary-color : rgba(0,0,0,.125);
 $color-default : #F7F7F7;
+$body-background : #F7F7F7;
 $default-font-color: #292b2c;
 $secondary-font-color: #ffffff;
 $badnew-color: #DF534F;
@@ -34,19 +35,7 @@ button{
 }
 
 
-html{
-  height: 100%;
-}
-body{
-  height: 100%;
-}
-#body{
- height: 100%;
-}
 
-#content{
-  height: (100% -3em);
-}
 
 #footer{
   margin-top: 2em;
@@ -102,7 +91,7 @@ body{
 }
 
 body{
-  background-color: $color-default;
+  background-color: $body-background;
 }
 
 .bg-white{

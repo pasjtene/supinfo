@@ -1,3 +1,5 @@
+$body-background : #F7F7F7;
+
 #mainRegister{
    margin-top: 1em;
   #modalSave{
@@ -78,4 +80,14 @@
        padding-top: 1.5em;
      }
    }
+
+}
+
+
+#pushFooter {
+  display: block;
+  border: 1px solid $body-background;
+  width: 100%;
+  /*margin-bottom: 122px;*/
+  margin-bottom: 6.4%;
 }
