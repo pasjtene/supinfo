@@ -1,8 +1,8 @@
 {% extends 'MainBundle::layout.html.twig' %}
 
 {% block meta %}
-    <meta name = "{% trans from 'home' %} refer.title {% endtrans %}" >
-    <meta name = "keywords" content = "{% trans from 'home' %} refer.description {% endtrans %}" >
+    <meta name = "{% trans from 'about' %} about.block14 {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'about' %} about.block15 {% endtrans %}" >
     <meta charset="utf-8">
 
 {% endblock %}
@@ -20,36 +20,24 @@
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
     </div>
+    <img  class="banner_im" src="{{ asset('data/img/image3.jpg') }}" alt="">
 {% endblock %}
 
 {% block  main %}
  <div id="main_about">
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-    </ol>
+
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
+
         <div class="item active">
-            <img  class="banner_im" src="{{ asset('data/img/image3.jpg') }}" alt="">
+
             <div class="carousel-caption">
                 <h1>{% trans from 'about' %} about.title1 {% endtrans %}</h1>
                 <a href="#"><p><button type="button" class="btn btn-success">{% trans from 'about' %} about.title2 {% endtrans %}</button></p></a>
             </div>
         </div>
 
-        <div class="item">
-            <img  class="banner_im" src="{{ asset('data/img/image1.jpg') }}" alt="">
-            <div class="carousel-caption">
-                <h1>{% trans from 'about' %} about.title3 {% endtrans %}</h1>
-                <a href="#"><p><button type="button" class="btn btn-success">{% trans from 'about' %} about.title2 {% endtrans %}</button></p></a>
-            </div>
-        </div>
-    </div>
 
     <!-- Left and right controls -->
     <a class="left carousel-control" href="" role="button" data-slide="prev">
@@ -125,7 +113,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 {% endblock %}
 {% block myjs %}
