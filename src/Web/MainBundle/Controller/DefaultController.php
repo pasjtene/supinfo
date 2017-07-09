@@ -2,10 +2,10 @@
 
 namespace Web\MainBundle\Controller;
 
-use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
+use Web\AppBundle\Entity\User;
 use Web\AppBundle\Tools\FunglobeUserProvider;
 use Web\AppBundle\Tools\FunglobeUtils;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -39,10 +39,33 @@ class DefaultController extends Controller
     /**
      * @Route("/profile/email/request", name="main_email_request", options={"expose"=true})
      */
-    public function emailRequestAction()
+    public function emailRequestAction(Request $request)
     {
+        /** @var User $user */
+        $user =  $this->getUser();
+
         $array = [];
-        return $this->render('MainBundle:Default:photo-request.html.twig', $array);
+
+        $data = ['email' => $user->getEmail()];
+
+        $client = new RestClient(RestClient::$PUT_METHOD, 'auth/verify/email',$user->getToken(), $data);
+
+       // var_dump($client->getContent());
+       // die();
+        if($client->getStatusCode() == 200)
+        {
+            $contents = \GuzzleHttp\json_decode($client->getContent());
+            $message= $this->get('translator')->trans('success.requestMail',["email_resp"=>$user->getEmail()],'alert');
+            $array['successMessage'] = $message;
+             //var_dump($array['successMessage']);
+            // die();
+            return $this->redirectToRoute("main_profile",$array);
+        }
+
+        $error =\GuzzleHttp\json_decode($client->getContent());
+        $message =$this->get('translator')->trans('error.requestMail',[],'alert');
+        $array['successMessage'] = $message;
+        return $this->redirectToRoute("main_profile",$array);;
     }
 
 

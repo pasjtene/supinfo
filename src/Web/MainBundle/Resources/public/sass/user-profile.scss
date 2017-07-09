@@ -1,0 +1,82 @@
+#mainUserProfile{
+  // write css here
+  .jimg {
+    border: 1px solid red;
+    height: 30px;
+  }
+  margin-top: 0em;
+  padding: 1em;
+
+  #important{
+    @extend #important-block;
+  }
+
+  #main-body{
+    padding: 1em;
+    margin-top: 2em;
+
+    #content{
+      margin-top: 2em;
+      .card{
+        margin-bottom: 2em;
+        height: 340px;
+        img{
+          height: 200px;
+          max-width: 200px;
+        }
+        .row
+        {
+          margin-top: 1em;
+          .name{
+
+          }
+          .connect{
+            height: 10px;
+            width: 10px;
+            background-color: $highligt;
+            position: relative;
+            top: 0.5em;
+          }
+          .no-connect{
+            @extend .connect;
+            background-color: $secondary-color;
+          }
+        }
+        :hover{
+          .name{
+            color: $default-color;
+          }
+        }
+      }
+    }
+  }
+
+  #publicity{
+    @extend #publicity-block;
+  }
+}
+
+#important-block{
+  margin-top: 1em;
+  text-wrap: normal;
+  color: white;
+  padding: 0;
+  .card{
+    max-width: 97%;
+    margin-bottom: 2em ;
+    img{
+      height: 100px;
+      max-width: 100px;
+    }
+    #detail{
+      border-radius: 6px;
+      border: solid 4px $secondary-color;
+      padding: 0.2em;
+      margin-top: 1em;
+    }
+  }
+}
+
+#publicity-block{
+  margin-top: 1em;
+}

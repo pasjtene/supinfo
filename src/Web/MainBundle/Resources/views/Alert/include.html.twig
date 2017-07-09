@@ -1,0 +1,23 @@
+{% if errorMessage is defined %}
+    {% include "MainBundle:Alert:error.html.twig" %}
+{% elseif app.request.get("errorMessage")!=null  %}
+    {% include "MainBundle:Alert:error.html.twig" %}
+{% endif %}
+
+{% if successMessage is defined %}
+    {% include "MainBundle:Alert:success.html.twig" %}
+{% elseif app.request.get("successMessage")!=null  %}
+    {% include "MainBundle:Alert:success.html.twig" %}
+{% endif %}
+
+{% if infoMessage is defined %}
+    {% include "MainBundle:Alert:info.html.twig" %}
+{% elseif app.request.get("infoMessage")!=null  %}
+    {% include "MainBundle:Alert:info.html.twig" %}
+{% endif %}
+
+{% if warningMessage is defined %}
+    {% include "MainBundle:Alert:warning.html.twig" %}
+{% elseif app.request.get("warningMessage")!=null  %}
+    {% include "MainBundle:Alert:warning.html.twig" %}
+{% endif %}
