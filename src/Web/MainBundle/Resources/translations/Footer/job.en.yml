@@ -1,7 +1,7 @@
 job:
   block1: Mobile software developer
   block2: Ours jobs Offers
-  block3: users Manager
+  block3: Users Manager
   block4: Engineer Intern
   block5: Full stack software developer
   block6: Marketing Manager
@@ -13,9 +13,9 @@ job:
   block12:  Are you interest by on web technologies and innovation? Do the words leadership, passion and respect dominate your tag cloud?
             If the answer is yes, a job at Funglobe might be just with one click.
   block13: Read more
-  block14: users Manager
+  block14: Users Manager
   block15: we need a responsable, passionate about social media and interested in establishing a long-term collaboration with our community?
-  block16: software Engineering Intern
+  block16: Software Engineering Intern
   block17: Funglobe believes in the potential of young engineers and provides an excellent environment of work in which to grow.
   block18: Full stack software developer
   block19: are you passionate about development? Do you want to be part of a team that builds high scalable products used by millions of peoples trought the world?
@@ -59,3 +59,5 @@ job:
   block47: and have
   block48: fun
   block49: Contact us
+  block50: Jobs at Funglobe
+  block51: Funglobe is made up of the best professional team in the software industry
