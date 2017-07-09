@@ -24,7 +24,7 @@
         <div class="col-md-10 col-sm-12">
             {% include "MainBundle:Inc:photo.html.twig" %}
             <br>
-            <a href="{{ path('main_profile') }}" class="card-link pull-right btn-link">{% trans from 'photo' %} body.link1  {% endtrans %}</a>
+            <a href="{{ path('main_profile',{next:"yes"}) }}" class="card-link pull-right btn-link">{% trans from 'photo' %} body.link1  {% endtrans %}</a>
         </div>
         <div class="col">
 

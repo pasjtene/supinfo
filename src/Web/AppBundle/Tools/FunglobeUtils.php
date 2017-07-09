@@ -41,4 +41,18 @@ class FunglobeUtils
         var_dump($data);
         die();
     }
+
+    /**
+     * Retourne tous les rôles défini dans l'application
+     *
+     * @return array
+     */
+    public static function getAppRoles()
+    {
+        return [
+            ["name_en" => "Member", "name_fr" => "Membre", "value" => 'ROLE_MEMBER'],
+            ["name_en" => "Moderator", "name_fr" => "Modérateur", "value" => 'ROLE_MODERATOR'],
+            ["name_en" => "Administrator", "name_fr" => "Administrateur", "value" => 'ROLE_ADMIN']
+        ];
+    }
 }

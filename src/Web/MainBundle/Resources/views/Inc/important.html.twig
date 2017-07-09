@@ -1,0 +1,48 @@
+<div id="important-block">
+    <div class="card bg-info img-thumbnail">
+        <div class="card-block">
+            <img src="{{ asset('data/img/avatar5.png') }}" alt="" class="img-thumbnail rounded-circle mx-auto d-block">
+            <div id="" class="text-center">
+                <strong>{{ app.user.firstname }}</strong>
+            </div>
+            <div class="bg-faded text-gray-dark" id="detail">
+                <p> <strong> {% trans from 'user-profile' %} important.credits {% endtrans %} : </strong> <span> 5000 </span></p>
+                <p> <strong> {% trans from 'user-profile' %} important.bonus {% endtrans %} : </strong> <strong class="text-success"> 20 </strong></p>
+                <p> <strong> {% trans from 'user-profile' %} important.friends {% endtrans %} : </strong> <span> 4 </span></p>
+                <p> <strong> {% trans from 'user-profile' %} important.popularity {% endtrans %} : </strong> <span class="text-danger"> {% trans from 'user-profile' %} important.popularity_option.1 {% endtrans %} </span></p>
+            </div>
+            <div class="text-center">
+                <br>
+                <a href="" class="btn btn-primary">{% trans from 'user-profile' %} important.photo {% endtrans %}</a>
+            </div>
+        </div>
+    </div>
+    {% if app.user.isEmailVerified==0 %}
+        <div class="card bg-info img-thumbnail text-gray-dark">
+            <div class="card-block">
+                <p>{% trans with {"emails":app.user.email} from "email-confirm"  %} content1 {% endtrans %}</p>
+                <p>
+                    {% trans from "email-confirm"  %} content2 {% endtrans %}
+
+                </p>
+                <div class="text-center">
+                    <br>
+                    <a href="{{ path('main_email_request') }}" class="btn btn-danger">{% trans from "email-confirm"  %} content3 {% endtrans %}</a>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+    <div class="card bg-info img-thumbnail  text-gray-dark">
+        <div class="card-block">
+            {% trans from 'user-profile' %} important.vip {% endtrans %}
+
+            <div class="text-center">
+                <br>
+                <a href="" class="btn btn-danger">
+                    {% trans from 'user-profile' %} important.active {% endtrans %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

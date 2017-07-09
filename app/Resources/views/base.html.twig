@@ -94,11 +94,15 @@
 
     {% endblock footer %}
 </div>
+
+{% set currentPath = path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) %}
 <script>
     // get locale
     locale = "{{ app.request.locale }}";
     // get route
     route = "{{ route }}";
+    // url  courant
+    url = "{{ currentPath }}";
 </script>
 {% if app.environment == 'dev' %}
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
@@ -111,6 +115,7 @@
 
     <!-- js-translation -->
     <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
+    <script src="{{ url('bazinga_jstranslation_js') }}"></script>
 
     <!-- jQuery 3.1 -->
     <script src="{{ asset('plugin/jQuery/jquery.js') }}"></script>

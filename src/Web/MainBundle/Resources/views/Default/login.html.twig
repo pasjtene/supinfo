@@ -19,7 +19,9 @@
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
 {% endblock %}
 
-{% block main %}
+{% block mainLg %}
+<div class="row" id="mainContentLg">
+    <div class="container">
     <div class="row" id="mainLogin" data-page="mainLogin">
 
         <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-confirm="{% trans from 'register' %} form.notification.success {% endtrans %}">
@@ -94,6 +96,12 @@
                 </form>
             </div>
     </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "MainBundle:Footer:registerFooter.html.twig" %}
 {% endblock %}
 
 {% block myjs %}
