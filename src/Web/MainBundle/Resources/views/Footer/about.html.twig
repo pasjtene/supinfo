@@ -20,8 +20,9 @@
 {% block header %}
     <div id="main_about">
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+        <img  class="banner_i" src="{{ asset('data/img/about4.jpg') }}" alt="">
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
-        <div class="banner_ centre"><img  class="banner_i" src="{{ asset('data/img/about4.jpg') }}" alt=""></div>
+        <div class="banner_ centre"></div>
         <div class="row line">
         <div> Funglobe: {% trans from 'about' %} about.block16 {% endtrans %} </div>
             <div class="centre">
