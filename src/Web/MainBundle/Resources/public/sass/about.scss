@@ -7,8 +7,14 @@
      -moz-background-size: cover;
      -o-background-size: cover;
      background-size: cover;
+     border: 2px solid red;
    }
    #main_about{
+    
+     #top_img {
+       visibility: hidden;
+       border: 1px solid red;
+     }
      .ban {
        background-color: #0275D8; /* Green */
        color: #ffffff;
@@ -44,7 +50,8 @@
      }
      .line{
        height: 1.3cm;
-       width: 1375px;
+       /*width: 1375px;*/
+       width: 100%;
        background-color: yellowgreen;
        border-radius:1px 1px 600px 600px;
        box-shadow: 6px 6px 6px  6px #0275D8 inset;
