@@ -38,6 +38,22 @@ var AdminHome = function()
 
 };
 
+var getSelectedUsers = function(asObject)
+{
+    var checkboxes = document.getElementsByClassName("user_select_checkbox");
+    var selectedUsers = "", objects = [];
+    for (i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            if (selectedUsers !== ""){
+                selectedUsers += ",";
+            }
+            selectedUsers += checkboxes[i].name;
+            objects.push({"id" : checkboxes[i].name, "value" : checkboxes[i].value})
+        }
+    }
+
+    return asObject === undefined ? selectedUsers : objects;
+};
 
 
 $(function(){
@@ -74,16 +90,7 @@ $(function(){
 
 
         function selectedUsersList() {
-            var checkboxes = document.getElementsByClassName("user_select_checkbox");
-            var selectedUsers = "";
-            for (i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
-                    if (selectedUsers != "")
-                        selectedUsers = selectedUsers + ",";
-                    selectedUsers = selectedUsers + checkboxes[i].name;
-                }
-
-            }
+            var selectedUsers = getSelectedUsers();
 
            deleteUsers(selectedUsers);
         }
@@ -183,7 +190,7 @@ $(function(){
                                     "</td><td>" + user.email +
                                     "</td><td>" + user.gender +
                                     "</td>");
-                                $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.id+'"/>').appendTo(row);
+                                $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.email+'"/>').appendTo(row);
                                 //augmenter les users dans le tableau
                                 adminHome.params.attr.id.users_table_body.append(row);
                                 //row.appendTo('.users_table');
