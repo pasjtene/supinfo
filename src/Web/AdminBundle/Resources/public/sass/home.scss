@@ -31,3 +31,19 @@
   display: block;
   padding: 15px 15px 15px 0px;
 }
+
+#email-spinner{
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 30px;
+  display: none;
+}
+#success-msg{
+  color: yellowgreen;
+  font-weight: bold;
+  position: absolute;
+  left: 30px;
+  display: none;
+
+}
