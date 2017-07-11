@@ -3,24 +3,38 @@ refer:
   description:  Over 51 Million people are having fun  and making new friends on Funglobe every day. Jump in !
 title: Fublobe | Welcome
 see: See to
+preference:
+  title: Apply a filter
 search:
   title: I am here to make new friends and deal with bargains with intellectuals and experienced
   zone:
     title: Appropriate area
     cities: Cities
+    cities_text: Choose the cities
+    countries: Countries
+    countries_text: Choose the Countries
   age:
     title:  Tranche d'age
     min: Min age
+    min_text: the min age must be integer
     max: Max age
+    max_text: the max age must be integer
   surface:
     title: Search in the perimeters
     min: Min position
+    min_text: The min position must be float
     max: Max position
+    max_text: The max position must be float
   sex: Sex
-  profession: Profession
+  sex_text: Choose the Sex
+  profession: Professions
+  profession_text: Choose the professions
   btn: Valid
 
 like: I like
+filter: Prefenrence
+filter_body: |
+ You will like to filter the searches according to your needs and save the filter in order to shorten the path
 comment: Comment
 share: Share
 important:
