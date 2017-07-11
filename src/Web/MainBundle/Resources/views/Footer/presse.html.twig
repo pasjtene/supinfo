@@ -1,8 +1,8 @@
 {% extends 'MainBundle::layout.html.twig' %}
 
 {% block meta %}
-    <meta name = "{% trans from 'phone' %} refer.title {% endtrans %}" >
-    <meta name = "keywords" content = "{% trans from 'phone' %} refer.description {% endtrans %}" >
+    <meta name = "{% trans from 'presse' %} presse.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'presse' %} presse.block1 {% endtrans %}" >
 {% endblock %}
 
 {% block title %}
@@ -22,27 +22,18 @@
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
 <div id="main_presse">
-
-             <img class="forme1"  src="{{ asset('data/img/forma.jpg') }}" alt="">
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="container text-center">
-
+    <img class="forme1"  src="{{ asset('data/img/forma.jpg') }}" alt="">
+    <div class="container text-center hautspace2">
         <div class="row">
             <div class="col-sm-4">
                 <a href="">
                     <img  class="banner_im" src="{{ asset('data/img/rencontre22.jpg') }}" alt="" style="width:100%" alt="Image" class="img-responsive">
-
-               <strong> <p>{% trans from 'presse' %} presse.block1 {% endtrans %}</p></strong></a>
+                    <strong> <p>{% trans from 'presse' %} presse.block1 {% endtrans %}</p></strong>
+                </a>
             </div>
             <div class="col-sm-4">
-
                 <a href="">
                     <img  class="banner_im" src="{{ asset('data/img/femme2.jpg') }}" alt="" class="img-responsive" style="width:100%">
-
                 <strong><p>{% trans from 'presse' %} presse.block2 {% endtrans %}</p></strong></a>
             </div>
             <div class="col-sm-4">
@@ -57,10 +48,8 @@
             </div>
         </div>
     </div>
-<div class="row">
+    <div class="row">
     <div class="col-sm-4">
-       <div>
-       </div>
     </div>
     <div class="col-sm-4">
         <div>
@@ -69,7 +58,6 @@
     </div>
     <div class="col-sm-4">
         <div>
-
             <h2><strong>{% trans from 'presse' %} presse.block7 {% endtrans %}</strong></h2>
         </div>
         <div class="row">
@@ -91,81 +79,62 @@
         </div>
 
     </div>
-</div>
-    <br>
-<div class="row">
+    </div>
+    <div class="row hautspace">
     <div class="col-sm-2">
         </div>
         <div class="col-sm-8">
         <div>
             <h3 style="text-align: center"><p><strong>{% trans from 'presse' %} presse.block8 {% endtrans %}</strong></p></h3>
-
             {% trans from 'presse' %} presse.block9 {% endtrans %}
         </div>
-
     </div>
     <div class="col-sm-2">
     </div>
     </div>
-    <br>
-    <br>
-
-    <div class="container text-center">
-
+    <div class="container text-center hautspace">
         <div class="row">
             <div class="col-sm-4">
                 <a href=""><img  class="banner_im" src="{{ asset('data/img/t2.jpg') }}" alt="" class="img-responsive" style="width:100%">
                 </a>
-                    <p></p>
             </div>
             <div class="col-sm-4">
-                <a HREF=""><img  class="banner_im" src="{{ asset('data/img/t1.jpg') }}" alt="" class="img-responsive" style="width:100%"></a>
-
-                    <p></p>
+                <a href=""><img  class="banner_im" src="{{ asset('data/img/t1.jpg') }}" alt="" class="img-responsive" style="width:100%"></a>
             </div>
             <div class="col-sm-4">
-                <a HREF=""><img  class="banner_im" src="{{ asset('data/img/t3.jpg') }}" alt="" class="img-responsive" style="width:100%"></a>
-
-                    <p></p>
+                <a href=""><img  class="banner_im" src="{{ asset('data/img/t3.jpg') }}" alt="" class="img-responsive" style="width:100%"></a>
             </div>
 
         </div>
     </div>
-    <br>
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-1" >
         </div>
     <div class="col-sm-5" id="bat2">
-        {% trans from 'presse' %} presse.block10 {% endtrans %}
+            {% trans from 'presse' %} presse.block10 {% endtrans %}
     </div>
     <div class="col-sm-5" id="bat1">
-        {% trans from 'presse' %} presse.block11 {% endtrans %} <a href="mailto:pascal4400@gmail.com">press@funglobe.com.</a>
+            {% trans from 'presse' %} presse.block11 {% endtrans %} <a href="mailto:pascal4400@gmail.com">press@funglobe.com.</a>
     </div>
     <div class="col-sm-1">
     </div>
-</div>
-    <br>
-    <br>
-    <div class="row">
-    <div class="col-sm-2" >
     </div>
-    <div class="col-sm-8" >
-        <h2><strong><p style="text-align: center">{% trans from 'presse' %} presse.block12 {% endtrans %}</p></strong></h2>
-        {% trans from 'presse' %} presse.block13 {% endtrans %} <a href="mailto:pascal4400@gmail.com">press@funglobe.com</a>.
-        {% trans from 'presse' %} presse.block14 {% endtrans %}.
+    <div class="row hautspace">
+        <div class="col-sm-2" >
+        </div>
+        <div class="col-sm-8" >
+            <h2><strong><p style="text-align: center">{% trans from 'presse' %} presse.block12 {% endtrans %}</p></strong></h2>
+            {% trans from 'presse' %} presse.block13 {% endtrans %} <a href="mailto:pascal4400@gmail.com">press@funglobe.com</a>.
+            {% trans from 'presse' %} presse.block14 {% endtrans %}.
+        </div>
+        <div class="col-sm-2" >
+        </div>
+        </div>
     </div>
-    <div class="col-sm-2" >
-    </div>
-    </div>
-    <br>
-    <br>
-</div>
+    {% endblock %}
 
-{% endblock %}
-
-{% block main %}
-<div id="main_presse">
+    {% block main %}
+    <div id="main_presse hautspace">
     <div class="row">
         <div class="col-sm-1" >
         </div>
@@ -215,10 +184,7 @@
         <div class="col-sm-1" >
         </div>
     </div>
-    <br>
-    <br>
-
-    <div class="row">
+    <div class="row hautspace">
         <div class="col-sm-2" >
         </div>
         <div class="col-sm-7" >
