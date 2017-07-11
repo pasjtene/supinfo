@@ -1,8 +1,8 @@
 {% extends 'MainBundle::layout.html.twig' %}
 
 {% block meta %}
-    <meta name = "{% trans from 'phone' %} refer.title {% endtrans %}" >
-    <meta name = "keywords" content = "{% trans from 'phone' %} refer.description {% endtrans %}" >
+    <meta name = "{% trans from 'help' %} help.block21 {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'help' %} help.bllock23 {% endtrans %}" >
 
 {% endblock %}
 
@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block main %}
-
+<div id="help">
 
     <div class="row" id="main_help">
 
@@ -93,29 +93,22 @@
 
             <div class="col col-lg-9">
                 <div class="text-justify">
-                    <h3 style="alignment: center" > <strong>{% trans from 'help' %} help.block1 {% endtrans %}</strong> </h3>
+                    <h3 class="baspace" style="alignment: center" > <strong>{% trans from 'help' %} help.block1 {% endtrans %}</strong> </h3>
+                    <p class="baspace"> {% trans from 'help' %} help.block2 {% endtrans %} </p>
+                    <input  type="search" class="form-control baspace" id="email" placeholder="{% trans from 'help' %} help.block50 {% endtrans %}" name="email">
                     <br>
-
-                    <p align=""> {% trans from 'help' %} help.block2 {% endtrans %} </p>
-                    <br>
-                    <input type="search" class="form-control" id="email" placeholder="{% trans from 'help' %} help.block50 {% endtrans %}" name="email">
-                    <br>
-                    <button type="submit" class="btn btn-default" style="background-color: #0275D8"> {% trans from 'help' %} help.block3 {% endtrans %} </button>
-                    <br>
+                    <button type="submit" class="btn btn-default baspace" style="background-color: #0275D8"> {% trans from 'help' %} help.block3 {% endtrans %} </button>
                     <h1>{% trans from 'help' %} help.block4 {% endtrans %} </h1>
                     <div class="position_wrapper">
                         <div class="position_title">
                             <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block5 {% endtrans %}</h3></div>
                             <div  class="location" style="text-align: center"><h1>1</h1></div>
                         </div>
-                        <br>
-                        <div class="position_details">
-                            <p>
-                            <h5> {% trans from 'help' %} help.block6 {% endtrans %}</h5>
-                            </p>
-
-                            <h6><em> {% trans from 'help' %} help.block7 {% endtrans %} <a href="">{% trans from 'help' %} help.block8 {% endtrans %}</a>  {% trans from 'help' %} help.block9 {% endtrans %}
-                                    </em></h6>
+                        <div class="position_details hautspace">
+                                <p><h5> {% trans from 'help' %} help.block6 {% endtrans %}</h5></p>
+                                <h6><em> {% trans from 'help' %} help.block7 {% endtrans %} <a href="">{% trans from 'help' %} help.block8 {% endtrans %}</a>  {% trans from 'help' %} help.block9 {% endtrans %}
+                                    </em>
+                                </h6>
                         </div>
                     </div>
                     <div class="position_wrapper">
@@ -123,15 +116,12 @@
                             <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block10 {% endtrans %}</h3></div>
                             <div  class="location" style="text-align: center"><h1>2</h1></div>
                         </div>
-                        <br>
-                        <div class="position_details">
-                            <p>
-                            <h5> {% trans from 'help' %} help.block11 {% endtrans %}l</h5>
-                            </p>
-
-                            <h6><em> {% trans from 'help' %} help.block12 {% endtrans %}, <a href="">{% trans from 'help' %} help.block13 {% endtrans %}</a>  {% trans from 'help' %} help.block14 {% endtrans %} <a href="">{% trans from 'help' %} help.block15 {% endtrans %}</a> . {% trans from 'help' %} help.block16 {% endtrans %}
-                                   </em>
-                            </h6>
+                        <div class="position_details hautspace">
+                                <p>
+                                <h5> {% trans from 'help' %} help.block11 {% endtrans %}l</h5>
+                                </p>
+                                <h6><em> {% trans from 'help' %} help.block12 {% endtrans %}, <a href="">{% trans from 'help' %} help.block13 {% endtrans %}</a>  {% trans from 'help' %} help.block14 {% endtrans %} <a href="">{% trans from 'help' %} help.block15 {% endtrans %}</a> . {% trans from 'help' %} help.block16 {% endtrans %}</em>
+                                </h6>
                         </div>
                     </div>
                     <div class="position_wrapper">
@@ -139,12 +129,10 @@
                             <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block17 {% endtrans %}</h3></div>
                             <div  class="location" style="text-align: center"><h1>3</h1></div>
                         </div>
-                        <br>
-                        <div class="position_details">
+                        <div class="position_details hautspace">
                             <p>
                             <h5> {% trans from 'help' %} help.block18 {% endtrans %}</h5>
                             </p>
-
                             <h6><em> {% trans from 'help' %} help.block19 {% endtrans %} <a
                                             href="">{% trans from 'help' %} help.block20 {% endtrans %}</a> .
                                 </em></h6>
@@ -155,14 +143,11 @@
                             <div class="position" style="text-align: center"> <h3>{% trans from 'help' %} help.block21 {% endtrans %}</h3></div>
                             <div  class="location" style="text-align: center"><h1>4</h1></div>
                         </div>
-                        <br>
-                        <div class="position_details">
+                        <div class="position_details hautspace">
                             <p>
                             <h5> {% trans from 'help' %} help.block22 {% endtrans %}</h5>
                             </p>
-
-                            <h6><em> {% trans from 'help' %} help.block23 {% endtrans %}
-                                </em></h6>
+                            <h6><em> {% trans from 'help' %} help.block23 {% endtrans %}</em></h6>
                         </div>
                     </div>
                     <div class="position_wrapper">
@@ -286,7 +271,7 @@
             </p>
         </div>
     </div>
-
+</div>
 {% endblock %}
 
 {% block myjs %}

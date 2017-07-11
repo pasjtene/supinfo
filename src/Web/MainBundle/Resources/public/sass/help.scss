@@ -1,3 +1,8 @@
+#help{
+  background-color: #fff;
+  border-color: #fff;
+}
+
 #main_help {
 .position_title:hover {
   display:block;
@@ -13,6 +18,7 @@
   width: 100%;
   float: right;
 }
+
 h6{
   font-size: 1.5em;
   text-align: justify;
@@ -123,6 +129,12 @@ and (orientation : landscape)
 
 
 }
+  .baspace{
+    padding-bottom: 1cm;
+  }
+  .hautspace{
+    padding-top: 1cm;
+  }
 }
 
 

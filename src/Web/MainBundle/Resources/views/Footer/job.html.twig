@@ -1,12 +1,12 @@
 {% extends 'MainBundle::layout.html.twig' %}
 
 {% block meta %}
-    <meta name = "{% trans from 'from' %} job.block50 {% endtrans %}" >
-    <meta name = "keywords" content = "{% trans from 'block51' %} job.block51 {% endtrans %}" >
+    <meta name = "{% trans from 'job' %} job.block50 {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'job' %} job.block51 {% endtrans %}" >
 {% endblock %}
 
 {% block title %}
-    {% trans from 'home' %} title {% endtrans %}
+    {% trans from 'job' %} title {% endtrans %}
 {% endblock  %}
 
 {% block mycss %}
@@ -20,9 +20,8 @@
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
 <div id="main_job">
-    <div class="taille">
-    <div class="container-fluid ban text-center">
-
+        <div class="taille">
+        <div class="container-fluid ban text-center">
         <img  class="banner_im" src="{{ asset('data/img/job2.jpg') }}" alt="">
         <div>
             <a href=""><button type="button" class="btn btn-info">{% trans from 'job' %}  job.block1 {% endtrans %}</button></a>
@@ -32,259 +31,231 @@
             <button type="button" class="btn btn-success">{% trans from 'job' %}  job.block5 {% endtrans %}</button>
             <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block6 {% endtrans %}</button>
             </div>
-
-    </div>
-    </div>
-    </div>
+        </div>
+        </div>
+        </div>
 {% endblock %}
 
 {% block main %}
-<div id="main_job">
-
-    <div class="row   espace">
-        <div class ="col-sm-12 col  col-lg-3" >
-        </div>
-        <div class ="col-sm-12 col  col-lg-6 " >
-            <div class=" culture text-center">
-                <h1><strong>{% trans from 'job' %}  job.block7 {% endtrans %} </strong></h1>
+    <div id="main_job">
+        <div class="row   espace">
+            <div class ="col-sm-12 col  col-lg-3" >
+            </div>
+                <div class ="col-sm-12 col  col-lg-6 " >
+                <div class=" culture text-center">
+                    <h1><strong>{% trans from 'job' %}  job.block7 {% endtrans %} </strong></h1>
+                </div>
+                </div>
+            <div class ="col-sm-12 col  col-lg-1" >
             </div>
         </div>
-        <div class ="col-sm-12 col  col-lg-1" >
-        </div>
-    </div>
-
-    <div class="row espace ">
-        <div class="col-sm-2 ">
+        <div class="row espace ">
+            <div class="col-sm-2 ">
             </div>
-        <div class="col-sm-3 contour">
-            <h4><strong>{% trans from 'job' %}  job.block8 {% endtrans %}</strong></h4>
-            <p>{% trans from 'job' %}  job.block9 {% endtrans %}</p>
-            <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block10 {% endtrans %}</button>
+            <div class="col-sm-3 contour">
+                <h4><strong>{% trans from 'job' %}  job.block8 {% endtrans %}</strong></h4>
+                <p>{% trans from 'job' %}  job.block9 {% endtrans %}</p>
+                <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block10 {% endtrans %}</button>
+            </div>
+            <div class="col-sm-3 contour">
+                <h4><strong> {% trans from 'job' %}  job.block11 {% endtrans %}</strong></h4>
+                <p>
+                    {% trans from 'job' %}  job.block12 {% endtrans %}.
+                </p>
+                <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block13 {% endtrans %} </button>
+            </div>
+            <div class="col-sm-3 contour">
+                <h4><strong>{% trans from 'job' %}  job.block14 {% endtrans %}</strong></h4>
+                <p>{% trans from 'job' %}  job.block15 {% endtrans %}</p>
+                <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block10 {% endtrans %} </button>
+            </div>
         </div>
-        <div class="col-sm-3 contour">
-            <h4><strong> {% trans from 'job' %}  job.block11 {% endtrans %}</strong></h4>
-            <p>
-                {% trans from 'job' %}  job.block12 {% endtrans %}.
-            </p>
-            <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block13 {% endtrans %} </button>
-        </div>
-        <div class="col-sm-3 contour">
-            <h4><strong>{% trans from 'job' %}  job.block14 {% endtrans %}</strong></h4>
-            <p>{% trans from 'job' %}  job.block15 {% endtrans %}</p>
-            <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block10 {% endtrans %} </button>
-        </div>
-    </div>
-    <div class="row espace">
-        <div class="col-sm-2 ">
+        <div class="row espace">
+            <div class="col-sm-2 ">
 
-        </div>
-        <div class="col-sm-3 contour">
-            <h4><strong>{% trans from 'job' %}  job.block16 {% endtrans %}</strong></h4>
-            <p>{% trans from 'job' %}  job.block17 {% endtrans %}</p>
-            <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block10 {% endtrans %}</button>
-        </div>
-        <div class="col-sm-3 contour">
-            <h4><strong>{% trans from 'job' %}  job.block18 {% endtrans %}</strong></h4>
-            <p>{% trans from 'job' %}  job.block19 {% endtrans %}</p>
-            <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block10 {% endtrans %} </button>
-        </div>
-        <div class="col-sm-3 contour">
-            <h4><strong>{% trans from 'job' %}  job.block20 {% endtrans %}</strong></h4>
-            <p>
+            </div>
+            <div class="col-sm-3 contour">
+                <h4><strong>{% trans from 'job' %}  job.block16 {% endtrans %}</strong></h4>
+                <p>{% trans from 'job' %}  job.block17 {% endtrans %}</p>
+                <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block10 {% endtrans %}</button>
+            </div>
+            <div class="col-sm-3 contour">
+                <h4><strong>{% trans from 'job' %}  job.block18 {% endtrans %}</strong></h4>
+                <p>{% trans from 'job' %}  job.block19 {% endtrans %}</p>
+                <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block10 {% endtrans %} </button>
+            </div>
+            <div class="col-sm-3 contour">
+                <h4><strong>{% trans from 'job' %}  job.block20 {% endtrans %}</strong></h4>
+                <p>
                 {% trans from 'job' %}  job.block21 {% endtrans %}</p>
-            <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block10 {% endtrans %}</button>
+                <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block10 {% endtrans %}</button>
+            </div>
         </div>
-    </div>
-
-    <div class="container text-center espace">
-
+        <div class="container text-center espace">
+            <div class="row">
+                <div class ="col-sm-12 col  col-lg-1" >
+                </div>
+                <div class ="col-sm-12 col  col-lg-10 " >
+                    <div class=" culture text-center">
+                        <h1><strong>{% trans from 'job' %}  job.block22 {% endtrans %} </strong></h1>
+                    </div>
+                </div>
+                <div class ="col-sm-12 col  col-lg-1" >
+                </div>
+            </div>
+            <div class="row espace">
+                 <div class="col-sm-4">
+                    <a href=""><img  class="banner_im" src="{{ asset('data/img/fruit.jpg') }}" alt="" class="img-responsive" style="width:100%">
+                    <h4><strong>{% trans from 'job' %}  job.block23 {% endtrans %}</strong></h4>
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <a href=""><img  class="banner_im" src="{{ asset('data/img/foot.jpg') }}" alt="" class="img-responsive" style="width:100%">
+                    <h4><strong>{% trans from 'job' %}  job.block24 {% endtrans %}</strong></h4>
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                <a HREF=""><img  class="banner_im" src="{{ asset('data/img/cafe3.jpg') }}" alt="" class="img-responsive" style="width:100%">
+                    <h4><strong>{% trans from 'job' %}  job.block25 {% endtrans %}</strong></h4>
+                </a>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm-4">
+                     <a href=""><img  class="banner_im" src="{{ asset('data/img/free.jpg') }}" alt="" class="img-responsive" style="width:100%; height: 84%">
+                     <h4><strong>{% trans from 'job' %}  job.block26 {% endtrans %}</strong></h4>
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <a HREF=""><img  class="banner_im" src="{{ asset('data/img/joie3.jpg') }}" alt="" class="img-responsive" style="width:100%; height: 84%">
+                    <h4><strong> {% trans from 'job' %}  job.block27 {% endtrans %}</strong></h4>
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <a href=""><img  class="banner_im" src="{{ asset('data/img/event.jpg') }}" alt="" class="img-responsive" style="width:100%; height: 84%">
+                    <h4><strong>{% trans from 'job' %}  job.block28 {% endtrans %}</strong></h4>
+                </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class ="col-sm-12 col  col-lg-3" >
+            </div>
+            <div class ="col-sm-12 col  col-lg-6 " >
+                <div class=" culture text-center">
+                    <h1><strong>{% trans from 'job' %}  job.block29 {% endtrans %}</strong></h1>
+                    <p>{% trans from 'job' %}  job.block30 {% endtrans %}</p>
+                </div>
+            </div>
+            <div class ="col-sm-12 col  col-lg-3" >
+            </div>
+        </div>
         <div class="row">
             <div class ="col-sm-12 col  col-lg-1" >
             </div>
-            <div class ="col-sm-12 col  col-lg-10 " >
-                <div class=" culture text-center">
-                    <h1><strong>{% trans from 'job' %}  job.block22 {% endtrans %} </strong></h1>
-
+            <div class ="col-sm-12 col  col-lg-5 " >
+                <div class="  text-center espace justi">
+                    <h3><strong>{% trans from 'job' %}  job.block31 {% endtrans %} </strong></h3>
+                    <p>{% trans from 'job' %}  job.block32 {% endtrans %}</p>
+                </div>
+            </div>
+            <div class ="col-sm-12 col  col-lg-5 " >
+                <div class="  text-center espace justi">
+                    <h3><strong>{% trans from 'job' %}  job.block33 {% endtrans %} </strong></h3>
+                    <p>{% trans from 'job' %}  job.block34 {% endtrans %}</p>
                 </div>
             </div>
             <div class ="col-sm-12 col  col-lg-1" >
             </div>
         </div>
-
-        <div class="row espace">
-            <div class="col-sm-4">
-                <a href=""><img  class="banner_im" src="{{ asset('data/img/fruit.jpg') }}" alt="" class="img-responsive" style="width:100%">
-                    <h4><strong>{% trans from 'job' %}  job.block23 {% endtrans %}</strong></h4>
-                </a>
-                <p></p>
-            </div>
-            <div class="col-sm-4">
-                <a HREF=""><img  class="banner_im" src="{{ asset('data/img/foot.jpg') }}" alt="" class="img-responsive" style="width:100%">
-                    <h4><strong>{% trans from 'job' %}  job.block24 {% endtrans %}</strong></h4>
-                </a>
-
-                <p></p>
-            </div>
-            <div class="col-sm-4">
-                <a HREF=""><img  class="banner_im" src="{{ asset('data/img/cafe3.jpg') }}" alt="" class="img-responsive" style="width:100%">
-                    <h4><strong>{% trans from 'job' %}  job.block25 {% endtrans %}</strong></h4>
-                </a>
-
-                <p></p>
-            </div>
-
-        </div>
-    </div>
-    <div class="container text-center">
-
         <div class="row">
-            <div class="col-sm-4">
-                <a href=""><img  class="banner_im" src="{{ asset('data/img/free.jpg') }}" alt="" class="img-responsive" style="width:100%; height: 84%">
-                    <h4><strong>{% trans from 'job' %}  job.block26 {% endtrans %}</strong></h4>
-                </a>
-                <p></p>
+            <div class ="col-sm-12 col  col-lg-1" >
             </div>
-            <div class="col-sm-4">
-                <a HREF=""><img  class="banner_im" src="{{ asset('data/img/joie3.jpg') }}" alt="" class="img-responsive" style="width:100%; height: 84%">
-                    <h4><strong> {% trans from 'job' %}  job.block27 {% endtrans %}</strong></h4>
-                </a>
-
-                <p></p>
+            <div class ="col-sm-12 col  col-lg-5 " >
+                <div class="  text-center justi">
+                    <h3><strong>{% trans from 'job' %}  job.block35 {% endtrans %} </strong></h3>
+                    <p>{% trans from 'job' %}  job.block36 {% endtrans %}</p>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <a href=""><img  class="banner_im" src="{{ asset('data/img/event.jpg') }}" alt="" class="img-responsive" style="width:100%; height: 84%">
-                <h4><strong>{% trans from 'job' %}  job.block28 {% endtrans %}</strong></h4>
-                </a>
+            <div class ="col-sm-12 col  col-lg-5 " >
+                <div class="  text-center justi">
+                    <h3><strong>{% trans from 'job' %}  job.block37 {% endtrans %} </strong></h3>
+                    <p>{% trans from 'job' %}  job.block38 {% endtrans %}</p>
+                </div>
             </div>
-
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <div class ="col-sm-12 col  col-lg-3" >
-        </div>
-        <div class ="col-sm-12 col  col-lg-6 " >
-            <div class=" culture text-center">
-                <h1><strong>{% trans from 'job' %}  job.block29 {% endtrans %}</strong></h1>
-                <p>{% trans from 'job' %}  job.block30 {% endtrans %}</p>
+            <div class ="col-sm-12 col  col-lg-1" >
             </div>
         </div>
-        <div class ="col-sm-12 col  col-lg-3" >
-        </div>
-    </div>
-    <div class="row">
-        <div class ="col-sm-12 col  col-lg-1" >
-        </div>
-        <div class ="col-sm-12 col  col-lg-5 " >
-            <div class="  text-center espace justi">
-                <h3><strong>{% trans from 'job' %}  job.block31 {% endtrans %} </strong></h3>
-                <p>{% trans from 'job' %}  job.block32 {% endtrans %}</p>
+        <div class="row">
+            <div class ="col-sm-12 col  col-lg-1" >
+            </div>
+            <div class ="col-sm-12 col  col-lg-5 " >
+                <div class="  text-center justi">
+                    <h3><strong>{% trans from 'job' %}  job.block39 {% endtrans %} </strong></h3>
+                    <p>{% trans from 'job' %}  job.block40 {% endtrans %}</p>
+                </div>
+            </div>
+            <div class ="col-sm-12 col  col-lg-5 " >
+                <div class="  text-center justi">
+                    <h3><strong>{% trans from 'job' %}  job.block41 {% endtrans %}</strong></h3>
+                    <p>{% trans from 'job' %}  job.block42 {% endtrans %}.</p>
+                </div>
+            </div>
+            <div class ="col-sm-12 col  col-lg-1" >
             </div>
         </div>
-        <div class ="col-sm-12 col  col-lg-5 " >
-            <div class="  text-center espace justi">
-                <h3><strong>{% trans from 'job' %}  job.block33 {% endtrans %} </strong></h3>
-                <p>{% trans from 'job' %}  job.block34 {% endtrans %}</p>
+        <div class="row">
+            <div class ="col-sm-12 col  col-lg-3" >
+            </div>
+            <div class ="col-sm-12 col  col-lg-6 " >
+                <div class=" culture text-center">
+                    <h1><strong>{% trans from 'job' %}  job.block43 {% endtrans %} </strong></h1>
+                </div>
+            </div>
+            <div class ="col-sm-12 col  col-lg-1" >
             </div>
         </div>
-        <div class ="col-sm-12 col  col-lg-1" >
-        </div>
-    </div>
-    <div class="row">
-        <div class ="col-sm-12 col  col-lg-1" >
-        </div>
-        <div class ="col-sm-12 col  col-lg-5 " >
-            <div class="  text-center justi">
-                <h3><strong>{% trans from 'job' %}  job.block35 {% endtrans %} </strong></h3>
-                <p>{% trans from 'job' %}  job.block36 {% endtrans %}</p>
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+                <div class="col-sm-5 espace">
+                    <h2><strong>{% trans from 'job' %}  job.block44 {% endtrans %}</strong></h2>
+                    <p> <strong>-> Pascal Jondzo Tene</strong> <i>(
+                        generally supervision
+                        ,Integration,
+                        development,
+                        Test and validation)</i></p>
+                    <p> <strong>-> Danick Takam <sup>Stratege</sup></strong>  <i>(Lead software developer)</i></p>
+                    <p><strong>-> Eric Tiego <sup>Suprageek</sup></strong>  <i>(full stack software developer)</i></p>
+                    <p> <strong>-> Jouani Talla <sup>Tajore</sup></strong>  <i>(full stack software developer)</i></p>
+                </div>
+            <div class="col-sm-5 espace">
+            <h4 style="text-align: center"><strong>{% trans from 'job' %}  job.block45 {% endtrans %} <strong class="vert">{% trans from 'job' %}  job.block46 {% endtrans %}</strong> {% trans from 'job' %}  job.block47 {% endtrans %} <strong class="vert">{% trans from 'job' %}  job.block48 {% endtrans %}</strong></strong></h4>
+            </div>
+            <div class="col-sm-1">
             </div>
         </div>
-        <div class ="col-sm-12 col  col-lg-5 " >
-            <div class="  text-center justi">
-                <h3><strong>{% trans from 'job' %}  job.block37 {% endtrans %} </strong></h3>
-                <p>{% trans from 'job' %}  job.block38 {% endtrans %}</p>
+        <div class="row espace">
+            <div class ="col-sm-12 col  col-lg-3" >
+            </div>
+            <div class ="col-sm-12 col  col-lg-6 " >
+                <div class=" culture text-center">
+                    <h1><strong>{% trans from 'job' %}  job.block49 {% endtrans %}</strong></h1>
+                </div>
+            </div>
+            <div class ="col-sm-12 col  col-lg-1" >
             </div>
         </div>
-        <div class ="col-sm-12 col  col-lg-1" >
-        </div>
-    </div>
-    <div class="row">
-        <div class ="col-sm-12 col  col-lg-1" >
-        </div>
-        <div class ="col-sm-12 col  col-lg-5 " >
-            <div class="  text-center justi">
-                <h3><strong>{% trans from 'job' %}  job.block39 {% endtrans %} </strong></h3>
-                <p>{% trans from 'job' %}  job.block40 {% endtrans %}</p>
+        <div class="row espace">
+            <div class="col-sm-1" >
             </div>
-        </div>
-        <div class ="col-sm-12 col  col-lg-5 " >
-            <div class="  text-center justi">
-                <h3><strong>{% trans from 'job' %}  job.block41 {% endtrans %}</strong></h3>
-                <p>{% trans from 'job' %}  job.block42 {% endtrans %}.</p>
-            </div>
-        </div>
-        <div class ="col-sm-12 col  col-lg-1" >
-        </div>
-    </div>
-    <div class="row">
-        <div class ="col-sm-12 col  col-lg-3" >
-        </div>
-        <div class ="col-sm-12 col  col-lg-6 " >
-            <div class=" culture text-center">
-                <h1><strong>{% trans from 'job' %}  job.block43 {% endtrans %} </strong></h1>
-            </div>
-        </div>
-        <div class ="col-sm-12 col  col-lg-1" >
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-1">
-            <p></p>
-        </div>
-        <div class="col-sm-5 espace">
-                <h2><strong>{% trans from 'job' %}  job.block44 {% endtrans %}</strong></h2>
-            <p> <strong>-> Pascal Jondzo Tene</strong> <i>(
-                    generally supervision
-                    ,Integration,
-                    development,
-                    Test and validation)</i></p>
-             <p> <strong>-> Danick Takam <sup>Stratege</sup></strong>  <i>(Lead software developer)</i></p>
-               <p><strong>-> Eric Tiego <sup>Suprageek</sup></strong>  <i>(full stack software developer)</i></p>
-               <p> <strong>-> Jouani Talla <sup>Tajore</sup></strong>  <i>(full stack software developer)</i></p>
-
-        </div>
-     <div class="col-sm-5 espace">
-         <h4 style="text-align: center"><strong>{% trans from 'job' %}  job.block45 {% endtrans %} <strong class="vert">{% trans from 'job' %}  job.block46 {% endtrans %}</strong> {% trans from 'job' %}  job.block47 {% endtrans %} <strong class="vert">{% trans from 'job' %}  job.block48 {% endtrans %}</strong></strong></h4>
-
-     </div>
-        <div class="col-sm-1">
-            <p></p>
-        </div>
-    </div>
-
-    <div class="row espace">
-        <div class ="col-sm-12 col  col-lg-3" >
-        </div>
-        <div class ="col-sm-12 col  col-lg-6 " >
-            <div class=" culture text-center">
-                <h1><strong>{% trans from 'job' %}  job.block49 {% endtrans %}</strong></h1>
-            </div>
-        </div>
-        <div class ="col-sm-12 col  col-lg-1" >
-        </div>
-    </div>
-    <div class="row espace">
-        <div class="col-sm-1" >
-        </div>
-        <div class="col-sm-10" >
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-5" >
-
-                        <div class="container">
-
+            <div class="col-sm-10" >
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-5" >
+                            <div class="container">
                             <form action="">
                                 <div class="form-group">
                                     <label for="email">{% trans from 'presse' %} presse.block15 {% endtrans %}:</label>
@@ -296,11 +267,9 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                        </div>
                     <div class="col-sm-5">
-
                         <div class="container">
-
                             <form action="" style="border-color: #0000fe" class="espace_bas">
                                 <div class="form-group">
                                     <label for="email">{% trans from 'presse' %} presse.block17 {% endtrans %}:</label>
@@ -324,8 +293,6 @@
         <div class="col-sm-1" >
         </div>
     </div>
-</div>
-
     <div class="row espace">
         <div class ="col-sm-12 col  col-lg-3" >
         </div>
@@ -346,14 +313,14 @@
                 ({map: map,position: new google.maps.LatLng(51.5073509,-0.12775829999998223)});infowindow = new
                         google.maps.InfoWindow({content:'<strong>Imperial war museum</strong><br>London, United ' +
                 'Kingdom<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});
-                    infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
-        </div>
-        <div class ="col-sm-12 col  col-lg-1" >
+                    infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
+            </script>
+            </div>
+            <div class ="col-sm-12 col  col-lg-1" >
         </div>
     </div>
-
-
-    {% endblock %}
+</div>
+{% endblock %}
 
 {% block myjs %}
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
