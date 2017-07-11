@@ -1,5 +1,13 @@
 
    /* Remove the navbar's default margin-bottom and rounded borders */
+   #mondiv
+   {
+     background: src="{{ asset('data/img/about4.jpg') }}"  no-repeat center center fixed;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+   }
    #main_about{
      .ban {
        background-color: #0275D8; /* Green */
