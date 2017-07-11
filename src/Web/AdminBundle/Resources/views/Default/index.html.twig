@@ -18,10 +18,11 @@
     <div class="row" id="adminHome" data-page="adminHome">
         {% include 'AdminBundle:Inc:adminTabs.html.twig' %}
     </div>
+    {% include 'AdminBundle:Inc:eric-modal-email.html.twig' %}
 {% endblock %}
 
 {% block myjs %}
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
-
+    <script src="{{ asset('plugin/ckeditor/ckeditor.js') }}"></script>
 {% endblock %}
 
