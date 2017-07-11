@@ -7,7 +7,7 @@
 
 {% endblock %}
 {% block title %}
-    <title>About Funglobe</title>
+    {% trans from 'about' %} about.title {% endtrans %}
 {% endblock  %}
 
 {% block mycss %}
@@ -24,7 +24,7 @@
 {% block  mainLg %}
     <div id="main_about">
         <div class="message_and_image">
-            <div class="message_on_image">{% trans from 'about' %} about.block1 {% endtrans %}</strong></div>
+            <div class="message_on_image">{% trans from 'about' %} about.block1 {% endtrans %}</div>
 
             <div id="about_top" style="background-image:url('{{ asset('data/img/about4.jpg') }}')">
                 <img  id="top_img" src="{{ asset('data/img/about4.jpg') }}" alt="">
