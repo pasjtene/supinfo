@@ -1,0 +1,143 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block meta %}
+    <meta name = "{% trans from 'about' %} about.block14 {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'about' %} about.block15 {% endtrans %}" >
+    <meta charset="utf-8">
+
+{% endblock %}
+{% block title %}
+    <title>About Funglobe</title>
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+    <style>
+
+    </style>
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+{% block header %}
+
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+
+    <img  id="mondiv" src="{{ asset('data/img/about4.jpg') }}" alt="">
+
+    <div id="main_about">
+
+        {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+        <div class="row line">
+            <div> Funglobe: {% trans from 'about' %} about.block16 {% endtrans %} </div>
+            <div class="centre">
+                <a href="{{ path('main_login') }}"><button type="button" class="btn  btn-success">{% trans from 'about' %} about.title2 {% endtrans %}</button></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block  main %}
+
+    <div id="main_about">
+
+
+        <div class="row   espace">
+            <div class ="col-sm-12 col  col-lg-1" >
+            </div>
+            <div class ="col-sm-12 col  col-lg-10 " >
+                <div class=" culture text-center">
+                    <h1><strong>{% trans from 'about' %} about.block1 {% endtrans %}</strong></h1>
+                </div>
+            </div>
+            <div class ="col-sm-12 col  col-lg-1" >
+            </div>
+        </div>
+
+
+        <div class="container espace text-center">
+            <p><h3><strong>{% trans from 'about' %} about.block2 {% endtrans %}</strong></h3></p>
+            <div class="row espace">
+                <div class="col-sm-4">
+                    <a href="{{ path('main_footer_job') }}"> <h2><strong><p>{% trans from 'about' %} about.title4 {% endtrans %}</p></strong></h2>
+                        <img  class="banner_i" src="{{ asset('data/img/emploi1.jpg') }}" alt="" class="img-responsive" style="width:100%">
+                    </a>
+                    <p></p>
+                </div>
+                <div class="col-sm-4">
+                    <div  style="width:100%">
+                        <h5><p><strong>{% trans from 'about' %} about.block6 {% endtrans %}</strong></p></h5>
+                        <h5> <p><strong>{% trans from 'about' %} about.block7 {% endtrans %}</strong></p></h5>
+                        <p></p>
+                        <p></p>
+                        <a href="{{ path('main_footer_job') }}"><p><button type="button" class="btn btn-success">{% trans from 'about' %} about.block81 {% endtrans %}</button></p></a>
+                    </div>
+                    <p></p>
+                </div>
+                <div class="col-sm-4">
+                    <p>
+                        <button type="button" class="btn btn-primary"><h3>{% trans from 'about' %} about.block8 {% endtrans %}:</h3> <span class="badge"><h3>40 M </h3></span></button>
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-primary"><h3>{% trans from 'about' %} about.block9 {% endtrans %}:</h3> <span class="badge"><h3>2 M</h3></span></button>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <div class="responsive">
+                <div class="gallery">
+                    <img src="{{ asset('data/img/message2.jpg') }}" alt="Paris" width="400" height="300">
+                    <div class="desc">
+                        <h1> <p><strong>41 M</strong></p></h1>
+                        <p><strong>{% trans from 'about' %} about.block10 {% endtrans %}</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="responsive">
+                <div class="gallery">
+                    <img src="{{ asset('data/img/connect2.jpg') }}" alt="New York" width="200" height="100">
+
+                    <div class="desc"><h1><p><strong>47 M</strong></p></h1>
+                        <p><strong>{% trans from 'about' %} about.block11 {% endtrans %}</strong></p></div>
+                </div>
+            </div>
+
+            <div class="responsive">
+                <div class="gallery">
+                    <img src="{{ asset('data/img/useractif2.jpg') }}" alt="San Francisco" width="200" height="100">
+                    <div class="desc"><h1><p><strong>51 M</strong></p></h1>
+                        <p><strong>{% trans from 'about' %} about.block12 {% endtrans %}</strong></p></div>
+                </div>
+            </div>
+
+            <div class="responsive">
+                <div class="gallery">
+
+                    <img src="{{ asset('data/img/inscrit2.jpg') }}" alt="San Francisco" width="400" height="300">
+
+                    <div class="desc"><h1><p><strong>100 000</strong></p></h1>
+                        <p><strong>{% trans from 'about' %} about.block13 {% endtrans %}</strong></p></div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid text-center bg-grey">
+            <div class="row text-center">
+                <div class="col-sm-3">
+                    <div class="thumbnail">
+                        <img src="{{ asset('data/img/bl.jpg') }}" alt="" width="400" height="300">
+                        <h1><p><strong></strong></p></h1>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+
+
+
+
