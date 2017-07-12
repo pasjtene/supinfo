@@ -1,0 +1,51 @@
+refer:
+  title: The social network for having fun and metting
+  description:  Over 51 Million people are having fun  and making new friends on Funglobe every day. Jump in !
+title: Fublobe | Bienvenue
+see: Vu le
+preference:
+  title: Appliquer un filtre
+
+search:
+  title: je suis là pour me faire des nouveaux amis et traiter de bonnes affaires avec des intellectuelles et experimentés
+  cities: Villes
+  cities_text: Choisissez les villes
+  countries: Pays
+  countries_text: Choisissez les pays
+  age:
+    title: Tranche d'age
+    min: Age minimal
+    min_text: Saisir un entier positif
+    max: Age maximal
+    max_text: Entrer un entier positif
+  surface:
+    title: Rechercher dans les périmètres
+    min: Position min
+    min_text: La position min doit  être un réel
+    max: Position max
+    max_text: La position max doit être réel
+  sex: Sexe
+  sex_text: Choisissez un sexe
+  profession: Professions
+  profession_text: Choisir les professions
+  btn: Valider
+like: J'aime
+filter: Prefenrence
+filter_body: |
+ Vous aimerez filtrer les recherches selon vos besoins  et sauvegarder le filtre afin de raccourcir le chemin
+comment: Commenter
+share: Partager
+important:
+  vip: Vous voulez vous amuser a chaque instant, ne perdez pas le temps soyez vip
+  active: Devenir vip
+  credit:  Crédit
+  friends: Amis
+  popularity: Popularité
+  bonus: Bonus
+  photo: Telecharger les photos
+  popularity_option:
+    1: Trop  faible
+    2: Faible
+    3: Moyenne
+    4: Forte
+    5: Excelente

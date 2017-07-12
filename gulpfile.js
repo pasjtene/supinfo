@@ -13,11 +13,16 @@ var minify = require('gulp-minifier');
 var plumber = require('gulp-plumber');
 var exec = require('child_process').exec;
 var rename = require('gulp-rename');
+var concat = require('gulp-concat');
 
 var jsPaths = [
     './web/bundles/app/js/*.js',
     './web/bundles/main/js/*.js',
     './web/bundles/admin/js/*.js'
+];
+
+var jsParamsPaths = [
+    './web/bundles/app/js/Inc/*.js'
 ];
 
 /*var sassPaths = [
@@ -37,7 +42,7 @@ var supportedBrowsers = [
     'ios 6',
     'android 4'
 ];
-
+/*
 var scriptTask = function()
 {
     gulp.src(jsPaths)
@@ -54,7 +59,7 @@ var scriptTask = function()
         })).pipe(gulp.dest('./web/data/js'))
         .pipe(livereload());
 };
-
+*/
 var sassTask = function()
 {
     gulp.src(sassPaths)
@@ -98,6 +103,27 @@ var uglifyTask = function()
         .pipe(livereload());
 
     console.log('Uglify JS files successfull !');
+};
+
+var paramsTask = function()
+{
+    gulp.src(jsParamsPaths)
+        .pipe(uglify('parameters.js', {
+            outSourceMap: true
+        }))
+        .pipe(gulp.dest('web/data/js'))
+        .pipe(livereload());
+
+    console.log('Uglify JS Parameters files successfull !');
+};
+
+var concatJsTask = function()
+{
+    console.log('Concatening JS files !');
+
+    return gulp.src(jsPaths)
+            .pipe(concat('master.min.js'))
+            .pipe(gulp.dest('./web/data/js'));
 };
 
 gulp.task('default', function(){
@@ -145,6 +171,12 @@ gulp.task('js', ['installAssets'], function()
     currentTask = 'js';
 });
 
+//run the following task if you don't want to minify the scripts
+gulp.task('jsdev', ['installAssets'], function()
+{
+    currentTask = 'jsdev';
+});
+
 gulp.task('file', ['installAssets'], function()
 {
     currentTask = 'file';
@@ -156,25 +188,31 @@ var logStdOutAndErr = function (err, stdout, stderr)
     //console.log(stdout + stderr);
     console.log("Assets installed !!!");
 
-    if(currentTask == 'sass')
+    if(currentTask === 'sass')
     {
         sassTask();
     }
-    else if(currentTask == 'js')
+    else if(currentTask === 'js')
     {
         uglifyTask();
+        paramsTask();
+
+    } else if (currentTask === 'jsdev')
+    {
+        concatJsTask();
+        paramsTask();
     }
-    else if(currentTask == 'img')
+    else if(currentTask === 'img')
     {
         return imageTask();
     }
-    else if(currentTask == 'file')
+    else if(currentTask === 'file')
     {
         uglifyTask();
     }
 };
 
-gulp.task('watch', function ()
+gulp.task('watchprod', function ()
 {
     // Starts the server
     livereload.listen();
@@ -191,5 +229,26 @@ gulp.task('watch', function ()
             console.log('File '+event.path+' has been '+event.type);
 
             currentTask = 'js';
+        });
+});
+
+
+gulp.task('watch', function ()
+{
+    // Starts the server
+    livereload.listen();
+
+    gulp.watch('./src/Web/*/Resources/public/sass/**/*.scss', ['installAssets'])
+        .on('change', function(event){
+            console.log('File '+event.path+' has been '+event.type);
+
+            currentTask = 'sass';
+        });
+
+    gulp.watch('./src/Web/*/Resources/public/js/**/*.js', ['installAssets'])
+        .on('change', function(event){
+            console.log('File '+event.path+'dev has been  '+event.type);
+
+            currentTask = 'jsdev';
         });
 });

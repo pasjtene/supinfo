@@ -13,18 +13,22 @@ var AdminHome = function()
             id:{
                 nbusers: $("#nbusers"),
                 user_list: $("#user_list"),
-                users_table_body: $("#users_table_body")
+                users_table_body: $("#users_table_body"),
+                btn_delete_users: $("#btn_delete_users"),
+                total_users: $("#total_users"),
             },
             class:{
                 nbrofchkbox: $('.nbrofchkbox'),
                 user_select_checkbox: $('.user_select_checkbox'),
-                total_users: $(".total_users"),
                 showtab: 'shown.bs.tab'
             }
         },
         api:{
             action :
-            {findall: baseUrl +"v1/auth/members"},
+            {
+                findall: baseUrl +"auth/members",
+                delete_users: baseUrl +"auth/members/delete/"
+            },
             method:
             {get:"GET"},
             headers:
@@ -34,6 +38,22 @@ var AdminHome = function()
 
 };
 
+var getSelectedUsers = function(asObject)
+{
+    var checkboxes = document.getElementsByClassName("user_select_checkbox");
+    var selectedUsers = "", objects = [];
+    for (i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            if (selectedUsers !== ""){
+                selectedUsers += ",";
+            }
+            selectedUsers += checkboxes[i].name;
+            objects.push({"id" : checkboxes[i].name, "value" : checkboxes[i].value})
+        }
+    }
+
+    return asObject === undefined ? selectedUsers : objects;
+};
 
 
 $(function(){
@@ -59,6 +79,8 @@ $(function(){
                     {
                         //on appel la methode pour charger la partir membre (car la fonction demande que le token exit et ne soit pas null)
                         setMember();
+                        adminHome.params.attr.id.btn_delete_users.click(selectedUsersList);
+
                         //puisque le token n'est plus null a present il  faut qu'on arrete de tester
                         clearInterval(interval);
                     }
@@ -67,17 +89,70 @@ $(function(){
         })
 
 
+        function selectedUsersList() {
+            var selectedUsers = getSelectedUsers();
+
+           deleteUsers(selectedUsers);
+        }
+
+
+        function deleteUsers(v) {
+            alert("Deleting users with ids: "+v);
+            $.ajax(
+                {
+                    url: adminHome.params.api.action.delete_users + v,
+                    type: adminHome.params.api.method.get,
+                    headers : {"X-Auth-Token" : tokenbase.value},
+                    crossDomain: true,
+                    success: function (users) {
+                         $.each(users, function(i, user){
+                            //console.log("Deleting user: " + user.firstName);
+
+                            //We will create a table for confirm delete users ...
+                            /*
+                            var row = $('<tr>').html("<td>" + (i+1) +
+                                "</td><td>" + user.firstName +
+                                "</td><td>" + user.email +
+                                "</td><td>" + user.gender +
+                                "</td>");
+                            $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.id+'"/>').appendTo(row);
+                            //augmenter les users dans le tableau
+                            adminHome.params.attr.id.users_table_body.append(row);
+                            */
+                            //row.appendTo('.users_table');
+                            //adminHome.params.attr.class.total_users.replaceWith(i);
+
+                            updateCount();
+                        });
+
+                        //refresh the members table
+                        setMember();
+                        adminHome.params.attr.id.nbusers.hide();
+                        //Update the number of selected checkboxes
+
+                    },
+                    error: function (xhr, status, message) { //en cas d'erreur
+                        //console.log(status+"\n"+xhr.responseText + '\n' + message );
+                        console.log(status+"\n" + message );
+                    }
+                }
+            );
+
+        }
+
+
+        //This function counts the number of checkboxes that are checked
+        function updateCount () {
+            var count = $("input[type=checkbox]:checked").length;
+            adminHome.params.attr.class.nbrofchkbox.text(count);
+            adminHome.params.attr.id.nbusers.toggle(count > 0);
+
+        }
+
         //methode pour gerer les membres
         function setMember(){
             if(adminHome.params.tab.members.data('tab')=="adminMembers")
             {
-
-                //This function counts the number of checkboxes that are checked
-                function updateCount () {
-                    var count = $("input[type=checkbox]:checked").length;
-                    adminHome.params.attr.class.nbrofchkbox.text(count);
-                    adminHome.params.attr.id.nbusers.toggle(count > 0);
-                }
 
                 //When the table is clicked, we count the number of selected checkboxed
                 updateCount ();
@@ -98,7 +173,6 @@ $(function(){
 
                 });
 
-
                 //find the users list
                 $.ajax(
                     {
@@ -107,19 +181,16 @@ $(function(){
                         headers : {"X-Auth-Token" : tokenbase.value},
                         crossDomain: true,
                         success: function (users) {
-                            console.log(users);
-                            var chkbox = '<input class="form-check-input" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">';
-
-                            //set du  total  des users
-                            adminHome.params.attr.class.total_users.replaceWith(users.length);
+                            adminHome.params.attr.id.total_users.html(users.length);
                             adminHome.params.attr.id.users_table_body.empty();
                             $.each(users, function(i, user){
 
                                 var row = $('<tr>').html("<td>" + (i+1) +
-                                    "</td><td>" + user.firstName +
+                                    "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
+                                    "</td><td>" + user.email +
                                     "</td><td>" + user.gender +
                                     "</td>");
-                                $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="user_id_to_fix"/>').appendTo(row);
+                                $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.email+'"/>').appendTo(row);
                                 //augmenter les users dans le tableau
                                 adminHome.params.attr.id.users_table_body.append(row);
                                 //row.appendTo('.users_table');

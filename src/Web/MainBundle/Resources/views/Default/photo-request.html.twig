@@ -1,0 +1,41 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+
+{% block title %}
+    {% trans from 'photo-request' %}  title {% endtrans %}
+{% endblock  %}
+
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+
+{% block header %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="row" id="mainPicture">
+        <div class="col">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+            {% include "MainBundle:Inc:photo.html.twig" %}
+            <br>
+            <a href="{{ path('main_profile',{next:"yes"}) }}" class="card-link pull-right btn-link">{% trans from 'photo' %} body.link1  {% endtrans %}</a>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+

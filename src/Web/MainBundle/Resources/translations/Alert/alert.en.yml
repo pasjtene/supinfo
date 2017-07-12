@@ -1,0 +1,4 @@
+success:
+  requestMail: We have sent you an e-mail again to email_resp
+error:
+  requestMail: Failed to send mail. It appears that the server encountered a problem do not hesitate to retry afterwards.

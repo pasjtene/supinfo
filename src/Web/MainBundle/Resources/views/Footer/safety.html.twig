@@ -1,0 +1,153 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block meta %}
+    <meta name = "{% trans from 'home' %} safety.block20 {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'home' %} safety.block21 {% endtrans %}" >
+{% endblock %}
+
+{% block title %}
+    {% trans from 'home' %} title {% endtrans %}
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+    <style>
+    </style>
+{% endblock %}
+
+{% block header %}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+{% endblock %}
+
+{% block main %}
+     {# dans cette zone vous etes dans le conteneur  #}
+<div id="safety2">
+    <div class="hautspace" id="main_safety">
+            <div class="row">
+                <div class ="col-sm-12 col  col-lg-1" >
+                </div>
+                <div class ="col-sm-12 col  col-lg-10 baspace" >
+                    <h4><p class="ti">
+                    {% trans from 'safety' %}  safety.title1 {% endtrans %}
+                    </p></h4>
+                    <p>
+                    {% trans from 'safety' %}  safety.block1 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title2 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block2 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title3 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block3 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                            {% trans from 'safety' %}  safety.block4 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block5 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                            {% trans from 'safety' %}  safety.block6 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block7 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title4 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block8 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title5 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block9 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title6 {% endtrans %}
+                    </p>
+                     <p>
+                        {% trans from 'safety' %}  safety.block10 {% endtrans %}
+                     </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title7 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block11 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title8 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block12 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title9 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block13 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title10 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block15 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title11 {% endtrans %}
+                    </p>
+                    <p>
+                     {% trans from 'safety' %}  safety.block16 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.block17 {% endtrans %}
+                    </p>
+                     <p>
+                        {% trans from 'safety' %}  safety.block18 {% endtrans %}
+                    </p>
+                    <p class="ti">
+                        {% trans from 'safety' %}  safety.title12 {% endtrans %}
+                    </p>
+                    <p>
+                        {% trans from 'safety' %}  safety.block19 {% endtrans %}
+                    </p>
+                </div>
+                <div class ="col-sm-12 col  col-lg-1" >
+                    </div>
+                    </div>
+                    </div>
+                    <div class="row hautspace ">
+                    <div class="col">
+                        {% trans from 'phone' %}  phone.block5 {% endtrans %}:
+                    </div>
+                    <div class="col">
+                    <p>
+                        <a   href="{{ path('main_footer_phone') }}"> <i class="fa fa-android"></i>{% trans from 'phone' %}  phone.block6 {% endtrans %} </a>
+                    </p>
+                    </div>
+                    <div class="col">
+                    <p>
+                    <a  href="{{ path('main_footer_phone') }}"><i class="fa fa-apple"></i> {% trans from 'phone' %} phone.block7 {% endtrans %} </a>
+                    </p>
+                    </div>
+                    <div class="col">
+                    <p>
+                    <a  href="{{ path('main_footer_phone') }}"><i class="fa fa-windows"></i> {% trans from 'phone' %} phone.block8 {% endtrans %} </a>
+                    </p>
+            </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+

@@ -8,13 +8,15 @@ var MainLogin = function()
         page: $("#mainLogin"),
         modalLogin: $("#modalLogin"),
         form: {
-            login : $("#_username"),
-            password : $("#_password"),
-            btnsubmit: $("#btn-submit")
+            id : $("#form-login"),
+            login : $("#username"),
+            password : $("#password"),
+            btoken : $("#btoken"),
+            btnsubmit: $("#btn-login")
         },
         api:
         {
-            action: baseUrl+  "v1/auth/login",
+            action: baseUrl+  "auth/login",
             method: "POST"
         }
     };
@@ -28,67 +30,37 @@ $(function(){
     var mainLogin = new MainLogin();
 
     //teste si  nous somme vraiment dans la page concerne
-    if(mainLogin.params.page.data('page')=="mainLogin")
+    if(mainLogin.params.page.data('page') === "mainLogin")
     {
         //donner le focus au chargement  de la page au  champs login
         mainLogin.params.form.login.focus();
 
+        var interval = setInterval(function ()
+        {
+            if(tokenbase !== null){
+                mainLogin.params.form.btoken.val(tokenbase.value);
+                clearInterval(interval);
+                console.log("Token Applied");
+            }
 
+        }, 1000);
 
         // evenement  du  clique sur le bouton d'enregistrement
-        mainLogin.params.form.btnsubmit.click(function (e) {
+        mainLogin.params.form.btnsubmit.click(function (evt) {
 
             //empecher la soumission du  formulaire
-            e.preventDefault();
+            evt.preventDefault();
 
             //instanicier du credential
-            var Data =
-            {
-                _username: mainLogin.params.form.login.val(),
-                _password: mainLogin.params.form.password.val()
-            };
+            var username = mainLogin.params.form.login.val(),
+                password = mainLogin.params.form.password.val(),
+                btoken = mainLogin.params.form.btoken.val();
 
-                // afficher le preloader d'attente
-                mainLogin.params.modalLogin.modal('show');
-
-                // on se rassure que le tokenbase est  au prealable chargé
-                interval= setInterval(function(){
-                    if(tokenbase!=null)
-                    {
-                        /*
-                         xhrFields: {
-                         withCredentials: true
-                         },
-                         */
-
-                        // envoi d'une requete ajax au serveur pour login
-                        jQuery.support.cors = true;
-                        $.ajax(
-                            {
-                                url:mainLogin.params.api.action,
-                                crossOrigin: true,
-                                crossDomain: true,
-                                headers : {"X-Auth-Token" : tokenbase.value},
-                                type: mainLogin.params.api.method,
-                                data: Data,
-                                success: function (data) { //lorsque tout c'est bien passe
-
-                                    console.log(data);
-                                    alert("faire ta redirection car tout  est deja ok");
-                                },
-                                error: function (xhr, status, message) { //en cas d'erreur
-                                    console.log(status+"\n"+xhr.responseText + '\n' + message );
-                                }
-                            }
-                        );
-
-                        //on arrete de faire le test du  token car tout  c'est deja passe comme attendu
-                        clearInterval(interval);
-                    }
-                },100);
+            console.log(username, password, btoken);
+            if(username.length > 0 && password.length > 0 && btoken.length > 0){
+                mainLogin.params.form.id.submit();
+            }
         });
-
-
     }
 
 });

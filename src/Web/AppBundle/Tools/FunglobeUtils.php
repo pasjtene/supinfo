@@ -6,7 +6,7 @@
  * Time: 7:19 AM
  */
 
-namespace AppBundle\Tools;
+namespace Web\AppBundle\Tools;
 
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -29,5 +29,30 @@ class FunglobeUtils
         $password = $encoder->encodePassword($password, $salt);
 
         return $password;
+    }
+
+    /**
+     * Afficher le contenu d'une variable et arrête l'exécution
+     *
+     * @param $data
+     */
+    public static function dump($data)
+    {
+        var_dump($data);
+        die();
+    }
+
+    /**
+     * Retourne tous les rôles défini dans l'application
+     *
+     * @return array
+     */
+    public static function getAppRoles()
+    {
+        return [
+            ["name_en" => "Member", "name_fr" => "Membre", "value" => 'ROLE_MEMBER'],
+            ["name_en" => "Moderator", "name_fr" => "Modérateur", "value" => 'ROLE_MODERATOR'],
+            ["name_en" => "Administrator", "name_fr" => "Administrateur", "value" => 'ROLE_ADMIN']
+        ];
     }
 }

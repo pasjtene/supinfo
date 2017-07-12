@@ -1,0 +1,15 @@
+body:
+  title: On would like to know what you look like!
+  content: |
+   On your profile picture, your face must be clearly visible and recognizable. The age and gender
+   Your profile must match your profile photos. Profile photos can not contain nudity.
+  required: Minimal  file size ( 400 x 400 pixels)
+  option:
+    1: Use your facebook
+    2: Use your webcam
+    3: Click to select files
+    4: Or Drag and Drop files here
+  link1: Ou passer
+  drop : Drop
+  drag:  Drag here
+  processing:  File processing

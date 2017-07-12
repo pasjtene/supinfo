@@ -1,0 +1,39 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+
+{% block title %}
+    {% trans from 'cancel' %}  title {% endtrans %}
+{% endblock  %}
+
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+
+{% block header %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="row" id="mainCancel">
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title">{% trans from 'cancel' %} body.title  {% endtrans %}</h4>
+                <h6 class="card-subtitle mb-2 text-muted">{% trans from 'cancel' %} context  {% endtrans %}</h6>
+                <p class="card-text">{{  message }}</p>
+                <a href="#" class="card-link">{% trans from 'cancel' %} body.link1  {% endtrans %}</a>
+                <a href="#" class="card-link">{% trans from 'cancel' %} body.link2 {% endtrans %}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+

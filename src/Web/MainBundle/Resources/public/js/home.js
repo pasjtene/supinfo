@@ -8,7 +8,11 @@ var MainHome = function()
         mainHorizontalNav : $('#mainHorizontalNav'),
         classname: "fixebar",
         footer: $("#footer"),
-        content: $('#content')
+        content: $('#content'),
+        nav: $("#nav"),
+        carousel: $("#carousel"),
+        carouselClass : $('.carousel'),
+        dropdownClass : $(".dropdown-toggle")
     };
 };
 
@@ -16,10 +20,24 @@ var MainHome = function()
 $(function(){
 
     var mainHome = new MainHome();
+
+    if(mainHome.params.carousel.data("menu")!="undefined" && mainHome.params.carousel.data("menu")=="matches")
+    {
+        mainHome.params.carouselClass.carousel({
+            interval: 10000
+        });
+    }
     if(mainHome.params.mainHorizontalNav.data("menu")!="undefined" && mainHome.params.mainHorizontalNav.data("menu")=="mainHorizontalNav")
     {
         setScroll(mainHome.params.mainHorizontalNav, mainHome.params.classname);
     }
+
+    if(mainHome.params.nav.data("menu")!="undefined" && mainHome.params.nav.data("menu")=="nav")
+    {
+        mainHome.params.dropdownClass.dropdown();
+        setScroll(mainHome.params.nav, mainHome.params.classname);
+    }
+
     function setScroll(menu, classFixed)
     {
         // On recupere la position du bloc par rapport au haut du site
@@ -43,26 +61,4 @@ $(function(){
     setInterval(function(){
         //setFooter();
     },100);
-
-
-    function setFooter() {
-
-            // je recupere la hauteur du  document
-            var windowHeight=$(window).height();
-            if (windowHeight>0) {
-                // je recuperer la taille du  contenu
-                var contentHeight= mainHome.params.content.offsetHeight;
-                // je recupere la taille du  footer
-                var footerHeight=mainHome.params.footer.offsetHeight;
-
-                if (windowHeight-(contentHeight+footerHeight)>=0) {
-                    mainHome.params.footer.style.position='relative';
-                    footerElement.style.top= (windowHeight-(contentHeight +footerHeight))+'px';
-                }
-                else {
-                    mainHome.params.footer.style.position='static';
-                }
-            }
-
-    }
 });

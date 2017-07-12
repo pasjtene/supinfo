@@ -1,0 +1,9 @@
+title: Confirmation effectué avec succès
+body:
+  title: Information
+  context: Succès
+  content: |
+   Votre email  a été  confirmé avec succès. désormais vous êtes reconnu  sur funglobe en tant  que utilisateur normal
+   <br/> Vous allez desormais recevoir nos notifications et  les nouveautés dans votre boite de messageie a l'adresse <a href="">emailadress</a>
+   si vous le voulez.
+  link1: Consulter mon profile

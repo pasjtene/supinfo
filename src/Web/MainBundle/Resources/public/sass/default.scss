@@ -1,11 +1,14 @@
 $default-color: #0275D8;
 $default-color-hover: forestgreen;
 $secondary-color : rgba(0,0,0,.125);
+$color-default : #F7F7F7;
+$body-background : #FFFFFF;
 $default-font-color: #292b2c;
 $secondary-font-color: #ffffff;
 $badnew-color: #DF534F;
 $highligt: yellowgreen;
 $text-default: #292b2c;
+$content-background: #F7F7F7;
 button{
   border-radius: 6px;
   padding: 2%;
@@ -33,27 +36,14 @@ button{
 }
 
 
-html{
-  height: 100%;
-}
-body{
-  height: 100%;
-}
-#body{
- height: 100%;
-}
-
-#content{
-  min-height: 100%;
-}
-
 #footer{
+  margin-top: 2em;
   height: 3em;
   .card{
     background-color: rgba(49, 83, 255, 0.06) !important;
-      .col-lg-1{
-        flex: 0 0 6% !important;
-      }
+    .col-lg-1{
+      flex: 0 0 6% !important;
+    }
     a{
       color: $text-default ;
     }
@@ -64,8 +54,23 @@ body{
   }
 }
 
+#registerFooter{
+  /*margin-top: 2em;
+  height: 3em;*/
+  /*.card{
+    background-color: rgba(49, 83, 255, 0.06) !important;
+    .col-lg-1{
+      flex: 0 0 6% !important;
+    }*/
+  a{
+    color: $text-default ;
+  }
+  a:hover{
+    color: $default-color;
+  }
 
-
+  /*}*/
+}
 
 .fixebar{
   position: fixed;
@@ -95,6 +100,25 @@ body{
   #logo{
     font-size: 1.5em;
     font-weight: bold;
-    font-family: "FORTE";
   }
+}
+
+.text-grey{
+  color: darkgrey;
+}
+
+body{
+  background-color: $body-background;
+}
+
+.bg-white{
+  background-color: white;
+}
+
+
+#mainContentLg {
+  border-top: 1px solid yellowgreen;
+  border-bottom: 1px solid lightgray;
+  background-color: $content-background;
+  padding-bottom: 7%;
 }

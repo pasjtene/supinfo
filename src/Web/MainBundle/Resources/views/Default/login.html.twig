@@ -19,7 +19,9 @@
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
 {% endblock %}
 
-{% block main %}
+{% block mainLg %}
+<div class="row" id="mainContentLg">
+    <div class="container">
     <div class="row" id="mainLogin" data-page="mainLogin">
 
         <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-confirm="{% trans from 'register' %} form.notification.success {% endtrans %}">
@@ -38,29 +40,37 @@
         </div>
 
         <div class="col-sm-12 offset-lg-3 col-lg-6" id="content-login">
+                {% if error|length > 0 %}
+                    <div class="alert alert-danger alert-dismissable">{{ error }}</div>
+                {% endif %}
+
                 <h2>{% trans from 'login' %} body.msgone {% endtrans %}</h2>
 
                 <p>
                     {% trans from 'login' %} body.msgtwo {% endtrans %} <a href="{{ path('main_register') }}">{% trans from 'login' %} body.msgthree {% endtrans %}</a>
                 </p>
 
-                <form method="post">
+                <form method="post" id="form-login" action="">
                     <div class="form-group">
                         <label for="email">{% trans from 'login' %} form.lblemail {% endtrans %}</label>
-                        <input type="email" class="form-control" id="_username" aria-describedby="emailHelp" placeholder="{% trans from 'login' %} form.hintemail {% endtrans %}">
+                        <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="{% trans from 'login' %} form.hintemail {% endtrans %}" value="{{ username }}">
                         <small id="emailHelp" class="form-text text-muted">{% trans from 'login' %} form.ntcemail {% endtrans %}</small>
                     </div>
 
                     <div class="form-group">
                         <label for="password">{% trans from 'login' %} form.lblpswd {% endtrans %}</label>
-                        <input type="password" class="form-control" id="_password">
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="hidden" name="basetoken" id="btoken" value=""/>
                     </div>
 
                     <div class="row" id="login-options">
                         <div class="col-sm-6 col-lg-6">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input">
+                                    <input type="checkbox" class="form-check-input" name="_remember_me">
                                     {% trans from 'login' %} form.remember {% endtrans %}
                                 </label>
                             </div>
@@ -72,7 +82,7 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <button class="btn btn-primary" type="submit" id="btn-submit">{% trans from 'login' %} form.btnlogin {% endtrans %}</button>
+                            <button class="btn btn-primary" type="submit" id="btn-login">{% trans from 'login' %} form.btnlogin {% endtrans %}</button>
                         </div>
                     </div>
 
@@ -86,6 +96,12 @@
                 </form>
             </div>
     </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "MainBundle:Footer:registerFooter.html.twig" %}
 {% endblock %}
 
 {% block myjs %}

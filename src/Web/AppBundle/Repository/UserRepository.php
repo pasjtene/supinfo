@@ -2,16 +2,18 @@
 
 namespace AppBundle\Repository;
 
-use App\Rest\RestClient;
 use AppBundle\Entity\User;
+use Web\AppBundle\Tools\FunglobeUtils;
 use Doctrine\ORM\Mapping;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
-use Symfony\Component\HttpFoundation\Cookie;
+use Psr\Container\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Web\AppBundle\Tools\RestClient;
 
 /**
  * UserRepository
@@ -21,9 +23,20 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository implements UserProviderInterface
 {
+    /** @var Request */
+    private $request;
+
     public function __construct(EntityManager $entityManager, Mapping\ClassMetadata $class)
     {
         parent::__construct($entityManager, $class);
+    }
+
+    /**
+     * @param ContainerInterface $container
+     */
+    public function setRequest(ContainerInterface $container ) {
+
+        $this->request = $container->get('request');
     }
 
     /**
@@ -32,26 +45,21 @@ class UserRepository extends \Doctrine\ORM\EntityRepository implements UserProvi
      *
      * @return User
      */
-    public function getLogin($email, $password)
+    public function getLogin($email, $password, $baseToken)
     {
-
         $user = null;
 
-        $data = ['email' => $email, 'password' => $password];
+        $data = ['_username' => $email, '_password' => $password];
 
-        $client = new RestClient(RestClient::$POST_METHOD, 'login', null, $data);
+        $client = new RestClient(RestClient::$POST_METHOD, 'login', $baseToken, $data);
 
         if($client->getStatusCode() == 200)
         {
             $contents = \GuzzleHttp\json_decode($client->getContent());
-            //dd($contents->data);
+
+            FunglobeUtils::dump($contents->data);
+
             $user = $this->getGenericUser($contents->data);
-            var_dump($user);
-            die();
-            if(!is_null($user)){
-                //Log::info("Token => ".RestClient::getAccessToken());
-                //Cookie::queue(Cookie::make(RestClient::$TOKEN_COOKIE_NAME, \GuzzleHttp\json_encode($user->token)), 60);
-            }
         }
 
         return $user;
@@ -73,21 +81,18 @@ class UserRepository extends \Doctrine\ORM\EntityRepository implements UserProvi
     {
         try
         {
-            $user = null;
+            $param = [
+                'password' => $this->request->request->get('password'),
+                'btoken' => $this->request->request->get('basetoken')
+            ];
 
-            $token = ""; //\GuzzleHttp\json_decode(Cookie::get(RestClient::$TOKEN_COOKIE_NAME));
+            FunglobeUtils::dump($param);
 
-            $client = new RestClient(RestClient::$GET_METHOD, 'users?email='.$username, $token);
+            $user = $this->getLogin($username, $param['password'], $param['btoken']);
 
-            if($client->getStatusCode() == 200)
-            {
-                $contents = \GuzzleHttp\json_decode($client->getContent());
-                var_dump($contents->data);
-                die();
-                $user = $this->getGenericUser($contents->data);
+            if(is_null($user)){
+                throw new UsernameNotFoundException("Bad credentials !");
             }
-
-            return $user;
 
         } catch (NoResultException $e) {
             $user = null;

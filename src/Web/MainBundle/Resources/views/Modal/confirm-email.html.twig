@@ -1,0 +1,22 @@
+<div class="modal fade" id="modalEmail" tabindex="-1" role="dialog" aria-labelledby="modalEmails" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEmails"> {% trans  from "email-confirm"  %} title {% endtrans %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display: none;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{% trans with {"emails":app.user.email} from "email-confirm"  %} content1 {% endtrans %}</p>
+                <p>
+                    {% trans from "email-confirm"  %} content2 {% endtrans %}
+                    <a href="{{ path('main_email_request') }}">{% trans from "email-confirm"  %} content3 {% endtrans %}</a>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a  class="btn btn-primary pull-right" href="{{ path('main_profile') }}">{% trans from "email-confirm"  %} link {% endtrans %}</a>
+            </div>
+        </div>
+    </div>
+</div>
