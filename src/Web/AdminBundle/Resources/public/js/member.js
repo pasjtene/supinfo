@@ -14,7 +14,10 @@ var AdminMember = function()
                 email_title: $('#email-title'),
                 text_message: $("#message-text"),
                 btn_send_email: $('#btn-send-email'),
-                modal_email: $('#modal-email')
+                modal_email: $('#modal-email'),
+                email_spinner: $("#email-spinner"),
+                success_msg: $("#success-msg"),
+                btn_lock_member : $("#btn-lock-members")
             },
             class:{
 
@@ -25,6 +28,7 @@ var AdminMember = function()
             {
                 update: baseUrl +"auth/member/",
                 bulk_email: baseUrl +"auth/send-email",
+                lock: baseUrl + "auth/members/lock"
             },
             method:
             {
@@ -82,7 +86,7 @@ $(function(){
             if(recipients.length > 0 && message.length > 0)
             {
                 var data = {recipients: recipients, title: title, message: message};
-
+                adminMember.params.attr.id.email_spinner.show();
                 $.ajax({
                     url: adminMember.params.api.action.bulk_email,
                     type: adminMember.params.api.method.post,
@@ -90,7 +94,39 @@ $(function(){
                     data: data,
                     crossDomain: true,
                     success: function (response) {
-                        alert("Email sent successfully !");
+                        adminMember.params.attr.id.success_msg.show();
+                        adminMember.params.attr.id.email_spinner.hide();
+                        setTimeout(function(){
+                            adminMember.params.attr.id.success_msg.hide();
+                        }, 3000);
+                    },
+                    error: function (xhr, status, message) {
+                        adminMember.params.attr.id.email_spinner.hide();
+                        console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    }
+                });
+            }
+            e.preventDefault();
+        });
+
+        adminMember.params.attr.id.btn_lock_member.click(function(e)
+        {
+            var selectedUsers = getSelectedUsers(),
+                t = selectedUsers.length;
+
+            console.log(selectedUsers);
+
+            if(t > 0 && confirm('You really want to block these members ?'))
+            {
+                var data = {members: selectedUsers};
+                $.ajax({
+                    url: adminMember.params.api.action.lock,
+                    type: adminMember.params.api.method.put,
+                    headers : {"X-Auth-Token" : tokenbase.value},
+                    data: data,
+                    crossDomain: true,
+                    success: function (response) {
+                        setMember();
                     },
                     error: function (xhr, status, message) {
                         console.log(status+"\n"+xhr.responseText + '\n' + message );
