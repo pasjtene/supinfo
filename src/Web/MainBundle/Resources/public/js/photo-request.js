@@ -82,12 +82,13 @@ $(function(){
 
         // force le background a ne pas reagir lorsqu'on   clic
         mainPhotoRequest.params.id.modal_photo.click(function(){
-            $(this).addClass("show");
+            mainPhotoRequest.params.id.modal_photo.modal("show");
         });
+
 
         // force le background a ne pas reagir lorsqu'on   clic pour la webcam
         mainPhotoRequest.params.webcam.webcam_modal.click(function(){
-            $(this).addClass("show");
+            mainPhotoRequest.params.webcam.webcam_modal.modal("show");
         });
 
         // preventing page from redirecting
