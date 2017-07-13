@@ -93,6 +93,13 @@ var imageTask = function()
         .pipe(copy('./web/data/img', {prefix: 5}));
 };
 
+var audioTask = function()
+{
+    console.log("Audio copy's successfull !");
+    return gulp.src('./web/bundles/*/audio/*')
+        .pipe(copy('./web/data/audio', {prefix: 5}));
+};
+
 var uglifyTask = function()
 {
     gulp.src(jsPaths)
@@ -166,6 +173,11 @@ gulp.task('img', ['installAssets'], function ()
     currentTask = 'img';
 });
 
+gulp.task('audio', ['installAssets'], function ()
+{
+    currentTask = 'audio';
+});
+
 gulp.task('js', ['installAssets'], function()
 {
     currentTask = 'js';
@@ -205,6 +217,10 @@ var logStdOutAndErr = function (err, stdout, stderr)
     else if(currentTask === 'img')
     {
         return imageTask();
+    }
+    else if(currentTask === 'audio')
+    {
+        return audioTask();
     }
     else if(currentTask === 'file')
     {
