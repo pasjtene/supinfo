@@ -13,3 +13,8 @@ body:
   drop : Drop
   drag:  Drag here
   processing:  File processing
+  next: Next
+  webcam: It's so  simple with  your webcam. Just  click  to print and click  to save
+  print: Print
+  save: Save
+  notification: photo as successfull  save!

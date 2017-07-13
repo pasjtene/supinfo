@@ -8,9 +8,18 @@ var MainPhotoRequest = function()
         page: $("#photo-request"),
         html: $("html"),
         api:{
-            url : baseUrl+"auth/upload",
-            method: "POST",
-            type: "json"
+            upload:
+            {
+                url : baseUrl+"auth/upload",
+                method: "POST",
+                type: "json"
+            },
+            webcam:
+            {
+                url : baseUrl+"auth/webcam",
+                method: "POST",
+                type: "json"
+            }
         },
         id: {
             uploadfile : $("#uploadfile"),
@@ -29,6 +38,20 @@ var MainPhotoRequest = function()
             upload_area: $(".upload-area"),
             upload_area_col: $(".upload-area .col-12"),
             upload_area_thumbnail: $(".upload-area .col-12 div.thumbnail")
+        },
+        webcam:{
+            webcam_show: $("#webcam-show span"),
+            webcam_modal : $("#webcam-modal"),
+            video : document.querySelector('#webcam-video'),
+            cover: $('#webcam-cover'),
+            photo: $('#webcam-photo'),
+            startbutton: $('#webcam-startbutton'),
+            save: $('#webcam-save'),
+            canvas: document.querySelector('#webcam-canvas'),
+            audio: document.querySelector('#webcam-audio'),
+            audio_off: document.querySelector('#webcam-audio-off'),
+            webcam_loader: $('#webcam-loader'),
+            webcam_notification: $('#webcam-notification')
         }
     };
 
@@ -59,10 +82,12 @@ $(function(){
 
         // force le background a ne pas reagir lorsqu'on   clic
         mainPhotoRequest.params.id.modal_photo.click(function(){
-          if(!$(this).hasclass("show"))
-          {
-              $(this).addClass("show");
-          }
+            $(this).addClass("show");
+        });
+
+        // force le background a ne pas reagir lorsqu'on   clic pour la webcam
+        mainPhotoRequest.params.webcam.webcam_modal.click(function(){
+            $(this).addClass("show");
         });
 
         // preventing page from redirecting
@@ -180,14 +205,14 @@ $(function(){
             // alert(mainPhotoRequest.params.api.url);
             // console.log(formdata.get("file"));
             $.ajax({
-                url: mainPhotoRequest.params.api.url,
-                type:  mainPhotoRequest.params.api.method,
+                url: mainPhotoRequest.params.api.upload.url,
+                type:  mainPhotoRequest.params.api.upload.method,
                 data: formdata,
                 crossDomain: true,
                 headers : {"X-Auth-Token" : currentUser.token},
                 contentType: false,
                 processData: false,
-                dataType:  mainPhotoRequest.params.api.type,
+                dataType:  mainPhotoRequest.params.api.upload.type,
                 success: function(response){
                     console.log(response);
                     //incrementer l'index
@@ -257,5 +282,124 @@ $(function(){
             return Math.round(size / Math.pow(1024, i), 2) + ' ' + sizes[i];
         }
 
+
+        // webcam
+
+        streaming = false,
+            width = 0,
+            height = 270;
+
+
+        function init() {
+            navigator.getMedia = ( navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia);
+            navigator.getMedia(
+                {
+                    video: true,
+                    audio: false
+                },
+                function(stream) {
+                    if (navigator.mozGetUserMedia) {
+                        mainPhotoRequest.params.webcam.video.mozSrcObject = stream;
+                    } else {
+                        var vendorURL = window.URL || window.webkitURL;
+                        mainPhotoRequest.params.webcam.video.src = vendorURL.createObjectURL(stream);
+                    }
+                    mainPhotoRequest.params.webcam.video.play();
+                    mainPhotoRequest.params.webcam.startbutton.prop("disabled",false);
+                },
+                function(err) {
+                    console.log("An error occured! " + err);
+                }
+            );
+        }
+
+
+
+
+        mainPhotoRequest.params.webcam. video.addEventListener('canplay', function(e){
+            if (!streaming) {
+                width = mainPhotoRequest.params.webcam.video.videoWidth / (mainPhotoRequest.params.webcam.video.videoHeight/height);
+                mainPhotoRequest.params.webcam.video.setAttribute('width', width);
+                mainPhotoRequest.params.webcam.video.setAttribute('height', height);
+                mainPhotoRequest.params.webcam.canvas.setAttribute('width', width);
+                mainPhotoRequest.params.webcam.canvas.setAttribute('height', height);
+                streaming = true;
+            }
+        });
+
+        function takepicture() {
+            mainPhotoRequest.params.webcam.audio.play();
+            mainPhotoRequest.params.webcam.canvas.width = width;
+            mainPhotoRequest.params.webcam.canvas.height = height;
+            mainPhotoRequest.params.webcam.canvas.getContext('2d').drawImage(mainPhotoRequest.params.webcam.video, 0, 0, width, height);
+            var data = mainPhotoRequest.params.webcam.canvas.toDataURL('image/png');
+            mainPhotoRequest.params.webcam.photo.attr('src', data);
+        }
+
+        mainPhotoRequest.params.webcam.startbutton.click(function(e){
+            takepicture();
+            mainPhotoRequest.params.webcam.save.prop("disabled",false);
+            e.preventDefault();
+        });
+
+        mainPhotoRequest.params.webcam.save.click(function(e){
+            upload();
+            e.preventDefault();
+        });
+
+        function upload() {
+            mainPhotoRequest.params.webcam.audio_off.play();
+            mainPhotoRequest.params.webcam.webcam_loader.fadeIn();
+            mainPhotoRequest.params.webcam.save.prop("disabled",true);
+            mainPhotoRequest.params.webcam.startbutton.prop("disabled",true);
+            var head = /^data:image\/(png|jpeg);base64,/,
+                data = '',
+                formdata = new FormData(),
+                xhr = new XMLHttpRequest();
+            data = mainPhotoRequest.params.webcam.canvas.toDataURL('image/png', 0.9).replace(head, '');
+            formdata.append('file', data);
+            formdata.append('id', currentUser.id);
+
+            $.ajax({
+                url: mainPhotoRequest.params.api.webcam.url,
+                type:  mainPhotoRequest.params.api.webcam.method,
+                data: formdata,
+                headers : {"X-Auth-Token" : currentUser.token},
+                crossDomain: true,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    console.log(response);
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                    mainPhotoRequest.params.webcam.webcam_loader.fadeOut();
+                    mainPhotoRequest.params.webcam.webcam_notification.fadeIn();
+                    mainPhotoRequest.params.webcam.startbutton.prop("disabled",false);
+                     t =setInterval(function(){
+                         mainPhotoRequest.params.webcam.webcam_notification.fadeOut();
+                        clearInterval(t);
+                    },3000);
+                }
+
+            });
+
+            }
+
+        //mainPhotoRequest.params.webcam.webcam_modal.modal("show");
+        //initialiser la webcam
+        mainPhotoRequest.params.webcam.webcam_show.click(function(){
+            // affiche le modal pour la notification
+            mainPhotoRequest.params.webcam.webcam_modal.modal("show");
+            mainPhotoRequest.params.webcam.save.prop("disabled",true);
+            mainPhotoRequest.params.webcam.startbutton.prop("disabled",true);
+            init();
+        });
     }
 });
