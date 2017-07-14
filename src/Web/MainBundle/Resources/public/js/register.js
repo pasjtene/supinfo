@@ -339,7 +339,7 @@ $(function(){
         });
 
         // 3- validation du champs county
-        mainRegister.params.form.country.keyup(function(){
+        mainRegister.params.form.country.change(function(){
             appMain.function.validate(mainRegister.params.required.country,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.country,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.country,appMain.params.required.form_control_feedback,1,100);
         });
 
