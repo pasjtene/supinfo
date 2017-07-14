@@ -137,10 +137,10 @@ $(function(){
 
         //charger la liste des pays
         $.getJSON(mainRegister.params.form.country.data("country"), function(data){
-            mainRegister.params.form.countryList.empty();
+            //mainRegister.params.form.country.empty();
             $.each(data,function(index,vaue){
                     var option = "<option value='"+index+"'>"+vaue+"</option>"
-                    mainRegister.params.form.countryList.append(option);
+                    mainRegister.params.form.country.append(option);
             });
         });
 
