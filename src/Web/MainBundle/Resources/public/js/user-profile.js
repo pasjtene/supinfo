@@ -27,6 +27,10 @@ var MainUserProfile = function()
         imprtant:{
             important_block_img: $("#important-block img")
         },
+        main_body:{
+            content :$("#main-body #content"),
+            chargement: $("#main-body #chargement")
+        },
         filter:
         {
             countries: $("#countries"),
@@ -131,9 +135,14 @@ $(function(){
            dataType:  mainUserProfile.params.api.base.type,
            success: function(response){
                console.log(response);
-               //alert(response.profilePhotos[0].path);
+               //modifier la photo de profile du  user connecte
                if(response.profilePhotos!=null){
-                   setProfile(mainUserProfile.params.imprtant.important_block_img,baseHost+response.profilePhotos[0].path)
+                   setProfile(mainUserProfile.params.imprtant.important_block_img,baseHost+response.profilePhotos[0].path,mainUserProfile.params.imprtant.important_block_img.data('help'))
+               }
+               //charger la liste des users du  site
+               if(response.users!=null)
+               {
+                   setUsers(mainUserProfile.params.main_body.content,response.users)
                }
 
            },
@@ -147,13 +156,121 @@ $(function(){
        });
    }
 
-    function setProfile(element,img){
-        if(img==null)
+    function setProfile(element,img,helpImg){
+        if(img==null || img=="undefined")
         {
-            element.attr("src",element.data('help'));
+            element.attr("src",helpImg);
         }
         else{
             element.attr("src",img);
         }
+        return element;
+    }
+
+    function setUsers(element,list){
+
+        element.empty();
+        for(var i= 0; i<list.length; i++)
+        {
+            var user = list[i].user;
+            var profile = list[i].profile;
+            var photos = list[i].photos;
+            var profilePicture = list[i].photoProfile;
+            if(user.id !=currentUser.id){
+                //photos
+                var src = null;
+                if((profilePicture==null || profilePicture=='null'))
+                {
+                    src =mainUserProfile.params.imprtant.important_block_img.data('help');
+                }
+                else
+                {
+                    src = baseHost+profilePicture.path;
+                }
+                var img  = '<img src="'+src+'" alt="not found" class="img-thumbnail">';
+                //variable de user
+                var today=new Date();
+
+                var currentyear = today.getFullYear();
+                var year  = user.birthDate.split('-')[0];
+                var age = currentyear -parseInt(year);
+                //alert(age);
+                var lastConnect = new  Date(user.lastLogin);
+
+                //alert(lastConnect.toLocaleDateString());
+                if(lastConnect.toLocaleDateString()==today.toLocaleDateString())
+                {
+                    lastConnect = lastConnect.toLocaleTimeString();
+                }
+                else{
+                    lastConnect = lastConnect.toLocaleDateString();
+                }
+                //alert(lastConnect);
+                var country ="";
+                for(var k=0; k<countryList.length;k++)
+                {
+                    if(countryList[k].code.toLowerCase()==user.country.toLowerCase() || countryList[k].value.toLowerCase()==user.country.toLowerCase() )
+                    {
+                        country = countryList[i].value;
+                    }
+                }
+                var connect =
+                    ' <div class="row">'+
+                    '<div class="col-1">'+
+                    '<div class="rounded-circle connect" ></div>'+
+                    '</div>'+
+                    '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)   &nbsp;</strong></div>'+
+                    '<div class="col-12 text-left">'+
+                    '<span class="text-muted country">'+country+'</span>'+
+                    '</div>'+
+                    '</div>';
+
+                var no_connect =
+                    ' <div class="row">'+
+                    '<div class="col-1">'+
+                    '<div class="rounded-circle no-connect" ></div>'+
+                    '</div>'+
+                    '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)    &nbsp;</strong></div>'+
+                    '<div class="col-12 text-left">'+
+                    '<span class="text-muted country">'+user.country+'</span>'+
+                    '<span class="text-grey pull-right"> see '+lastConnect+'</span>'+
+                    '</div>'+
+                    '</div>';
+
+
+                var state = null;
+                if(user.isOnline==true || user.isOnline=='true')
+                {
+                    state = connect;
+                }
+                else
+                {
+                    state = no_connect;
+                }
+
+                var body =
+                        ' <div class="col-sm-12 col-md-4">'+
+                        ' <div class="card bg-faded">'+
+                        ' <div class="card-block text-center">'+
+                        img+
+                        ' <br>'+
+                        state+
+                        '<div class="row text-left bg-white">'+
+                        '<div class="col">'+
+                        '<a href=""><span class="fa fa-thumbs-o-up">like picture</span></a>'+
+                        '</div>'+
+                        '<div class="col" style="display: none;">'+
+                        '<a href=""><span class="fa fa-comment-o">comment</span></a>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>'
+                    ;
+                element.append(body);
+            }
+        }
+
+        mainUserProfile.params.main_body.chargement.fadeOut();
     }
 });

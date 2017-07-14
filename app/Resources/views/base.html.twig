@@ -143,6 +143,14 @@
                 name : '{{ app.user.firstname }}' + ' ' + '{{ app.user.lastname }}'
             }
         {% endif %}
+
+    //recuperer la liste des pays et  leurs codes
+    var  countryList = [];
+    $.getJSON('{{ asset("dist/country.json") }}', function(data){
+        $.each(data,function(index,vaue){
+            countryList.push({"code": index, "value":vaue});
+        });
+    });
         // le chemin par defaut pour le projet
         baseRoute = Routing.generate('main_homepage',{_locale:locale},true);
     </script>
