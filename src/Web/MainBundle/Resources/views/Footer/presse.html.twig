@@ -22,7 +22,13 @@
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
 <div id="main_presse">
-    <img class="forme1"  src="{{ asset('data/img/forma.jpg') }}" alt="">
+    <div class="message_and_image">
+        <div class="message_on_image centre">{% trans from 'presse' %} presse.block33 {% endtrans %}</div>
+        <div id="about_top" style="background-image:url('{{ asset('data/img/forma.jpg') }}')">
+            <img  id="top_img" src="{{ asset('data/img/forma.jpg') }}" alt="">
+            {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+        </div>
+    </div>
     <div class="container text-center hautspace2">
         <div class="row">
             <div class="col-sm-4">

@@ -29,6 +29,21 @@
     font-size: 50px;
     font-weight: bolder;
   }
+  .bout{
+    z-index: 2;
+    color: black;
+    position: absolute;
+    font-size: 15px;
+    text-align: center;
+    height: 40px;
+    border: 2px solid white;
+    float: right;
+    font-weight: bolder;
+    display: block;
+    overflow: hidden;
+    padding-left: 100px;
+    padding-top: 50px;
+  }
   #about_top {
     /*opacity: 0.1;*/
     background: rgba(black, 0.1);
