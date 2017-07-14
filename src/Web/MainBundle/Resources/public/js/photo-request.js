@@ -200,7 +200,7 @@ $(function(){
 
             mainPhotoRequest.params.id.bg_message.empty();
             var  message = Translator.trans('processing', {}, 'photo');
-            mainPhotoRequest.params.id.bg_message.html(message+"<span class='text-danger'>"+ currentImg[0]+ "</span> ... ");
+            mainPhotoRequest.params.id.bg_message.html("<span class='text-success'>1/"+ countfile+ "</span> <br/> "+message+"<span class='text-danger'>"+ currentImg[0]+ "</span> ... ");
 
             formdata.append('id',currentUser.id);
             // alert(mainPhotoRequest.params.api.url);
@@ -222,7 +222,7 @@ $(function(){
                     {
                         mainPhotoRequest.params.id.bg_message.empty();
                         var  message = Translator.trans('processing', {}, 'photo');
-                        mainPhotoRequest.params.id.bg_message.html( message+"<span class='text-danger'>"+ currentImg[currentIndex]+ "</span> ... ");
+                        mainPhotoRequest.params.id.bg_message.html("<span class='text-success'>"+(currentIndex+1)+"/"+ countfile+ "</span> <br/> "+ message+"<span class='text-danger'>"+ currentImg[currentIndex]+ "</span> ... ");
                     }
                     addThumbnail(response);
                 },

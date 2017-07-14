@@ -24,6 +24,9 @@ var MainUserProfile = function()
         class:{
             carousel: $('.carousel')
         },
+        imprtant:{
+            important_block_img: $("#important-block img")
+        },
         filter:
         {
             countries: $("#countries"),
@@ -128,6 +131,11 @@ $(function(){
            dataType:  mainUserProfile.params.api.base.type,
            success: function(response){
                console.log(response);
+               //alert(response.profilePhotos[0].path);
+               if(response.profilePhotos!=null){
+                   setProfile(mainUserProfile.params.imprtant.important_block_img,baseHost+response.profilePhotos[0].path)
+               }
+
            },
            error: function (xhr, status, message) { //en cas d'erreur
                console.log(status+"\n"+xhr.responseText + '\n' + message );
@@ -137,7 +145,15 @@ $(function(){
            }
 
        });
-
-
    }
+
+    function setProfile(element,img){
+        if(img==null)
+        {
+            element.attr("src",element.data('help'));
+        }
+        else{
+            element.attr("src",img);
+        }
+    }
 });
