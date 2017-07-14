@@ -31,6 +31,10 @@ var MainUserProfile = function()
             content :$("#main-body #content"),
             chargement: $("#main-body #chargement")
         },
+        matches:{
+            carousel_inner: $("#profile-nav #carousel .carousel-inner"),
+            carousel: $("#profile-nav #carousel")
+        },
         filter:
         {
             countries: $("#countries"),
@@ -145,6 +149,11 @@ $(function(){
                    setUsers(mainUserProfile.params.main_body.content,response.users)
                }
 
+               //chargement des utilisateurs vips
+               if(response.vips!=null)
+               {
+                   setVips(mainUserProfile.params.matches.carousel_inner,response.vips);
+               }
            },
            error: function (xhr, status, message) { //en cas d'erreur
                console.log(status+"\n"+xhr.responseText + '\n' + message );
@@ -272,5 +281,59 @@ $(function(){
         }
 
         mainUserProfile.params.main_body.chargement.fadeOut();
+    }
+
+    function setVips(element,list)
+    {
+        element.empty();
+        var body ="";
+        var j=1;
+        for(var i=0; i<list.length; i++)
+        {
+            var user = list[i].user;
+            var profile = list[i].profile;
+            var photos = list[i].photos;
+            var profilePicture = list[i].photoProfile;
+
+            //photos
+            var src = null;
+            if((profilePicture==null || profilePicture=='null'))
+            {
+                src =mainUserProfile.params.imprtant.important_block_img.data('help');
+            }
+            else
+            {
+                src = baseHost+profilePicture.path;
+            }
+            var img  = '<img class="d-block img-fluid rounded-circle" src="'+src+'" alt="First slide">';
+            //variable de user
+            var today=new Date();
+
+            var currentyear = today.getFullYear();
+            var year  = user.birthDate.split('-')[0];
+            var age = currentyear -parseInt(year);
+
+            if(j%10==0 || j==1)
+            {
+                body+= '<div class="carousel-item active align-items-center justify-content-md-center">';
+            }
+            else if (j%10==0)
+            {
+                body+=
+                    '</div>'+
+                    '</div>'+
+                    '<div class="carousel-item  align-items-center justify-content-md-center">';
+            }
+            body+=
+                '<div class="row">'+
+                    '<div class="col">'+
+                        img+
+                     '</div>';
+            j++;
+        }
+        body+='</div> </div>';
+        element.append(body);
+        mainUserProfile.params.page.css({'margin-top':"0em"});
+        mainUserProfile.params.matches.carousel.fadeIn();
     }
 });
