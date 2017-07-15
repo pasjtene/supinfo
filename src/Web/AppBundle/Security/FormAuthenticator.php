@@ -30,6 +30,7 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
     const LOGIN_PATH = "/login";
     const LOGIN_ROUTE_NAME = "main_login";
     const PROFILE_ROUTE_NAME = "main_profile";
+    const PROFILE_USER_LOCKED = "main_user_locked";
 
     /**
      * @var \Symfony\Component\Routing\RouterInterface
@@ -218,6 +219,11 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+        if(!$this->user->isEnabled()){
+            $url = $this->router->generate(self::PROFILE_USER_LOCKED);
+            return new RedirectResponse($url);
+        }
+
         $url = $this->router->generate(self::PROFILE_ROUTE_NAME);
 
         $session = $request->getSession();

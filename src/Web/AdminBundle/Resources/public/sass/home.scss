@@ -45,5 +45,14 @@
   position: absolute;
   left: 30px;
   display: none;
-
+}
+#users-loader
+{
+  width: 100%;
+  text-align: center;
+  display: none;
+  img{
+    width: 48px;
+    height: 48px;
+  }
 }

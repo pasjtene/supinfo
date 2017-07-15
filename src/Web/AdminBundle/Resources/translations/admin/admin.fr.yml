@@ -7,6 +7,7 @@ admin:
    number: Nombre d'utilisateurs
    firstname: 	Prénom
    gender: Genre
+   status: Statut
    select: 	Selectionner
    delete: Supprimer les utilisateurs
    block: Bloquer les utilisateurs

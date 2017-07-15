@@ -266,4 +266,16 @@ class DefaultController extends Controller
 
         return $this->render('MainBundle:Default:reset-password.html.twig', $array);
     }
+
+    /**
+     * @Route("/user-locked", name="main_user_locked")
+     */
+    public function userLockedAction(Request $request)
+    {
+        $datas = [];
+
+        //$this->get('security.context')->setToken(null);
+
+        return $this->render('MainBundle:Default:user-locked.html.twig', $datas);
+    }
 }
