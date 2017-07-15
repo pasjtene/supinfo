@@ -286,6 +286,7 @@ $(function(){
         }
 
         mainUserProfile.params.main_body.chargement.fadeOut();
+        console.log("ip du  user connecte : "+currentUser.ip);
     }
 
     function setVips(element,list)
