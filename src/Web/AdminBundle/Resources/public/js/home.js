@@ -16,6 +16,7 @@ var AdminHome = function()
                 users_table_body: $("#users_table_body"),
                 btn_delete_users: $("#btn_delete_users"),
                 total_users: $("#total_users"),
+                users_loader: $("#users-loader")
             },
             class:{
                 nbrofchkbox: $('.nbrofchkbox'),
@@ -172,7 +173,7 @@ $(function(){
                     //});
 
                 });
-
+                adminHome.params.attr.id.users_loader.show();
                 //find the users list
                 $.ajax(
                     {
@@ -183,12 +184,14 @@ $(function(){
                         success: function (users) {
                             adminHome.params.attr.id.total_users.html(users.length);
                             adminHome.params.attr.id.users_table_body.empty();
+                            adminHome.params.attr.id.users_loader.hide();
                             $.each(users, function(i, user){
 
                                 var row = $('<tr>').html("<td>" + (i+1) +
                                     "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
                                     "</td><td>" + user.email +
                                     "</td><td>" + user.gender +
+                                    "</td><td>" + (user.enabled ? "Enabled" : "Locked") +
                                     "</td>");
                                 $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.email+'"/>').appendTo(row);
                                 //augmenter les users dans le tableau

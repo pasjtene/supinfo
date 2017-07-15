@@ -17,10 +17,16 @@ var AdminMember = function()
                 modal_email: $('#modal-email'),
                 email_spinner: $("#email-spinner"),
                 success_msg: $("#success-msg"),
-                btn_lock_member : $("#btn-lock-members")
+                btn_lock_member : $("#btn-lock-members"),
+                cb_property: $('#cb-property'),
+                cb_order_users: $('#cb-order'),
+                btn_order_users: $('#btn-order-users'),
+                users_table_body: $("#users_table_body"),
+                total_users: $("#total_users"),
+                users_loader: $("#users-loader")
             },
             class:{
-
+                checkbox : 'input[type="checkbox"]'
             }
         },
         api:{
@@ -28,12 +34,14 @@ var AdminMember = function()
             {
                 update: baseUrl +"auth/member/",
                 bulk_email: baseUrl +"auth/send-email",
-                lock: baseUrl + "auth/members/lock"
+                lock: baseUrl + "auth/members/lock",
+                findall: baseUrl +"auth/members",
             },
             method:
             {
                 put:"PUT",
-                post: "POST"
+                post: "POST",
+                get: "GET"
             },
             headers:
             {auth: "X-Auth-Token"}
@@ -98,6 +106,11 @@ $(function(){
                         adminMember.params.attr.id.email_spinner.hide();
                         setTimeout(function(){
                             adminMember.params.attr.id.success_msg.hide();
+                            adminMember.params.attr.id.email_title.val("");
+                            adminMember.params.attr.id.recipient_name.val("");
+                            CKEDITOR.instances['message-text'].setData("");
+                            adminMember.params.attr.id.modal_email.modal("hide");
+                            $(adminMember.params.attr.class.checkbox).prop('checked', false);
                         }, 3000);
                     },
                     error: function (xhr, status, message) {
@@ -114,8 +127,6 @@ $(function(){
             var selectedUsers = getSelectedUsers(),
                 t = selectedUsers.length;
 
-            console.log(selectedUsers);
-
             if(t > 0 && confirm('You really want to block these members ?'))
             {
                 var data = {members: selectedUsers};
@@ -126,7 +137,7 @@ $(function(){
                     data: data,
                     crossDomain: true,
                     success: function (response) {
-                        setMember();
+                        adminMember.params.attr.id.btn_order_users.trigger('click');
                     },
                     error: function (xhr, status, message) {
                         console.log(status+"\n"+xhr.responseText + '\n' + message );
@@ -134,6 +145,46 @@ $(function(){
                 });
             }
             e.preventDefault();
+        });
+
+        adminMember.params.attr.id.btn_order_users.click(function(e)
+        {
+            var property = adminMember.params.attr.id.cb_property.val(),
+                order = adminMember.params.attr.id.cb_order_users.val();
+
+            var queryString = "?property="+property+"&order="+order;
+            adminMember.params.attr.id.users_loader.show();
+            adminMember.params.attr.id.users_table_body.empty();
+
+            //find the users list
+            $.ajax(
+                {
+                    url: adminMember.params.api.action.findall + queryString,
+                    type: adminMember.params.api.method.get,
+                    headers : {"X-Auth-Token" : tokenbase.value},
+                    crossDomain: true,
+                    success: function (users) {
+                        adminMember.params.attr.id.total_users.html(users.length);
+                        adminMember.params.attr.id.users_loader.hide();
+                        $.each(users, function(i, user){
+
+                            var row = $('<tr>').html("<td>" + (i+1) +
+                                "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
+                                "</td><td>" + user.email +
+                                "</td><td>" + user.gender +
+                                "</td><td>" + (user.enabled ? "Enabled" : "Locked") +
+                                "</td>");
+                            $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.email+'"/>').appendTo(row);
+                            //augmenter les users dans le tableau
+                            adminMember.params.attr.id.users_table_body.append(row);
+
+                        });
+                    },
+                    error: function (xhr, status, message) { //en cas d'erreur
+                        console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    }
+                }
+            );
         });
 
         adminMember.params.attr.id.btn_role_action.click(function(e)
