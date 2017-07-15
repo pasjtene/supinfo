@@ -140,6 +140,7 @@
             var currentUser = {
                 id : '{{ app.user.id }}',
                 token : '{{ app.user.token }}',
+                ip: '{{ app.user.ip }}',
                 name : '{{ app.user.firstname }}' + ' ' + '{{ app.user.lastname }}'
             }
         {% endif %}
