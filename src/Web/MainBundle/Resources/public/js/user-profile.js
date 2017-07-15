@@ -220,7 +220,7 @@ $(function(){
                 {
                     if(countryList[k].code.toLowerCase()==user.country.toLowerCase() || countryList[k].value.toLowerCase()==user.country.toLowerCase() )
                     {
-                        country = countryList[i].value;
+                        country = countryList[k].value;
                     }
                 }
                 var connect =
