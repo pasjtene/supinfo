@@ -140,7 +140,7 @@ $(function(){
            success: function(response){
                console.log(response);
                //modifier la photo de profile du  user connecte
-               if(response.profilePhotos!=null){
+               if(response.profilePhotos!=null && response.profilePhotos[0]!=null && response.profilePhotos[0]!='undefined'){
                    setProfile(mainUserProfile.params.imprtant.important_block_img,baseHost+response.profilePhotos[0].path,mainUserProfile.params.imprtant.important_block_img.data('help'))
                }
                //charger la liste des users du  site
