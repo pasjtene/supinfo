@@ -25,6 +25,14 @@ class User extends BaseUser
     protected $id;
 
 
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Geolocation",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
+    protected $geolocation;
+
     /**
      * @var string
      *
@@ -670,5 +678,40 @@ class User extends BaseUser
         }
 
         return true;
+    }
+
+    /**
+     * Set ip
+     *
+     * @param string $ip
+     *
+     * @return User
+     */
+    public function setIp($ip)
+    {
+        $this->ip = $ip;
+
+        return $this;
+    }
+
+    /**
+     * Set geolocation
+     *
+     * @return User
+     */
+    public function setGeolocation( $geolocation)
+    {
+        $this->geolocation = $geolocation;
+
+        return $this;
+    }
+
+    /**
+     * Get geolocation
+     *
+     */
+    public function getGeolocation()
+    {
+        return $this->geolocation;
     }
 }

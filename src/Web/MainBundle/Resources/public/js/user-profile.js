@@ -287,6 +287,11 @@ $(function(){
 
         mainUserProfile.params.main_body.chargement.fadeOut();
         console.log("ip du  user connecte : "+currentUser.ip);
+        console.log("ip localisation : "+currentUser.geolocation.ipAddress);
+        console.log("country localisation : "+currentUser.geolocation.countryName);
+        console.log("country code localisation : "+currentUser.geolocation.countryCode);
+        console.log("regionName code localisation : "+currentUser.geolocation.regionName);
+        console.log("cityName code localisation : "+currentUser.geolocation.cityName);
     }
 
     function setVips(element,list)

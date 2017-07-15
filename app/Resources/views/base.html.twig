@@ -142,8 +142,16 @@
                 token : '{{ app.user.token }}',
                 ip: '{{ app.user.ip }}',
                 name : '{{ app.user.firstname }}' + ' ' + '{{ app.user.lastname }}',
-                country: '{{ app.user.country }}'
-            }
+                country: '{{ app.user.country }}',
+                geolocation: {
+                        ipAddress : '{{ app.user.geolocation.ipAddress }}',
+                        countryName : '{{ app.user.geolocation.countryName }}',
+                        countryCode : '{{ app.user.geolocation.countryCode }}',
+                        regionName : '{{ app.user.geolocation.regionName }}',
+                        cityName : '{{ app.user.geolocation.cityName }}'
+                     }
+                }
+
         {% endif %}
 
     //recuperer la liste des pays et  leurs codes
