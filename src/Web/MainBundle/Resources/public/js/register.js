@@ -217,7 +217,7 @@ $(function(){
             var User =
             {
                 firstname: mainRegister.params.form.name.val(),
-                birthDate: mainRegister.params.form.day.val()+"/"+mainRegister.params.form.month.val()+"/"+mainRegister.params.form.year.val(),
+                birthDate: mainRegister.params.form.day.val()+"-"+mainRegister.params.form.month.val()+"-"+mainRegister.params.form.year.val(),
                 profession: mainRegister.params.form.profession.val(),
                 type: "Normal",
                 joinReason: mainRegister.params.form.reason.val(),
