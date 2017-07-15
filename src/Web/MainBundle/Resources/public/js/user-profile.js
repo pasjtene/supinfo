@@ -185,98 +185,103 @@ $(function(){
             var profile = list[i].profile;
             var photos = list[i].photos;
             var profilePicture = list[i].photoProfile;
-            if(user.id !=currentUser.id){
-                //photos
-                var src = null;
-                if((profilePicture==null || profilePicture=='null'))
-                {
-                    src =mainUserProfile.params.imprtant.important_block_img.data('help');
-                }
-                else
-                {
-                    src = baseHost+profilePicture.path;
-                }
-                var img  = '<img src="'+src+'" alt="not found" class="img-thumbnail">';
-                //variable de user
-                var today=new Date();
-
-                var currentyear = today.getFullYear();
-                var year  = user.birthDate.split('-')[0];
-                var age = currentyear -parseInt(year);
-                //alert(age);
-                var lastConnect = new  Date(user.lastLogin);
-
-                //alert(lastConnect.toLocaleDateString());
-                if(lastConnect.toLocaleDateString()==today.toLocaleDateString())
-                {
-                    lastConnect = lastConnect.toLocaleTimeString();
-                }
-                else{
-                    lastConnect = lastConnect.toLocaleDateString();
-                }
-                //alert(lastConnect);
-                var country ="";
-                for(var k=0; k<countryList.length;k++)
-                {
-                    if(countryList[k].code.toLowerCase()==user.country.toLowerCase() || countryList[k].value.toLowerCase()==user.country.toLowerCase() )
+            if(user.country==currentUser.country)
+            {
+                //alert(currentUser.ip);
+                //alert("country =>"+user.country+ "user country =>"+currentUser.country)
+                if(user.id !=currentUser.id){
+                    //photos
+                    var src = null;
+                    if((profilePicture==null || profilePicture=='null'))
                     {
-                        country = countryList[k].value;
+                        src =mainUserProfile.params.imprtant.important_block_img.data('help');
                     }
+                    else
+                    {
+                        src = baseHost+profilePicture.path;
+                    }
+                    var img  = '<img src="'+src+'" alt="not found" class="img-thumbnail">';
+                    //variable de user
+                    var today=new Date();
+
+                    var currentyear = today.getFullYear();
+                    var year  = user.birthDate.split('-')[0];
+                    var age = currentyear -parseInt(year);
+                    //alert(age);
+                    var lastConnect = new  Date(user.lastLogin);
+
+                    //alert(lastConnect.toLocaleDateString());
+                    if(lastConnect.toLocaleDateString()==today.toLocaleDateString())
+                    {
+                        lastConnect = lastConnect.toLocaleTimeString();
+                    }
+                    else{
+                        lastConnect = lastConnect.toLocaleDateString();
+                    }
+                    //alert(lastConnect);
+                    var country ="";
+                    for(var k=0; k<countryList.length;k++)
+                    {
+                        if(countryList[k].code.toLowerCase()==user.country.toLowerCase() || countryList[k].value.toLowerCase()==user.country.toLowerCase() )
+                        {
+                            country = countryList[k].value;
+                        }
+                    }
+                    var connect =
+                        ' <div class="row">'+
+                        '<div class="col-1">'+
+                        '<div class="rounded-circle connect" ></div>'+
+                        '</div>'+
+                        '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)   &nbsp;</strong></div>'+
+                        '<div class="col-12 text-left">'+
+                        '<span class="text-muted country">'+country+'</span>'+
+                        '</div>'+
+                        '</div>';
+
+                    var no_connect =
+                        ' <div class="row">'+
+                        '<div class="col-1">'+
+                        '<div class="rounded-circle no-connect" ></div>'+
+                        '</div>'+
+                        '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)    &nbsp;</strong></div>'+
+                        '<div class="col-12 text-left">'+
+                        '<span class="text-muted country">'+user.country+'</span>'+
+                        '<span class="text-grey pull-right"> see '+lastConnect+'</span>'+
+                        '</div>'+
+                        '</div>';
+
+
+                    var state = null;
+                    if(user.isOnline==true || user.isOnline=='true')
+                    {
+                        state = connect;
+                    }
+                    else
+                    {
+                        state = no_connect;
+                    }
+
+                    var body =
+                            ' <div class="col-sm-12 col-md-4">'+
+                            ' <div class="card bg-faded">'+
+                            ' <div class="card-block text-center">'+
+                            img+
+                            ' <br>'+
+                            state+
+                            '<div class="row text-left bg-white">'+
+                            '<div class="col">'+
+                            '<a href=""><span class="fa fa-thumbs-o-up">like picture</span></a>'+
+                            '</div>'+
+                            '<div class="col" style="display: none;">'+
+                            '<a href=""><span class="fa fa-comment-o">comment</span></a>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>'
+                        ;
+                    element.append(body);
                 }
-                var connect =
-                    ' <div class="row">'+
-                    '<div class="col-1">'+
-                    '<div class="rounded-circle connect" ></div>'+
-                    '</div>'+
-                    '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)   &nbsp;</strong></div>'+
-                    '<div class="col-12 text-left">'+
-                    '<span class="text-muted country">'+country+'</span>'+
-                    '</div>'+
-                    '</div>';
-
-                var no_connect =
-                    ' <div class="row">'+
-                    '<div class="col-1">'+
-                    '<div class="rounded-circle no-connect" ></div>'+
-                    '</div>'+
-                    '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)    &nbsp;</strong></div>'+
-                    '<div class="col-12 text-left">'+
-                    '<span class="text-muted country">'+user.country+'</span>'+
-                    '<span class="text-grey pull-right"> see '+lastConnect+'</span>'+
-                    '</div>'+
-                    '</div>';
-
-
-                var state = null;
-                if(user.isOnline==true || user.isOnline=='true')
-                {
-                    state = connect;
-                }
-                else
-                {
-                    state = no_connect;
-                }
-
-                var body =
-                        ' <div class="col-sm-12 col-md-4">'+
-                        ' <div class="card bg-faded">'+
-                        ' <div class="card-block text-center">'+
-                        img+
-                        ' <br>'+
-                        state+
-                        '<div class="row text-left bg-white">'+
-                        '<div class="col">'+
-                        '<a href=""><span class="fa fa-thumbs-o-up">like picture</span></a>'+
-                        '</div>'+
-                        '<div class="col" style="display: none;">'+
-                        '<a href=""><span class="fa fa-comment-o">comment</span></a>'+
-                        '</div>'+
-                        '</div>'+
-                        '</div>'+
-                        '</div>'+
-                        '</div>'
-                    ;
-                element.append(body);
             }
         }
 
@@ -295,41 +300,44 @@ $(function(){
             var photos = list[i].photos;
             var profilePicture = list[i].photoProfile;
 
-            //photos
-            var src = null;
-            if((profilePicture==null || profilePicture=='null'))
+            if(user.country==currentUser.country)
             {
-                src =mainUserProfile.params.imprtant.important_block_img.data('help');
-            }
-            else
-            {
-                src = baseHost+profilePicture.path;
-            }
-            var img  = '<img class="d-block img-fluid rounded-circle" src="'+src+'" alt="First slide">';
-            //variable de user
-            var today=new Date();
+                //photos
+                var src = null;
+                if((profilePicture==null || profilePicture=='null'))
+                {
+                    src =mainUserProfile.params.imprtant.important_block_img.data('help');
+                }
+                else
+                {
+                    src = baseHost+profilePicture.path;
+                }
+                var img  = '<img class="d-block img-fluid rounded-circle" src="'+src+'" alt="First slide">';
+                //variable de user
+                var today=new Date();
 
-            var currentyear = today.getFullYear();
-            var year  = user.birthDate.split('-')[0];
-            var age = currentyear -parseInt(year);
+                var currentyear = today.getFullYear();
+                var year  = user.birthDate.split('-')[0];
+                var age = currentyear -parseInt(year);
 
-            if(j%10==0 || j==1)
-            {
-                body+= '<div class="carousel-item active align-items-center justify-content-md-center">';
-            }
-            else if (j%10==0)
-            {
+                if(j%10==0 || j==1)
+                {
+                    body+= '<div class="carousel-item active align-items-center justify-content-md-center">';
+                }
+                else if (j%10==0)
+                {
+                    body+=
+                        '</div>'+
+                        '</div>'+
+                        '<div class="carousel-item  align-items-center justify-content-md-center">';
+                }
                 body+=
-                    '</div>'+
-                    '</div>'+
-                    '<div class="carousel-item  align-items-center justify-content-md-center">';
-            }
-            body+=
-                '<div class="row">'+
+                    '<div class="row">'+
                     '<div class="col">'+
-                        img+
-                     '</div>';
-            j++;
+                    img+
+                    '</div>';
+                j++;
+            }
         }
         body+='</div> </div>';
         element.append(body);
