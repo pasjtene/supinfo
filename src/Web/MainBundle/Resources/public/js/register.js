@@ -248,7 +248,7 @@ $(function(){
             } else {
                // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
-
+               //alert(User.birthDate);
                 //console.log(params);
                 //alert(params);
                 mainRegister.params.modalSave.modal('show');
