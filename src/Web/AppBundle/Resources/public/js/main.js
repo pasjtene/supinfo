@@ -11,7 +11,8 @@ var   AppMain = function()
             action :
             {find: baseUrl +"app"},
             method:
-            {get:"GET"}
+            {get:"GET"},
+            datype: "json"
         },
         required:{ //class de base  pour les erreurs et  succees
             has_danger: "has-danger",
@@ -107,6 +108,7 @@ var   AppMain = function()
                 url: this.params.api.action.find,
                 type: this.params.api.method.get,
                 crossDomain: true,
+                dataType:  this.params.api.datype,
                 success: function (data) {
                     console.log(data);
                     cb(data);
