@@ -135,14 +135,28 @@ $(function(){
 
        // alert(mainRegister.params.form.country.data("country"))
 
-        //charger la liste des pays
-        $.getJSON(mainRegister.params.form.country.data("country"), function(data){
-            //mainRegister.params.form.country.empty();
-            $.each(data,function(index,vaue){
-                    var option = "<option value='"+index+"'>"+vaue+"</option>"
-                    mainRegister.params.form.country.append(option);
-            });
-        });
+        var interval =setInterval(function(){
+                if(geolocation!=null)
+                {
+                    //charger la liste des pays
+                    $.getJSON(mainRegister.params.form.country.data("country"), function(data){
+                        //mainRegister.params.form.country.empty();
+                        $.each(data,function(index,vaue){
+                            if(index==geolocation.countryCode || vaue==geolocation.countryName)
+                            {
+                                var option = "<option selected value='"+index+"'>"+vaue+"</option>"
+                            }
+                            else
+                            {
+                                var option = "<option  value='"+index+"'>"+vaue+"</option>"
+                            }
+
+                            mainRegister.params.form.country.append(option);
+                        });
+                    });
+                    clearInterval(interval);
+                }
+        },100);
 
         //charger tous les jours
         /*for(var i= 1;i<32;i++)

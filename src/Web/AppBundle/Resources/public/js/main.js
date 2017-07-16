@@ -121,10 +121,12 @@ var   AppMain = function()
 
 
 var tokenbase =null;
+var geolocation =null;
 var appMain = new AppMain();
 
 appMain.getAppToken(function(data){
     //tokenbase = data.value;
-    tokenbase = data;
+    tokenbase = data.token;
+    geolocation = data.geolocation;
 });
 

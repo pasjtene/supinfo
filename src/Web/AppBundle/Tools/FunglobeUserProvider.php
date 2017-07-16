@@ -224,9 +224,10 @@ class FunglobeUserProvider implements UserProviderInterface
 
                 // on set  le user avec tous les infos
                 $obj->setGeolocation($geolocation);
+
             }
             else{
-                FunglobeUtils::dump($errors);
+                //FunglobeUtils::dump($errors);
             }
 
 
