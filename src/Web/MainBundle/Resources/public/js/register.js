@@ -144,6 +144,7 @@ $(function(){
                         $.each(data,function(index,vaue){
                             if(index==geolocation.countryCode || vaue==geolocation.countryName)
                             {
+                                console.log("the same country --- user country : "+ geolocation.countryName + " => select country : "+value);
                                 var option = "<option selected value='"+index+"'>"+vaue+"</option>"
                             }
                             else
