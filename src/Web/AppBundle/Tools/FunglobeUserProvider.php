@@ -196,23 +196,23 @@ class FunglobeUserProvider implements UserProviderInterface
             //recuperer les information  concernant la ville et le pays du  user.
 
             // 1- instanciation de la classe
-            $ipLite = new ip2locationlite();
+           // $ipLite = new ip2locationlite();
 
             // 2- set  la cle
-            $ipLite->setKey('b155f2730de74d66e36cdd82662dc276adb6f90473ac2c8bff03de4f7a575d6e');
+          //  $ipLite->setKey('b155f2730de74d66e36cdd82662dc276adb6f90473ac2c8bff03de4f7a575d6e');
 
             //3- recuperer le location
             //$locations = $ipLite->getCountry('41.202.219.77');
-            $locations = $ipLite->getCity($obj->getIp());
+           // $locations = $ipLite->getCity($obj->getIp());
 
             // 4- recuperer l'erreur
-            $errors = $ipLite->getError();
+           // $errors = $ipLite->getError();
 
             //recuperer les information en cas de success
-            $geolocation = new Geolocation();
+           // $geolocation = new Geolocation();
 
 
-            if (!empty($locations) && is_array($locations)) {
+         /*   if (!empty($locations) && is_array($locations)) {
                $geolocation->setIpAddress($locations["ipAddress"]);
                $geolocation->setCountryCode($locations["countryCode"]);
                $geolocation->setCountryName($locations["countryName"]);
@@ -229,6 +229,7 @@ class FunglobeUserProvider implements UserProviderInterface
             else{
                 //FunglobeUtils::dump($errors);
             }
+         */
 
 
             return $obj;

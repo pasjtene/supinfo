@@ -17,8 +17,18 @@ class ProfileController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MainBundle:Profile:index.html.twig');
+        $array['subPage'] = "matches";
+        return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 
+
+    /**
+     * @Route("/photos", name="main_profile_photos", options={"expose"=true})
+     */
+    public function photosAction()
+    {
+        $array['subPage'] = "photos";
+        return $this->render('MainBundle:Profile:index.html.twig',$array);
+    }
 
 }

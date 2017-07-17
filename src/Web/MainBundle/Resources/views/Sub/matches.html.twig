@@ -1,0 +1,79 @@
+<div class="card-block" data-sub="matches" id="Main-Submatches">
+    <div class="row" id="notification-alert">
+        {% include "MainBundle:Alert:include.html.twig" %}
+    </div>
+    <div id="search" class="row">
+        <div class="col">
+            <h4>
+                {% trans from 'user-profile' %} search.title {% endtrans %}
+            </h4>
+        </div>
+        <div class="col-1">
+            <a href="#filter" class="text-muted" data-toggle="collapse" ria-expanded="false" aria-controls="collapseExample"><span class="fa fa-2x fa-plus-square-o"></span></a>
+        </div>
+        <div class="collapse col-12" id="filter">
+            <div class="card card-block bg-faded">
+                {% trans from 'user-profile' %} filter_body {% endtrans %}
+                <a class="btn btn-primary col-md-2 col-sm-6" data-toggle="collapse" href="#modalfilter" aria-expanded="false" aria-controls="modalfilter">
+                    {% trans from 'user-profile' %} filter {% endtrans %}
+                </a>
+            </div>
+        </div>
+        {% include "MainBundle:Modal:filter.html.twig" %}
+    </div>
+    <div id="chargement" class="row">
+        <div class="col-12 text-center">
+            <img src="{{ asset('dist/loader.gif') }}" alt="">
+            <br>
+            <strong> {% trans from 'user-profile' %} loading {% endtrans %}</strong>
+        </div>
+    </div>
+    <div id="content" class="row ">
+
+        {#
+         <div class="row">
+             {% for i in 1..10  %}
+                 <div class="col-sm-12 col-md-4">
+                     <div class="card bg-faded">
+                         <div class="card-block text-center">
+                             <img src="{{ asset('data/img/avatar.png') }}" alt="not found" class="img-thumbnail">
+                             <br>
+                             {% if i%2==0 %}
+                                 <div class="row">
+                                     <div class="col-1">
+                                         <div class="rounded-circle connect" ></div>
+                                     </div>
+                                     <div class="col name text-left"> <strong > Danick takam (40ans)   &nbsp;</strong></div>
+                                     <div class="col-12 text-left">
+                                         <span class="text-muted country">Cameroun</span>
+                                     </div>
+                                 </div>
+                             {% else %}
+                                 <div class="row">
+                                     <div class="col-1">
+                                         <div class="rounded-circle no-connect" ></div>
+                                     </div>
+                                     <div class="col name text-left"> <strong > Danick takam (40ans)   &nbsp;</strong></div>
+                                     <div class="col-12 text-left">
+                                         <span class="text-muted country ">Cameroun</span>
+                                         <span class="text-grey pull-right">{% trans from 'user-profile' %} see {% endtrans %} {{  i ~'/11/2017' }}</span>
+                                     </div>
+                                 </div>
+                             {% endif %}
+
+                             <div class="row text-left bg-white">
+                                 <div class="col">
+                                     <a href=""><span class="fa fa-thumbs-o-up">{% trans from 'user-profile' %} like {% endtrans %}</span></a>
+                                 </div>
+                                 <div class="col" style="display: none;">
+                                     <a href=""><span class="fa fa-comment-o">{% trans from 'user-profile' %} comment {% endtrans %}</span></a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             {% endfor %}
+         </div>
+        #}
+    </div>
+</div>

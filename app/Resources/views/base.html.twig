@@ -142,18 +142,22 @@
                 token : '{{ app.user.token }}',
                 ip: '{{ app.user.ip }}',
                 name : '{{ app.user.firstname }}' + ' ' + '{{ app.user.lastname }}',
-                country: '{{ app.user.country }}',
-                geolocation: {
+                country: '{{ app.user.country }}'
+                }
+
+        {% endif %}
+
+    {#
+
+    /* geolocation: {
                         ipAddress : '{{ app.user.geolocation.ipAddress }}',
                         countryName : '{{ app.user.geolocation.countryName }}',
                         countryCode : '{{ app.user.geolocation.countryCode }}',
                         regionName : '{{ app.user.geolocation.regionName }}',
                         cityName : '{{ app.user.geolocation.cityName }}'
-                     }
-                }
+                     }*/
 
-        {% endif %}
-
+    #}
     //recuperer la liste des pays et  leurs codes
     var  countryList = [];
     var pathCountry = {% if app.request.locale=="fr" %} '{{ asset("dist/country.json") }}' {% else %} '{{ asset("dist/country-en.json") }}' {% endif %};
