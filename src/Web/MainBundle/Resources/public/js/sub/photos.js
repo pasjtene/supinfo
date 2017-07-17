@@ -18,6 +18,20 @@ var MainSubPhotos = function()
         body:{
             content :$("#main-body #Main-Subphotos #content"),
             chargement: $("#main-body #Main-Subphotos #chargement")
+        },
+        tabs:
+        {
+            add:{
+
+            },
+            list:{
+                img : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-list img"),
+                zoom_source : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-list .zoomImgSource"),
+                zoom_img : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-list #zoomImg")
+            },
+            profile:{
+
+            }
         }
     };
 
@@ -38,6 +52,10 @@ $(function () {
 
            }
        },100);
+        mainSubPhotos.params.tabs.list.img.click(function() {
+            mainSubPhotos.params.tabs.list.zoom_source.attr('src', $(this).attr('src'));
+            mainSubPhotos.params.tabs.list.zoom_img.modal('show');
+        });
 
         function setPhotos(element,list){
 
