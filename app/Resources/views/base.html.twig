@@ -156,7 +156,8 @@
 
     //recuperer la liste des pays et  leurs codes
     var  countryList = [];
-    $.getJSON('{{ asset("dist/country.json") }}', function(data){
+    var pathCountry = {% if app.request.locale=="fr" %} '{{ asset("dist/country.json") }}' {% else %} '{{ asset("dist/country-en.json") }}' {% endif %};
+    $.getJSON(pathCountry, function(data){
         $.each(data,function(index,vaue){
             countryList.push({"code": index, "value":vaue});
         });

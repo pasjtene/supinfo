@@ -121,7 +121,6 @@ var   AppMain = function()
     }
 };
 
-
 var tokenbase =null;
 var geolocation =null;
 var appMain = new AppMain();

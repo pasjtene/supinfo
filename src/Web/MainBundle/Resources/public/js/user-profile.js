@@ -189,7 +189,7 @@ $(function(){
             {
                 //alert(currentUser.ip);
                 //alert("country =>"+user.country+ "user country =>"+currentUser.country)
-                if(user.id !=currentUser.id){
+                if(user.id !=currentUser.id && user.type!="System"){
                     //photos
                     var src = null;
                     if((profilePicture==null || profilePicture=='null'))
@@ -305,44 +305,40 @@ $(function(){
             var profile = list[i].profile;
             var photos = list[i].photos;
             var profilePicture = list[i].photoProfile;
+            if(user.type!="System") {
+                if (user.country == currentUser.country) {
+                    //photos
+                    var src = null;
+                    if ((profilePicture == null || profilePicture == 'null')) {
+                        src = mainUserProfile.params.imprtant.important_block_img.data('help');
+                    }
+                    else {
+                        src = baseHost + profilePicture.path;
+                    }
+                    var img = '<img class="d-block img-fluid rounded-circle" src="' + src + '" alt="First slide">';
+                    //variable de user
+                    var today = new Date();
 
-            if(user.country==currentUser.country)
-            {
-                //photos
-                var src = null;
-                if((profilePicture==null || profilePicture=='null'))
-                {
-                    src =mainUserProfile.params.imprtant.important_block_img.data('help');
-                }
-                else
-                {
-                    src = baseHost+profilePicture.path;
-                }
-                var img  = '<img class="d-block img-fluid rounded-circle" src="'+src+'" alt="First slide">';
-                //variable de user
-                var today=new Date();
+                    var currentyear = today.getFullYear();
+                    var year = user.birthDate.split('-')[0];
+                    var age = currentyear - parseInt(year);
 
-                var currentyear = today.getFullYear();
-                var year  = user.birthDate.split('-')[0];
-                var age = currentyear -parseInt(year);
-
-                if(j%10==0 || j==1)
-                {
-                    body+= '<div class="carousel-item active align-items-center justify-content-md-center">';
+                    if (j % 10 == 0 || j == 1) {
+                        body += '<div class="carousel-item active align-items-center justify-content-md-center">';
+                    }
+                    else if (j % 10 == 0) {
+                        body +=
+                            '</div>' +
+                            '</div>' +
+                            '<div class="carousel-item  align-items-center justify-content-md-center">';
+                    }
+                    body +=
+                        '<div class="row">' +
+                        '<div class="col">' +
+                        img +
+                        '</div>';
+                    j++;
                 }
-                else if (j%10==0)
-                {
-                    body+=
-                        '</div>'+
-                        '</div>'+
-                        '<div class="carousel-item  align-items-center justify-content-md-center">';
-                }
-                body+=
-                    '<div class="row">'+
-                    '<div class="col">'+
-                    img+
-                    '</div>';
-                j++;
             }
         }
         body+='</div> </div>';
