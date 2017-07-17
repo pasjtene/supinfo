@@ -32,8 +32,24 @@
             {% include "MainBundle:Inc:important.html.twig" %}
         </div>
         <div class="col-md-8 col-sm-12 card" id="main-body">
-            {% if subPage is defined and subPage=="matches" %}
-                {% include "MainBundle:Sub:matches.html.twig" %}
+            {% if subPage is defined %}
+                {% if subPage=="matches" %}
+                    {% include "MainBundle:Sub:matches.html.twig" %}
+                {% elseif  subPage=="photos" %}
+                    {% include "MainBundle:Sub:photos.html.twig" %}
+                {% elseif  subPage=="messages" %}
+                    {% include "MainBundle:Sub:messages.html.twig" %}
+                {% elseif  subPage=="vips" %}
+                    {% include "MainBundle:Sub:vips.html.twig" %}
+                {% elseif  subPage=="compte" %}
+                    {% include "MainBundle:Sub:compte.html.twig" %}
+                {% elseif  subPage=="parameter" %}
+                    {% include "MainBundle:Sub:parameter.html.twig" %}
+                {% elseif  subPage=="friends" %}
+                    {% include "MainBundle:Sub:friends.html.twig" %}
+                {% elseif  subPage=="detail-profile" %}
+                    {% include "MainBundle:Sub:detail-profile.html.twig" %}
+                {% endif %}
             {% endif %}
         </div>
         <div class="col" id="publicity">

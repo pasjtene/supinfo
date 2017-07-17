@@ -54,7 +54,8 @@ var MainUserProfile = function()
 };
 
 var listUsers = null,
-    listVips = null;
+    listVips = null,
+    ListPhotos = null;
 $(function(){
 
     var mainUserProfile = new MainUserProfile();
@@ -143,6 +144,10 @@ $(function(){
                console.log(response);
                //set  les listes des users
                listUsers=response.users;
+
+               //set  les listes des photos
+               listPhotos=response.photos;
+
 
                //modifier la photo de profile du  user connecte
                if(response.profilePhotos!=null && response.profilePhotos[0]!=null && response.profilePhotos[0]!='undefined'){
