@@ -2,24 +2,24 @@
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab"  href="#Main-Subphotos-list">{% trans from 'photo' %} sub.tabs.list {% endtrans %}</a>
+            <a class="nav-link {% if active is defined and active==1 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-list">{% trans from 'photo' %} sub.tabs.list {% endtrans %}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab"  href="#Main-Subphotos-add">{% trans from 'photo' %} sub.tabs.add {% endtrans %}</a>
+            <a class="nav-link {% if active is defined and active==2 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-add">{% trans from 'photo' %} sub.tabs.add {% endtrans %}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab"  href="#Main-Subphotos-profiles">{% trans from 'photo' %} sub.tabs.profile {% endtrans %}</a>
+            <a class="nav-link {% if active is defined and active==3 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-profiles">{% trans from 'photo' %} sub.tabs.profile {% endtrans %}</a>
         </li>
     </ul>
 
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade show active" id="Main-Subphotos-list" data-tabs="Main-Subphotos-list" >
+        <div role="tabpanel" class="tab-pane fade {% if active is defined and active==1 %} show active {% endif %} " id="Main-Subphotos-list" data-tabs="Main-Subphotos-list" >
             {% include "MainBundle:Tabs:list-photo.html.twig" %}
         </div>
-        <div role="tabpanel" class="tab-pane fade " id="Main-Subphotos-add">
+        <div role="tabpanel" class="tab-pane fade {% if active is defined and active==2 %} show active {% endif %}" id="Main-Subphotos-add">
             {% include "MainBundle:Tabs:add-photo.html.twig" %}
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="Main-Subphotos-profiles">
+        <div role="tabpanel" class="tab-pane fade {% if active is defined and active==3 %} show active {% endif %}" id="Main-Subphotos-profiles">
             {% include "MainBundle:Tabs:profile-photo.html.twig" %}
         </div>
     </div>

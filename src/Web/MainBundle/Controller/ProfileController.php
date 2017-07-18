@@ -25,9 +25,11 @@ class ProfileController extends Controller
     /**
      * @Route("/photos", name="main_profile_photos", options={"expose"=true})
      */
-    public function photosAction()
+    public function photosAction(Request $request)
     {
         $array['subPage'] = "photos";
+        $active = $request->get("active")==null? 1 : $request->get("active");
+        $array['active'] = $active;
         return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 
