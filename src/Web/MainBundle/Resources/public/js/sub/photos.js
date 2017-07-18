@@ -140,7 +140,6 @@ $(function () {
                         '</div>'    +
                     '</div>';
             }
-            alert(body);
             element.append(body);
         }
         mainSubPhotos.params.body.chargement.fadeOut();
