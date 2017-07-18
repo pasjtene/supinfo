@@ -140,13 +140,28 @@
             var currentUser = {
                 id : '{{ app.user.id }}',
                 token : '{{ app.user.token }}',
-                name : '{{ app.user.firstname }}' + ' ' + '{{ app.user.lastname }}'
-            }
+                ip: '{{ app.user.ip }}',
+                name : '{{ app.user.firstname }}' + ' ' + '{{ app.user.lastname }}',
+                country: '{{ app.user.country }}'
+                }
+
         {% endif %}
 
+    {#
+
+    /* geolocation: {
+                        ipAddress : '{{ app.user.geolocation.ipAddress }}',
+                        countryName : '{{ app.user.geolocation.countryName }}',
+                        countryCode : '{{ app.user.geolocation.countryCode }}',
+                        regionName : '{{ app.user.geolocation.regionName }}',
+                        cityName : '{{ app.user.geolocation.cityName }}'
+                     }*/
+
+    #}
     //recuperer la liste des pays et  leurs codes
     var  countryList = [];
-    $.getJSON('{{ asset("dist/country.json") }}', function(data){
+    var pathCountry = {% if app.request.locale=="fr" %} '{{ asset("dist/country.json") }}' {% else %} '{{ asset("dist/country-en.json") }}' {% endif %};
+    $.getJSON(pathCountry, function(data){
         $.each(data,function(index,vaue){
             countryList.push({"code": index, "value":vaue});
         });

@@ -135,14 +135,29 @@ $(function(){
 
        // alert(mainRegister.params.form.country.data("country"))
 
-        //charger la liste des pays
-        $.getJSON(mainRegister.params.form.country.data("country"), function(data){
-            //mainRegister.params.form.country.empty();
-            $.each(data,function(index,vaue){
-                    var option = "<option value='"+index+"'>"+vaue+"</option>"
-                    mainRegister.params.form.country.append(option);
-            });
-        });
+        var interval =setInterval(function(){
+                if(geolocation!=null)
+                {
+                    //charger la liste des pays
+                    $.getJSON(mainRegister.params.form.country.data("country"), function(data){
+                        //mainRegister.params.form.country.empty();
+                        $.each(data,function(index,value){
+                            if(index==geolocation.countryCode || value==geolocation.countryName)
+                            {
+                                console.log("the same country --- user country : "+ geolocation.countryName + " => select country : "+value);
+                                var option = "<option selected value='"+index+"'>"+value+"</option>"
+                            }
+                            else
+                            {
+                                var option = "<option  value='"+index+"'>"+value+"</option>"
+                            }
+
+                            mainRegister.params.form.country.append(option);
+                        });
+                    });
+                    clearInterval(interval);
+                }
+        },100);
 
         //charger tous les jours
         /*for(var i= 1;i<32;i++)
@@ -217,7 +232,7 @@ $(function(){
             var User =
             {
                 firstname: mainRegister.params.form.name.val(),
-                birthDate: mainRegister.params.form.day.val()+"/"+mainRegister.params.form.month.val()+"/"+mainRegister.params.form.year.val(),
+                birthDate: mainRegister.params.form.day.val()+"-"+mainRegister.params.form.month.val()+"-"+mainRegister.params.form.year.val(),
                 profession: mainRegister.params.form.profession.val(),
                 type: "Normal",
                 joinReason: mainRegister.params.form.reason.val(),
@@ -248,7 +263,7 @@ $(function(){
             } else {
                // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
-
+               //alert(User.birthDate);
                 //console.log(params);
                 //alert(params);
                 mainRegister.params.modalSave.modal('show');

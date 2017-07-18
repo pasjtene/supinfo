@@ -18,6 +18,7 @@ var concat = require('gulp-concat');
 var jsPaths = [
     './web/bundles/app/js/*.js',
     './web/bundles/main/js/*.js',
+    './web/bundles/main/js/sub/*.js',
     './web/bundles/admin/js/*.js'
 ];
 
