@@ -11,28 +11,32 @@
             </div>
         </div>
     </div>
-    {% for i in 1..10 %}
-        <div class="col-sm-12 col-md-4 col  text-center img">
-            <div class="card">
-                <img src="{{ asset('data/img/empty.png') }}" alt="" class="card-img-top rounded">
-                {% set  id ="action"~i %}
-                <div class="card-block text-right">
-                    <div class="btn-group">
-                        <button class="btn-secondary btn-sm text-muted"  type="button"  aria-haspopup="true" aria-expanded="false">
-                            {% trans from  'photo' %} sub.body.see {% endtrans %} 11/11/11
-                        </button>
-                        <button id="{{ id }}" type="button" class="  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu"  aria-labelledby="{{ id }}">
-                            <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.profile {% endtrans %}</a>
-                            <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.published {% endtrans %}</a>
-                            <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.delete {% endtrans %}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+   <div id="body-photo" class="row" data-help="{{ asset('data/img/empty.png') }}">
+      {#
+             {% for i in 1..10 %}
+           <div class="col-sm-12 col-md-4 col  text-center img">
+               <div class="card">
+                   <img src="{{ asset('data/img/empty.png') }}" alt="" class="card-img-top rounded">
+                   {% set  id ="action"~i %}
+                   <div class="card-block text-right">
+                       <div class="btn-group">
+                           <button class="btn-secondary btn-sm text-muted"  type="button"  aria-haspopup="true" aria-expanded="false">
+                               {% trans from  'photo' %} sub.body.see {% endtrans %} 11/11/11
+                           </button>
+                           <button id="{{ id }}" type="button" class="  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <span class="sr-only">Toggle Dropdown</span>
+                           </button>
+                           <div class="dropdown-menu"  aria-labelledby="{{ id }}">
+                               <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.profile {% endtrans %}</a>
+                               <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.published {% endtrans %}</a>
+                               <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.delete {% endtrans %}</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
 
-        </div>
-    {% endfor %}
+           </div>
+       {% endfor %}
+      #}
+   </div>
 </div>
