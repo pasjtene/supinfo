@@ -7,3 +7,5 @@ sub:
     profile: Take like profile
     published: published
     delete: Delete
+  body:
+    see: See to
