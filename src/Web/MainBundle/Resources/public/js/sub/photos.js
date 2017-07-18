@@ -117,6 +117,7 @@ $(function () {
                 var pulished = Translator.trans('sub.img.published', {}, 'photo');
                 var profile = Translator.trans('sub.img.profile', {}, 'photo');
                 var deletes = Translator.trans('sub.img.delete', {}, 'photo');
+                var like = Translator.trans('sub.img.like', {}, 'photo');
 
                 var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
                 var id = "action"+photo.id;
@@ -124,8 +125,9 @@ $(function () {
                     '<div class="col-sm-12 col-md-4 col  text-center img">'+
                         '<div class="card">'+
                             img+
-                            '<div class="card-block text-right">'+
-                                '<div class="btn-group">'+
+                            '<div class="card-block">'+
+                                '<p>'+photo.id+' people like this photo </p>'+
+                                '<div class="btn-group text-right">'+
                                     '<button class="btn-secondary btn-sm text-muted"  type="button"  aria-haspopup="true" aria-expanded="false">'+
                                         pulished_to+ datepublished.toLocaleString()+
                                     '</button>'+
@@ -135,6 +137,7 @@ $(function () {
                                     '<div class="dropdown-menu"  aria-labelledby="'+id+'">'+
                                         '<a class="dropdown-item" href="#">'+profile+'</a>'+
                                         '<a class="dropdown-item" href="#">'+pulished+'</a>'+
+                                        '<a class="dropdown-item " href="#"> <span class="fa fa-thumbs-o-up">'+like+'</span></a>'+
                                         '<a class="dropdown-item" href="#">'+deletes+'</a>'+
                                     '</div>'+
                                 '</div>'+
