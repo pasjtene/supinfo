@@ -5,13 +5,24 @@ admin:
   members:
    title: Members
    number: Number of users
+   fltjdate: Join date
+   fltfname: Firstname
+   fltcountry: Country
+   ordasc: Ascendant
+   orddesc: Descendant
+   filter: Order
    firstname: 	First Name
+   country: Country
    gender: Gender
    status: Status
+   vip: VIP
    select: 	Select
-   delete: Delete selected users
-   block: Block selected users
-   email: Email selected users
+   delete: Delete users
+   block: Block users
+   unblock: Unblock users
+   email: Email users
+   setvip: Set users as VIP
+   unvip: Unset users as VIP
 
   messages:
    title: Messages

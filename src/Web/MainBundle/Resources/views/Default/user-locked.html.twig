@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block title %}
-    {% trans from 'login' %} forgot.title {% endtrans %}
+    {% trans from 'login' %} locked.title {% endtrans %}
 {% endblock  %}
 
 
@@ -23,12 +23,12 @@
 {% block main %}
     <div class="row" id="mainLogin">
         <div class="col-sm-12 offset-lg-2 col-lg-8" id="content-login">
-            <h1>{% trans from 'login' %} forgot.msg {% endtrans %}</h1>
-
+            <h2>{% trans from 'login' %} locked.msg {% endtrans %}</h2>
+            <br/>
             <p>
-                <b>Votre compte a été bloqué par l'administrateur du système !</b>
+                <b>{% trans from 'login' %} locked.msgone {% endtrans %}</b>
                 <br/>
-                Pour en savoir en plus, veuillez le contacter à l'addresse : <a href="mailto:contact@funglobe.com">contact@funglobe.com</a>
+                {% trans from 'login' %} locked.msgtwo {% endtrans %} <a href="mailto:contact@funglobe.com">contact@funglobe.com</a>
             </p>
         </div>
     </div>

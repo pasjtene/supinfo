@@ -28,3 +28,8 @@ reset:
   btnreset: Reset
   msgerror: Click to send a new request
   msgsuccess: Click here to login
+locked:
+  title: Account locked
+  msg: Unable to log in to your account
+  msgone: Your account has been blocked by the system administrator!
+  msgtwo: To find out more, please contact him at:

@@ -5,13 +5,24 @@ admin:
   members:
    title: Membres
    number: Nombre d'utilisateurs
+   fltjdate: Date d'inscription
+   fltfname: Prénom
+   fltcountry: Pays
+   ordasc: Croissant
+   orddesc: Décroissant
+   filter: Trier
    firstname: 	Prénom
+   country: Pays
    gender: Genre
    status: Statut
+   vip: VIP
    select: 	Selectionner
    delete: Supprimer les utilisateurs
    block: Bloquer les utilisateurs
+   block: Débloquer les utilisateurs
    email: Ecrire aux utilisateurs
+   setvip: Marqué comme VIP
+   unvip: retiré comme VIP
 
   messages:
    title: Messages

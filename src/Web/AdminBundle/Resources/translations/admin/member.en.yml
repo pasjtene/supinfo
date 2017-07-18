@@ -2,6 +2,10 @@ member:
   title: Member's info
   page_title: View member info
   change_role: Change role
+  set_vip: Set VIP
+  unset_vip: Unset VIP
+  set_locked: Block
+  unset_locked: Unblock
   th_property: Properties
   th_value: Values
   lbl_role: Member's role :

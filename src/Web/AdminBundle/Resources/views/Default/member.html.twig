@@ -22,10 +22,29 @@
         </div>
         <div class="container">
             <div class="col-sm-12" id="mb-header">
-                <span>{{ member.firstName ~ member.lastName }}</span>
-                <button id="btn-role-action" data-edit="0" data-mid="{{ member.id }}" class="btn btn-primary pull-right">
+                <span>{{ member.firstName ~ member.lastName }} {% if member.isVip %}(vip){% endif %}</span>
+                <!--<button id="btn-role-action" data-edit="0" data-mid="{{ member.id }}" class="btn btn-primary pull-right">
                     {% trans from 'member' %} member.change_role {% endtrans %}
-                </button>
+                </button>-->
+                <div class="btn-group pull-right" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-info" data-action="{% if member.enabled %} unset {% else %} set {% endif %}">
+                        {% if member.enabled %}
+                            {% trans from 'member' %} member.unset_locked {% endtrans %}
+                        {% else %}
+                            {% trans from 'member' %} member.set_locked {% endtrans %}
+                        {% endif %}
+                    </button>
+                    <button type="button" class="btn btn-success" data-action="{% if member.isVip %} unset {% else %} set {% endif %}">
+                        {% if member.isVip %}
+                            {% trans from 'member' %} member.unset_vip {% endtrans %}
+                        {% else %}
+                            {% trans from 'member' %} member.set_vip {% endtrans %}
+                        {% endif %}
+                    </button>
+                    <button type="button" id="btn-role-action" data-edit="0" data-mid="{{ member.id }}" class="btn btn-primary">
+                        {% trans from 'member' %} member.change_role {% endtrans %}
+                    </button>
+                </div>
             </div>
             <div class="col-sm-12">
                 {% set member_role = member.roles[0] %}
