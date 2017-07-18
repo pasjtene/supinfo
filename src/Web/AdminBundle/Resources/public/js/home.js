@@ -186,12 +186,13 @@ $(function(){
                             adminHome.params.attr.id.users_table_body.empty();
                             adminHome.params.attr.id.users_loader.hide();
                             $.each(users, function(i, user){
-
                                 var row = $('<tr>').html("<td>" + (i+1) +
                                     "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
                                     "</td><td>" + user.email +
+                                    "</td><td>" + user.country +
                                     "</td><td>" + user.gender +
                                     "</td><td>" + (user.enabled ? "Enabled" : "Locked") +
+                                    "</td><td>" + (user.isVip ? "Yes" : "No") +
                                     "</td>");
                                 $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.email+'"/>').appendTo(row);
                                 //augmenter les users dans le tableau

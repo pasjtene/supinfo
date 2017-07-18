@@ -23,10 +23,15 @@ var AdminMember = function()
                 btn_order_users: $('#btn-order-users'),
                 users_table_body: $("#users_table_body"),
                 total_users: $("#total_users"),
-                users_loader: $("#users-loader")
+                nbusers: $("#nbusers"),
+                users_loader: $("#users-loader"),
+                btn_vip_member: $("#btn-vip-members"),
+                btn_unblock_member: $("#btn-unlock-members"),
+                btn_unvip_member: $("#btn-unvip-members")
             },
             class:{
-                checkbox : 'input[type="checkbox"]'
+                checkbox : 'input[type="checkbox"]',
+                nbrofchkbox: $('.nbrofchkbox')
             }
         },
         api:{
@@ -36,6 +41,7 @@ var AdminMember = function()
                 bulk_email: baseUrl +"auth/send-email",
                 lock: baseUrl + "auth/members/lock",
                 findall: baseUrl +"auth/members",
+                vip: baseUrl + "auth/members/vip"
             },
             method:
             {
@@ -50,12 +56,31 @@ var AdminMember = function()
 
 };
 
-
-
 $(function(){
 
     // Instanciation  de la classe AdminMember
     var adminMember = new AdminMember();
+
+    var action = "set";
+
+    var lockAction = function(selectedUsers)
+    {
+        var data = {members: selectedUsers, action: action};
+        $.ajax({
+            url: adminMember.params.api.action.lock,
+            type: adminMember.params.api.method.put,
+            headers : {"X-Auth-Token" : tokenbase.value},
+            data: data,
+            crossDomain: true,
+            success: function (response) {
+                action = "set";
+                adminMember.params.attr.id.btn_order_users.trigger('click');
+            },
+            error: function (xhr, status, message) {
+                console.log(status+"\n"+xhr.responseText + '\n' + message );
+            }
+        });
+    };
 
     //Tester si  la page actuelle c'est adminMember
     if(adminMember.params.page.data('page') === "adminHome")
@@ -129,20 +154,7 @@ $(function(){
 
             if(t > 0 && confirm('You really want to block these members ?'))
             {
-                var data = {members: selectedUsers};
-                $.ajax({
-                    url: adminMember.params.api.action.lock,
-                    type: adminMember.params.api.method.put,
-                    headers : {"X-Auth-Token" : tokenbase.value},
-                    data: data,
-                    crossDomain: true,
-                    success: function (response) {
-                        adminMember.params.attr.id.btn_order_users.trigger('click');
-                    },
-                    error: function (xhr, status, message) {
-                        console.log(status+"\n"+xhr.responseText + '\n' + message );
-                    }
-                });
+                lockAction(selectedUsers);
             }
             e.preventDefault();
         });
@@ -165,26 +177,72 @@ $(function(){
                     crossDomain: true,
                     success: function (users) {
                         adminMember.params.attr.id.total_users.html(users.length);
+
                         adminMember.params.attr.id.users_loader.hide();
                         $.each(users, function(i, user){
 
                             var row = $('<tr>').html("<td>" + (i+1) +
                                 "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
                                 "</td><td>" + user.email +
+                                "</td><td>" + user.country +
                                 "</td><td>" + user.gender +
                                 "</td><td>" + (user.enabled ? "Enabled" : "Locked") +
+                                "</td><td>" + (user.isVip ? "Yes" : "No") +
                                 "</td>");
                             $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.email+'"/>').appendTo(row);
                             //augmenter les users dans le tableau
                             adminMember.params.attr.id.users_table_body.append(row);
 
                         });
+                        var count = $("input[type=checkbox]:checked").length;
+                        adminMember.params.attr.class.nbrofchkbox.text(0);
+                        adminMember.params.attr.id.nbusers.toggle(count > 0);
                     },
                     error: function (xhr, status, message) { //en cas d'erreur
                         console.log(status+"\n"+xhr.responseText + '\n' + message );
                     }
                 }
             );
+        });
+
+        adminMember.params.attr.id.btn_vip_member.click(function(e)
+        {
+            var selectedUsers = getSelectedUsers(),
+                t = selectedUsers.length;
+
+            if(t > 0)
+            {
+                var data = {members: selectedUsers, action: action};
+                $.ajax({
+                    url: adminMember.params.api.action.vip,
+                    type: adminMember.params.api.method.put,
+                    headers : {"X-Auth-Token" : tokenbase.value},
+                    data: data,
+                    crossDomain: true,
+                    success: function (response) {
+                        action = "set";
+                        adminMember.params.attr.id.btn_order_users.trigger('click');
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    }
+                });
+            }
+            e.preventDefault();
+        });
+
+        adminMember.params.attr.id.btn_unvip_member.click(function(e)
+        {
+            action = "unset";
+            adminMember.params.attr.id.btn_vip_member.trigger('click');
+        });
+
+        adminMember.params.attr.id.btn_unblock_member.click(function(e)
+        {
+            action = "unset";
+            var selectedUsers = getSelectedUsers();
+
+            lockAction(selectedUsers);
         });
 
         adminMember.params.attr.id.btn_role_action.click(function(e)
