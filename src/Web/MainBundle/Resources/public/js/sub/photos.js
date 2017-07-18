@@ -60,6 +60,10 @@ $(function () {
         function setPhotos(element,list){
 
             element.empty();
+            if(list!=null)
+            {
+
+            }
             mainSubPhotos.params.body.chargement.fadeOut();
         }
     }
