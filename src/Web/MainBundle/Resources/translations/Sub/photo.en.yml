@@ -3,3 +3,7 @@ sub:
     add: Add
     list:    List
     profile: Profile List
+  img:
+    profile: Take like profile
+    published: published
+    delete: Delete
