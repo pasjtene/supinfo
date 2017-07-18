@@ -46,7 +46,7 @@ $(function () {
     {
        var intervalphotos = setInterval(function(){
            //charger la liste des users du  site
-           if(listPhotos!=null)
+           if(ListPhotos!=null)
            {
                clearInterval(intervalphotos);
 
@@ -60,6 +60,10 @@ $(function () {
         function setPhotos(element,list){
 
             element.empty();
+            if(list!=null)
+            {
+
+            }
             mainSubPhotos.params.body.chargement.fadeOut();
         }
     }
