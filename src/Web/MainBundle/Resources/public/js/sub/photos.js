@@ -37,7 +37,8 @@ var MainSubPhotos = function()
                 img : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-list img"),
                 zoom_source : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-list .zoomImgSource"),
                 zoom_img : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-list #zoomImg"),
-                body_photo: $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-list #body-photo")
+                body_photo: $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-list #body-photo"),
+                chargement_photo : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-list #chargement-photo")
             },
             profile:{
 
@@ -54,10 +55,11 @@ $(function () {
 
     if(mainSubPhotos.params.sub.data('sub')=="photos")
     {
+        mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
         //charger les photos de l'utilisateur selectionnée (par defaut le user connecte
         fillPhotos(currentUser.id);
 
-        mainSubPhotos.params.tabs.list.img.click(function() {
+        mainSubPhotos.params.tabs.list.body_photo.on('click', "img",function() {
             mainSubPhotos.params.tabs.list.zoom_source.attr('src', $(this).attr('src'));
             mainSubPhotos.params.tabs.list.zoom_img.modal('show');
         });
@@ -141,7 +143,8 @@ $(function () {
                     '</div>';
             }
             element.append(body);
+            mainSubPhotos.params.tabs.list.chargement_photo.fadeOut();
         }
-        mainSubPhotos.params.body.chargement.fadeOut();
+
     }
 });
