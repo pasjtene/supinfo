@@ -248,8 +248,7 @@ $(function(){
                         addThumbnail(response);
                     },
                     error: function (xhr, status, message) { //en cas d'erreur
-                        var error = '<div class="text-danger">'+message+'</div>';
-                        mainPhotoAdd.params.id.bg_notification_p.html(currentImg[currentIndex]+error);
+                        mainPhotoAdd.params.id.bg_notification_p.html(currentImg[currentIndex]+"<span class='text-danger'>("+message+")</span>");
                         mainPhotoAdd.params.id.bg_error.fadeIn();
                         currentIndex++;
                         t= setInterval(function(){
