@@ -6,6 +6,10 @@ sub:
   img:
     profile: Take like profile
     published: published
+    private: To deprive
     delete: Delete
+    like: Like
   body:
-    see: See to
+    state :
+      private: private
+      public: published to

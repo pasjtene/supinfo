@@ -27,5 +27,29 @@
           }
       }
     }
+
+    #Main-Subphotos-profiles{
+
+      #chargement-profile{
+        padding-top: 2em;
+      }
+      #body-profile{
+        padding:0 2em 2em 2em;
+      }
+      .img{
+        padding-top: 2em;
+        img{
+          height: 250px;
+          cursor: zoom-in;
+        }
+      }
+
+      #zoomImg-profile{
+        .zoomImgSource-profile{
+          width: 80%;
+          max-height: 500px;
+        }
+      }
+    }
   }
 }
