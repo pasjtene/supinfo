@@ -3,6 +3,9 @@ var MainSubPhotos = function()
     this.params = {
         page: $("#mainUserProfile"),
         sub: $("#Main-Subphotos"),
+        active_tab : $("#Main-Subphotos #active-photo-tab"),
+        link_list:$("#Main-Subphotos #link-photo-list a "),
+        link_profile:$("#Main-Subphotos #link-photo-profile a "),
         api:{
             fill: {
                 url : baseUrl+"auth/user/photo/list",
@@ -62,14 +65,47 @@ $(function () {
     if(mainSubPhotos.params.sub.data('sub')=="photos")
     {
         mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
-        //charger les photos de l'utilisateur selectionnée (par defaut le user connecte
-        fillPhotos(currentUser.id);
+
+
+        //toutes les innformations concernant  la liste des photos
+        if(mainSubPhotos.params.active_tab.val()==1){
+            initList();
+        }
+
+        mainSubPhotos.params.link_list.click(function(){
+            initList();
+        });
+
+
+
+        //toutes les innformations concernant  la liste des profiles
+        if(mainSubPhotos.params.active_tab.val()==3){
+            initProfile();
+        }
+
+        mainSubPhotos.params.link_list.click(function(){
+            initProfile();
+        });
+
+
 
         mainSubPhotos.params.tabs.list.body_photo.on('click', "img",function() {
             mainSubPhotos.params.tabs.list.zoom_source.attr('src', $(this).attr('src'));
             mainSubPhotos.params.tabs.list.zoom_img.modal('show');
         });
 
+
+
+        function initList(){
+            //charger les photos de l'utilisateur selectionnée (par defaut le user connecte
+            fillPhotos(currentUser.id);
+        }
+
+
+        function initProfile(){
+            //charger les photos de profile de l'utilisateur selectionnée (par defaut le user connecte)
+            fillProfile(currentUser.id);
+        }
 
         function fillPhotos(id){
             $.ajax({
@@ -162,7 +198,7 @@ $(function () {
                 var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
                 var id = "action"+photo.id;
                 body+=
-                    '<div class="col-sm-12 col-md-4   text-center img">'+
+                    '<div class="col-sm-12 col-md-4 col   text-center img">'+
                         '<div class="card">'+
                             img+
                             '<div class="card-block">'+

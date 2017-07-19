@@ -75,10 +75,21 @@
 
     <!-- baground en  cas d"evenement -->
     <div id="bg">
-        <div id="loading">
-            <img src="{{ asset('data/img/loading3.gif') }}" alt="">
-            <div id="bloc_message" class='text-info'>
+        <div id="loading" class="row">
+            <div class="col-12 text-center">
+                <img src="{{ asset('data/img/loading3.gif') }}" alt="">
+                <div id="bloc_message" class='text-info'>
 
+                </div>
+                <div id="bg-notification">
+                    <div id="bg-success">
+                        <img src="{{ asset('data/img/success1.png') }}" alt="">
+                    </div>
+                    <div id="bg-error">
+                        <img src="{{ asset('data/img/error.png') }}" alt="">
+                    </div>
+                    <p></p>
+                </div>
             </div>
         </div>
     </div>
