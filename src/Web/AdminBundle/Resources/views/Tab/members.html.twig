@@ -38,17 +38,6 @@
 
         </tbody>
     </table>
-    {#<!--<div id="pagination">
-        <div class="pagination-info">{{ offset + 1 }}-{{ offset + itemPerPage }} {{ 'app.pagination.pon'|trans }} {{ msgCount }}</div>
-        <ul class="pagination pagination-small">
-            <li {% if page == 1 %} class="disabled" {% endif %}>
-                <a href="{{ path('web_app_user_mainpage', {'page' : pagePrev}) }}">&lt;</a>
-            </li>
-            <li {% if page == paginationCount %} class="disabled" {% endif %} >
-                <a href="{{ path('web_app_user_mainpage', {'page' : pageNext}) }}">&gt;</a>
-            </li>
-        </ul>
-    </div>-->#}
 
     <div id="pagination" style="width: 100%">
         <ul class="pagination pull-right" id="ul-pagination">

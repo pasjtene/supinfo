@@ -1,0 +1,13 @@
+<div class="row" style="position: relative">
+    <div>
+        <h3>{% trans from 'settings' %} settings.title {% endtrans %}</h3>
+        <form>
+            <div class="form-group">
+                <label for="nbuser-perpage" class="form-control-label">{% trans from 'settings' %} settings.lbl_upp {% endtrans %}</label>
+                <input type="number" class="form-control" id="nbuser-perpage" value="0" min="1"/>
+            </div>
+
+            <button type="button" class="btn btn-primary" id="btn-save-settings">{% trans from 'settings' %} settings.btn_save {% endtrans %}</button>
+        </form>
+    </div>
+</div>

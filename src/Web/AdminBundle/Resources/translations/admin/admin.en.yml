@@ -43,3 +43,5 @@ admin:
    title: Users denounced
   users:
    title: Show all users
+  settings:
+   title: Settings
