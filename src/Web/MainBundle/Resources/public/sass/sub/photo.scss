@@ -1,7 +1,17 @@
 #Main-Subphotos
 {
+  .modal-content{
+    background-color: transparent;
+  }
   .tab-content{
     #Main-Subphotos-list{
+
+      #chargement-photo{
+        padding-top: 2em;
+      }
+      #body-photo{
+        padding:0 2em 2em 2em;
+      }
       .img{
         padding-top: 2em;
         img{
