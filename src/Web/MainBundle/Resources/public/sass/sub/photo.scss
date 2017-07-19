@@ -1,6 +1,6 @@
 #Main-Subphotos
 {
-  .modal-content{
+  #modal-content{
     background-color: transparent;
   }
   .tab-content{
@@ -31,12 +31,14 @@
     #Main-Subphotos-add{
 
         padding: 4em 2em 2em 2em;
+      #photoZone{
         #form{
 
           #uploadfile{
             margin: 2%;
             margin-top: 4%;
             padding: 2%;
+            text-wrap: normal;
             border: dashed 3px $highligt;
             height: auto;
             min-height: 200px;
@@ -70,6 +72,16 @@
             display: none;
           }
         }
+      }
+
+      #modal-photo{
+        .modal-header{
+          .close{
+            display: none;
+          }
+        }
+      }
+
     }
 
     #Main-Subphotos-profiles{

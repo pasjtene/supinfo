@@ -10,6 +10,7 @@ sub:
     delete: Delete
     like: Like
   body:
+    close: Close
     state :
       private: private
       public: published to
