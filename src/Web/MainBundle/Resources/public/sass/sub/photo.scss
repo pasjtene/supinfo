@@ -28,6 +28,50 @@
       }
     }
 
+    #Main-Subphotos-add{
+
+        padding: 4em 2em 2em 2em;
+        #form{
+
+          #uploadfile{
+            margin: 2%;
+            margin-top: 4%;
+            padding: 2%;
+            border: dashed 3px $highligt;
+            height: auto;
+            min-height: 200px;
+            border-radius: 6px;
+            h1{
+              text-blink: blue($highligt);
+            }
+            #context{
+
+            }
+            /* Thumbnail */
+            .thumbnail{
+              margin-top: 2em;
+              padding: 1%;
+              img{
+                height: 150px;
+                max-width: 200px;
+              }
+              .col{
+                margin-bottom: 2em;
+              }
+              .size{
+                position: relative;
+                top: 156px;
+                right: 198px;
+                font-size: 12px;
+              }
+            }
+          }
+          #file{
+            display: none;
+          }
+        }
+    }
+
     #Main-Subphotos-profiles{
 
       #chargement-profile{
