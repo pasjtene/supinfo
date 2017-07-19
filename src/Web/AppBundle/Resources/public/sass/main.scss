@@ -18,4 +18,16 @@ body{
     margin-top: 2em;
     position: relative;
   }
+  #bg-notification{
+    img{
+      height: 100px;
+    }
+    #bg-success{
+        display: none;
+    }
+    #bg-error{
+       display: none;
+    }
+  }
+
 }

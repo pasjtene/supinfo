@@ -34,7 +34,10 @@ var MainPhotoAdd = function()
             form : $("form"),
             bg: $("#bg"),
             bg_message: $("#bg #bloc_message"),
-            modal_photo : $("#modal-photo")
+            bg_notification_p:$("#bg #bg-notification p"),
+            bg_success:$("#bg #bg-success"),
+            bg_error:$("#bg #bg-error"),
+            modal_photo : $("#bg #modal-photo")
 
         },
         class:{
@@ -228,6 +231,13 @@ $(function(){
                     success: function(response){
                         console.log(response);
                         //incrementer l'index
+                        mainPhotoAdd.params.id.bg_notification_p.html(currentImg[currentIndex]);
+                        mainPhotoAdd.params.id.bg_success.fadeIn();
+                       t= setInterval(function(){
+                            clearInterval(t);
+                           mainPhotoAdd.params.id.bg_notification_p.html("");
+                           mainPhotoAdd.params.id.bg_success.fadeOut();
+                        },1000);
                         currentIndex++;
                         if(currentImg[currentIndex]!=null)
                         {
@@ -238,6 +248,14 @@ $(function(){
                         addThumbnail(response);
                     },
                     error: function (xhr, status, message) { //en cas d'erreur
+                        var error = '<div class="text-danger">'+message+'</div>';
+                        mainPhotoAdd.params.id.bg_notification_p.html(currentImg[currentIndex]+error);
+                        mainPhotoAdd.params.id.bg_error.fadeIn();
+                        t= setInterval(function(){
+                            clearInterval(t);
+                            mainPhotoAdd.params.id.bg_notification_p.html("");
+                            mainPhotoAdd.params.id.bg_error.fadeOut();
+                        },1000);
                         console.log(status+"\n"+xhr.responseText + '\n' + message );
                     },
                     complete:function(){
