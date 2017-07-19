@@ -1,13 +1,14 @@
 <div id="Main-Subphotos" data-sub="photos">
 
+    <input type="hidden" id="active-photo-tab" value="{% if active is defined  %} {{ active }} {% endif %}">
     <ul class="nav nav-tabs">
-        <li class="nav-item">
+        <li class="nav-item" id="link-photo-list">
             <a class="nav-link {% if active is defined and active==1 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-list">{% trans from 'photo' %} sub.tabs.list {% endtrans %}</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="link-photo-add">
             <a class="nav-link {% if active is defined and active==2 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-add">{% trans from 'photo' %} sub.tabs.add {% endtrans %}</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="link-photo-profile">
             <a class="nav-link {% if active is defined and active==3 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-profiles">{% trans from 'photo' %} sub.tabs.profile {% endtrans %}</a>
         </li>
     </ul>

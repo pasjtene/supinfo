@@ -1,12 +1,12 @@
 <div class="row">
     <div class="modal fade" id="zoomImg" tabindex="-1" role="dialog" aria-labelledby="zoomImg" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content" id="modal-content">
                 <div class="modal-header" style="display: none;">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body text-center">
-                    <img src="" class="zoomImgSource">
+                    <img src="" class="zoomImgSource img-thumbnail rounded">
                 </div>
             </div>
         </div>
@@ -17,9 +17,9 @@
         <br>
         <strong> {% trans from 'user-profile' %} loading {% endtrans %}</strong>
     </div>
-   <div id="body-photo" class="row" data-help="{{ asset('data/img/empty.png') }}">
-      {#
-             {% for i in 1..10 %}
+    <div id="body-photo" class=" row col-12" data-help="{{ asset('data/img/empty.png') }}">
+        {#
+              {% for i in 1..1 %}
            <div class="col-sm-12 col-md-4 col  text-center img">
                <div class="card">
                    <img src="{{ asset('data/img/empty.png') }}" alt="" class="card-img-top rounded">
@@ -43,6 +43,6 @@
 
            </div>
        {% endfor %}
-      #}
-   </div>
+        #}
+    </div>
 </div>

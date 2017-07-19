@@ -1,6 +1,6 @@
 #Main-Subphotos
 {
-  .modal-content{
+  #modal-content{
     background-color: transparent;
   }
   .tab-content{
@@ -25,6 +25,86 @@
               width: 80%;
               max-height: 500px;
           }
+      }
+    }
+
+    #Main-Subphotos-add{
+
+        padding: 4em 2em 2em 2em;
+      #photoZone{
+        #form{
+
+          #uploadfile{
+            margin: 2%;
+            margin-top: 4%;
+            padding: 2%;
+            text-wrap: normal;
+            border: dashed 3px $highligt;
+            height: auto;
+            min-height: 200px;
+            border-radius: 6px;
+            h1{
+              text-blink: blue($highligt);
+            }
+            #context{
+
+            }
+            /* Thumbnail */
+            .thumbnail{
+              margin-top: 2em;
+              padding: 1%;
+              img{
+                height: 150px;
+                max-width: 200px;
+              }
+              .col{
+                margin-bottom: 2em;
+              }
+              .size{
+                position: relative;
+                top: 156px;
+                right: 198px;
+                font-size: 12px;
+              }
+            }
+          }
+          #file{
+            display: none;
+          }
+        }
+      }
+
+      #modal-photo{
+        .modal-header{
+          .close{
+            display: none;
+          }
+        }
+      }
+
+    }
+
+    #Main-Subphotos-profiles{
+
+      #chargement-profile{
+        padding-top: 2em;
+      }
+      #body-profile{
+        padding:0 2em 2em 2em;
+      }
+      .img{
+        padding-top: 2em;
+        img{
+          height: 250px;
+          cursor: zoom-in;
+        }
+      }
+
+      #zoomImg-profile{
+        .zoomImgSource-profile{
+          width: 80%;
+          max-height: 500px;
+        }
       }
     }
   }
