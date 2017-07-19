@@ -251,10 +251,28 @@ $(function(){
                         var error = '<div class="text-danger">'+message+'</div>';
                         mainPhotoAdd.params.id.bg_notification_p.html(currentImg[currentIndex]+error);
                         mainPhotoAdd.params.id.bg_error.fadeIn();
+                        currentIndex++;
                         t= setInterval(function(){
                             clearInterval(t);
                             mainPhotoAdd.params.id.bg_notification_p.html("");
                             mainPhotoAdd.params.id.bg_error.fadeOut();
+
+                            mainPhotoAdd.params.id.bg_message.empty();
+                            var  message = Translator.trans('processing', {}, 'photo');
+                            mainPhotoAdd.params.id.bg_message.html("<span class='text-success'>"+(currentIndex+1)+"/"+ countfile+ "</span> <br/> "+ message+"<span class='text-danger'>"+ currentImg[currentIndex]+ "</span> ... ");
+
+                            // on teste si  le countfile a attient l'index max du  tableau  de fichier
+                            if(countfile==currentIndex)
+                            {
+                                //on cache le bg
+                                mainPhotoAdd.params.id.bg.slideUp();
+
+
+                                // affiche le modal pour la notification
+                                //mainPhotoAdd.params.id.modal_photo.modal("show");
+
+                            }
+
                         },1000);
                         console.log(status+"\n"+xhr.responseText + '\n' + message );
                     },

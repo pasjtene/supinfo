@@ -97,6 +97,7 @@ $(function () {
 
 
         function initList(){
+            mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
             //charger les photos de l'utilisateur selectionnée (par defaut le user connecte
             fillPhotos(currentUser.id);
         }
