@@ -16,7 +16,9 @@ var AdminHome = function()
                 users_table_body: $("#users_table_body"),
                 btn_delete_users: $("#btn_delete_users"),
                 total_users: $("#total_users"),
-                users_loader: $("#users-loader")
+                users_loader: $("#users-loader"),
+                prev_pagination: $("#pg-prev"),
+                next_pagination: $("#pg-next")
             },
             class:{
                 nbrofchkbox: $('.nbrofchkbox'),
@@ -181,11 +183,13 @@ $(function(){
                         type: adminHome.params.api.method.get,
                         headers : {"X-Auth-Token" : tokenbase.value},
                         crossDomain: true,
-                        success: function (users) {
-                            adminHome.params.attr.id.total_users.html(users.length);
+                        success: function (response)
+                        {
+                            console.log(response);
+                            adminHome.params.attr.id.total_users.html(response.users.length);
                             adminHome.params.attr.id.users_table_body.empty();
                             adminHome.params.attr.id.users_loader.hide();
-                            $.each(users, function(i, user){
+                            $.each(response.users, function(i, user){
                                 var row = $('<tr>').html("<td>" + (i+1) +
                                     "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
                                     "</td><td>" + user.email +
@@ -200,6 +204,27 @@ $(function(){
                                 //row.appendTo('.users_table');
 
                             });
+
+                            adminHome.params.attr.id.prev_pagination.data('page', response.pagePrev);
+                            adminHome.params.attr.id.next_pagination.data('page', response.pageNext);
+                            var listItem = "";
+                            for(var i = 1; i<= response.paginationCount; i++){
+                                listItem += '<li class="page-item '+((response.page === i) ? "active" : "")+'" ><a class="page-link" href="#" data-page="'+i+'">'+i+'</a></li>';
+                            }
+
+                            $(listItem).insertAfter(adminHome.params.attr.id.prev_pagination.parent('li'));
+
+                            if(response.page === response.pagePrev){
+                                adminHome.params.attr.id.prev_pagination.parent('li').addClass('disabled');
+                            }else{
+                                adminHome.params.attr.id.prev_pagination.parent('li').removeClass('disabled');
+                            }
+
+                            if(response.paginationCount === response.page){
+                                adminHome.params.attr.id.next_pagination.parent('li').addClass('disabled');
+                            }else{
+                                adminHome.params.attr.id.next_pagination.parent('li').removeClass('disabled');
+                            }
                         },
                         error: function (xhr, status, message) { //en cas d'erreur
                             console.log(status+"\n"+xhr.responseText + '\n' + message );

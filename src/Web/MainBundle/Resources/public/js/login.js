@@ -38,6 +38,8 @@ $(function(){
         var interval = setInterval(function ()
         {
             if(tokenbase !== null){
+                console.log(tokenbase);
+
                 mainLogin.params.form.btoken.val(tokenbase.value);
                 clearInterval(interval);
                 console.log("Token Applied");

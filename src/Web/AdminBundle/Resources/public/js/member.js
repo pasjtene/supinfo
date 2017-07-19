@@ -27,7 +27,11 @@ var AdminMember = function()
                 users_loader: $("#users-loader"),
                 btn_vip_member: $("#btn-vip-members"),
                 btn_unblock_member: $("#btn-unlock-members"),
-                btn_unvip_member: $("#btn-unvip-members")
+                btn_unvip_member: $("#btn-unvip-members"),
+                ul_pagination: $("#ul-pagination"),
+                page_link: '.page-link',
+                prev_pagination: $("#pg-prev"),
+                next_pagination: $("#pg-next")
             },
             class:{
                 checkbox : 'input[type="checkbox"]',
@@ -61,7 +65,9 @@ $(function(){
     // Instanciation  de la classe AdminMember
     var adminMember = new AdminMember();
 
-    var action = "set";
+    var action = "set",
+        page = 1;
+
 
     var lockAction = function(selectedUsers)
     {
@@ -81,6 +87,68 @@ $(function(){
             }
         });
     };
+
+    var getUsers = function(queryString)
+    {
+        //find the users list
+        $.ajax(
+            {
+                url: adminMember.params.api.action.findall + queryString,
+                type: adminMember.params.api.method.get,
+                headers : {"X-Auth-Token" : tokenbase.value},
+                crossDomain: true,
+                success: function (response) {
+                    //console.log(response);
+                    adminMember.params.attr.id.total_users.html(response.users.length);
+
+                    adminMember.params.attr.id.users_loader.hide();
+                    $.each(response.users, function(i, user){
+                        var row = $('<tr>').html("<td>" + (i+1) +
+                            "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
+                            "</td><td>" + user.email +
+                            "</td><td>" + user.country +
+                            "</td><td>" + user.gender +
+                            "</td><td>" + (user.enabled ? "Enabled" : "Locked") +
+                            "</td><td>" + (user.isVip ? "Yes" : "No") +
+                            "</td>");
+                        $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.email+'"/>').appendTo(row);
+                        //augmenter les users dans le tableau
+                        adminMember.params.attr.id.users_table_body.append(row);
+                        //row.appendTo('.users_table');
+
+                    });
+
+                    adminMember.params.attr.id.prev_pagination.data('page', response.pagePrev);
+                    adminMember.params.attr.id.next_pagination.data('page', response.pageNext);
+                    var listItem = "";
+                    for(var i = 1; i<= response.paginationCount; i++){
+                        listItem += '<li class="page-item '+((response.page === i) ? "active" : "")+'" ><a class="page-link" href="#" data-page="'+i+'">'+i+'</a></li>';
+                    }
+
+                    $(listItem).insertAfter(adminMember.params.attr.id.prev_pagination.parent('li'));
+
+                    if(response.page === response.pagePrev){
+                        adminMember.params.attr.id.prev_pagination.parent('li').addClass('disabled');
+                    }else{
+                        adminMember.params.attr.id.prev_pagination.parent('li').removeClass('disabled');
+                    }
+
+                    if(response.paginationCount === response.page){
+                        adminMember.params.attr.id.next_pagination.parent('li').addClass('disabled');
+                    }else{
+                        adminMember.params.attr.id.next_pagination.parent('li').removeClass('disabled');
+                    }
+
+                    var count = $("input[type=checkbox]:checked").length;
+                    adminMember.params.attr.class.nbrofchkbox.text(0);
+                    adminMember.params.attr.id.nbusers.toggle(count > 0);
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                }
+            }
+        );
+    }
 
     //Tester si  la page actuelle c'est adminMember
     if(adminMember.params.page.data('page') === "adminHome")
@@ -164,45 +232,11 @@ $(function(){
             var property = adminMember.params.attr.id.cb_property.val(),
                 order = adminMember.params.attr.id.cb_order_users.val();
 
-            var queryString = "?property="+property+"&order="+order;
+            var queryString = "?page="+page+ "&property="+property+"&order="+order;
             adminMember.params.attr.id.users_loader.show();
             adminMember.params.attr.id.users_table_body.empty();
 
-            //find the users list
-            $.ajax(
-                {
-                    url: adminMember.params.api.action.findall + queryString,
-                    type: adminMember.params.api.method.get,
-                    headers : {"X-Auth-Token" : tokenbase.value},
-                    crossDomain: true,
-                    success: function (users) {
-                        adminMember.params.attr.id.total_users.html(users.length);
-
-                        adminMember.params.attr.id.users_loader.hide();
-                        $.each(users, function(i, user){
-
-                            var row = $('<tr>').html("<td>" + (i+1) +
-                                "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
-                                "</td><td>" + user.email +
-                                "</td><td>" + user.country +
-                                "</td><td>" + user.gender +
-                                "</td><td>" + (user.enabled ? "Enabled" : "Locked") +
-                                "</td><td>" + (user.isVip ? "Yes" : "No") +
-                                "</td>");
-                            $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.email+'"/>').appendTo(row);
-                            //augmenter les users dans le tableau
-                            adminMember.params.attr.id.users_table_body.append(row);
-
-                        });
-                        var count = $("input[type=checkbox]:checked").length;
-                        adminMember.params.attr.class.nbrofchkbox.text(0);
-                        adminMember.params.attr.id.nbusers.toggle(count > 0);
-                    },
-                    error: function (xhr, status, message) { //en cas d'erreur
-                        console.log(status+"\n"+xhr.responseText + '\n' + message );
-                    }
-                }
-            );
+            getUsers(queryString);
         });
 
         adminMember.params.attr.id.btn_vip_member.click(function(e)
@@ -285,6 +319,20 @@ $(function(){
                 adminMember.params.attr.id.cb_roles.prop('disabled', true);
             }
             e.preventDefault();
+        });
+
+        adminMember.params.attr.id.ul_pagination.on('click', adminMember.params.attr.id.page_link, function(e){
+            page = parseInt($(this).data('page'));
+
+            var pageLinks = $(adminMember.params.attr.id.page_link),
+                t = pageLinks.length;
+
+            for(var i = 1; i < t - 1; i++){
+                pageLinks.eq(i).remove();
+            }
+
+            adminMember.params.attr.id.btn_order_users.trigger('click');
+
         });
     }
 });
