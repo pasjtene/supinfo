@@ -138,6 +138,8 @@ $(function () {
                 var photo = list[i];
                 var src = null;
                 var datepublished = new  Date(photo.publishedDate);
+                var  isPublished = datepublished.getYear()<2017? false :true;
+
                 if ((photo.hashname == null || photo.hashname == 'null')) {
                     src = element.data('help');
                 }
@@ -147,30 +149,34 @@ $(function () {
                 //alert(element.data('help'));
 
                 //varibale trans
-                var pulished_to = Translator.trans('sub.body.see', {}, 'photo');
-                var pulished = Translator.trans('sub.img.published', {}, 'photo');
-                var profile = Translator.trans('sub.img.profile', {}, 'photo');
-                var deletes = Translator.trans('sub.img.delete', {}, 'photo');
-                var like = Translator.trans('sub.img.like', {}, 'photo');
+                var private = Translator.trans('sub.body.state.private', {}, 'photo'),
+                    public = Translator.trans('sub.body.state.public', {}, 'photo'),
+                    pulished = Translator.trans('sub.img.published', {}, 'photo'),
+                    pulished_private = Translator.trans('sub.img.private', {}, 'photo'),
+                    profile = Translator.trans('sub.img.profile', {}, 'photo'),
+                    deletes = Translator.trans('sub.img.delete', {}, 'photo'),
+                    like = Translator.trans('sub.img.like', {}, 'photo')
+                    text_published = ((isPublished)? public + datepublished.toLocaleDateString() : private ),
+                    link_published = (!isPublished)?'<a class="dropdown-item" href="#">'+pulished+'</a>':'<a class="dropdown-item" href="#">'+pulished_private+'</a>' ;
 
                 var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
                 var id = "action"+photo.id;
                 body+=
-                    '<div class="col-sm-12 col-md-4 col  text-center img">'+
+                    '<div class="col-sm-12 col-md-4   text-center img">'+
                         '<div class="card">'+
                             img+
                             '<div class="card-block">'+
                                 '<p>'+photo.id+' people(s) like this photo </p>'+
                                 '<div class="btn-group text-right">'+
                                     '<button class="btn-secondary btn-sm text-muted"  type="button"  aria-haspopup="true" aria-expanded="false">'+
-                                        pulished_to+ datepublished.toLocaleString()+
+                                        text_published+
                                     '</button>'+
                                     '<button id="'+id+'" type="button" class="  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
                                         ' <span class="sr-only">Toggle Dropdown</span>'+
                                     '</button>'+
                                     '<div class="dropdown-menu"  aria-labelledby="'+id+'">'+
                                         '<a class="dropdown-item" href="#">'+profile+'</a>'+
-                                        '<a class="dropdown-item" href="#">'+pulished+'</a>'+
+                                           link_published+
                                         '<a class="dropdown-item " href="#"> <span class="fa fa-thumbs-o-up">'+like+'</span></a>'+
                                         '<a class="dropdown-item" href="#">'+deletes+'</a>'+
                                     '</div>'+
