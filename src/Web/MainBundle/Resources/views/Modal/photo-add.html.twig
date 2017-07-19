@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="modal-photo-add" tabindex="-1" role="dialog" aria-labelledby="modal-photo-add-Label" aria-hidden="true" data-target=".bd-example-modal-lg">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-photo-add-Label">{% trans from  'modal-photo' %} title {% endtrans %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="content_message">
+                    <table class="table table-sm table-inverse">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{% trans from  'photo' %} sub.modal.name {% endtrans %}</th>
+                            <th>{% trans from  'photo' %} sub.modal.state.title {% endtrans %}</th>
+                            <th>{% trans from  'photo' %} sub.modal.message {% endtrans %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in 1..5 %}
+                            <tr>
+                                <th scope="row">{{ i }}</th>
+                                <td>{% trans from  'photo' %} sub.modal.name {% endtrans %}</td>
+                                <td>{% trans from  'photo' %} sub.modal.state.title {% endtrans %}</td>
+                                <td>{% trans from  'photo' %} sub.modal.message {% endtrans %}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="" data-dismiss="modal" aria-label="Close" class="btn btn-primary close">{% trans from  'photo' %} sub.body.close {% endtrans %}</a>
+            </div>
+        </div>
+    </div>
+</div>

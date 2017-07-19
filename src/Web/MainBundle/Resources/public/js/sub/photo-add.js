@@ -37,7 +37,8 @@ var MainPhotoAdd = function()
             bg_notification_p:$("#bg #bg-notification p"),
             bg_success:$("#bg #bg-success"),
             bg_error:$("#bg #bg-error"),
-            modal_photo : $("#bg #modal-photo")
+            modal_photo : $("#modal-photo-add"),
+            modal_photo_table : $("#modal-photo-add table tbody")
 
         },
         class:{
@@ -70,7 +71,11 @@ $(function(){
     if(mainPhotoAdd.params.sub.data('sub')=="photos")
     {
 
+
+
         if(mainPhotoAdd.params.active_tab.val()==2){
+            // affiche le modal pour la notification
+           // mainPhotoAdd.params.id.modal_photo.modal("show");
             initAdd();
         }
         mainPhotoAdd.params.link_add.click(function()
@@ -142,6 +147,9 @@ $(function(){
                 e.stopPropagation();
                 e.preventDefault();
 
+                //vider le tab de notification
+                mainPhotoAdd.params.id.modal_photo_table.empty();
+
                 //declancher le procussus de telechargerment
                 mainPhotoAdd.params.id.bg.height($(window).height()+50+"px");
                 // alert( "lengt : " + mainPhotoAdd.params.id.bg.height() + " ---"+$(window).height());
@@ -178,6 +186,9 @@ $(function(){
             mainPhotoAdd.params.id.file.change(function(e){
                 e.stopPropagation();
                 e.preventDefault();
+
+                //vider le tab de notification
+                mainPhotoAdd.params.id.modal_photo_table.empty();
 
                 //declancher le procussus de telechargerment
                 mainPhotoAdd.params.id.bg.css({height:$(window).height()+50+"px"});
@@ -247,12 +258,35 @@ $(function(){
                         }
                         addThumbnail(response);
                     },
-                    error: function (xhr, status, message) { //en cas d'erreur
-                        mainPhotoAdd.params.id.bg_notification_p.html(currentImg[currentIndex]+"<span class='text-danger'>("+message+")</span>");
+                    error: function (message) { //en cas d'erreur
+                        mainPhotoAdd.params.id.bg_notification_p.html(currentImg[currentIndex]+"<span class='text-danger'>"+message.responseText+"</span>");
                         mainPhotoAdd.params.id.bg_error.fadeIn();
-                        currentIndex++;
+                        var errorMessage = message.responseText;
+
+                        var error = Translator.trans('sub.modal.state.error',{},'photo');
                         t= setInterval(function(){
                             clearInterval(t);
+
+                            var content =
+                                '<tr>' +
+                                    '<td> ' +
+                                        (currentIndex+1) +
+                                    '</td>'+
+                                    '<td> ' +
+                                        currentImg[currentIndex]+
+                                    '</td>'+
+                                    '<td> ' +
+                                        '<span class="text-danger">' +
+                                            error +
+                                        ' </span>'+
+                                    '</td>'+
+                                    '<td> ' +
+                                        errorMessage +
+                                    '</td>'+
+                                '</tr>';
+                            mainPhotoAdd.params.id.modal_photo_table.append(content);
+                            //incremente le compteur
+                            currentIndex++;
                             mainPhotoAdd.params.id.bg_notification_p.html("");
                             mainPhotoAdd.params.id.bg_error.fadeOut();
 
@@ -268,12 +302,12 @@ $(function(){
 
 
                                 // affiche le modal pour la notification
-                                //mainPhotoAdd.params.id.modal_photo.modal("show");
+                                mainPhotoAdd.params.id.modal_photo.modal("show");
 
                             }
 
                         },1000);
-                        console.log(status+"\n"+xhr.responseText + '\n' + message );
+                        console.log(message.responseText);
                     },
                     complete:function(){
                         console.log("Request finished.");
@@ -294,7 +328,7 @@ $(function(){
                 var name = data.name;
                 var size = convertSize(data.size);
                 var src = baseHost+data.src;
-
+                var success = Translator.trans('sub.modal.state.success',{},'photo');
                 //au  debut  on cree un div pour contenir toutes les photos
                 if(currentIndex==1)
                 {
@@ -304,6 +338,24 @@ $(function(){
 
                 $("#thumbnail_"+num).append('<div class="col node"> <img src="'+src+'" >');
                 $("#thumbnail_"+num).append('<div class="size">'+size+'</div></div>');
+                var content =
+                    '<tr>' +
+                        '<td> ' +
+                            currentIndex +
+                         '</td>'+
+                        '<td> ' +
+                            name+
+                        '</td>'+
+                        '<td> ' +
+                            '<span class="text-success">' +
+                                success+
+                            '</span>'+
+                        '</td>'+
+                        '<td> ' +
+                            size+
+                        '</td>'+
+                    '</tr>';
+                mainPhotoAdd.params.id.modal_photo_table.append(content);
 
 
                 // on teste si  le countfile a attient l'index max du  tableau  de fichier
@@ -314,7 +366,7 @@ $(function(){
 
 
                     // affiche le modal pour la notification
-                    //mainPhotoAdd.params.id.modal_photo.modal("show");
+                    mainPhotoAdd.params.id.modal_photo.modal("show");
 
                 }
 
