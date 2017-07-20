@@ -309,8 +309,6 @@ $(function () {
                    data: datas,
                    crossDomain: true,
                    headers : {"X-Auth-Token" : currentUser.token},
-                   contentType: false,
-                   processData: false,
                    dataType:  mainSubPhotos.params.api.delete.type,
                    success: function(response){
                        console.log(response);
@@ -360,8 +358,6 @@ $(function () {
                     data: datas,
                     crossDomain: true,
                     headers : {"X-Auth-Token" : currentUser.token},
-                    contentType: false,
-                    processData: false,
                     dataType:  mainSubPhotos.params.api.setprofile.type,
                     success: function(response){
                         console.log(response);
@@ -388,6 +384,53 @@ $(function () {
                     }
 
                 });
+
+        }
+
+
+
+
+        //changer la visibilite de la photo
+        function setpublished(hashname,status){
+
+            mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
+            var datas = {
+                hashname : hashname,
+                status : status,
+                state: currentlink==1?"list":"profile"
+            };
+            $.ajax({
+                url: mainSubPhotos.params.api.published.url,
+                type:  mainSubPhotos.params.api.published.method,
+                data: datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                dataType:  mainSubPhotos.params.api.published.type,
+                success: function(response){
+                    console.log(response);
+                    if(response!=null  && response!="null" && response!="undefined")
+                    {
+                        if(currentlink==1)
+                        {
+                            setPhotos(mainSubPhotos.params.tabs.list.body_photo,response);
+                        }
+                        else{
+                            setProfile(mainSubPhotos.params.tabs.profile.body_photo,response);
+                        }
+                    }
+                    var message = Translator.trans("sub.body.published.success",{},"photo");
+                    alert(message);
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    var message = Translator.trans("sub.body.published.error",{},"photo");
+                    alert(message);
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
 
         }
 
