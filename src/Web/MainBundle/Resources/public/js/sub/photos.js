@@ -12,16 +12,20 @@ var MainSubPhotos = function()
                 method: "get",
                 type: "json"
             },
-            add: {
-                url : baseUrl+"auth/user/city",
-                method: "get",
+            delete:{
+                url : baseUrl+"auth/user/photo/delete",
+                method: "delete",
                 type: "json"
             },
-            delete:{
-
-            },
             published:{
-
+                url : baseUrl+"auth/user/photo/published",
+                method: "put",
+                type: "json"
+            },
+            setprofile:{
+                url : baseUrl+"auth/user/photo/setprofile",
+                method: "get",
+                type: "json"
             },
             profile:{
                 url : baseUrl+"auth/user/photo/profile",
@@ -60,7 +64,8 @@ var MainSubPhotos = function()
 
 $(function () {
     var mainSubPhotos = new MainSubPhotos(),
-        mainUserProfile_photos = new MainUserProfile();
+        mainUserProfile_photos = new MainUserProfile(),
+        currentlink =0;
 
     if(mainSubPhotos.params.sub.data('sub')=="photos")
     {
@@ -70,10 +75,12 @@ $(function () {
         //toutes les innformations concernant  la liste des photos
         if(mainSubPhotos.params.active_tab.val()==1){
             initList();
+            currentlink =1;
         }
 
         mainSubPhotos.params.link_list.click(function(){
             initList();
+            currentlink=1;
         });
 
 
@@ -81,10 +88,12 @@ $(function () {
         //toutes les innformations concernant  la liste des profiles
         if(mainSubPhotos.params.active_tab.val()==3){
             initProfile();
+            currentlink = 3;
         }
 
         mainSubPhotos.params.link_list.click(function(){
             initProfile();
+            currentlink =3;
         });
 
 
@@ -280,5 +289,63 @@ $(function () {
             element.append(body);
             mainSubPhotos.params.tabs.profile.chargement_photo.fadeOut();
         }
+
+
+
+
+        //supprimer une photo
+        function deletePhoto(hashname){
+            var trans = Translator.trans('sub.body.confirm_message',{},"photo");
+           if(confirm(trans))
+           {
+               mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
+               var datas = {
+                   hashname : hashname,
+                   state: currentlink==1?"list":"profile"
+               };
+               $.ajax({
+                   url: mainSubPhotos.params.api.delete.url,
+                   type:  mainSubPhotos.params.api.delete.method,
+                   data: datas,
+                   crossDomain: true,
+                   headers : {"X-Auth-Token" : currentUser.token},
+                   contentType: false,
+                   processData: false,
+                   dataType:  mainSubPhotos.params.api.delete.type,
+                   success: function(response){
+                       console.log(response);
+                       if(response!=null  && response!="null" && response!="undefined")
+                       {
+                           if(currentlink==1)
+                           {
+                               setPhotos(mainSubPhotos.params.tabs.list.body_photo,response);
+                           }
+                           else{
+                               setProfile(mainSubPhotos.params.tabs.profile.body_photo,response);
+                           }
+                       }
+                       var message = Translator.trans("sub.body.success_message",{},"photo");
+                       alert(message);
+                   },
+                   error: function (xhr, status, message) { //en cas d'erreur
+                       console.log(status+"\n"+xhr.responseText + '\n' + message );
+                       var message = Translator.trans("sub.body.error_message",{},"photo");
+                       alert(message);
+                   },
+                   complete:function(){
+                       console.log("Request finished.");
+                   }
+
+               });
+
+           }
+            else{
+               trans = Translator.trans('sub.body.cancel_message',{},"photo");
+               alert(trans);
+           }
+        }
+
+
+
     }
 });
