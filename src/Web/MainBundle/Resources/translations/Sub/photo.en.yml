@@ -9,6 +9,8 @@ sub:
     private: To deprive
     delete: Delete
     like: Like
+    error_ext: is not  allocated
+    error_size: is to big for upload max sise(2Mo)
   body:
     close: Close
     error_message: woh! Something  as wrong

@@ -71,7 +71,8 @@ $(function(){
     if(mainPhotoAdd.params.sub.data('sub')=="photos")
     {
 
-
+        // le compteur des fichiers a upload
+        var number =0;
 
         if(mainPhotoAdd.params.active_tab.val()==2){
             // affiche le modal pour la notification
@@ -162,7 +163,7 @@ $(function(){
                 var files = e.originalEvent.dataTransfer.files;
 
                 //recuperer le nombre de fichier
-                countfile = files.length;
+                countfile = 0;
 
                 //initialiser  l'index
                 currentIndex=0;
@@ -171,9 +172,61 @@ $(function(){
                 {
                     var fd = new FormData();
                     var file = files[i];
-                    currentImg.push(file.name);
-                    fd.append('file',file);
-                    uploadData(fd);
+                    var error = Translator.trans("sub.img.error_ext",{},"photo");
+                    var error_size = Translator.trans("sub.img.error_size",{},"photo");
+                    var error_message = Translator.trans("sub.modal.state.error",{},"photo");
+                    var size = Math.round(file.size/(1024*1024));
+                    if(isValidLenght(size,2)){
+                        if(isValidExt(file.extension)){
+                            countfile++;
+                            currentImg.push(file.name);
+                            fd.append('file',file);
+                            uploadData(fd);
+                        }
+                        else{
+                            number++;
+                            var content =
+                                '<tr>' +
+                                    '<td> ' +
+                                        number +
+                                    '</td>'+
+                                    '<td> ' +
+                                        file.name+
+                                    '</td>'+
+                                    '<td> ' +
+                                    '   <span class="text-danger">' +
+                                            error_message+
+                                        '</span>'+
+                                    '</td>'+
+                                    '<td> ' +
+                                         '('+file.extension+')'+error+
+                                    '</td>'+
+                                '</tr>';
+                            mainPhotoAdd.params.id.modal_photo_table.append(content);
+                        }
+
+                    }
+                    else{
+                        number++;
+                        var content =
+                            '<tr>' +
+                                '<td> ' +
+                                     number +
+                                '</td>'+
+                                '<td> ' +
+                                     file.name+
+                                '</td>'+
+                                '<td> ' +
+                                    '<span class="text-danger">' +
+                                         error_message+
+                                     '</span>'+
+                                '</td>'+
+                                '<td> ' +
+                                    '('+size+')'+error_size+
+                                '</td>'+
+                            '</tr>';
+                        mainPhotoAdd.params.id.modal_photo_table.append(content);
+                    }
                 }
             });
 
@@ -201,7 +254,7 @@ $(function(){
 
                 var files = inputfile[0].files;
                 //recuperer le nombre de fichier
-                countfile = files.length;
+                countfile = 0;
 
                 //initialiser  l'index
                 currentIndex=0;
@@ -210,12 +263,87 @@ $(function(){
                 {
                     var fd = new FormData();
                     var file = files[i];
-                    currentImg.push(file.name);
-                    fd.append('file',file);
-                    // console.log(fd.get('file'));
-                    uploadData(fd);
+                    var error = Translator.trans("sub.img.error_ext",{},"photo");
+                    var error_size = Translator.trans("sub.img.error_size",{},"photo");
+                    var error_message = Translator.trans("sub.modal.state.error",{},"photo");
+                    var size = Math.round(file.size/(1024*1024));
+                    if(isValidLenght(size,2)){
+                        if(isValidExt(file.extension)){
+                            countfile++;
+                            currentImg.push(file.name);
+                            fd.append('file',file);
+                            // console.log(fd.get('file'));
+                            uploadData(fd);
+                        }
+                        else{
+                            number++;
+                            var content =
+                                '<tr>' +
+                                    '<td> ' +
+                                         number +
+                                    '</td>'+
+                                    '<td> ' +
+                                        file.name+
+                                    '</td>'+
+                                    '<td> ' +
+                                        '<span class="text-danger">' +
+                                            error_message+
+                                        '</span>'+
+                                    '</td>'+
+                                    '<td> ' +
+                                         '('+file.extension+')'+error+
+                                    '</td>'+
+                                '</tr>';
+                            mainPhotoAdd.params.id.modal_photo_table.append(content);
+                        }
+
+                    }
+                    else{
+                        number++;
+                        var content =
+                            '<tr>' +
+                                '<td> ' +
+                                     number +
+                                '</td>'+
+                                '<td> ' +
+                                     file.name+
+                                '</td>'+
+                                '<td> ' +
+                                    '<span class="text-danger">' +
+                                         error_message+
+                                    '</span>'+
+                                '</td>'+
+                                '<td> ' +
+                                     '('+size+')'+error_size+
+                                '</td>'+
+                            '</tr>';
+                        mainPhotoAdd.params.id.modal_photo_table.append(content);
+                    }
+
                 }
             });
+
+
+            //verifier si l'extension d'un fichier
+            function isValidExt(fileExtension)
+            {
+                fileExtension = fileExtension.toLowerCase();
+                var pattern ="^png|jpg|gif|jpeg|bnp$"
+                var regex = new RegExp(pattern);
+                if(regex.test(fileExtension)){
+                    return true;
+                }
+                return false;
+            }
+
+            //verifier si la taille d'un fichier est  convenable
+            function isValidLenght(filesize,compaeSize)
+            {
+                if(filesize<=compaeSize){
+                    return true;
+                }
+                return false;
+            }
 
 
             // Sending AJAX request and upload file
@@ -226,7 +354,7 @@ $(function(){
                 mainPhotoAdd.params.id.bg_message.empty();
                 var  message = Translator.trans('processing', {}, 'photo');
                 mainPhotoAdd.params.id.bg_message.html("<span class='text-success'>1/"+ countfile+ "</span> <br/> "+message+"<span class='text-danger'>"+ currentImg[0]+ "</span> ... ");
-
+                //console.log(formdata[currentImg]);
                 formdata.append('id',currentUser.id);
                 // alert(mainPhotoAdd.params.api.url);
                 // console.log(formdata.get("file"));
@@ -250,6 +378,7 @@ $(function(){
                            mainPhotoAdd.params.id.bg_success.fadeOut();
                         },1000);
                         currentIndex++;
+                        number++;
                         if(currentImg[currentIndex]!=null)
                         {
                             mainPhotoAdd.params.id.bg_message.empty();
@@ -266,11 +395,11 @@ $(function(){
                         var error = Translator.trans('sub.modal.state.error',{},'photo');
                         t= setInterval(function(){
                             clearInterval(t);
-
+                            number++;
                             var content =
                                 '<tr>' +
                                     '<td> ' +
-                                        (currentIndex+1) +
+                                        number +
                                     '</td>'+
                                     '<td> ' +
                                         currentImg[currentIndex]+
@@ -341,7 +470,7 @@ $(function(){
                 var content =
                     '<tr>' +
                         '<td> ' +
-                            currentIndex +
+                            number +
                          '</td>'+
                         '<td> ' +
                             name+
