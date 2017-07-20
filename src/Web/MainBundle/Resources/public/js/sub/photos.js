@@ -98,9 +98,27 @@ $(function () {
 
 
 
+        //agrandir une photo
         mainSubPhotos.params.tabs.list.body_photo.on('click', "img",function() {
             mainSubPhotos.params.tabs.list.zoom_source.attr('src', $(this).attr('src'));
             mainSubPhotos.params.tabs.list.zoom_img.modal('show');
+        });
+
+
+        //supprimer une photo
+        mainSubPhotos.params.tabs.list.body_photo.on('click', ".dropdown-menu .delete",function() {
+           deletePhoto($(this).data('hashanme'));
+        });
+
+        //set profile
+        mainSubPhotos.params.tabs.list.body_photo.on('click', ".dropdown-menu .setprofile",function() {
+            setprofilePhoto($(this).data('hashanme'));
+        });
+
+
+        //set visibility
+        mainSubPhotos.params.tabs.list.body_photo.on('click', ".dropdown-menu .setprofile",function() {
+            setpublished($(this).data('hashanme'),$(this).data('status'));
         });
 
 
@@ -203,12 +221,12 @@ $(function () {
                     deletes = Translator.trans('sub.img.delete', {}, 'photo'),
                     like = Translator.trans('sub.img.like', {}, 'photo')
                     text_published = ((isPublished)? public + datepublished.toLocaleDateString() : private ),
-                    link_published = (!isPublished)?'<a class="dropdown-item" href="#">'+pulished+'</a>':'<a class="dropdown-item" href="#">'+pulished_private+'</a>' ;
+                    link_published = (!isPublished)?'<a class="dropdown-item published" href="#" data-status="1" data-hashname="'+photo.hashname+'">'+pulished+'</a>':'<a class="dropdown-item" href="#" data-status="0" data-hashname="'+photo.hashname+'">'+pulished_private+'</a>' ;
 
                 var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
                 var id = "action"+photo.id;
                 body+=
-                    '<div class="col-sm-12 col-md-4 col   text-center img">'+
+                    '<div class="col-sm-12 col-md-4 col   temxt-center img">'+
                         '<div class="card">'+
                             img+
                             '<div class="card-block">'+
@@ -217,14 +235,14 @@ $(function () {
                                     '<button class="btn-secondary btn-sm text-muted"  type="button"  aria-haspopup="true" aria-expanded="false">'+
                                         text_published+
                                     '</button>'+
-                                    '<button id="'+id+'" type="button" class="  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
+                                    '<button id="m8'+id+'" type="button" class="  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
                                         ' <span class="sr-only">Toggle Dropdown</span>'+
                                     '</button>'+
                                     '<div class="dropdown-menu"  aria-labelledby="'+id+'">'+
-                                        '<a class="dropdown-item" href="#">'+profile+'</a>'+
+                                        '<a class="dropdown-item setprofile" href="#" data-hashname="'+photo.hashname+'">'+profile+'</a>'+
                                            link_published+
                                         '<a class="dropdown-item " href="#"> <span class="fa fa-thumbs-o-up">'+like+'</span></a>'+
-                                        '<a class="dropdown-item" href="#">'+deletes+'</a>'+
+                                        '<a class="dropdown-item delete" href="#" data-hashname="'+photo.hashname+'">'+deletes+'</a>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -345,7 +363,7 @@ $(function () {
 
 
         //set  une photo de profile
-        function setprofile(hashname){
+        function setprofilePhoto(hashname){
 
             mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
             var datas = {
