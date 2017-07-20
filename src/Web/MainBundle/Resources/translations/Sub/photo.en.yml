@@ -14,3 +14,10 @@ sub:
     state :
       private: private
       public: published to
+  modal:
+    name: Name
+    message: Message
+    state:
+      title: State
+      error : error
+      success: success
