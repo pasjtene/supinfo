@@ -200,7 +200,7 @@ $(function(){
                                         '</span>'+
                                     '</td>'+
                                     '<td> ' +
-                                         '('+file.extension+')'+error+
+                                         '('+file.type+')'+error+
                                     '</td>'+
                                 '</tr>';
                             mainPhotoAdd.params.id.modal_photo_table.append(content);
@@ -223,7 +223,7 @@ $(function(){
                                      '</span>'+
                                 '</td>'+
                                 '<td> ' +
-                                    '('+size+')'+error_size+
+                                    '('+size+'Mo)'+error_size+
                                 '</td>'+
                             '</tr>';
                         mainPhotoAdd.params.id.modal_photo_table.append(content);
@@ -294,7 +294,7 @@ $(function(){
                                         '</span>'+
                                     '</td>'+
                                     '<td> ' +
-                                         '('+file.extension+')'+error+
+                                         '('+file.type+')'+error+
                                     '</td>'+
                                 '</tr>';
                             mainPhotoAdd.params.id.modal_photo_table.append(content);
@@ -317,7 +317,7 @@ $(function(){
                                     '</span>'+
                                 '</td>'+
                                 '<td> ' +
-                                     '('+size+')'+error_size+
+                                     '('+size+'Mo)'+error_size+
                                 '</td>'+
                             '</tr>';
                         mainPhotoAdd.params.id.modal_photo_table.append(content);
