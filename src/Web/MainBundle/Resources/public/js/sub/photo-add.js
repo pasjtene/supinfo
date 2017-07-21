@@ -177,7 +177,7 @@ $(function(){
                     var error_message = Translator.trans("sub.modal.state.error",{},"photo");
                     var size = Math.round(file.size/(1024*1024));
                     if(isValidLenght(size,2)){
-                        if(isValidExt(file.extension)){
+                        if(isValidExt(file.type)){
                             countfile++;
                             currentImg.push(file.name);
                             fd.append('file',file);
@@ -268,7 +268,7 @@ $(function(){
                     var error_message = Translator.trans("sub.modal.state.error",{},"photo");
                     var size = Math.round(file.size/(1024*1024));
                     if(isValidLenght(size,2)){
-                        if(isValidExt(file.extension)){
+                        if(isValidExt(file.type)){
                             countfile++;
                             currentImg.push(file.name);
                             fd.append('file',file);
@@ -328,7 +328,7 @@ $(function(){
             function isValidExt(fileExtension)
             {
                 fileExtension = fileExtension.toLowerCase();
-                var pattern ="^png|jpg|gif|jpeg|bnp$"
+                var pattern ="^image/(png|jpg|gif|jpeg|bnp)$"
                 var regex = new RegExp(pattern);
                 if(regex.test(fileExtension)){
                     return true;
