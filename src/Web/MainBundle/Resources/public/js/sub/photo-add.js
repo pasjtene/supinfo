@@ -178,7 +178,7 @@ $(function(){
                     var error_message = Translator.trans("sub.modal.state.error",{},"photo");
                     var size = Math.round(file.size/(1024*1024));
                     if(isValidLenght(size,2)){
-                        if(isValidExt(file.extension)){
+                        if(isValidExt(file.type)){
                             countfile++;
                             currentImg.push(file.name);
                             fd.append('file',file);
@@ -330,6 +330,7 @@ $(function(){
             //verifier si l'extension d'un fichier
             function isValidExt(fileExtension)
             {
+
                 var fileExtension = fileExtension.toLowerCase();
                 var pattern ="^image/(png|jpg|gif|jpeg|bnp)$"
                 var regex = new RegExp(pattern);

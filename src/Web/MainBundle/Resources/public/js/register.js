@@ -233,7 +233,7 @@ $(function(){
                 confirm: confirm,
                 locale:locale,
                 urlPassword: Routing.generate("main_forgot_password",{_locale:locale}, true)
-            }
+            };
 
             //instanicier le user et  charger avec les valeurs de la bd
             var User =
