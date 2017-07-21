@@ -28,7 +28,7 @@ var AdminMember = function()
                 btn_vip_member: $("#btn-vip-members"),
                 btn_unblock_member: $("#btn-unlock-members"),
                 btn_unvip_member: $("#btn-unvip-members"),
-                ul_pagination: $("#ul-pagination"),
+                ul_pagination: $("#users-pagination"),
                 page_link: '.page-link',
                 prev_pagination: $("#pg-prev"),
                 next_pagination: $("#pg-next")
@@ -106,7 +106,7 @@ $(function(){
                         var row = $('<tr>').html("<td>" + (i+1) +
                             "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
                             "</td><td>" + user.email +
-                            "</td><td>" + user.country +
+                            "</td><td><img src='"+path.flags+user.country+".png' alt=''/> " + countries[user.country] +
                             "</td><td>" + user.gender +
                             "</td><td>" + (user.enabled ? "Enabled" : "Locked") +
                             "</td><td>" + (user.isVip ? "Yes" : "No") +
@@ -148,7 +148,16 @@ $(function(){
                 }
             }
         );
-    }
+    };
+
+    var clearPagination = function(){
+        var pageLinks = $(adminMember.params.attr.id.page_link),
+            t = pageLinks.length;
+
+        for(var i = 1; i < t - 1; i++){
+            pageLinks.eq(i).remove();
+        }
+    };
 
     //Tester si  la page actuelle c'est adminMember
     if(adminMember.params.page.data('page') === "adminHome")
@@ -235,6 +244,7 @@ $(function(){
             var queryString = "?page="+page+ "&property="+property+"&order="+order;
             adminMember.params.attr.id.users_loader.show();
             adminMember.params.attr.id.users_table_body.empty();
+            clearPagination();
 
             getUsers(queryString);
         });
@@ -324,12 +334,7 @@ $(function(){
         adminMember.params.attr.id.ul_pagination.on('click', adminMember.params.attr.id.page_link, function(e){
             page = parseInt($(this).data('page'));
 
-            var pageLinks = $(adminMember.params.attr.id.page_link),
-                t = pageLinks.length;
-
-            for(var i = 1; i < t - 1; i++){
-                pageLinks.eq(i).remove();
-            }
+            clearPagination();
 
             adminMember.params.attr.id.btn_order_users.trigger('click');
 
