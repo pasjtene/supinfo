@@ -229,6 +229,16 @@ $(function(){
                         mainPhotoAdd.params.id.modal_photo_table.append(content);
                     }
                 }
+                if(countfile==currentIndex)
+                {
+                    //on cache le bg
+                    mainPhotoAdd.params.id.bg.slideUp();
+
+
+                    // affiche le modal pour la notification
+                    mainPhotoAdd.params.id.modal_photo.modal("show");
+
+                }
             });
 
             // Open file selector on button click
@@ -322,6 +332,16 @@ $(function(){
                             '</tr>';
                         mainPhotoAdd.params.id.modal_photo_table.append(content);
                     }
+
+                }
+                if(countfile==currentIndex)
+                {
+                    //on cache le bg
+                    mainPhotoAdd.params.id.bg.slideUp();
+
+
+                    // affiche le modal pour la notification
+                    mainPhotoAdd.params.id.modal_photo.modal("show");
 
                 }
             });
