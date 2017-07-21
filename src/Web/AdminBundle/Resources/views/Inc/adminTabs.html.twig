@@ -39,7 +39,7 @@
     </ul>
 
     <!-- Tab panes -->
-    <div class="tab-content">
+    <div class="tab-content" id="admin-tabs">
         <div class="tab-pane active" id="home" role="tabpanel" data-tab="adminStatistics">
             Admin dasboard will go here. We can see how many user registered today,
             this week, and all other stats...
@@ -50,7 +50,9 @@
         <div class="tab-pane" id="messages" role="tabpanel" data-tab="adminMessages">
             {% include 'AdminBundle:Tab:message.html.twig' %}
         </div>
-        <div class="tab-pane" id="photos" role="tabpanel">All photos will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="photos" role="tabpanel" data-tab="adminPictures">
+            {% include 'AdminBundle:Tab:pictures.html.twig' %}
+        </div>
         <div class="tab-pane" id="spam" role="tabpanel">All spam messages will be here, and the moderator can delete or mark as invalid</div>
         <div class="tab-pane" id="userdenounced" role="tabpanel">All user will be here, and the moderator can delete or mark as invalid</div>
         <div class="tab-pane" id="blocmessage" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>

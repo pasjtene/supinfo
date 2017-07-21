@@ -33,7 +33,7 @@ var AdminSettings = function()
 
 $(function(){
 
-    // Instanciation  de la classe AdminMember
+    // Instanciation  de la classe AdminSettings
     var adminSettings = new AdminSettings();
     var settings = null;
 
