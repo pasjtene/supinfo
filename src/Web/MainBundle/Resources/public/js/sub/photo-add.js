@@ -170,6 +170,7 @@ $(function(){
 
                 for(var i=0; i<files.length; i++)
                 {
+
                     var fd = new FormData();
                     var file = files[i];
                     var error = Translator.trans("sub.img.error_ext",{},"photo");
@@ -263,11 +264,13 @@ $(function(){
                 {
                     var fd = new FormData();
                     var file = files[i];
+                    console.log("The file ",file);
                     var error = Translator.trans("sub.img.error_ext",{},"photo");
                     var error_size = Translator.trans("sub.img.error_size",{},"photo");
                     var error_message = Translator.trans("sub.modal.state.error",{},"photo");
                     var size = Math.round(file.size/(1024*1024));
                     if(isValidLenght(size,2)){
+
                         if(isValidExt(file.type)){
                             countfile++;
                             currentImg.push(file.name);
@@ -327,7 +330,8 @@ $(function(){
             //verifier si l'extension d'un fichier
             function isValidExt(fileExtension)
             {
-                fileExtension = fileExtension.toLowerCase();
+
+                var fileExtension = fileExtension.toLowerCase();
                 var pattern ="^image/(png|jpg|gif|jpeg|bnp)$"
                 var regex = new RegExp(pattern);
                 if(regex.test(fileExtension)){
