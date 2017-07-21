@@ -38,12 +38,20 @@
 
         </tbody>
     </table>
-    <br/>
 
-    <button class="btn btn-sm btn-danger" id="btn_delete_users">{% trans from 'admin' %}admin.members.delete {% endtrans %} <span class="badge badge-pill badge-success nbrofchkbox"></span></button>
-    <button class="btn btn-sm btn-info" id="btn-lock-members">{% trans from 'admin' %}admin.members.block {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
-    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-email">{% trans from 'admin' %}admin.members.email {% endtrans %}<span class="badge badge-pill badge-info nbrofchkbox"></span></button>
-    <button class="btn btn-sm btn-warning" id="btn-vip-members">{% trans from 'admin' %}admin.members.setvip {% endtrans %} <span class="badge badge-pill badge-success nbrofchkbox"></span></button>
-    <button class="btn btn-sm btn-info" id="btn-unlock-members">{% trans from 'admin' %}admin.members.unblock {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
-    <button class="btn btn-sm btn-danger" id="btn-unvip-members">{% trans from 'admin' %}admin.members.unvip {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
+    <div id="pagination" style="width: 100%">
+        <ul class="pagination pull-right" id="users-pagination">
+            <li class="page-item"><a class="page-link" href="#" id="pg-prev" data-page="1">&lt;</a></li>
+            <li class="page-item"><a class="page-link" href="#" id="pg-next" data-page="1">&gt;</a></li>
+        </ul>
+    </div>
+    <br/>
+    <div>
+        <button class="btn btn-sm btn-danger" id="btn_delete_users">{% trans from 'admin' %}admin.members.delete {% endtrans %} <span class="badge badge-pill badge-success nbrofchkbox"></span></button>
+        <button class="btn btn-sm btn-info" id="btn-lock-members">{% trans from 'admin' %}admin.members.block {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
+        <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-email">{% trans from 'admin' %}admin.members.email {% endtrans %}<span class="badge badge-pill badge-info nbrofchkbox"></span></button>
+        <button class="btn btn-sm btn-warning" id="btn-vip-members">{% trans from 'admin' %}admin.members.setvip {% endtrans %} <span class="badge badge-pill badge-success nbrofchkbox"></span></button>
+        <button class="btn btn-sm btn-info" id="btn-unlock-members">{% trans from 'admin' %}admin.members.unblock {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
+        <button class="btn btn-sm btn-danger" id="btn-unvip-members">{% trans from 'admin' %}admin.members.unvip {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
+    </div>
 </div>

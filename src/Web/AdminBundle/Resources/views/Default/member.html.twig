@@ -23,9 +23,7 @@
         <div class="container">
             <div class="col-sm-12" id="mb-header">
                 <span>{{ member.firstName ~ member.lastName }} {% if member.isVip %}(vip){% endif %}</span>
-                <!--<button id="btn-role-action" data-edit="0" data-mid="{{ member.id }}" class="btn btn-primary pull-right">
-                    {% trans from 'member' %} member.change_role {% endtrans %}
-                </button>-->
+
                 <div class="btn-group pull-right" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-info" data-action="{% if member.enabled %} unset {% else %} set {% endif %}">
                         {% if member.enabled %}

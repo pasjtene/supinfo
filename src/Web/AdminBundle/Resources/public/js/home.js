@@ -16,7 +16,9 @@ var AdminHome = function()
                 users_table_body: $("#users_table_body"),
                 btn_delete_users: $("#btn_delete_users"),
                 total_users: $("#total_users"),
-                users_loader: $("#users-loader")
+                users_loader: $("#users-loader"),
+                prev_pagination: $("#pg-prev"),
+                next_pagination: $("#pg-next")
             },
             class:{
                 nbrofchkbox: $('.nbrofchkbox'),
@@ -39,6 +41,15 @@ var AdminHome = function()
 
 };
 
+var path =
+{
+    country: {
+        en: '/dist/country-en.json',
+        fr: '/dist/country.json'
+    },
+    flags: '/dist/flags/'
+};
+
 var getSelectedUsers = function(asObject)
 {
     var checkboxes = document.getElementsByClassName("user_select_checkbox");
@@ -56,19 +67,24 @@ var getSelectedUsers = function(asObject)
     return asObject === undefined ? selectedUsers : objects;
 };
 
+var countries = [];
+
+var getCountriesList = function(){
+    $.getJSON(path.country[locale], function (result) {
+        countries = result;
+    });
+};
 
 $(function(){
 
     // instanciation  de la classe AdminHome
     var adminHome = new AdminHome();
 
+    getCountriesList();
+
     //tester si  la page actuelle c'est adminHome
     if(adminHome.params.page.data('page')=="adminHome")
     {
-
-
-
-
         var activeTab = null;
         $('a[data-toggle="tab"]').on(adminHome.params.attr.class.showtab, function (e) {
             activeTab = e.target;
@@ -107,22 +123,6 @@ $(function(){
                     crossDomain: true,
                     success: function (users) {
                          $.each(users, function(i, user){
-                            //console.log("Deleting user: " + user.firstName);
-
-                            //We will create a table for confirm delete users ...
-                            /*
-                            var row = $('<tr>').html("<td>" + (i+1) +
-                                "</td><td>" + user.firstName +
-                                "</td><td>" + user.email +
-                                "</td><td>" + user.gender +
-                                "</td>");
-                            $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.id+'"/>').appendTo(row);
-                            //augmenter les users dans le tableau
-                            adminHome.params.attr.id.users_table_body.append(row);
-                            */
-                            //row.appendTo('.users_table');
-                            //adminHome.params.attr.class.total_users.replaceWith(i);
-
                             updateCount();
                         });
 
@@ -154,7 +154,6 @@ $(function(){
         function setMember(){
             if(adminHome.params.tab.members.data('tab')=="adminMembers")
             {
-
                 //When the table is clicked, we count the number of selected checkboxed
                 updateCount ();
                 $(adminHome.params.attr.id.user_list).click(function(event){
@@ -181,15 +180,17 @@ $(function(){
                         type: adminHome.params.api.method.get,
                         headers : {"X-Auth-Token" : tokenbase.value},
                         crossDomain: true,
-                        success: function (users) {
-                            adminHome.params.attr.id.total_users.html(users.length);
+                        success: function (response)
+                        {
+                            console.log(response);
+                            adminHome.params.attr.id.total_users.html(response.users.length);
                             adminHome.params.attr.id.users_table_body.empty();
                             adminHome.params.attr.id.users_loader.hide();
-                            $.each(users, function(i, user){
+                            $.each(response.users, function(i, user){
                                 var row = $('<tr>').html("<td>" + (i+1) +
                                     "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
                                     "</td><td>" + user.email +
-                                    "</td><td>" + user.country +
+                                    "</td><td><img src='"+path.flags+user.country+".png' alt=''/> " + countries[user.country] +
                                     "</td><td>" + user.gender +
                                     "</td><td>" + (user.enabled ? "Enabled" : "Locked") +
                                     "</td><td>" + (user.isVip ? "Yes" : "No") +
@@ -200,6 +201,27 @@ $(function(){
                                 //row.appendTo('.users_table');
 
                             });
+
+                            adminHome.params.attr.id.prev_pagination.data('page', response.pagePrev);
+                            adminHome.params.attr.id.next_pagination.data('page', response.pageNext);
+                            var listItem = "";
+                            for(var i = 1; i<= response.paginationCount; i++){
+                                listItem += '<li class="page-item '+((response.page === i) ? "active" : "")+'" ><a class="page-link" href="#" data-page="'+i+'">'+i+'</a></li>';
+                            }
+
+                            $(listItem).insertAfter(adminHome.params.attr.id.prev_pagination.parent('li'));
+
+                            if(response.page === response.pagePrev){
+                                adminHome.params.attr.id.prev_pagination.parent('li').addClass('disabled');
+                            }else{
+                                adminHome.params.attr.id.prev_pagination.parent('li').removeClass('disabled');
+                            }
+
+                            if(response.paginationCount === response.page){
+                                adminHome.params.attr.id.next_pagination.parent('li').addClass('disabled');
+                            }else{
+                                adminHome.params.attr.id.next_pagination.parent('li').removeClass('disabled');
+                            }
                         },
                         error: function (xhr, status, message) { //en cas d'erreur
                             console.log(status+"\n"+xhr.responseText + '\n' + message );

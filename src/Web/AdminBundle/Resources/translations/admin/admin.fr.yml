@@ -43,3 +43,5 @@ admin:
    title: Utilisateurs dénoncés
   users:
    title: Liste des utilisateurs
+  settings:
+   title: Paramètres
