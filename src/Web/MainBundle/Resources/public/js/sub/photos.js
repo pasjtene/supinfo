@@ -12,16 +12,20 @@ var MainSubPhotos = function()
                 method: "get",
                 type: "json"
             },
-            add: {
-                url : baseUrl+"auth/user/city",
-                method: "get",
+            delete:{
+                url : baseUrl+"auth/user/photo/delete",
+                method: "delete",
                 type: "json"
             },
-            delete:{
-
-            },
             published:{
-
+                url : baseUrl+"auth/user/photo/published",
+                method: "put",
+                type: "json"
+            },
+            setprofile:{
+                url : baseUrl+"auth/user/photo/setprofile",
+                method: "get",
+                type: "json"
             },
             profile:{
                 url : baseUrl+"auth/user/photo/profile",
@@ -60,7 +64,8 @@ var MainSubPhotos = function()
 
 $(function () {
     var mainSubPhotos = new MainSubPhotos(),
-        mainUserProfile_photos = new MainUserProfile();
+        mainUserProfile_photos = new MainUserProfile(),
+        currentlink =0;
 
     if(mainSubPhotos.params.sub.data('sub')=="photos")
     {
@@ -70,10 +75,12 @@ $(function () {
         //toutes les innformations concernant  la liste des photos
         if(mainSubPhotos.params.active_tab.val()==1){
             initList();
+            currentlink =1;
         }
 
         mainSubPhotos.params.link_list.click(function(){
             initList();
+            currentlink=1;
         });
 
 
@@ -81,17 +88,37 @@ $(function () {
         //toutes les innformations concernant  la liste des profiles
         if(mainSubPhotos.params.active_tab.val()==3){
             initProfile();
+            currentlink = 3;
         }
 
         mainSubPhotos.params.link_list.click(function(){
             initProfile();
+            currentlink =3;
         });
 
 
 
+        //agrandir une photo
         mainSubPhotos.params.tabs.list.body_photo.on('click', "img",function() {
             mainSubPhotos.params.tabs.list.zoom_source.attr('src', $(this).attr('src'));
             mainSubPhotos.params.tabs.list.zoom_img.modal('show');
+        });
+
+
+        //supprimer une photo
+        mainSubPhotos.params.tabs.list.body_photo.on('click', ".dropdown-menu .delete",function() {
+           deletePhoto($(this).data('hashanme'));
+        });
+
+        //set profile
+        mainSubPhotos.params.tabs.list.body_photo.on('click', ".dropdown-menu .setprofile",function() {
+            setprofilePhoto($(this).data('hashanme'));
+        });
+
+
+        //set visibility
+        mainSubPhotos.params.tabs.list.body_photo.on('click', ".dropdown-menu .setprofile",function() {
+            setpublished($(this).data('hashanme'),$(this).data('status'));
         });
 
 
@@ -194,12 +221,12 @@ $(function () {
                     deletes = Translator.trans('sub.img.delete', {}, 'photo'),
                     like = Translator.trans('sub.img.like', {}, 'photo')
                     text_published = ((isPublished)? public + datepublished.toLocaleDateString() : private ),
-                    link_published = (!isPublished)?'<a class="dropdown-item" href="#">'+pulished+'</a>':'<a class="dropdown-item" href="#">'+pulished_private+'</a>' ;
+                    link_published = (!isPublished)?'<a class="dropdown-item published" href="#" data-status="1" data-hashname="'+photo.hashname+'">'+pulished+'</a>':'<a class="dropdown-item" href="#" data-status="0" data-hashname="'+photo.hashname+'">'+pulished_private+'</a>' ;
 
                 var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
                 var id = "action"+photo.id;
                 body+=
-                    '<div class="col-sm-12 col-md-4 col   text-center img">'+
+                    '<div class="col-sm-12 col-md-4 col   temxt-center img">'+
                         '<div class="card">'+
                             img+
                             '<div class="card-block">'+
@@ -208,14 +235,14 @@ $(function () {
                                     '<button class="btn-secondary btn-sm text-muted"  type="button"  aria-haspopup="true" aria-expanded="false">'+
                                         text_published+
                                     '</button>'+
-                                    '<button id="'+id+'" type="button" class="  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
+                                    '<button id="m8'+id+'" type="button" class="  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
                                         ' <span class="sr-only">Toggle Dropdown</span>'+
                                     '</button>'+
                                     '<div class="dropdown-menu"  aria-labelledby="'+id+'">'+
-                                        '<a class="dropdown-item" href="#">'+profile+'</a>'+
+                                        '<a class="dropdown-item setprofile" href="#" data-hashname="'+photo.hashname+'">'+profile+'</a>'+
                                            link_published+
                                         '<a class="dropdown-item " href="#"> <span class="fa fa-thumbs-o-up">'+like+'</span></a>'+
-                                        '<a class="dropdown-item" href="#">'+deletes+'</a>'+
+                                        '<a class="dropdown-item delete" href="#" data-hashname="'+photo.hashname+'">'+deletes+'</a>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -280,5 +307,152 @@ $(function () {
             element.append(body);
             mainSubPhotos.params.tabs.profile.chargement_photo.fadeOut();
         }
+
+
+
+
+        //supprimer une photo
+        function deletePhoto(hashname){
+            var trans = Translator.trans('sub.body.confirm_message',{},"photo");
+           if(confirm(trans))
+           {
+               mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
+               var datas = {
+                   hashname : hashname,
+                   state: currentlink==1?"list":"profile"
+               };
+               $.ajax({
+                   url: mainSubPhotos.params.api.delete.url,
+                   type:  mainSubPhotos.params.api.delete.method,
+                   data: datas,
+                   crossDomain: true,
+                   headers : {"X-Auth-Token" : currentUser.token},
+                   dataType:  mainSubPhotos.params.api.delete.type,
+                   success: function(response){
+                       console.log(response);
+                       if(response!=null  && response!="null" && response!="undefined")
+                       {
+                           if(currentlink==1)
+                           {
+                               setPhotos(mainSubPhotos.params.tabs.list.body_photo,response);
+                           }
+                           else{
+                               setProfile(mainSubPhotos.params.tabs.profile.body_photo,response);
+                           }
+                       }
+                       var message = Translator.trans("sub.body.success_message",{},"photo");
+                       alert(message);
+                   },
+                   error: function (xhr, status, message) { //en cas d'erreur
+                       console.log(status+"\n"+xhr.responseText + '\n' + message );
+                       var message = Translator.trans("sub.body.error_message",{},"photo");
+                       alert(message);
+                   },
+                   complete:function(){
+                       console.log("Request finished.");
+                   }
+
+               });
+
+           }
+            else{
+               trans = Translator.trans('sub.body.cancel_message',{},"photo");
+               alert(trans);
+           }
+        }
+
+
+        //set  une photo de profile
+        function setprofilePhoto(hashname){
+
+            mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
+            var datas = {
+                hashname : hashname,
+                state: currentlink==1?"list":"profile"
+            };
+            $.ajax({
+                    url: mainSubPhotos.params.api.setprofile.url,
+                    type:  mainSubPhotos.params.api.setprofile.method,
+                    data: datas,
+                    crossDomain: true,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    dataType:  mainSubPhotos.params.api.setprofile.type,
+                    success: function(response){
+                        console.log(response);
+                        if(response!=null  && response!="null" && response!="undefined")
+                        {
+                            if(currentlink==1)
+                            {
+                                setPhotos(mainSubPhotos.params.tabs.list.body_photo,response);
+                            }
+                            else{
+                                setProfile(mainSubPhotos.params.tabs.profile.body_photo,response);
+                            }
+                        }
+                        var message = Translator.trans("sub.body.setprofile.success",{},"photo");
+                        alert(message);
+                    },
+                    error: function (xhr, status, message) { //en cas d'erreur
+                        console.log(status+"\n"+xhr.responseText + '\n' + message );
+                        var message = Translator.trans("sub.body.setprofile.error",{},"photo");
+                        alert(message);
+                    },
+                    complete:function(){
+                        console.log("Request finished.");
+                    }
+
+                });
+
+        }
+
+
+
+
+        //changer la visibilite de la photo
+        function setpublished(hashname,status){
+
+            mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
+            var datas = {
+                hashname : hashname,
+                status : status,
+                state: currentlink==1?"list":"profile"
+            };
+            $.ajax({
+                url: mainSubPhotos.params.api.published.url,
+                type:  mainSubPhotos.params.api.published.method,
+                data: datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                dataType:  mainSubPhotos.params.api.published.type,
+                success: function(response){
+                    console.log(response);
+                    if(response!=null  && response!="null" && response!="undefined")
+                    {
+                        if(currentlink==1)
+                        {
+                            setPhotos(mainSubPhotos.params.tabs.list.body_photo,response);
+                        }
+                        else{
+                            setProfile(mainSubPhotos.params.tabs.profile.body_photo,response);
+                        }
+                    }
+                    var message = Translator.trans("sub.body.published.success",{},"photo");
+                    alert(message);
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    var message = Translator.trans("sub.body.published.error",{},"photo");
+                    alert(message);
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
+
+        }
+
+
+
     }
 });

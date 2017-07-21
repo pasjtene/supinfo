@@ -9,8 +9,27 @@ sub:
     private: To deprive
     delete: Delete
     like: Like
+    error_ext: is not  allocated
+    error_size: is to big for upload max sise(2Mo)
   body:
     close: Close
+    error_message: woh! Something  as wrong
+    success_message: Delete as successfull
+    confirm_message: Do you really want  to delete this photo?
+    cancel_message: Canceled
+    setprofile:
+      success: your profile is change
+      error: woh! Something  as wrong
+    published:
+      success: the profile visibilty  has change
+      error:  woh! Something  as wrong
     state :
       private: private
       public: published to
+  modal:
+    name: Name
+    message: Message
+    state:
+      title: State
+      error : error
+      success: success
