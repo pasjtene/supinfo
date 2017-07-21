@@ -220,7 +220,7 @@ $(function () {
                     profile = Translator.trans('sub.img.profile', {}, 'photo'),
                     deletes = Translator.trans('sub.img.delete', {}, 'photo'),
                     like = Translator.trans('sub.img.like', {}, 'photo')
-                    text_published = ((isPublished)? public + datepublished.toLocaleDateString() : private ),
+                    text_published = ((isPublished)? public + '  '+ datepublished.toLocaleDateString() : private ),
                     link_published = (!isPublished)?'<a class="dropdown-item published" href="#" data-status="1" data-hashname="'+photo.hashname+'">'+pulished+'</a>':'<a class="dropdown-item" href="#" data-status="0" data-hashname="'+photo.hashname+'">'+pulished_private+'</a>' ;
 
                 var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
@@ -229,12 +229,10 @@ $(function () {
                     '<div class="col-sm-12 col-md-4 col   temxt-center img">'+
                         '<div class="card">'+
                             img+
-                            '<div class="card-block">'+
+                            '<div class="card-block bg-faded">'+
                                 '<p>'+photo.id+' people(s) like this photo </p>'+
+                                '<p>'+text_published+'</p>'+
                                 '<div class="btn-group text-right">'+
-                                    '<button class="btn-secondary btn-sm text-muted"  type="button"  aria-haspopup="true" aria-expanded="false">'+
-                                        text_published+
-                                    '</button>'+
                                     '<button id="m8'+id+'" type="button" class="  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
                                         ' <span class="sr-only">Toggle Dropdown</span>'+
                                     '</button>'+
