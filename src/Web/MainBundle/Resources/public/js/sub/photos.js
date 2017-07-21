@@ -24,7 +24,7 @@ var MainSubPhotos = function()
             },
             setprofile:{
                 url : baseUrl+"auth/user/photo/setprofile",
-                method: "get",
+                method: "put",
                 type: "json"
             },
             profile:{
@@ -107,18 +107,18 @@ $(function () {
 
         //supprimer une photo
         mainSubPhotos.params.tabs.list.body_photo.on('click', ".dropdown-menu .delete",function() {
-           deletePhoto($(this).data('hashanme'));
+            deletePhoto($(this).data('hashname'));
         });
 
         //set profile
         mainSubPhotos.params.tabs.list.body_photo.on('click', ".dropdown-menu .setprofile",function() {
-            setprofilePhoto($(this).data('hashanme'));
+            setprofilePhoto($(this).data('hashname'));
         });
 
 
         //set visibility
-        mainSubPhotos.params.tabs.list.body_photo.on('click', ".dropdown-menu .setprofile",function() {
-            setpublished($(this).data('hashanme'),$(this).data('status'));
+        mainSubPhotos.params.tabs.list.body_photo.on('click', ".dropdown-menu .published",function() {
+            setpublished($(this).data('hashname'),$(this).data('status'));
         });
 
 
@@ -202,7 +202,7 @@ $(function () {
                 var photo = list[i];
                 var src = null;
                 var datepublished = new  Date(photo.publishedDate);
-                var  isPublished = datepublished.getYear()<2017? false :true;
+                var  isPublished = photo.visibility=="private"? false :true;
 
                 if ((photo.hashname == null || photo.hashname == 'null')) {
                     src = element.data('help');
@@ -318,7 +318,7 @@ $(function () {
            {
                mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
                var datas = {
-                   hashname : hashname,
+                   hashanme : hashname,
                    state: currentlink==1?"list":"profile"
                };
                $.ajax({
@@ -383,10 +383,12 @@ $(function () {
                         {
                             if(currentlink==1)
                             {
-                                setPhotos(mainSubPhotos.params.tabs.list.body_photo,response);
+                                setPhotos(mainSubPhotos.params.tabs.list.body_photo,response.list);
+                                setpicture(mainUserProfile_photos.params.imprtant.important_block_img,baseHost+response.profile.path,mainUserProfile_photos.params.imprtant.important_block_img.data('help'));
                             }
                             else{
-                                setProfile(mainSubPhotos.params.tabs.profile.body_photo,response);
+                                setProfile(mainSubPhotos.params.tabs.profile.body_photo,response.list);
+                                setpicture(mainUserProfile_photos.params.imprtant.important_block_img,baseHost+response.profile.path,mainUserProfile_photos.params.imprtant.important_block_img.data('help'))
                             }
                         }
                         var message = Translator.trans("sub.body.setprofile.success",{},"photo");
@@ -406,6 +408,16 @@ $(function () {
         }
 
 
+        function setpicture(element,img,helpImg){
+            if(img==null || img=="undefined")
+            {
+                element.attr("src",helpImg);
+            }
+            else{
+                element.attr("src",img);
+            }
+            return element;
+        }
 
 
         //changer la visibilite de la photo
