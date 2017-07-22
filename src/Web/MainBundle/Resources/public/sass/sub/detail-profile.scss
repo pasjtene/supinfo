@@ -1,6 +1,9 @@
 #Main-Subdetail-profile
 {
   #chargement-detail-profile{
+    display: none;
+  }
+  #chargement-detail-profile{
     img{
       height: 30px;
     }
@@ -49,6 +52,7 @@
             cursor: zoom-in;
           }
         }
+
       }
 
       #body-photo-detail-profile-freinds{
@@ -92,5 +96,23 @@
       }
     }
 
+  }
+
+  #zoomImg-detail-profile{
+    img{
+      height: 400px;
+    }
+    #modal-content{
+      background-color: transparent;
+    }
+  }
+
+  #zoomImg-detail-profile-freinds{
+    img{
+      height: 400px;
+    }
+    #modal-content{
+      background-color: transparent;
+    }
   }
 }
