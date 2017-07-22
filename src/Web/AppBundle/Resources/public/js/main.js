@@ -125,6 +125,14 @@ var tokenbase =null;
 var geolocation =null;
 var appMain = new AppMain();
 
+var path =
+{
+    country: {
+        en: '/dist/country-en.json',
+        fr: '/dist/country.json'
+    },
+    flags: '/dist/flags/'
+};
 appMain.getAppToken(function(data){
     //tokenbase = data.value;
     tokenbase = data.token;

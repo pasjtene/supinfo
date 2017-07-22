@@ -27,6 +27,9 @@
           height: 200px;
           max-width: 200px;
         }
+        .sm-img{
+          height: 18px;
+        }
         .row
         {
           margin-top: 1em;
@@ -46,6 +49,7 @@
           }
         }
         :hover{
+          cursor: pointer;
           .name{
             color: $default-color;
           }

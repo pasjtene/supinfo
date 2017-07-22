@@ -3,6 +3,7 @@ var MainSubMatches = function()
     this.params = {
         page: $("#mainUserProfile"),
         sub: $("#Main-Submatches"),
+        path: path.flags,
         api:{
             base: {
                 url : baseUrl+"auth/user/base",
@@ -17,7 +18,8 @@ var MainSubMatches = function()
         },
         body:{
             content :$("#main-body #Main-Submatches #content"),
-            chargement: $("#main-body #Main-Submatches #chargement")
+            chargement: $("#main-body #Main-Submatches #chargement"),
+            detail_profile: $("#main-body #Main-Submatches .detail-profile")
         }
     };
 
@@ -30,6 +32,12 @@ $(function () {
 
     if(mainSubMatches.params.sub.data('sub')=="matches")
     {
+
+        //consulter le detail  sur un profile
+        mainSubMatches.params.body.content.on('click','.detail-profile',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,email:$(this).data('email')});
+        });
+
        var intervalusers = setInterval(function(){
            //charger la liste des users du  site
            if(listUsers!=null)
@@ -73,6 +81,8 @@ $(function () {
                         //alert(age);
                         var lastConnect = new  Date(user.lastLogin);
 
+                        var flag ="<img class='sm-img' src='"+mainSubMatches.params.path+user.country+".png' alt=''/> ";
+
                         //alert(lastConnect.toLocaleDateString());
                         if(lastConnect.toLocaleDateString()==today.toLocaleDateString())
                         {
@@ -95,22 +105,24 @@ $(function () {
                             '<div class="col-1">'+
                             '<div class="rounded-circle connect" ></div>'+
                             '</div>'+
-                            '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)   &nbsp;</strong></div>'+
+                            '<div class="col name text-left"> <strong > '+user.name + '(' + age+'ans)   &nbsp;</strong></div>'+
                             '<div class="col-12 text-left">'+
+                             flag+
                             '<span class="text-muted country">'+country+'</span>'+
                             '</div>'+
                             '</div>';
 
                         var no_connect =
                             ' <div class="row">'+
-                            '<div class="col-1">'+
-                            '<div class="rounded-circle no-connect" ></div>'+
-                            '</div>'+
-                            '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)    &nbsp;</strong></div>'+
-                            '<div class="col-12 text-left">'+
-                            '<span class="text-muted country">'+user.country+'</span>'+
-                            '<span class="text-grey pull-right"> see '+lastConnect+'</span>'+
-                            '</div>'+
+                                '<div class="col-1">'+
+                                    '<div class="rounded-circle no-connect" ></div>'+
+                                '</div>'+
+                                '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)    &nbsp;</strong></div>'+
+                                    '<div class="col-12 text-left">'+
+                                    flag+
+                                    '<span class="text-muted country">'+user.country+'</span>'+
+                                    '<span class="text-grey pull-right"> see '+lastConnect+'</span>'+
+                                '</div>'+
                             '</div>';
 
 
@@ -123,10 +135,9 @@ $(function () {
                         {
                             state = no_connect;
                         }
-
                         var body =
                                 ' <div class="col-sm-12 col-md-4">'+
-                                ' <div class="card bg-faded">'+
+                                ' <div class="card bg-faded detail-profile" data-email="'+user.email+'">'+
                                 ' <div class="card-block text-center">'+
                                 img+
                                 ' <br>'+
