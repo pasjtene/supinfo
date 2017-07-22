@@ -71,13 +71,14 @@ $(function () {
         });
 
 
+
         //appel de la fonction pour charger les informations
         fill(currentUser.id,mainSubDetailProfile.params.page.data('email'));
 
         function fill(id,email){
             var datas ={
-              email : email,
-              id: id
+                id: id,
+              email : email
             };
             $.ajax({
                 url: mainSubDetailProfile.params.api.fill.url,
