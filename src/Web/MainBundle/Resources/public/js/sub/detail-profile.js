@@ -71,6 +71,8 @@ $(function () {
         });
 
 
+        //appel de la fonction pour charger les informations
+        fill(currentUser.id,mainSubDetailProfile.params.page.data('email'));
 
         function fill(id,email){
             var datas ={
