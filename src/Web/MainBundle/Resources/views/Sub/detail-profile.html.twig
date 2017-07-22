@@ -1,0 +1,149 @@
+<div class="card-block" data-sub="detail-profile" id="Main-Subdetail-profile">
+    <div id="chargement-detail-profile" class="row">
+        <div class="col-12 text-center">
+            <img src="{{ asset('dist/loader.gif') }}" alt="">
+        </div>
+    </div>
+    <hr>
+    <div class="row body">
+        <div class="col-md-4 col-sm-12 col bg-white text-center" id="zone_profile">
+            <img src="{{ asset('data/img/empty.png') }}" class="img-thumbnail rounded rounded-circle responsive" alt="">
+            <div class="rounded-circle connect-box"> </div>
+            <div class="name"> Stratège takam danick</div>
+            <div class="profession text-muted"> Analyste-Programmeur</div>
+            <div class="content">
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Amis</strong>
+                    </div>
+                    <div class="col-6 text-right">
+                        <span class="text-info reply">55[04]</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Profession</strong>
+                    </div>
+                    <div class="col-6 text-right">
+                        <span class="text-info reply">Analyste programmeur</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Raison</strong>
+                    </div>
+                    <div class="col-6 text-right">
+                        <span class="text-info reply">Rencontrer les amis</span>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="no-freind text-muted">
+                Vous n'êtes pas encore l'amis de <strong>danick</strong>
+                <br>
+                <button class="bg-primary btn"> Demander l'amitier</button>
+            </div>
+            <div class="no-freind text-muted" style="display: none;">
+                ou <br>
+                Vous etes devenu  l'ami de <strong>danick</strong>  le <span class="text-grey">11/11/11</span>
+                <br>
+                <button class="bg-primary btn"> Faire un message</button>
+            </div>
+            <br>
+            <div class="alert alert-info">
+                Apropos de moi
+            </div>
+            <div class="about">
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <strong> Nom complet</strong>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-info reply">
+                            Danick takam Stratege
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <strong> Sexe </strong>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-info reply">
+                            Masculin
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <strong> Pays</strong>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-info reply">
+                            Cameroun
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <strong> Ville</strong>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-info reply">
+                            Douala-logpom
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <strong> Téléphone</strong>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-info reply">
+                           695868544/675655592
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <strong> Age</strong>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-info reply">
+                            38 ans
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-12 col bg-faded" id="zone_more_detail">
+                <input type="hidden" id="active-photo-detail-tab" value="">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item" id="link-photo-list">
+                        <a class="nav-link  active " data-toggle="tab"  href="#Main-Subdetail-profile-photo">{% trans from 'detail-profile' %}photos {% endtrans %}  <span class="text-success">(25)</span> </a>
+                    </li>
+                    <li class="nav-item" id="link-photo-add">
+                        <a class="nav-link " data-toggle="tab"  href="#Main-Subdetail-profile-friends">{% trans from 'detail-profile' %} Friends {% endtrans %} <span class="text-success">(45)</span> </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade  show active  " id="Main-Subdetail-profile-photo" data-tabs="Main-Subphotos-list" >
+                        {% include "MainBundle:Tabs:photos-detail-profile.html.twig" %}
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade " id="Main-Subdetail-profile-friends">
+                        {% include "MainBundle:Tabs:freinds-detail-profile.html.twig" %}
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

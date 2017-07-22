@@ -85,11 +85,12 @@ class ProfileController extends Controller
 
 
     /**
-     * @Route("/detail/profile", name="main_profile_detailProfile", options={"expose"=true})
+     * @Route("/detail/profile/{email}", name="main_profile_detailProfile", options={"expose"=true})
      */
-    public function detailProfileAction()
+    public function detailProfileAction($email)
     {
         $array['subPage'] = "detail-profile";
+        $array['email'] = $email;
         return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 

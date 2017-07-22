@@ -41,14 +41,6 @@ var AdminHome = function()
 
 };
 
-var path =
-{
-    country: {
-        en: '/dist/country-en.json',
-        fr: '/dist/country.json'
-    },
-    flags: '/dist/flags/'
-};
 
 var getSelectedUsers = function(asObject)
 {
