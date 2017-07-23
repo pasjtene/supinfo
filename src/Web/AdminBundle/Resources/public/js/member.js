@@ -106,6 +106,7 @@ $(function(){
                         var row = $('<tr>').html("<td>" + (i+1) +
                             "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
                             "</td><td>" + user.email +
+                            "</td><td>" + user.joinDate.replace("T", " ").replace("+00:00", " ") +
                             "</td><td><img src='"+path.flags+user.country+".png' alt=''/> " + countries[user.country] +
                             "</td><td>" + user.gender +
                             "</td><td>" + (user.enabled ? "Enabled" : "Locked") +
