@@ -17,3 +17,7 @@ sub:
   commonFreinds: You have friends in common
   becomeFriends: You are friends
   discover: Discover other friends directly. Do you know?
+  success:
+    ask: Application successfully completed
+  error:
+    ask: The request was not successful
