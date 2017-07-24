@@ -11,7 +11,6 @@
   .body{
     #zone_profile{
         .connect-box{
-          background-color: $highligt;
           position: relative;
           height: 20px;
           width: 20px;
@@ -20,7 +19,7 @@
         }
         img{
           height: 150px;
-          width: 160px;
+          width: 150px;
         }
        .name{
          font-weight: bold;
@@ -37,7 +36,6 @@
             font-size: 0.89em;
           }
         }
-
       }
       .about{
         @extend .content;
