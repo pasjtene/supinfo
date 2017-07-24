@@ -26,6 +26,9 @@ var MainSubDetailProfile = function()
             full_profession: $("#zone_profile .full_profession"),
             chargement: $("#Main-Subdetail-profile  #chargement-detail-profile"),
             ask_button: $("#Main-Subdetail-profile  .ask button"),
+            ask: $("#Main-Subdetail-profile  .ask "),
+            body: $("#Main-Subdetail-profile  .body "),
+            connect: $("#Main-Subdetail-profile .connect-box"),
             profile:{
 
             },
@@ -67,6 +70,9 @@ $(function () {
     {
         //afficher le preloader
         mainSubDetailProfile.params.body.chargement.slideDown();
+        mainSubDetailProfile.params.body.body.fadeOut();
+
+
 
         //agrandir une photo
         mainSubDetailProfile.params.body.photo.body_photo_detail.on('click', "img",function() {
@@ -81,25 +87,23 @@ $(function () {
         });
 
 
-        //demande l'amtier
-        mainSubDetailProfile.params.body.ask_button(function(){
-            trans = Translator.trans('sub.success.ask',{},"detail-profile");
-            bootbox.prompt(trans,function(result){
-                if(result){
-                    var datas = {
-                        'applicantId': currentUser.id,
-                        'receiverEmail': mainSubDetailProfile.params.sub.data('email'),
-                        'message':result
-                    };
-                    askFriendShip(datas);
-                }
-            });
-        });
+
 
 
 
         //appel de la fonction pour charger les informations
         fill(currentUser.id,mainSubDetailProfile.params.sub.data('email'));
+
+
+        //demande l'amtier
+        mainSubDetailProfile.params.body.ask_button.click(function(){
+            trans = Translator.trans('sub.message',{},"default");
+            bootbox.prompt(trans,function(result){
+                if(result){
+                    askFriendShip(currentUser.id,mainSubDetailProfile.params.sub.data('email'), result);
+                }
+            });
+        });
 
         function fill(id,email){
             var datas ={
@@ -123,6 +127,27 @@ $(function () {
                         setcontent(response.user, mainSubDetailProfile.params.body.content, response.listFriends.length,response.listAloneFriends.length);
                         setabout(response.user, mainSubDetailProfile.params.body.about);
 
+                        //modifier l'etat de connexion
+                        if(response.user.isOnline)
+                        {
+                            mainSubDetailProfile.params.body.connect.addClass('isconnect');
+                        }
+                        else
+                        {
+                            mainSubDetailProfile.params.body.connect.addClass('isnotconnect');
+                        }
+
+                        if(response.ask!=null )
+                        {
+                            var ask = response.ask;
+                            if(ask.state || ask.decision=="3" || ask.decision=="0"){
+                                mainSubDetailProfile.params.body.ask.slideUp();
+                            }
+                            else{
+                                mainSubDetailProfile.params.body.ask.slideDown();
+                            }
+                        }
+
                         //charger les photos
                         mainSubDetailProfile.params.link_photo_span.html('('+response.listPhotos.length+')');
 
@@ -140,6 +165,7 @@ $(function () {
                     console.log("Request finished.");
                     //hide le preloader
                     mainSubDetailProfile.params.body.chargement.slideUp();
+                    mainSubDetailProfile.params.body.body.fadeIn();
                 }
 
             });
@@ -234,29 +260,43 @@ $(function () {
 
         }
 
-        function askFriendShip(datas){
+        function askFriendShip(applicantId,recieverEmail,message){
             mainSubDetailProfile.params.body.chargement.slideDown();
+            var datas = {
+                'applicantId': applicantId,
+                'receiverEmail': recieverEmail,
+                'message':message
+            };
             $.ajax({
                 url: mainSubDetailProfile.params.api.ask.url,
                 type:  mainSubDetailProfile.params.api.ask.method,
                 data: datas,
                 crossDomain: true,
                 headers : {"X-Auth-Token" : currentUser.token},
-                contentType: false,
-                dataType:  mainSubDetailProfile.params.api.ask.type,
                 success: function(response){
                     console.log(response);
                     if(response!=null  && response!="null" && response!="undefined")
                     {
-                        trans = Translator.trans('sub.success.ask',{},"detail-profile");
+                        trans = Translator.trans('sub.success.ask',{},"defaut");
                         bootbox.alert(trans,function(result){});
+                        if(response!=null )
+                        {
+                            var ask = response;
+                            if(ask.state || ask.decision=="3" || ask.decision=="0"){
+                                mainSubDetailProfile.params.body.ask.slideUp();
+                            }
+                            else{
+                                mainSubDetailProfile.params.body.ask.slideDown();
+                            }
+                        }
+
                     }
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
                     //hide le preloader
                     mainSubDetailProfile.params.body.chargement.slideUp();
-                    trans = Translator.trans('sub.success.ask',{},"detail-profile");
+                    trans = Translator.trans('sub.error.ask',{},"default");
                     bootbox.alert(trans,function(result){});
                 },
                 complete:function(){

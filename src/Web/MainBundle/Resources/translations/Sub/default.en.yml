@@ -1,0 +1,6 @@
+sub:
+  success:
+    ask: Application successfully completed
+  error:
+    ask: The request was not successful
+  message: Dite un  mot à  votre ami
