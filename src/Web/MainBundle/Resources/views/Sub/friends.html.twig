@@ -1,0 +1,70 @@
+<div class="card-block bg-faded" data-sub="friends" id="Main-Subfriends">
+    <div class="card">
+        <div class="card-header bg-white">
+            <h5 class=""><strong>Repondre aux 38 invitations </strong></h5>
+            <a href="" class="small">Afficher les invitations envoyés</a>
+        </div>
+        <div class="card-block">
+            {% for i in 1..4 %}
+                {% set id=i %}
+                <section>
+                    <div class="container py-3">
+                        <div class="row align-items-center small">
+                            <div class="col-md-3 ">
+                                <img src="{{ asset('data/img/empty.png') }}" class="w-100">
+                            </div>
+                            <div class="col-md-9 px-3" style="line-height: 0.3em;">
+                                <div class="card-block px-3">
+                                    <h4 class="card-title">User Name </h4>
+                                    <p class="card-text text-muted " style="line-height: 1em;">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </p>
+                                    <p class="card-text text-grey small">Profession </p>
+                                    <p class="card-text text-grey small">Vous avez 11 amis en commun </p>
+                                    <a href="#" class="btn btn-sm btn-primary">Confirmer</a>
+                                    <a href="#" class="btn btn-sm btn-success"><span class="fa fa-comment"></span> Message</a>
+                                    <a href="#" class="btn btn-sm btn-danger dropdown-toggle" id="{{ id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</a>
+                                    <div class="dropdown-menu" aria-labelledby="{{ id }}" style="line-height: 1rem;">
+                                        <a class="dropdown-item" href="#">Supprimer l'invittion</a>
+                                        <a class="dropdown-item" href="#">Bloquer l'utilisateur</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </section>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-white">
+            <h5 class=""><strong>Conaissez-vous... </strong></h5>
+        </div>
+        <div class="card-block">
+            {% for i in 1..4 %}
+                {% set id= 'action'~i %}
+                <section>
+                    <div class="container py-3">
+                        <div class="row align-items-center small">
+                            <div class="col-md-3 ">
+                                <img src="{{ asset('data/img/empty.png') }}" class="w-100">
+                            </div>
+                            <div class="col-md-9 px-3" style="line-height: 0.3em;">
+                                <div class="card-block px-3">
+                                    <h4 class="card-title">User Name </h4>
+                                    <p class="card-text text-muted " style="line-height: 1em;">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </p>
+                                    <p class="card-text text-grey small">Profession </p>
+                                    <p class="card-text text-grey small">Vous avez 11 amis en commun </p>
+                                    <a href="#" class="btn btn-sm btn-primary"><span class="fa fa-user-plus"></span> Ajouter</a>
+                                    <a href="#" class="btn btn-sm btn-success"><span class="fa fa-comment"></span> Message</a>
+                                    <a href="#" class="btn btn-sm btn-danger">Supprimer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </section>
+            {% endfor %}
+        </div>
+    </div>
+</div>
