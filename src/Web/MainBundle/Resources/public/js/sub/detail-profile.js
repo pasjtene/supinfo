@@ -3,6 +3,7 @@ var MainSubDetailProfile = function()
     this.params = {
         page: $("#mainUserProfile"),
         sub: $("#Main-Subdetail-profile"),
+        bg_action:$('#bg-action'),
         path: path.flags,
         link_photo: $ ("#Main-Subdetail-profile #zone_more_detail #link-profile-photo a"),
         link_photo_span: $ ("#Main-Subdetail-profile #zone_more_detail #link-profile-photo a span"),
@@ -26,7 +27,7 @@ var MainSubDetailProfile = function()
             full_profession: $("#zone_profile .full_profession"),
             chargement: $("#Main-Subdetail-profile  #chargement-detail-profile"),
             ask_button: $("#Main-Subdetail-profile  .ask button"),
-            ask: $("#Main-Subdetail-profile  .ask "),
+            ask: $("#Main-Subdetail-profile  .no-freind "),
             body: $("#Main-Subdetail-profile  .body "),
             connect: $("#Main-Subdetail-profile .connect-box"),
             profile:{
@@ -69,7 +70,8 @@ $(function () {
     if(mainSubDetailProfile.params.sub.data('sub')=="detail-profile")
     {
         //afficher le preloader
-        mainSubDetailProfile.params.body.chargement.slideDown();
+        mainSubDetailProfile.params.body.chargement.fadeOut();
+        mainSubDetailProfile.params.bg_action.fadeIn();
         mainSubDetailProfile.params.body.body.fadeOut();
 
 
@@ -141,10 +143,12 @@ $(function () {
                         {
                             var ask = response.ask;
                             if(ask.state || ask.decision=="3" || ask.decision=="0"){
-                                mainSubDetailProfile.params.body.ask.slideUp();
+                                mainSubDetailProfile.params.body.ask.fadeOut();
+                                //mainSubDetailProfile.params.bg_action.fadeOut();
+
                             }
                             else{
-                                mainSubDetailProfile.params.body.ask.slideDown();
+                                mainSubDetailProfile.params.body.ask.fadeIn();
                             }
                         }
 
@@ -159,12 +163,14 @@ $(function () {
                 error: function (xhr, status, message) { //en cas d'erreur
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
                     //hide le preloader
-                    mainSubDetailProfile.params.body.chargement.slideUp();
+                    //mainSubDetailProfile.params.body.chargement.fadeOut();
+                    mainSubDetailProfile.params.bg_action.Up();
                 },
                 complete:function(){
                     console.log("Request finished.");
                     //hide le preloader
-                    mainSubDetailProfile.params.body.chargement.slideUp();
+                    //mainSubDetailProfile.params.body.chargement.fadeOut();
+                    mainSubDetailProfile.params.bg_action.fadeOut();
                     mainSubDetailProfile.params.body.body.fadeIn();
                 }
 
@@ -261,7 +267,8 @@ $(function () {
         }
 
         function askFriendShip(applicantId,recieverEmail,message){
-            mainSubDetailProfile.params.body.chargement.slideDown();
+           // mainSubDetailProfile.params.body.chargement.fadeIn();
+            mainSubDetailProfile.params.bg_action.fadeIn();
             var datas = {
                 'applicantId': applicantId,
                 'receiverEmail': recieverEmail,
@@ -277,32 +284,33 @@ $(function () {
                     console.log(response);
                     if(response!=null  && response!="null" && response!="undefined")
                     {
-                        trans = Translator.trans('sub.success.ask',{},"defaut");
-                        bootbox.alert(trans,function(result){});
                         if(response!=null )
                         {
                             var ask = response;
                             if(ask.state || ask.decision=="3" || ask.decision=="0"){
-                                mainSubDetailProfile.params.body.ask.slideUp();
+                                mainSubDetailProfile.params.body.ask.fadeOut();
                             }
                             else{
-                                mainSubDetailProfile.params.body.ask.slideDown();
+                                mainSubDetailProfile.params.body.ask.fadeIn();
                             }
                         }
-
+                        trans = Translator.trans('sub.success.ask',{},"default");
+                        bootbox.alert(trans,function(result){});
                     }
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
                     //hide le preloader
-                    mainSubDetailProfile.params.body.chargement.slideUp();
+                    //mainSubDetailProfile.params.body.chargement.fadeOut();
+                    mainSubDetailProfile.params.bg_action.fadeOut();
                     trans = Translator.trans('sub.error.ask',{},"default");
                     bootbox.alert(trans,function(result){});
                 },
                 complete:function(){
                     console.log("Request finished.");
                     //hide le preloader
-                    mainSubDetailProfile.params.body.chargement.slideUp();
+                    //mainSubDetailProfile.params.body.chargement.fadeOut();
+                    mainSubDetailProfile.params.bg_action.fadeOut();
                 }
 
             });
