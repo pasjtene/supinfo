@@ -16,7 +16,7 @@
 
         <div class="row" id="friend-join">
             <div class="col-12">
-                Vous avez 5 amis en commun avec danick
+                {% trans from  'detail-profile' %} sub.commonFreinds {% endtrans %}
                 <hr>
             </div>
             {% for i in 1..5 %}
@@ -31,7 +31,7 @@
                                 <p><strong>Magatsin Martine</strong></p>
                             </div>
                             <p class="country">Douala-Cameroun</p>
-                            <p class="start-frein">Vous etes devenus amis le 05/11/12</p>
+                            <p class="start-frein">{% trans from  'detail-profile' %} sub.becomeFriends {% endtrans %} 05/11/12</p>
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
 
         <div class="row" id="friend-alone">
             <div class="col-12">
-               Découvrer d'autres amis directement. Connaissez vous ?
+                {% trans from  'detail-profile' %} sub.discover {% endtrans %}
                 <hr>
             </div>
             {% for i in 1..8 %}

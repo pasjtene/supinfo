@@ -140,6 +140,15 @@
     <script src="{{ asset('plugin/bootstrap/js/bootstrap.js') }}"></script>
 
     <script src="{{ asset('plugin/datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('plugin/bootbox/bootbox.min.js') }}"></script>
+
+   {#
+    <script src="{{ asset('plugin/confirm-custom-labels.js') }}"></script>
+     <script src="{{ asset('plugin/bootbox/alert-simple.js') }}"></script>
+    <script src="{{ asset('plugin/bootbox/alert-callback.js') }}"></script>
+    <script src="{{ asset('plugin/bootbox/alert-custom-label.js') }}"></script>
+    <script src="{{ asset('plugin/bootbox/confirm-simple-label.js') }}"></script>
+   #}
 
 
 
@@ -206,6 +215,25 @@
         Translator.transChoice('key', 123, { "foo" : "bar" }, 'DOMAIN_NAME');
 
      -->
+
+    <!-- solution  pour le modale (bootbox) -->
+
+    <script>
+        // comment utiliser un alert
+        //bootbox.alert("Custom label text!", function(result){});
+        //comment utiliser confirm
+       /* bootbox.confirm("Custom label text!", function(result){
+            if(result){
+                console.log("ok ");
+            }
+            else{
+                console.log("cancel")
+            }
+        });
+        */
+    </script>
+
+    <!-- end bootbox -->
 
     {% block myjs %}{% endblock %}
 {% endblock %}
