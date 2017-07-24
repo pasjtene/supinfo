@@ -52,10 +52,10 @@
                 </div>
                 <hr>
             </div>
-            <div class="no-freind text-muted">
+            <div class="no-freind text-muted ask">
                 {% trans from  'detail-profile' %} sub.noFriend {% endtrans %}
                 <br>
-                <button class="bg-primary btn"><span class="fa fa-user-plus"></span> {% trans from  'detail-profile' %} sub.ask {% endtrans %}</button>
+                <button  class="bg-primary btn"><span class="fa fa-user-plus"></span> {% trans from  'detail-profile' %} sub.ask {% endtrans %}</button>
             </div>
             <br>
             <div class="alert alert-info">
@@ -133,10 +133,10 @@
         <div class="col-md-8 col-sm-12 col bg-faded" id="zone_more_detail">
                 <input type="hidden" id="active-photo-detail-tab" value="">
                 <ul class="nav nav-tabs">
-                    <li class="nav-item" id="link-photo-list">
-                        <a class="nav-link  active " data-toggle="tab"  href="#Main-Subdetail-profile-photo">{% trans from 'detail-profile' %}photos {% endtrans %}  <span class="text-success">(25)</span> </a>
+                    <li class="nav-item" id="link-profile-photo">
+                        <a class="nav-link  active " data-toggle="tab"  href="#Main-Subdetail-profile-photo">{% trans from 'detail-profile' %}photos {% endtrans %}  <span class="text-success"></span> </a>
                     </li>
-                    <li class="nav-item" id="link-photo-add">
+                    <li class="nav-item" id="link-profile-friend">
                         <a class="nav-link " data-toggle="tab"  href="#Main-Subdetail-profile-friends">{% trans from 'detail-profile' %} Friends {% endtrans %} <span class="text-success">(45)</span> </a>
                     </li>
                 </ul>
