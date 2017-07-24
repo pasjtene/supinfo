@@ -3,4 +3,4 @@ sub:
     ask: Application successfully completed
   error:
     ask: The request was not successful
-  message: Dite un  mot à  votre ami
+  message: Tell a friend

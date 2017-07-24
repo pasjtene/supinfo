@@ -130,14 +130,11 @@ $(function () {
                         setabout(response.user, mainSubDetailProfile.params.body.about);
 
                         //modifier l'etat de connexion
-                        if(response.user.isOnline)
+                        if(!response.user.isOnline)
                         {
-                            mainSubDetailProfile.params.body.connect.addClass('isconnect');
+                            mainSubDetailProfile.params.body.connect.css({'background-color':'rgba(0,0,0,.125)'});
                         }
-                        else
-                        {
-                            mainSubDetailProfile.params.body.connect.addClass('isnotconnect');
-                        }
+
 
                         if(response.ask!=null )
                         {
