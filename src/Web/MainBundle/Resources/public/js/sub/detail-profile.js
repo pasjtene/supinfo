@@ -403,3 +403,16 @@ $(function () {
         }
     }
 });
+
+
+// pour message
+
+/*function mySoNiceSound(s)
+{
+    var e=document.createElement('audio');
+    e.setAttribute('src',s);
+    e.play();
+}
+
+mySoNiceSound('beepbeep.mp3');
+*/
