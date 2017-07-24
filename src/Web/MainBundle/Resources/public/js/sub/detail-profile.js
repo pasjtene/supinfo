@@ -4,6 +4,10 @@ var MainSubDetailProfile = function()
         page: $("#mainUserProfile"),
         sub: $("#Main-Subdetail-profile"),
         path: path.flags,
+        link_photo: $ ("#Main-Subdetail-profile #zone_more_detail #link-profile-photo a"),
+        link_photo_span: $ ("#Main-Subdetail-profile #zone_more_detail #link-profile-photo a span"),
+        link_friend: $ ("#Main-Subdetail-profile #zone_more_detail #link-profile-friend a"),
+        link_friend_span: $ ("#Main-Subdetail-profile #zone_more_detail #link-profile-friend a span "),
         api:{
             fill: {
                 url : baseUrl+"auth/user/photo/profile/detail",
@@ -98,6 +102,9 @@ $(function () {
                         setabout(response.user, mainSubDetailProfile.params.body.about);
 
                         //charger les photos
+                        mainSubDetailProfile.params.link_photo_span.html('('+response.listPhotos.length+')');
+
+                        setPhotos(mainSubDetailProfile.params.body.photo.body_photo_detail,response.listPhotos);
 
                         //charger les amis
                     }
@@ -140,6 +147,39 @@ $(function () {
 
             }
 
+
+            function setPhotos(element,list){
+
+                element.empty();
+
+                var body = "";
+                for(var i=0; i<list.length; i++)
+                {
+                    var photo = list[i];
+                    var src = null;
+                   if(photo.visibility=="public")
+                   {
+                       if ((photo.hashname == null || photo.hashname == 'null')) {
+                           src = element.data('help');
+                       }
+                       else {
+                           src = baseHost + photo.path;
+                       }
+                       var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
+                       var id = "action"+photo.id;
+                       body+=
+                           '<div class="col-sm-12 col-md-6 col  text-center align-content-center img">'+
+                               '<div class="card">'+
+                                    '<img src="'+src+'" alt="" class="card-img-top ">' +
+                                   '<div class="card-block text-right">'+
+                                        '<span class="fa fa-thumbs-o-up ">('+photo.id+')</span>'+
+                                   '</div>'+
+                               '</div>'+
+                           '</div>';
+                   }
+                }
+                element.append(body);
+            }
 
             function setcontent(user,element,countFriends, countFriendAlone)
             {
