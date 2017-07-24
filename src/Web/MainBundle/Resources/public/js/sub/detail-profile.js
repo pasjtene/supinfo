@@ -12,6 +12,9 @@ var MainSubDetailProfile = function()
             }
         },
         body:{
+            img_profile: $("#zone_profile .img_profile"),
+            full_name: $("#zone_profile .full_name"),
+            full_profession: $("#zone_profile .full_profession"),
             chargement: $("#Main-Subdetail-profile  #chargement-detail-profile"),
             profile:{
 
@@ -39,10 +42,7 @@ var MainSubDetailProfile = function()
                 countFriend: $("#zone_profile .content .countFriend"),
                 profession: $("#zone_profile .content .profession"),
                 joinReason: $("#zone_profile .content .joinReason")
-            },
-            img_profile: $("#zone_profile .img_profile"),
-            full_name: $("#zone_profile .full_name"),
-            full_profession: $("#zone_profile .full_profession")
+            }
         }
     };
 
@@ -73,7 +73,7 @@ $(function () {
 
 
         //appel de la fonction pour charger les informations
-        fill(currentUser.id,mainSubDetailProfile.params.page.data('email'));
+        fill(currentUser.id,mainSubDetailProfile.params.sub.data('email'));
 
         function fill(id,email){
             var datas ={
@@ -87,16 +87,15 @@ $(function () {
                 crossDomain: true,
                 headers : {"X-Auth-Token" : currentUser.token},
                 contentType: false,
-                processData: false,
                 dataType:  mainSubDetailProfile.params.api.fill.type,
                 success: function(response){
                     console.log(response);
                     if(response!=null  && response!="null" && response!="undefined")
                     {
                         // set de la premiere partir concernant les info du  user
-                        setAbout(response.user, mainSubDetailProfile.params.body,baseUrl+response.profile.hashname,mainUserProfile_detail_profile.params.imprtant.important_block_img.data('help'));
+                        setdefault(response.user, mainSubDetailProfile.params.body,baseHost+response.profile.path,mainUserProfile_detail_profile.params.imprtant.important_block_img.data('help'));
                         setcontent(response.user, mainSubDetailProfile.params.body.content, response.listFriends.length,response.listAloneFriends.length);
-                        setAbout(response.user, mainSubDetailProfile.params.body.about);
+                        setabout(response.user, mainSubDetailProfile.params.body.about);
 
                         //charger les photos
 
@@ -116,11 +115,13 @@ $(function () {
 
             });
 
-            function setAbout(user,element)
+            function setabout(user,element)
             {
+                var flag ="<img class='sm-img' src='"+mainSubDetailProfile.params.path+user.country+".png' alt=''/> ";
                 element.name.html(user.fullname);
                 element.gender.html(user.gender);
-                element.country.html(user.country);
+                element.country.html(flag);
+                element.country.append(user.country);
                 element.city.html(user.city);
                 element.phone.empty();
                 if(user.phones!=null && user.phones.length>0)
@@ -135,7 +136,7 @@ $(function () {
                 var currentyear = today.getFullYear();
                 var year  = user.birthDate.split('-')[0];
                 var age = currentyear -parseInt(year);
-                element.age.html(age);
+                element.age.html(age+'ans');
 
             }
 
@@ -151,8 +152,8 @@ $(function () {
 
             function setdefault(user,element,img , imghelp)
             {
-                element.fullname.html(user.fullname);
-                element.fullprofession.html(user.profession);
+                element.full_name.html(user.fullname);
+                element.full_profession.html(user.profession);
                 setpicture(element.img_profile, img,imghelp);
             }
 
