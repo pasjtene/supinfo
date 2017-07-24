@@ -50,9 +50,12 @@ body{
   }
 }
 
+button{
+  cursor: pointer;
+}
 .isconnecd{
-   background-color: $highligt;
+   background-color: $highligt !important;
 }
 .isnotconnect{
-  background-color: $secondary-color;
+  background-color: $secondary-color !important;
 }
