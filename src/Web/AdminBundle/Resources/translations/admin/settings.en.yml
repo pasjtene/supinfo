@@ -1,4 +1,9 @@
 settings:
   title: Funglobe settings
   lbl_upp: User per page:
+  lbl_pol: Point on login:
+  lbl_ppm: Point per message sent:
+  lbl_pfu: Point for picture's upload:
+  lbl_dp: Point after sign up:
+  lbl_pfv: Point for VIP status:
   btn_save: Save

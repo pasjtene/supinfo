@@ -6,7 +6,26 @@
                 <label for="nbuser-perpage" class="form-control-label">{% trans from 'settings' %} settings.lbl_upp {% endtrans %}</label>
                 <input type="number" class="form-control" id="nbuser-perpage" value="0" min="1"/>
             </div>
-
+            <div class="form-group">
+                <label for="point-ol" class="form-control-label">{% trans from 'settings' %} settings.lbl_pol {% endtrans %}</label>
+                <input type="number" class="form-control" id="point-ol" value="0" min="1"/>
+            </div>
+            <div class="form-group">
+                <label for="point-pm" class="form-control-label">{% trans from 'settings' %} settings.lbl_ppm {% endtrans %}</label>
+                <input type="number" class="form-control" id="point-pm" value="0" min="1"/>
+            </div>
+            <div class="form-group">
+                <label for="point-pu" class="form-control-label">{% trans from 'settings' %} settings.lbl_pfu {% endtrans %}</label>
+                <input type="number" class="form-control" id="point-pu" value="0" min="1"/>
+            </div>
+            <div class="form-group">
+                <label for="point-register" class="form-control-label">{% trans from 'settings' %} settings.lbl_dp {% endtrans %}</label>
+                <input type="number" class="form-control" id="point-register" value="0" min="1"/>
+            </div>
+            <div class="form-group">
+                <label for="point-fv" class="form-control-label">{% trans from 'settings' %} settings.lbl_pfv {% endtrans %}</label>
+                <input type="number" class="form-control" id="point-fv" value="0" min="1"/>
+            </div>
             <button type="button" class="btn btn-primary" id="btn-save-settings">{% trans from 'settings' %} settings.btn_save {% endtrans %}</button>
         </form>
     </div>
