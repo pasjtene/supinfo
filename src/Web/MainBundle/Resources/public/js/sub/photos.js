@@ -396,7 +396,7 @@ $(function () {
                 {
                     trans = Translator.trans('sub.body.cancel_message',{},"photo");
                     bootbox.alert(trans,function(result){});
-
+                    mainSubPhotos.params.tabs.list.chargement_photo.fadeOut();
                 }
             });
         }
