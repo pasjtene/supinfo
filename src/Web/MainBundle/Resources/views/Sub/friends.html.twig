@@ -4,7 +4,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="messageBoxLabel">Vous dialogué avec Danick </h5>
+                        <h5 class="modal-title" id="messageBoxLabel">{% trans from 'friends' %} sub.chat.title {% endtrans %} Danick </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -12,12 +12,14 @@
                     <div class="modal-body">
                         <form action="" enctype="multipart/form-data">
                             <div class="form-group">
-                                <textarea class="form-control" id="message-textarea" rows="6" placeholder="Saisir un message ici ..."></textarea>
+                                <textarea class="form-control" id="message-textarea" rows="8" placeholder=" {% trans from 'friends' %} sub.chat.placeholder {% endtrans %}"></textarea>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Envoyer</button>
+                        <span class="fa fa-files-o fa-2x"></span>
+                        <span class="fa fa-frown-o fa-2x"></span>
+                        <button type="button" class="btn btn-primary btn-sm"> <span class="fa fa-paper-plane"></span> Envoyer</button>
                     </div>
                 </div>
             </div>
@@ -25,8 +27,8 @@
     </div>
     <div class="card" id="Main-Subfriends-ask">
         <div class="card-header bg-white">
-            <h5 class=""><strong>Repondre aux 38 invitations </strong></h5>
-            <a href="" class="small">Afficher les invitations envoyés</a>
+            <h5 class=""><strong> {% trans with {'number':38} from 'friends' %} sub.invitation.title {% endtrans %} </strong></h5>
+            <a href="" class="small">{% trans  from 'friends' %} sub.invitation.view {% endtrans %}</a>
         </div>
         <div class="card-block">
             <div class="body">
@@ -43,13 +45,13 @@
                                         <h4 class="card-title">User Name </h4>
                                         <p class="card-text text-muted message-text" >Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </p>
                                         <p class="card-text text-grey small"><span class="pays">pays</span> <span class="profession text-muted"> (Profession)</span></p>
-                                        <p class="card-text text-grey small">Vous avez 11 amis en commun </p>
-                                        <a href="#" class="btn btn-sm btn-primary">Confirmer</a>
-                                        <a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span> Message</a>
-                                        <a href="#" class="btn btn-sm btn-danger dropdown-toggle" id="{{ id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</a>
+                                        <p class="card-text text-grey small">{% trans with {'number':11}  from 'friends' %} sub.invitation.common {% endtrans %} </p>
+                                        <a href="#" class="btn btn-sm btn-primary">{% trans  from 'friends' %} sub.invitation.confirm {% endtrans %}</a>
+                                        <a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span> {% trans  from 'friends' %} sub.invitation.message {% endtrans %}</a>
+                                        <a href="#" class="btn btn-sm btn-danger dropdown-toggle" id="{{ id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans  from 'friends' %} sub.invitation.action {% endtrans %}</a>
                                         <div class="dropdown-menu" aria-labelledby="{{ id }}" style="line-height: 1rem;">
-                                            <a class="dropdown-item" href="#">Supprimer l'invittion</a>
-                                            <a class="dropdown-item" href="#">Bloquer l'utilisateur</a>
+                                            <a class="dropdown-item" href="#">{% trans  from 'friends' %} sub.invitation.delete {% endtrans %}</a>
+                                            <a class="dropdown-item" href="#">{% trans  from 'friends' %} sub.invitation.block {% endtrans %}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +67,7 @@
     <div class="card" id="Main-Subfriends-seach">
         <div class="card-header bg-white">
             <h5 class="">
-                <strong>Conaissez-vous... </strong>
+                <strong>{% trans  from 'friends' %} sub.noFriend.title {% endtrans %} </strong>
             </h5>
         </div>
         <div class="card-block">
@@ -73,7 +75,7 @@
                 <div class="row">
                     <form id="custom-search-form" class="form-search form-horizontal pull-right col-12">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Chercher des personnes par leurs noms ou  adresse email">
+                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{% trans  from 'friends' %} sub.noFriend.placeholder {% endtrans %}">
                             <div class="input-group-addon bg-primary text-white"><span class="fa fa-search"></span></div>
                         </div>
                     </form>
@@ -93,10 +95,10 @@
                                        <h4 class="card-title">User Name </h4>
                                        <p class="card-text text-muted message-text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </p>
                                        <p class="card-text text-grey small"><span class="pays">pays</span> <span class="profession text-muted"> (Profession)</span></p>
-                                       <p class="card-text text-grey small">Vous avez 11 amis en commun </p>
-                                       <a href="#" class="btn btn-sm btn-primary"><span class="fa fa-user-plus"></span> Ajouter</a>
-                                       <a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span> Message</a>
-                                       <a href="#" class="btn btn-sm btn-danger">Supprimer</a>
+                                       <p class="card-text text-grey small"> {% trans  with {'number':11} from 'friends' %} sub.noFriend.common {% endtrans %} </p>
+                                       <a href="#" class="btn btn-sm btn-primary"><span class="fa fa-user-plus"></span> {% trans  from 'friends' %} sub.noFriend.add {% endtrans %}</a>
+                                       <a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span> {% trans  from 'friends' %} sub.noFriend.message {% endtrans %}</a>
+                                       <a href="#" class="btn btn-sm btn-danger">{% trans  from 'friends' %} sub.noFriend.delete {% endtrans %}</a>
                                    </div>
                                </div>
                            </div>
