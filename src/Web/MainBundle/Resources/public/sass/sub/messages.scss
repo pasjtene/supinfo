@@ -11,6 +11,11 @@
   .member_list{
     width: 100%;
   }
+  .contact_sec{
+    .badge{
+      background-color: $secondary-color;
+    }
+  }
   .member_list .chat-body {
     margin-left: 47px;
     margin-top: 0;
