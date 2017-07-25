@@ -8,6 +8,7 @@
       height: 30px;
     }
   }
+
   .body{
     #zone_profile{
         .connect-box{
@@ -20,7 +21,7 @@
         }
         img{
           height: 150px;
-          width: 160px;
+          width: 150px;
         }
        .name{
          font-weight: bold;
@@ -37,7 +38,6 @@
             font-size: 0.89em;
           }
         }
-
       }
       .about{
         @extend .content;
