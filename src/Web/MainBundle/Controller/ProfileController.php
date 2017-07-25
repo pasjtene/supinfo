@@ -35,7 +35,7 @@ class ProfileController extends Controller
 
 
     /**
-     * @Route("/photos", name="main_profile_messages", options={"expose"=true})
+     * @Route("/messages", name="main_profile_messages", options={"expose"=true})
      */
     public function messagesAction()
     {

@@ -11,7 +11,7 @@
 
     </li>
     <li class="nav-item">
-        <a class="nav-link" href=""{{ path('main_profile_messages') }}"">
+        <a class="nav-link" href="{{ path('main_profile_messages') }}">
             <span class="fa fa-2x fa-comment"></span> <br>
             {% trans from "main-nav" %} messages {% endtrans %}
         </a>
@@ -41,7 +41,7 @@
     </li>
     <li class="nav-item">
         <span class="fa fa-2x fa-money"></span> <br>
-        <a class="nav-link" href=""{{ path('main_profile_vips') }}"">{% trans from "main-nav" %} vip {% endtrans %}</a>
+        <a class="nav-link" href="{{ path('main_profile_vips') }}">{% trans from "main-nav" %} vip {% endtrans %}</a>
     </li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#">
@@ -49,9 +49,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">
-                <a class="nav-link" href=""{{ path('main_profile_compte') }}"">{% trans from "main-nav" %}<span class="fa fa-user"></span> profile {% endtrans %}</a>
+                <a class="nav-link" href="{{ path('main_profile_compte') }}">{% trans from "main-nav" %}<span class="fa fa-user"></span> profile {% endtrans %}</a>
             </a>
-            <a class="dropdown-item" href=""{{ path('main_profile_parameter') }}"">{% trans from "main-nav" %}<span class="fa fa-wrench"></span> parameter {% endtrans %}</a>
+            <a class="dropdown-item" href="{{ path('main_profile_parameter') }}">{% trans from "main-nav" %}<span class="fa fa-wrench"></span> parameter {% endtrans %}</a>
             <a class="dropdown-item" href="{{ path('main_logout') }}">{% trans from "main-nav" %}<span class="fa fa-power-off"></span> deconnection {% endtrans %}</a>
         </div>
     </li>
