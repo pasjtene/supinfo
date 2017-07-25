@@ -4,74 +4,12 @@
     margin: 0;
     padding: 10px;
   }
-  #custom-search-input .search-query {
-    background: #fff none repeat scroll 0 0 !important;
-    border-radius: 4px;
-    height: 33px;
-    margin-bottom: 0;
-    padding-left: 7px;
-    padding-right: 7px;
-  }
-  #custom-search-input button {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    border: 0 none;
-    border-radius: 3px;
-    color: #666666;
-    left: auto;
-    margin-bottom: 0;
-    margin-top: 7px;
-    padding: 2px 5px;
-    position: absolute;
-    right: 0;
-    z-index: 9999;
-  }
-  .search-query:focus + button {
-    z-index: 3;
-  }
-  .all_conversation button {
-    background: #f5f3f3 none repeat scroll 0 0;
-    border: 1px solid #dddddd;
-    height: 38px;
-    text-align: left;
+
+  #custom-search-input{
     width: 100%;
   }
-  .all_conversation i {
-    background: #e9e7e8 none repeat scroll 0 0;
-    border-radius: 100px;
-    color: #636363;
-    font-size: 17px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    width: 30px;
-  }
-  .all_conversation .caret {
-    bottom: 0;
-    margin: auto;
-    position: absolute;
-    right: 15px;
-    top: 0;
-  }
-  .all_conversation .dropdown-menu {
-    background: #f5f3f3 none repeat scroll 0 0;
-    border-radius: 0;
-    margin-top: 0;
-    padding: 0;
+  .member_list{
     width: 100%;
-  }
-  .all_conversation ul li {
-    border-bottom: 1px solid #dddddd;
-    line-height: normal;
-    width: 100%;
-  }
-  .all_conversation ul li a:hover {
-    background: #dddddd none repeat scroll 0 0;
-    color:#333;
-  }
-  .all_conversation ul li a {
-    color: #333;
-    line-height: 30px;
-    padding: 3px 20px;
   }
   .member_list .chat-body {
     margin-left: 47px;
