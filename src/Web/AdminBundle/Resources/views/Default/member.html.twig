@@ -25,14 +25,14 @@
                 <span>{{ member.firstName ~ member.lastName }} {% if member.isVip %}(vip){% endif %}</span>
 
                 <div class="btn-group pull-right" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-info" data-action="{% if member.enabled %} unset {% else %} set {% endif %}">
+                    <button type="button" class="btn btn-info" id="btn-status-member" data-mid="{{ member.id }}" data-action="{% if member.enabled %} set {% else %} unset {% endif %}">
                         {% if member.enabled %}
-                            {% trans from 'member' %} member.unset_locked {% endtrans %}
-                        {% else %}
                             {% trans from 'member' %} member.set_locked {% endtrans %}
+                        {% else %}
+                            {% trans from 'member' %} member.unset_locked {% endtrans %}
                         {% endif %}
                     </button>
-                    <button type="button" class="btn btn-success" data-action="{% if member.isVip %} unset {% else %} set {% endif %}">
+                    <button type="button" class="btn btn-success" id="btn-vip-member" data-mid="{{ member.id }}" data-action="{% if member.isVip %} unset {% else %} set {% endif %}">
                         {% if member.isVip %}
                             {% trans from 'member' %} member.unset_vip {% endtrans %}
                         {% else %}
@@ -85,11 +85,39 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>{% trans from 'member' %} member.lbl_country {% endtrans %}</td>
+                        <td id="mb-country" data-country="{{ member.country }}"></td>
+                    </tr>
+                    <tr>
+                        <td>{% trans from 'member' %} member.lbl_ipaddress {% endtrans %}</td>
+                        <td>{# member.lbl_ipaddress #} <a href="#">{% trans from 'member' %} member.set_locked {% endtrans %}</a></td>
+                    </tr>
+                    <tr>
+                        <td>{% trans from 'member' %} member.lbl_vip {% endtrans %}</td>
+                        <td>
+                            {% if member.isVip  %}
+                                {% trans from 'member' %} member.lbl_yes {% endtrans %}
+                            {% else %}
+                                {% trans from 'member' %} member.lbl_no {% endtrans %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{% trans from 'member' %} member.lbl_blocked {% endtrans %}</td>
+                        <td>
+                            {% if member.enabled  %}
+                                {% trans from 'member' %} member.lbl_no {% endtrans %}
+                            {% else %}
+                                {% trans from 'member' %} member.lbl_yes {% endtrans %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
                         <td>{% trans from 'member' %} member.lbl_profession {% endtrans %}</td>
                         <td>{{ member.profession == null ? 'N/C' : member.profession }}</td>
                     </tr>
                     <tr>
-                        <td>{% trans from 'member' %} member.last_login {% endtrans %}</td>
+                        <td>{% trans from 'member' %} member.lbl_last_login {% endtrans %}</td>
                         <td>{{ member.lastLogin == null ? 'N/C' : member.lastLogin|date('d/m/Y h:i:s') }}</td>
                     </tr>
                     <tr>

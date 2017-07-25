@@ -14,7 +14,8 @@ var AdminSettings = function()
                 point_per_message: $('#point-pm'),
                 point_per_upload: $('#point-pu'),
                 default_point: $('#point-register'),
-                point_for_vip: $('#point-fv')
+                point_for_vip: $('#point-fv'),
+                nbpic_perpage: $('#nbpic-perpage')
             },
             class:{
 
@@ -49,6 +50,7 @@ $(function(){
         adminSettings.params.attr.id.point_per_upload.val(settings.pointForUpload);
         adminSettings.params.attr.id.default_point.val(settings.defaultPoint);
         adminSettings.params.attr.id.point_for_vip.val(settings.pointForVip);
+        adminSettings.params.attr.id.nbpic_perpage.val(settings.picturePerPage);
     };
 
     //Tester si  la page actuelle c'est adminMember
@@ -86,7 +88,8 @@ $(function(){
                 ppm: parseInt(adminSettings.params.attr.id.point_per_message.val()),
                 pfu: parseInt(adminSettings.params.attr.id.point_per_upload.val()),
                 dp: parseInt(adminSettings.params.attr.id.default_point.val()),
-                pfv: parseInt(adminSettings.params.attr.id.point_for_vip.val())
+                pfv: parseInt(adminSettings.params.attr.id.point_for_vip.val()),
+                ppp: parseInt(adminSettings.params.attr.id.nbpic_perpage.val())
             };
             $.ajax(
                 {

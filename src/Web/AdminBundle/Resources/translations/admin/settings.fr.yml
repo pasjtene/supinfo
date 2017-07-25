@@ -6,4 +6,5 @@ settings:
   lbl_pfu: Nombre de point par photo uploadé :
   lbl_dp: Nombre de point après inscription :
   lbl_pfv: Nombre de point après changement de status pour VIP :
+  lbl_ppp: Nombre de photo par page :
   btn_save: Enregistrer

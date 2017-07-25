@@ -45,6 +45,8 @@ class DefaultController extends Controller
             }
         }
 
+        //FunglobeUtils::dump($datas);
+
         return $this->render('AdminBundle:Default:member.html.twig', $datas);
     }
 }
