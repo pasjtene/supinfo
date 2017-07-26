@@ -6,4 +6,5 @@ settings:
   lbl_pfu: Point for picture's upload:
   lbl_dp: Point after sign up:
   lbl_pfv: Point for VIP status:
+  lbl_ppp: Picture per page:
   btn_save: Save

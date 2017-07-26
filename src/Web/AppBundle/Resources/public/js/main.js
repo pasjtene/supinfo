@@ -4,6 +4,8 @@
 
 var baseUrl = api.baseUrl;
 var baseHost = api.baseHost;
+var appUrl = api.appUrl;
+
 var   AppMain = function()
 {
     this.params ={

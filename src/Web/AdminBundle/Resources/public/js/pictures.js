@@ -13,10 +13,10 @@ var AdminPictures = function()
                 mn_private_pics: $("#mn-private-pics"), 
                 mn_delete_pics: $("#mn-delete-pics"),
                 pictures_view: $("#pictures-view"),
-                ul_pagination: $("#ul-pagination"),
+                ul_pagination: $("#pics-pagination"),
                 page_link: '.pic-pg-link',
-                prev_pagination: $("#pg-prev"),
-                next_pagination: $("#pg-next")
+                prev_pagination: $("#ppg-prev"),
+                next_pagination: $("#ppg-next")
             },
             class:{
                 pics_checked: '.pics-chk:checked'
@@ -25,7 +25,8 @@ var AdminPictures = function()
         api:{
             action :
             {
-                pictures: baseUrl +"auth/pictures"
+                pictures: baseUrl +"auth/pictures",
+                privatePictures: baseUrl + "auth/pictures/private"
             },
             method:
             {
@@ -50,14 +51,16 @@ $(function()
         var selectedPics = [];
 
         for (var i = 0; i < checkboxes.length; i++) {
-            selectedPics.push(checkboxes.eq(i).value);
+            selectedPics.push(checkboxes.eq(i).val());
         }
 
         return selectedPics;
     };
 
-    var getPictures = function(queryString)
+    var getPictures = function(page)
     {
+        var queryString = "?page="+page;
+
         adminPictures.params.attr.id.loader.show();
         $.ajax(
             {
@@ -66,23 +69,29 @@ $(function()
                 headers : {"X-Auth-Token" : tokenbase.value},
                 crossDomain: true,
                 success: function (response) {
-                    adminPictures.params.attr.id.nb_pics.html(response.pictures.length);
+                    adminPictures.params.attr.id.nb_pics.html(response.total);
                     adminPictures.params.attr.id.loader.hide();
+                    adminPictures.params.attr.id.pictures_view.empty();
 
                     $.each(response.pictures, function(i, pic)
                     {
-                        /*var row = $('<tr>').html("<td>" + (i+1) +
-                            "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
-                            "</td><td>" + user.email +
-                            "</td><td>" + user.country +
-                            "</td><td>" + user.gender +
-                            "</td><td>" + (user.enabled ? "Enabled" : "Locked") +
-                            "</td><td>" + (user.isVip ? "Yes" : "No") +
-                            "</td>");
-                        $("<td />").html('<input class="user_select_checkbox" type="checkbox" name="'+ user.id+'" value="'+ user.email+'"/>').appendTo(row);
-                        */
+                        var item = '<div class="col-lg-3 col-sm-4 col-xs-12">'+
+                                        '<div class="bp-item bp-house">'+
+                                            '<div class="item-media">'+
+                                                '<img class="item-img" src="'+ appUrl + '/' + pic.path +'" alt="" />'+
+                                            '</div>'+
+                                            '<div class="item-details">'+
+                                                '<div class="bp-details">'+
+                                                    '<span><input type="checkbox" class="pics-chk" value="'+pic.id+'"/></span>'+
+                                                    '<a href="#" class="user-name">'+pic.user.fullname+'</a>'+
+                                                '</div>'+
+                                                '<div class="bp-details">Visibilité : <b>'+pic.visibility+'</b></div>'+
+                                                '<div class="bp-details">Ajouté le : <b>'+app.parseDate(pic.createDate)+'</b></div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>';
 
-                        adminPictures.params.attr.id.pictures_view.append(row);
+                        adminPictures.params.attr.id.pictures_view.append(item);
                     });
 
                     adminPictures.params.attr.id.prev_pagination.data('page', response.pagePrev);
@@ -120,35 +129,42 @@ $(function()
         {
             if ($('.nav-tabs .active').attr('href')==="#photos")
             {
-                var queryString = "?page="+page;
-                getPictures(queryString);
+                getPictures(page);
             }
         });
 
         adminPictures.params.attr.id.mn_delete_pics.click(function(e)
         {
-            alert('delete');
             var selectedPics = getSelectedPics(),
                 t = selectedPics.length;
 
+            console.log(selectedPics);
+
             if(t > 0)
             {
-                var data = {pics: selectedPics};
-                adminPictures.params.attr.id.loader.show();
-                $.ajax(
+                bootbox.confirm("You really want to delete this picture ?", function(confirm)
                 {
-                    url: adminPictures.params.api.action.pictures,
-                    type: adminPictures.params.api.method.delete,
-                    headers: {"X-Auth-Token": tokenbase.value},
-                    data: data,
-                    crossDomain: true,
-                    success: function (response) {
-                        adminPictures.params.attr.id.loader.hide();
-                    },
-                    error: function (xhr, status, message) {
-                        adminPictures.params.attr.id.loader.hide();
-                        console.log(status + "\n" + xhr.responseText + '\n' + message);
-                    }
+                   if(confirm)
+                   {
+                       var data = {pictures: selectedPics};
+                       adminPictures.params.attr.id.loader.show();
+                       $.ajax(
+                           {
+                               url: adminPictures.params.api.action.pictures,
+                               type: adminPictures.params.api.method.delete,
+                               headers: {"X-Auth-Token": tokenbase.value},
+                               data: JSON.stringify(data),
+                               crossDomain: true,
+                               success: function (response) {
+                                   console.log(response);
+                                   getPictures(page);
+                               },
+                               error: function (xhr, status, message) {
+                                   adminPictures.params.attr.id.loader.hide();
+                                   console.log(status + "\n" + xhr.responseText + '\n' + message);
+                               }
+                           });
+                   }
                 });
             }
             e.preventDefault();
@@ -156,20 +172,19 @@ $(function()
 
         adminPictures.params.attr.id.mn_private_pics.click(function(e)
         {
-            alert('private');
             var selectedPics = getSelectedPics(),
                 t = selectedPics.length;
 
             if(t > 0)
             {
-                var data = {pics: selectedPics};
+                var data = {pictures: selectedPics, action: 0};
                 adminPictures.params.attr.id.loader.show();
                 $.ajax(
                 {
-                    url: adminPictures.params.api.action.pictures,
+                    url: adminPictures.params.api.action.privatePictures,
                     type: adminPictures.params.api.method.put,
                     headers: {"X-Auth-Token": tokenbase.value},
-                    data: data,
+                    data: JSON.stringify(data),
                     crossDomain: true,
                     success: function (response) {
                         adminPictures.params.attr.id.loader.hide();
@@ -193,8 +208,7 @@ $(function()
                 pageLinks.eq(i).remove();
             }
 
-            var queryString = "?page="+page;
-            getPictures(queryString);
+            getPictures(page);
         });
     }
 });

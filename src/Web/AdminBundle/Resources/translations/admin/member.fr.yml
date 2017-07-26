@@ -14,6 +14,12 @@ member:
   lbl_gender: Genre :
   val_male: Masculin
   val_female: Feminin
+  lbl_country: Pays :
+  lbl_ipaddress: Adresse IP :
+  lbl_vip: Membre VIP:
+  lbl_blocked: Membre Bloqué :
   lbl_profession: Profession :
   lbl_last_login: Date de dernière connexion :
   lbl_back_home : Retour
+  lbl_yes: Oui
+  lbl_no: Non

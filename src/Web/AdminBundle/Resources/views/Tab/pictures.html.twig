@@ -2,7 +2,7 @@
     <div class="col-lg-12" id="pics-header">
         <div class="row">
             <div class="col-lg-3">
-                Nombre de photos : <span id="nb-pics">457</span>
+                Nombre de photos : <b><span id="nb-pics">00</span></b>
             </div>
             <div class="col-lg-5" id="loader">
                 <div id="pics-loader">
@@ -28,6 +28,21 @@
 
     <div class="col-lg-12">
         <div class="row" id="pictures-view">
+            <!--<div class="col-lg-3">
+                <div class="bp-item bp-house">
+                    <div class="item-media">
+                        <img class="item-img" src="{{ asset('dist/photo2.png') }}" alt="" />
+                    </div>
+                    <div class="item-details">
+                        <div class="bp-details">
+                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
+                            <a href="#" id="user-id">User Id</a>
+                        </div>
+                        <div class="bp-details">Visibilité : <b>Private</b></div>
+                        <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-3">
                 <div class="bp-item bp-house">
                     <div class="item-media">
@@ -35,7 +50,7 @@
                     </div>
                     <div class="item-details">
                         <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" data-id="1"/></span>
+                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
                             <a href="#" id="user-id">User Id</a>
                         </div>
                         <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
@@ -49,7 +64,7 @@
                     </div>
                     <div class="item-details">
                         <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" data-id="1"/></span>
+                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
                             <a href="#" id="user-id">User Id</a>
                         </div>
                         <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
@@ -63,7 +78,7 @@
                     </div>
                     <div class="item-details">
                         <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" data-id="1"/></span>
+                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
                             <a href="#" id="user-id">User Id</a>
                         </div>
                         <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
@@ -77,7 +92,7 @@
                     </div>
                     <div class="item-details">
                         <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" data-id="1"/></span>
+                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
                             <a href="#" id="user-id">User Id</a>
                         </div>
                         <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
@@ -91,7 +106,7 @@
                     </div>
                     <div class="item-details">
                         <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" data-id="1"/></span>
+                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
                             <a href="#" id="user-id">User Id</a>
                         </div>
                         <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
@@ -105,38 +120,23 @@
                     </div>
                     <div class="item-details">
                         <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" data-id="1"/></span>
-                            <a href="#" id="user-id">User Id</a>
+                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
+                            <a href="#" id="user-id">User name</a>
                         </div>
+                        <div class="bp-details">Visibilité : <b>Private</b></div>
                         <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="bp-item bp-house">
-                    <div class="item-media">
-                        <img class="item-img" src="{{ asset('dist/photo2.png') }}" alt="" />
-                    </div>
-                    <div class="item-details">
-                        <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" data-id="1"/></span>
-                            <a href="#" id="user-id">User Id</a>
-                        </div>
-                        <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
-                    </div>
-                </div>
-            </div>
+            </div>-->
         </div>
-    </div>
 
-    <div class="col-lg-12">
-        <div class="row">
-            <div class="col-lg-12" id="pagination" style="width: 100%">
-                <ul class="pagination pull-right" id="ul-pagination">
-                    <li class="page-item"><a class="pic-pg-link" href="#" id="pg-prev" data-page="1">&lt;</a></li>
-                    <li class="page-item"><a class="pic-pg-link" href="#" id="pg-next" data-page="1">&gt;</a></li>
-                </ul>
-            </div>
+        <br/>
+
+        <div id="pics-pagination-content" style="width: 100%">
+            <ul class="pagination pull-right" id="pics-pagination">
+                <li class="page-item"><a class="pic-pg-link" href="#" id="ppg-prev" data-page="1">&lt;</a></li>
+                <li class="page-item"><a class="pic-pg-link" href="#" id="ppg-next" data-page="1">&gt;</a></li>
+            </ul>
         </div>
     </div>
 </div>
