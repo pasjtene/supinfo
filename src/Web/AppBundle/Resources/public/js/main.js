@@ -7,12 +7,19 @@ var baseHost = api.baseHost;
 var   AppMain = function()
 {
     this.params ={
+        page: $('.pageGeolocation'),
         api:{
             action :
             {find: baseUrl +"app"},
             method:
             {get:"GET"},
-            datype: "json"
+            datype: "json",
+            geolocation:
+            {
+                action : baseUrl +"geolocation",
+                method: "get",
+                datype: "json"
+            }
         },
         required:{ //class de base  pour les erreurs et  succees
             has_danger: "has-danger",
@@ -118,7 +125,26 @@ var   AppMain = function()
                 }
             }
         );
+    },
+    this.getGeolocation = function(cb)
+    {
+        $.ajax(
+            {
+                url: this.params.api.geolocation.action,
+                type: this.params.api.geolocation.method,
+                crossDomain: true,
+                dataType:  this.params.api.geolocation.datype,
+                success: function (data) {
+                    console.log(data);
+                    cb(data);
+                },
+                error: function (xhr, status, message) {
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                }
+            }
+        );
     }
+
 };
 
 var tokenbase =null;
@@ -135,7 +161,13 @@ var path =
 };
 appMain.getAppToken(function(data){
     //tokenbase = data.value;
-    tokenbase = data.token;
-    geolocation = data.geolocation;
+    tokenbase = data;
+    //geolocation = data.geolocation;
 });
 
+if(appMain.params.page.data('geolocation')=="geolocation"){
+    appMain.getGeolocation(function(data){
+        geolocation = data.geolocation;
+    });
+
+}
