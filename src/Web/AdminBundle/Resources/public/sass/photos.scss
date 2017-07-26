@@ -23,7 +23,7 @@
     .item-details
     {
       color: #fff;
-      padding: 5px;
+      padding: 5px 5px 0 5px;
       .bp-details{
         text-align: left;
         font-size: 16px;
@@ -31,12 +31,14 @@
         display: inline-block;
         overflow: hidden;
         text-overflow: ellipsis;
-        height: 28px;
+        height: 25px;
         a{
           color: #fff;
           text-decoration: underline;
           font-weight: bold;
           font-size: 18px;
+          display: inline-block;
+          width: 90%;
         }
       }
       .bp-details:last-child{
