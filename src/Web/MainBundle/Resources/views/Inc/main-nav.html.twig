@@ -10,38 +10,50 @@
         </a>
 
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ path('main_profile_messages') }}">
-            <span class="fa fa-2x fa-comment"></span> <br>
+    <li class="nav-item dropdown">
+        <a class="nav-link" href="#"  id="dropdownMenuMessages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-2x fa-comment"></span> <span class="badge badge-danger">35</span> <br>
             {% trans from "main-nav" %} messages {% endtrans %}
         </a>
     </li>
 
     <li class="nav-item">
-        <span class="fa fa-2x fa-bell"></span> <br>
-        <a class="nav-link" href="#">{% trans from "main-nav" %} notification {% endtrans %}</a>
+        <a class="nav-link" href="#">
+            <span class="fa fa-2x fa-bell"></span>  <span class="badge badge-danger">15</span> <br>
+            {% trans from "main-nav" %}notification {% endtrans %}
+        </a>
     </li>
 
     <li class="nav-item">
-        <span class="fa fa-2x fa-camera"></span> <br>
-        <a class="nav-link" href="{{ path('main_profile_photos') }}">{% trans from "main-nav" %} photos {% endtrans %}</a>
+        <a class="nav-link" href="{{ path('main_profile_photos') }}">
+            <span class="fa fa-2x fa-camera"></span> <br>
+            {% trans from "main-nav" %} photos {% endtrans %}
+        </a>
     </li>
-    <li class="nav-item">
-        <span class="fa fa-2x fa-users"></span> <br>
-        <a class="nav-link" href="{{ path('main_profile_friends') }}">{% trans from "main-nav" %} friend {% endtrans %}</a>
+    <li class="nav-item dropdown">
+        <a class="nav-link" href="#" id="dropdownMenuFreinds" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-2x fa-users"></span> <span class="badge badge-danger">02</span> <br>
+            {% trans from "main-nav" %} friend {% endtrans %}
+        </a>
     </li>
 
     <li class="nav-item">
-        <span class="fa fa-2x fa-credit-card"></span> <br>
-        <a class="nav-link" href="#">{% trans from "main-nav" %} credits {% endtrans %}</a>
+        <a class="nav-link" href="#">{% trans from "main-nav" %}
+            <span class="fa fa-2x fa-credit-card"></span> <br>
+            credits {% endtrans %}
+        </a>
     </li>
     <li class="nav-item">
-        <span class="fa fa-2x fa-shopping-cart"></span> <br>
-        <a class="nav-link" href="#">{% trans from "main-nav" %} publicity {% endtrans %}</a>
+        <a class="nav-link" href="#">{% trans from "main-nav" %}
+            <span class="fa fa-2x fa-shopping-cart"></span> <br>
+            publicity {% endtrans %}
+        </a>
     </li>
     <li class="nav-item">
-        <span class="fa fa-2x fa-money"></span> <br>
-        <a class="nav-link" href="{{ path('main_profile_vips') }}">{% trans from "main-nav" %} vip {% endtrans %}</a>
+        <a class="nav-link" href="{{ path('main_profile_vips') }}">
+            <span class="fa fa-2x fa-money"></span> <br>
+            {% trans from "main-nav" %} vip {% endtrans %}
+        </a>
     </li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#">
@@ -56,3 +68,7 @@
         </div>
     </li>
 </ul>
+<div id="toogleNav">
+    {% include 'MainBundle:Notification:messages.html.twig' %}
+    {% include 'MainBundle:Notification:friends.html.twig' %}
+</div>

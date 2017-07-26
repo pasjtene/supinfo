@@ -16,3 +16,24 @@
 
   }
 }
+
+#toogleNav{
+    #dropdownMenuMessages-body{
+        position: fixed;
+        top: 48px;
+        left: 8em;
+    }
+
+    #dropdownMenuFreinds-body{
+      position: fixed;
+      top: 48px;
+      left: 9em;
+    }
+  .all{
+      color: $default-color;
+  }
+  .all:hover{
+    text-decoration: underline;
+    color: $text-default;
+  }
+}

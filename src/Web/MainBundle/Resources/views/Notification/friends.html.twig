@@ -1,0 +1,32 @@
+<div class="dropdown-menu " aria-labelledby="dropdownMenuFreinds" id="dropdownMenuFreinds-body">
+    <h6 class="dropdown-header">
+        <div class="row">
+            <div class="col"><strong>Invitation (120)</strong></div>
+            <div class="col"><a href="">Retrouver des amis</a></div>
+            <div class="col"><a href="">Accepter toutes les demandes</a></div>
+        </div>
+    </h6>
+    <div class="" style="max-height: 300px; overflow-y: auto">
+        {% for i in 1..10 %}
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+                <div class="row align-items-center">
+                    <div class="col-2"><img src="{{ asset('data/img/empty.png') }}" width="50" height="50" alt=""></div>
+                    <div class="col-4">
+                        <strong>Danick takam</strong><br>
+                        <span class="text-grey small"> Message ici chj vxkjvdkc df  cv dfcfd...</span>
+                        <br>
+                        <span class="text-grey small"> pays de residence</span>
+                    </div>
+                    <div class="col text-muted small text-right">
+                        <button  class="btn btn-sm btn-primary small">Confirmer</button>
+                        <button class="btn btn-sm btn-danger small">Supprimer</button>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+
+    </div>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item text-center all" href="{{ path('main_profile_friends') }}">Tout Afficher</a>
+</div>

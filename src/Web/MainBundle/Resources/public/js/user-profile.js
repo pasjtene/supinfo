@@ -48,6 +48,13 @@ var MainUserProfile = function()
             btn: $("#filter-valider"),
             close: $("#filter-close"),
             modalfilter: $("#modalfilter")
+        },
+        nav:{
+            dropdownMenuMessages: $('#nav #dropdownMenuMessages'),
+            dropdownMenuMessages_body:$("#toogleNav #dropdownMenuMessages-body"),
+            dropdownMenuFreinds: $('#nav #dropdownMenuFreinds'),
+            dropdownMenuFreinds_body:$("#toogleNav #dropdownMenuFreinds-body"),
+            content: $("#content")
         }
     };
 
@@ -233,4 +240,20 @@ $(function(){
         mainUserProfile.params.page.css({'margin-top':"0em"});
         mainUserProfile.params.matches.carousel.fadeIn();
     }
+    //afficher les notifications messages
+    mainUserProfile.params.nav.dropdownMenuMessages.on('click', function () {
+        mainUserProfile.params.nav.dropdownMenuMessages_body.fadeIn();
+    });
+
+    //afficher les notifications users
+    mainUserProfile.params.nav.dropdownMenuFreinds.on('click', function () {
+        mainUserProfile.params.nav.dropdownMenuFreinds_body.fadeIn();
+    });
+
+    //cacher les boites de notification
+    mainUserProfile.params.nav.content.on('click', function () {
+        //bootbox.alert("ok",function(){});
+        mainUserProfile.params.nav.dropdownMenuMessages_body.fadeOut();
+        mainUserProfile.params.nav.dropdownMenuFreinds_body.fadeOut();
+    });
 });
