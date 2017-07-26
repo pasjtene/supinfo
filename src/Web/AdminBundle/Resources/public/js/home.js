@@ -172,15 +172,19 @@ $(function(){
                         type: adminHome.params.api.method.get,
                         headers : {"X-Auth-Token" : tokenbase.value},
                         crossDomain: true,
+
                         success: function (response)
                         {
                             console.log(response);
                             adminHome.params.attr.id.total_users.html(response.users.length);
                             adminHome.params.attr.id.users_table_body.empty();
                             adminHome.params.attr.id.users_loader.hide();
+
+                            //modifications to the table need to match the table in members.js
                             $.each(response.users, function(i, user){
                                 var row = $('<tr>').html("<td>" + (i+1) +
                                     "</td><td><a href='"+Routing.generate("admin_view_member", {_locale:locale,  id:user.id})+"'>"+ user.firstName+"</a>"+
+                                    "</td><td>" + user.id +
                                     "</td><td>" + user.email +
                                     "</td><td>" + user.joinDate.replace("T", " ").replace("+00:00", " ") +
                                     "</td><td><img src='"+path.flags+user.country+".png' alt=''/> " + countries[user.country] +
