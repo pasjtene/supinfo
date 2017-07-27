@@ -133,15 +133,18 @@ $(function(){
 
 
 
-        //charger la liste des pays
-        $.getJSON(mainRegister.params.form.country.data("country"), function(data){
-            //mainRegister.params.form.country.empty();
-            $.each(data,function(index,value){
-                var option = "<option  value='"+index+"'>"+value+"</option>";
-                mainRegister.params.form.country.append(option);
-            });
-        });
+       if(geolocation ==null)
+       {
+           //charger la liste des pays
+           $.getJSON(mainRegister.params.form.country.data("country"), function(data){
+               //mainRegister.params.form.country.empty();
+               $.each(data,function(index,value){
+                   var option = "<option  value='"+index+"'>"+value+"</option>";
+                   mainRegister.params.form.country.append(option);
+               });
+           });
 
+       }
 
        // alert(mainRegister.params.form.country.data("country"))
 

@@ -167,7 +167,7 @@ appMain.getAppToken(function(data){
 
 if(appMain.params.page.data('geolocation')=="geolocation"){
 appMain.getGeolocation(function(data){
-    geolocation = data.geolocation;
+    geolocation = data;
 });
 
 }
