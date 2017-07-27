@@ -158,14 +158,15 @@ $(function(){
                 {
                     console.log(geolocation);
                     $.each(countryList,function(index,value){
-                        if(index==geolocation.countryCode || value==geolocation.countryName || index == geolocation.countryName ||  value ==geolocation.countryCode )
+                       console.log(value.value, value.code);
+                        if(value.code==geolocation.countryCode || value.value==geolocation.countryName || value.code == geolocation.countryName ||  value.value ==geolocation.countryCode )
                         {
-                            console.log("the same country --- user country : "+ geolocation.countryName + " => select country : "+value);
-                            var option = "<option selected value='"+index+"'>"+value+"</option>"
+                            console.log("the same country --- user country : "+ geolocation.countryName + " => select country : "+value.value);
+                            var option = "<option selected value='"+value.code+"'>"+value.value+"</option>"
                         }
                         else
                         {
-                            var option = "<option  value='"+index+"'>"+value+"</option>"
+                            var option = "<option  value='"+value.code+"'>"+value.value+"</option>"
                         }
 
                         mainRegister.params.form.country.append(option);
