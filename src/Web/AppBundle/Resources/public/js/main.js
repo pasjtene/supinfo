@@ -141,7 +141,8 @@ var   AppMain = function()
                     cb(data);
                 },
                 error: function (xhr, status, message) {
-                    console.log(xhr.responseText);
+                    geolocationbad = xhr.responseText;
+                    console.log(geolocationbad);
                 }
             }
         );
@@ -151,6 +152,7 @@ var   AppMain = function()
 
 var tokenbase =null;
 var geolocation =null;
+var geolocationbad =null;
 var appMain = new AppMain();
 
 var path =

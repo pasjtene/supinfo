@@ -132,20 +132,24 @@ $(function(){
        // mainRegister.params.form.birthday.datepicker();
 
 
+        var intervalbad =setInterval(function(){
+            if(geolocationbad !=null )
+            {
+                console.log("bad : " + geolocationbad);
+                //il faut  marcher
+                //charger la liste des pays
+                $.getJSON(mainRegister.params.form.country.data("country"), function(data){
+                    //mainRegister.params.form.country.empty();
+                    $.each(data,function(index,value){
+                        var option = "<option  value='"+index+"'>"+value+"</option>";
+                        mainRegister.params.form.country.append(option);
+                    });
+                });
+                clearInterval(intervalbad);
+            }
+        },100);
 
-       if(geolocation ==null)
-       {
-           //il faut  marcher
-           //charger la liste des pays
-           $.getJSON(mainRegister.params.form.country.data("country"), function(data){
-               //mainRegister.params.form.country.empty();
-               $.each(data,function(index,value){
-                   var option = "<option  value='"+index+"'>"+value+"</option>";
-                   mainRegister.params.form.country.append(option);
-               });
-           });
 
-       }
 
        // alert(mainRegister.params.form.country.data("country"))
 
@@ -154,7 +158,7 @@ $(function(){
                 {
                     console.log(geolocation);
                     $.each(countryList,function(index,value){
-                        if(index==geolocation.countryCode || value==geolocation.countryName)
+                        if(index==geolocation.countryCode || value==geolocation.countryName || index == geolocation.countryName ||  value ==geolocation.countryCode )
                         {
                             console.log("the same country --- user country : "+ geolocation.countryName + " => select country : "+value);
                             var option = "<option selected value='"+index+"'>"+value+"</option>"
