@@ -135,7 +135,7 @@ $(function(){
         var intervalbad =setInterval(function(){
             if(geolocationbad !=null )
             {
-                console.log("bad : " + geolocationbad);
+                //console.log("bad : " + geolocationbad);
                 //il faut  marcher
                 //charger la liste des pays
                 $.getJSON(mainRegister.params.form.country.data("country"), function(data){
@@ -156,9 +156,9 @@ $(function(){
         var interval =setInterval(function(){
                 if(countryList!=null && geolocation!=null)
                 {
-                    console.log(geolocation);
+                    //console.log(geolocation);
                     $.each(countryList,function(index,value){
-                       console.log(value.value, value.code);
+                      // console.log(value.value, value.code);
                         if(value.code==geolocation.countryCode || value.value==geolocation.countryName || value.code == geolocation.countryName ||  value.value ==geolocation.countryCode )
                         {
                             console.log("the same country --- user country : "+ geolocation.countryName + " => select country : "+value.value);
