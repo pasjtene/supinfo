@@ -135,6 +135,7 @@ $(function(){
 
        if(geolocation ==null)
        {
+           //il faut  marcher
            //charger la liste des pays
            $.getJSON(mainRegister.params.form.country.data("country"), function(data){
                //mainRegister.params.form.country.empty();
@@ -151,6 +152,7 @@ $(function(){
         var interval =setInterval(function(){
                 if(countryList!=null && geolocation!=null)
                 {
+                    console.log(geolocation);
                     $.each(countryList,function(index,value){
                         if(index==geolocation.countryCode || value==geolocation.countryName)
                         {
