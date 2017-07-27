@@ -8,6 +8,7 @@ var MainRegister = function()
         page : $('#mainRegister'),
         modalSave: $("#modalSave"),
         modal_body : $("#modalSave .modal-body center"),
+        bg_action:$('#bg-action'),
         form: {
             name : $("#name"),
             email : $("#email"),
@@ -63,67 +64,65 @@ $(function(){
     //instancier la classe MainRegister
     var mainRegister = new MainRegister();
 
-
-    //fonction de verifications des valeurs saisies par l'utilisateur
-    function verify(user)
-    {
-        var appMain = new AppMain();
-        var  test= false;
-        test= appMain.function.notValid(user.firstname,3,100);
-        if(test){
-            return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= notValidMail(user.email);
-        if(test){
-            return  $("#"+mainRegister.params.required.email.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= appMain.function.notValid(user.country,1,100);
-        if(test){
-            return  $("#"+mainRegister.params.required.country.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= appMain.function.notValid(mainRegister.params.form.day.val(),1,10);
-        if(test){
-            return  $("#"+mainRegister.params.required.day.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= appMain.function.notValid(mainRegister.params.form.month.val(),1,10);
-        if(test){
-            return  $("#"+mainRegister.params.required.month.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= appMain.function.notValid(mainRegister.params.form.year.val(),1,10);
-        if(test){
-            return  $("#"+mainRegister.params.required.year.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= appMain.function.notValid(user.gender,1,8);
-        if(test){
-            return  $("#"+mainRegister.params.required.gender.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-        test= appMain.function.notValid(user.joinReason,1,100);
-        if(test){
-            return  $("#"+mainRegister.params.required.reason.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-        test= appMain.function.notValid(user.password,5,100);
-        if(test){
-            return  $("#"+mainRegister.params.required.password.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-       /* test= notConfirm(mainRegister.params.form.confirmpassword,mainRegister.params.form.password);
-        if(test){
-            return  $("#"+mainRegister.params.required.confirmpassword.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-        */
-        return test;
-    }
-
     //tester si  nous somme dans la page d'enregistrement
     if(mainRegister.params.page.data('page')=="mainRegister")
     {
 
+        //fonction de verifications des valeurs saisies par l'utilisateur
+        function verify(user)
+        {
+            var appMain = new AppMain();
+            var  test= false;
+            test= appMain.function.notValid(user.firstname,3,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= notValidMail(user.email);
+            if(test){
+                return  $("#"+mainRegister.params.required.email.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(user.country,1,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.country.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(mainRegister.params.form.day.val(),1,10);
+            if(test){
+                return  $("#"+mainRegister.params.required.day.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(mainRegister.params.form.month.val(),1,10);
+            if(test){
+                return  $("#"+mainRegister.params.required.month.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(mainRegister.params.form.year.val(),1,10);
+            if(test){
+                return  $("#"+mainRegister.params.required.year.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(user.gender,1,8);
+            if(test){
+                return  $("#"+mainRegister.params.required.gender.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+            test= appMain.function.notValid(user.joinReason,1,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.reason.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+            test= appMain.function.notValid(user.password,5,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.password.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            /* test= notConfirm(mainRegister.params.form.confirmpassword,mainRegister.params.form.password);
+             if(test){
+             return  $("#"+mainRegister.params.required.confirmpassword.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+             }
+             */
+            return test;
+        }
 
 
         //donner le focus au chargement  de la page au  champs name
@@ -273,7 +272,8 @@ $(function(){
                //alert(User.birthDate);
                 //console.log(params);
                 //alert(params);
-                mainRegister.params.modalSave.modal('show');
+               // mainRegister.params.modalSave.modal('show');
+                mainRegister.params.bg_action.fadeIn();
                 // implementer l'enregistrement  proprement  dit avec ajax
                 $.ajax(
                     {
@@ -284,8 +284,8 @@ $(function(){
                         data: User,
                         success: function (data) { //lorsque tout c'est bien passe
 
-                            mainRegister.params.modal_body.empty();
-                            mainRegister.params.modal_body.text(mainRegister.params.modalSave.data('confirm'));
+                           // mainRegister.params.modal_body.empty();
+                            //mainRegister.params.modal_body.text(mainRegister.params.modalSave.data('confirm'));
                             //mainRegister.params.modalSave.modal('hide');
                             //redirect  here
                             console.log(data);
