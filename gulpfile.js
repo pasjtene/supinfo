@@ -195,6 +195,20 @@ gulp.task('file', ['installAssets'], function()
     currentTask = 'file';
 });
 
+gulp.task('all', ['installAssets'], function()
+{
+    currentTask = 'all';
+});
+
+gulp.task('allprod', ['installAssets'], function()
+{
+    currentTask = 'allprod';
+});
+
+
+
+
+
 // Without this function exec() will not show any output
 var logStdOutAndErr = function (err, stdout, stderr)
 {
@@ -226,6 +240,22 @@ var logStdOutAndErr = function (err, stdout, stderr)
     else if(currentTask === 'file')
     {
         uglifyTask();
+    }
+    else if(currentTask === 'all')
+    {
+        sassTask();
+        concatJsTask();
+        paramsTask();
+        imageTask();
+        audioTask();
+    }
+    else if(currentTask === 'allprod')
+    {
+        sassTask();
+        concatJsTask();
+        paramsTask();
+        imageTask();
+        audioTask();
     }
 };
 
