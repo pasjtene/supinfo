@@ -139,7 +139,7 @@ var   AppMain = function()
                     cb(data);
                 },
                 error: function (xhr, status, message) {
-                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    console.log(xhr.responseText);
                 }
             }
         );
@@ -166,8 +166,8 @@ appMain.getAppToken(function(data){
 });
 
 if(appMain.params.page.data('geolocation')=="geolocation"){
-    appMain.getGeolocation(function(data){
-        geolocation = data.geolocation;
-    });
+appMain.getGeolocation(function(data){
+    geolocation = data.geolocation;
+});
 
 }
