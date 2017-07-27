@@ -73,7 +73,9 @@
     margin-bottom: 2em ;
     img{
       height: 100px;
-      max-width: 100px;
+      width: 100px;
+      zoom: normal;
+      cursor: pointer;
     }
     #detail{
       border-radius: 6px;
