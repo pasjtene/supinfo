@@ -7,6 +7,9 @@ $secondary-font-color: #ffffff;
 $badnew-color: #DF534F;
 $text-default: #292b2c;
 $content-background: #F7F7F7;
+$body: #f7f7f7;
+$body-background : #FFFFFF;
+$content-background: #F7F7F7;
 button{
   border-radius: 6px;
   padding: 2%;
@@ -37,6 +40,7 @@ button{
 #footer{
   margin-top: 2em;
   height: 3em;
+  background-color:$content-background !important;
   .card{
     background-color: rgba(49, 83, 255, 0.06) !important;
     .col-lg-1{
@@ -53,21 +57,16 @@ button{
 }
 
 #registerFooter{
-  /*margin-top: 2em;
-  height: 3em;*/
-  /*.card{
-    background-color: rgba(49, 83, 255, 0.06) !important;
-    .col-lg-1{
-      flex: 0 0 6% !important;
-    }*/
+  background-color:$content-background !important;
   a{
     color: $text-default ;
+    i{
+      color: $body-background ;
+    }
   }
   a:hover{
     color: $default-color;
   }
-
-  /*}*/
 }
 
 .fixebar{

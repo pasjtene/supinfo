@@ -2,3 +2,7 @@ success:
   requestMail: Nous vous avons envoyés à  nouveau un mail  à  l'adresse email_resp
 error:
   requestMail: Echec  de l'envoi  du  mail. Il  parait  que le serveur à  rencontré un problème n'hésitez pas de retenter après.
+accept:
+  success:  Vous êtes à présent l'ami de name. Vous pouvez vous échanger comme bon vous semble.<br/> funglobe vous felicite pour votre solitude
+  error: Echec  de l'envoi  du  mail. Il  parait  que le serveur à  rencontré un problème n'hésitez pas de retenter après.
+decline:
