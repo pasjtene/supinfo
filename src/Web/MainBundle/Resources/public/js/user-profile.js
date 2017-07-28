@@ -240,6 +240,7 @@ $(function(){
         mainUserProfile.params.page.css({'margin-top':"0em"});
         mainUserProfile.params.matches.carousel.fadeIn();
     }
+    //mainUserProfile.params.nav.dropdownMenuMessages_body.fadeIn();
     //afficher les notifications messages
     mainUserProfile.params.nav.dropdownMenuMessages.on('click', function () {
         mainUserProfile.params.nav.dropdownMenuMessages_body.fadeIn();
@@ -256,4 +257,5 @@ $(function(){
         mainUserProfile.params.nav.dropdownMenuMessages_body.fadeOut();
         mainUserProfile.params.nav.dropdownMenuFreinds_body.fadeOut();
     });
+
 });
