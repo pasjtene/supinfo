@@ -1,13 +1,14 @@
 <div class="dropdown-menu " aria-labelledby="dropdownMenuFreinds" id="dropdownMenuFreinds-body">
     <h6 class="dropdown-header">
         <div class="row">
-            <div class="col"><strong>Invitation (120)</strong></div>
+            <div class="col"><strong>Invitation <span class="count"></span></strong></div>
             <div class="col"><a href="">Retrouver des amis</a></div>
             <div class="col"><a href="">Accepter toutes les demandes</a></div>
         </div>
     </h6>
-    <div class="body">
-        {% for i in 1..10 %}
+    <div class="body" data-help="{{ asset('data/img/empty.png') }}">
+        {#
+             {% for i in 1..10 %}
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
                 <div class="row align-items-center">
@@ -25,7 +26,7 @@
                 </div>
             </a>
         {% endfor %}
-
+        #}
     </div>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item text-center all" href="{{ path('main_profile_friends') }}">Tout Afficher</a>
