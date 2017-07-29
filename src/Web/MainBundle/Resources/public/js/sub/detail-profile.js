@@ -324,7 +324,7 @@ $(function () {
                 flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
                 connect =friends.isOnline? Translator.trans('sub.connected',{},"default"):Translator.trans('sub.noconnected',{},"default");
                 body+=
-                    ' <div class="col-sm-12 col-md-6 col  text-center img">'+
+                    ' <div class="col-sm-12 col-md-6   text-center img">'+
                     '<div class="card">'+
                     '<img src="'+src+'" alt="" class="card-img-top rounded">'+
                     '<div class="card-block text-right">'+
@@ -396,7 +396,7 @@ $(function () {
                 flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
                 connect =friends.isOnline? Translator.trans('sub.connected',{},"default"):Translator.trans('sub.noconnected',{},"default");
                 body+=
-                    ' <div class="col-sm-12 col-md-6 col  text-center img">'+
+                    ' <div class="col-sm-12 col-md-6   text-center img">'+
                     '<div class="card">'+
                     '<img src="'+src+'" alt="" class="card-img-top rounded">'+
                     '<div class="card-block text-right">'+
