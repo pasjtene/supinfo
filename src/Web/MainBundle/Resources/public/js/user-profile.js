@@ -259,11 +259,11 @@ $(function(){
        }
 
 
-       mainUserProfile.params.nav.dropdownMenuFreinds_body.on('click',"accept",function(){
+       mainUserProfile.params.nav.dropdownMenuFreinds_body.on('click',".accept",function(){
            accept($(this).data('id'), currentUser.id);
        });
 
-       mainUserProfile.params.nav.dropdownMenuFreinds_body.on('click',"accept",function(){
+       mainUserProfile.params.nav.dropdownMenuFreinds_body.on('click',".decline",function(){
            decline($(this).data('id'), currentUser.id,$(this).data('decision'));
        });
 
