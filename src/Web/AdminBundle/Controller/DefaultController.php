@@ -12,7 +12,7 @@ use Web\AppBundle\Tools\RestClient;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="admin_home")
+     * @Route("/", name="admin_home", options={"expose"=true})
      */
     public function indexAction()
     {
@@ -41,7 +41,8 @@ class DefaultController extends Controller
 
                 //FunglobeUtils::dump($contents);
 
-                $datas['member'] = $contents;
+                $datas['member'] = $contents->user;
+                $datas['profile'] = $contents->profile;
             }
         }
 

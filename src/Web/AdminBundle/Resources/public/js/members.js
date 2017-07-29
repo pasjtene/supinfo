@@ -233,9 +233,13 @@ $(function(){
             var selectedUsers = getSelectedUsers(),
                 t = selectedUsers.length;
 
-            if(t > 0 && confirm('You really want to block these members ?'))
+            if(t > 0)
             {
-                lockAction(selectedUsers);
+                bootbox.confirm('You really want to block these members ?', function(confirm){
+                    if(confirm){
+                        lockAction(selectedUsers);
+                    }
+                });
             }
             e.preventDefault();
         });

@@ -33,7 +33,10 @@ var AdminHome = function()
                 delete_users: baseUrl +"auth/members/delete/"
             },
             method:
-            {get:"GET"},
+            {
+                get:"GET",
+                delete:"DELETE"
+            },
             headers:
             {auth: "X-Auth-Token"}
         }
@@ -110,7 +113,7 @@ $(function(){
             $.ajax(
                 {
                     url: adminHome.params.api.action.delete_users + v,
-                    type: adminHome.params.api.method.get,
+                    type: adminHome.params.api.method.delete,
                     headers : {"X-Auth-Token" : tokenbase.value},
                     crossDomain: true,
                     success: function (users) {
@@ -176,7 +179,7 @@ $(function(){
                         success: function (response)
                         {
                             console.log(response);
-                            adminHome.params.attr.id.total_users.html(response.users.length);
+                            adminHome.params.attr.id.total_users.html(response.total);
                             adminHome.params.attr.id.users_table_body.empty();
                             adminHome.params.attr.id.users_loader.hide();
 
