@@ -173,3 +173,13 @@ appMain.getGeolocation(function(data){
 });
 
 }
+
+function getCountry(list, search){
+    for(var i=0; i<list.length;i++)
+    {
+        if(list[i].code ==search)
+        {
+            return list[i].value;
+        }
+    }
+}
