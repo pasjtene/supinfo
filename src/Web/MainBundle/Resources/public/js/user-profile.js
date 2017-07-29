@@ -72,11 +72,13 @@ var MainUserProfile = function()
             {
                 friends : {
                     count : $('#toogleNav #dropdownMenuFreinds-body .count'),
-                    body : $('#toogleNav #dropdownMenuFreinds-body .body')
+                    body : $('#toogleNav #dropdownMenuFreinds-body .body'),
+                    preloader : $('#toogleNav #dropdownMenuFreinds-body .preloader')
                 },
                 message:{
                     count : $('#toogleNav #dropdownMenuMessages-body .count'),
-                    body : $('#toogleNav #dropdownMenuMessages-body .body')
+                    body : $('#toogleNav #dropdownMenuMessages-body .body'),
+                    preloader : $('#toogleNav #dropdownMenuMessages-body .preloader')
                 }
 
             }
@@ -229,6 +231,7 @@ $(function(){
                //console.log(applicant);
                var flagApplicant ="<img class='sm-img flag' src='"+path.flags+applicant.country+".png' alt=''/> ";
                var flagReciever ="<img class='sm-img flag' src='"+path.flags+reciever.country+".png' alt=''/> ";
+               var preloader ="<br/><img class='sm-img preloader' src='/data/img/current.gif' alt=''/> ";
                var src = "";
                if ((photoApplicant == null || photoApplicant == 'null')) {
                    src = element.body.data('help');
@@ -251,6 +254,7 @@ $(function(){
                    '<div class="col text-muted small text-right">' +
                    '<button  class="btn btn-sm btn-primary small accept" data-id="'+id+'" >Confirmer</button>' +
                    '<button class="btn btn-sm btn-danger small decline" data-decision="2" data-id="'+id+'" >Supprimer</button>' +
+                       preloader+
                    '</div>' +
                    '</div>' +
                    '</a>';
@@ -277,9 +281,10 @@ $(function(){
            $.ajax({
                url: mainUserProfile.params.api.accpet.url,
                type:  mainUserProfile.params.api.accpet.method,
-               data: datas,
+               data:  datas,
                crossDomain: true,
                headers : {"X-Auth-Token" : currentUser.token},
+               dataType:  mainUserProfile.params.api.base.type,
                success: function(response){
                    //charger les entetes de notifications
                    if(response.recievers!=null)
