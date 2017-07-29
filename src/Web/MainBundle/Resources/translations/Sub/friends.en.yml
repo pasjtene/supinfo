@@ -12,7 +12,7 @@ sub:
     confirm: Confirm
     common: You have number friends in common
     common_no: You have no friends in common
-    accept: You are currently friends with name
+    accept: You are currently friends with
     refuse: The request for invitation was deleted
     error: An error occurs during the processing of the request. You can retrieve later
   noFriend:

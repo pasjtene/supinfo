@@ -283,13 +283,7 @@ $(function () {
                     {
                         if(response!=null )
                         {
-                            var ask = response;
-                            if(ask.state || ask.decision=="3" || ask.decision=="0"){
-                                mainSubDetailProfile.params.body.ask.fadeOut();
-                            }
-                            else{
-                                mainSubDetailProfile.params.body.ask.fadeIn();
-                            }
+                            mainSubDetailProfile.params.body.ask.fadeOut();
                         }
                         trans = Translator.trans('sub.success.ask',{},"default");
                         bootbox.alert(trans,function(result){});
