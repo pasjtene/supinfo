@@ -22,17 +22,17 @@
         </div>
         <div class="container">
             <div class="col-sm-12" id="mb-header">
-                <span>{{ member.firstName ~ member.lastName }} {% if member.isVip %}(vip){% endif %}</span>
+                <span>{{ member.firstName }} {{ member.lastName }} {% if member.isVip %}(vip){% endif %}</span>
 
                 <div class="btn-group pull-right" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-info" id="btn-status-member" data-mid="{{ member.id }}" data-action="{% if member.enabled %} set {% else %} unset {% endif %}">
+                    <button type="button" class="btn btn-info" id="btn-status-member" data-mid="{{ member.id }}" data-action="{% if member.enabled %}set{% else %}unset{% endif %}">
                         {% if member.enabled %}
                             {% trans from 'member' %} member.set_locked {% endtrans %}
                         {% else %}
                             {% trans from 'member' %} member.unset_locked {% endtrans %}
                         {% endif %}
                     </button>
-                    <button type="button" class="btn btn-success" id="btn-vip-member" data-mid="{{ member.id }}" data-action="{% if member.isVip %} unset {% else %} set {% endif %}">
+                    <button type="button" class="btn btn-success" id="btn-vip-member" data-mid="{{ member.id }}" data-action="{% if member.isVip %}unset{% else %}set{% endif %}">
                         {% if member.isVip %}
                             {% trans from 'member' %} member.unset_vip {% endtrans %}
                         {% else %}
@@ -41,6 +41,9 @@
                     </button>
                     <button type="button" id="btn-role-action" data-edit="0" data-mid="{{ member.id }}" class="btn btn-primary">
                         {% trans from 'member' %} member.change_role {% endtrans %}
+                    </button>
+                    <button type="button" id="btn-delete-member" data-mid="{{ member.id }}" class="btn btn-danger">
+                        {% trans from 'member' %} member.delete_member {% endtrans %}
                     </button>
                 </div>
             </div>
@@ -90,7 +93,14 @@
                     </tr>
                     <tr>
                         <td>{% trans from 'member' %} member.lbl_ipaddress {% endtrans %}</td>
-                        <td>{# member.lbl_ipaddress #} <a href="#">{% trans from 'member' %} member.set_locked {% endtrans %}</a></td>
+                        <td>{# member.lbl_ipaddress #}
+                            {% if profile == null and (profile != null and profile.geolocation == null) %}
+                                {% trans from 'member' %} member.lbl_no_ip {% endtrans %}
+                            {% else %}
+                                <span id="user-ip">192.168.1.0</span>
+                                <a href="#" data-ip="192.168.1.0" id="btn-block-ip">{% trans from 'member' %} member.set_locked {% endtrans %}</a>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <td>{% trans from 'member' %} member.lbl_vip {% endtrans %}</td>

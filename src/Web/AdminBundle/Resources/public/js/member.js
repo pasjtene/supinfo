@@ -12,7 +12,10 @@ var AdminMemberProfile = function()
                 cb_roles: $("#cb-roles"),
                 btn_status_member : $("#btn-status-member"),
                 btn_vip_member: $("#btn-vip-member"),
-                country: $('#mb-country')
+                country: $('#mb-country'),
+                btn_delete_member: $('#btn-delete-member'),
+                user_ip: $("#user-ip"),
+                btn_block_ip: $("#btn-block-ip")
             },
             class:{
 
@@ -23,13 +26,16 @@ var AdminMemberProfile = function()
             {
                 update: baseUrl +"auth/member/",
                 lock: baseUrl + "auth/members/lock",
-                vip: baseUrl + "auth/members/vip"
+                vip: baseUrl + "auth/members/vip",
+                delete: baseUrl + "auth/members/delete/",
+                blockedIp: baseUrl + "auth/blocked-ip"
             },
             method:
             {
                 put:"PUT",
                 post: "POST",
-                get: "GET"
+                get: "GET",
+                delete: "DELETE"
             },
             headers:
             {auth: "X-Auth-Token"}
@@ -42,12 +48,35 @@ $(function()
 {
     var adminMemberProfile = new AdminMemberProfile();
 
+    var checkIp = function()
+    {
+        var ip = adminMemberProfile.params.attr.id.user_ip.text();
+
+        $.ajax(
+        {
+            url: adminMemberProfile.params.api.action.blockedIp + "?ip="+ip,
+            type: adminMemberProfile.params.api.method.get,
+            headers: {"X-Auth-Token": tokenbase.value},
+            crossDomain: true,
+            success: function (response) {
+                //console.log(response);
+                if(response.ip !== null){
+                    adminMemberProfile.params.attr.id.user_ip.addClass('text-danger');
+                }
+            },
+            error: function (xhr, status, message) {
+                console.log(status + "\n" + xhr.responseText + '\n' + message);
+            }
+        });
+    };
+
     if(adminMemberProfile.params.page.data('page'))
     {
         var country = adminMemberProfile.params.attr.id.country.data('country');
 
         setTimeout(function(){
             adminMemberProfile.params.attr.id.country.html("<img src='"+path.flags+country+".png' alt=''/> " + countries[country]);
+            checkIp();
         }, 3000);
 
         adminMemberProfile.params.attr.id.btn_role_action.click(function(e)
@@ -106,8 +135,7 @@ $(function()
                 data: data,
                 crossDomain: true,
                 success: function (response) {
-                    action = "set";
-                    //document.location.reload();
+                    document.location.reload();
                 },
                 error: function (xhr, status, message) {
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
@@ -120,8 +148,6 @@ $(function()
             var action = $(this).data('action'),
                 mid = $(this).data('mid');
 
-            console.log(action);
-
             var data = {members: mid, action: action};
             $.ajax({
                 url: adminMemberProfile.params.api.action.vip,
@@ -130,12 +156,65 @@ $(function()
                 data: data,
                 crossDomain: true,
                 success: function (response) {
-                    //document.location.reload();
+                    document.location.reload();
                 },
                 error: function (xhr, status, message) {
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
                 }
             });
+        });
+
+        adminMemberProfile.params.attr.id.btn_delete_member.click(function(e)
+        {
+            var mid = $(this).data('mid');
+
+            bootbox.confirm("You really want to delete this user ?", function(confirm)
+            {
+               if(confirm)
+               {
+                   $.ajax({
+                       url: adminMemberProfile.params.api.action.delete + mid,
+                       type: adminMemberProfile.params.api.method.delete,
+                       headers : {"X-Auth-Token" : tokenbase.value},
+                       crossDomain: true,
+                       success: function (users) {
+                            window.location = Routing.generate('admin_home', {_locale: locale});
+                       },
+                       error: function (xhr, status, message) {
+                           console.log(status+"\n" + message );
+                       }
+                   });
+               }
+            });
+        });
+
+        adminMemberProfile.params.attr.id.btn_block_ip.click(function(e)
+        {
+            var ip = $(this).data('ip');
+
+            $.ajax(
+            {
+                url: adminMemberProfile.params.api.action.blockedIp,
+                type: adminMemberProfile.params.api.method.post,
+                headers: {"X-Auth-Token": tokenbase.value},
+                data: JSON.stringify({ip: ip}),
+                crossDomain: true,
+                success: function (response) {
+                    //console.log(response);
+                    if(response.code === 0){
+                        bootbox.alert('The IP address is already blocked !');
+                    }
+                    else{
+                        bootbox.alert('The IP address has been blocked successfully !');
+                        adminMemberProfile.params.attr.id.user_ip.addClass('text-danger');
+                    }
+                },
+                error: function (xhr, status, message) {
+                    console.log(status + "\n" + xhr.responseText + '\n' + message);
+                }
+            });
+
+            e.preventDefault();
         });
     }
 
