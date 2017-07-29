@@ -226,12 +226,13 @@ $(function(){
                    photoApplicant = list[i].photoApplicant,
                    reciever = list[i].request.receiver,
                    applicant = list[i].request.applicant,
-                   message = list[i].request.messageTuncate;
-                   id = list[i].request.id;
+                   message = list[i].request.messageTuncate,
+                   id = list[i].request.id,
+                   datapreloader = "friendpreoloader"+list[i].request.id;
                //console.log(applicant);
                var flagApplicant ="<img class='sm-img flag' src='"+path.flags+applicant.country+".png' alt=''/> ";
                var flagReciever ="<img class='sm-img flag' src='"+path.flags+reciever.country+".png' alt=''/> ";
-               var preloader ="<br/><img class='sm-img preloader' src='/data/img/current.gif' alt=''/> ";
+               var preloader ="<br/><img id='"+datapreloader+"' class='sm-img preloader' src='/data/img/current.gif' alt=''/> ";
                var src = "";
                if ((photoApplicant == null || photoApplicant == 'null')) {
                    src = element.body.data('help');
@@ -252,28 +253,34 @@ $(function(){
                    '<span class="text-grey small">'+flagApplicant+getCountry(countryList,applicant.country)+'</span>' +
                    '</div>' +
                    '<div class="col text-muted small text-right">' +
-                   '<button  class="btn btn-sm btn-primary small accept" data-id="'+id+'" >Confirmer</button>' +
-                   '<button class="btn btn-sm btn-danger small decline" data-decision="2" data-id="'+id+'" >Supprimer</button>' +
+                   '<button  class="btn btn-sm btn-primary small accept" data-id="'+id+'" data-preloader="'+datapreloader+'" >Confirmer</button>' +
+                   '<button class="btn btn-sm btn-danger small decline" data-decision="2" data-id="'+id+'" data-preloader="'+datapreloader+'" >Supprimer</button>' +
                        preloader+
                    '</div>' +
                    '</div>' +
                    '</a>';
                element.body.append(content);
            }
+
+           if(list.length==0)
+           {
+              element.body.empty();
+               mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
+           }
        }
 
 
        mainUserProfile.params.nav.dropdownMenuFreinds_body.on('click',".accept",function(){
-           accept($(this).data('id'), currentUser.id);
+           accept($(this).data('id'), currentUser.id,$('#toogleNav #dropdownMenuFreinds-body #'+$(this).data('preloader')));
        });
 
        mainUserProfile.params.nav.dropdownMenuFreinds_body.on('click',".decline",function(){
-           decline($(this).data('id'), currentUser.id,$(this).data('decision'));
+           decline($(this).data('id'), currentUser.id,$(this).data('decision'),$('#toogleNav #dropdownMenuFreinds-body #'+$(this).data('preloader')));
        });
 
-       function accept(id, idUser)
+       function accept(id, idUser,preloader)
        {
-           mainUserProfile.params.id.bg_action.fadeIn();
+           preloader.fadeIn();
            datas = {
                id : id,
                idUser: idUser
@@ -294,13 +301,13 @@ $(function(){
                    else{
                        mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
                    }
-                   mainUserProfile.params.id.bg_action.fadeOut();
-                   trans = Translator.trans('sub.invitation.accept',{'name':currentUser.name},"friends");
+                   preloader.fadeOut();
+                   trans = Translator.trans('sub.invitation.accept',{},"friends")+' '+response.user.fullname;
                    bootbox.alert(trans,function(){});
                },
                error: function (xhr, status, message) { //en cas d'erreur
                    console.log(status+"\n"+xhr.responseText + '\n' + message );
-                   mainUserProfile.params.id.bg_action.fadeOut();
+                   preloader.fadeOut();
                    trans = Translator.trans('sub.invitation.error',{},"friends");
                    bootbox.alert(trans,function(){});
                },
@@ -312,9 +319,9 @@ $(function(){
        }
 
 
-       function decline(id, idUser,decision)
+       function decline(id, idUser,decision,preloader)
        {
-           mainUserProfile.params.id.bg_action.fadeIn();
+          preloader.fadeIn();
            datas = {
                id : id,
                idUser: idUser,
@@ -335,13 +342,13 @@ $(function(){
                    else{
                        mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
                    }
-                   mainUserProfile.params.id.bg_action.fadeOut();
+                   preloader.fadeOut();
                    trans = Translator.trans('sub.invitation.refuse',"friends");
                    bootbox.alert(trans,function(){});
                },
                error: function (xhr, status, message) { //en cas d'erreur
                    console.log(status+"\n"+xhr.responseText + '\n' + message );
-                   mainUserProfile.params.id.bg_action.fadeOut();
+                   preloader.fadeOut();
                    trans = Translator.trans('sub.invitation.error',{},"friends");
                    bootbox.alert(trans,function(){});
                },
