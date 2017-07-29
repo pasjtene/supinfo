@@ -51,10 +51,24 @@ var MainUserProfile = function()
         },
         nav:{
             dropdownMenuMessages: $('#nav #dropdownMenuMessages'),
+            dropdownMenuMessages_badge: $('#nav #dropdownMenuMessages .badge'),
             dropdownMenuMessages_body:$("#toogleNav #dropdownMenuMessages-body"),
             dropdownMenuFreinds: $('#nav #dropdownMenuFreinds'),
+            dropdownMenuFreinds_badge: $('#nav #dropdownMenuFreinds .badge'),
             dropdownMenuFreinds_body:$("#toogleNav #dropdownMenuFreinds-body"),
-            content: $("#content")
+            content: $("#content"),
+            notification:
+            {
+                friends : {
+                    count : $('#toogleNav #dropdownMenuFreinds-body .count'),
+                    body : $('#toogleNav #dropdownMenuFreinds-body .body')
+                },
+                message:{
+                    count : $('#toogleNav #dropdownMenuMessages-body .count'),
+                    body : $('#toogleNav #dropdownMenuMessages-body .body')
+                }
+
+            }
         }
     };
 
@@ -161,11 +175,20 @@ $(function(){
                    setProfile(mainUserProfile.params.imprtant.important_block_img,baseHost+response.profilePhotos[0].path,mainUserProfile.params.imprtant.important_block_img.data('help'))
                }
 
+               //charger les entetes de notifications
+               if(response.recievers!=null)
+               {
+                   setFriendsNav(mainUserProfile.params.nav.notification.friends,response.recievers,mainUserProfile.params.nav.dropdownMenuFreinds_badge);
+               }
+               else{
+                   mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
+               }
                //chargement des utilisateurs vips
                if(response.vips!=null)
                {
                    setVips(mainUserProfile.params.matches.carousel_inner,response.vips);
                }
+
            },
            error: function (xhr, status, message) { //en cas d'erreur
                console.log(status+"\n"+xhr.responseText + '\n' + message );
@@ -177,6 +200,51 @@ $(function(){
        });
    }
 
+    function setFriendsNav(element, list,badge){
+        if(list.length==0)
+        {
+            mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
+        }
+        var length = list.length<10? "0"+list.length : list.length;
+        element.count.html("("+length+")");
+        badge.html(length);
+        for(var i=0; i<list.length;i++) {
+         var profileReciever = list[i].photoReciever,
+            photoApplicant = list[i].photoApplicant,
+            reciever = list[i].request.reciever,
+            applicant = list[i].request.applicant,
+            message = list[i].request.message;
+            console.log(applicant);
+            var flagApplicant ="<img class='sm-img' src='"+path.flags+applicant.country+".png' alt=''/> ";
+            var flagReciever ="<img class='sm-img' src='"+path.flags+reciever.country+".png' alt=''/> ";
+            var src = "";
+            if ((photoApplicant == null || photoApplicant == 'null')) {
+                src = element.body.data('help');
+            }
+            else {
+               src = baseHost + photoApplicant.path;
+             }
+            var content =
+                '<div class="dropdown-divider"></div>' +
+                '<a class="dropdown-item" href="#">'+
+                    '<div class="row align-items-center">' +
+                        '<div class="col-2">' +
+                            '<img src="'+src+'" alt="">' +
+                        '</div>' +
+                        '<div class="col-4">' +
+                            '<strong>'+ applicant.lastNameOrFirstname +'</strong><br>' +
+                            '<span class="text-grey small">'+message+'</span> <br>' +
+                            '<span class="text-grey small">'+flagApplicant+'</span>' +
+                        '</div>' +
+                        '<div class="col text-muted small text-right">' +
+                            '<button  class="btn btn-sm btn-primary small">Confirmer</button>' +
+                            '<button class="btn btn-sm btn-danger small">Supprimer</button>' +
+                        '</div>' +
+                    '</div>' +
+                '</a>';
+            list.body.append(content);
+        }
+    }
     function setProfile(element,img,helpImg){
         if(img==null || img=="undefined")
         {
