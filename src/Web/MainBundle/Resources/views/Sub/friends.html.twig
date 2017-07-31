@@ -90,7 +90,7 @@
             <a href="" class="small">{% trans  from 'friends' %} sub.invitation.view {% endtrans %}</a>
         </div>
         <div class="card-block">
-            <div class="body">
+            <div class="body" data-help="{{ asset('data/img/empty.png') }}">
                 {% for i in 1..4 %}
                     {% set id=i %}
                     <section>
