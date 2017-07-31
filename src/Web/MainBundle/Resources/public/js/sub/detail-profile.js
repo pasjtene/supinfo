@@ -146,7 +146,7 @@ $(function () {
                         }
 
                         if(response.listAloneFriends!=null){
-                            setFriendAlone( mainSubDetailProfile.params.body.friendalone.body,response.listAloneFriends);
+                            setFriendAlone( mainSubDetailProfile.params.body.friendalone.body,response.listAloneFriends,response.user);
                         }
                         if(response.listFriends!=null){
                             setFriendJoin(mainSubDetailProfile.params.body.friendjoint.body,response.listFriends);
@@ -176,7 +176,6 @@ $(function () {
                                 mainSubDetailProfile.params.body.ask.fadeIn();
                             }
                         }
-
                         //charger les photos
                         mainSubDetailProfile.params.link_photo_span.html('('+response.listPhotos.length+')');
 
@@ -189,7 +188,7 @@ $(function () {
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
                     //hide le preloader
                     //mainSubDetailProfile.params.body.chargement.fadeOut();
-                    mainSubDetailProfile.params.bg_action.Up();
+                    mainSubDetailProfile.params.bg_action.fadeUp();
                 },
                 complete:function(){
                     console.log("Request finished.");
@@ -272,7 +271,7 @@ $(function () {
 
         }
 
-        function setFriendAlone(element,list){
+        function setFriendAlone(element,list,reciever){
             element.empty();
             var discover = Translator.trans('sub.discover',{},"default");
                var head=
@@ -295,10 +294,10 @@ $(function () {
                     id=null,
                     trans = Translator.trans('sub.becomeFriends',{},"default"),
                     ask = Translator.trans('sub.ask',{},"default");
-                if(list[i].request.receiver.id==currentUser.id)
+                if(list[i].request.receiver.id==currentUser.id || list[i].request.receiver.id==reciever.id )
                 {
                     friends = list[i].request.applicant;
-                    if (( list[i].photoApplicant.hashname == null || list[i].photoApplicant.hashname == 'null')) {
+                    if ((list[i].photoApplicant==null || list[i].photoReciever=='null' || list[i].photoApplicant.hashname == null || list[i].photoApplicant.hashname == 'null')) {
                         src = element.data('help');
                     }
                     else {
@@ -308,7 +307,7 @@ $(function () {
                 else
                 {
                     friends =  list[i].request.receiver;
-                    if (( list[i].photoReciever.hashname == null || list[i].photoReciever.hashname == 'null')) {
+                    if ((list[i].photoReciever==null || list[i].photoReciever=='null' || list[i].photoReciever.hashname == null || list[i].photoReciever.hashname == 'null')) {
                         src = element.data('help');
                     }
                     else {
@@ -371,7 +370,7 @@ $(function () {
                 if(list[i].request.receiver.id==currentUser.id)
                 {
                     friends = list[i].request.applicant;
-                    if (( list[i].photoApplicant.hashname == null || list[i].photoApplicant.hashname == 'null')) {
+                    if (( list[i].photoApplicant==null || list[i].photoApplicant=='null' || list[i].photoApplicant.hashname == null || list[i].photoApplicant.hashname == 'null')) {
                         src = element.data('help');
                     }
                     else {
@@ -381,7 +380,7 @@ $(function () {
                 else
                 {
                     friends =  list[i].request.receiver;
-                    if (( list[i].photoReciever.hashname == null || list[i].photoReciever.hashname == 'null')) {
+                    if (( list[i].photoReciever==null || list[i].photoReciever=='null' || list[i].photoReciever.hashname == null || list[i].photoReciever.hashname == 'null')) {
                         src = element.data('help');
                     }
                     else {
