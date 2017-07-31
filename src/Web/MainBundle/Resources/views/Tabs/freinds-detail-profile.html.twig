@@ -15,59 +15,62 @@
     <div id="body-photo-detail-profile-freinds" class=" row col-12" data-help="{{ asset('data/img/empty.png') }}">
 
         <div class="row" id="friend-join">
-            <div class="col-12">
-                {% trans from  'detail-profile' %} sub.commonFreinds {% endtrans %}
-                <hr>
-            </div>
-            {% for i in 1..5 %}
-                <div class="col-sm-12 col-md-6 col  text-center img">
-                    <div class="card">
-                        <img src="{{ asset('data/img/empty.png') }}" alt="" class="card-img-top rounded">
-                        {% set  id ="action"~i %}
-                        <div class="card-block text-right">
-                            <div class="name">
-                                <div class="rounded-circle"> </div>
-                                <span class="state text-grey">connected</span>
-                                <p><strong>Magatsin Martine</strong></p>
-                            </div>
-                            <p class="country">Douala-Cameroun</p>
-                            <p class="start-frein">{% trans from  'detail-profile' %} sub.becomeFriends {% endtrans %} 05/11/12</p>
-                        </div>
-                    </div>
-
+              {#
+                <div class="col-12">
+                    {% trans from  'detail-profile' %} sub.commonFreinds {% endtrans %}
+                    <hr>
                 </div>
-            {% endfor %}
+                 {% for i in 1..2 %}
+                   <div class="col-sm-12 col-md-6 col  text-center img">
+                       <div class="card">
+                           <img src="{{ asset('data/img/empty.png') }}" alt="" class="card-img-top rounded">
+                           {% set  id ="action"~i %}
+                           <div class="card-block text-right">
+                               <div class="name">
+                                   <div class="rounded-circle"> </div>
+                                   <span class="state text-grey">connected</span>
+                                   <p><strong>Magatsin Martine</strong></p>
+                               </div>
+                               <p class="country">Douala-Cameroun</p>
+                               <p class="start-frein">{% trans from  'detail-profile' %} sub.becomeFriends {% endtrans %} 05/11/12</p>
+                           </div>
+                       </div>
+                   </div>
+               {% endfor %}
+              #}
         </div>
 
         <div class="row" id="friend-alone">
-            <div class="col-12">
-                {% trans from  'detail-profile' %} sub.discover {% endtrans %}
-                <hr>
-            </div>
-            {% for i in 1..8 %}
-                <div class="col-sm-12 col-md-6 col  text-center img">
-                    <div class="card">
-                        <img src="{{ asset('data/img/empty.png') }}" alt="" class="card-img-top rounded img_detail">
-                        {% set  id ="action"~i %}
-                        <div class="card-block text-right">
-                            <div class="name">
-                                <div class="rounded-circle"> </div>
-                                <span class="state text-grey">connected</span>
-                                <p><strong>Chef Sokoudjou christ</strong></p>
-                            </div>
-                            <p class="country">Douala-Cameroun</p>
-                            <button id="{{ i }}" type="button" class="bg-faded  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu"  aria-labelledby="{{ i }}">
-                                <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.profile {% endtrans %}</a>
-                                <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.published {% endtrans %}</a>
-                                <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.delete {% endtrans %}</a>
+            {#
+                <div class="col-12">
+                    {% trans from  'detail-profile' %} sub.discover {% endtrans %}
+                    <hr>
+                 </div>
+                {% for i in 1..8 %}
+                    <div class="col-sm-12 col-md-6 col  text-center img">
+                        <div class="card">
+                            <img src="{{ asset('data/img/empty.png') }}" alt="" class="card-img-top rounded img_detail">
+                            {% set  id ="action"~i %}
+                            <div class="card-block text-right">
+                                <div class="name">
+                                    <div class="rounded-circle"> </div>
+                                    <span class="state text-grey">connected</span>
+                                    <p><strong>Chef Sokoudjou christ</strong></p>
+                                </div>
+                                <p class="country">Douala-Cameroun</p>
+                                <button id="{{ i }}" type="button" class="bg-faded  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu"  aria-labelledby="{{ i }}">
+                                    <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.profile {% endtrans %}</a>
+                                    <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.published {% endtrans %}</a>
+                                    <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.delete {% endtrans %}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            #}
         </div>
 
 

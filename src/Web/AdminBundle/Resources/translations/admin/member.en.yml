@@ -6,6 +6,7 @@ member:
   unset_vip: Unset VIP
   set_locked: Block
   unset_locked: Unblock
+  delete_member: Delete
   th_property: Properties
   th_value: Values
   lbl_role: Member's role :
@@ -17,6 +18,7 @@ member:
   lbl_profession: Profession :
   lbl_country: Country:
   lbl_ipaddress: IP Address:
+  lbl_no_ip: Unavailable
   lbl_vip: Is VIP:
   lbl_blocked: Is Blocked:
   lbl_profession: Profession :

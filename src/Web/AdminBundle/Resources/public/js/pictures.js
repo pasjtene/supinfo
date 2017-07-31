@@ -11,6 +11,7 @@ var AdminPictures = function()
                 nb_pics: $("#nb-pics"),
                 loader: $('#pics-loader'),
                 mn_private_pics: $("#mn-private-pics"), 
+                mn_public_pics: $("#mn-public-pics"),
                 mn_delete_pics: $("#mn-delete-pics"),
                 pictures_view: $("#pictures-view"),
                 ul_pagination: $("#pics-pagination"),
@@ -26,7 +27,7 @@ var AdminPictures = function()
             action :
             {
                 pictures: baseUrl +"auth/pictures",
-                privatePictures: baseUrl + "auth/pictures/private"
+                changeVisibility: baseUrl + "auth/pictures/change"
             },
             method:
             {
@@ -83,7 +84,7 @@ $(function()
                                             '<div class="item-details">'+
                                                 '<div class="bp-details">'+
                                                     '<span><input type="checkbox" class="pics-chk" value="'+pic.id+'"/></span>'+
-                                                    '<a href="#" class="user-name">'+pic.user.fullname+'</a>'+
+                                                    '<a href="'+Routing.generate("admin_view_member", {_locale:locale,  id:pic.user.id})+'" class="user-name">'+pic.user.fullname+'</a>'+
                                                 '</div>'+
                                                 '<div class="bp-details">Visibilité : <b>'+pic.visibility+'</b></div>'+
                                                 '<div class="bp-details">Ajouté le : <b>'+app.parseDate(pic.createDate)+'</b></div>'+
@@ -121,6 +122,26 @@ $(function()
                 }
             }
         );
+    };
+
+    var changeState = function(data)
+    {
+        adminPictures.params.attr.id.loader.show();
+        $.ajax(
+        {
+            url: adminPictures.params.api.action.changeVisibility,
+            type: adminPictures.params.api.method.put,
+            headers: {"X-Auth-Token": tokenbase.value},
+            data: JSON.stringify(data),
+            crossDomain: true,
+            success: function (response) {
+                getPictures(page);
+            },
+            error: function (xhr, status, message) {
+                adminPictures.params.attr.id.loader.hide();
+                console.log(status + "\n" + xhr.responseText + '\n' + message);
+            }
+        });
     };
 
     if(adminPictures.params.page.data('page') === "adminHome")
@@ -178,22 +199,20 @@ $(function()
             if(t > 0)
             {
                 var data = {pictures: selectedPics, action: 0};
-                adminPictures.params.attr.id.loader.show();
-                $.ajax(
-                {
-                    url: adminPictures.params.api.action.privatePictures,
-                    type: adminPictures.params.api.method.put,
-                    headers: {"X-Auth-Token": tokenbase.value},
-                    data: JSON.stringify(data),
-                    crossDomain: true,
-                    success: function (response) {
-                        adminPictures.params.attr.id.loader.hide();
-                    },
-                    error: function (xhr, status, message) {
-                        adminPictures.params.attr.id.loader.hide();
-                        console.log(status + "\n" + xhr.responseText + '\n' + message);
-                    }
-                });
+                changeState(data);
+            }
+            e.preventDefault();
+        });
+
+        adminPictures.params.attr.id.mn_public_pics.click(function(e)
+        {
+            var selectedPics = getSelectedPics(),
+                t = selectedPics.length;
+
+            if(t > 0)
+            {
+                var data = {pictures: selectedPics, action: 1};
+                changeState(data);
             }
             e.preventDefault();
         });

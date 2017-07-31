@@ -32,10 +32,12 @@
             <a class="nav-link" data-toggle="tab" href="#blocmessage" role="tab">
                 {% trans from 'admin' %}admin.blocmessage.title {% endtrans %}</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#settings" role="tab">
-                {% trans from 'admin' %}admin.settings.title {% endtrans %}</a>
-        </li>
+        {% if app.user.isSuperAdmin %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#settings" role="tab">
+                    {% trans from 'admin' %}admin.settings.title {% endtrans %}</a>
+            </li>
+        {% endif %}
     </ul>
 
     <!-- Tab panes -->
@@ -57,8 +59,11 @@
         <div class="tab-pane" id="userdenounced" role="tabpanel">All user will be here, and the moderator can delete or mark as invalid</div>
         <div class="tab-pane" id="blocmessage" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>
         <div class="tab-pane" id="photosdenounced" role="tabpanel">All photos will be here, and the moderator can delete or mark as invalid</div>
+
+        {% if app.user.isSuperAdmin %}
         <div class="tab-pane" id="settings" role="tabpanel" data-tab="adminSettings">
             {% include 'AdminBundle:Tab:settings.html.twig' %}
         </div>
+        {% endif %}
     </div>
 </div>
