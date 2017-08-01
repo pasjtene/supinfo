@@ -107,9 +107,21 @@
       float: left;
       padding: 15px;
       width: 100%;
-      textarea.form-control {
-        height: 70px;
+      #message-text {
+        height: 80px;
         padding: 10px;
+        background-color: white;
+        border-radius: 6px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-width: 100%;
+        img{
+          max-height:30px;
+          max-width: 30px;
+        }
+      }
+      #message-text:focus{
+        border: solid 1px $highligt;
       }
       .chat_bottom {
         float: left;

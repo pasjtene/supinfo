@@ -161,7 +161,8 @@ var path =
         en: '/dist/country-en.json',
         fr: '/dist/country.json'
     },
-    flags: '/dist/flags/'
+    flags: '/dist/flags/',
+    emoticon : "/dist/emoticons/png"
 };
 appMain.getAppToken(function(data){
     //tokenbase = data.value;

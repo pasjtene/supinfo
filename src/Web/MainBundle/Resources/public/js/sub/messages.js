@@ -2,7 +2,7 @@ var MainSubMessages = function()
 {
     this.params = {
         page: $("#mainUserProfile"),
-        sub: $("#Main-Subdetail-profile"),
+        sub: $("#Main-Messages"),
         bg_action:$('#bg-action'),
         path: path.flags,
         api:{
@@ -18,7 +18,7 @@ var MainSubMessages = function()
             }
         },
         body:{
-
+            message_text: $('#Main-Messages #message-text')
         }
     };
 
@@ -31,6 +31,10 @@ $(function () {
 
     if(mainSubMessages.params.sub.data('sub')=="messages") {
 
+            mainSubMessages.params.body.message_text.keyup(function(){
+               translateEmotion(listEmoticons(),$(this),path.emoticon);
+
+            });
          function setOwnMessage(content) {
 
          }
@@ -300,14 +304,16 @@ $(function () {
 
         function getEmotions(path,icon)
         {
-            return path+icon;
+            return "<img src='"+path+icon+"'/>";
         }
 
-        function  translateEmotion(list,content,path){
+        function  translateEmotion(list,element,path){
            $.each(list, function(key, value)
            {
-               content.replace(key, getEmotions(path,value));
+                   element.html(element.html().replace(key, getEmotions(path,value)));
            });
+                element.selectionStart = element.html().length;
+                console.log(element.html());
         }
     }
 });
