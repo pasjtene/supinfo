@@ -1,0 +1,35 @@
+sub:
+  tabs:
+    add: Add photos
+    list:    List
+    profile: Profile List
+  img:
+    profile: Make profile photo
+    published: make public
+    private: Make private
+    delete: Delete
+    like: Like
+    error_ext: is not  allocated
+    error_size: is too big for upload. max sise(2Mo)
+  body:
+    close: Close
+    error_message: woh! Something  is wrong
+    success_message: Deleted successfully
+    confirm_message: Do you really want to delete this photo?
+    cancel_message: Canceled
+    setprofile:
+      success: your profile photo is changed
+      error: woh! Something  is wrong
+    published:
+      success: the profile visibilty  has changed
+      error:  woh! Something  is wrong
+    state :
+      private: private
+      public: Public since
+  modal:
+    name: Name
+    message: Message
+    state:
+      title: State
+      error : error
+      success: success

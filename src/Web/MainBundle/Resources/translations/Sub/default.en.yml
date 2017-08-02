@@ -1,0 +1,12 @@
+sub:
+  becomeFriends: You are friends
+  connected: Connected
+  noconnected: No connecteds
+  ask: Ask for friendship
+  commonFreinds: You have friends in common
+  discover: Discover other friends directly. Do you know?
+  success:
+    ask: Application successfully completed
+  error:
+    ask: The request was not successful
+  message: Tell a friend

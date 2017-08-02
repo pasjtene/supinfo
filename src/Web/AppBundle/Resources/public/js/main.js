@@ -4,15 +4,24 @@
 
 var baseUrl = api.baseUrl;
 var baseHost = api.baseHost;
+var appUrl = api.appUrl;
 
 var   AppMain = function()
 {
     this.params ={
+        page: $('.pageGeolocation'),
         api:{
             action :
             {find: baseUrl +"app"},
             method:
-            {get:"GET"}
+            {get:"GET"},
+            datype: "json",
+            geolocation:
+            {
+                action : baseUrl +"geolocation",
+                method: "get",
+                datype: "json"
+            }
         },
         required:{ //class de base  pour les erreurs et  succees
             has_danger: "has-danger",
@@ -108,6 +117,7 @@ var   AppMain = function()
                 url: this.params.api.action.find,
                 type: this.params.api.method.get,
                 crossDomain: true,
+                dataType:  this.params.api.datype,
                 success: function (data) {
                     console.log(data);
                     cb(data);
@@ -117,15 +127,62 @@ var   AppMain = function()
                 }
             }
         );
+    },
+    this.getGeolocation = function(cb)
+    {
+        $.ajax(
+            {
+                url: this.params.api.geolocation.action,
+                type: this.params.api.geolocation.method,
+                crossDomain: true,
+                dataType:  this.params.api.geolocation.datype,
+                success: function (data) {
+                    console.log(data);
+                    cb(data);
+                },
+                error: function (xhr, status, message) {
+                    geolocationbad = xhr.responseText;
+                    console.log(geolocationbad);
+                }
+            }
+        );
     }
+
 };
 
-
 var tokenbase =null;
+var geolocation =null;
+var geolocationbad =null;
 var appMain = new AppMain();
 
+var path =
+{
+    country: {
+        en: '/dist/country-en.json',
+        fr: '/dist/country.json'
+    },
+    flags: '/dist/flags/',
+    emoticon : "/dist/emoticons/png"
+};
 appMain.getAppToken(function(data){
     //tokenbase = data.value;
     tokenbase = data;
+    //geolocation = data.geolocation;
 });
 
+if(appMain.params.page.data('geolocation')=="geolocation"){
+appMain.getGeolocation(function(data){
+    geolocation = data;
+});
+
+}
+
+function getCountry(list, search){
+    for(var i=0; i<list.length;i++)
+    {
+        if(list[i].code ==search)
+        {
+            return list[i].value;
+        }
+    }
+}

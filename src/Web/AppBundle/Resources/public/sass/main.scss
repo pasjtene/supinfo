@@ -1,23 +1,61 @@
+$secondary-color : rgba(0,0,0,.125);
+$highligt: yellowgreen;
+
 body{
   overflow-x:hidden ;
 }
 #bg{
   display: none;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
-  background-color: whitesmoke;
+  background-color: rgba(0,0,0,0.5);
   z-index: 9999999999999999999999999999999999999999999999999999999999999999999999;
   #loading{
     position: relative;
     top: 150px;
-    left: 47% ;
   }
   #bloc_message{
     margin-top: 2em;
     position: relative;
-    left: -40px;
   }
+  #bg-notification{
+    img{
+      height: 100px;
+    }
+    #bg-success{
+        display: none;
+    }
+    #bg-error{
+       display: none;
+    }
+  }
+
+}
+
+#bg-action{
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 9999999999999999999999999999999999999999999999999999999999999999999999;
+  #loading-action{
+    position: relative;
+    top: 150px;
+  }
+}
+
+button{
+  cursor: pointer;
+}
+.isconnecd{
+   background-color: $highligt !important;
+}
+.isnotconnect{
+  background-color: $secondary-color !important;
 }

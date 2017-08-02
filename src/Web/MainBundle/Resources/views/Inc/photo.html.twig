@@ -1,18 +1,18 @@
 <div class="card" id="photo-request" data-inc="photo-request">
     <div class="card-block">
-        <h4 class="card-title"> <strong>{{ app.user.lastname~' '~app.user.firstname }}</strong>,</h4>
+        <h4 class="card-title"> <strong>{% trans from 'photo' %} body.welcome  {% endtrans %} {{ app.user.lastname~' '~app.user.firstname }}</strong>,</h4>
         <h6 class="card-subtitle mb-2 text-muted">{% trans from 'photo' %} body.title  {% endtrans %}</h6>
         <p class="card-text">{% trans from 'photo' %} body.content  {% endtrans %}  </p>
         <p class="text-muted">{% trans from 'photo' %} body.required  {% endtrans %}</p>
         <div class="container">
             <div class="" id="photoZone">
                 <div class="row justify-content-md-center">
-                    <div class="col-6">
+                    <div class="col-6" id="facebook-show">
                         <span class="fa fa-4x fa-facebook-official"></span>
                         <br>
                         <span>{% trans from 'photo' %} body.option.1  {% endtrans %}</span>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6" id="webcam-show">
                         <span class="fa fa-4x fa-camera"></span>
                         <br>
                         {% trans from 'photo' %} body.option.2  {% endtrans %}
@@ -35,4 +35,5 @@
         </div>
     </div>
     {% include "MainBundle:Modal:photo.html.twig" %}
+    {% include "MainBundle:Modal:webcam.html.twig" %}
 </div>

@@ -1,0 +1,10 @@
+settings:
+  title: Paramètres de Funglobe
+  lbl_upp: Nombre d'utilisateur par page :
+  lbl_pol: Nombre de point reçu après une connexion :
+  lbl_ppm: Nombre de point rétiré par message envoyé :
+  lbl_pfu: Nombre de point par photo uploadé :
+  lbl_dp: Nombre de point après inscription :
+  lbl_pfv: Nombre de point après changement de status pour VIP :
+  lbl_ppp: Nombre de photo par page :
+  btn_save: Enregistrer

@@ -2,6 +2,11 @@ member:
   title: Informations du membre
   page_title: Voir les informations du membre
   change_role: Modifier le role
+  set_vip: Définir VIP
+  unset_vip: Retirer VIP
+  set_locked: Bloquer
+  unset_locked: Débloquer
+  delete_member: Supprimer
   th_property: Propriétés
   th_value: Valeurs
   lbl_role: Rôle du membre :
@@ -10,6 +15,13 @@ member:
   lbl_gender: Genre :
   val_male: Masculin
   val_female: Feminin
+  lbl_country: Pays :
+  lbl_ipaddress: Adresse IP :
+  lbl_no_ip: Non disponible
+  lbl_vip: Membre VIP:
+  lbl_blocked: Membre Bloqué :
   lbl_profession: Profession :
   lbl_last_login: Date de dernière connexion :
   lbl_back_home : Retour
+  lbl_yes: Oui
+  lbl_no: Non

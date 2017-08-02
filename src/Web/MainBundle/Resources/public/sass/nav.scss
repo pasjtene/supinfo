@@ -1,5 +1,6 @@
 #profile-nav{
   #carousel{
+    display: none;
     margin-top: 4.7em;
     height: 112px;
     border: 4px solid $default-color;
@@ -13,5 +14,42 @@
       height: 75px;
     }
 
+  }
+}
+
+#toogleNav{
+    #dropdownMenuMessages-body{
+        position: fixed;
+        top: 48px;
+        left: 8%;
+    }
+
+    #dropdownMenuFreinds-body{
+      position: fixed;
+      top: 48px;
+      left: 9em;
+    }
+  .body{
+    max-height: 300px;
+    overflow-y: auto;
+    img{
+      height: 40px;
+      width: 40px;
+    }
+    .flag{
+      height: 20px;
+      width: 20px;
+    }
+    .preloader{
+      width: 100%;
+      display: none;
+    }
+  }
+  .all{
+      color: $default-color;
+  }
+  .all:hover{
+    text-decoration: underline;
+    color: $text-default;
   }
 }

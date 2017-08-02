@@ -28,3 +28,8 @@ reset:
   btnreset: Reinitialiser
   msgerror: Cliquez ici pour réinitialiser
   msgsuccess: Cliquez ici pour vous connecter
+locked:
+  title: Compte bloqué
+  msg: Impossible de vous connecter à votre compte
+  msgone: Votre compte a été bloqué par l'administrateur du système !
+  msgtwo:  Pour en savoir en plus, veuillez le contacter à l'addresse :

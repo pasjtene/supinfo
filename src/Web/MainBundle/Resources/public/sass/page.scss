@@ -20,6 +20,9 @@
     #file{
       display: none;
     }
+    #webcam-show span, #facebook-show span{
+      cursor: pointer;
+    }
     #uploadfile{
       margin: 2%;
       margin-top: 4%;

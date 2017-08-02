@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="modal fade" id="zoomImg" tabindex="-1" role="dialog" aria-labelledby="zoomImg" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" id="modal-content">
+                <div class="modal-header" style="display: none;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="" class="zoomImgSource img-thumbnail rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="chargement-photo" class="col text-center">
+        <img src="{{ asset('dist/loader.gif') }}" alt="">
+        <br>
+        <strong> {% trans from 'user-profile' %} loading {% endtrans %}</strong>
+    </div>
+    <div id="body-photo" class=" row col-12" data-help="{{ asset('data/img/empty.png') }}">
+        {#
+              {% for i in 1..1 %}
+           <div class="col-sm-12 col-md-4 col  text-center img">
+               <div class="card">
+                   <img src="{{ asset('data/img/empty.png') }}" alt="" class="card-img-top rounded">
+                   {% set  id ="action"~i %}
+                   <div class="card-block text-right">
+                       <div class="btn-group">
+                           <button class="btn-secondary btn-sm text-muted"  type="button"  aria-haspopup="true" aria-expanded="false">
+                               {% trans from  'photo' %} sub.body.see {% endtrans %} 11/11/11
+                           </button>
+                           <button id="{{ id }}" type="button" class="  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <span class="sr-only">Toggle Dropdown</span>
+                           </button>
+                           <div class="dropdown-menu"  aria-labelledby="{{ id }}">
+                               <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.profile {% endtrans %}</a>
+                               <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.published {% endtrans %}</a>
+                               <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.delete {% endtrans %}</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+           </div>
+       {% endfor %}
+        #}
+    </div>
+</div>

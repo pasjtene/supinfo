@@ -1,0 +1,43 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block meta %}
+    <meta name = "{% trans from 'login' %} refer.title {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'login' %} refer.description {% endtrans %}" >
+{% endblock %}
+
+{% block title %}
+    {% trans from 'login' %} locked.title {% endtrans %}
+{% endblock  %}
+
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+
+{% block header %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="row" id="mainLogin">
+        <div class="col-sm-12 offset-lg-2 col-lg-8" id="content-login">
+            <h2>{% trans from 'login' %} locked.msg {% endtrans %}</h2>
+            <br/>
+            <p>
+                <b>{% trans from 'login' %} locked.msgone {% endtrans %}</b>
+                <br/>
+                {% trans from 'login' %} locked.msgtwo {% endtrans %} <a href="mailto:contact@funglobe.com">contact@funglobe.com</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
+

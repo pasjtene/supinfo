@@ -13,3 +13,9 @@ body:
   drop: laissez tomber
   drag: Déposer ici
   processing:  Traitement  du  fichier
+  next: Continuer
+  webcam: C'est  simple avec votre webcam capturer et enregistrer
+  print: Capturer
+  save: Enregistrer
+  notification: Photo enregistrée avec succès !
+  welcome: Bienvenue

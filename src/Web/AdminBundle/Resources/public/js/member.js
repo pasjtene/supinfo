@@ -2,19 +2,20 @@
  * Created by root on 06/07/2017.
  */
 
-var AdminMember = function()
+var AdminMemberProfile = function()
 {
     this.params = {
-        page : $('#adminHome'),
+        page: $("#adminMember"),
         attr: {
             id:{
                 btn_role_action: $("#btn-role-action"),
                 cb_roles: $("#cb-roles"),
-                recipient_name: $('#recipient-name'),
-                email_title: $('#email-title'),
-                text_message: $("#message-text"),
-                btn_send_email: $('#btn-send-email'),
-                modal_email: $('#modal-email')
+                btn_status_member : $("#btn-status-member"),
+                btn_vip_member: $("#btn-vip-member"),
+                country: $('#mb-country'),
+                btn_delete_member: $('#btn-delete-member'),
+                user_ip: $("#user-ip"),
+                btn_block_ip: $("#btn-block-ip")
             },
             class:{
 
@@ -24,12 +25,17 @@ var AdminMember = function()
             action :
             {
                 update: baseUrl +"auth/member/",
-                bulk_email: baseUrl +"auth/send-email",
+                lock: baseUrl + "auth/members/lock",
+                vip: baseUrl + "auth/members/vip",
+                delete: baseUrl + "auth/members/delete/",
+                blockedIp: baseUrl + "auth/blocked-ip"
             },
             method:
             {
                 put:"PUT",
-                post: "POST"
+                post: "POST",
+                get: "GET",
+                delete: "DELETE"
             },
             headers:
             {auth: "X-Auth-Token"}
@@ -38,72 +44,45 @@ var AdminMember = function()
 
 };
 
+$(function()
+{
+    var adminMemberProfile = new AdminMemberProfile();
 
-
-$(function(){
-
-    // Instanciation  de la classe AdminMember
-    var adminMember = new AdminMember();
-
-    //Tester si  la page actuelle c'est adminMember
-    if(adminMember.params.page.data('page') === "adminHome")
+    var checkIp = function()
     {
-        CKEDITOR.replace('message-text');
+        var ip = adminMemberProfile.params.attr.id.user_ip.text();
 
-        adminMember.params.attr.id.modal_email.on('show.bs.modal', function (event)
+        $.ajax(
         {
-            var selecteUsers = getSelectedUsers(true),
-                t = selecteUsers.length;
-
-            if(t === 0)
-            {
-                adminMember.params.attr.id.recipient_name.val("");
-                adminMember.params.attr.id.btn_send_email.prop('disabled', true);
-            }
-            else
-            {
-                adminMember.params.attr.id.btn_send_email.prop('disabled', false);
-
-                var recipient = "";
-                for(var i = 0; i < t; i++){
-                    recipient += selecteUsers[i].value;
-                    recipient += i !== t-1 ? ", " : "";
+            url: adminMemberProfile.params.api.action.blockedIp + "?ip="+ip,
+            type: adminMemberProfile.params.api.method.get,
+            headers: {"X-Auth-Token": tokenbase.value},
+            crossDomain: true,
+            success: function (response) {
+                //console.log(response);
+                if(response.ip !== null){
+                    adminMemberProfile.params.attr.id.user_ip.addClass('text-danger');
                 }
-                adminMember.params.attr.id.recipient_name.val(recipient);
+            },
+            error: function (xhr, status, message) {
+                console.log(status + "\n" + xhr.responseText + '\n' + message);
             }
         });
+    };
 
-        adminMember.params.attr.id.btn_send_email.click(function(e)
-        {
-            var recipients = adminMember.params.attr.id.recipient_name.val(),
-                title = adminMember.params.attr.id.email_title.val(),
-                message = CKEDITOR.instances['message-text'].getData();
+    if(adminMemberProfile.params.page.data('page'))
+    {
+        var country = adminMemberProfile.params.attr.id.country.data('country');
 
-            if(recipients.length > 0 && message.length > 0)
-            {
-                var data = {recipients: recipients, title: title, message: message};
+        setTimeout(function(){
+            adminMemberProfile.params.attr.id.country.html("<img src='"+path.flags+country+".png' alt=''/> " + countries[country]);
+            checkIp();
+        }, 3000);
 
-                $.ajax({
-                    url: adminMember.params.api.action.bulk_email,
-                    type: adminMember.params.api.method.post,
-                    headers : {"X-Auth-Token" : tokenbase.value},
-                    data: data,
-                    crossDomain: true,
-                    success: function (response) {
-                        alert("Email sent successfully !");
-                    },
-                    error: function (xhr, status, message) {
-                        console.log(status+"\n"+xhr.responseText + '\n' + message );
-                    }
-                });
-            }
-            e.preventDefault();
-        });
-
-        adminMember.params.attr.id.btn_role_action.click(function(e)
+        adminMemberProfile.params.attr.id.btn_role_action.click(function(e)
         {
             var edit = parseInt($(this).data('edit')),
-                cb_roles = adminMember.params.attr.id.cb_roles;
+                cb_roles = adminMemberProfile.params.attr.id.cb_roles;
 
             if(edit === 0)
             {
@@ -121,13 +100,13 @@ $(function(){
                     var data = {role : cb_roles.val()};
 
                     $.ajax({
-                        url: adminMember.params.api.action.update + id + '/role',
-                        type: adminMember.params.api.method.put,
+                        url: adminMemberProfile.params.api.action.update + id + '/role',
+                        type: adminMemberProfile.params.api.method.put,
                         headers : {"X-Auth-Token" : tokenbase.value},
                         data: data,
                         crossDomain: true,
                         success: function (response) {
-                            alert("Member's changed successfully !");
+                            bootbox.alert("Member's changed successfully !");
                             cb_roles.data('role', data.role);
                         },
                         error: function (xhr, status, message) {
@@ -137,9 +116,106 @@ $(function(){
                 }
 
                 $(this).data('edit', 0).text('Change role');
-                adminMember.params.attr.id.cb_roles.prop('disabled', true);
+                adminMemberProfile.params.attr.id.cb_roles.prop('disabled', true);
             }
+
+            e.preventDefault();
+        });
+
+        adminMemberProfile.params.attr.id.btn_status_member.click(function(e)
+        {
+            var action = $(this).data('action'),
+                mid = $(this).data('mid');
+
+            var data = {members: mid, action: action};
+            $.ajax({
+                url: adminMemberProfile.params.api.action.lock,
+                type: adminMemberProfile.params.api.method.put,
+                headers : {"X-Auth-Token" : tokenbase.value},
+                data: data,
+                crossDomain: true,
+                success: function (response) {
+                    document.location.reload();
+                },
+                error: function (xhr, status, message) {
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                }
+            });
+        });
+
+        adminMemberProfile.params.attr.id.btn_vip_member.click(function(e)
+        {
+            var action = $(this).data('action'),
+                mid = $(this).data('mid');
+
+            var data = {members: mid, action: action};
+            $.ajax({
+                url: adminMemberProfile.params.api.action.vip,
+                type: adminMemberProfile.params.api.method.put,
+                headers : {"X-Auth-Token" : tokenbase.value},
+                data: data,
+                crossDomain: true,
+                success: function (response) {
+                    document.location.reload();
+                },
+                error: function (xhr, status, message) {
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                }
+            });
+        });
+
+        adminMemberProfile.params.attr.id.btn_delete_member.click(function(e)
+        {
+            var mid = $(this).data('mid');
+
+            bootbox.confirm("You really want to delete this user ?", function(confirm)
+            {
+               if(confirm)
+               {
+                   $.ajax({
+                       url: adminMemberProfile.params.api.action.delete + mid,
+                       type: adminMemberProfile.params.api.method.delete,
+                       headers : {"X-Auth-Token" : tokenbase.value},
+                       crossDomain: true,
+                       success: function (users) {
+                            window.location = Routing.generate('admin_home', {_locale: locale});
+                       },
+                       error: function (xhr, status, message) {
+                           console.log(status+"\n" + message );
+                       }
+                   });
+               }
+            });
+        });
+
+        adminMemberProfile.params.attr.id.btn_block_ip.click(function(e)
+        {
+            var ip = $(this).data('ip');
+
+            $.ajax(
+            {
+                url: adminMemberProfile.params.api.action.blockedIp,
+                type: adminMemberProfile.params.api.method.post,
+                headers: {"X-Auth-Token": tokenbase.value},
+                data: JSON.stringify({ip: ip}),
+                crossDomain: true,
+                success: function (response) {
+                    //console.log(response);
+                    if(response.code === 0){
+                        bootbox.alert('The IP address is already blocked !');
+                    }
+                    else{
+                        bootbox.alert('The IP address has been blocked successfully !');
+                        adminMemberProfile.params.attr.id.user_ip.addClass('text-danger');
+                    }
+                },
+                error: function (xhr, status, message) {
+                    console.log(status + "\n" + xhr.responseText + '\n' + message);
+                }
+            });
+
             e.preventDefault();
         });
     }
+
 });

@@ -8,6 +8,8 @@
 
 namespace Web\AppBundle\Tools;
 
+use Web\AppBundle\Entity\Geolocation;
+use Web\AppBundle\Entity\ip2locationlite;
 use Web\AppBundle\Entity\User;
 use Doctrine\ORM\NoResultException;
 use Psr\Container\ContainerInterface;
@@ -156,6 +158,7 @@ class FunglobeUserProvider implements UserProviderInterface
     {
         if (! is_null($data))
         {
+
             $obj = new User();
 
             $obj->setToken($data->value);
@@ -188,6 +191,46 @@ class FunglobeUserProvider implements UserProviderInterface
             $obj->setRoles($data->user->roles);
             $obj->setEnabled($data->user->enabled);
             $obj->setPasswordRequestedAt($data->user->passwordRequestedAt);
+
+
+            //recuperer les information  concernant la ville et le pays du  user.
+
+            // 1- instanciation de la classe
+           // $ipLite = new ip2locationlite();
+
+            // 2- set  la cle
+          //  $ipLite->setKey('b155f2730de74d66e36cdd82662dc276adb6f90473ac2c8bff03de4f7a575d6e');
+
+            //3- recuperer le location
+            //$locations = $ipLite->getCountry('41.202.219.77');
+           // $locations = $ipLite->getCity($obj->getIp());
+
+            // 4- recuperer l'erreur
+           // $errors = $ipLite->getError();
+
+            //recuperer les information en cas de success
+           // $geolocation = new Geolocation();
+
+
+         /*   if (!empty($locations) && is_array($locations)) {
+               $geolocation->setIpAddress($locations["ipAddress"]);
+               $geolocation->setCountryCode($locations["countryCode"]);
+               $geolocation->setCountryName($locations["countryName"]);
+               $geolocation->setRegionName($locations["regionName"]);
+               $geolocation->setCityName($locations["cityName"]);
+               $geolocation->setLatitude($locations["latitude"]);
+               $geolocation->setLongitude($locations["longitude"]);
+               $geolocation->setTimeZone($locations["timeZone"]);
+
+                // on set  le user avec tous les infos
+                $obj->setGeolocation($geolocation);
+
+            }
+            else{
+                //FunglobeUtils::dump($errors);
+            }
+         */
+
 
             return $obj;
         }

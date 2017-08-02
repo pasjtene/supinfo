@@ -11,12 +11,11 @@ namespace Web\AppBundle\Inc;
 
 //Creer un fichier parameters.php avec le contenu suivant
 //la variable baseUrl doit corespondre a l'URL de l'API
-class Parameters
+class Parameters_dist
 {
 
     /**
      * @var string
      */
-
     public static  $baseUrl = 'http://localhost/api/v1/';
 }

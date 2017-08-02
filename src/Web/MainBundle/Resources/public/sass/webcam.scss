@@ -1,0 +1,14 @@
+#webcam-modal{
+  .webcam-block-video div, .webcam-block-img div{
+    max-width: 100%;
+    height: 270px;
+    border: solid 2px $secondary-color;
+  }
+  #webcam-loader{
+    height: 40px;
+    display: none;
+  }
+  #webcam-notification{
+    display: none;
+  }
+}

@@ -1,0 +1,25 @@
+sub:
+  chat:
+    title: You dialogue with
+    placeholder: Write your message here ...
+  invitation:
+    title: Reply to number invitations
+    view: View sent invitations
+    message: Message
+    action: Action
+    delete: Delete invitation
+    block: Block  user
+    confirm: Confirm
+    common: You have number friends in common
+    common_no: You have no friends in common
+    accept: You are currently friends with
+    refuse: The request for invitation was deleted
+    error: An error occurs during the processing of the request. You can retrieve later
+  noFriend:
+    title: Do you  now ...
+    placeholder: Find people by name or email address
+    delete: Delete
+    add: Add
+    message: Message
+    common: You have number friends in common
+

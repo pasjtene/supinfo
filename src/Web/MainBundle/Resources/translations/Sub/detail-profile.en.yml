@@ -1,0 +1,23 @@
+sub:
+  vips: Vips
+  friends: Friends
+  photos: Photos
+  profession: Profession
+  reason: Raison
+  writeMessage: Write a message
+  noFriend: You are not a friend yet
+  ask: Ask for friendship
+  about: About  me
+  fullname: Full name
+  sex: Sex
+  country: Country
+  city: City
+  phones: Phone numbers
+  age: Age
+  commonFreinds: You have friends in common
+  becomeFriends: You are friends
+  discover: Discover other friends directly. Do you know?
+  success:
+    ask: Application successfully completed
+  error:
+    ask: The request was not successful

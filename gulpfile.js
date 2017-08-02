@@ -18,6 +18,7 @@ var concat = require('gulp-concat');
 var jsPaths = [
     './web/bundles/app/js/*.js',
     './web/bundles/main/js/*.js',
+    './web/bundles/main/js/sub/*.js',
     './web/bundles/admin/js/*.js'
 ];
 
@@ -93,6 +94,13 @@ var imageTask = function()
         .pipe(copy('./web/data/img', {prefix: 5}));
 };
 
+var audioTask = function()
+{
+    console.log("Audio copy's successfull !");
+    return gulp.src('./web/bundles/*/audio/*')
+        .pipe(copy('./web/data/audio', {prefix: 5}));
+};
+
 var uglifyTask = function()
 {
     gulp.src(jsPaths)
@@ -166,6 +174,11 @@ gulp.task('img', ['installAssets'], function ()
     currentTask = 'img';
 });
 
+gulp.task('audio', ['installAssets'], function ()
+{
+    currentTask = 'audio';
+});
+
 gulp.task('js', ['installAssets'], function()
 {
     currentTask = 'js';
@@ -181,6 +194,20 @@ gulp.task('file', ['installAssets'], function()
 {
     currentTask = 'file';
 });
+
+gulp.task('all', ['installAssets'], function()
+{
+    currentTask = 'all';
+});
+
+gulp.task('allprod', ['installAssets'], function()
+{
+    currentTask = 'allprod';
+});
+
+
+
+
 
 // Without this function exec() will not show any output
 var logStdOutAndErr = function (err, stdout, stderr)
@@ -206,9 +233,29 @@ var logStdOutAndErr = function (err, stdout, stderr)
     {
         return imageTask();
     }
+    else if(currentTask === 'audio')
+    {
+        return audioTask();
+    }
     else if(currentTask === 'file')
     {
         uglifyTask();
+    }
+    else if(currentTask === 'all')
+    {
+        sassTask();
+        concatJsTask();
+        paramsTask();
+        imageTask();
+        audioTask();
+    }
+    else if(currentTask === 'allprod')
+    {
+        sassTask();
+        concatJsTask();
+        paramsTask();
+        imageTask();
+        audioTask();
     }
 };
 

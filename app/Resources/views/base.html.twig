@@ -53,7 +53,38 @@
     </head>
     <body>
 
-<!-- block  reserv�  pour l'entete -->
+
+    <!-- baground en  cas devenement  dans le front-offcie -->
+    <div id="bg-action">
+        <div id="loading-action" class="row">
+            <div class="col-12 text-center">
+                <img src="{{ asset('data/img/loading2.gif') }}" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- baground en  cas d"evenement -->
+    <div id="bg">
+        <div id="loading" class="row">
+            <div class="col-12 text-center">
+                <img src="{{ asset('data/img/loading3.gif') }}" alt="">
+                <div id="bloc_message" class='text-info'>
+
+                </div>
+                <div id="bg-notification">
+                    <div id="bg-success">
+                        <img src="{{ asset('data/img/success1.png') }}" alt="">
+                    </div>
+                    <div id="bg-error">
+                        <img src="{{ asset('data/img/error.png') }}" alt="">
+                    </div>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- block  reserv�  pour l'entete -->
 {% block header %}{% endblock %}
 <!-- reserv� pour les notifications -->
 {% block flash %}
@@ -72,18 +103,6 @@
 
 {% endblock %}
 <div id="body">
-
-    <!-- baground en  cas d"evenement -->
-    <div id="bg">
-        <div id="loading">
-            <img src="{{ asset('data/img/loading3.gif') }}" alt="">
-            <div id="bloc_message" class='text-info'>
-
-            </div>
-        </div>
-    </div>
-
-
     <!-- reserv� pour le contenu  de la page -->
     {% block content %}
 
@@ -99,6 +118,7 @@
 <script>
     // get locale
     locale = "{{ app.request.locale }}";
+    pathBase = location.host; //"{{ app.request.baseUrl }}";
     // get route
     route = "{{ route }}";
     // url  courant
@@ -127,7 +147,18 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugin/bootstrap/js/bootstrap.js') }}"></script>
 
+    <!-- Font Awesome -->
+
     <script src="{{ asset('plugin/datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('plugin/bootbox/bootbox.min.js') }}"></script>
+
+   {#
+    <script src="{{ asset('plugin/confirm-custom-labels.js') }}"></script>
+     <script src="{{ asset('plugin/bootbox/alert-simple.js') }}"></script>
+    <script src="{{ asset('plugin/bootbox/alert-callback.js') }}"></script>
+    <script src="{{ asset('plugin/bootbox/alert-custom-label.js') }}"></script>
+    <script src="{{ asset('plugin/bootbox/confirm-simple-label.js') }}"></script>
+   #}
 
 
 
@@ -140,9 +171,33 @@
             var currentUser = {
                 id : '{{ app.user.id }}',
                 token : '{{ app.user.token }}',
-                name : '{{ app.user.firstname }}' + ' ' + '{{ app.user.lastname }}'
-            }
+                ip: '{{ app.user.ip }}',
+                name : '{{ app.user.lastname }}' + ' ' + '{{ app.user.firstname }}',
+                country: '{{ app.user.country }}'
+                }
+
         {% endif %}
+
+    {#
+
+    /* geolocation: {
+                        ipAddress : '{{ app.user.geolocation.ipAddress }}',
+                        countryName : '{{ app.user.geolocation.countryName }}',
+                        countryCode : '{{ app.user.geolocation.countryCode }}',
+                        regionName : '{{ app.user.geolocation.regionName }}',
+                        cityName : '{{ app.user.geolocation.cityName }}'
+                     }*/
+
+    #}
+    //recuperer la liste des pays et  leurs codes
+    var  countryList = [];
+    var pathCountry = {% if app.request.locale=="fr" %} '{{ asset("dist/country.json") }}' {% else %} '{{ asset("dist/country-en.json") }}' {% endif %};
+    $.getJSON(pathCountry, function(data){
+        $.each(data,function(index,vaue){
+            countryList.push({"code": index, "value":vaue});
+        });
+    });
+
         // le chemin par defaut pour le projet
         baseRoute = Routing.generate('main_homepage',{_locale:locale},true);
     </script>
@@ -170,6 +225,25 @@
         Translator.transChoice('key', 123, { "foo" : "bar" }, 'DOMAIN_NAME');
 
      -->
+
+    <!-- solution  pour le modale (bootbox) -->
+
+    <script>
+        // comment utiliser un alert
+        //bootbox.alert("Custom label text!", function(result){});
+        //comment utiliser confirm
+       /* bootbox.confirm("Custom label text!", function(result){
+            if(result){
+                console.log("ok ");
+            }
+            else{
+                console.log("cancel")
+            }
+        });
+        */
+    </script>
+
+    <!-- end bootbox -->
 
     {% block myjs %}{% endblock %}
 {% endblock %}

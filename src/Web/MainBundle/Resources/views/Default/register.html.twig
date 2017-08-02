@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block mainLg %}
-<div class="row" id="mainContentLg">
+<div class="row pageGeolocation" id="mainContentLg" data-geolocation="geolocation">
     <div class="container">
     <div class="row" id="mainRegister" data-page="mainRegister">
 
@@ -98,10 +98,9 @@
                               <div class="form-group row" id="block-country">
                                   <label for="country" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.country {% endtrans %}*</label>
                                   <div class="col-sm-12 col-lg-9" id="block-email">
-                                      <input data-country="{{ asset('dist/country.json') }}" class="form-control" type="text" id="country" list="countryList" placeholder="{% trans from 'register' %} form.placeholder.country {% endtrans %}">
-                                      <datalist id="countryList">
-
-                                      </datalist>
+                                      <select data-country="{% if app.request.locale=='fr' %}{{ asset('dist/country.json') }} {% else %} {{ asset('dist/country-en.json') }}{% endif %}" class="form-control" type="text" id="country">
+                                          <option  value="">{% trans from 'register' %} form.placeholder.country {% endtrans %}</option>
+                                      </select>
                                       <div class="form-control-feedback">{% trans from 'register' %} form.required.country {% endtrans %}</div>
                                   </div>
                               </div>

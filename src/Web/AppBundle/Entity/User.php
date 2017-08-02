@@ -24,6 +24,23 @@ class User extends BaseUser
      */
     protected $id;
 
+
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Geolocation",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
+    protected $geolocation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ip", type="string", length=255, nullable=true)
+     */
+    private $ip;
+
+
     /**
      * @var string
      *
@@ -154,6 +171,8 @@ class User extends BaseUser
      */
     private $token;
 
+
+
     /**
      * @var array
      *
@@ -185,6 +204,29 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+
+    /**
+     * Get ip
+     *
+     * @return string
+     */
+    public function getIp()
+    {
+        // IP si internet partagé
+        if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+            $this->ip= $_SERVER['HTTP_CLIENT_IP'];
+        }
+        // IP derrière un proxy
+        elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $this->ip= $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        // Sinon : IP normale
+        else {
+            $this->ip= (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
+        }
+        return $this->ip;
     }
 
 
@@ -636,5 +678,40 @@ class User extends BaseUser
         }
 
         return true;
+    }
+
+    /**
+     * Set ip
+     *
+     * @param string $ip
+     *
+     * @return User
+     */
+    public function setIp($ip)
+    {
+        $this->ip = $ip;
+
+        return $this;
+    }
+
+    /**
+     * Set geolocation
+     *
+     * @return User
+     */
+    public function setGeolocation( $geolocation)
+    {
+        $this->geolocation = $geolocation;
+
+        return $this;
+    }
+
+    /**
+     * Get geolocation
+     *
+     */
+    public function getGeolocation()
+    {
+        return $this->geolocation;
     }
 }

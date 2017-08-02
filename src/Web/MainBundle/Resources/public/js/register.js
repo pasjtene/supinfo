@@ -8,6 +8,7 @@ var MainRegister = function()
         page : $('#mainRegister'),
         modalSave: $("#modalSave"),
         modal_body : $("#modalSave .modal-body center"),
+        bg_action:$('#bg-action'),
         form: {
             name : $("#name"),
             email : $("#email"),
@@ -63,67 +64,65 @@ $(function(){
     //instancier la classe MainRegister
     var mainRegister = new MainRegister();
 
-
-    //fonction de verifications des valeurs saisies par l'utilisateur
-    function verify(user)
-    {
-        var appMain = new AppMain();
-        var  test= false;
-        test= appMain.function.notValid(user.firstname,3,100);
-        if(test){
-            return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= notValidMail(user.email);
-        if(test){
-            return  $("#"+mainRegister.params.required.email.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= appMain.function.notValid(user.country,1,100);
-        if(test){
-            return  $("#"+mainRegister.params.required.country.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= appMain.function.notValid(mainRegister.params.form.day.val(),1,10);
-        if(test){
-            return  $("#"+mainRegister.params.required.day.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= appMain.function.notValid(mainRegister.params.form.month.val(),1,10);
-        if(test){
-            return  $("#"+mainRegister.params.required.month.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= appMain.function.notValid(mainRegister.params.form.year.val(),1,10);
-        if(test){
-            return  $("#"+mainRegister.params.required.year.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-        test= appMain.function.notValid(user.gender,1,8);
-        if(test){
-            return  $("#"+mainRegister.params.required.gender.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-        test= appMain.function.notValid(user.joinReason,1,100);
-        if(test){
-            return  $("#"+mainRegister.params.required.reason.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-        test= appMain.function.notValid(user.password,5,100);
-        if(test){
-            return  $("#"+mainRegister.params.required.password.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-
-       /* test= notConfirm(mainRegister.params.form.confirmpassword,mainRegister.params.form.password);
-        if(test){
-            return  $("#"+mainRegister.params.required.confirmpassword.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-        }
-        */
-        return test;
-    }
-
     //tester si  nous somme dans la page d'enregistrement
     if(mainRegister.params.page.data('page')=="mainRegister")
     {
 
+        //fonction de verifications des valeurs saisies par l'utilisateur
+        function verify(user)
+        {
+            var appMain = new AppMain();
+            var  test= false;
+            test= appMain.function.notValid(user.firstname,3,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= notValidMail(user.email);
+            if(test){
+                return  $("#"+mainRegister.params.required.email.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(user.country,1,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.country.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(mainRegister.params.form.day.val(),1,10);
+            if(test){
+                return  $("#"+mainRegister.params.required.day.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(mainRegister.params.form.month.val(),1,10);
+            if(test){
+                return  $("#"+mainRegister.params.required.month.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(mainRegister.params.form.year.val(),1,10);
+            if(test){
+                return  $("#"+mainRegister.params.required.year.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(user.gender,1,8);
+            if(test){
+                return  $("#"+mainRegister.params.required.gender.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+            test= appMain.function.notValid(user.joinReason,1,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.reason.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+            test= appMain.function.notValid(user.password,5,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.password.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            /* test= notConfirm(mainRegister.params.form.confirmpassword,mainRegister.params.form.password);
+             if(test){
+             return  $("#"+mainRegister.params.required.confirmpassword.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+             }
+             */
+            return test;
+        }
 
 
         //donner le focus au chargement  de la page au  champs name
@@ -133,16 +132,48 @@ $(function(){
        // mainRegister.params.form.birthday.datepicker();
 
 
+        var intervalbad =setInterval(function(){
+            if(geolocationbad !=null )
+            {
+                //console.log("bad : " + geolocationbad);
+                //il faut  marcher
+                //charger la liste des pays
+                $.getJSON(mainRegister.params.form.country.data("country"), function(data){
+                    //mainRegister.params.form.country.empty();
+                    $.each(data,function(index,value){
+                        var option = "<option  value='"+index+"'>"+value+"</option>";
+                        mainRegister.params.form.country.append(option);
+                    });
+                });
+                clearInterval(intervalbad);
+            }
+        },100);
+
+
+
        // alert(mainRegister.params.form.country.data("country"))
 
-        //charger la liste des pays
-        $.getJSON(mainRegister.params.form.country.data("country"), function(data){
-            mainRegister.params.form.countryList.empty();
-            $.each(data,function(index,vaue){
-                    var option = "<option value='"+index+"'>"+vaue+"</option>"
-                    mainRegister.params.form.countryList.append(option);
-            });
-        });
+        var interval =setInterval(function(){
+                if(countryList!=null && geolocation!=null)
+                {
+                    //console.log(geolocation);
+                    $.each(countryList,function(index,value){
+                      // console.log(value.value, value.code);
+                        if(value.code==geolocation.countryCode || value.value==geolocation.countryName || value.code == geolocation.countryName ||  value.value ==geolocation.countryCode )
+                        {
+                            console.log("the same country --- user country : "+ geolocation.countryName + " => select country : "+value.value);
+                            var option = "<option selected value='"+value.code+"'>"+value.value+"</option>"
+                        }
+                        else
+                        {
+                            var option = "<option  value='"+value.code+"'>"+value.value+"</option>"
+                        }
+
+                        mainRegister.params.form.country.append(option);
+                    });
+                    clearInterval(interval);
+                }
+        },100);
 
         //charger tous les jours
         /*for(var i= 1;i<32;i++)
@@ -211,13 +242,13 @@ $(function(){
                 confirm: confirm,
                 locale:locale,
                 urlPassword: Routing.generate("main_forgot_password",{_locale:locale}, true)
-            }
+            };
 
             //instanicier le user et  charger avec les valeurs de la bd
             var User =
             {
                 firstname: mainRegister.params.form.name.val(),
-                birthDate: mainRegister.params.form.day.val()+"/"+mainRegister.params.form.month.val()+"/"+mainRegister.params.form.year.val(),
+                birthDate: mainRegister.params.form.day.val()+"-"+mainRegister.params.form.month.val()+"-"+mainRegister.params.form.year.val(),
                 profession: mainRegister.params.form.profession.val(),
                 type: "Normal",
                 joinReason: mainRegister.params.form.reason.val(),
@@ -248,10 +279,11 @@ $(function(){
             } else {
                // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
-
+               //alert(User.birthDate);
                 //console.log(params);
                 //alert(params);
-                mainRegister.params.modalSave.modal('show');
+               // mainRegister.params.modalSave.modal('show');
+                mainRegister.params.bg_action.fadeIn();
                 // implementer l'enregistrement  proprement  dit avec ajax
                 $.ajax(
                     {
@@ -262,8 +294,8 @@ $(function(){
                         data: User,
                         success: function (data) { //lorsque tout c'est bien passe
 
-                            mainRegister.params.modal_body.empty();
-                            mainRegister.params.modal_body.text(mainRegister.params.modalSave.data('confirm'));
+                           // mainRegister.params.modal_body.empty();
+                            //mainRegister.params.modal_body.text(mainRegister.params.modalSave.data('confirm'));
                             //mainRegister.params.modalSave.modal('hide');
                             //redirect  here
                             console.log(data);
@@ -339,7 +371,7 @@ $(function(){
         });
 
         // 3- validation du champs county
-        mainRegister.params.form.country.keyup(function(){
+        mainRegister.params.form.country.change(function(){
             appMain.function.validate(mainRegister.params.required.country,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.country,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.country,appMain.params.required.form_control_feedback,1,100);
         });
 
