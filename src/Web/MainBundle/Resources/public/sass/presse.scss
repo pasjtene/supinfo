@@ -7,6 +7,40 @@
   text-align: justify;
   font-size: 1.1em;
 }
+  .message_on_image{
+    position: absolute;
+    z-index: 2;
+    padding-top: 5%;
+    width: 100%;
+    padding-left: 10%;
+    color: white;
+    background: rgba(black, 0.3);
+    height: 100%;
+    font-size: 50px;
+    font-weight: bolder;
+  }
+  .centre{
+    text-align: center;
+  }
+  .message_and_image {
+    height: 450px;
+    border: 2px solid white;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+  #top_img {
+    /*visibility: hidden;*/
+    position: relative;
+    z-index: 1;
+    /*opacity: 0.1;*/
+    background: rgba(black, 0.5);
+  }
+  #about_top {
+    /*opacity: 0.1;*/
+    background: rgba(black, 0.1);
+  }
 
 #bat2{
   text-align: justify;

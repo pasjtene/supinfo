@@ -19,25 +19,29 @@
 {% block header %}
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
-<div id="main_job">
-        <div class="taille">
+{% endblock %}
+{% block  mainLg %}
+    <div id="main_job">
+    <div class="message_and_image">
+        <div class="message_on_image centre">{% trans from 'job' %} job.block77 {% endtrans %}</div>
+        <div id="about_top" style="background-image:url('{{ asset('data/img/job2.jpg') }}')">
+            <img  id="top_img" src="{{ asset('data/img/job2.jpg') }}" alt="">
+            {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+        </div>
+    </div>
+    <div class="1taille">
         <div class="container-fluid ban text-center">
-        <img  class="banner_im" src="{{ asset('data/img/job2.jpg') }}" alt="">
-        <div>
-            <a href=""><button type="button" class="btn btn-info">{% trans from 'job' %}  job.block1 {% endtrans %}</button></a>
-            <button type="button" class="btn btn-success">{% trans from 'job' %}  job.block2 {% endtrans %}</button>
-            <button type="button" class="btn btn-warning">{% trans from 'job' %}  job.block3 {% endtrans %}</button>
-            <button type="button" class="btn btn-warning">{% trans from 'job' %}  job.block4 {% endtrans %}</button>
-            <button type="button" class="btn btn-success">{% trans from 'job' %}  job.block5 {% endtrans %}</button>
-            <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block6 {% endtrans %}</button>
+            <img  class="1banner_im" src="{{ asset('data/img/job22.jpg') }}" alt="">
+            <div>
+                <a href=""><button type="button" class="btn btn-info">{% trans from 'job' %}  job.block1 {% endtrans %}</button></a>
+                <button type="button" class="btn btn-success">{% trans from 'job' %}  job.block2 {% endtrans %}</button>
+                <button type="button" class="btn btn-warning">{% trans from 'job' %}  job.block3 {% endtrans %}</button>
+                <button type="button" class="btn btn-warning">{% trans from 'job' %}  job.block4 {% endtrans %}</button>
+                <button type="button" class="btn btn-success">{% trans from 'job' %}  job.block5 {% endtrans %}</button>
+                <button type="button" class="btn btn-info">{% trans from 'job' %}  job.block6 {% endtrans %}</button>
             </div>
         </div>
-        </div>
-        </div>
-{% endblock %}
-
-{% block main %}
-    <div id="main_job">
+    </div>
         <div class="row   espace">
             <div class ="col-sm-12 col  col-lg-3" >
             </div>
