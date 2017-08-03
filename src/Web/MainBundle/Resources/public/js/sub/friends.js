@@ -85,6 +85,15 @@ $(function(){
 
         });
 
+        mainSubFriends.params.ask.body.on('click',".confirm",function(e){
+            e.preventDefault();
+            accept($(this).data('id'), currentUser.id,$('#Main-Subfriends #Main-Subfriends-ask .body #'+$(this).data('preloader')));
+        });
+
+        mainSubFriends.params.ask.body.on('click',".decline",function(e){
+            e.preventDefault();
+            decline($(this).data('id'), currentUser.id,$(this).data('decision'),$('#Main-Subfriends #Main-Subfriends-ask .body #'+$(this).data('preloader')));
+        });
 
         function setInvitation(element, list)
         {
@@ -103,7 +112,7 @@ $(function(){
                     block = Translator.trans('sub.invitation.block', {}, 'friends'),
                     ignore = Translator.trans('sub.invitation.ignore', {}, 'friends'),
                     id = 'module'+request.id;
-                datapreloader = "Invitationpreoloader"+list[i].request.id;
+                var datapreloader = "Invitationpreoloader"+list[i].request.id;
                 var preloader ="<img id='"+datapreloader+"' class='sm-img preloader' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
                 deletes = Translator.trans('sub.invitation.delete', {}, 'friends');
                     if(request.receiver.id==currentUser.id)
@@ -144,13 +153,13 @@ $(function(){
                                          '<h4 class="card-title">'+friends.fullname+' </h4>'+
                                          '<p class="card-text text-muted message-text" >'+request.message+'</p>'+
                                          '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
-                                         '<a href="#" data-id="'+request.id+'" class="btn btn-sm btn-primary confirm">'+confirm+'</a>'+
+                                         '<a href="#" data-id="'+request.id+'" class="btn btn-sm btn-primary confirm" data-preloader="'+datapreloader+'">'+confirm+'</a>'+
                                          '<a href="#" data-id="'+request.id+'" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success message"><span class="fa fa-comment"></span>'+message+'</a>'+
-                                         '<a href="#" class="btn btn-sm btn-danger dropdown-toggle" id="'+id+'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+action+'</a>'+
+                                         '<a href="#" class="btn btn-sm btn-danger dropdown-toggle" id="'+id+'" data-preloader="'+datapreloader+'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+action+'</a>'+
                                             '<div class="dropdown-menu" aria-labelledby="'+id+'" style="line-height: 1rem;">'+
-                                                '<a class="dropdown-item decline" data-id="'+request.id+'" data-decision="2" href="#">'+deletes+'</a>'+
-                                                '<a class="dropdown-item decline" data-id="'+request.id+'" data-decision="3"  href="#">'+block+'</a>'+
-                                                '<a class="dropdown-item decline" data-id="'+request.id+'" data-decision="4" href="#">'+ignore+'</a>'+
+                                                '<a class="dropdown-item decline" data-preloader="'+datapreloader+'" data-id="'+request.id+'" data-decision="2" href="#">'+deletes+'</a>'+
+                                                '<a class="dropdown-item decline" data-preloader="'+datapreloader+'" data-id="'+request.id+'" data-decision="3"  href="#">'+block+'</a>'+
+                                                '<a class="dropdown-item decline" data-preloader="'+datapreloader+'" data-id="'+request.id+'" data-decision="4" href="#">'+ignore+'</a>'+
                                             '</div>'+
                                             preloader+
                                     '</div>'+
@@ -182,13 +191,15 @@ $(function(){
                 dataType:  mainUserProfile_friends.params.api.base.type,
                 success: function(response){
                     //charger les les notifications
-                    if(response.listRecievers!=null && response.listRecievers!="null"  && response.listRecievers!="undefined")
+                    console.log(response);
+                    if(response.recievers!=null && response.recievers!="null"  && response.recievers!="undefined")
                     {
-                        setInvitation(mainSubFriends.params.ask.body, response.listRecievers);
+                        setInvitation(mainSubFriends.params.ask.body, response.recievers);
+                        preloader.fadeOut();
+                        trans = Translator.trans('sub.invitation.accept',{},"friends")+' '+response.user.fullname;
+                        bootbox.alert(trans,function(){});
                     }
-                    preloader.fadeOut();
-                    trans = Translator.trans('sub.invitation.accept',{},"friends")+' '+response.user.fullname;
-                    bootbox.alert(trans,function(){});
+
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
