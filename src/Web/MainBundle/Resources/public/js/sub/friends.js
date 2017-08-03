@@ -141,6 +141,13 @@ $(function(){
             mainSubFriends.params.send.head.div.fadeIn();
         });
 
+        // accepter les demandes d'amitiers
+        mainSubFriends.params.send.body.on('click',".delete",function(e){
+            e.preventDefault();
+            var preloader = $('#Main-Subfriends #Main-Subfriends-send .body #'+$(this).data('preloader'));
+            deleteInvitation($(this).data('id'), currentUser.id,preloader);
+        });
+
 
         // afficher la liste de  invitattions
         mainSubFriends.params.send.head.a.click(function(e){
@@ -168,7 +175,7 @@ $(function(){
                     ignore = Translator.trans('sub.invitation.ignore', {}, 'friends'),
                     id = 'module'+request.id;
                 var datapreloader = "Invitationpreoloader"+list[i].request.id;
-                var preloader ="<img id='"+datapreloader+"' class='sm-img preloader' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
+                var preloader ="<img id='"+datapreloader+"' class='sm-img preloader pull-right' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
                var  deletes = Translator.trans('sub.invitation.delete', {}, 'friends');
                     if(request.receiver.id==currentUser.id)
                     {
@@ -247,9 +254,9 @@ $(function(){
                     common = Translator.trans('sub.invitation.common', {}, 'friends'),
                     deletesmessages = Translator.trans('sub.invitation.deletes', {}, 'friends'),
                     ignore = Translator.trans('sub.invitation.ignore', {}, 'friends'),
-                    id = 'send'+request.id;
-                var datapreloader = "Sendpreoloader"+list[i].request.id;
-                var preloader ="<img id='"+datapreloader+"' class='sm-img preloader' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
+                    id = 'sendInvitation'+request.id;
+                var datapreloader = "SendInvitationpreoloader"+list[i].request.id;
+                var preloader ="<img id='"+datapreloader+"' class='sm-img preloader pull-right' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
                 var  deletes = Translator.trans('sub.invitation.delete', {}, 'friends');
                 if(request.receiver.id==currentUser.id)
                 {
@@ -330,15 +337,27 @@ $(function(){
                     if(response.listRecievers!=null && response.listRecievers!="null"  && response.listRecievers!="undefined")
                     {
                         setFriendsNav(mainUserProfile_friends.params.nav.notification.friends,response.listRecievers,mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge);
-                        setInvitation(mainSubFriends.params.ask.body, response.listRecievers);
-                        preloader.fadeOut();
-                        trans = Translator.trans('sub.invitation.accept',{},"friends")+' '+response.user.fullname;
-                        bootbox.alert(trans,function(){});
+                        setInvitation(mainSubFriends.params.ask.body,response.listRecievers);
                     }
                     else{
+                        mainSubFriends.params.ask.body.empty();
+                        mainSubFriends.params.ask.head.div.fadeOut();
+                        mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
+                        mainUserProfile_friends.params.nav.notification.friends.empty();
+                        if(response.listApplicants!=null && response.listApplicants!="null"  && response.listApplicants!="undefined")
+                        {
+                            mainSubFriends.params.send.head.div.fadeIn();
+                        }
+                        else
+                        {
+                            mainSubFriends.params.send.head.div.fadeOut();
+                        }
+
                         mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
                     }
                     preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.accept',{},"friends")+' '+response.user.fullname;
+                    bootbox.alert(trans,function(){});
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
@@ -375,14 +394,26 @@ $(function(){
                     {
                         setFriendsNav(mainUserProfile_friends.params.nav.notification.friends,response.listRecievers,mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge);
                         setInvitation(mainSubFriends.params.ask.body,response.listRecievers);
-                        preloader.fadeOut();
-                        trans = Translator.trans('sub.invitation.refuse',"friends");
-                        bootbox.alert(trans,function(){});
                     }
                     else{
+                        mainSubFriends.params.ask.body.empty();
+                        mainSubFriends.params.ask.head.div.fadeOut();
+                        mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
+                        mainUserProfile_friends.params.nav.notification.friends.empty();
+                        if(response.listApplicants!=null && response.listApplicants!="null"  && response.listApplicants!="undefined")
+                        {
+                            mainSubFriends.params.send.head.div.fadeIn();
+                        }
+                        else
+                        {
+                            mainSubFriends.params.send.head.div.fadeOut();
+                        }
+
                         mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
                     }
                     preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.refuse',"friends");
+                    bootbox.alert(trans,function(){});
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
@@ -398,13 +429,12 @@ $(function(){
         }
 
 
-        function deletes(id, idUser,decision,preloader)
+        function deleteInvitation(id, idUser,preloader)
         {
             preloader.fadeIn();
             datas = {
                 id : id,
                 idUser: idUser,
-                decision: decision,
                 page: 'listFriend'
             };
             $.ajax({
@@ -417,10 +447,28 @@ $(function(){
                     //charger les entetes de notifications
                     if(response.listApplicants!=null && response.listApplicants!="null"  && response.listApplicants!="undefined")
                     {
+                        if(response.listRecievers!=null && response.listRecievers!="null"  && response.listRecievers!="undefined")
+                        {
+                            mainSubFriends.params.send.head.a.fadeIn();
+                        }
+                        mainSubFriends.params.send.head.number.html(response.listApplicants.length);
                         setSend(mainSubFriends.params.send.body,response.listApplicants);
                         preloader.fadeOut();
                         trans = Translator.trans('sub.invitation.deletes',"friends");
                         bootbox.alert(trans,function(){});
+                    }
+                    else
+                    {
+                        mainSubFriends.params.send.head.div.fadeOut();
+                        if(response.listRecievers!=null && response.listRecievers!="null"  && response.listRecievers!="undefined")
+                        {
+                            mainSubFriends.params.ask.head.div.fadeIn();
+                            mainSubFriends.params.ask.head.a.fadeOut();
+                        }
+                        else{
+                            mainSubFriends.params.ask.head.div.fadeOut();
+                        }
+
                     }
                     preloader.fadeOut();
                 },
