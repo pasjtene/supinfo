@@ -578,7 +578,7 @@ $(function(){
 
 
 
-
+//liste des utilisateurs non ami
         function setUsers(element,list){
 
             element.empty();
