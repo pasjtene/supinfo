@@ -86,7 +86,7 @@
     </div>
     <div class="card" id="Main-Subfriends-ask">
         <div class="card-header bg-white">
-            <h5 class=""><strong> {% trans with {'number':38} from 'friends' %} sub.invitation.title {% endtrans %} </strong></h5>
+            <h5 class=""><strong> {% trans  from 'friends' %} sub.invitation.title1 {% endtrans %} <span class="number"></span> {% trans  from 'friends' %} sub.invitation.title2 {% endtrans %}   </strong></h5>
             <a href="" class="small">{% trans  from 'friends' %} sub.invitation.view {% endtrans %}</a>
         </div>
         <div class="card-block">
@@ -121,6 +121,48 @@
                     </section>
                 {% endfor %}
                #}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card" id="Main-Subfriends-send">
+        <div class="card-header bg-white">
+            <h5 class=""><strong>  {% trans  from 'friends' %} sub.invitation.request1 {% endtrans %} <span class="number"></span> {% trans  from 'friends' %} sub.invitation.request2 {% endtrans %} </strong></h5>
+            <a href="" class="small">{% trans  from 'friends' %} sub.invitation.reply {% endtrans %}</a>
+        </div>
+        <div class="card-block">
+            <div class="body" data-help="{{ asset('data/img/empty.png') }}">
+                {#
+                      {% for i in 1..4 %}
+                     {% set id=i %}
+                     <section>
+                         <div class="container py-3">
+                             <div class="row align-items-center small">
+                                 <div class="col-md-3 ">
+                                     <img src="{{ asset('data/img/empty.png') }}" class="w-100">
+                                 </div>
+                                 <div class="col-md-9 px-3 content" >
+                                     <div class="card-block px-3">
+                                         <h4 class="card-title">User Name </h4>
+                                         <p class="card-text text-muted message-text" >Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </p>
+                                         <p class="card-text text-grey small"><span class="pays">pays</span> <span class="profession text-muted"> (Profession)</span></p>
+                                         <p class="card-text text-grey small">{% trans with {'number':11}  from 'friends' %} sub.invitation.common {% endtrans %} </p>
+                                         <a href="#" class="btn btn-sm btn-primary">{% trans  from 'friends' %} sub.invitation.confirm {% endtrans %}</a>
+                                         <a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span> {% trans  from 'friends' %} sub.invitation.message {% endtrans %}</a>
+                                         <a href="#" class="btn btn-sm btn-danger dropdown-toggle" id="{{ id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans  from 'friends' %} sub.invitation.action {% endtrans %}</a>
+                                         <div class="dropdown-menu" aria-labelledby="{{ id }}" style="line-height: 1rem;">
+                                             <a class="dropdown-item" href="#">{% trans  from 'friends' %} sub.invitation.delete {% endtrans %}</a>
+                                             <a class="dropdown-item" href="#">{% trans  from 'friends' %} sub.invitation.block {% endtrans %}</a>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <hr>
+                     </section>
+                 {% endfor %}
+                #}
             </div>
         </div>
     </div>

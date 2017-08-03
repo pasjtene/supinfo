@@ -6,16 +6,21 @@ var MainUserProfile = function()
 {
     this.params = {
         page: $("#mainUserProfile"),
-        preloader: '/data/img/current.gif',
+        preloader: '/data/img/simple.gif',
         api:{
            base: {
                url : baseUrl+"auth/user/base",
                method: "get",
                type: "json"
            },
-            accpet: {
+            accept: {
                 url : baseUrl+"auth/user/friends/accept",
                 method: "put",
+                type: "json"
+            },
+            deletes: {
+                url : baseUrl+"auth/user/friends/deletes",
+                method: "delete",
                 type: "json"
             },
             delcine: {

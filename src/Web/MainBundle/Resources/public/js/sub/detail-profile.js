@@ -188,7 +188,7 @@ $(function () {
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
                     //hide le preloader
                     //mainSubDetailProfile.params.body.chargement.fadeOut();
-                    mainSubDetailProfile.params.bg_action.fadeUp();
+                    mainSubDetailProfile.params.bg_action.fadeOut();
                 },
                 complete:function(){
                     console.log("Request finished.");

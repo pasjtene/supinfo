@@ -7,21 +7,10 @@ var MainSubFriends = function()
     this.params = {
         page: $("#mainUserProfile"),
         sub: $("#Main-Subfriends"),
-        preloader: '/data/img/current.gif',
         api:{
             fill: {
                 url : baseUrl+"auth/user/friends",
                 method: "get",
-                type: "json"
-            },
-            accpet: {
-                url : baseUrl+"auth/user/friends/accept",
-                method: "put",
-                type: "json"
-            },
-            delcine: {
-                url : baseUrl+"auth/user/friends/decline",
-                method: "put",
                 type: "json"
             }
         },
@@ -37,8 +26,24 @@ var MainSubFriends = function()
         },
        ask:{
            Main_Subfriends_ask: $("#Main-Subfriends #Main-Subfriends-ask"),
-           body: $("#Main-Subfriends #Main-Subfriends-ask .body")
-       }
+           body: $("#Main-Subfriends #Main-Subfriends-ask .body"),
+           head:{
+               div: $('#Main-Subfriends #Main-Subfriends-ask'),
+               h5: $('#Main-Subfriends #Main-Subfriends-ask .card-header h5 strong '),
+               number: $('#Main-Subfriends #Main-Subfriends-ask .card-header h5 strong .number '),
+               a: $('#Main-Subfriends #Main-Subfriends-ask .card-header a  ')
+           }
+       },
+        send:{
+            Main_Subfriends_send: $("#Main-Subfriends #Main-Subfriends-send"),
+            body: $("#Main-Subfriends #Main-Subfriends-send .body"),
+            head:{
+                div: $('#Main-Subfriends #Main-Subfriends-send'),
+                h5: $('#Main-Subfriends #Main-Subfriends-send .card-header h5 strong '),
+                number: $('#Main-Subfriends #Main-Subfriends-send .card-header h5 strong .number '),
+                a: $('#Main-Subfriends #Main-Subfriends-send .card-header a  ')
+            }
+        }
 
     };
 
@@ -69,9 +74,41 @@ $(function(){
 
                 if(response!=null && response!="null")
                 {
+                    var test1= false;
+                    var test2= false;
                     if(response.listRecievers!=null && response.listRecievers!="null"  && response.listRecievers!="undefined")
                     {
+                        test1 =true;
+                        mainSubFriends.params.ask.head.number.html(response.listRecievers.length);
+                        if(response.listApplicants!=null && response.listApplicants!="null"  && response.listApplicants!="undefined"){
+                            mainSubFriends.params.ask.head.a.fadeIn();
+                        }
                         setInvitation(mainSubFriends.params.ask.body, response.listRecievers);
+                    }
+                    if(response.listApplicants!=null && response.listApplicants!="null"  && response.listApplicants!="undefined")
+                    {
+                        if(response.listRecievers!=null && response.listRecievers!="null"  && response.listRecievers!="undefined")
+                        {
+                            mainSubFriends.params.send.head.a.fadeIn();
+                        }
+                        test2=true;
+                        mainSubFriends.params.send.head.number.html(response.listApplicants.length);
+                        setSend(mainSubFriends.params.send.body, response.listApplicants);
+                    }
+
+                    if(test1){
+                        mainSubFriends.params.send.head.div.fadeOut();
+                        mainSubFriends.params.ask.head.div.fadeIn();
+                    }
+                    else if(test2)
+                    {
+                        mainSubFriends.params.ask.head.div.fadeOut();
+                        mainSubFriends.params.send.head.div.fadeIn();
+                    }
+                    else
+                    {
+                        mainSubFriends.params.ask.head.div.fadeOut();
+                        mainSubFriends.params.send.head.div.fadeOut();
                     }
                 }
 
@@ -85,15 +122,33 @@ $(function(){
 
         });
 
+        // accepter les demandes d'amitiers
         mainSubFriends.params.ask.body.on('click',".confirm",function(e){
             e.preventDefault();
             accept($(this).data('id'), currentUser.id,$('#Main-Subfriends #Main-Subfriends-ask .body #'+$(this).data('preloader')));
         });
 
+        // decliner les demandes d'amitiers
         mainSubFriends.params.ask.body.on('click',".decline",function(e){
             e.preventDefault();
             decline($(this).data('id'), currentUser.id,$(this).data('decision'),$('#Main-Subfriends #Main-Subfriends-ask .body #'+$(this).data('preloader')));
         });
+
+        // afficher la liste de  ces propres demandes  d'amitier
+        mainSubFriends.params.ask.head.a.click(function(e){
+            e.preventDefault();
+            mainSubFriends.params.ask.head.div.fadeOut();
+            mainSubFriends.params.send.head.div.fadeIn();
+        });
+
+
+        // afficher la liste de  invitattions
+        mainSubFriends.params.send.head.a.click(function(e){
+            e.preventDefault();
+            mainSubFriends.params.send.head.div.fadeOut();
+            mainSubFriends.params.ask.head.div.fadeIn();
+        });
+
 
         function setInvitation(element, list)
         {
@@ -179,6 +234,80 @@ $(function(){
         }
 
 
+        function setSend(element, list)
+        {
+            element.empty();
+            for(var i=0; i<list.length;i++)
+            {
+                var photoApplicant = list[i].photoApplicant,
+                    photoReciever = list[i].photoReciever,
+                    request = list[i].request,
+                    src = null,
+                    friends=null,
+                    common = Translator.trans('sub.invitation.common', {}, 'friends'),
+                    deletesmessages = Translator.trans('sub.invitation.deletes', {}, 'friends'),
+                    ignore = Translator.trans('sub.invitation.ignore', {}, 'friends'),
+                    id = 'send'+request.id;
+                var datapreloader = "Sendpreoloader"+list[i].request.id;
+                var preloader ="<img id='"+datapreloader+"' class='sm-img preloader' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
+                var  deletes = Translator.trans('sub.invitation.delete', {}, 'friends');
+                if(request.receiver.id==currentUser.id)
+                {
+                    friends = request.applicant;
+                    if (( photoApplicant==null || photoApplicant=='null' || photoApplicant.hashname == null || photoApplicant.hashname == 'null')) {
+                        src = element.data('help');
+                    }
+                    else {
+                        src = baseHost + list[i].photoApplicant.path;
+                    }
+                }
+                else
+                {
+                    friends =  request.receiver;
+                    if (( photoReciever==null || photoReciever=='null' || photoReciever.hashname == null || photoReciever.hashname == 'null')) {
+                        src = element.data('help');
+                    }
+                    else {
+                        src = baseHost + list[i].photoReciever.path;
+                    }
+                }
+                var today=new Date();
+                var currentyear = today.getFullYear();
+                var year  = friends.birthDate.split('-')[0];
+                var age = currentyear -parseInt(year);
+                age = age<10 ? '(0'+age+'ans)' : '('+ age+'ans)';
+                var name = friends.lastNameOrFirstname;
+                var city = friends.city;
+                var  country = friends.country;
+                var final =(city==null || city=="null")? getCountry(countryList,country) :city;
+                var flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                var profession = friends.profession==null || friends.profession=="null"?'' : '('+ friends.profession +')';
+                var  content =
+                    '<section>'+
+                    '<div class="container py-3">'+
+                    '<div class="row align-items-center small">'+
+                    '<div class="col-md-3 ">'+
+                    '<img src="'+src+'" class="w-100">'+
+                    '</div>'+
+                    '<div class="col-md-9 px-3 content" >'+
+                    '<div class="card-block px-3">'+
+                    '<h4 class="card-title">'+friends.fullname+age+' </h4>'+
+                    '<p class="card-text text-muted message-text" >'+request.message+'</p>'+
+                    '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
+                    '<a href="#" data-id="'+request.id+'" class="btn btn-sm btn-primary delete" data-preloader="'+datapreloader+'">'+deletesmessages+'</a>'+
+                    preloader+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '<hr>'+
+                    '</section>';
+
+                element.append(content);
+            }
+        }
+
+
 
         function accept(id, idUser,preloader)
         {
@@ -189,8 +318,8 @@ $(function(){
                 page : 'listFriend'
             };
             $.ajax({
-                url: mainUserProfile_friends.params.api.accpet.url,
-                type:  mainUserProfile_friends.params.api.accpet.method,
+                url: mainUserProfile_friends.params.api.accept.url,
+                type:  mainUserProfile_friends.params.api.accept.method,
                 data:  datas,
                 crossDomain: true,
                 headers : {"X-Auth-Token" : currentUser.token},
@@ -252,6 +381,46 @@ $(function(){
                     }
                     else{
                         mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
+                    }
+                    preloader.fadeOut();
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.error',{},"friends");
+                    bootbox.alert(trans,function(){});
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
+        }
+
+
+        function deletes(id, idUser,decision,preloader)
+        {
+            preloader.fadeIn();
+            datas = {
+                id : id,
+                idUser: idUser,
+                decision: decision,
+                page: 'listFriend'
+            };
+            $.ajax({
+                url: mainUserProfile_friends.params.api.deletes.url,
+                type:  mainUserProfile_friends.params.api.deletes.method,
+                data: datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                success: function(response){
+                    //charger les entetes de notifications
+                    if(response.listApplicants!=null && response.listApplicants!="null"  && response.listApplicants!="undefined")
+                    {
+                        setSend(mainSubFriends.params.send.body,response.listApplicants);
+                        preloader.fadeOut();
+                        trans = Translator.trans('sub.invitation.deletes',"friends");
+                        bootbox.alert(trans,function(){});
                     }
                     preloader.fadeOut();
                 },
