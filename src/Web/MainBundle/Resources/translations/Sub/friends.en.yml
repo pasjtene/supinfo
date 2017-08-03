@@ -9,6 +9,7 @@ sub:
     action: Action
     delete: Delete invitation
     block: Block  user
+    ignore: Ignore Invitation
     confirm: Confirm
     common: You have number friends in common
     common_no: You have no friends in common

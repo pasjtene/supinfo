@@ -6,6 +6,7 @@ var MainUserProfile = function()
 {
     this.params = {
         page: $("#mainUserProfile"),
+        preloader: '/data/img/current.gif',
         api:{
            base: {
                url : baseUrl+"auth/user/base",
@@ -232,7 +233,7 @@ $(function(){
                //console.log(applicant);
                var flagApplicant ="<img class='sm-img flag' src='"+path.flags+applicant.country+".png' alt=''/> ";
                var flagReciever ="<img class='sm-img flag' src='"+path.flags+reciever.country+".png' alt=''/> ";
-               var preloader ="<br/><img id='"+datapreloader+"' class='sm-img preloader' src='/data/img/current.gif' alt=''/> ";
+               var preloader ="<br/><img id='"+datapreloader+"' class='sm-img preloader' src='"+mainUserProfile.params.preloader+"' alt=''/> ";
                var src = "";
                if ((photoApplicant == null || photoApplicant == 'null')) {
                    src = element.body.data('help');
