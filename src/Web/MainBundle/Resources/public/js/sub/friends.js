@@ -7,6 +7,7 @@ var MainSubFriends = function()
     this.params = {
         page: $("#mainUserProfile"),
         sub: $("#Main-Subfriends"),
+        preloader: '/data/img/current.gif',
         api:{
             fill: {
                 url : baseUrl+"auth/user/friends",
@@ -49,6 +50,7 @@ var listUsers = null,
 $(function(){
 
     var  mainSubFriends = new MainSubFriends();
+    var mainUserProfile_friends = new MainUserProfile();
     if(mainSubFriends.params.sub.data('sub')=="friends")
     {
 
@@ -99,8 +101,11 @@ $(function(){
                     message = Translator.trans('sub.invitation.message', {}, 'friends'),
                     action = Translator.trans('sub.invitation.action', {}, 'friends'),
                     block = Translator.trans('sub.invitation.block', {}, 'friends'),
+                    ignore = Translator.trans('sub.invitation.ignore', {}, 'friends'),
                     id = 'module'+request.id;
-                    deletes = Translator.trans('sub.invitation.delete', {}, 'friends');
+                datapreloader = "Invitationpreoloader"+list[i].request.id;
+                var preloader ="<img id='"+datapreloader+"' class='sm-img preloader' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
+                deletes = Translator.trans('sub.invitation.delete', {}, 'friends');
                     if(request.receiver.id==currentUser.id)
                     {
                         friends = request.applicant;
@@ -126,6 +131,7 @@ $(function(){
                     country = friends.country;
                     var final =(city==null || city=="null")? getCountry(countryList,country) :city;
                     flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                var profession = friends.profession==null || friends.profession=="null"?'' : '('+ friends.profession +')';
                 var  content =
                     '<section>'+
                          '<div class="container py-3">'+
@@ -137,14 +143,16 @@ $(function(){
                                     '<div class="card-block px-3">'+
                                          '<h4 class="card-title">'+friends.fullname+' </h4>'+
                                          '<p class="card-text text-muted message-text" >'+request.message+'</p>'+
-                                         '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted"> ('+friends.profession+')</span></p>'+
-                                         '<a href="#" class="btn btn-sm btn-primary">'+confirm+'</a>'+
-                                         '<a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span>'+message+'</a>'+
+                                         '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
+                                         '<a href="#" data-id="'+request.id+'" class="btn btn-sm btn-primary confirm">'+confirm+'</a>'+
+                                         '<a href="#" data-id="'+request.id+'" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success message"><span class="fa fa-comment"></span>'+message+'</a>'+
                                          '<a href="#" class="btn btn-sm btn-danger dropdown-toggle" id="'+id+'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+action+'</a>'+
                                             '<div class="dropdown-menu" aria-labelledby="'+id+'" style="line-height: 1rem;">'+
-                                                '<a class="dropdown-item" href="#">'+deletes+'</a>'+
-                                                '<a class="dropdown-item" href="#">'+block+'</a>'+
+                                                '<a class="dropdown-item decline" data-id="'+request.id+'" data-decision="2" href="#">'+deletes+'</a>'+
+                                                '<a class="dropdown-item decline" data-id="'+request.id+'" data-decision="3"  href="#">'+block+'</a>'+
+                                                '<a class="dropdown-item decline" data-id="'+request.id+'" data-decision="4" href="#">'+ignore+'</a>'+
                                             '</div>'+
+                                            preloader+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -154,6 +162,97 @@ $(function(){
 
                 element.append(content);
             }
+        }
+
+
+
+        function accept(id, idUser,preloader)
+        {
+            preloader.fadeIn();
+            datas = {
+                id : id,
+                idUser: idUser
+            };
+            $.ajax({
+                url: mainUserProfile_friends.params.api.accpet.url,
+                type:  mainUserProfile_friends.params.api.accpet.method,
+                data:  datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                dataType:  mainUserProfile_friends.params.api.base.type,
+                success: function(response){
+                    //charger les les notifications
+                    if(response.listRecievers!=null && response.listRecievers!="null"  && response.listRecievers!="undefined")
+                    {
+                        setInvitation(mainSubFriends.params.ask.body, response.listRecievers);
+                    }
+                    preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.accept',{},"friends")+' '+response.user.fullname;
+                    bootbox.alert(trans,function(){});
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.error',{},"friends");
+                    bootbox.alert(trans,function(){});
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
+        }
+
+
+        function decline(id, idUser,decision,preloader)
+        {
+            preloader.fadeIn();
+            datas = {
+                id : id,
+                idUser: idUser,
+                decision: decision
+            };
+            $.ajax({
+                url: mainUserProfile.params.api.delcine.url,
+                type:  mainUserProfile.params.api.delcine.method,
+                data: datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                success: function(response){
+                    //charger les entetes de notifications
+                    if(response.recievers!=null)
+                    {
+                        setFriendsNav(mainUserProfile.params.nav.notification.friends,response.recievers,mainUserProfile.params.nav.dropdownMenuFreinds_badge);
+                    }
+                    else{
+                        mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
+                    }
+                    preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.refuse',"friends");
+                    bootbox.alert(trans,function(){});
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.error',{},"friends");
+                    bootbox.alert(trans,function(){});
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
+        }
+
+        function setProfile(element,img,helpImg){
+            if(img==null || img=="undefined")
+            {
+                element.attr("src",helpImg);
+            }
+            else{
+                element.attr("src",img);
+            }
+            return element;
         }
     }
 
