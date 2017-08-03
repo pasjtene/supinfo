@@ -43,6 +43,16 @@ var MainSubFriends = function()
                 number: $('#Main-Subfriends #Main-Subfriends-send .card-header h5 strong .number '),
                 a: $('#Main-Subfriends #Main-Subfriends-send .card-header a  ')
             }
+        },
+        friend:{
+            Main_Subfriends_search: $("#Main-Subfriends #Main-Subfriends-seach"),
+            body: $("#Main-Subfriends #Main-Subfriends-seach .body"),
+            head:{
+                div: $('#Main-Subfriends #Main-Subfriends-seach'),
+                h5: $('#Main-Subfriends #Main-Subfriends-seach .card-header h5 strong '),
+                number: $('#Main-Subfriends #Main-Subfriends-seach .card-header h5 strong .number '),
+                a: $('#Main-Subfriends #Main-Subfriends-seach .card-header a  ')
+            }
         }
 
     };
@@ -59,6 +69,7 @@ $(function(){
     if(mainSubFriends.params.sub.data('sub')=="friends")
     {
 
+        mainUserProfile_friends.params.bg_action.fadeIn();
         //charger tous les elements de bases
         $.ajax({
             url: mainSubFriends.params.api.fill.url,
@@ -110,6 +121,18 @@ $(function(){
                         mainSubFriends.params.ask.head.div.fadeOut();
                         mainSubFriends.params.send.head.div.fadeOut();
                     }
+
+                    var intervalusers = setInterval(function(){
+                        //charger la liste des users du  site
+                        if(listUsers!=null)
+                        {
+                            clearInterval(intervalusers);
+                            setUsers(mainSubFriends.params.friend.body,listUsers);
+                            mainSubFriends.params.friend.head.div.fadeIn();
+                            mainUserProfile_friends.params.bg_action.fadeOut();
+                        }
+                    },100);
+
                 }
 
             },
@@ -550,6 +573,74 @@ $(function(){
             {
                 element.body.empty();
                 mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
+            }
+        }
+
+
+
+
+        function setUsers(element,list){
+
+            element.empty();
+            for(var i= 0; i<list.length; i++)
+            {
+                var user = list[i].user;
+                var profile = list[i].profile;
+                var photos = list[i].photos;
+                var profilePicture = list[i].photoProfile;
+                //alert(currentUser.ip);
+                //alert("country =>"+user.country+ "user country =>"+currentUser.country)
+                if(user.id !=currentUser.id && user.type!="System"){
+                    //photos
+                    var src = null;
+                    if((profilePicture==null || profilePicture=='null'))
+                    {
+                        src =path.emptyImage;
+                    }
+                    else
+                    {
+                        src = baseHost+profilePicture.path;
+                    }
+                    var today=new Date();
+                    var currentyear = today.getFullYear();
+                    var year  = user.birthDate.split('-')[0];
+                    var age = currentyear -parseInt(year);
+                    age = age<10 ? '(0'+age+'ans)' : '('+ age+'ans)';
+                    var name = user.lastNameOrFirstname;
+                    var city = user.city;
+                    var  country = user.country;
+                    var final =(city==null || city=="null")? getCountry(countryList,country) :city;
+                    var flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                    var profession = user.profession==null || user.profession=="null"?'' : '('+ user.profession +')';
+
+                   var add = Translator.trans('sub.noFriend.add', {}, 'friends'),
+                        message = Translator.trans('sub.noFriend.message', {}, 'friends'),
+                        deletes = Translator.trans('sub.noFriend.delete', {}, 'friends');
+                    var body =
+                '<section>'+
+                    '<div class="container py-3">'+
+                        '<div class="row align-items-center small">'+
+                            '<div class="col-md-3 ">'+
+                                '<img src="'+src+'" class="w-100">'+
+                            '</div>'+
+                            '<div class="col-md-9 px-3 content">'+
+                                '<div class="card-block px-3">'+
+                                '<h4 class="card-title">'+ user.fullname + age + '</h4>'+
+                                '<p class="card-text text-muted message-text">'+user.joinReason+'</p>'+
+                                '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
+                                '<p class="card-text text-grey small"> commun friend </p>'+
+                                '<a href="#" class="btn btn-sm btn-primary"><span class="fa fa-user-plus"></span> '+ add + ' </a>'+
+                                '<a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span>' + message +' </a>'+
+                                '<a href="#" class="btn btn-sm btn-danger hide">'+ deletes+'</a>'+
+                            '</div>'+
+                        '</div>'+
+                        '</div>'+
+                    '</div>'+
+                     '<hr>'+
+                '</section>'
+                        ;
+                    element.append(body);
+                }
             }
         }
     }

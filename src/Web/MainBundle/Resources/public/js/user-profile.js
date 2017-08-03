@@ -7,6 +7,7 @@ var MainUserProfile = function()
     this.params = {
         page: $("#mainUserProfile"),
         preloader: '/data/img/simple.gif',
+        bg_action:$('#bg-action'),
         api:{
            base: {
                url : baseUrl+"auth/user/base",
