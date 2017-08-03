@@ -114,7 +114,7 @@ $(function(){
                     id = 'module'+request.id;
                 var datapreloader = "Invitationpreoloader"+list[i].request.id;
                 var preloader ="<img id='"+datapreloader+"' class='sm-img preloader' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
-                deletes = Translator.trans('sub.invitation.delete', {}, 'friends');
+               var  deletes = Translator.trans('sub.invitation.delete', {}, 'friends');
                     if(request.receiver.id==currentUser.id)
                     {
                         friends = request.applicant;
@@ -135,11 +135,16 @@ $(function(){
                             src = baseHost + list[i].photoReciever.path;
                         }
                     }
-                    name = friends.lastNameOrFirstname;
-                    city = friends.city;
-                    country = friends.country;
+                    var today=new Date();
+                    var currentyear = today.getFullYear();
+                    var year  = friends.birthDate.split('-')[0];
+                    var age = currentyear -parseInt(year);
+                    age = age<10 ? '(0'+age+'ans)' : '('+ age+'ans)';
+                    var name = friends.lastNameOrFirstname;
+                    var city = friends.city;
+                   var  country = friends.country;
                     var final =(city==null || city=="null")? getCountry(countryList,country) :city;
-                    flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                   var flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
                 var profession = friends.profession==null || friends.profession=="null"?'' : '('+ friends.profession +')';
                 var  content =
                     '<section>'+
@@ -150,7 +155,7 @@ $(function(){
                                 '</div>'+
                                 '<div class="col-md-9 px-3 content" >'+
                                     '<div class="card-block px-3">'+
-                                         '<h4 class="card-title">'+friends.fullname+' </h4>'+
+                                         '<h4 class="card-title">'+friends.fullname+age+' </h4>'+
                                          '<p class="card-text text-muted message-text" >'+request.message+'</p>'+
                                          '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                                          '<a href="#" data-id="'+request.id+'" class="btn btn-sm btn-primary confirm" data-preloader="'+datapreloader+'">'+confirm+'</a>'+
@@ -180,7 +185,8 @@ $(function(){
             preloader.fadeIn();
             datas = {
                 id : id,
-                idUser: idUser
+                idUser: idUser,
+                page : 'listFriend'
             };
             $.ajax({
                 url: mainUserProfile_friends.params.api.accpet.url,
@@ -192,14 +198,18 @@ $(function(){
                 success: function(response){
                     //charger les les notifications
                     console.log(response);
-                    if(response.recievers!=null && response.recievers!="null"  && response.recievers!="undefined")
+                    if(response.listRecievers!=null && response.listRecievers!="null"  && response.listRecievers!="undefined")
                     {
-                        setInvitation(mainSubFriends.params.ask.body, response.recievers);
+                        setFriendsNav(mainUserProfile_friends.params.nav.notification.friends,response.listRecievers,mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge);
+                        setInvitation(mainSubFriends.params.ask.body, response.listRecievers);
                         preloader.fadeOut();
                         trans = Translator.trans('sub.invitation.accept',{},"friends")+' '+response.user.fullname;
                         bootbox.alert(trans,function(){});
                     }
-
+                    else{
+                        mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
+                    }
+                    preloader.fadeOut();
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
@@ -221,26 +231,29 @@ $(function(){
             datas = {
                 id : id,
                 idUser: idUser,
-                decision: decision
+                decision: decision,
+                page: 'listFriend'
             };
             $.ajax({
-                url: mainUserProfile.params.api.delcine.url,
-                type:  mainUserProfile.params.api.delcine.method,
+                url: mainUserProfile_friends.params.api.delcine.url,
+                type:  mainUserProfile_friends.params.api.delcine.method,
                 data: datas,
                 crossDomain: true,
                 headers : {"X-Auth-Token" : currentUser.token},
                 success: function(response){
                     //charger les entetes de notifications
-                    if(response.recievers!=null)
+                    if(response.listRecievers!=null && response.listRecievers!="null"  && response.listRecievers!="undefined")
                     {
-                        setFriendsNav(mainUserProfile.params.nav.notification.friends,response.recievers,mainUserProfile.params.nav.dropdownMenuFreinds_badge);
+                        setFriendsNav(mainUserProfile_friends.params.nav.notification.friends,response.listRecievers,mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge);
+                        setInvitation(mainSubFriends.params.ask.body,response.listRecievers);
+                        preloader.fadeOut();
+                        trans = Translator.trans('sub.invitation.refuse',"friends");
+                        bootbox.alert(trans,function(){});
                     }
                     else{
-                        mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
+                        mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
                     }
                     preloader.fadeOut();
-                    trans = Translator.trans('sub.invitation.refuse',"friends");
-                    bootbox.alert(trans,function(){});
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
@@ -264,6 +277,63 @@ $(function(){
                 element.attr("src",img);
             }
             return element;
+        }
+
+        function setFriendsNav(element, list,badge){
+            if(list.length==0)
+            {
+                mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
+            }
+            element.body.empty();
+            var length = list.length<10? "0"+list.length : list.length;
+            element.count.html("("+length+")");
+            badge.html(length);
+            for(var i=0; i<list.length;i++) {
+                var profileReciever = list[i].photoReciever,
+                    photoApplicant = list[i].photoApplicant,
+                    reciever = list[i].request.receiver,
+                    applicant = list[i].request.applicant,
+                    message = list[i].request.messageTuncate,
+                    id = list[i].request.id,
+                    datapreloader = "friendpreoloader"+list[i].request.id;
+                //console.log(applicant);
+                var flagApplicant ="<img class='sm-img flag' src='"+path.flags+applicant.country+".png' alt=''/> ";
+                var flagReciever ="<img class='sm-img flag' src='"+path.flags+reciever.country+".png' alt=''/> ";
+                var preloader ="<br/><img id='"+datapreloader+"' class='sm-img preloader' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
+                var src = "";
+                if ((photoApplicant == null || photoApplicant == 'null')) {
+                    src = element.body.data('help');
+                }
+                else {
+                    src = baseHost + photoApplicant.path;
+                }
+                var content =
+                    '<div class="dropdown-divider"></div>' +
+                    '<a class="dropdown-item" href="#" >'+
+                    '<div class="row align-items-center">' +
+                    '<div class="col-2">' +
+                    '<img src="'+src+'" alt="">' +
+                    '</div>' +
+                    '<div class="col-4">' +
+                    '<strong>'+ applicant.lastNameOrFirstname +'</strong><br>' +
+                    '<span class="text-grey small">'+message+'</span> <br>' +
+                    '<span class="text-grey small">'+flagApplicant+getCountry(countryList,applicant.country)+'</span>' +
+                    '</div>' +
+                    '<div class="col text-muted small text-right">' +
+                    '<button  class="btn btn-sm btn-primary small accept" data-id="'+id+'" data-preloader="'+datapreloader+'" >Confirmer</button>' +
+                    '<button class="btn btn-sm btn-danger small decline" data-decision="2" data-id="'+id+'" data-preloader="'+datapreloader+'" >Supprimer</button>' +
+                    preloader+
+                    '</div>' +
+                    '</div>' +
+                    '</a>';
+                element.body.append(content);
+            }
+
+            if(list.length==0)
+            {
+                element.body.empty();
+                mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
+            }
         }
     }
 

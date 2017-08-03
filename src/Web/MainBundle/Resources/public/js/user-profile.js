@@ -213,62 +213,7 @@ $(function(){
 
        });
 
-       function setFriendsNav(element, list,badge){
-           if(list.length==0)
-           {
-               mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
-           }
-           element.body.empty();
-           var length = list.length<10? "0"+list.length : list.length;
-           element.count.html("("+length+")");
-           badge.html(length);
-           for(var i=0; i<list.length;i++) {
-               var profileReciever = list[i].photoReciever,
-                   photoApplicant = list[i].photoApplicant,
-                   reciever = list[i].request.receiver,
-                   applicant = list[i].request.applicant,
-                   message = list[i].request.messageTuncate,
-                   id = list[i].request.id,
-                   datapreloader = "friendpreoloader"+list[i].request.id;
-               //console.log(applicant);
-               var flagApplicant ="<img class='sm-img flag' src='"+path.flags+applicant.country+".png' alt=''/> ";
-               var flagReciever ="<img class='sm-img flag' src='"+path.flags+reciever.country+".png' alt=''/> ";
-               var preloader ="<br/><img id='"+datapreloader+"' class='sm-img preloader' src='"+mainUserProfile.params.preloader+"' alt=''/> ";
-               var src = "";
-               if ((photoApplicant == null || photoApplicant == 'null')) {
-                   src = element.body.data('help');
-               }
-               else {
-                   src = baseHost + photoApplicant.path;
-               }
-               var content =
-                   '<div class="dropdown-divider"></div>' +
-                   '<a class="dropdown-item" href="#" >'+
-                   '<div class="row align-items-center">' +
-                   '<div class="col-2">' +
-                   '<img src="'+src+'" alt="">' +
-                   '</div>' +
-                   '<div class="col-4">' +
-                   '<strong>'+ applicant.lastNameOrFirstname +'</strong><br>' +
-                   '<span class="text-grey small">'+message+'</span> <br>' +
-                   '<span class="text-grey small">'+flagApplicant+getCountry(countryList,applicant.country)+'</span>' +
-                   '</div>' +
-                   '<div class="col text-muted small text-right">' +
-                   '<button  class="btn btn-sm btn-primary small accept" data-id="'+id+'" data-preloader="'+datapreloader+'" >Confirmer</button>' +
-                   '<button class="btn btn-sm btn-danger small decline" data-decision="2" data-id="'+id+'" data-preloader="'+datapreloader+'" >Supprimer</button>' +
-                       preloader+
-                   '</div>' +
-                   '</div>' +
-                   '</a>';
-               element.body.append(content);
-           }
 
-           if(list.length==0)
-           {
-              element.body.empty();
-               mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
-           }
-       }
 
 
        mainUserProfile.params.nav.dropdownMenuFreinds_body.on('click',".accept",function(){
@@ -440,6 +385,67 @@ $(function(){
            mainUserProfile.params.nav.dropdownMenuMessages_body.fadeOut();
            mainUserProfile.params.nav.dropdownMenuFreinds_body.fadeOut();
        });
+
+       function setFriendsNav(element, list,badge){
+           if(list.length==0)
+           {
+               mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
+           }
+           element.body.empty();
+           var length = list.length<10? "0"+list.length : list.length;
+           element.count.html("("+length+")");
+           badge.html(length);
+           for(var i=0; i<list.length;i++) {
+               var profileReciever = list[i].photoReciever,
+                   photoApplicant = list[i].photoApplicant,
+                   reciever = list[i].request.receiver,
+                   applicant = list[i].request.applicant,
+                   message = list[i].request.messageTuncate,
+                   id = list[i].request.id,
+                   datapreloader = "friendpreoloader"+list[i].request.id;
+               //console.log(applicant);
+               var flagApplicant ="<img class='sm-img flag' src='"+path.flags+applicant.country+".png' alt=''/> ";
+               var flagReciever ="<img class='sm-img flag' src='"+path.flags+reciever.country+".png' alt=''/> ";
+               var preloader ="<br/><img id='"+datapreloader+"' class='sm-img preloader' src='"+mainUserProfile.params.preloader+"' alt=''/> ";
+               var src = "";
+               if ((photoApplicant == null || photoApplicant == 'null')) {
+                   src = element.body.data('help');
+               }
+               else {
+                   src = baseHost + photoApplicant.path;
+               }
+               var content =
+                   '<div class="dropdown-divider"></div>' +
+                   '<a class="dropdown-item" href="#" >'+
+                   '<div class="row align-items-center">' +
+                   '<div class="col-2">' +
+                   '<img src="'+src+'" alt="">' +
+                   '</div>' +
+                   '<div class="col-4">' +
+                   '<strong>'+ applicant.lastNameOrFirstname +'</strong><br>' +
+                   '<span class="text-grey small">'+message+'</span> <br>' +
+                   '<span class="text-grey small">'+flagApplicant+getCountry(countryList,applicant.country)+'</span>' +
+                   '</div>' +
+                   '<div class="col text-muted small text-right">' +
+                   '<button  class="btn btn-sm btn-primary small accept" data-id="'+id+'" data-preloader="'+datapreloader+'" >Confirmer</button>' +
+                   '<button class="btn btn-sm btn-danger small decline" data-decision="2" data-id="'+id+'" data-preloader="'+datapreloader+'" >Supprimer</button>' +
+                   preloader+
+                   '</div>' +
+                   '</div>' +
+                   '</a>';
+               element.body.append(content);
+           }
+
+           if(list.length==0)
+           {
+               element.body.empty();
+               mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
+           }
+       }
    }
 
+
+
 });
+
+
