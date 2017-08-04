@@ -9,6 +9,7 @@ sub:
     seedetail: Consulter le détail
     message: Ecrire un message
     remove: Retirer de la liste d'ami
+    remove_success:  Suppression effectué avec succèss
     myProfilDetail:
       infPersonelles : Informations personelles
       diplome : Diplôme

@@ -141,6 +141,11 @@ $(function () {
             window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,email:$(this).data('email')});
         });
 
+        //retirer  un utilisateur de la liste d'amis
+        mainSubPhotos.params.tabs.friend.body.on('click','.remove',function(){
+            deleteFriends($(this).data('id'), currentUser.id,mainUserProfile_photos.params.bg_action);
+        });
+
 
 
         //agrandir une photo des amis
@@ -332,7 +337,7 @@ $(function () {
                                 '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
                                     '<a class="dropdown-item detail" data-id="'+user.id+'" data-email="'+user.email+'" href="#"><span class="fa fa-list"></span>'+detail+' </a>' +
                                     '<a class="dropdown-item writemessage" data-id="'+user.id+'"  href="#"><span class="fa fa-comment"></span>'+message+'  </a>' +
-                                    '<a class="dropdown-item remove" data-id="'+user.id+'" href="#"><span class="fa fa-remove"></span> '+remove+' </a>' +
+                                    '<a class="dropdown-item remove" data-id="'+request.id+'" href="#"><span class="fa fa-remove"></span> '+remove+' </a>' +
                                 '</div>' +
                             '</div>' +
                             '</div>' +
@@ -341,6 +346,50 @@ $(function () {
                     element.append(body);
                 }
             }
+        }
+
+
+        function deleteFriends(id, idUser,preloader)
+        {
+            preloader.fadeIn();
+            datas = {
+                id : id,
+                idUser: idUser,
+                page: 'friends'
+            };
+            $.ajax({
+                url: mainUserProfile_photos.params.api.deletes.url,
+                type:  mainUserProfile_photos.params.api.deletes.method,
+                data: datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                success: function(response){
+                    if(response!=null  && response!="null" && response!="undefined")
+                    {
+                        if(response.listUsers!=null  && response.listUsers!="null" && response.listUsers!="undefined")
+                        {
+                            setFriends(mainSubPhotos.params.tabs.friend.body,response.listUsers);
+                            trans = Translator.trans('sub.tabs.remove_success',"photo");
+                            bootbox.alert(trans,function(){});
+                        }
+                        else
+                        {
+                            mainSubPhotos.params.tabs.friend.body.empty();
+                        }
+                    }
+                    preloader.fadeOut();
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.error',{},"friends");
+                    bootbox.alert(trans,function(){});
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
         }
 
 
