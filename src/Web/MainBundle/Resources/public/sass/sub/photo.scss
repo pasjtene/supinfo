@@ -112,9 +112,14 @@
             max-width: 90%;
             max-height: 500px;
         }
+
+        #chargement-photo-friends{
+            padding-top: 4%;
+            display: none;
+        }
         .body{
           .card{
-            margin-top: 2%;
+            margin-top: 4%;
             .img{
               img{
                 height: 150px;

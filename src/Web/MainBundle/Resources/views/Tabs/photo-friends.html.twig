@@ -18,7 +18,8 @@
         <strong> {% trans from 'user-profile' %} loading {% endtrans %}</strong>
     </div>
     <div class="body row col-12 align-items-center" data-help="{{ asset('data/img/empty.png') }}">
-        {% for i in 1..10 %}
+       {#
+             {% for i in 1..10 %}
             {% set id= 'action'~i %}
             <div class="col-md-4 col-sm-12 col-xs-3 ">
                 <div class="card">
@@ -35,14 +36,15 @@
                                 <span class="fa fa-check"></span> {% trans  from 'photo' %} sub.tabs.friendc {% endtrans %}
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#"><span class="fa fa-list"></span> {% trans  from 'photo' %} sub.tabs.seedetail {% endtrans %}</a>
-                                <a class="dropdown-item" href="#"><span class="fa fa-comment"></span> {% trans  from 'photo' %} sub.tabs.message {% endtrans %}</a>
-                                <a class="dropdown-item" href="#"><span class="fa fa-remove"></span> {% trans  from 'photo' %} sub.tabs.remove {% endtrans %}</a>
+                                <a class="dropdown-item detail" href="#"><span class="fa fa-list"></span> {% trans  from 'photo' %} sub.tabs.seedetail {% endtrans %}</a>
+                                <a class="dropdown-item writemessage" href="#"><span class="fa fa-comment"></span> {% trans  from 'photo' %} sub.tabs.message {% endtrans %}</a>
+                                <a class="dropdown-item remove" href="#"><span class="fa fa-remove"></span> {% trans  from 'photo' %} sub.tabs.remove {% endtrans %}</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
+       #}
     </div>
 </div>

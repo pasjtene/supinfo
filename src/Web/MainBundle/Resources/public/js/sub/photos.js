@@ -126,12 +126,10 @@ $(function () {
 
         //link friends user appuyer
         if(mainSubPhotos.params.active_tab.val()==5){
-            //mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
             initFriends();
             currentlink = 5;
         }
         mainSubPhotos.params.link_friends.click(function(){
-            // mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
             initFriends();
             currentlink =5;
             mainSubPhotos.params.active_tab.attr('value',currentlink);
@@ -215,13 +213,13 @@ $(function () {
 
 
         function initFriends(){
-           // mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
             //charger les photos de profile de l'utilisateur selectionnée (par defaut le user connecte)
-            //fillProfile(currentUser.id);
+            fillFriends(currentUser.id);
         }
 
 
         function fillFriends(id){
+            mainSubPhotos.params.tabs.friend.chargement_photo.fadeIn();
             $.ajax({
                 url: mainSubPhotos.params.api.friend.url,
                 type:  mainSubPhotos.params.api.friend.method,
@@ -234,11 +232,16 @@ $(function () {
                     console.log(response);
                     if(response!=null  && response!="null" && response!="undefined")
                     {
-                        setFriends(mainSubPhotos.params.tabs.friend.body,response);
+                        if(response.listUsers!=null  && response.listUsers!="null" && response.listUsers!="undefined")
+                        {
+                            setFriends(mainSubPhotos.params.tabs.friend.body,response.listUsers);
+                        }
                     }
+                    mainSubPhotos.params.tabs.friend.chargement_photo.fadeOut();
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    mainSubPhotos.params.tabs.friend.chargement_photo.fadeOut();
                 },
                 complete:function(){
                     console.log("Request finished.");
@@ -251,7 +254,86 @@ $(function () {
 
 
         function setFriends(element,list){
+            element.empty();
+            for(var i= 0; i<list.length;i++){
 
+                var photoApplicant = list[i].photoApplicant,
+                    photoReciever = list[i].photoReciever,
+                    request = list[i].request,
+                    user = list[i].user;
+
+                var src = null;
+                if(request.receiver.id==currentUser.id)
+                {
+                    user = request.applicant;
+                    if (( photoApplicant==null || photoApplicant=='null' || photoApplicant.hashname == null || photoApplicant.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoApplicant.path;
+                    }
+                }
+                else
+                {
+                    user =  request.receiver;
+                    if (( photoReciever==null || photoReciever=='null' || photoReciever.hashname == null || photoReciever.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoReciever.path;
+                    }
+                }
+
+                //alert(currentUser.ip);
+                //alert("country =>"+user.country+ "user country =>"+currentUser.country)
+                if(user.id !=currentUser.id && user.type!="System"){
+                    //photos
+
+                    var today=new Date();
+                    var currentyear = today.getFullYear();
+                    var year  = user.birthDate.split('-')[0];
+                    var age = currentyear -parseInt(year);
+                    age = age<10 ? '(0'+age+'ans)' : '('+ age+'ans)';
+                    var name = user.lastNameOrFirstname;
+                    var city = user.city;
+                    var  country = user.country;
+                    var final =(city==null || city=="null")? getCountry(countryList,country) :city;
+                    var flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                    var profession = user.profession==null || user.profession=="null"?'' : '('+ user.profession +')';
+
+                    var detail = Translator.trans('sub.tabs.seedetail', {}, 'photo'),
+                        message = Translator.trans('sub.tabs.message', {}, 'photo'),
+                        friend = Translator.trans('sub.tabs.friendc', {}, 'photo'),
+                        common = Translator.trans('sub.noFriend.common', {}, 'photo'),
+                        remove = Translator.trans('sub.tabs.remove', {}, 'photo');
+
+                   var body =
+                    '<div class="col-md-4 col-sm-12 col-xs-3 ">' +
+                        '<div class="card">' +
+                            '<div class="col-12 text-center bg-faded img">' +
+                                '<img src="'+src+'" class="responsive img-thumbnail">' +
+                            '</div>' +
+                            '<div class=" card-block">' +
+                                '<h4 class="card-title">'+user.lastNameOrFirstname+ age+'</h4>' +
+                                '<p class="card-text text-muted message-text">'+user.joinReason+'</p>' +
+                                '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted"> '+profession+'</span></p>' +
+                                '<p class="card-text text-grey small">'+common+'  </p>' +
+                                '<div class="col-12 text-center dropdown">' +
+                                '<button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                    '<span class="fa fa-check"></span>' +friend+
+                                '</button>' +
+                                '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                                    '<a class="dropdown-item detail" href="#"><span class="fa fa-list"></span>'+detail+' </a>' +
+                                    '<a class="dropdown-item writemessage" href="#"><span class="fa fa-comment"></span>'+message+'  </a>' +
+                                    '<a class="dropdown-item remove" href="#"><span class="fa fa-remove"></span> '+remove+' </a>' +
+                                '</div>' +
+                            '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+                    element.append(body);
+                }
+            }
         }
 
 
