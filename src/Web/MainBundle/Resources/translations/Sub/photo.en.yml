@@ -3,6 +3,22 @@ sub:
     add: Add photos
     list:    List
     profile: Profile List
+    detail:  My profile détails
+    friend: My friends
+    friendc: Friend
+    seedetail: See details
+    message: Write message
+    remove: Remove to friends list
+    myProfilDetail:
+      infPersonelles : Personal informations
+      diplome : Certificate
+      adresse: Addresse
+      sexe: Sexe
+      anniv: Birthday
+      pay: Country
+      ville: City
+      quartier: Quater
+      profession: Profession
   img:
     profile: Make profile photo
     published: make public

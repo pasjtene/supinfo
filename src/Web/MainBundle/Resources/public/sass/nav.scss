@@ -36,6 +36,15 @@
       height: 40px;
       width: 40px;
     }
+    .flag{
+      height: 20px;
+      width: 20px;
+    }
+    .preloader{
+      width: 30%;
+      height: 9px;
+      display: none;
+    }
   }
   .all{
       color: $default-color;

@@ -1,0 +1,50 @@
+<div class="row" id="photo-friends-list">
+    <div class="modal fade" id="zoomImgFriends" tabindex="-1" role="dialog" aria-labelledby="zoomImg" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" id="modal-content">
+                <div class="modal-header" style="display: none;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="" class="zoomImgSourceFriends img-thumbnail rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="chargement-photo-friends" class="col text-center">
+        <img src="{{ asset('dist/loader.gif') }}" alt="">
+        <br>
+        <strong> {% trans from 'user-profile' %} loading {% endtrans %}</strong>
+    </div>
+    <div class="body row col-12 align-items-center" data-help="{{ asset('data/img/empty.png') }}">
+       {#
+             {% for i in 1..10 %}
+            {% set id= 'action'~i %}
+            <div class="col-md-4 col-sm-12 col-xs-3 ">
+                <div class="card">
+                   <div class="col-12 text-center bg-faded img">
+                       <img src="{{ asset('data/img/empty.png') }}" class="responsive img-thumbnail">
+                   </div>
+                    <div class=" card-block">
+                        <h4 class="card-title">User Name </h4>
+                        <p class="card-text text-muted message-text">Consectetur adipiscing elit,  </p>
+                        <p class="card-text text-grey small"><span class="pays">pays</span> <span class="profession text-muted"> (Profession)</span></p>
+                        <p class="card-text text-grey small"> {% trans  with {'number':11} from 'friends' %} sub.noFriend.common {% endtrans %} </p>
+                        <div class="col-12 text-center dropdown">
+                            <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-check"></span> {% trans  from 'photo' %} sub.tabs.friendc {% endtrans %}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item detail" href="#"><span class="fa fa-list"></span> {% trans  from 'photo' %} sub.tabs.seedetail {% endtrans %}</a>
+                                <a class="dropdown-item writemessage" href="#"><span class="fa fa-comment"></span> {% trans  from 'photo' %} sub.tabs.message {% endtrans %}</a>
+                                <a class="dropdown-item remove" href="#"><span class="fa fa-remove"></span> {% trans  from 'photo' %} sub.tabs.remove {% endtrans %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+       #}
+    </div>
+</div>

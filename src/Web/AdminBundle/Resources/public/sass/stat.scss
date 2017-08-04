@@ -1,0 +1,20 @@
+#principal{
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+  .espace{
+    padding-top: 1cm;
+  }
+
+  th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 10px solid #0275D8;
+    border-top: 10px solid #0275D8;
+  }
+
+  tr:hover{background-color:yellowgreen}
+
+}

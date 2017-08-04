@@ -3,15 +3,24 @@ sub:
     title: You dialogue with
     placeholder: Write your message here ...
   invitation:
-    title: Reply to number invitations
+    title1: Reply to
+    title2:  invitations
+    deletes: Delete the request
     view: View sent invitations
     message: Message
+    request1: You made
+    request2:  requests
+    reply: Respond to invitations
     action: Action
     delete: Delete invitation
     block: Block  user
+    ignore: Ignore Invitation
     confirm: Confirm
     common: You have number friends in common
     common_no: You have no friends in common
+    accept: You are currently friends with
+    refuse: The request for invitation was deleted
+    error: An error occurs during the processing of the request. You can retrieve later
   noFriend:
     title: Do you  now ...
     placeholder: Find people by name or email address

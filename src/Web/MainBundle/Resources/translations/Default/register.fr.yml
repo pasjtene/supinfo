@@ -20,7 +20,7 @@ form:
     content: vieullez patienter un petit  moment
     success: Enregistrement effectué avec succès
   body:
-    name: Nom
+    name: Prénom
     birthday: Date de naissance
     gender: Sexe
     reason: Vous ête la pour
@@ -30,7 +30,7 @@ form:
     profession: Profession
     btnsignup: S'inscrire
     country:  Pays
-    lastname: Prénom
+    lastname: Nom
     reasonList:
       1: Se faire de nouveaux amis
       2: Dialoguer
@@ -43,7 +43,7 @@ form:
       month: Mois
       year: Année
   placeholder:
-    name: Entrer nom
+    name: Entrer Prénom
     birthday: Entrer date de naissance
     gender: Choisisser votre sexe
     reason: Choisissez la raison
@@ -52,7 +52,7 @@ form:
     confirmpassword: Resaisir le même mot  de passe
     profession: Donner votre profession
     country: Choisissez votre pays
-    lastname: Entrer votre prénom
+    lastname: Entrer votre Nom
     birthdayOption:
       day: Choisir le jour
       month: Choisir le mois
@@ -70,7 +70,7 @@ form:
     confirmpassword: Ressaisir le même mot  de passe
     profession: La profession est obligatoire (min  3 charaters)
     country: Le pays est obligatoire
-    lastname: Le prénom est obkigatoire
+    lastname: Le prénom est obligatoire
     notification: Est obligatoire
     error: oh  erreur !
   help:

@@ -38,7 +38,7 @@ class MailController extends Controller
 
 
     /**
-     * @Route("/invitation/{from}/{to}/{id}/{name}/{gender}/{nameTo}/{message}", name="main_emailConfirm", options={"expose"=true})
+     * @Route("/invitation/{from}/{to}/{id}/{name}/{gender}/{nameTo}/{message}", name="main_email_invitation", options={"expose"=true})
      */
     public function invitationAction($from, $to,$id, $name,$gender,$nameTo,$message)
     {

@@ -161,7 +161,9 @@ var path =
         en: '/dist/country-en.json',
         fr: '/dist/country.json'
     },
-    flags: '/dist/flags/'
+    flags: '/dist/flags/',
+    emoticon : "/dist/emoticons/png",
+    emptyImage: '/data/img/empty.png'
 };
 appMain.getAppToken(function(data){
     //tokenbase = data.value;
@@ -174,4 +176,14 @@ appMain.getGeolocation(function(data){
     geolocation = data;
 });
 
+}
+
+function getCountry(list, search){
+    for(var i=0; i<list.length;i++)
+    {
+        if(list[i].code ==search)
+        {
+            return list[i].value;
+        }
+    }
 }

@@ -43,14 +43,13 @@
     <!-- Tab panes -->
     <div class="tab-content" id="admin-tabs">
         <div class="tab-pane active" id="home" role="tabpanel" data-tab="adminStatistics">
-            Admin dasboard will go here. We can see how many user registered today,
-            this week, and all other stats...
+            {% include 'AdminBundle:Tab:stat.html.twig' %}
         </div>
         <div class="tab-pane" id="profile" role="tabpanel" data-tab="adminMembers">
             {% include 'AdminBundle:Tab:members.html.twig' %}
         </div>
         <div class="tab-pane" id="messages" role="tabpanel" data-tab="adminMessages">
-            {% include 'AdminBundle:Tab:message.html.twig' %}
+            {% include 'AdminBundle:Tab:j.html.twig' %}
         </div>
         <div class="tab-pane" id="photos" role="tabpanel" data-tab="adminPictures">
             {% include 'AdminBundle:Tab:pictures.html.twig' %}

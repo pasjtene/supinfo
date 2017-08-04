@@ -2,6 +2,9 @@
 
     <input type="hidden" id="active-photo-tab" value="{% if active is defined  %} {{ active }} {% endif %}">
     <ul class="nav nav-tabs">
+        <li class="nav-item" id="link-photo-detail-profile">
+            <a class="nav-link {% if active is defined and active==4 %} active {% endif %}" data-toggle="tab"  href="#Main-Subdetails-Detail-User">{% trans from 'photo' %} sub.tabs.detail {% endtrans %}</a>
+        </li>
         <li class="nav-item" id="link-photo-list">
             <a class="nav-link {% if active is defined and active==1 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-list">{% trans from 'photo' %} sub.tabs.list {% endtrans %}</a>
         </li>
@@ -11,9 +14,16 @@
         <li class="nav-item" id="link-photo-profile">
             <a class="nav-link {% if active is defined and active==3 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-profiles">{% trans from 'photo' %} sub.tabs.profile {% endtrans %}</a>
         </li>
+        <li class="nav-item" id="link-photo-friends">
+            <a class="nav-link {% if active is defined and active==5 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-friends">{% trans from 'photo' %} sub.tabs.friend {% endtrans %} <span> (40)</span></a>
+        </li>
+
     </ul>
 
     <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade {% if active is defined and active==4 %} show active {% endif %}" id="Main-Subdetails-Detail-User">
+            {% include "MainBundle:Tabs:detail-profile.html.twig" %}
+        </div>
         <div role="tabpanel" class="tab-pane fade {% if active is defined and active==1 %} show active {% endif %} " id="Main-Subphotos-list" data-tabs="Main-Subphotos-list" >
             {% include "MainBundle:Tabs:list-photo.html.twig" %}
         </div>
@@ -23,6 +33,10 @@
         <div role="tabpanel" class="tab-pane fade {% if active is defined and active==3 %} show active {% endif %}" id="Main-Subphotos-profiles">
             {% include "MainBundle:Tabs:profile-photo.html.twig" %}
         </div>
+        <div role="tabpanel" class="tab-pane fade {% if active is defined and active==5 %} show active {% endif %}" id="Main-Subphotos-friends">
+            {% include "MainBundle:Tabs:photo-friends.html.twig" %}
+        </div>
+
     </div>
 </div>
 
