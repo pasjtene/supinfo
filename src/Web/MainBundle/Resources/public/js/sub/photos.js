@@ -6,6 +6,8 @@ var MainSubPhotos = function()
         active_tab : $("#Main-Subphotos #active-photo-tab"),
         link_list:$("#Main-Subphotos #link-photo-list a "),
         link_profile:$("#Main-Subphotos #link-photo-profile a "),
+        link_detail_user: $("#Main-Subphotos #link-photo-detail-profile a"),
+        link_friends: $("#Main-Subphotos #link-photo-friends a"),
         api:{
             fill: {
                 url : baseUrl+"auth/user/photo/list",
