@@ -136,6 +136,13 @@ $(function () {
         });
 
 
+        //consulter le detail  sur un profile
+        mainSubPhotos.params.tabs.friend.body.on('click','.detail',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,email:$(this).data('email')});
+        });
+
+
+
         //agrandir une photo des amis
         mainSubPhotos.params.tabs.friend.body.on('click', "img",function() {
             mainSubPhotos.params.tabs.friend.zoom_source.attr('src', $(this).attr('src'));
@@ -323,9 +330,9 @@ $(function () {
                                     '<span class="fa fa-check"></span>' +friend+
                                 '</button>' +
                                 '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
-                                    '<a class="dropdown-item detail" href="#"><span class="fa fa-list"></span>'+detail+' </a>' +
-                                    '<a class="dropdown-item writemessage" href="#"><span class="fa fa-comment"></span>'+message+'  </a>' +
-                                    '<a class="dropdown-item remove" href="#"><span class="fa fa-remove"></span> '+remove+' </a>' +
+                                    '<a class="dropdown-item detail" data-id="'+user.id+'" data-email="'+user.email+'" href="#"><span class="fa fa-list"></span>'+detail+' </a>' +
+                                    '<a class="dropdown-item writemessage" data-id="'+user.id+'"  href="#"><span class="fa fa-comment"></span>'+message+'  </a>' +
+                                    '<a class="dropdown-item remove" data-id="'+user.id+'" href="#"><span class="fa fa-remove"></span> '+remove+' </a>' +
                                 '</div>' +
                             '</div>' +
                             '</div>' +
