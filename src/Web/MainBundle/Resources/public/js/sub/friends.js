@@ -366,7 +366,7 @@ $(function(){
                         mainSubFriends.params.ask.body.empty();
                         mainSubFriends.params.ask.head.div.fadeOut();
                         mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
-                        mainUserProfile_friends.params.nav.notification.friends.empty();
+                        mainUserProfile.params.nav.notification.friends.body.empty();
                         if(response.listApplicants!=null && response.listApplicants!="null"  && response.listApplicants!="undefined")
                         {
                             mainSubFriends.params.send.head.div.fadeIn();
@@ -422,7 +422,7 @@ $(function(){
                         mainSubFriends.params.ask.body.empty();
                         mainSubFriends.params.ask.head.div.fadeOut();
                         mainUserProfile_friends.params.nav.dropdownMenuFreinds_badge.fadeOut();
-                        mainUserProfile_friends.params.nav.notification.friends.empty();
+                        mainUserProfile.params.nav.notification.friends.body.empty();
                         if(response.listApplicants!=null && response.listApplicants!="null"  && response.listApplicants!="undefined")
                         {
                             mainSubFriends.params.send.head.div.fadeIn();
