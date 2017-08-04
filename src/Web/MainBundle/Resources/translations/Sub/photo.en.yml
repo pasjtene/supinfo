@@ -9,6 +9,7 @@ sub:
     seedetail: See details
     message: Write message
     remove: Remove to friends list
+    remove_success: The remove it's successfull
     myProfilDetail:
       infPersonelles : Personal informations
       diplome : Certificate
