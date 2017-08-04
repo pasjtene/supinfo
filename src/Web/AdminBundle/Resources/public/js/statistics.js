@@ -38,6 +38,7 @@ $(function(){
     }
 });
 
+
 $(function(){
     if($("#AdminStat").data('page')=="Stat")
     {
