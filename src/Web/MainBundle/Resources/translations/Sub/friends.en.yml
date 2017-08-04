@@ -3,9 +3,14 @@ sub:
     title: You dialogue with
     placeholder: Write your message here ...
   invitation:
-    title: Reply to number invitations
+    title1: Reply to
+    title2:  invitations
+    deletes: Delete the request
     view: View sent invitations
     message: Message
+    request1: You made
+    request2:  requests
+    reply: Respond to invitations
     action: Action
     delete: Delete invitation
     block: Block  user
