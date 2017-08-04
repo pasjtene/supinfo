@@ -33,7 +33,13 @@ var MainSubPhotos = function()
                 url : baseUrl+"auth/user/photo/profile",
                 method: "get",
                 type: "json"
+            },
+            friend:{
+                url : baseUrl+"auth/user/friends/cuurent",
+                method: "get",
+                type: "json"
             }
+
         },
         body:{
             content :$("#main-body #Main-Subphotos #content"),
@@ -57,6 +63,13 @@ var MainSubPhotos = function()
                 zoom_img : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-profiles #zoomImg-profile"),
                 body_photo: $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-profiles #body-profile"),
                 chargement_photo : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-profiles #chargement-profile")
+            },
+            friend:{
+                img : $("#mainUserProfile #Main-Subphotos  #photo-friends-list img"),
+                zoom_source : $("#mainUserProfile #Main-Subphotos  #photo-friends-list .zoomImgSourceFriends"),
+                zoom_img : $("#mainUserProfile #Main-Subphotos  #photo-friends-list #zoomImgFriends"),
+                body: $("#mainUserProfile #Main-Subphotos  #photo-friends-list .body"),
+                chargement_photo : $("#mainUserProfile #Main-Subphotos  #photo-friends-list #chargement-photo-friends")
             }
         }
     };
@@ -85,6 +98,7 @@ $(function () {
             mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
             initList();
             currentlink=1;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
         });
 
 
@@ -100,8 +114,35 @@ $(function () {
             mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
             initProfile();
             currentlink =3;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
         });
 
+        //link detail user appuyer
+        mainSubPhotos.params.link_detail_user.click(function(){
+           // mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
+            currentlink =4;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
+        });
+
+        //link friends user appuyer
+        if(mainSubPhotos.params.active_tab.val()==5){
+            //mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
+            initFriends();
+            currentlink = 5;
+        }
+        mainSubPhotos.params.link_friends.click(function(){
+            // mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
+            initFriends();
+            currentlink =5;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
+        });
+
+
+        //agrandir une photo des amis
+        mainSubPhotos.params.tabs.friend.body.on('click', "img",function() {
+            mainSubPhotos.params.tabs.friend.zoom_source.attr('src', $(this).attr('src'));
+            mainSubPhotos.params.tabs.friend.zoom_img.modal('show');
+        });
 
 
         //agrandir une photo
@@ -171,6 +212,48 @@ $(function () {
             //charger les photos de profile de l'utilisateur selectionnée (par defaut le user connecte)
             fillProfile(currentUser.id);
         }
+
+
+        function initFriends(){
+           // mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
+            //charger les photos de profile de l'utilisateur selectionnée (par defaut le user connecte)
+            //fillProfile(currentUser.id);
+        }
+
+
+        function fillFriends(id){
+            $.ajax({
+                url: mainSubPhotos.params.api.friend.url,
+                type:  mainSubPhotos.params.api.friend.method,
+                data: "id="+id,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                contentType: false,
+                dataType:  mainSubPhotos.params.api.friend.type,
+                success: function(response){
+                    console.log(response);
+                    if(response!=null  && response!="null" && response!="undefined")
+                    {
+                        setFriends(mainSubPhotos.params.tabs.friend.body,response);
+                    }
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
+
+        }
+
+
+
+        function setFriends(element,list){
+
+        }
+
 
         function fillPhotos(id){
             $.ajax({

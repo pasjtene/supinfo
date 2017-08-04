@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="photo-friends-list">
     <div class="modal fade" id="zoomImgFriends" tabindex="-1" role="dialog" aria-labelledby="zoomImg" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content" id="modal-content">
@@ -17,32 +17,32 @@
         <br>
         <strong> {% trans from 'user-profile' %} loading {% endtrans %}</strong>
     </div>
-    <div id="body-photo-friends" class="body row col-12" data-help="{{ asset('data/img/empty.png') }}">
-        {#
-              {% for i in 1..1 %}
-           <div class="col-sm-12 col-md-4 col  text-center img">
-               <div class="card">
-                   <img src="{{ asset('data/img/empty.png') }}" alt="" class="card-img-top rounded">
-                   {% set  id ="action"~i %}
-                   <div class="card-block text-right">
-                       <div class="btn-group">
-                           <button class="btn-secondary btn-sm text-muted"  type="button"  aria-haspopup="true" aria-expanded="false">
-                               {% trans from  'photo' %} sub.body.see {% endtrans %} 11/11/11
-                           </button>
-                           <button id="{{ id }}" type="button" class="  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <span class="sr-only">Toggle Dropdown</span>
-                           </button>
-                           <div class="dropdown-menu"  aria-labelledby="{{ id }}">
-                               <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.profile {% endtrans %}</a>
-                               <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.published {% endtrans %}</a>
-                               <a class="dropdown-item" href="#">{% trans from  'photo' %} sub.img.delete {% endtrans %}</a>
-                           </div>
-                       </div>
+    <div class="body row col-12 align-items-center" data-help="{{ asset('data/img/empty.png') }}">
+        {% for i in 1..10 %}
+            {% set id= 'action'~i %}
+            <div class="col-md-4 col-sm-12 col-xs-3 ">
+                <div class="card">
+                   <div class="col-12 text-center bg-faded img">
+                       <img src="{{ asset('data/img/empty.png') }}" class="responsive img-thumbnail">
                    </div>
-               </div>
-
-           </div>
-       {% endfor %}
-        #}
+                    <div class=" card-block">
+                        <h4 class="card-title">User Name </h4>
+                        <p class="card-text text-muted message-text">Consectetur adipiscing elit,  </p>
+                        <p class="card-text text-grey small"><span class="pays">pays</span> <span class="profession text-muted"> (Profession)</span></p>
+                        <p class="card-text text-grey small"> {% trans  with {'number':11} from 'friends' %} sub.noFriend.common {% endtrans %} </p>
+                        <div class="col-12 text-center dropdown">
+                            <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-check"></span> {% trans  from 'photo' %} sub.tabs.friendc {% endtrans %}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#"><span class="fa fa-list"></span> {% trans  from 'photo' %} sub.tabs.seedetail {% endtrans %}</a>
+                                <a class="dropdown-item" href="#"><span class="fa fa-comment"></span> {% trans  from 'photo' %} sub.tabs.message {% endtrans %}</a>
+                                <a class="dropdown-item" href="#"><span class="fa fa-remove"></span> {% trans  from 'photo' %} sub.tabs.remove {% endtrans %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </div>

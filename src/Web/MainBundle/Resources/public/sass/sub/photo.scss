@@ -21,8 +21,8 @@
       }
       #zoomImg{
           .zoomImgSource{
-              width: 80%;
-              max-height: 700px;
+              max-width: 90%;
+              max-height: 500px;
           }
       }
     }
@@ -101,10 +101,28 @@
 
       #zoomImg-profile{
         .zoomImgSource-profile{
-          width: 80%;
+          max-width: 90%;
           max-height: 500px;
         }
       }
+    }
+
+    #Main-Subphotos-friends{
+        .zoomImgSourceFriends{
+            max-width: 90%;
+            max-height: 500px;
+        }
+        .body{
+          .card{
+            margin-top: 2%;
+            .img{
+              img{
+                height: 150px;
+                max-width: 100%;
+              }
+            }
+          }
+        }
     }
   }
 }
