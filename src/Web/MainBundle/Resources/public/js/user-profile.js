@@ -252,7 +252,7 @@ $(function(){
                    }
                    else{
                        mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
-                       mainUserProfile.params.nav.notification.friends.empty();
+                       mainUserProfile.params.nav.notification.friends.body.empty();
                    }
                    preloader.fadeOut();
                    trans = Translator.trans('sub.invitation.accept',{},"friends")+' '+response.user.fullname;
