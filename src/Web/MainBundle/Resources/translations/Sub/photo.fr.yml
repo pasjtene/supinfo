@@ -4,6 +4,7 @@ sub:
     list:    List
     profile: Profile List
     detail: Détailles de mon profi
+    friend: Mes amis
     myProfilDetail:
       infPersonelles : Informations personelles
       diplome : Diplôme

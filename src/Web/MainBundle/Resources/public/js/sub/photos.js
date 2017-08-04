@@ -85,6 +85,7 @@ $(function () {
             mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
             initList();
             currentlink=1;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
         });
 
 
@@ -100,6 +101,26 @@ $(function () {
             mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
             initProfile();
             currentlink =3;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
+        });
+
+        //link detail user appuyer
+        mainSubPhotos.params.link_detail_user.click(function(){
+           // mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
+            currentlink =4;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
+        });
+
+        //link friends user appuyer
+        if(mainSubPhotos.params.active_tab.val()==5){
+            //mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
+            //initProfile();
+            currentlink = 5;
+        }
+        mainSubPhotos.params.link_friends.click(function(){
+            // mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
+            currentlink =5;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
         });
 
 
