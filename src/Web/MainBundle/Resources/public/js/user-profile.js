@@ -238,8 +238,8 @@ $(function(){
                idUser: idUser
            };
            $.ajax({
-               url: mainUserProfile.params.api.accpet.url,
-               type:  mainUserProfile.params.api.accpet.method,
+               url: mainUserProfile.params.api.accept.url,
+               type:  mainUserProfile.params.api.accept.method,
                data:  datas,
                crossDomain: true,
                headers : {"X-Auth-Token" : currentUser.token},
