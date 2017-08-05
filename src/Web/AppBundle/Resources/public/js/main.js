@@ -187,3 +187,13 @@ function getCountry(list, search){
         }
     }
 }
+
+function getCountryCode(list, search){
+    for(var i=0; i<list.length;i++)
+    {
+        if(list[i].value ==search)
+        {
+            return list[i].code;
+        }
+    }
+}

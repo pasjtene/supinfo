@@ -176,12 +176,13 @@
         <div class="card-block">
             <div class="container">
                 <div class="row">
-                    <form id="custom-search-form" class="form-search form-horizontal pull-right col-12">
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{% trans  from 'friends' %} sub.noFriend.placeholder {% endtrans %}">
-                            <div class="input-group-addon bg-primary text-white"><span class="fa fa-search"></span></div>
-                        </div>
-                    </form>
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <input type="text" autocomplete="off" class="form-control" list="Main-Subfriends-seach-list" id="Main-Subfriends-seach-input" placeholder="{% trans  from 'friends' %} sub.noFriend.placeholder {% endtrans %}">
+                        <div id="Main-Subfriends-seach-btn" class="input-group-addon bg-primary text-white"><span class="fa fa-search"></span></div>
+                        <datalist id="Main-Subfriends-seach-list">
+
+                        </datalist>
+                    </div>
                 </div>
             </div>
            <div class="body">
