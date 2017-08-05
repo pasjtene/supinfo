@@ -7,10 +7,10 @@
 //Ce fichier doit etre refference dans app/Resources/views/base.html.twig avant master.min.js
 
 var api = {
-    baseUrl: "/api/v1/",
-    baseHost: "/api/",
-    appUrl: "/api/"
+    baseHost: "http://api.funglobe.dev/",
+    baseUrl: "http://api.funglobe.dev/v1/",
+    appUrl: "http://api.funglobe.dev"
     //baseHost: "http://127.0.0.1:8000/",
-   // baseUrl: 'http://127.0.0.1:8000/v1/',
-   // appUrl: 'http://127.0.0.1:8000'
+    // baseUrl: 'http://127.0.0.1:8000/v1/',
+    // appUrl: 'http://127.0.0.1:8000'
 };
