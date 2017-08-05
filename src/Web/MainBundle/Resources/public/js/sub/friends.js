@@ -47,6 +47,9 @@ var MainSubFriends = function()
         friend:{
             Main_Subfriends_search: $("#Main-Subfriends #Main-Subfriends-seach"),
             body: $("#Main-Subfriends #Main-Subfriends-seach .body"),
+            input: $("#Main-Subfriends #Main-Subfriends-seach #Main-Subfriends-seach-input"),
+            btn: $("#Main-Subfriends #Main-Subfriends-seach #Main-Subfriends-seach-btn"),
+            list: $("#Main-Subfriends #Main-Subfriends-seach #Main-Subfriends-seach-list"),
             head:{
                 div: $('#Main-Subfriends #Main-Subfriends-seach'),
                 h5: $('#Main-Subfriends #Main-Subfriends-seach .card-header h5 strong '),
@@ -140,6 +143,37 @@ $(function(){
 
         });
 
+
+        // charger le dataliste des users
+        var intUser = setInterval(function(){
+            if(listUsers!=null)
+            {
+                for(var i=0; i<listUsers.length;i++)
+                {
+                    var user = listUsers[i].user;
+                    if(user.id !=currentUser.id && user.type!="System"){
+                        var option = '<option value="'+user.fullname+' : '+getCountry(countryList,user.country)+'">';
+                        mainSubFriends.params.friend.list.append(option);
+                    }
+                }
+                // on arrete le thread
+               clearInterval(intUser) ;
+            }
+        },100);
+
+        //charger la liste de  recher
+        mainSubFriends.params.friend.btn.click(function(e){
+            e.preventDefault();
+            searchUser(mainSubFriends.params.friend.input.val(),currentUser.id);
+        });
+
+        //lorqu'on clique sur le button entrée
+        mainSubFriends.params.friend.input.keydown(function(e){
+               if(e.keyCode===13){
+                   mainSubFriends.params.friend.btn.trigger('click');
+               }
+
+        });
 
         //consulter le detail  sur un profile
         mainSubFriends.params.page.on('click','.detail',function(){
@@ -443,6 +477,43 @@ $(function(){
                 error: function (xhr, status, message) { //en cas d'erreur
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
                     preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.error',{},"friends");
+                    bootbox.alert(trans,function(){});
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
+        }
+
+
+
+
+        function searchUser(search,id)
+        {
+           var code = getCountryCode(countryList, search);
+            datas = {
+                search: search,
+                id: id
+            };
+            $.ajax({
+                url: mainUserProfile_friends.params.api.searchUser.url,
+                type:  mainUserProfile_friends.params.api.searchUser.method,
+                data:  datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                dataType:  mainUserProfile_friends.params.api.searchUser.type,
+                success: function(response){
+                    console.log(response);
+                    if(response.listUsers!=null && response.listUsers!="null"  && response.listUsers!="undefined") {
+
+                        setUsers(mainSubFriends.params.friend.body, response.listUsers);
+                        mainSubFriends.params.friend.head.div.fadeIn();
+                    }
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
                     trans = Translator.trans('sub.invitation.error',{},"friends");
                     bootbox.alert(trans,function(){});
                 },

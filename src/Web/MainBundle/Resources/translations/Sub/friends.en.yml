@@ -23,7 +23,7 @@ sub:
     error: An error occurs during the processing of the request. You can retrieve later
   noFriend:
     title: Do you  now ...
-    placeholder: Find people by name or email address
+    placeholder: Find people by name or country
     delete: Delete
     add: Add
     message: Message
