@@ -31,7 +31,9 @@ var AdminMember = function()
                 ul_pagination: $("#users-pagination"),
                 page_link: '.page-link',
                 prev_pagination: $("#pg-prev"),
-                next_pagination: $("#pg-next")
+                next_pagination: $("#pg-next"),
+                ipt_search_user: $("#ipt-search-user"),
+                btn_search_user: $("#btn-search-user")
             },
             class:{
                 checkbox : 'input[type="checkbox"]',
@@ -303,7 +305,27 @@ $(function(){
             clearPagination();
 
             adminMember.params.attr.id.btn_order_users.trigger('click');
+        });
 
+        adminMember.params.attr.id.btn_search_user.click(function(e)
+        {
+            var keyword = adminMember.params.attr.id.ipt_search_user.val();
+
+            if(keyword.length > 0)
+            {
+                var property = adminMember.params.attr.id.cb_property.val(),
+                    order = adminMember.params.attr.id.cb_order_users.val();
+
+                var queryString = "?page="+page+ "&property="+property+"&order="+order+"&keyword="+keyword;
+
+                adminMember.params.attr.id.users_loader.show();
+                adminMember.params.attr.id.users_table_body.empty();
+                clearPagination();
+
+                getUsers(queryString);
+            }
+
+            e.preventDefault();
         });
     }
 });
