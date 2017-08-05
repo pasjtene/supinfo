@@ -19,6 +19,11 @@ var MainUserProfile = function()
                 method: "put",
                 type: "json"
             },
+            ask:{
+                url : baseUrl+"auth/user/friend/ask",
+                method: "post",
+                type: "json"
+            },
             deletes: {
                 url : baseUrl+"auth/user/friends/deletes",
                 method: "delete",
