@@ -19,6 +19,7 @@ $(function(){
                 {
                     countUsersView.html(response.countuser);
                     countVipsView.html(response.countvip);
+                    console.log(response);
                 }
 
             },
@@ -26,7 +27,7 @@ $(function(){
                 console.log(status+"\n"+xhr.responseText + '\n' + message );
             },
             complete:function(){
-                console.log("Request finished.");
+                //console.log("Request finished.");
             }
 
         });
