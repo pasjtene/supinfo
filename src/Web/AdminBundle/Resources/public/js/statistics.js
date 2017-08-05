@@ -13,7 +13,7 @@ $(function(){
             contentType: false,
             processData: false,
             dataType:  'json',
-            success: function(response){ // en cas de success
+            success: function(response){ // en cas de succeess
 
                 if(response!=null && response!="null")
                 {
