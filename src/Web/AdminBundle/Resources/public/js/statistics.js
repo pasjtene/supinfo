@@ -19,8 +19,6 @@ $(function(){
                 {
                     countUsersView.html(response.countuser);
                     countVipsView.html(response.countvip);
-
-
                 }
 
             },
