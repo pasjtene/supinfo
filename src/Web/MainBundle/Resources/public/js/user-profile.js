@@ -238,8 +238,8 @@ $(function(){
                idUser: idUser
            };
            $.ajax({
-               url: mainUserProfile.params.api.accpet.url,
-               type:  mainUserProfile.params.api.accpet.method,
+               url: mainUserProfile.params.api.accept.url,
+               type:  mainUserProfile.params.api.accept.method,
                data:  datas,
                crossDomain: true,
                headers : {"X-Auth-Token" : currentUser.token},
@@ -252,7 +252,7 @@ $(function(){
                    }
                    else{
                        mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
-                       mainUserProfile.params.nav.notification.friends.empty();
+                       mainUserProfile.params.nav.notification.friends.body.empty();
                    }
                    preloader.fadeOut();
                    trans = Translator.trans('sub.invitation.accept',{},"friends")+' '+response.user.fullname;

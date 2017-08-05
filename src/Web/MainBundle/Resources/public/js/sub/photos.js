@@ -6,6 +6,8 @@ var MainSubPhotos = function()
         active_tab : $("#Main-Subphotos #active-photo-tab"),
         link_list:$("#Main-Subphotos #link-photo-list a "),
         link_profile:$("#Main-Subphotos #link-photo-profile a "),
+        link_detail_user: $("#Main-Subphotos #link-photo-detail-profile a"),
+        link_friends: $("#Main-Subphotos #link-photo-friends a"),
         api:{
             fill: {
                 url : baseUrl+"auth/user/photo/list",
@@ -31,7 +33,13 @@ var MainSubPhotos = function()
                 url : baseUrl+"auth/user/photo/profile",
                 method: "get",
                 type: "json"
+            },
+            friend:{
+                url : baseUrl+"auth/user/friends/cuurent",
+                method: "get",
+                type: "json"
             }
+
         },
         body:{
             content :$("#main-body #Main-Subphotos #content"),
@@ -55,6 +63,13 @@ var MainSubPhotos = function()
                 zoom_img : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-profiles #zoomImg-profile"),
                 body_photo: $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-profiles #body-profile"),
                 chargement_photo : $("#mainUserProfile #Main-Subphotos  #Main-Subphotos-profiles #chargement-profile")
+            },
+            friend:{
+                img : $("#mainUserProfile #Main-Subphotos  #photo-friends-list img"),
+                zoom_source : $("#mainUserProfile #Main-Subphotos  #photo-friends-list .zoomImgSourceFriends"),
+                zoom_img : $("#mainUserProfile #Main-Subphotos  #photo-friends-list #zoomImgFriends"),
+                body: $("#mainUserProfile #Main-Subphotos  #photo-friends-list .body"),
+                chargement_photo : $("#mainUserProfile #Main-Subphotos  #photo-friends-list #chargement-photo-friends")
             }
         }
     };
@@ -83,6 +98,7 @@ $(function () {
             mainSubPhotos.params.tabs.list.chargement_photo.fadeIn();
             initList();
             currentlink=1;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
         });
 
 
@@ -98,8 +114,45 @@ $(function () {
             mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
             initProfile();
             currentlink =3;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
         });
 
+        //link detail user appuyer
+        mainSubPhotos.params.link_detail_user.click(function(){
+           // mainSubPhotos.params.tabs.profile.chargement_photo.fadeIn();
+            currentlink =4;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
+        });
+
+        //link friends user appuyer
+        if(mainSubPhotos.params.active_tab.val()==5){
+            initFriends();
+            currentlink = 5;
+        }
+        mainSubPhotos.params.link_friends.click(function(){
+            initFriends();
+            currentlink =5;
+            mainSubPhotos.params.active_tab.attr('value',currentlink);
+        });
+
+
+        //consulter le detail  sur un profile
+        mainSubPhotos.params.tabs.friend.body.on('click','.detail',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,email:$(this).data('email')});
+        });
+
+        //retirer  un utilisateur de la liste d'amis
+        mainSubPhotos.params.tabs.friend.body.on('click','.remove',function(){
+            deleteFriends($(this).data('id'), currentUser.id,mainUserProfile_photos.params.bg_action);
+        });
+
+
+
+        //agrandir une photo des amis
+        mainSubPhotos.params.tabs.friend.body.on('click', "img",function() {
+            mainSubPhotos.params.tabs.friend.zoom_source.attr('src', $(this).attr('src'));
+            mainSubPhotos.params.tabs.friend.zoom_img.modal('show');
+        });
 
 
         //agrandir une photo
@@ -169,6 +222,176 @@ $(function () {
             //charger les photos de profile de l'utilisateur selectionnée (par defaut le user connecte)
             fillProfile(currentUser.id);
         }
+
+
+        function initFriends(){
+            //charger les photos de profile de l'utilisateur selectionnée (par defaut le user connecte)
+            fillFriends(currentUser.id);
+        }
+
+
+        function fillFriends(id){
+            mainSubPhotos.params.tabs.friend.chargement_photo.fadeIn();
+            $.ajax({
+                url: mainSubPhotos.params.api.friend.url,
+                type:  mainSubPhotos.params.api.friend.method,
+                data: "id="+id,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                contentType: false,
+                dataType:  mainSubPhotos.params.api.friend.type,
+                success: function(response){
+                    console.log(response);
+                    if(response!=null  && response!="null" && response!="undefined")
+                    {
+                        if(response.listUsers!=null  && response.listUsers!="null" && response.listUsers!="undefined")
+                        {
+                            setFriends(mainSubPhotos.params.tabs.friend.body,response.listUsers);
+                        }
+                    }
+                    mainSubPhotos.params.tabs.friend.chargement_photo.fadeOut();
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    mainSubPhotos.params.tabs.friend.chargement_photo.fadeOut();
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
+
+        }
+
+
+
+        function setFriends(element,list){
+            element.empty();
+            for(var i= 0; i<list.length;i++){
+
+                var photoApplicant = list[i].photoApplicant,
+                    photoReciever = list[i].photoReciever,
+                    request = list[i].request,
+                    user = list[i].user;
+
+                var src = null;
+                if(request.receiver.id==currentUser.id)
+                {
+                    user = request.applicant;
+                    if (( photoApplicant==null || photoApplicant=='null' || photoApplicant.hashname == null || photoApplicant.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoApplicant.path;
+                    }
+                }
+                else
+                {
+                    user =  request.receiver;
+                    if (( photoReciever==null || photoReciever=='null' || photoReciever.hashname == null || photoReciever.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoReciever.path;
+                    }
+                }
+
+                //alert(currentUser.ip);
+                //alert("country =>"+user.country+ "user country =>"+currentUser.country)
+                if(user.id !=currentUser.id && user.type!="System"){
+                    //photos
+
+                    var today=new Date();
+                    var currentyear = today.getFullYear();
+                    var year  = user.birthDate.split('-')[0];
+                    var age = currentyear -parseInt(year);
+                    age = age<10 ? '(0'+age+'ans)' : '('+ age+'ans)';
+                    var name = user.lastNameOrFirstname;
+                    var city = user.city;
+                    var  country = user.country;
+                    var final =(city==null || city=="null")? getCountry(countryList,country) :city;
+                    var flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                    var profession = user.profession==null || user.profession=="null"?'' : '('+ user.profession +')';
+
+                    var detail = Translator.trans('sub.tabs.seedetail', {}, 'photo'),
+                        message = Translator.trans('sub.tabs.message', {}, 'photo'),
+                        friend = Translator.trans('sub.tabs.friendc', {}, 'photo'),
+                        common = Translator.trans('sub.noFriend.common', {}, 'photo'),
+                        remove = Translator.trans('sub.tabs.remove', {}, 'photo');
+
+                   var body =
+                    '<div class="col-md-4 col-sm-12 col-xs-3 ">' +
+                        '<div class="card">' +
+                            '<div class="col-12 text-center bg-faded img">' +
+                                '<img src="'+src+'" class="responsive img-thumbnail">' +
+                            '</div>' +
+                            '<div class=" card-block">' +
+                                '<h4 class="card-title">'+user.lastNameOrFirstname+ age+'</h4>' +
+                                '<p class="card-text text-muted message-text">'+user.joinReason+'</p>' +
+                                '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted"> '+profession+'</span></p>' +
+                                '<p class="card-text text-grey small">'+common+'  </p>' +
+                                '<div class="col-12 text-center dropdown">' +
+                                '<button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                    '<span class="fa fa-check"></span>' +friend+
+                                '</button>' +
+                                '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                                    '<a class="dropdown-item detail" data-id="'+user.id+'" data-email="'+user.email+'" href="#"><span class="fa fa-list"></span>'+detail+' </a>' +
+                                    '<a class="dropdown-item writemessage" data-id="'+user.id+'"  href="#"><span class="fa fa-comment"></span>'+message+'  </a>' +
+                                    '<a class="dropdown-item remove" data-id="'+request.id+'" href="#"><span class="fa fa-remove"></span> '+remove+' </a>' +
+                                '</div>' +
+                            '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+                    element.append(body);
+                }
+            }
+        }
+
+
+        function deleteFriends(id, idUser,preloader)
+        {
+            preloader.fadeIn();
+            datas = {
+                id : id,
+                idUser: idUser,
+                page: 'friends'
+            };
+            $.ajax({
+                url: mainUserProfile_photos.params.api.deletes.url,
+                type:  mainUserProfile_photos.params.api.deletes.method,
+                data: datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                success: function(response){
+                    if(response!=null  && response!="null" && response!="undefined")
+                    {
+                        if(response.listUsers!=null  && response.listUsers!="null" && response.listUsers!="undefined")
+                        {
+                            setFriends(mainSubPhotos.params.tabs.friend.body,response.listUsers);
+                            trans = Translator.trans('sub.tabs.remove_success',"photo");
+                            bootbox.alert(trans,function(){});
+                        }
+                        else
+                        {
+                            mainSubPhotos.params.tabs.friend.body.empty();
+                        }
+                    }
+                    preloader.fadeOut();
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.error',{},"friends");
+                    bootbox.alert(trans,function(){});
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
+        }
+
 
         function fillPhotos(id){
             $.ajax({
