@@ -122,17 +122,12 @@ $(function(){
                         mainSubFriends.params.send.head.div.fadeOut();
                     }
 
-                    var intervalusers = setInterval(function(){
-                        //charger la liste des users du  site
-                        if(listUsers!=null)
-                        {
-                            clearInterval(intervalusers);
-                            setUsers(mainSubFriends.params.friend.body,listUsers);
-                            mainSubFriends.params.friend.head.div.fadeIn();
-                            mainUserProfile_friends.params.bg_action.fadeOut();
-                        }
-                    },100);
+                    if(response.listUsers!=null && response.listUsers!="null"  && response.listUsers!="undefined") {
 
+                        setUsers(mainSubFriends.params.friend.body, response.listUsers);
+                        mainSubFriends.params.friend.head.div.fadeIn();
+                    }
+                    mainUserProfile_friends.params.bg_action.fadeOut();
                 }
 
             },
@@ -143,6 +138,18 @@ $(function(){
                 console.log("Request finished.");
             }
 
+        });
+
+
+        //consulter le detail  sur un profile
+        mainSubFriends.params.page.on('click','.detail',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,email:$(this).data('email')});
+        });
+
+        // demander l'amitier
+        mainSubFriends.params.friend.body.on('click',".add",function(e){
+            e.preventDefault();
+            addFriend(currentUser.id,$(this).data('email'),$('#Main-Subfriends #Main-Subfriends-seach .body #'+$(this).data('preloader')));
         });
 
         // accepter les demandes d'amitiers
@@ -197,7 +204,7 @@ $(function(){
                     block = Translator.trans('sub.invitation.block', {}, 'friends'),
                     ignore = Translator.trans('sub.invitation.ignore', {}, 'friends'),
                     id = 'module'+request.id;
-                var datapreloader = "Invitationpreoloader"+list[i].request.id;
+                var datapreloader = "Invitationpreoloader"+request.id;
                 var preloader ="<img id='"+datapreloader+"' class='sm-img preloader pull-right' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
                var  deletes = Translator.trans('sub.invitation.delete', {}, 'friends');
                     if(request.receiver.id==currentUser.id)
@@ -236,7 +243,7 @@ $(function(){
                          '<div class="container py-3">'+
                             '<div class="row align-items-center small">'+
                                 '<div class="col-md-3 ">'+
-                                     '<img src="'+src+'" class="w-100">'+
+                                     '<img src="'+src+'" class="w-100 detail" data-email="'+friends.email+'" >'+
                                 '</div>'+
                                 '<div class="col-md-9 px-3 content" >'+
                                     '<div class="card-block px-3">'+
@@ -317,7 +324,7 @@ $(function(){
                     '<div class="container py-3">'+
                     '<div class="row align-items-center small">'+
                     '<div class="col-md-3 ">'+
-                    '<img src="'+src+'" class="w-100">'+
+                    '<img src="'+src+'" class="w-100 detail" data-email="'+friends.email+'" >'+
                     '</div>'+
                     '<div class="col-md-9 px-3 content" >'+
                     '<div class="card-block px-3">'+
@@ -380,6 +387,57 @@ $(function(){
                     }
                     preloader.fadeOut();
                     trans = Translator.trans('sub.invitation.accept',{},"friends")+' '+response.user.fullname;
+                    bootbox.alert(trans,function(){});
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    preloader.fadeOut();
+                    trans = Translator.trans('sub.invitation.error',{},"friends");
+                    bootbox.alert(trans,function(){});
+                },
+                complete:function(){
+                    console.log("Request finished.");
+                }
+
+            });
+        }
+
+
+        function addFriend(applicantId,receiverEmail,preloader)
+        {
+            preloader.fadeIn();
+            datas = {
+                applicantId: applicantId,
+                receiverEmail: receiverEmail,
+                page : 'listFriend'
+            };
+            $.ajax({
+                url: mainUserProfile_friends.params.api.ask.url,
+                type:  mainUserProfile_friends.params.api.ask.method,
+                data:  datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                dataType:  mainUserProfile_friends.params.api.ask.type,
+                success: function(response){
+                    //charger les les notifications
+                    console.log(response);
+                    if(response.listApplicants!=null && response.listApplicants!="null"  && response.listApplicants!="undefined")
+                    {
+                        setSend(mainSubFriends.params.send.body, response.listApplicants);
+                        mainSubFriends.params.ask.head.div.fadeOut();
+                        mainSubFriends.params.send.head.div.fadeIn();
+                    }
+                    else
+                    {
+                        mainSubFriends.params.send.head.div.fadeOut();
+                    }
+                    if(response.listUsers!=null && response.listUsers!="null"  && response.listUsers!="undefined") {
+
+                        setUsers(mainSubFriends.params.friend.body, response.listUsers);
+                        mainSubFriends.params.friend.head.div.fadeIn();
+                    }
+                    preloader.fadeOut();
+                    trans = Translator.trans('sub.success.ask',{},"default");
                     bootbox.alert(trans,function(){});
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
@@ -493,6 +551,13 @@ $(function(){
                         }
 
                     }
+
+                    if(response.listUsers!=null && response.listUsers!="null"  && response.listUsers!="undefined") {
+
+                        setUsers(mainSubFriends.params.friend.body, response.listUsers);
+                        mainSubFriends.params.friend.head.div.fadeIn();
+                    }
+
                     preloader.fadeOut();
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
@@ -588,6 +653,8 @@ $(function(){
                 var profile = list[i].profile;
                 var photos = list[i].photos;
                 var profilePicture = list[i].photoProfile;
+                var datapreloader = "Invitationpreoloader"+list[i].user.id;
+                var preloader ="<img id='"+datapreloader+"' class='sm-img preloader pull-right' src='"+mainUserProfile_friends.params.preloader+"' alt=''/> ";
                 //alert(currentUser.ip);
                 //alert("country =>"+user.country+ "user country =>"+currentUser.country)
                 if(user.id !=currentUser.id && user.type!="System"){
@@ -621,7 +688,7 @@ $(function(){
                     '<div class="container py-3">'+
                         '<div class="row align-items-center small">'+
                             '<div class="col-md-3 ">'+
-                                '<img src="'+src+'" class="w-100">'+
+                                '<img src="'+src+'" class="w-100 detail" data-email="'+user.email+'">'+
                             '</div>'+
                             '<div class="col-md-9 px-3 content">'+
                                 '<div class="card-block px-3">'+
@@ -629,9 +696,9 @@ $(function(){
                                 '<p class="card-text text-muted message-text">'+user.joinReason+'</p>'+
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                                 '<p class="card-text text-grey small"> commun friend </p>'+
-                                '<a href="#" class="btn btn-sm btn-primary"><span class="fa fa-user-plus"></span> '+ add + ' </a>'+
+                                '<a href="#" class="btn btn-sm btn-primary add" data-email="'+user.email+'"  data-preloader="'+datapreloader+'"  data-id="'+user.id+'"><span class="fa fa-user-plus"></span> '+ add + ' </a>'+
                                 '<a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span>' + message +' </a>'+
-                                '<a href="#" class="btn btn-sm btn-danger hide">'+ deletes+'</a>'+
+                                 preloader+
                             '</div>'+
                         '</div>'+
                         '</div>'+
