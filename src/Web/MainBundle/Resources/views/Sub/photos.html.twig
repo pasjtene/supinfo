@@ -15,14 +15,14 @@
             <a class="nav-link {% if active is defined and active==3 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-profiles">{% trans from 'photo' %} sub.tabs.profile {% endtrans %}</a>
         </li>
         <li class="nav-item" id="link-photo-friends">
-            <a class="nav-link {% if active is defined and active==5 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-friends">{% trans from 'photo' %} sub.tabs.profile {% endtrans %}</a>
+            <a class="nav-link {% if active is defined and active==5 %} active {% endif %}" data-toggle="tab"  href="#Main-Subphotos-friends">{% trans from 'photo' %} sub.tabs.friend {% endtrans %} <span></span></a>
         </li>
 
     </ul>
 
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade {% if active is defined and active==4 %} show active {% endif %}" id="Main-Subdetails-Detail-User">
-            {% include "MainBundle:Tabs:detail-profile.html.twig" %}
+            {% include "MainBundle:Tabs:compte.html.twig" %}
         </div>
         <div role="tabpanel" class="tab-pane fade {% if active is defined and active==1 %} show active {% endif %} " id="Main-Subphotos-list" data-tabs="Main-Subphotos-list" >
             {% include "MainBundle:Tabs:list-photo.html.twig" %}

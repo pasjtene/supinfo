@@ -1,6 +1,10 @@
 $(function(){
     if($("#AdminStat").data('page')=="Stat")
     {
+        //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user
+        var  countUsersView = $('#AdminStat table tr .countuser');
+        //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de vips
+        var  countVipsView = $('#AdminStat table tr .countuservip');
         $.ajax({
             url: baseUrl+'auth/count',
             type:  'get',
@@ -9,14 +13,13 @@ $(function(){
             contentType: false,
             processData: false,
             dataType:  'json',
-            success: function(response){ // en cas de success
+            success: function(response){ // in success case
 
                 if(response!=null && response!="null")
                 {
-                    var  count  = response.countUser; //voici  le nombre d'utilisateur present dans la bd
-                    var  listeUser = response.UserList; //voici  la liste de tous les utilisateurs dans la bd
-                    //affiche avec une fenetre personalise le nombre de users dans la bd
-                    bootbox.alert("Nombre d'utilisateur present  dans la base de donnée : " + count, function(){});
+                    countUsersView.html(response.countuser);
+                    countVipsView.html(response.countvip);
+                    console.log(response);
                 }
 
             },
@@ -24,7 +27,7 @@ $(function(){
                 console.log(status+"\n"+xhr.responseText + '\n' + message );
             },
             complete:function(){
-                console.log("Request finished.");
+                //console.log("Request finished.");
             }
 
         });
