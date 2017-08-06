@@ -325,7 +325,9 @@ $(function () {
                 body+=
                     ' <div class="col-sm-12 col-md-6   text-center img">'+
                     '<div class="card">'+
-                    '<img src="'+src+'" alt="" class="card-img-top rounded">'+
+                    '<div class="col-12 text-center bg-faded ">' +
+                    '<img src="'+src+'" class="responsive card-img-top rounded img-thumbnail">' +
+                    '</div>' +
                     '<div class="card-block text-right">'+
                     '<div class="name">'+
                     '<div class="rounded-circle"> </div>'+
@@ -397,7 +399,9 @@ $(function () {
                 body+=
                     ' <div class="col-sm-12 col-md-6   text-center img">'+
                     '<div class="card">'+
-                    '<img src="'+src+'" alt="" class="card-img-top rounded">'+
+                    '<div class="col-12 text-center bg-faded img">' +
+                    '<img src="'+src+'" class="responsive card-img-top rounded img-thumbnail">' +
+                    '</div>' +
                     '<div class="card-block text-right">'+
                     '<div class="name">'+
                     '<div class="rounded-circle"> </div>'+
@@ -436,7 +440,9 @@ $(function () {
                     body+=
                         '<div class="col-sm-12 col-md-6 col  text-center align-content-center img">'+
                         '<div class="card">'+
-                        '<img src="'+src+'" alt="" class="card-img-top ">' +
+                        '<div class="col-12 text-center bg-faded ">' +
+                        '<img src="'+src+'" class="responsive card-img-top rounded img-thumbnail">' +
+                        '</div>' +
                         '<div class="card-block text-right">'+
                         '<span class="fa fa-thumbs-o-up ">('+photo.id+')</span>'+
                         '</div>'+
