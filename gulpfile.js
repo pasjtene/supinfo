@@ -23,7 +23,7 @@ var jsPaths = [
 
 var jsParamsPaths = [
     './web/bundles/app/js/Inc/*.js',
-    './web/bundles/app/js/*.js',
+    './web/bundles/app/js/*.js'
 ];
 
 
