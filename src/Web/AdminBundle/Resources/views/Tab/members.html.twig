@@ -17,6 +17,12 @@
         </select>
         <button id="btn-order-users" class="btn btn-default">{% trans from 'admin' %}admin.members.filter {% endtrans %}</button>
     </div>
+    <div class="input-group" style="margin-bottom: 5px;">
+        <input type="text" class="form-control" placeholder="{% trans from 'admin' %} admin.members.search_hint {% endtrans %}" id="ipt-search-user">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" id="btn-search-user">{% trans from 'admin' %}admin.members.search {% endtrans %}</button>
+      </span>
+    </div>
     <br/>
     <div id="users-loader">
         <img src="{{ asset('dist/loader.gif') }}"/>

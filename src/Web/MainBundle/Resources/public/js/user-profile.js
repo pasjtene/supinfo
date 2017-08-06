@@ -14,9 +14,19 @@ var MainUserProfile = function()
                method: "get",
                type: "json"
            },
+            searchUser: {
+                url : baseUrl+"auth/user/search",
+                method: "get",
+                type: "json"
+            },
             accept: {
                 url : baseUrl+"auth/user/friends/accept",
                 method: "put",
+                type: "json"
+            },
+            ask:{
+                url : baseUrl+"auth/user/friend/ask",
+                method: "post",
                 type: "json"
             },
             deletes: {

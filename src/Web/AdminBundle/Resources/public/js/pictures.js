@@ -17,16 +17,22 @@ var AdminPictures = function()
                 ul_pagination: $("#pics-pagination"),
                 page_link: '.pic-pg-link',
                 prev_pagination: $("#ppg-prev"),
-                next_pagination: $("#ppg-next")
+                next_pagination: $("#ppg-next"),
+                bg_pictures: $("#bg-pictures"),
+                carousel_pictures: $('#carousel-pictures'),
+                carousel_content: $("#carousel-content")
             },
             class:{
-                pics_checked: '.pics-chk:checked'
+                pics_checked: '.pics-chk:checked',
+                carousel: '.carousel',
+                item_media : '.item-media'
             }
         },
         api:{
             action :
             {
                 pictures: baseUrl +"auth/pictures",
+                pictures_member: baseUrl +"auth/members/:id/pictures",
                 changeVisibility: baseUrl + "auth/pictures/change"
             },
             method:
@@ -78,8 +84,8 @@ $(function()
                     {
                         var item = '<div class="col-lg-3 col-sm-4 col-xs-12">'+
                                         '<div class="bp-item bp-house">'+
-                                            '<div class="item-media">'+
-                                                '<img class="item-img" src="'+ appUrl + '/' + pic.path +'" alt="" />'+
+                                            '<div class="item-media" data-uid="'+pic.user.id+'">'+
+                                                '<img class="item-img" data-id="'+pic.id+'" src="'+ appUrl + '/' + pic.path +'" alt="" />'+
                                             '</div>'+
                                             '<div class="item-details">'+
                                                 '<div class="bp-details">'+
@@ -144,6 +150,10 @@ $(function()
         });
     };
 
+    $(adminPictures.params.attr.class.carousel).carousel({
+        interval: false
+    });
+
     if(adminPictures.params.page.data('page') === "adminHome")
     {
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e)
@@ -153,6 +163,8 @@ $(function()
                 getPictures(page);
             }
         });
+
+        adminPictures.params.attr.id.carousel_pictures.css({left: ((window.screen.width - 800)/2)+"px"});
 
         adminPictures.params.attr.id.mn_delete_pics.click(function(e)
         {
@@ -228,6 +240,46 @@ $(function()
             }
 
             getPictures(page);
+        });
+
+        adminPictures.params.attr.id.pictures_view.on('click', adminPictures.params.attr.class.item_media, function(e)
+        {
+            var userId = parseInt($(this).data('uid')),
+                imgId = parseInt($(this).children('img').data('id'));
+
+            adminPictures.params.attr.id.carousel_content.empty();
+
+            $.ajax(
+            {
+                url: adminPictures.params.api.action.pictures_member.replace(':id', userId),
+                type: adminPictures.params.api.method.get,
+                headers : {"X-Auth-Token" : tokenbase.value},
+                crossDomain: true,
+                success: function (response) {
+                    console.log(response);
+
+                    $.each(response.pictures, function(i, pic){
+                       var img = '<div class="carousel-item '+(pic.id === imgId ? "active" : "")+'">'+
+                                       '<img class="d-block img-fluid" src="'+ appUrl + '/' + pic.path +'" alt="First slide">'+
+                                       '<div class="carousel-caption d-none d-md-block"><h4><b>'+(i+1)+' / '+response.pictures.length+'</b></h4></div>'+
+                                 '</div>';
+                        adminPictures.params.attr.id.carousel_content.append(img);
+                    });
+                    adminPictures.params.attr.id.bg_pictures.fadeIn();
+                    adminPictures.params.attr.id.carousel_pictures.fadeIn();
+                },
+                error: function (xhr, status, message) {
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                }
+            });
+
+            e.preventDefault();
+        });
+
+        adminPictures.params.attr.id.bg_pictures.click(function()
+        {
+            $(this).fadeOut();
+            adminPictures.params.attr.id.carousel_pictures.hide();
         });
     }
 });
