@@ -16,15 +16,16 @@ var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 
 var jsPaths = [
-    './web/bundles/app/js/*.js',
     './web/bundles/main/js/*.js',
     './web/bundles/main/js/sub/*.js',
     './web/bundles/admin/js/*.js'
 ];
 
 var jsParamsPaths = [
-    './web/bundles/app/js/Inc/*.js'
+    './web/bundles/app/js/Inc/*.js',
+    './web/bundles/app/js/*.js',
 ];
+
 
 /*var sassPaths = [
     './web/bundles/app/sass/main.scss',

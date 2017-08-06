@@ -191,7 +191,13 @@ $(function(){
         // demander l'amitier
         mainSubFriends.params.friend.body.on('click',".add",function(e){
             e.preventDefault();
-            addFriend(currentUser.id,$(this).data('email'),$('#Main-Subfriends #Main-Subfriends-seach .body #'+$(this).data('preloader')));
+            trans = Translator.trans('sub.message',{},"default");
+            var email =$(this).data('email');
+            bootbox.prompt(trans,function(result){
+                if(result){
+                    addFriend(currentUser.id,email,result,$('#Main-Subfriends #Main-Subfriends-seach .body #'+$(this).data('preloader')));
+                }
+            });
         });
 
         // accepter les demandes d'amitiers
@@ -445,13 +451,14 @@ $(function(){
         }
 
 
-        function addFriend(applicantId,receiverEmail,preloader)
+        function addFriend(applicantId,receiverEmail,message,preloader)
         {
             preloader.fadeIn();
             datas = {
                 applicantId: applicantId,
                 receiverEmail: receiverEmail,
-                page : 'listFriend'
+                page : 'listFriend',
+                message: message
             };
             $.ajax({
                 url: mainUserProfile_friends.params.api.ask.url,
