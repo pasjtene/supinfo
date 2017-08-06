@@ -5,6 +5,8 @@ $(function(){
         var  countUsersView = $('#AdminStat table tr .countuser');
         //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de vips
         var  countVipsView = $('#AdminStat table tr .countuservip');
+        //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de vips
+        var  countjointodayView = $('#AdminStat table tr .joinTodays');
         $.ajax({
             url: baseUrl+'auth/count',
             type:  'get',
@@ -19,6 +21,7 @@ $(function(){
                 {
                     countUsersView.html(response.countuser);
                     countVipsView.html(response.countvip);
+                    countjointodayView.html(response.joinTodays);
                     console.log(response);
                 }
 
