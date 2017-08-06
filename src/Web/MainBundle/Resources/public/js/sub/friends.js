@@ -152,7 +152,16 @@ $(function(){
                 {
                     var user = listUsers[i].user;
                     if(user.id !=currentUser.id && user.type!="System"){
-                        var option = '<option value="'+user.fullname+' : '+getCountry(countryList,user.country)+'">';
+                        var option = '<option value="'+user.fullname+'">';
+                        mainSubFriends.params.friend.list.append(option);
+                    }
+                }
+
+                for(var i=0; i<countryList.length;i++)
+                {
+                    var country = countryList[i];
+                    if(user.id !=currentUser.id && user.type!="System"){
+                        var option = '<option value="'+getCountry(countryList,user.country)+'">';
                         mainSubFriends.params.friend.list.append(option);
                     }
                 }
