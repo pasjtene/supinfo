@@ -59,7 +59,7 @@ $(function(){
                             var  user  = response.userProfile.user;  // recuperer le user
                             var  profile  = response.userProfile;  // recuperer le profile
                             var  geolocation  = response.userProfile.geolocation;  // recuperer les informations sur son plan de localisation lors de la connexion a ne pas modifier ces info
-                            //bootbox.alert("Nombre d'utilisateur present  dans la base de donnée : " + user.fullname, function(){});
+                           
                         }else{
                             var  user  = response.user;  // recuperer le user
                             //bootbox.alert("Nombre d'utilisateur present  dans la base de donnée : " + user.fullname, function(){});
