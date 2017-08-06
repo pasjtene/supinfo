@@ -327,7 +327,7 @@ $(function () {
                             '</div>' +
                             '<div class=" card-block">' +
                                 '<h4 class="card-title">'+user.lastNameOrFirstname+ age+'</h4>' +
-                                '<p class="card-text text-muted message-text">'+user.joinReason+'</p>' +
+                                '<p class="card-text text-muted message-text">'+getJoinReason(user.joinReason)+'</p>' +
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted"> '+profession+'</span></p>' +
                                 '<p class="card-text text-grey small">'+common+'  </p>' +
                                 '<div class="col-12 text-center dropdown">' +

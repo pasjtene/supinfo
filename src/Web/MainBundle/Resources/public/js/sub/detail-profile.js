@@ -452,7 +452,7 @@ $(function () {
             element.vip.html(user.isVip?'yes':'no');
             element.countFriend.html("["+(countFriendAlone+countFriends)+"]["+countFriends+"]");
             element.profession.html(user.profession);
-            element.joinReason.html(user.joinReason);
+            element.joinReason.html(getJoinReason(user.joinReason));
         }
 
 

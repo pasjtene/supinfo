@@ -167,6 +167,44 @@ var path =
     emptyImage: '/data/img/empty.png'
 };
 
+function getJoinReason(value){
+    value = value.trim();
+    var result = "";
+    if(locale=="en"){
+        switch(value){
+            case '1':{
+                result = 'I am  here to Make new friends';
+                break;
+            }
+            case '2': {
+                result = 'I am  here to Chat with my friends';
+                break;
+            }
+            case '3': {
+                result = 'I am  here to Meet people';
+                break;
+            }
+        }
+    }
+    else
+    {
+        switch(value){
+            case '1':{
+                result = 'Je suis la pour me faire de nouveau amis';
+                break;
+            }
+            case '2': {
+                result = 'Je suis la pour causer avec mes proches';
+                break;
+            }
+            case '3': {
+                result = 'Je suis la pour faire des rencontres ';
+                break;
+            }
+        }
+    }
+    return result;
+};
 //cette fonction fait un appel a la route xxx sur l'api qui calcul et genere le token
 appMain.getAppToken(function(data){
     //tokenbase = data.value;
