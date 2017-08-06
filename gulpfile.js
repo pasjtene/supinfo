@@ -275,7 +275,7 @@ gulp.task('watchprod', function ()
         .on('change', function(event){
             console.log('File '+event.path+' has been '+event.type);
 
-            currentTask = 'js';
+            currentTask = 'jsdev';
         });
 });
 

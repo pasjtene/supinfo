@@ -89,16 +89,22 @@
                     </tr>
                     <tr>
                         <td>{% trans from 'member' %} member.lbl_country {% endtrans %}</td>
-                        <td id="mb-country" data-country="{{ member.country }}"></td>
+                        <td>
+                            <span id="mb-country" data-country="{{ member.country }}"></span>
+                            <button id="btn-mb-country" class="btn btn-primary" data-action="0" data-mid="{{ member.id }}">
+                                {% trans from 'member' %} member.lbl_change_country {% endtrans %}
+                            </button>
+                            <select id="cb-country" class="invisible" data-path="{% if app.request.locale=='fr' %}{{ asset('dist/country.json') }} {% else %} {{ asset('dist/country-en.json') }}{% endif %}"></select>
+                        </td>
                     </tr>
                     <tr>
                         <td>{% trans from 'member' %} member.lbl_ipaddress {% endtrans %}</td>
-                        <td>{# member.lbl_ipaddress #}
-                            {% if profile == null and (profile != null and profile.geolocation == null) %}
+                        <td>
+                            {% if profile == null or (profile != null and profile.geolocation == null) %}
                                 {% trans from 'member' %} member.lbl_no_ip {% endtrans %}
                             {% else %}
-                                <span id="user-ip">192.168.1.0</span>
-                                <a href="#" data-ip="192.168.1.0" id="btn-block-ip">{% trans from 'member' %} member.set_locked {% endtrans %}</a>
+                                <span id="user-ip">{{ profile.geolocation.ipAddress }}</span>
+                                <a href="#" data-ip="{{ profile.geolocation.ipAddress }}" id="btn-block-ip">{% trans from 'member' %} member.set_locked {% endtrans %}</a>
                             {% endif %}
                         </td>
                     </tr>

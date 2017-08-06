@@ -23,6 +23,8 @@ admin:
    email: Email users
    setvip: Set users as VIP
    unvip: Unset users as VIP
+   search_hint: Search a lastname, firstname or email address...
+   search: Search
 
   messages:
    title: Messages

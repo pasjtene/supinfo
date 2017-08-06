@@ -15,7 +15,9 @@ var AdminMemberProfile = function()
                 country: $('#mb-country'),
                 btn_delete_member: $('#btn-delete-member'),
                 user_ip: $("#user-ip"),
-                btn_block_ip: $("#btn-block-ip")
+                btn_block_ip: $("#btn-block-ip"),
+                btn_mb_country: $("#btn-mb-country"),
+                cb_country: $("#cb-country")
             },
             class:{
 
@@ -28,7 +30,8 @@ var AdminMemberProfile = function()
                 lock: baseUrl + "auth/members/lock",
                 vip: baseUrl + "auth/members/vip",
                 delete: baseUrl + "auth/members/delete/",
-                blockedIp: baseUrl + "auth/blocked-ip"
+                blockedIp: baseUrl + "auth/blocked-ip",
+                country: baseUrl + "auth/members/country",
             },
             method:
             {
@@ -214,6 +217,46 @@ $(function()
                 }
             });
 
+            e.preventDefault();
+        });
+
+        adminMemberProfile.params.attr.id.btn_mb_country.click(function(e)
+        {
+            var that = $(this),
+                action = parseInt(that.data('action'));
+
+            if(action === 0)
+            {
+                $.getJSON(adminMemberProfile.params.attr.id.cb_country.data("path"), function(data) {
+                    adminMemberProfile.params.attr.id.cb_country.empty();
+                    $.each(data, function (index, value) {
+                        var option = "<option  value='" + index + "'>" + value + "</option>";
+                        adminMemberProfile.params.attr.id.cb_country.append(option);
+                    });
+                    adminMemberProfile.params.attr.id.cb_country.removeClass('invisible');
+                    //that.text(Translator.trans('lbl_save_country', {}, 'member')).data('action', '1');
+                    that.text("Save").data('action', '1');
+                });
+            }
+            else
+            {
+                var country = adminMemberProfile.params.attr.id.cb_country.val(),
+                    mid = parseInt(that.data('mid')),
+                    data = {mid: mid, country: country};
+                $.ajax({
+                    url: adminMemberProfile.params.api.action.country,
+                    type: adminMemberProfile.params.api.method.put,
+                    headers : {"X-Auth-Token" : tokenbase.value},
+                    data: data,
+                    crossDomain: true,
+                    success: function (response) {
+                        document.location.reload();
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    }
+                });
+            }
             e.preventDefault();
         });
     }
