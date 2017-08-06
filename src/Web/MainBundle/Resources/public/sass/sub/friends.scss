@@ -14,7 +14,12 @@
     }
     #Main-Subfriends-seach
     {
+        margin-top: 2em;
         display: none;
+        .img-search{
+            height: 100px;
+            display: none;
+        }
     }
     .card-header{
         a{
@@ -39,9 +44,6 @@
                 line-height: 1em;
             }
         }
-    }
-    #Main-Subfriends-seach {
-        margin-top: 2em;
     }
     #Message-box{
         .chat
