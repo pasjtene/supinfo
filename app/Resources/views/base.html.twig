@@ -125,9 +125,6 @@
     url = "{{ currentPath }}";
 </script>
 
-{% if app.environment == 'dev' %}
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-{% endif %}
 
 
 {% block javascripts %}
@@ -206,6 +203,7 @@
 
     <!-- Funglobe js -->
     <script src="{{ asset('data/js/parameters.js') }}"></script>
+    <script src="{{ asset('data/js/app.min.js') }}"></script>
     <script src="{{ asset('data/js/master.min.js') }}"></script>
 
     <!--
@@ -245,13 +243,10 @@
         */
     </script>
 
-    <!-- end bootbox -->
-
-    {% block myjs %}
-    {% if app.environment == 'dev' or app.environment == 'prod' %}
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+    {% if app.environment == 'dev' %}
+        <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
     {% endif %}
-    {% endblock %}
+
 {% endblock %}
 
 </body>

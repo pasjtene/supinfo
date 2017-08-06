@@ -22,7 +22,10 @@ var jsPaths = [
 ];
 
 var jsParamsPaths = [
-    './web/bundles/app/js/Inc/*.js',
+    './web/bundles/app/js/Inc/*.js'
+];
+
+var jsAppPaths = [
     './web/bundles/app/js/*.js'
 ];
 
@@ -126,6 +129,17 @@ var paramsTask = function()
     console.log('Uglify JS Parameters files successfull !');
 };
 
+var appTask = function()
+{
+    gulp.src(jsParamsPaths)
+        .pipe(uglify('app.min.js', {
+            outSourceMap: true
+        }))
+        .pipe(gulp.dest('web/data/js'))
+        .pipe(livereload());
+    console.log('Uglify JS AppBundle files successfull !');
+};
+
 var concatJsTask = function()
 {
     console.log('Concatening JS files !');
@@ -134,6 +148,16 @@ var concatJsTask = function()
             .pipe(concat('master.min.js'))
             .pipe(gulp.dest('./web/data/js'));
 };
+
+var concatJsAppTask = function()
+{
+    console.log('Concatening JS appBundle files !');
+
+    return gulp.src(jsPaths)
+        .pipe(concat('app.min.js'))
+        .pipe(gulp.dest('./web/data/js'));
+};
+
 
 gulp.task('default', function(){
     exec('php bin/console assets:install --symlink', logStdOutAndErr);
@@ -222,13 +246,14 @@ var logStdOutAndErr = function (err, stdout, stderr)
     }
     else if(currentTask === 'js')
     {
-        uglifyTask();
         paramsTask();
-
+        appTask();
+        uglifyTask();
     } else if (currentTask === 'jsdev')
     {
-        concatJsTask();
         paramsTask();
+        concatJsAppTask();
+        concatJsTask();
     }
     else if(currentTask === 'img')
     {
@@ -245,16 +270,18 @@ var logStdOutAndErr = function (err, stdout, stderr)
     else if(currentTask === 'all')
     {
         sassTask();
-        concatJsTask();
         paramsTask();
+        concatJsAppTask();
+        concatJsTask();
         imageTask();
         audioTask();
     }
     else if(currentTask === 'allprod')
     {
         sassTask();
-        concatJsTask();
         paramsTask();
+        appTask();
+        uglifyTask();
         imageTask();
         audioTask();
     }
