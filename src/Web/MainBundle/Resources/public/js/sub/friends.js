@@ -50,6 +50,7 @@ var MainSubFriends = function()
             input: $("#Main-Subfriends #Main-Subfriends-seach #Main-Subfriends-seach-input"),
             btn: $("#Main-Subfriends #Main-Subfriends-seach #Main-Subfriends-seach-btn"),
             list: $("#Main-Subfriends #Main-Subfriends-seach #Main-Subfriends-seach-list"),
+            preloader: $("#Main-Subfriends #Main-Subfriends-seach .img-search"),
             head:{
                 div: $('#Main-Subfriends #Main-Subfriends-seach'),
                 h5: $('#Main-Subfriends #Main-Subfriends-seach .card-header h5 strong '),
@@ -152,9 +153,16 @@ $(function(){
                 {
                     var user = listUsers[i].user;
                     if(user.id !=currentUser.id && user.type!="System"){
-                        var option = '<option value="'+user.fullname+' : '+getCountry(countryList,user.country)+'">';
+                        var option = '<option value="'+user.fullname+'">';
                         mainSubFriends.params.friend.list.append(option);
                     }
+                }
+
+                for(var i=0; i<countryList.length;i++)
+                {
+                    var country = countryList[i];
+                        var option = '<option value="'+getCountry(countryList,country.code)+'">';
+                        mainSubFriends.params.friend.list.append(option);
                 }
                 // on arrete le thread
                clearInterval(intUser) ;
@@ -492,7 +500,10 @@ $(function(){
 
         function searchUser(search,id)
         {
-           var code = getCountryCode(countryList, search);
+            mainSubFriends.params.friend.preloader.fadeIn();
+            mainSubFriends.params.friend.body.empty();
+           var country = getCountryCode(countryList, search);
+            search = country==null? search : country;
             datas = {
                 search: search,
                 id: id
@@ -519,11 +530,11 @@ $(function(){
                 },
                 complete:function(){
                     console.log("Request finished.");
+                    mainSubFriends.params.friend.preloader.fadeOut();
                 }
 
             });
         }
-
 
         function decline(id, idUser,decision,preloader)
         {

@@ -186,6 +186,7 @@ function getCountry(list, search){
             return list[i].value;
         }
     }
+    return null;
 }
 
 function getCountryCode(list, search){
@@ -196,4 +197,5 @@ function getCountryCode(list, search){
             return list[i].code;
         }
     }
+    return null;
 }
