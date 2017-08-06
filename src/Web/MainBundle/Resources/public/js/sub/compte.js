@@ -70,7 +70,7 @@ $(function(){
                             mainDetailProfile.params.photo.attr('src', path.emptyImage);
                         }
                         setdetailAll(mainDetailProfile.params.detail_profile, user);
-                         
+
                     }
 
 
