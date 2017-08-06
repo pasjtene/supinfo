@@ -22,7 +22,10 @@ var jsPaths = [
 ];
 
 var jsParamsPaths = [
-    './web/bundles/app/js/Inc/*.js',
+    './web/bundles/app/js/Inc/*.js'
+];
+
+var jsAppPaths = [
     './web/bundles/app/js/*.js'
 ];
 
@@ -126,6 +129,17 @@ var paramsTask = function()
     console.log('Uglify JS Parameters files successfull !');
 };
 
+var appTask = function()
+{
+    gulp.src(jsAppPaths)
+        .pipe(uglify('app.min.js', {
+            outSourceMap: true
+        }))
+        .pipe(gulp.dest('web/data/js'))
+        .pipe(livereload());
+    console.log('Uglify JS AppBundle files successfull !');
+};
+
 var concatJsTask = function()
 {
     console.log('Concatening JS files !');
@@ -134,6 +148,16 @@ var concatJsTask = function()
             .pipe(concat('master.min.js'))
             .pipe(gulp.dest('./web/data/js'));
 };
+
+var concatJsAppTask = function()
+{
+    console.log('Concatening JS appBundle files !');
+
+    return gulp.src(jsAppPaths)
+        .pipe(concat('app.min.js'))
+        .pipe(gulp.dest('./web/data/js'));
+};
+
 
 gulp.task('default', function(){
     exec('php bin/console assets:install --symlink', logStdOutAndErr);
@@ -223,11 +247,13 @@ var logStdOutAndErr = function (err, stdout, stderr)
     else if(currentTask === 'js')
     {
         uglifyTask();
+        appTask();
         paramsTask();
 
     } else if (currentTask === 'jsdev')
     {
         concatJsTask();
+        concatJsAppTask();
         paramsTask();
     }
     else if(currentTask === 'img')
@@ -246,6 +272,7 @@ var logStdOutAndErr = function (err, stdout, stderr)
     {
         sassTask();
         concatJsTask();
+        concatJsAppTask();
         paramsTask();
         imageTask();
         audioTask();
@@ -253,7 +280,8 @@ var logStdOutAndErr = function (err, stdout, stderr)
     else if(currentTask === 'allprod')
     {
         sassTask();
-        concatJsTask();
+        uglifyTask();
+        appTask();
         paramsTask();
         imageTask();
         audioTask();
