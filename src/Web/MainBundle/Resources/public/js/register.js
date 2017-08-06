@@ -279,7 +279,7 @@ $(function(){
             } else {
                // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
-               //alert(User.birthDate);
+               //alert(User.joinReason);
                 //console.log(params);
                 //alert(params);
                // mainRegister.params.modalSave.modal('show');

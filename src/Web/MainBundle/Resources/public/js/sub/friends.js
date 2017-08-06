@@ -152,9 +152,16 @@ $(function(){
                 {
                     var user = listUsers[i].user;
                     if(user.id !=currentUser.id && user.type!="System"){
-                        var option = '<option value="'+user.fullname+' : '+getCountry(countryList,user.country)+'">';
+                        var option = '<option value="'+user.fullname+'">';
                         mainSubFriends.params.friend.list.append(option);
                     }
+                }
+
+                for(var i=0; i<countryList.length;i++)
+                {
+                    var country = countryList[i];
+                        var option = '<option value="'+getCountry(countryList,country.code)+'">';
+                        mainSubFriends.params.friend.list.append(option);
                 }
                 // on arrete le thread
                clearInterval(intUser) ;
@@ -492,7 +499,8 @@ $(function(){
 
         function searchUser(search,id)
         {
-           var code = getCountryCode(countryList, search);
+           var country = getCountryCode(countryList, search);
+            search = country==null? search : country;
             datas = {
                 search: search,
                 id: id
