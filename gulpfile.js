@@ -131,7 +131,7 @@ var paramsTask = function()
 
 var appTask = function()
 {
-    gulp.src(jsParamsPaths)
+    gulp.src(jsAppPaths)
         .pipe(uglify('app.min.js', {
             outSourceMap: true
         }))
@@ -153,7 +153,7 @@ var concatJsAppTask = function()
 {
     console.log('Concatening JS appBundle files !');
 
-    return gulp.src(jsPaths)
+    return gulp.src(jsAppPaths)
         .pipe(concat('app.min.js'))
         .pipe(gulp.dest('./web/data/js'));
 };
@@ -246,14 +246,15 @@ var logStdOutAndErr = function (err, stdout, stderr)
     }
     else if(currentTask === 'js')
     {
-        paramsTask();
-        appTask();
         uglifyTask();
+        appTask();
+        paramsTask();
+
     } else if (currentTask === 'jsdev')
     {
-        paramsTask();
-        concatJsAppTask();
         concatJsTask();
+        concatJsAppTask();
+        paramsTask();
     }
     else if(currentTask === 'img')
     {
@@ -270,18 +271,18 @@ var logStdOutAndErr = function (err, stdout, stderr)
     else if(currentTask === 'all')
     {
         sassTask();
-        paramsTask();
-        concatJsAppTask();
         concatJsTask();
+        concatJsAppTask();
+        paramsTask();
         imageTask();
         audioTask();
     }
     else if(currentTask === 'allprod')
     {
         sassTask();
-        paramsTask();
-        appTask();
         uglifyTask();
+        appTask();
+        paramsTask();
         imageTask();
         audioTask();
     }

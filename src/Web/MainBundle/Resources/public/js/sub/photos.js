@@ -524,7 +524,6 @@ $(function () {
                 var src = null;
                 var datepublished = new  Date(photo.publishedDate);
                 var  isPublished = photo.visibility=="private"? false :true;
-
                 if ((photo.hashname == null || photo.hashname == 'null')) {
                     src = element.data('help');
                 }
@@ -532,7 +531,6 @@ $(function () {
                     src = baseHost + photo.path;
                 }
                 //alert(element.data('help'));
-
                 //varibale trans
                 var private = Translator.trans('sub.body.state.private', {}, 'photo'),
                     public = Translator.trans('sub.body.state.public', {}, 'photo'),
