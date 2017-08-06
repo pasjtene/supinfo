@@ -150,6 +150,7 @@ var   AppMain = function()
 
 };
 
+//TODOo : donner plus d'explicaton sur l'utilisation du tokenbase
 var tokenbase =null;
 var geolocation =null;
 var geolocationbad =null;
@@ -165,6 +166,8 @@ var path =
     emoticon : "/dist/emoticons/png",
     emptyImage: '/data/img/empty.png'
 };
+
+//cette fonction fait un appel a la route xxx sur l'api qui calcul et genere le token
 appMain.getAppToken(function(data){
     //tokenbase = data.value;
     tokenbase = data;
