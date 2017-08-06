@@ -160,10 +160,8 @@ $(function(){
                 for(var i=0; i<countryList.length;i++)
                 {
                     var country = countryList[i];
-                    if(user.id !=currentUser.id && user.type!="System"){
-                        var option = '<option value="'+getCountry(countryList,user.country)+'">';
+                        var option = '<option value="'+getCountry(countryList,country.code)+'">';
                         mainSubFriends.params.friend.list.append(option);
-                    }
                 }
                 // on arrete le thread
                clearInterval(intUser) ;
@@ -501,7 +499,8 @@ $(function(){
 
         function searchUser(search,id)
         {
-           var code = getCountryCode(countryList, search);
+           var country = getCountryCode(countryList, search);
+            search = country==null? search : country;
             datas = {
                 search: search,
                 id: id
