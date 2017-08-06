@@ -5,8 +5,14 @@ $(function(){
         var  countUsersView = $('#AdminStat table tr .countuser');
         //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de vips
         var  countVipsView = $('#AdminStat table tr .countuservip');
-        //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de vips
+        //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit today
         var  countjointodayView = $('#AdminStat table tr .joinTodays');
+        //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit yesterday
+        var  countjointyesterdayView = $('#AdminStat table tr .joinYesterdays');
+        //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit from one week
+        var  countjointoneweekView = $('#AdminStat table tr .joinOneWeeks');
+        //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit from one month
+        var  countjointonemonthView = $('#AdminStat table tr .joinOneMonths');
         $.ajax({
             url: baseUrl+'auth/count',
             type:  'get',
@@ -22,6 +28,9 @@ $(function(){
                     countUsersView.html(response.countuser);
                     countVipsView.html(response.countvip);
                     countjointodayView.html(response.joinTodays);
+                    countjointyesterdayView.html(response.joinYesterdays);
+                    countjointoneweekView.html(response.joinOneWeeks);
+                    countjointonemonthView.html(response.joinOneMonths);
                     console.log(response);
                 }
 
