@@ -23,6 +23,8 @@ admin:
    email: Ecrire aux utilisateurs
    setvip: Marqué comme VIP
    unvip: retiré comme VIP
+   search_hint: Rechercher un nom, prénom ou adresse email...
+   search: Rechercher
 
   messages:
    title: Messages

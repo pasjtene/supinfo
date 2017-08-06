@@ -25,3 +25,5 @@ member:
   lbl_back_home : Retour
   lbl_yes: Oui
   lbl_no: Non
+  lbl_change_country: Changer
+  lbl_save_country: Sauvegarder
