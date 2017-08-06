@@ -33,6 +33,7 @@ $(function(){
     if(mainLogin.params.page.data('page') === "mainLogin")
     {
         //donner le focus au chargement  de la page au  champs login
+           console.log("We are at the login page...");
         mainLogin.params.form.login.focus();
 
         var interval = setInterval(function ()

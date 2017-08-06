@@ -124,9 +124,11 @@
     // url  courant
     url = "{{ currentPath }}";
 </script>
+
 {% if app.environment == 'dev' %}
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 {% endif %}
+
 
 {% block javascripts %}
     <!-- faciliter la manipulation du  controlleur dans le js  -->
@@ -245,7 +247,11 @@
 
     <!-- end bootbox -->
 
-    {% block myjs %}{% endblock %}
+    {% block myjs %}
+    {% if app.environment == 'dev' or app.environment == 'prod' %}
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+    {% endif %}
+    {% endblock %}
 {% endblock %}
 
 </body>
