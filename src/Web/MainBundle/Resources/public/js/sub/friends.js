@@ -782,7 +782,7 @@ $(function(){
                             '<div class="col-md-9 px-3 content">'+
                                 '<div class="card-block px-3">'+
                                 '<h4 class="card-title">'+ user.fullname + age + '</h4>'+
-                                '<p class="card-text text-muted message-text">'+user.joinReason+'</p>'+
+                                '<p class="card-text text-muted message-text">'+getJoinReason(user.joinReason)+'</p>'+
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                                 '<p class="card-text text-grey small"> commun friend </p>'+
                                 '<a href="#" class="btn btn-sm btn-primary add" data-email="'+user.email+'"  data-preloader="'+datapreloader+'"  data-id="'+user.id+'"><span class="fa fa-user-plus"></span> '+ add + ' </a>'+
