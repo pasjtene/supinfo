@@ -327,7 +327,7 @@ $(function () {
                             '</div>' +
                             '<div class=" card-block">' +
                                 '<h4 class="card-title">'+user.lastNameOrFirstname+ age+'</h4>' +
-                                '<p class="card-text text-muted message-text">'+user.joinReason+'</p>' +
+                                '<p class="card-text text-muted message-text">'+getJoinReason(user.joinReason)+'</p>' +
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted"> '+profession+'</span></p>' +
                                 '<p class="card-text text-grey small">'+common+'  </p>' +
                                 '<div class="col-12 text-center dropdown">' +
@@ -469,7 +469,6 @@ $(function () {
                     src = baseHost + photo.path;
                 }
                 //alert(element.data('help'));
-
                 //varibale trans
                 var private = Translator.trans('sub.body.state.private', {}, 'photo'),
                     public = Translator.trans('sub.body.state.public', {}, 'photo'),
@@ -477,28 +476,32 @@ $(function () {
                     pulished_private = Translator.trans('sub.img.private', {}, 'photo'),
                     profile = Translator.trans('sub.img.profile', {}, 'photo'),
                     deletes = Translator.trans('sub.img.delete', {}, 'photo'),
-                    like = Translator.trans('sub.img.like', {}, 'photo')
+                    like = Translator.trans('sub.img.like', {}, 'photo'),
+                    action = Translator.trans('sub.img.action', {}, 'photo'),
                     text_published = ((isPublished)? public + '  '+ datepublished.toLocaleDateString() : private ),
                     link_published = (!isPublished)?'<a class="dropdown-item published" href="#" data-status="1" data-hashname="'+photo.hashname+'">'+pulished+'</a>':'<a class="dropdown-item" href="#" data-status="0" data-hashname="'+photo.hashname+'">'+pulished_private+'</a>' ;
-
                 var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
                 var id = "action"+photo.id;
                 body+=
                     '<div class="col-sm-12 col-md-4 col   temxt-center img">'+
                         '<div class="card">'+
-                            img+
+                            '<div class="col-12 text-center bg-faded img">' +
+                                '<img src="'+src+'" class="responsive card-img-top rounded img-thumbnail">' +
+                            '</div>' +
                             '<div class="card-block bg-faded">'+
                                 '<p>'+photo.id+' people(s) like this photo </p>'+
                                 '<p>'+text_published+'</p>'+
-                                '<div class="btn-group text-right bg-faded"">'+
-                                    '<button id="m8'+id+'" type="button" class="bg-faded  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
-                                        ' <span class="sr-only">Toggle Dropdown</span>'+
-                                    '</button>'+
-                                    '<div class="dropdown-menu"  aria-labelledby="'+id+'">'+
-                                        '<a class="dropdown-item setprofile" href="#" data-hashname="'+photo.hashname+'">'+profile+'</a>'+
-                                           link_published+
-                                        '<a class="dropdown-item " href="#"> <span class="fa fa-thumbs-o-up">'+like+'</span></a>'+
-                                        '<a class="dropdown-item delete" href="#" data-hashname="'+photo.hashname+'">'+deletes+'</a>'+
+                                '<div class="col-12 text-center">'+
+                                    '<div class="btn-group text-center">'+
+                                        '<button id="m8'+id+'" type="button" class="btn-sm btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
+                                            '<span class="fa fa-check"></span>' +action+
+                                        '</button>'+
+                                        '<div class="dropdown-menu"  aria-labelledby="'+id+'">'+
+                                            '<a class="dropdown-item setprofile" href="#" data-hashname="'+photo.hashname+'">'+profile+'</a>'+
+                                               link_published+
+                                            '<a class="dropdown-item " href="#"> <span class="fa fa-thumbs-o-up">'+like+'</span></a>'+
+                                            '<a class="dropdown-item delete" href="#" data-hashname="'+photo.hashname+'">'+deletes+'</a>'+
+                                        '</div>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -521,7 +524,6 @@ $(function () {
                 var src = null;
                 var datepublished = new  Date(photo.publishedDate);
                 var  isPublished = photo.visibility=="private"? false :true;
-
                 if ((photo.hashname == null || photo.hashname == 'null')) {
                     src = element.data('help');
                 }
@@ -529,7 +531,6 @@ $(function () {
                     src = baseHost + photo.path;
                 }
                 //alert(element.data('help'));
-
                 //varibale trans
                 var private = Translator.trans('sub.body.state.private', {}, 'photo'),
                     public = Translator.trans('sub.body.state.public', {}, 'photo'),
@@ -537,8 +538,9 @@ $(function () {
                     pulished_private = Translator.trans('sub.img.private', {}, 'photo'),
                     profile = Translator.trans('sub.img.profile', {}, 'photo'),
                     deletes = Translator.trans('sub.img.delete', {}, 'photo'),
-                    like = Translator.trans('sub.img.like', {}, 'photo')
-                text_published = ((isPublished)? public + '  '+ datepublished.toLocaleDateString() : private ),
+                    like = Translator.trans('sub.img.like', {}, 'photo'),
+                    action = Translator.trans('sub.img.action', {}, 'photo'),
+                    text_published = ((isPublished)? public + '  '+ datepublished.toLocaleDateString() : private ),
                     link_published = (!isPublished)?'<a class="dropdown-item published" href="#" data-status="1" data-hashname="'+photo.hashname+'">'+pulished+'</a>':'<a class="dropdown-item" href="#" data-status="0" data-hashname="'+photo.hashname+'">'+pulished_private+'</a>' ;
 
                 var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
@@ -546,13 +548,16 @@ $(function () {
                 body+=
                     '<div class="col-sm-12 col-md-4 col   temxt-center img">'+
                     '<div class="card">'+
-                    img+
+                    '<div class="col-12 text-center bg-faded img">' +
+                    '<img src="'+src+'" class="responsive card-img-top rounded img-thumbnail">' +
+                    '</div>' +
                     '<div class="card-block bg-faded">'+
                     '<p>'+photo.id+' people(s) like this photo </p>'+
                     '<p>'+text_published+'</p>'+
-                    '<div class="btn-group text-right bg-faded"">'+
-                    '<button id="m8'+id+'" type="button" class="bg-faded  btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
-                    ' <span class="sr-only">Toggle Dropdown</span>'+
+                    '<div class="col-12 text-center">'+
+                    '<div class="btn-group text-center">'+
+                    '<button id="m8'+id+'" type="button" class="btn-sm btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
+                    '<span class="fa fa-check"></span>' +action+
                     '</button>'+
                     '<div class="dropdown-menu"  aria-labelledby="'+id+'">'+
                     '<a class="dropdown-item setprofile" href="#" data-hashname="'+photo.hashname+'">'+profile+'</a>'+
@@ -562,12 +567,14 @@ $(function () {
                     '</div>'+
                     '</div>'+
                     '</div>'+
+                    '</div>'+
                     '</div>'    +
                     '</div>';
             }
             element.append(body);
             mainSubPhotos.params.tabs.profile.chargement_photo.fadeOut();
         }
+
 
 
 

@@ -26,6 +26,7 @@ sub:
     private: Make private
     delete: Delete
     like: Like
+    action: Action
     error_ext: is not  allocated
     error_size: is too big for upload. max sise(2Mo)
   body:
@@ -42,7 +43,7 @@ sub:
       error:  woh! Something  is wrong
     state :
       private: private
-      public: Public since
+      public: Public to
   modal:
     name: Name
     message: Message

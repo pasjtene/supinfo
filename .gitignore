@@ -25,5 +25,6 @@
 /web/data/css/
 web/data/js
 web/data/
-/src/Web/AppBundle/Resources/public/js/Inc/
+bin/*
 /src/Web/AppBundle/Inc/
+/src/Web/AppBundle/Resources/public/js/Inc/

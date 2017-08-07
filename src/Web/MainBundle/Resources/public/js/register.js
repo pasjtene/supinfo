@@ -28,11 +28,11 @@ var MainRegister = function()
         },
         api:{
             action :
-                {save: baseUrl +"auth/register"},
+            {save: baseUrl +"auth/register"},
             method:
-                {post:"POST"},
+            {post:"POST"},
             headers:
-                {auth: "X-Auth-Token"}
+            {auth: "X-Auth-Token"}
         },
         required:{
             name : $("#block-name"),
@@ -129,7 +129,7 @@ $(function(){
         mainRegister.params.form.name.focus();
 
         // rendre le champs birthday  en datepicker
-       // mainRegister.params.form.birthday.datepicker();
+        // mainRegister.params.form.birthday.datepicker();
 
 
         var intervalbad =setInterval(function(){
@@ -151,58 +151,58 @@ $(function(){
 
 
 
-       // alert(mainRegister.params.form.country.data("country"))
+        // alert(mainRegister.params.form.country.data("country"))
 
         var interval =setInterval(function(){
-                if(countryList!=null && geolocation!=null)
-                {
-                    //console.log(geolocation);
-                    $.each(countryList,function(index,value){
-                      // console.log(value.value, value.code);
-                        if(value.code==geolocation.countryCode || value.value==geolocation.countryName || value.code == geolocation.countryName ||  value.value ==geolocation.countryCode )
-                        {
-                            console.log("the same country --- user country : "+ geolocation.countryName + " => select country : "+value.value);
-                            var option = "<option selected value='"+value.code+"'>"+value.value+"</option>"
-                        }
-                        else
-                        {
-                            var option = "<option  value='"+value.code+"'>"+value.value+"</option>"
-                        }
+            if(countryList!=null && geolocation!=null)
+            {
+                //console.log(geolocation);
+                $.each(countryList,function(index,value){
+                    // console.log(value.value, value.code);
+                    if(value.code==geolocation.countryCode || value.value==geolocation.countryName || value.code == geolocation.countryName ||  value.value ==geolocation.countryCode )
+                    {
+                        console.log("the same country --- user country : "+ geolocation.countryName + " => select country : "+value.value);
+                        var option = "<option selected value='"+value.code+"'>"+value.value+"</option>"
+                    }
+                    else
+                    {
+                        var option = "<option  value='"+value.code+"'>"+value.value+"</option>"
+                    }
 
-                        mainRegister.params.form.country.append(option);
-                    });
-                    clearInterval(interval);
-                }
+                    mainRegister.params.form.country.append(option);
+                });
+                clearInterval(interval);
+            }
         },100);
 
         //charger tous les jours
         /*for(var i= 1;i<32;i++)
-        {
-            var option = "<option value='"+ (i<10? "0"+i: i) +"'>"+ (i<10? "0"+i: i) +"</option>"
-            mainRegister.params.form.day.append(option);
-        }*/
+         {
+         var option = "<option value='"+ (i<10? "0"+i: i) +"'>"+ (i<10? "0"+i: i) +"</option>"
+         mainRegister.params.form.day.append(option);
+         }*/
 
         //charger tous les mois
-       /* for(var i= 1;i<13;i++)
-        {
-            var option = "<option value='"+ (i<10? "0"+i: i) +"'>"+ (i<10? "0"+i: i) +"</option>"
-            mainRegister.params.form.month.append(option);
-        }*/
+        /* for(var i= 1;i<13;i++)
+         {
+         var option = "<option value='"+ (i<10? "0"+i: i) +"'>"+ (i<10? "0"+i: i) +"</option>"
+         mainRegister.params.form.month.append(option);
+         }*/
 
         //recuperer la date du  jour
-       // var today=new Date();
+        // var today=new Date();
         //recuperer le mois du  jour
-       // var currentyear = today.getFullYear();
+        // var currentyear = today.getFullYear();
 
         //accorder les enfants ages d'au moins 5ans à   s'enregistrer
         //currentyear-=5;
 
         //charger les annees par ordre décroissant
-       /* for(var i= currentyear;i>1959;i--)
-        {
-            var option = "<option value='"+i+"'>"+i+"</option>"
-            mainRegister.params.form.year.append(option);
-        }*/
+        /* for(var i= currentyear;i>1959;i--)
+         {
+         var option = "<option value='"+i+"'>"+i+"</option>"
+         mainRegister.params.form.year.append(option);
+         }*/
 
         //evenement  du  clic  sur le bouton enregistre
         mainRegister.params.form.btnregister.click(function (e) {
@@ -259,30 +259,30 @@ $(function(){
                 lastname: mainRegister.params.form.lastname.val(),
                 params: JSON.stringify(params)
                 /*
-                isOnline: false,
-                relationshipStatus: null,
-                joinDate: new Date(),
-                isEmailVerified: false,
-                isVip:  false,
-                phones: array(),
-                profileVisibility: array
-                */
+                 isOnline: false,
+                 relationshipStatus: null,
+                 joinDate: new Date(),
+                 isEmailVerified: false,
+                 isVip:  false,
+                 phones: array(),
+                 profileVisibility: array
+                 */
             };
 
             //verifier si  tous les champs sont remplis
             if (verify(User)) {
-               //print error message
-               // alert(verify(User));
+                //print error message
+                // alert(verify(User));
 
                 mainRegister.params.required.errorMessage.slideDown();
                 mainRegister.params.required.errorMessageText.text(verify(User));
             } else {
-               // alert(mainRegister.params.api.action.save);
+                // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
-               //alert(User.birthDate);
+                //alert(User.joinReason);
                 //console.log(params);
                 //alert(params);
-               // mainRegister.params.modalSave.modal('show');
+                // mainRegister.params.modalSave.modal('show');
                 mainRegister.params.bg_action.fadeIn();
                 // implementer l'enregistrement  proprement  dit avec ajax
                 $.ajax(
@@ -294,7 +294,7 @@ $(function(){
                         data: User,
                         success: function (data) { //lorsque tout c'est bien passe
 
-                           // mainRegister.params.modal_body.empty();
+                            // mainRegister.params.modal_body.empty();
                             //mainRegister.params.modal_body.text(mainRegister.params.modalSave.data('confirm'));
                             //mainRegister.params.modalSave.modal('hide');
                             //redirect  here
@@ -323,9 +323,9 @@ $(function(){
                                 }
                             );
 
-                          /*  $.post(Routing.generate('main_login', {_locale:locale}),{  username:User.email, password:User.password, basetoken:tokenbase.value, begin:"ok"} , function(e){
-                                window.location.href = Routing.generate('main_photo_request',{_locale:locale});
-                            });*/
+                            /*  $.post(Routing.generate('main_login', {_locale:locale}),{  username:User.email, password:User.password, basetoken:tokenbase.value, begin:"ok"} , function(e){
+                             window.location.href = Routing.generate('main_photo_request',{_locale:locale});
+                             });*/
 
 
                         },
@@ -342,29 +342,29 @@ $(function(){
         //validation du  formualire au touche
 
         // 1- validation du champs name
-       // mainRegister.params.form.name.focus(function(){
-         //   appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
+        // mainRegister.params.form.name.focus(function(){
+        //   appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         //});
         mainRegister.params.form.name.keyup(function(){
             appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         });
         //mainRegister.params.form.name.mouseleave(function(){
-          //  appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
+        //  appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         //});
 
 
         // 2- validation du champs email
 
-       /* mainRegister.params.form.email.focus(function(){
-            appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
-        });
-        mainRegister.params.form.email.keyup(function(){
-            appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
-        });
-        mainRegister.params.form.email.mouseleave(function(){
-            appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
-        });
-        */
+        /* mainRegister.params.form.email.focus(function(){
+         appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+         });
+         mainRegister.params.form.email.keyup(function(){
+         appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+         });
+         mainRegister.params.form.email.mouseleave(function(){
+         appMain.function.validate(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+         });
+         */
         //email format
         mainRegister.params.form.email.keyup(function(){
             emailFormat(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
@@ -412,55 +412,55 @@ $(function(){
 
 
         // 10 - cinfirm password
-       /* mainRegister.params.form.confirmpassword.keyup(function(){
-            confirmPass(mainRegister.params.required.confirmpassword,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.confirmpassword,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.confirmpassword,appMain.params.required.form_control_feedback,mainRegister.params.form.password);
-        });
-        */
+        /* mainRegister.params.form.confirmpassword.keyup(function(){
+         confirmPass(mainRegister.params.required.confirmpassword,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.confirmpassword,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.confirmpassword,appMain.params.required.form_control_feedback,mainRegister.params.form.password);
+         });
+         */
 
 
         function confirmPass(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError,compare)
         {
-                if (childElement.val().trim() == "" || childElement.val() != compare.val()) {
-                    //supprimer la classe success si  elle exite dans le parent
-                    appMain.function.removeclass(fatherElement,fatherSuccess);
+            if (childElement.val().trim() == "" || childElement.val() != compare.val()) {
+                //supprimer la classe success si  elle exite dans le parent
+                appMain.function.removeclass(fatherElement,fatherSuccess);
 
-                    //ajout  de la classe has-danger
-                    appMain.function.addclass(fatherElement,fatherError);
+                //ajout  de la classe has-danger
+                appMain.function.addclass(fatherElement,fatherError);
 
-                    //supprimer la classe success si  elle exite dans le controle enfant
-                    appMain.function.removeclass(childElement,childSuccess);
+                //supprimer la classe success si  elle exite dans le controle enfant
+                appMain.function.removeclass(childElement,childSuccess);
 
-                    //ajout  de la classe form-control-danger
-                    appMain.function.addclass(childElement, childError);
+                //ajout  de la classe form-control-danger
+                appMain.function.addclass(childElement, childError);
 
-                    //activation de l'erreur
-                    appMain.function.show($("#"+errorElement.attr('id')+" ."+classError))
+                //activation de l'erreur
+                appMain.function.show($("#"+errorElement.attr('id')+" ."+classError))
 
-                }
-                else {
-                    //supprimer la classe error si  elle exite dans le parent
-                    appMain.function.removeclass(fatherElement,fatherError);
+            }
+            else {
+                //supprimer la classe error si  elle exite dans le parent
+                appMain.function.removeclass(fatherElement,fatherError);
 
-                    //ajout  de la classe has-success
-                    appMain.function.addclass(fatherElement,fatherSuccess);
+                //ajout  de la classe has-success
+                appMain.function.addclass(fatherElement,fatherSuccess);
 
-                    //supprimer la classe error si  elle exite dans le controle enfant
-                    appMain.function.removeclass(childElement,childError);
+                //supprimer la classe error si  elle exite dans le controle enfant
+                appMain.function.removeclass(childElement,childError);
 
-                    //ajout  de la classe form-control-success
-                    appMain.function.addclass(childElement, childSuccess);
+                //ajout  de la classe form-control-success
+                appMain.function.addclass(childElement, childSuccess);
 
-                    //cacher le message d'erreur
-                    appMain.function.hide($("#"+errorElement.attr('id')+" ."+classError))
-                }
+                //cacher le message d'erreur
+                appMain.function.hide($("#"+errorElement.attr('id')+" ."+classError))
+            }
         }
 
         function notConfirm(element,compare)
         {
             if (element.val().trim() == "" || element.val() != compare.val()) {
-               return true;
+                return true;
             }
-           return false;
+            return false;
         }
 
 
@@ -507,7 +507,7 @@ $(function(){
             var test =expression.test(email)
             if (email=="" || test==false)
             {
-               return true
+                return true
             }
 
             return false;
