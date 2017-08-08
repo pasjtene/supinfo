@@ -246,6 +246,7 @@ var bg ={
     propagation: $('#bg-photos-globale .propagation'), //ceci  represente les fleches
     bg_photo_row: $('#bg-photos-globale .row'), //le conteneur direct (non necessaire )
     bg_photo_content : $("#bg-photos-globale #photo-carouserie .carousel-inner"), //ceci  est  le contenu  a modifier
+    bg_photo_img : $('#bg-photos-globale #photo-carouserie .carousel-inner .img-fluid')
 };
 //comment  integre
 //1- declarer une liste d'image dans la page lors du  chargement  de la page, recuperer la liste et  update votre liste
@@ -264,6 +265,7 @@ $('html').click(function(event){
    // console.log(event.target);
    // alert(event.target.id );
 });
-bg.bg_photo_row.css({'height':($(window).height()-$(window).height()/5)+'px'});
+//bg.bg_photo_row.css({'height':($(window).height()-$(window).height()/5)+'px'});
+bg.bg_photo_img.css({'max-height':($(window).height()-$(window).height()/5)+'px' + ' !important;'});
 
 
