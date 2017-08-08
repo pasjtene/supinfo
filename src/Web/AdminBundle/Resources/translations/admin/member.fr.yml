@@ -21,6 +21,7 @@ member:
   lbl_vip: Membre VIP:
   lbl_blocked: Membre Bloqué :
   lbl_profession: Profession :
+  lbl_join_date: Date d'inscription :
   lbl_last_login: Date de dernière connexion :
   lbl_back_home : Retour
   lbl_yes: Oui

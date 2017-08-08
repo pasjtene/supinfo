@@ -133,8 +133,12 @@
                         <td>{{ member.profession == null ? 'N/C' : member.profession }}</td>
                     </tr>
                     <tr>
+                        <td>{% trans from 'member' %} member.lbl_join_date {% endtrans %}</td>
+                        <td>{{ joinDate }}</td>
+                    </tr>
+                    <tr>
                         <td>{% trans from 'member' %} member.lbl_last_login {% endtrans %}</td>
-                        <td>{{ member.lastLogin == null ? 'N/C' : member.lastLogin|date('d/m/Y h:i:s') }}</td>
+                        <td>{% if lastLogin|length == 0 %} N/C {% else %} {{ lastLogin }} {% endif %}</td>
                     </tr>
                     <tr>
                         <td colspan="2" class="text-center">
@@ -154,4 +158,14 @@
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
 
