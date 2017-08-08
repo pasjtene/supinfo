@@ -104,7 +104,7 @@ $(function () {
                     var active = (photo.id ==$(this).data('active'))? 'active' :'';
                     var id = "action"+photo.id;
                     var item=
-                        '<div class="carousel-item '+active+'">'+
+                        '<div class="carousel-item img-thumbnail '+active+'">'+
                         '<img class="d-block img-fluid" src="'+src+'" alt="First slide">'+
                         '<div class="carousel-caption d-none d-md-block" style="">'+
                         '<h3>'+(i+1) +' / ' +listePhotoHelp.length + '</h3>'+
