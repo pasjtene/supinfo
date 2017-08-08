@@ -2,6 +2,7 @@
 
 namespace Web\AdminBundle\Controller;
 
+use Carbon\CarbonInterval;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,6 +49,44 @@ class DefaultController extends Controller
 
         //FunglobeUtils::dump($datas);
 
+        $joinDate = new \DateTime($datas['member']->joinDate);
+        $dateInterval = $joinDate->diff(new \DateTime());
+
+        CarbonInterval::setLocale($request->getLocale());
+
+        $lastLogin = is_null($datas['member']->lastLogin) ? "" : \Carbon\Carbon::createFromTimeStamp(strtotime($datas['member']->lastLogin))->diffForHumans();
+
+        $jDate = CarbonInterval::years($dateInterval->y)->months($dateInterval->m)->days($dateInterval->days)->hours($dateInterval->h)->forHumans();
+
+        $datas['lastLogin'] = $lastLogin;
+        $datas['joinDate'] = $jDate;
+
         return $this->render('AdminBundle:Default:member.html.twig', $datas);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
