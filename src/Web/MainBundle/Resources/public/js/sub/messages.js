@@ -6,21 +6,137 @@ var MainSubMessages = function()
         bg_action:$('#bg-action'),
         path: path.flags,
         api:{
-            fill: {
-                url : baseUrl+"auth/user/photo/profile/detail",
+            getAll: {
+                url : baseUrl+"auth/Message/all",
                 method: "get",
                 type: "json"
             },
-            ask:{
-                url : baseUrl+"auth/user/friend/ask",
+            get: {
+                url : baseUrl+"auth/Message/conversation",
+                method: "get",
+                type: "json"
+            },
+            post:{
+                url : baseUrl+"auth/Message/add",
                 method: "post",
+                type: "json"
+            },
+            put:{
+                url : baseUrl+"auth/Message/update",
+                method: "put",
+                type: "json"
+            },
+            delete:{
+                url : baseUrl+"auth/Message/delete",
+                method: "delete",
                 type: "json"
             }
         },
+
         body:{
             message_text: $('#Main-Messages #message-text')
         }
-    };
+    },
+   this.getAll = function(cb,objet,errorMessage)
+    {
+        $.ajax(
+            {
+               url: this.params.api.getAll.url,
+               type: this.params.api.getAll.method,
+               data: objet,
+               crossDomain: true,
+               dataType:  this.params.api.getAll.type,
+               success: function (data) {
+                    console.log(data);
+                    cb(data);
+               },
+               error: function (xhr, status, message) {
+                    console.log(xhr.responseText);
+                    bootbox.alert(errorMessage,function(){});
+               }
+            }
+        );
+    },
+    this.get = function(cb,objet,errorMessage)
+    {
+        $.ajax(
+            {
+                url: this.params.api.get.url,
+                type: this.params.api.get.method,
+                data: objet,
+                crossDomain: true,
+                dataType:  this.params.api.get.type,
+                success: function (data) {
+                    console.log(data);
+                    cb(data);
+                },
+                error: function (xhr, status, message) {
+                    console.log(xhr.responseText);
+                    bootbox.alert(errorMessage,function(){});
+                }
+            }
+        );
+    },
+    this.post = function(cb,objet,errorMessage)
+    {
+        $.ajax(
+            {
+               url: this.params.api.post.url,
+               type: this.params.api.post.method,
+               data: objet,
+               crossDomain: true,
+               dataType:  this.params.api.post.type,
+               success: function (data) {
+                    console.log(data);
+                    cb(data);
+               },
+               error: function (xhr, status, message) {
+                  console.log(xhr.responseText);
+                  bootbox.alert(errorMessage,function(){});
+               }
+            }
+        );
+    },
+    this.put = function(cb,objet,errorMessage)
+    {
+        $.ajax(
+            {
+               url: this.params.api.post.url,
+               type: this.params.api.put.method,
+               data: objet,
+               crossDomain: true,
+               dataType:  this.params.api.put.type,
+               success: function (data) {
+                    console.log(data);
+                    cb(data);
+               },
+               error: function (xhr, status, message) {
+                   console.log(xhr.responseText);
+                   bootbox.alert(errorMessage,function(){});
+               }
+            }
+        );
+    },
+    this.delete = function(cb,objet,errorMessage)
+    {
+        $.ajax(
+            {
+               url: this.params.api.delete.url,
+               type: this.params.api.delete.method,
+               data: objet,
+               crossDomain: true,
+               dataType:  this.params.api.delete.type,
+               success: function (data) {
+                    console.log(data);
+                    cb(data);
+               },
+               error: function (xhr, status, message) {
+                    console.log(xhr.responseText);
+                    bootbox.alert(errorMessage,function(){});
+               }
+            }
+        );
+    }
 
 };
 
@@ -252,7 +368,6 @@ $(function () {
                             ":hugging_face" : "/hugging_face.png",
                             ":ill" : "/ill.png",
                             ":Info" : "/Info.png",
-                            ":in-love" : "/in-love.png",
                             ":kiss" : "/kiss.png",
                             ":kissing" : "/kissing.png",
                             ":laughing" : "/laughing.png",
