@@ -85,7 +85,7 @@ $(function () {
     if(mainSubPhotos.params.sub.data('sub')=="photos")
     {
 
-
+        var listePhotoHelp =null;
 
         //toutes les innformations concernant  la liste des photos
         if(mainSubPhotos.params.active_tab.val()==1){
@@ -157,8 +157,33 @@ $(function () {
 
         //agrandir une photo
         mainSubPhotos.params.tabs.list.body_photo.on('click', "img",function() {
-            mainSubPhotos.params.tabs.list.zoom_source.attr('src', $(this).attr('src'));
-            mainSubPhotos.params.tabs.list.zoom_img.modal('show');
+           // mainSubPhotos.params.tabs.list.zoom_source.attr('src', $(this).attr('src'));
+           // mainSubPhotos.params.tabs.list.zoom_img.modal('show');
+            bg.bg_photo_content.empty();
+            for(var i=0; i<listePhotoHelp.length;i++)
+            {
+                var photo = listePhotoHelp[i];
+                var src = null;
+                if ((photo.hashname == null || photo.hashname == 'null')) {
+                    src = element.data('help');
+                }
+                else {
+                    src = baseHost + photo.path;
+                }
+                var active = (photo.id ==$(this).data('active'))? 'active' :'';
+                var id = "action"+photo.id;
+                var item=
+                    '<div class="carousel-item '+active+'">'+
+                    '<img class="d-block img-fluid" src="'+src+'" alt="First slide">'+
+                    '<div class="carousel-caption d-none d-md-block" style="">'+
+                    '<h3>'+(i+1) +' / ' +listePhotoHelp.length + '</h3>'+
+                    '</div>'+
+                    '</div>';
+                bg.bg_photo_content.append(item);
+
+            }
+            bg.bg_photo.fadeIn();
+            bg.bg_photo.css({'z-index':10});
         });
 
 
@@ -407,6 +432,7 @@ $(function () {
                     console.log(response);
                     if(response!=null  && response!="null" && response!="undefined")
                     {
+                        listePhotoHelp = response;
                         setPhotos(mainSubPhotos.params.tabs.list.body_photo,response);
                     }
                 },
@@ -486,7 +512,7 @@ $(function () {
                     '<div class="col-sm-12 col-md-4 col   temxt-center img">'+
                         '<div class="card">'+
                             '<div class="col-12 text-center bg-faded img">' +
-                                '<img src="'+src+'" class="responsive card-img-top rounded img-thumbnail">' +
+                                '<img src="'+src+'" data-active='+photo.id+' class="responsive card-img-top rounded img-thumbnail">' +
                             '</div>' +
                             '<div class="card-block bg-faded">'+
                                 '<p>'+photo.id+' people(s) like this photo </p>'+

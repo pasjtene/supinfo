@@ -8,11 +8,11 @@ $(function(){
         //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit today
         var  countjointodayView = $('#AdminStat table tr .joinTodays');
         //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit yesterday
-        var  countjointyesterdayView = $('#AdminStat table tr .joinYesterdays');
+        var  countjointyesterdayView = $('#AdminStat table tr .membersWhoJoinedYesterdays');
         //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit from one week
-        var  countjointoneweekView = $('#AdminStat table tr .joinOneWeeks');
+        var  countjointoneweekView = $('#AdminStat table tr .membersWhoJoinedfromoneWeeks');
         //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit from one month
-        var  countjointonemonthView = $('#AdminStat table tr .joinOneMonths');
+        var  countjointonemonthView = $('#AdminStat table tr .membersWhoJoinedfromoneMonths');
         $.ajax({
             url: baseUrl+'auth/count',
             type:  'get',
@@ -28,9 +28,9 @@ $(function(){
                     countUsersView.html(response.countuser);
                     countVipsView.html(response.countvip);
                     countjointodayView.html(response.joinTodays);
-                    countjointyesterdayView.html(response.joinYesterdays);
-                    countjointoneweekView.html(response.joinOneWeeks);
-                    countjointonemonthView.html(response.joinOneMonths);
+                    countjointyesterdayView.html(response.membersWhoJoinedYesterdays);
+                    countjointoneweekView.html(response.membersWhoJoinedfromoneWeeks);
+                    countjointonemonthView.html(response.membersWhoJoinedfromoneMonths);
                     console.log(response);
                 }
 
