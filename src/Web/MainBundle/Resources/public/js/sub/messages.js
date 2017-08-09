@@ -30,11 +30,20 @@ var MainSubMessages = function()
                 url : baseUrl+"auth/Message/delete",
                 method: "delete",
                 type: "json"
+            },
+            friend:{
+                url : baseUrl+"auth/user/friends/cuurent",
+                method: "get",
+                type: "json"
             }
         },
-
+        member_list: {
+            body : $("#Main-Messages .member_list .list-unstyled")
+        },
         body:{
-            message_text: $('#Main-Messages #message-text')
+            message_text: $('#Main-Messages #message-text'),
+            caretposition: $('#Main-Messages #caretposition'),
+            message_textJs: document.getElementById('message-text')
         }
     },
    this.getAll = function(cb,objet,errorMessage)
@@ -44,6 +53,7 @@ var MainSubMessages = function()
                url: this.params.api.getAll.url,
                type: this.params.api.getAll.method,
                data: objet,
+               headers : {"X-Auth-Token" : currentUser.token},
                crossDomain: true,
                dataType:  this.params.api.getAll.type,
                success: function (data) {
@@ -65,6 +75,7 @@ var MainSubMessages = function()
                 type: this.params.api.get.method,
                 data: objet,
                 crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
                 dataType:  this.params.api.get.type,
                 success: function (data) {
                     console.log(data);
@@ -86,6 +97,7 @@ var MainSubMessages = function()
                data: objet,
                crossDomain: true,
                dataType:  this.params.api.post.type,
+               headers : {"X-Auth-Token" : currentUser.token},
                success: function (data) {
                     console.log(data);
                     cb(data);
@@ -106,6 +118,7 @@ var MainSubMessages = function()
                data: objet,
                crossDomain: true,
                dataType:  this.params.api.put.type,
+               headers : {"X-Auth-Token" : currentUser.token},
                success: function (data) {
                     console.log(data);
                     cb(data);
@@ -126,6 +139,7 @@ var MainSubMessages = function()
                data: objet,
                crossDomain: true,
                dataType:  this.params.api.delete.type,
+               headers : {"X-Auth-Token" : currentUser.token},
                success: function (data) {
                     console.log(data);
                     cb(data);
@@ -136,8 +150,31 @@ var MainSubMessages = function()
                }
             }
         );
-    }
+    },
+    this.friend =  function context(cb,objet,errorMessage)
+        {
+            var isok =false;
+            $.ajax(
+                {
+                    url: this.params.api.friend.url,
+                    type: this.params.api.friend.method,
+                    data: objet,
+                    crossDomain: true,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    dataType:  this.params.api.friend.type,
+                    success: function (data) {
+                        console.log(data);
+                        isok =true;
+                        return {'data':data, 'isok':isok};
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                        bootbox.alert(errorMessage,function(){});
+                    }
+                }
+            );
 
+        }
 };
 
 
@@ -147,13 +184,42 @@ $(function () {
 
     if(mainSubMessages.params.sub.data('sub')=="messages") {
 
-            mainSubMessages.params.body.message_text.keyup(function(){
-               translateEmotion(listEmoticons(),$(this),path.emoticon);
-
+            mainSubMessages.params.body.message_text.keyup(function(e){
+                //placeCaretAtEnd($(this).get(0));
+               if(e.keyCode==32){
+                   translateEmotion(listEmoticons(),$(this),path.emoticon);
+                   setCaret($(this).get(0),false);
+               }
             });
-         function setOwnMessage(content) {
 
-         }
+
+
+        //liste les amis
+         fillFriend({ id: currentUser.id },"something is wrong");
+        function fillFriend(objet,errorMessage)
+        {
+            var isok =false;
+            $.ajax(
+                {
+                    url: mainSubMessages.params.api.friend.url,
+                    type: mainSubMessages.params.api.friend.method,
+                    data: objet,
+                    crossDomain: true,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    dataType:  mainSubMessages.params.api.friend.type,
+                    success: function (data) {
+                        console.log(data);
+                        setfriendList(data.listUsers,mainSubMessages.params.member_list.body);
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                        bootbox.alert(errorMessage,function(){});
+                    }
+                }
+            );
+
+        }
+
 
         function listEmoticons(){
                     return  data = {
@@ -423,12 +489,122 @@ $(function () {
         }
 
         function  translateEmotion(list,element,path){
+            var content = element.html();
            $.each(list, function(key, value)
            {
-                   element.html(element.html().replace(key, getEmotions(path,value)));
+                 content =   content.replace(key, getEmotions(path,value));
            });
-                element.selectionStart = element.html().length;
-                console.log(element.html());
+            element.empty();
+            element.append(content);
+        }
+
+
+        function  setfriendList(list, element)
+        {
+
+            element.empty();
+            for(var i=0; i<list.length; i++)
+            {
+                var photoApplicant = list[i].photoApplicant,
+                    photoReciever = list[i].photoReciever,
+                    request = list[i].request,
+                    user = null;
+                //alert();
+                var src = null;
+                if(request.receiver.id==currentUser.id)
+                {
+                    user = request.applicant;
+                    if (( photoApplicant==null || photoApplicant=='null' || photoApplicant.hashname == null || photoApplicant.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoApplicant.path;
+                    }
+                }
+                else
+                {
+                    user =  request.receiver;
+                    if (( photoReciever==null || photoReciever=='null' || photoReciever.hashname == null || photoReciever.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoReciever.path;
+                    }
+                }
+           // alert(user.id + "  current : " + currentUser.id);
+                if(user.id !=currentUser.id && user.type!="System") {
+                    var name = user.lastNameOrFirstname;
+                    var city = user.city;
+                    var  country = user.country;
+                    var final =(city==null || city=="null")? getCountry(countryList,country) :city;
+                    var flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                    var profession = user.profession==null || user.profession=="null"?'' : '('+ user.profession +')';
+                    var lastLogin = new Date(user.lastLogin);
+                    var toDay = new Date();
+                    var state = user.isOnline? "<span class='small connect'>(connected)</span>" : null;
+                    if(state==null)
+                    {
+                       if(lastLogin.toLocaleDateString() == toDay.toLocaleDateString())
+                       {
+                           state =(toDay-lastLogin)+"ago";
+                       }
+                    }
+                    var content =
+                        '<li class="left clearfix" data-id='+user.id+'>' +
+                        '<span class="chat-img pull-left">' +
+                        '<img src="'+src+'" alt="User Avatar" class="rounded-circle">' +
+                        '</span>' +
+                        '<div class="chat-body clearfix">' +
+                        '<div class="header_sec">' +
+                        '<strong class="primary-font">'+name+'</strong> <strong class="pull-right">' +
+                         state+'</strong>' +
+                        '</div>' +
+                        '<div class="contact_sec">' +
+                        '<strong class="primary-font">'+flag+final+'</strong> <span class="badge pull-right"></span>'+
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+                    element.append(content);
+                }
+
+            }
+        }
+
+
+        function placeCaretAtEnd(el) {
+            el.focus();
+            if (typeof window.getSelection != "undefined"
+                && typeof document.createRange != "undefined") {
+                var range = document.createRange();
+                range.selectNodeContents(el);
+                range.collapse(false);
+                var sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+            } else if (typeof document.body.createTextRange != "undefined") {
+                var textRange = document.body.createTextRange();
+                textRange.moveToElementText(el);
+                textRange.collapse(false);
+                textRange.select();
+            }
+        }
+
+        function setCaret(target, isStart) {
+            const range = document.createRange();
+            const sel = window.getSelection();
+            if (isStart){
+                const newText = document.createTextNode('');
+                target.appendChild(newText);
+                range.setStart(target.childNodes[0], 0);
+            }
+            else {
+                range.selectNodeContents(target);
+            }
+            range.collapse(isStart);
+            sel.removeAllRanges();
+            sel.addRange(range);
+            target.focus();
+            //target.select();
         }
     }
 });
