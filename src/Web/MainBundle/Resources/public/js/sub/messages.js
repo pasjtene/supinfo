@@ -35,15 +35,24 @@ var MainSubMessages = function()
                 url : baseUrl+"auth/user/friends/cuurent",
                 method: "get",
                 type: "json"
+            },
+            countConversation:{
+                url : baseUrl+"auth/Message/conversations/count",
+                method: "get",
+                type: "json"
             }
         },
         member_list: {
-            body : $("#Main-Messages .member_list .list-unstyled")
+            body : $("#Main-Messages .member_list .list-unstyled"),
+            user_list : $("#Main-Messages .member_list .list-unstyled li")
+        },
+        chat_area: {
+            body : $("#Main-Messages .chat_area .list-unstyled"),
+            send: $("#Main-Messages .message_write .btn_send")
         },
         body:{
             message_text: $('#Main-Messages #message-text'),
-            caretposition: $('#Main-Messages #caretposition'),
-            message_textJs: document.getElementById('message-text')
+            caretposition: $('#Main-Messages #caretposition')
         }
     },
    this.getAll = function(cb,objet,errorMessage)
@@ -184,18 +193,101 @@ $(function () {
 
     if(mainSubMessages.params.sub.data('sub')=="messages") {
 
+        //variables globales
+        var selectUserId = 0,
+            countListMessageUserCurrent = 0,
+            countListMessageUserCurrentnew = 0,
+            countMessageNotSee = 0,
+            errorMessage = "something is wrong";
+
+
+            // declancher l'accuse de reception
+            setInterval(function(){
+                var data ={
+                    id : currentUser.id,
+                    idFriend: selectUserId
+                };
+                getNotifieCount(data,errorMessage);
+            },3000);
             mainSubMessages.params.body.message_text.keyup(function(e){
                 //placeCaretAtEnd($(this).get(0));
                if(e.keyCode==32){
-                   translateEmotion(listEmoticons(),$(this),path.emoticon);
-                   setCaret($(this).get(0),false);
+                 if( translateEmotion(listEmoticons(),$(this),path.emoticon))
+                 {
+                     setCaret($(this).get(0),false);
+                 }
                }
             });
 
 
+        function get(objet,errorMessage,isobjet)
+        {
+            $.ajax(
+                {
+                    url: mainSubMessages.params.api.get.url,
+                    type: mainSubMessages.params.api.get.method,
+                    data: objet,
+                    crossDomain: true,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    dataType:  mainSubMessages.params.api.get.type,
+                    success: function (data) {
+                        console.log(data);
+                        if(data!=null  && data !="null" && data!="undefined")
+                        {
+                            countListMessageUserCurrent = (data.recievers!=null && data.recievers!='null')? data.recievers.length: 0;
+                            countListMessageUserCurrentnew = countListMessageUserCurrent;
+                            setmessageContent(data,mainSubMessages.params.chat_area.body,isobjet);
+                        }
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                       // bootbox.alert(errorMessage,function(){});
+                    }
+                }
+            );
+        }
+
+        function getNotifieCount(objet,errorMessage)
+        {
+            $.ajax(
+                {
+                    url: mainSubMessages.params.api.countConversation.url,
+                    type: mainSubMessages.params.api.countConversation.method,
+                    data: objet,
+                    crossDomain: true,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    dataType:  mainSubMessages.params.api.countConversation.type,
+                    success: function (data) {
+                       // console.log(data);
+                        if(data!=null  && data !="null" && data!="undefined")
+                        {
+                            countListMessageUserCurrentnew = data.countMyFriendsMessage;
+                            countMessageNotSee = data.notifiyCountMessage;
+                            if(countListMessageUserCurrentnew !=countListMessageUserCurrent)
+                            {
+                                countListMessageUserCurrent =countListMessageUserCurrentnew;
+                              //  alert("new : "+countListMessageUserCurrentnew +  " old : " + countListMessageUserCurrent);
+                                if(selectUserId>0){
+                                    var data ={
+                                        id : currentUser.id,
+                                        idFriend: selectUserId
+                                    };
+                                    get(data,errorMessage,false);
+                                }
+
+                            }
+                        }
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                       // bootbox.alert(errorMessage,function(){});
+                    }
+                }
+            );
+        }
 
         //liste les amis
-         fillFriend({ id: currentUser.id },"something is wrong");
+         fillFriend({ id: currentUser.id },errorMessage);
         function fillFriend(objet,errorMessage)
         {
             var isok =false;
@@ -209,7 +301,11 @@ $(function () {
                     dataType:  mainSubMessages.params.api.friend.type,
                     success: function (data) {
                         console.log(data);
-                        setfriendList(data.listUsers,mainSubMessages.params.member_list.body);
+                        if(data!=null  && data !="null" && data!="undefined")
+                        {
+                            setfriendList(data.listUsers,mainSubMessages.params.member_list.body);
+                        }
+
                     },
                     error: function (xhr, status, message) {
                         console.log(xhr.responseText);
@@ -220,6 +316,35 @@ $(function () {
 
         }
 
+
+        function post(objet,errorMessage,isobjet)
+        {
+            $.ajax(
+                {
+                    url: mainSubMessages.params.api.post.url,
+                    type: mainSubMessages.params.api.post.method,
+                    data: objet,
+                    crossDomain: true,
+                    dataType:  mainSubMessages.params.api.post.type,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    success: function (data) {
+                        console.log(data);
+                        if(data!=null && data!="null" && data!="undefined")
+                        {
+                            setmessageContent(data,mainSubMessages.params.chat_area.body,isobjet);
+                            mainSubMessages.params.body.message_text.empty();
+                            //countListMessageUserCurrent++;
+                            //countListMessageUserCurrentnew = countListMessageUserCurrent;
+                        }
+
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                        bootbox.alert(errorMessage,function(){});
+                    }
+                }
+            );
+        }
 
         function listEmoticons(){
                     return  data = {
@@ -489,13 +614,19 @@ $(function () {
         }
 
         function  translateEmotion(list,element,path){
+            var contentold = element.html();
             var content = element.html();
            $.each(list, function(key, value)
            {
                  content =   content.replace(key, getEmotions(path,value));
            });
-            element.empty();
-            element.append(content);
+            if(contentold!=content)
+            {
+                element.empty();
+                element.append(content);
+                return true;
+            }
+            return false;
         }
 
 
@@ -571,6 +702,134 @@ $(function () {
         }
 
 
+
+        function  setmessageContent(list, element, isobjet)
+        {
+
+            var userMessages = null,
+                message = null,
+                createDate=null,
+                sendDate =null,
+                src =null,
+                friendProfile = null,
+                userProfile =null,
+                content =null,
+                today =new Date();
+
+            if(isobjet)
+            {
+                   userMessages = list.userMessages;
+                   message = userMessages.message;
+                userProfile = list.profile;
+                createDate =new Date(message.createDate);
+                if(today.toLocaleDateString()==createDate.toLocaleDateString())
+                {
+                    sendDate = createDate.toLocaleTimeString();
+                }
+                else
+                {
+                    sendDate = createDate.toLocaleDateString();
+                    sendDate=sendDate.replace("/","-");
+                    sendDate=sendDate.replace("/","-");
+                    sendDate+= " "+createDate.toLocaleTimeString();
+                }
+                if(userProfile!=null)
+                {
+                    src = baseHost + userProfile.path;
+                }
+                else
+                {
+                    src = path.emptyImage;
+                }
+                 content =
+                    '<li class="left clearfix">'+
+                    '<span class="chat-img1 pull-left">'+
+                    '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
+                    '</span>'+
+                    '<div class="chat-body1 clearfix">'+
+                    '<p>'+message.content+'</p>'+
+                    '<div class="chat_time pull-right">'+sendDate+'</div>'+
+                    '</div>'+
+                    '</li>';
+
+                element.append(content);
+            }
+            else
+            {
+                element.empty();
+                messages = list.messages;
+                for(var i=0; i<messages.length;i++)
+                {
+                    userMessage = messages[i].userMessage;
+                    friendProfile = messages[i].friendProfile;
+                    userProfile = messages[i].userProfile;
+                    message = userMessage.message;
+                    createDate =new Date(message.createDate);
+                    if(today.toLocaleDateString()==createDate.toLocaleDateString())
+                    {
+                        sendDate = createDate.toLocaleTimeString()
+                    }
+                    else
+                    {
+                        sendDate = createDate.toLocaleDateString();
+                        sendDate = sendDate.replace("/","-");
+                        sendDate = sendDate.replace("/","-");
+                        sendDate+= " "+createDate.toLocaleTimeString();
+                    }
+
+                    var isSender =  messages[i].isSender;
+
+                    if(isSender)
+                    {
+                        if(userProfile!=null)
+                        {
+                            src = baseHost + userProfile.path;
+                        }
+                        else
+                        {
+                            src = path.emptyImage;
+                        }
+
+                         content =
+                            '<li class="left clearfix">'+
+                            '<span class="chat-img1 pull-left">'+
+                            '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
+                            '</span>'+
+                            '<div class="chat-body1 clearfix">'+
+                            '<p>'+message.content+'</p>'+
+                            '<div class="chat_time pull-right">'+ sendDate+'</div>'+
+                            '</div>'+
+                            '</li>';
+
+                    }
+                    else
+                    {
+                        if(friendProfile!=null)
+                        {
+                            src = baseHost + friendProfile.path;
+                        }
+                        else
+                        {
+                            src = path.emptyImage;
+                        }
+                        content=
+                            '<li class="left clearfix admin_chat">'+
+                            '<span class="chat-img1 pull-right">'+
+                            '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
+                            '</span>'+
+                            '<div class="chat-body1 clearfix">'+
+                            '<p>'+message.content+'</p>'+
+                            '<div class="chat_time pull-left">'+ sendDate+'</div>'+
+                            '</div>'+
+                            '</li>';
+                    }
+
+
+                    element.append(content);
+                }
+            }
+        }
+
         function placeCaretAtEnd(el) {
             el.focus();
             if (typeof window.getSelection != "undefined"
@@ -605,6 +864,52 @@ $(function () {
             sel.addRange(range);
             target.focus();
             //target.select();
+        }
+
+
+        //lorsqu'on clique sur un user, on charge la conversation
+        mainSubMessages.params.member_list.body.on('click','li',function(){
+           selectUserId = $(this).data('id');
+            var data ={
+                id : currentUser.id,
+                idFriend: selectUserId
+            };
+            changeState(mainSubMessages.params.member_list.user_list, $(this));
+            get(data,errorMessage,false);
+        });
+        mainSubMessages.params.chat_area.send.disabled =false;
+     /*  var inter = setInterval(function(){
+            if(selectUserId>0)
+            {
+                clearInterval(inter);
+
+                mainSubMessages.params.chat_area.send.prop('disabled',true);
+            }
+            else{
+                mainSubMessages.params.chat_area.send.prop('disabled',false);
+            }
+        },1000);
+        */
+        //envoyer un message
+        mainSubMessages.params.chat_area.send.click(function(e){
+            e.preventDefault();
+            var data ={
+                id : currentUser.id,
+                idFriend: selectUserId,
+                content : mainSubMessages.params.body.message_text.html()
+            };
+            post(data,errorMessage,true);
+        });
+
+        function changeState(Elements, ElementToActive) {
+            var t = Elements.length;
+            for (var i = 0; i < t; i++) {
+                if (Elements.eq(i).hasClass('active_li')) {
+                    Elements.eq(i).removeClass('active_li')
+                }
+            }
+            ElementToActive.addClass('active_li');
+            //alert();
         }
     }
 });
