@@ -22,6 +22,7 @@ member:
   lbl_vip: Is VIP:
   lbl_blocked: Is Blocked:
   lbl_profession: Profession :
+  lbl_join_date: Join date :
   lbl_last_login: Last login date :
   lbl_back_home : Back
   lbl_yes: Yes

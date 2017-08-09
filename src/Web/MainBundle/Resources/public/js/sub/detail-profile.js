@@ -77,17 +77,45 @@ $(function () {
 
     if(mainSubDetailProfile.params.sub.data('sub')=="detail-profile")
     {
+        var listePhotoHelp = null;
+
         //afficher le preloader
         mainSubDetailProfile.params.body.chargement.fadeOut();
         mainSubDetailProfile.params.bg_action.fadeIn();
         mainSubDetailProfile.params.body.body.fadeOut();
 
-
-
         //agrandir une photo
         mainSubDetailProfile.params.body.photo.body_photo_detail.on('click', "img",function() {
-            mainSubDetailProfile.params.body.photo.zoomImg_detail_source.attr('src', $(this).attr('src'));
-            mainSubDetailProfile.params.body.photo.zoomImg_detail.modal('show');
+            //mainSubDetailProfile.params.body.photo.zoomImg_detail_source.attr('src', $(this).attr('src'));
+            //mainSubDetailProfile.params.body.photo.zoomImg_detail.modal('show');
+            bg.bg_photo_content.empty();
+            for(var i=0; i<listePhotoHelp.length;i++)
+            {
+                var photo = listePhotoHelp[i];
+                var src = null;
+                if(photo.visibility=="public")
+                {
+                    if ((photo.hashname == null || photo.hashname == 'null')) {
+                        src = element.data('help');
+                    }
+                    else {
+                        src = baseHost + photo.path;
+                    }
+                    var active = (photo.id ==$(this).data('active'))? 'active' :'';
+                    var id = "action"+photo.id;
+                    var item=
+                        '<div class="carousel-item img-thumbnail '+active+'">'+
+                        '<img class="d-block img-fluid" src="'+src+'" alt="First slide">'+
+                        '<div class="carousel-caption d-none d-md-block" style="">'+
+                        '<h3>'+(i+1) +' / ' +listePhotoHelp.length + '</h3>'+
+                        '</div>'+
+                        '</div>';
+                    bg.bg_photo_content.append(item);
+                }
+
+            }
+            bg.bg_photo.fadeIn();
+            bg.bg_photo.css({'z-index':10});
         });
 
         //agrandir une photo option friend
@@ -180,7 +208,7 @@ $(function () {
                         mainSubDetailProfile.params.link_photo_span.html('('+response.listPhotos.length+')');
 
                         setPhotos(mainSubDetailProfile.params.body.photo.body_photo_detail,response.listPhotos);
-
+                        listePhotoHelp= response.listPhotos;
                         //charger les amis
                     }
                 },
@@ -441,7 +469,7 @@ $(function () {
                         '<div class="col-sm-12 col-md-6 col  text-center align-content-center img">'+
                         '<div class="card">'+
                         '<div class="col-12 text-center bg-faded ">' +
-                        '<img src="'+src+'" class="responsive card-img-top rounded img-thumbnail">' +
+                        '<img src="'+src+'" data-active='+photo.id+' class="responsive card-img-top rounded img-thumbnail">' +
                         '</div>' +
                         '<div class="card-block text-right">'+
                         '<span class="fa fa-thumbs-o-up ">('+photo.id+')</span>'+

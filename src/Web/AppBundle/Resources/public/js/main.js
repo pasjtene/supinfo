@@ -239,3 +239,33 @@ function getCountryCode(list, search){
     }
     return null;
 }
+
+//les elements pour paginer les photos dans une carouserie
+var bg ={
+    bg_photo : $('#bg-photos-globale'), //ceci est  le contenu principale qui  cotient  toutes les elements
+    propagation: $('#bg-photos-globale .propagation'), //ceci  represente les fleches
+    bg_photo_row: $('#bg-photos-globale .row'), //le conteneur direct (non necessaire )
+    bg_photo_content : $("#bg-photos-globale #photo-carouserie .carousel-inner"), //ceci  est  le contenu  a modifier
+    bg_photo_img : $('#bg-photos-globale #photo-carouserie .carousel-inner .img-fluid')
+};
+//comment  integre
+//1- declarer une liste d'image dans la page lors du  chargement  de la page, recuperer la liste et  update votre liste
+//2- chaque image peut  avoir un element qui  permet  de le distinguer par exemple l'id du  user dans un data-user
+//3- il  suffit  lorsque vous cliquer sur une photo d'un user, chercher dans votre liste toutes les photos correspondant que vous charger a nouveau dans un autre tableau
+//4- parcourrir le tableau et  charger les items de la carrouserie avec se referer de base.html.twig a la ligne 92
+//5- dans votre image , vous devez avoir un element qui  permet  de savoir que l'image x est l'image que l'on souhaite dabord voir afin d'activer en premier
+//6- charger bg.bg_photo_content avec toutes vos items
+// 7- activer la caurouserie bg.bg_photo.fadeIn();
+
+
+$('html').click(function(event){
+    if(event.target.id == 'bg-photos-globale' || event.target.id =='bg-photos-child') {
+        bg.bg_photo.fadeOut();
+    }
+   // console.log(event.target);
+   // alert(event.target.id );
+});
+//bg.bg_photo_row.css({'height':($(window).height()-$(window).height()/5)+'px'});
+bg.bg_photo_img.css({'max-height':($(window).height()-$(window).height()/5)+'px' + ' !important;'});
+
+
