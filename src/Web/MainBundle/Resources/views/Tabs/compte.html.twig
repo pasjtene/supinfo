@@ -36,12 +36,23 @@
             <div class="card">
                 <h5 class="card-header d-flex flex-row justify-content-between">
                     <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.adresse {% endtrans %}</span>
-                    <a class="p-2 fa fa-2x fa-edit" href="#"></a>
+                    <a class="hide p-2 fa fa-2x fa-edit" href="#"></a>
                 </h5>
                 <div class="card-block">
 
                     <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.pay {% endtrans %}</span> <br>
-                    <span class="Stexte detail_profile_country"></span> <br>
+                    <span  class="countryChange d-flex flex-row justify-content-between">
+                        <span class="Stexte detail_profile_country"></span>
+                        <a href="#" class="btnOpenchange">{% trans from 'photo' %} sub.tabs.myProfilDetail.changer {% endtrans %}</a>
+                    </span>
+                    <div   class="hide d-flex flex-row countryblock ">
+                        <select class="p-2 col-sm-10 form-control" data-country="{% if app.request.locale=='fr' %}{{ asset('dist/country.json') }} {% else %} {{ asset('dist/country-en.json') }}{% endif %}" type="text" id="country">
+                            <option  value="">{% trans from 'register' %} form.placeholder.country {% endtrans %}</option>
+                        </select>
+                        <a class="p-2 col fa fa-2x fa-save linkSaveCountry" href="#"></a>
+                        <a class="p-2 col fa fa-2x fa-close linkCloseCountry" href="#"></a>
+                    </div>
+                    <br>
                     <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}</span> <br>
                     <span class="Stexte detail_profile_city"></span> <br>
                     <span class="Ftexte hide">{% trans from 'photo' %} sub.tabs.myProfilDetail.quartier {% endtrans %}</span> <br>
@@ -49,6 +60,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col col-sm-6 hide">
             <div class="card">
                 <h5 class="card-header d-flex flex-row justify-content-between">

@@ -3,6 +3,15 @@
   a{
     text-decoration: none;
   }
+  .hide{
+    visibility: hidden;
+    display: none!important;
+  }
+  .countryblock{
+    .fa{
+      font-size: 16px;
+    }
+  }
   .banner{
     height: 200px;
   }
