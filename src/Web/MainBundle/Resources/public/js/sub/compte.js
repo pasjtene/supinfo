@@ -41,7 +41,7 @@ $(function(){
         function getCompte(id)
         {
             mainProfile_detail.params.bg_action.fadeIn();
-            //console.log(id);
+
             $.ajax({
                 url:  mainDetailProfile.params.api.compte.url,
                 type:  mainDetailProfile.params.api.compte.method,
@@ -79,7 +79,7 @@ $(function(){
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
                 },
                 complete:function(){
-                    //console.log("Request finished.");
+
                     mainProfile_detail.params.bg_action.fadeOut();
                 }
 

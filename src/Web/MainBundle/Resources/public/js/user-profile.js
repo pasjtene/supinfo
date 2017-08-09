@@ -160,7 +160,7 @@ $(function(){
                processData: false,
                dataType:  mainUserProfile.params.api.city.type,
                success: function(response){
-                   console.log(response);
+                   //console.log(response);
                    mainUserProfile.params.filter.cities.empty();
                    $.each(response,function(index,value){
                        var option = "<option value='"+value.city+"'>"+value.accentCity+"</option>";
@@ -192,7 +192,7 @@ $(function(){
            processData: false,
            dataType:  mainUserProfile.params.api.base.type,
            success: function(response){
-               console.log(response);
+               //console.log(response);
                //set  les listes des users
                listUsers=response.users;
 
