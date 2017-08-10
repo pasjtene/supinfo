@@ -44,7 +44,7 @@ class DefaultController extends Controller
 
                 $datas['member'] = $contents->user;
                 $datas['profile'] = $contents->profile;
-                $datas['roles']  = FunglobeUtils::getAppRoles($contents->user->roles[0]);
+                $datas['roles']  = FunglobeUtils::getAppRoles($this->getUser()->getRoles()[0]);
             }
         }
 
