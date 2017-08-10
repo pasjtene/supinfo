@@ -7,6 +7,7 @@ member:
   set_locked: Block
   unset_locked: Unblock
   delete_member: Delete
+  view_pictures: View picture
   th_property: Properties
   th_value: Values
   lbl_role: Member's role :
@@ -29,3 +30,6 @@ member:
   lbl_no: No
   lbl_change_country: Change
   lbl_save_country: Save
+  pictures:
+    title: User picture's
+    lbl_pic: pictures

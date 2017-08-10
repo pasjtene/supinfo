@@ -47,3 +47,6 @@ admin:
    title: Show all users
   settings:
    title: Settings
+  nav:
+    profile: Profile
+    logout: Logout

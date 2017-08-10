@@ -47,12 +47,36 @@ class FunglobeUtils
      *
      * @return array
      */
-    public static function getAppRoles()
+    public static function getAppRoles($role)
     {
-        return [
-            ["name_en" => "Member", "name_fr" => "Membre", "value" => 'ROLE_MEMBER'],
-            ["name_en" => "Moderator", "name_fr" => "Modérateur", "value" => 'ROLE_MODERATOR'],
-            ["name_en" => "Administrator", "name_fr" => "Administrateur", "value" => 'ROLE_ADMIN']
+        $roles = [
+            'ROLE_ADMIN' => [
+                ["name_en" => "Member", "name_fr" => "Membre", "value" => 'ROLE_MEMBER'],
+                ["name_en" => "Moderator", "name_fr" => "Modérateur", "value" => 'ROLE_MODERATOR'],
+                ["name_en" => "Administrator", "name_fr" => "Administrateur", "value" => 'ROLE_ADMIN']
+            ],
+            'ROLE_MODERATOR' => [
+                ["name_en" => "Member", "name_fr" => "Membre", "value" => 'ROLE_MEMBER'],
+                ["name_en" => "Moderator", "name_fr" => "Modérateur", "value" => 'ROLE_MODERATOR']
+            ]
         ];
+
+        return $roles[$role];
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
