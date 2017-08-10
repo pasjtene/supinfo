@@ -47,3 +47,6 @@ admin:
    title: Liste des utilisateurs
   settings:
    title: Paramètres
+  nav:
+    profile: Profil
+    logout: Déconnexion
