@@ -9,9 +9,10 @@
                            <div class="input-group-addon bg-primary text-white"><span class="fa fa-search"></span></div>
                        </div>
                    </div>
-                   <div class="member_list ">
+                   <div class="member_list">
                        <ul class="list-unstyled">
-                           {% for i in 1..10 %}
+                         {#
+                              {% for i in 1..10 %}
                                <li class="left clearfix">
                                  <span class="chat-img pull-left">
                                         <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="rounded-circle">
@@ -27,6 +28,7 @@
                                    </div>
                                </li>
                            {% endfor %}
+                         #}
                        </ul>
                    </div>
                </div>
@@ -51,7 +53,8 @@
 
                    <div class="chat_area">
                        <ul class="list-unstyled">
-                           {% for i in 1..10 %}
+                          {#
+                                 {% for i in 1..10 %}
                                <li class="left clearfix">
                                    <span class="chat-img1 pull-left">
                                          <img  src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="rounded-circle">
@@ -72,6 +75,7 @@
                                    </div>
                                </li>
                            {% endfor %}
+                          #}
                        </ul>
                    </div>
                    <!--chat_area-->
@@ -84,7 +88,7 @@
                            <a href="#" class="pull-left upload_btn">
                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Add Files
                            </a>
-                           <a href="#" class="pull-right btn btn-success">
+                           <a href="#" class="pull-right btn btn-success btn_send" >
                                Send
                            </a>
                        </div>

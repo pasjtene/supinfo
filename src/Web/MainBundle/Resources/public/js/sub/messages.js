@@ -6,22 +6,184 @@ var MainSubMessages = function()
         bg_action:$('#bg-action'),
         path: path.flags,
         api:{
-            fill: {
-                url : baseUrl+"auth/user/photo/profile/detail",
+            getAll: {
+                url : baseUrl+"auth/Message/all",
                 method: "get",
                 type: "json"
             },
-            ask:{
-                url : baseUrl+"auth/user/friend/ask",
+            get: {
+                url : baseUrl+"auth/Message/conversation",
+                method: "get",
+                type: "json"
+            },
+            post:{
+                url : baseUrl+"auth/Message/add",
                 method: "post",
+                type: "json"
+            },
+            put:{
+                url : baseUrl+"auth/Message/update",
+                method: "put",
+                type: "json"
+            },
+            delete:{
+                url : baseUrl+"auth/Message/delete",
+                method: "delete",
+                type: "json"
+            },
+            friend:{
+                url : baseUrl+"auth/user/friends/cuurent",
+                method: "get",
+                type: "json"
+            },
+            countConversation:{
+                url : baseUrl+"auth/Message/conversations/count",
+                method: "get",
                 type: "json"
             }
         },
+        member_list: {
+            body : $("#Main-Messages .member_list .list-unstyled"),
+            user_list : $("#Main-Messages .member_list .list-unstyled li")
+        },
+        chat_area: {
+            body : $("#Main-Messages .chat_area .list-unstyled"),
+            send: $("#Main-Messages .message_write .btn_send")
+        },
         body:{
-            message_text: $('#Main-Messages #message-text')
+            message_text: $('#Main-Messages #message-text'),
+            caretposition: $('#Main-Messages #caretposition')
         }
-    };
+    },
+   this.getAll = function(cb,objet,errorMessage)
+    {
+        $.ajax(
+            {
+               url: this.params.api.getAll.url,
+               type: this.params.api.getAll.method,
+               data: objet,
+               headers : {"X-Auth-Token" : currentUser.token},
+               crossDomain: true,
+               dataType:  this.params.api.getAll.type,
+               success: function (data) {
+                    console.log(data);
+                    cb(data);
+               },
+               error: function (xhr, status, message) {
+                    console.log(xhr.responseText);
+                    bootbox.alert(errorMessage,function(){});
+               }
+            }
+        );
+    },
+    this.get = function(cb,objet,errorMessage)
+    {
+        $.ajax(
+            {
+                url: this.params.api.get.url,
+                type: this.params.api.get.method,
+                data: objet,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                dataType:  this.params.api.get.type,
+                success: function (data) {
+                    console.log(data);
+                    cb(data);
+                },
+                error: function (xhr, status, message) {
+                    console.log(xhr.responseText);
+                    bootbox.alert(errorMessage,function(){});
+                }
+            }
+        );
+    },
+    this.post = function(cb,objet,errorMessage)
+    {
+        $.ajax(
+            {
+               url: this.params.api.post.url,
+               type: this.params.api.post.method,
+               data: objet,
+               crossDomain: true,
+               dataType:  this.params.api.post.type,
+               headers : {"X-Auth-Token" : currentUser.token},
+               success: function (data) {
+                    console.log(data);
+                    cb(data);
+               },
+               error: function (xhr, status, message) {
+                  console.log(xhr.responseText);
+                  bootbox.alert(errorMessage,function(){});
+               }
+            }
+        );
+    },
+    this.put = function(cb,objet,errorMessage)
+    {
+        $.ajax(
+            {
+               url: this.params.api.post.url,
+               type: this.params.api.put.method,
+               data: objet,
+               crossDomain: true,
+               dataType:  this.params.api.put.type,
+               headers : {"X-Auth-Token" : currentUser.token},
+               success: function (data) {
+                    console.log(data);
+                    cb(data);
+               },
+               error: function (xhr, status, message) {
+                   console.log(xhr.responseText);
+                   bootbox.alert(errorMessage,function(){});
+               }
+            }
+        );
+    },
+    this.delete = function(cb,objet,errorMessage)
+    {
+        $.ajax(
+            {
+               url: this.params.api.delete.url,
+               type: this.params.api.delete.method,
+               data: objet,
+               crossDomain: true,
+               dataType:  this.params.api.delete.type,
+               headers : {"X-Auth-Token" : currentUser.token},
+               success: function (data) {
+                    console.log(data);
+                    cb(data);
+               },
+               error: function (xhr, status, message) {
+                    console.log(xhr.responseText);
+                    bootbox.alert(errorMessage,function(){});
+               }
+            }
+        );
+    },
+    this.friend =  function context(cb,objet,errorMessage)
+        {
+            var isok =false;
+            $.ajax(
+                {
+                    url: this.params.api.friend.url,
+                    type: this.params.api.friend.method,
+                    data: objet,
+                    crossDomain: true,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    dataType:  this.params.api.friend.type,
+                    success: function (data) {
+                        console.log(data);
+                        isok =true;
+                        return {'data':data, 'isok':isok};
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                        bootbox.alert(errorMessage,function(){});
+                    }
+                }
+            );
 
+        }
 };
 
 
@@ -31,13 +193,158 @@ $(function () {
 
     if(mainSubMessages.params.sub.data('sub')=="messages") {
 
-            mainSubMessages.params.body.message_text.keyup(function(){
-               translateEmotion(listEmoticons(),$(this),path.emoticon);
+        //variables globales
+        var selectUserId = 0,
+            countListMessageUserCurrent = 0,
+            countListMessageUserCurrentnew = 0,
+            countMessageNotSee = 0,
+            errorMessage = "something is wrong";
 
+
+            // declancher l'accuse de reception
+            setInterval(function(){
+                var data ={
+                    id : currentUser.id,
+                    idFriend: selectUserId
+                };
+                getNotifieCount(data,errorMessage);
+            },3000);
+            mainSubMessages.params.body.message_text.keyup(function(e){
+                //placeCaretAtEnd($(this).get(0));
+               if(e.keyCode==32){
+                 if( translateEmotion(listEmoticons(),$(this),path.emoticon))
+                 {
+                     setCaret($(this).get(0),false);
+                 }
+               }
             });
-         function setOwnMessage(content) {
 
-         }
+
+        function get(objet,errorMessage,isobjet)
+        {
+            $.ajax(
+                {
+                    url: mainSubMessages.params.api.get.url,
+                    type: mainSubMessages.params.api.get.method,
+                    data: objet,
+                    crossDomain: true,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    dataType:  mainSubMessages.params.api.get.type,
+                    success: function (data) {
+                        console.log(data);
+                        if(data!=null  && data !="null" && data!="undefined")
+                        {
+                            countListMessageUserCurrent = (data.recievers!=null && data.recievers!='null')? data.recievers.length: 0;
+                            countListMessageUserCurrentnew = countListMessageUserCurrent;
+                            setmessageContent(data,mainSubMessages.params.chat_area.body,isobjet);
+                        }
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                       // bootbox.alert(errorMessage,function(){});
+                    }
+                }
+            );
+        }
+
+        function getNotifieCount(objet,errorMessage)
+        {
+            $.ajax(
+                {
+                    url: mainSubMessages.params.api.countConversation.url,
+                    type: mainSubMessages.params.api.countConversation.method,
+                    data: objet,
+                    crossDomain: true,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    dataType:  mainSubMessages.params.api.countConversation.type,
+                    success: function (data) {
+                       // console.log(data);
+                        if(data!=null  && data !="null" && data!="undefined")
+                        {
+                            countListMessageUserCurrentnew = data.countMyFriendsMessage;
+                            countMessageNotSee = data.notifiyCountMessage;
+                            if(countListMessageUserCurrentnew !=countListMessageUserCurrent)
+                            {
+                                countListMessageUserCurrent =countListMessageUserCurrentnew;
+                              //  alert("new : "+countListMessageUserCurrentnew +  " old : " + countListMessageUserCurrent);
+                                if(selectUserId>0){
+                                    var data ={
+                                        id : currentUser.id,
+                                        idFriend: selectUserId
+                                    };
+                                    get(data,errorMessage,false);
+                                }
+
+                            }
+                        }
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                       // bootbox.alert(errorMessage,function(){});
+                    }
+                }
+            );
+        }
+
+        //liste les amis
+         fillFriend({ id: currentUser.id },errorMessage);
+        function fillFriend(objet,errorMessage)
+        {
+            var isok =false;
+            $.ajax(
+                {
+                    url: mainSubMessages.params.api.friend.url,
+                    type: mainSubMessages.params.api.friend.method,
+                    data: objet,
+                    crossDomain: true,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    dataType:  mainSubMessages.params.api.friend.type,
+                    success: function (data) {
+                        console.log(data);
+                        if(data!=null  && data !="null" && data!="undefined")
+                        {
+                            setfriendList(data.listUsers,mainSubMessages.params.member_list.body);
+                        }
+
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                        bootbox.alert(errorMessage,function(){});
+                    }
+                }
+            );
+
+        }
+
+
+        function post(objet,errorMessage,isobjet)
+        {
+            $.ajax(
+                {
+                    url: mainSubMessages.params.api.post.url,
+                    type: mainSubMessages.params.api.post.method,
+                    data: objet,
+                    crossDomain: true,
+                    dataType:  mainSubMessages.params.api.post.type,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    success: function (data) {
+                        console.log(data);
+                        if(data!=null && data!="null" && data!="undefined")
+                        {
+                            setmessageContent(data,mainSubMessages.params.chat_area.body,isobjet);
+                            mainSubMessages.params.body.message_text.empty();
+                            //countListMessageUserCurrent++;
+                            //countListMessageUserCurrentnew = countListMessageUserCurrent;
+                        }
+
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                        bootbox.alert(errorMessage,function(){});
+                    }
+                }
+            );
+        }
 
         function listEmoticons(){
                     return  data = {
@@ -252,7 +559,6 @@ $(function () {
                             ":hugging_face" : "/hugging_face.png",
                             ":ill" : "/ill.png",
                             ":Info" : "/Info.png",
-                            ":in-love" : "/in-love.png",
                             ":kiss" : "/kiss.png",
                             ":kissing" : "/kissing.png",
                             ":laughing" : "/laughing.png",
@@ -308,12 +614,302 @@ $(function () {
         }
 
         function  translateEmotion(list,element,path){
+            var contentold = element.html();
+            var content = element.html();
            $.each(list, function(key, value)
            {
-                   element.html(element.html().replace(key, getEmotions(path,value)));
+                 content =   content.replace(key, getEmotions(path,value));
            });
-                element.selectionStart = element.html().length;
-                console.log(element.html());
+            if(contentold!=content)
+            {
+                element.empty();
+                element.append(content);
+                return true;
+            }
+            return false;
+        }
+
+
+        function  setfriendList(list, element)
+        {
+
+            element.empty();
+            for(var i=0; i<list.length; i++)
+            {
+                var photoApplicant = list[i].photoApplicant,
+                    photoReciever = list[i].photoReciever,
+                    request = list[i].request,
+                    user = null;
+                //alert();
+                var src = null;
+                if(request.receiver.id==currentUser.id)
+                {
+                    user = request.applicant;
+                    if (( photoApplicant==null || photoApplicant=='null' || photoApplicant.hashname == null || photoApplicant.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoApplicant.path;
+                    }
+                }
+                else
+                {
+                    user =  request.receiver;
+                    if (( photoReciever==null || photoReciever=='null' || photoReciever.hashname == null || photoReciever.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoReciever.path;
+                    }
+                }
+           // alert(user.id + "  current : " + currentUser.id);
+                if(user.id !=currentUser.id && user.type!="System") {
+                    var name = user.lastNameOrFirstname;
+                    var city = user.city;
+                    var  country = user.country;
+                    var final =(city==null || city=="null")? getCountry(countryList,country) :city;
+                    var flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                    var profession = user.profession==null || user.profession=="null"?'' : '('+ user.profession +')';
+                    var lastLogin = new Date(user.lastLogin);
+                    var toDay = new Date();
+                    var state = user.isOnline? "<span class='small connect'>(connected)</span>" : null;
+                    if(state==null)
+                    {
+                       if(lastLogin.toLocaleDateString() == toDay.toLocaleDateString())
+                       {
+                           state =(toDay-lastLogin)+"ago";
+                       }
+                    }
+                    var content =
+                        '<li class="left clearfix" data-id='+user.id+'>' +
+                        '<span class="chat-img pull-left">' +
+                        '<img src="'+src+'" alt="User Avatar" class="rounded-circle">' +
+                        '</span>' +
+                        '<div class="chat-body clearfix">' +
+                        '<div class="header_sec">' +
+                        '<strong class="primary-font">'+name+'</strong> <strong class="pull-right">' +
+                         state+'</strong>' +
+                        '</div>' +
+                        '<div class="contact_sec">' +
+                        '<strong class="primary-font">'+flag+final+'</strong> <span class="badge pull-right"></span>'+
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+                    element.append(content);
+                }
+
+            }
+        }
+
+
+
+        function  setmessageContent(list, element, isobjet)
+        {
+
+            var userMessages = null,
+                message = null,
+                createDate=null,
+                sendDate =null,
+                src =null,
+                friendProfile = null,
+                userProfile =null,
+                content =null,
+                today =new Date();
+
+            if(isobjet)
+            {
+                   userMessages = list.userMessages;
+                   message = userMessages.message;
+                userProfile = list.profile;
+                createDate =new Date(message.createDate);
+                if(today.toLocaleDateString()==createDate.toLocaleDateString())
+                {
+                    sendDate = createDate.toLocaleTimeString();
+                }
+                else
+                {
+                    sendDate = createDate.toLocaleDateString();
+                    sendDate=sendDate.replace("/","-");
+                    sendDate=sendDate.replace("/","-");
+                    sendDate+= " "+createDate.toLocaleTimeString();
+                }
+                if(userProfile!=null)
+                {
+                    src = baseHost + userProfile.path;
+                }
+                else
+                {
+                    src = path.emptyImage;
+                }
+                 content =
+                    '<li class="left clearfix">'+
+                    '<span class="chat-img1 pull-left">'+
+                    '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
+                    '</span>'+
+                    '<div class="chat-body1 clearfix">'+
+                    '<p>'+message.content+'</p>'+
+                    '<div class="chat_time pull-right">'+sendDate+'</div>'+
+                    '</div>'+
+                    '</li>';
+
+                element.append(content);
+            }
+            else
+            {
+                element.empty();
+                messages = list.messages;
+                for(var i=0; i<messages.length;i++)
+                {
+                    userMessage = messages[i].userMessage;
+                    friendProfile = messages[i].friendProfile;
+                    userProfile = messages[i].userProfile;
+                    message = userMessage.message;
+                    createDate =new Date(message.createDate);
+                    if(today.toLocaleDateString()==createDate.toLocaleDateString())
+                    {
+                        sendDate = createDate.toLocaleTimeString()
+                    }
+                    else
+                    {
+                        sendDate = createDate.toLocaleDateString();
+                        sendDate = sendDate.replace("/","-");
+                        sendDate = sendDate.replace("/","-");
+                        sendDate+= " "+createDate.toLocaleTimeString();
+                    }
+
+                    var isSender =  messages[i].isSender;
+
+                    if(isSender)
+                    {
+                        if(userProfile!=null)
+                        {
+                            src = baseHost + userProfile.path;
+                        }
+                        else
+                        {
+                            src = path.emptyImage;
+                        }
+
+                         content =
+                            '<li class="left clearfix">'+
+                            '<span class="chat-img1 pull-left">'+
+                            '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
+                            '</span>'+
+                            '<div class="chat-body1 clearfix">'+
+                            '<p>'+message.content+'</p>'+
+                            '<div class="chat_time pull-right">'+ sendDate+'</div>'+
+                            '</div>'+
+                            '</li>';
+
+                    }
+                    else
+                    {
+                        if(friendProfile!=null)
+                        {
+                            src = baseHost + friendProfile.path;
+                        }
+                        else
+                        {
+                            src = path.emptyImage;
+                        }
+                        content=
+                            '<li class="left clearfix admin_chat">'+
+                            '<span class="chat-img1 pull-right">'+
+                            '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
+                            '</span>'+
+                            '<div class="chat-body1 clearfix">'+
+                            '<p>'+message.content+'</p>'+
+                            '<div class="chat_time pull-left">'+ sendDate+'</div>'+
+                            '</div>'+
+                            '</li>';
+                    }
+
+
+                    element.append(content);
+                }
+            }
+        }
+
+        function placeCaretAtEnd(el) {
+            el.focus();
+            if (typeof window.getSelection != "undefined"
+                && typeof document.createRange != "undefined") {
+                var range = document.createRange();
+                range.selectNodeContents(el);
+                range.collapse(false);
+                var sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+            } else if (typeof document.body.createTextRange != "undefined") {
+                var textRange = document.body.createTextRange();
+                textRange.moveToElementText(el);
+                textRange.collapse(false);
+                textRange.select();
+            }
+        }
+
+        function setCaret(target, isStart) {
+            const range = document.createRange();
+            const sel = window.getSelection();
+            if (isStart){
+                const newText = document.createTextNode('');
+                target.appendChild(newText);
+                range.setStart(target.childNodes[0], 0);
+            }
+            else {
+                range.selectNodeContents(target);
+            }
+            range.collapse(isStart);
+            sel.removeAllRanges();
+            sel.addRange(range);
+            target.focus();
+            //target.select();
+        }
+
+
+        //lorsqu'on clique sur un user, on charge la conversation
+        mainSubMessages.params.member_list.body.on('click','li',function(){
+           selectUserId = $(this).data('id');
+            var data ={
+                id : currentUser.id,
+                idFriend: selectUserId
+            };
+            changeState(mainSubMessages.params.member_list.user_list, $(this));
+            get(data,errorMessage,false);
+        });
+        mainSubMessages.params.chat_area.send.disabled =false;
+     /*  var inter = setInterval(function(){
+            if(selectUserId>0)
+            {
+                clearInterval(inter);
+
+                mainSubMessages.params.chat_area.send.prop('disabled',true);
+            }
+            else{
+                mainSubMessages.params.chat_area.send.prop('disabled',false);
+            }
+        },1000);
+        */
+        //envoyer un message
+        mainSubMessages.params.chat_area.send.click(function(e){
+            e.preventDefault();
+            var data ={
+                id : currentUser.id,
+                idFriend: selectUserId,
+                content : mainSubMessages.params.body.message_text.html()
+            };
+            post(data,errorMessage,true);
+        });
+
+        function changeState(Elements, ElementToActive) {
+            var t = Elements.length;
+            for (var i = 0; i < t; i++) {
+                if (Elements.eq(i).hasClass('active_li')) {
+                    Elements.eq(i).removeClass('active_li')
+                }
+            }
+            ElementToActive.addClass('active_li');
+            //alert();
         }
     }
 });

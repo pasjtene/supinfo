@@ -1,3 +1,8 @@
+.active_li{
+  background: #428bca none repeat scroll 0 0 !important;
+  color: #fff !important;
+}
+
 #Main-Messages{
 
   .chat_sidebar{
@@ -38,11 +43,18 @@
                    border-bottom:none;
                  }
               }
-
            }
+        .list-unstyled{
+           .flag{
+             height: 10px;
+             left: 10px;
+           }
+          .connect{
+            color: $highligt;
+          }
+        }
         li:hover {
-          background: #428bca none repeat scroll 0 0;
-          color: #fff;
+          @extend  .active_li;
           cursor:pointer;
         }
       }

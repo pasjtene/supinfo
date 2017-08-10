@@ -20,6 +20,7 @@ sub:
       ville: City
       quartier: Quater
       profession: Profession
+      changer: Change
   img:
     profile: Make profile photo
     published: make public
