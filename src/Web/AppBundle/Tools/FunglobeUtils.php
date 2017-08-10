@@ -49,16 +49,14 @@ class FunglobeUtils
      */
     public static function getAppRoles($role)
     {
+		$memberRole = ["name_en" => "Member", "name_fr" => "Membre", "value" => 'ROLE_MEMBER'];
+		$moderatorRole = ["name_en" => "Moderator", "name_fr" => "Modérateur", "value" => 'ROLE_MODERATOR'];
+		$adminRole = ["name_en" => "Administrator", "name_fr" => "Administrateur", "value" => 'ROLE_ADMIN'];
+
         $roles = [
-            'ROLE_ADMIN' => [
-                ["name_en" => "Member", "name_fr" => "Membre", "value" => 'ROLE_MEMBER'],
-                ["name_en" => "Moderator", "name_fr" => "Modérateur", "value" => 'ROLE_MODERATOR'],
-                ["name_en" => "Administrator", "name_fr" => "Administrateur", "value" => 'ROLE_ADMIN']
-            ],
-            'ROLE_MODERATOR' => [
-                ["name_en" => "Member", "name_fr" => "Membre", "value" => 'ROLE_MEMBER'],
-                ["name_en" => "Moderator", "name_fr" => "Modérateur", "value" => 'ROLE_MODERATOR']
-            ]
+            'ROLE_ADMIN' => [$memberRole, $moderatorRole, $adminRole],
+            'ROLE_MODERATOR' => [$memberRole, $moderatorRole],
+			'ROLE_MEMBER' => [$memberRole]
         ];
 
         return $roles[$role];
