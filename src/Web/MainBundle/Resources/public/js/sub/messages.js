@@ -47,6 +47,7 @@ var MainSubMessages = function()
             user_list : $("#Main-Messages .member_list .list-unstyled li")
         },
         chat_area: {
+            body_content : $("#Main-Messages .chat_area"),
             body : $("#Main-Messages .chat_area .list-unstyled"),
             send: $("#Main-Messages .message_write .btn_send"),
             emoticon_btn:$("#Main-Messages .message_write #chat_bottom_emoyoyi"),
@@ -862,6 +863,8 @@ $(function () {
                     element.append(content);
                 }
             }
+
+            mainSubMessages.params.chat_area.body_content.scrollTop(10000);
         }
 
         function placeCaretAtEnd(el) {
