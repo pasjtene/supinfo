@@ -48,7 +48,11 @@ var MainSubMessages = function()
         },
         chat_area: {
             body : $("#Main-Messages .chat_area .list-unstyled"),
-            send: $("#Main-Messages .message_write .btn_send")
+            send: $("#Main-Messages .message_write .btn_send"),
+            emoticon_btn:$("#Main-Messages .message_write #chat_bottom_emoyoyi"),
+            emoticon_body:$("#Main-Messages .message_write .chat_bottom_emoyoyi .row"),
+            img_sender:$("#Main-Messages .message_write .img_sender img"),
+            img_reciever:$("#Main-Messages .message_write .img_reciever img")
         },
         body:{
             message_text: $('#Main-Messages #message-text'),
@@ -209,6 +213,10 @@ $(function () {
                 };
                 getNotifieCount(data,errorMessage);
             },3000);
+
+        mainSubMessages.params.body.message_text.empty();
+        mainSubMessages.params.body.message_text.focus();
+            //envoyer un message en cliquant  sur entree
             mainSubMessages.params.body.message_text.keyup(function(e){
                 //placeCaretAtEnd($(this).get(0));
                if(e.keyCode==32){
@@ -217,6 +225,11 @@ $(function () {
                      setCaret($(this).get(0),false);
                  }
                }
+                if(e.keyCode==13)
+                {
+                    e.preventDefault();
+                    mainSubMessages.params.chat_area.send.trigger('click');
+                }
             });
 
 
@@ -629,7 +642,27 @@ $(function () {
             return false;
         }
 
+        function setEmoticons(element, src)
+        {
+            var content =
+                '<a class="dropdown-item col-3"  data-img="'+src+'" href="#">'+
+                    '<img class="" src="'+src+'"  alt="">'+
+                '</a>';
+            element.append(content);
+        }
+        function  fillEmotion(list,element,path){
+            element.empty();
+            var src = null;
+            $.each(list, function(key, value)
+            {
+                src =   path+value;
+                //console.log(src);
+                setEmoticons(element,src);
+            });
+        }
 
+        //charger la liste des emoticons
+        fillEmotion(listEmoticons(),mainSubMessages.params.chat_area.emoticon_body,path.emoticon);
         function  setfriendList(list, element)
         {
 
@@ -789,7 +822,7 @@ $(function () {
                         {
                             src = path.emptyImage;
                         }
-
+                        mainSubMessages.params.chat_area.img_sender.attr('src',src);
                          content =
                             '<li class="left clearfix">'+
                             '<span class="chat-img1 pull-left">'+
@@ -812,6 +845,7 @@ $(function () {
                         {
                             src = path.emptyImage;
                         }
+                        mainSubMessages.params.chat_area.img_reciever.attr('src',src);
                         content=
                             '<li class="left clearfix admin_chat">'+
                             '<span class="chat-img1 pull-right">'+
@@ -870,10 +904,13 @@ $(function () {
         //lorsqu'on clique sur un user, on charge la conversation
         mainSubMessages.params.member_list.body.on('click','li',function(){
            selectUserId = $(this).data('id');
+            mainSubMessages.params.chat_area.img_reciever.attr('src',path.emptyImage);
+            mainSubMessages.params.chat_area.img_sender.attr('src',path.emptyImage);
             var data ={
                 id : currentUser.id,
                 idFriend: selectUserId
             };
+            mainSubMessages.params.chat_area.send.prop('disabled',false);
             changeState(mainSubMessages.params.member_list.user_list, $(this));
             get(data,errorMessage,false);
         });
@@ -911,6 +948,17 @@ $(function () {
             ElementToActive.addClass('active_li');
             //alert();
         }
+        mainSubMessages.params.chat_area.send.prop('disabled',true);
+
+        //lors du  clique sur l'emoticon
+        mainSubMessages.params.chat_area.emoticon_body.on('click','a',function(e){
+            e.preventDefault();
+           mainSubMessages.params.body.message_text.append(getEmotions($(this).data('img'),''));
+        });
+
+        mainSubMessages.params.chat_area.emoticon_btn.hover(function(){
+           // $(this).trigger('click');
+        });
     }
 });
 
