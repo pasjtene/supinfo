@@ -208,6 +208,7 @@ function getJoinReason(value){
 appMain.getAppToken(function(data){
     //tokenbase = data.value;
     tokenbase = data;
+    sessionStorage.setItem("fg_token_base", data.value);
     //geolocation = data.geolocation;
 });
 
