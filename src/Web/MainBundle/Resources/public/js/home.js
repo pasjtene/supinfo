@@ -16,6 +16,7 @@ var MainHome = function()
     };
 };
 
+
 $(function(){
 
     var mainHome = new MainHome();
@@ -26,7 +27,16 @@ $(function(){
             interval: 10000
         });
     }
+    if(mainHome.params.mainHorizontalNav.data("menu")!="undefined" && mainHome.params.mainHorizontalNav.data("menu")=="mainHorizontalNav")
+    {
+        //setScroll(mainHome.params.mainHorizontalNav, mainHome.params.classname);
+    }
 
+    if(mainHome.params.nav.data("menu")!="undefined" && mainHome.params.nav.data("menu")=="nav")
+    {
+        mainHome.params.dropdownClass.dropdown();
+        //setScroll(mainHome.params.nav, mainHome.params.classname);
+    }
 
   /*  function setScroll(menu, classFixed)
     {
