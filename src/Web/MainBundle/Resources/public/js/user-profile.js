@@ -218,6 +218,10 @@ $(function(){
                {
                    setVips(mainUserProfile.params.matches.carousel_inner,response.vips);
                }
+               if(response.recieveMessages!=null  && response.recieveMessages !="null" && response.recieveMessages!="undefined")
+               {
+                   setnotificationMessage(mainUserProfile.params.nav.notification.message, response.recieveMessages,mainUserProfile.params.nav.dropdownMenuMessages_badge);
+               }
 
            },
            error: function (xhr, status, message) { //en cas d'erreur
@@ -459,6 +463,89 @@ $(function(){
                element.body.empty();
                mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
            }
+       }
+
+       function setnotificationMessage(element, list,badge)
+       {
+           if(list.length==0)
+           {
+               mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
+           }
+           element.body.empty();
+           var length = list.length<10? "0"+list.length : list.length;
+           element.count.html("("+length+")");
+           badge.html(length);
+           var userMessages = null,
+               message = null,
+               createDate=null,
+               sendDate =null,
+               src =null,
+               friend =null,
+               friendProfile = null,
+               userProfile =null,
+               content =null,
+               today =new Date(),
+               messages = list;
+           for (var i=0; i<messages.length;i++)
+           {
+
+               userMessage = messages[i].userMessage;
+               friendProfile = messages[i].friendProfile;
+               userProfile = messages[i].userProfile;
+               message = userMessage.message;
+               friend = messages[i].friend;
+               createDate =new Date(message.createDate);
+               if(today.toLocaleDateString()==createDate.toLocaleDateString())
+               {
+                   sendDate = createDate.toLocaleTimeString()
+               }
+               else
+               {
+                   sendDate = createDate.toLocaleDateString();
+                   sendDate = sendDate.replace("/","-");
+                   sendDate = sendDate.replace("/","-");
+                   sendDate+= " "+createDate.toLocaleTimeString();
+               }
+               if(friendProfile!=null)
+               {
+                   src = baseHost + friendProfile.path;
+               }
+               else
+               {
+                   src = path.emptyImage;
+               }
+               var messageprop = !like(message.contentTuncate)?'emoticon':message.contentTuncate;
+               content =
+                   '<div class="dropdown-divider"></div>'+
+                   '<a class="dropdown-item" href="#">'+
+                   '<div class="row align-items-center">'+
+                   '<div class="col-2"><img src="'+src+'" alt=""></div>'+
+                   '<div class="col-7 ">'+
+                       friend.fullname +'<br>'+
+                       '<span class="text-grey">'+messageprop+'</span>'+
+                   '</div>'+
+                   '<div class="col-3 text-muted small text-right">'+
+                        sendDate+'<br>'+
+                        '<div class="badge badge-success">'+messages[i].count+'</div>'+
+                   '</div>'+
+                   '</div>'+
+                   '</a>';
+               element.body.append(content);
+           }
+       }
+
+
+
+       function like(str) {
+           var motif = "^.*<img.*$";
+           var  expression = new RegExp(motif,"gi");
+           var test =expression.test(str);
+           if(str=="" || test==false)
+           {
+               return true
+           }
+
+           return false;
        }
    }
 
