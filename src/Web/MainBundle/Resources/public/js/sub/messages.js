@@ -799,6 +799,30 @@ $(function () {
             else
             {
                 element.empty();
+
+                userProfile = list.profileUser;
+                if(userProfile!=null)
+                {
+                    src = baseHost + userProfile.path;
+                }
+                else
+                {
+                    src = path.emptyImage;
+                }
+                mainSubMessages.params.chat_area.img_sender.attr('src',src);
+
+                friendProfile = list.profileFriend;
+                if(friendProfile!=null)
+                {
+                    src = baseHost + friendProfile.path;
+                }
+                else
+                {
+                    src = path.emptyImage;
+                }
+                mainSubMessages.params.chat_area.img_reciever.attr('src',src);
+
+
                 messages = list.messages;
                 for(var i=0; i<messages.length;i++)
                 {
