@@ -32,7 +32,7 @@ var MainSubMessages = function()
                 type: "json"
             },
             friend:{
-                url : baseUrl+"auth/user/friends/cuurent",
+                url : baseUrl+"auth/Message/friends/cuurent",
                 method: "get",
                 type: "json"
             },
@@ -281,7 +281,7 @@ $(function () {
                             {
                                 if(data.notifyMessages!=null  && data.notifyMessages !="null" && data.notifyMessages!="undefined")
                                 {
-                                    setnotificationMessage(mainUserProfile_messages.params.nav.dropdownMenuMessages_body, data.notifyMessages);
+                                    setnotificationMessage(mainUserProfile_messages.params.nav.notification.message, data.notifyMessages,mainUserProfile_messages.params.nav.dropdownMenuMessages_badge);
                                 }
                                 countMessageNotSee = data.notifiyCountMessage;
                             }
@@ -680,6 +680,7 @@ $(function () {
             {
                 var photoApplicant = list[i].photoApplicant,
                     photoReciever = list[i].photoReciever,
+                    count = list[i].count>0? list[i].count:'',
                     request = list[i].request,
                     user = null;
                 //alert();
@@ -733,7 +734,7 @@ $(function () {
                          state+'</strong>' +
                         '</div>' +
                         '<div class="contact_sec">' +
-                        '<strong class="primary-font">'+flag+final+'</strong> <span class="badge pull-right"></span>'+
+                        '<strong class="primary-font">'+flag+final+'</strong> <span class="badge bg-danger pull-right">'+count+'</span>'+
                         '</div>' +
                         '</div>' +
                         '</li>';
@@ -742,7 +743,6 @@ $(function () {
 
             }
         }
-
 
 
         function  setmessageContent(list, element, isobjet)
@@ -973,20 +973,15 @@ $(function () {
 
         function setnotificationMessage(element, list,badge)
         {
-            if(list.length==0)
-            {
-                mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
-            }
             element.body.empty();
-            var length = list.length<10? "0"+list.length : list.length;
-            element.count.html("("+length+")");
-            badge.html(length);
+
             var userMessages = null,
                 message = null,
                 createDate=null,
                 sendDate =null,
                 src =null,
                 friend =null,
+                total = 0,
                 friendProfile = null,
                 userProfile =null,
                 content =null,
@@ -1020,6 +1015,7 @@ $(function () {
                 {
                     src = path.emptyImage;
                 }
+                total+=messages[i].count;
                 var messageprop = !like(message.contentTuncate)?'emoticon':message.contentTuncate;
                 content =
                     '<div class="dropdown-divider"></div>'+
@@ -1038,6 +1034,14 @@ $(function () {
                     '</a>';
                 element.body.append(content);
             }
+
+            if(list.length==0)
+            {
+                mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
+            }
+            var length = total<10? "0"+total: total;
+            element.count.html("("+length+")");
+            badge.html(length);
         }
 
     }
