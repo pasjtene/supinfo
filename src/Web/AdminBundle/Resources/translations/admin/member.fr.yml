@@ -7,6 +7,7 @@ member:
   set_locked: Bloquer
   unset_locked: Débloquer
   delete_member: Supprimer
+  view_pictures: Voir les photos
   th_property: Propriétés
   th_value: Valeurs
   lbl_role: Rôle du membre :
@@ -28,3 +29,6 @@ member:
   lbl_no: Non
   lbl_change_country: Changer
   lbl_save_country: Sauvegarder
+  pictures:
+      title: Photo de l'utilisateur
+      lbl_pic: photos

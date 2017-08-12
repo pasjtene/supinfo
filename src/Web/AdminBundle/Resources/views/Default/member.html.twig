@@ -24,27 +24,37 @@
             <div class="col-sm-12" id="mb-header">
                 <span>{{ member.firstName }} {{ member.lastName }} {% if member.isVip %}(vip){% endif %}</span>
 
-                <div class="btn-group pull-right" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-info" id="btn-status-member" data-mid="{{ member.id }}" data-action="{% if member.enabled %}set{% else %}unset{% endif %}">
-                        {% if member.enabled %}
-                            {% trans from 'member' %} member.set_locked {% endtrans %}
-                        {% else %}
-                            {% trans from 'member' %} member.unset_locked {% endtrans %}
-                        {% endif %}
+                <div class="btn-group pull-right" id="mn-user-action">
+                    <button type="button" class="btn btn-primary">Action</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
                     </button>
-                    <button type="button" class="btn btn-success" id="btn-vip-member" data-mid="{{ member.id }}" data-action="{% if member.isVip %}unset{% else %}set{% endif %}">
-                        {% if member.isVip %}
-                            {% trans from 'member' %} member.unset_vip {% endtrans %}
-                        {% else %}
-                            {% trans from 'member' %} member.set_vip {% endtrans %}
-                        {% endif %}
-                    </button>
-                    <button type="button" id="btn-role-action" data-edit="0" data-mid="{{ member.id }}" class="btn btn-primary">
-                        {% trans from 'member' %} member.change_role {% endtrans %}
-                    </button>
-                    <button type="button" id="btn-delete-member" data-mid="{{ member.id }}" class="btn btn-danger">
-                        {% trans from 'member' %} member.delete_member {% endtrans %}
-                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ path('admin_view_member_picture', {'id': member.id}) }}" id="btn-view-pictures">
+                            {% trans from 'member' %} member.view_pictures {% endtrans %}
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" id="btn-status-member" data-mid="{{ member.id }}" data-action="{% if member.enabled %}set{% else %}unset{% endif %}">
+                            {% if member.enabled %}
+                                {% trans from 'member' %} member.set_locked {% endtrans %}
+                            {% else %}
+                                {% trans from 'member' %} member.unset_locked {% endtrans %}
+                            {% endif %}
+                        </a>
+                        <a class="dropdown-item" href="#" id="btn-vip-member" data-mid="{{ member.id }}" data-action="{% if member.isVip %}unset{% else %}set{% endif %}">
+                            {% if member.isVip %}
+                                {% trans from 'member' %} member.unset_vip {% endtrans %}
+                            {% else %}
+                                {% trans from 'member' %} member.set_vip {% endtrans %}
+                            {% endif %}
+                        </a>
+                        <a class="dropdown-item" href="#" id="btn-role-action" data-edit="0" data-mid="{{ member.id }}">
+                            {% trans from 'member' %} member.change_role {% endtrans %}
+                        </a>
+                        <a class="dropdown-item" href="#" id="btn-delete-member" data-mid="{{ member.id }}">
+                            {% trans from 'member' %} member.delete_member {% endtrans %}
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-12">

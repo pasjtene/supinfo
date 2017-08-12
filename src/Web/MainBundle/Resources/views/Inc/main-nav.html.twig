@@ -1,5 +1,5 @@
 
-<ul class="nav justify-content-center bg-primary" id="nav" data-menu="nav">
+<ul class="nav justify-content-center bg-primary fixed-top" id="nav" data-menu="nav">
     <li class="nav-item" id="logo">
         <a class="nav-link active" href="{{ path('main_profile') }}">Funglobe</a>
     </li>
@@ -12,15 +12,17 @@
     </li>
     <li class="nav-item dropdown">
         <a class="nav-link" href="#"  id="dropdownMenuMessages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="fa fa-2x fa-comment"></span> <span class="badge badge-danger"></span> <br>
-            {% trans from "main-nav" %} messages {% endtrans %}
+            <span class="fa fa-2x fa-comment"></span> <br>
+            {% trans from "main-nav" %} messages {% endtrans %} <br>
+            <span class="badge badge-danger"></span>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="#">
-            <span class="fa fa-2x fa-bell"></span>  <span class="badge badge-danger"></span> <br>
-            {% trans from "main-nav" %}notification {% endtrans %}
+            <span class="fa fa-2x fa-bell"></span> <br>
+            {% trans from "main-nav" %}notification {% endtrans %}<br>
+            <span class="badge badge-danger"></span>
         </a>
     </li>
 

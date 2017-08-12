@@ -9,9 +9,10 @@
                            <div class="input-group-addon bg-primary text-white"><span class="fa fa-search"></span></div>
                        </div>
                    </div>
-                   <div class="member_list ">
+                   <div class="member_list">
                        <ul class="list-unstyled">
-                           {% for i in 1..10 %}
+                         {#
+                              {% for i in 1..10 %}
                                <li class="left clearfix">
                                  <span class="chat-img pull-left">
                                         <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="rounded-circle">
@@ -27,6 +28,7 @@
                                    </div>
                                </li>
                            {% endfor %}
+                         #}
                        </ul>
                    </div>
                </div>
@@ -51,7 +53,8 @@
 
                    <div class="chat_area">
                        <ul class="list-unstyled">
-                           {% for i in 1..10 %}
+                          {#
+                                 {% for i in 1..10 %}
                                <li class="left clearfix">
                                    <span class="chat-img1 pull-left">
                                          <img  src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="rounded-circle">
@@ -72,21 +75,54 @@
                                    </div>
                                </li>
                            {% endfor %}
+                          #}
                        </ul>
                    </div>
                    <!--chat_area-->
-                   <div class="message_write">
-                       <div id="message-text" placeholder="type a message" contenteditable="true">
-
+                   <div class="message_write bg-white">
+                       <div class="row ">
+                           <div class="col-2 pull-right img_sender message_hep">
+                               <img src="{{ asset('data/img/empty.png') }}" class="rounded-circle responsive" alt="">
+                           </div>
+                           <div class="col-8" id="message-text"  placeholder="type a message" contenteditable="true">
+                           </div>
+                           <div class="col-2 img_reciever message_hep pull-left">
+                               <img src="{{ asset('data/img/empty.png') }}" class="rounded-circle responsive" alt="">
+                           </div>
                        </div>
                        <div class="clearfix"></div>
-                       <div class="chat_bottom">
-                           <a href="#" class="pull-left upload_btn">
-                               <i class="fa fa-cloud-upload" aria-hidden="true"></i> Add Files
-                           </a>
-                           <a href="#" class="pull-right btn btn-success">
-                               Send
-                           </a>
+                       <div class="chat_bottom row">
+                           <div class="col text-center">
+                               <a href="#" class="upload_btn text-center">
+                                   <i class="fa fa-2x fa-file" aria-hidden="true"></i>
+                               </a>
+                           </div>
+                           <div class="col text-center">
+                               <a href="#" class=" upload_btn">
+                                   <i class="fa fa-2x fa-camera" aria-hidden="true"></i>
+                               </a>
+                           </div>
+                           <div class="col text-center">
+                               <div class="dropup drop-emoyoyi">
+                                   <a href="#" class="text-muted" id="chat_bottom_emoyoyi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  > <span class="fa fa-2x fa-smile-o"></span></a>
+                                   <div class="dropdown-menu chat_bottom_emoyoyi" aria-labelledby="chat_bottom_emoyoyi" >
+                                       <div class="row">
+                                          {#
+                                             {% for i in 1..30 %}
+                                               <a class="dropdown-item col-3" href="#">
+                                                   <img class="" src="{{ asset('data/img/empty.png') }}"  alt="">
+                                               </a>
+                                           {% endfor %}
+                                          #}
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col pull-right">
+                               <a href="#" class="pull-right  btn_send"  disabled="disabled">
+                                   Send
+                               </a>
+                           </div>
                        </div>
                    </div>
 

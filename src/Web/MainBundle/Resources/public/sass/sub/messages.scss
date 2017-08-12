@@ -1,3 +1,8 @@
+.active_li{
+  background: #428bca none repeat scroll 0 0 !important;
+  color: #fff !important;
+}
+
 #Main-Messages{
 
   .chat_sidebar{
@@ -38,11 +43,18 @@
                    border-bottom:none;
                  }
               }
-
            }
+        .list-unstyled{
+           .flag{
+             height: 10px;
+             left: 10px;
+           }
+          .connect{
+            color: $highligt;
+          }
+        }
         li:hover {
-          background: #428bca none repeat scroll 0 0;
-          color: #fff;
+          @extend  .active_li;
           cursor:pointer;
         }
       }
@@ -86,6 +98,10 @@
                   background: #fbf9fa none repeat scroll 0 0;
                   padding: 10px;
                 }
+              img{
+                max-height: 200px;
+                max-width: 200px;
+              }
             }
 
             .admin_chat  {
@@ -103,33 +119,65 @@
       }
 
     .message_write {
-      background: #f5f3f3 none repeat scroll 0 0;
+     // background: #f5f3f3 none repeat scroll 0 0;
       float: left;
       padding: 15px;
       width: 100%;
+      .message_hep{
+        img{
+          height: 50px;
+          max-width: 50px;
+        }
+      }
       #message-text {
-        height: 80px;
+        min-height: 30px;
         padding: 10px;
+        border-bottom: solid 1px $test-grey;
         background-color: white;
         border-radius: 6px;
         overflow-y: auto;
         overflow-x: hidden;
         max-width: 100%;
+       /* display: flex;
+        text-wrap: normal;
+        flex-wrap: wrap;
+        */
         img{
           max-height:30px;
           max-width: 30px;
         }
       }
+
+      [contenteditable=true]:empty:before{
+        content: attr(placeholder);
+        display: block; /* For Firefox */
+      }
       #message-text:focus{
-        border: solid 1px $highligt;
+        border-bottom: solid 1px $highligt;
       }
       .chat_bottom {
         float: left;
-        margin-top: 13px;
+        margin-top: 13px ;
         width: 100%;
+        .fa-2x{
+          font-size: 1.4em;
+        }
+        .drop-emoyoyi{
+          .chat_bottom_emoyoyi{
+            min-width: 300px;
+            max-height: 400px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            img{
+              max-height: 30px;
+              max-width: 30px;
+            }
+          }
+        }
       }
       .upload_btn {
         color: #777777;
+
       }
     }
   }
