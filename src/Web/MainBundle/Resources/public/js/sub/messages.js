@@ -32,12 +32,12 @@ var MainSubMessages = function()
                 type: "json"
             },
             friend:{
-                url : baseUrl+"auth/user/friends/cuurent",
+                url : baseUrl+"auth/Message/friends/cuurent",
                 method: "get",
                 type: "json"
             },
             countConversation:{
-                url : baseUrl+"auth/Message/conversations/count",
+                url : baseUrl+"auth/Message/notification",
                 method: "get",
                 type: "json"
             }
@@ -210,7 +210,8 @@ $(function () {
             setInterval(function(){
                 var data ={
                     id : currentUser.id,
-                    idFriend: selectUserId
+                    idFriend: selectUserId,
+                    lastcount: countMessageNotSee
                 };
                 getNotifieCount(data,errorMessage);
             },3000);
@@ -276,7 +277,14 @@ $(function () {
                         if(data!=null  && data !="null" && data!="undefined")
                         {
                             countListMessageUserCurrentnew = data.countMyFriendsMessage;
-                            countMessageNotSee = data.notifiyCountMessage;
+                            if(countMessageNotSee != data.notifiyCountMessage)
+                            {
+                                if(data.notifyMessages!=null  && data.notifyMessages !="null" && data.notifyMessages!="undefined")
+                                {
+                                    setnotificationMessage(mainUserProfile_messages.params.nav.notification.message, data.notifyMessages,mainUserProfile_messages.params.nav.dropdownMenuMessages_badge);
+                                }
+                                countMessageNotSee = data.notifiyCountMessage;
+                            }
                             if(countListMessageUserCurrentnew !=countListMessageUserCurrent)
                             {
                                 countListMessageUserCurrent =countListMessageUserCurrentnew;
@@ -672,6 +680,7 @@ $(function () {
             {
                 var photoApplicant = list[i].photoApplicant,
                     photoReciever = list[i].photoReciever,
+                    count = list[i].count>0? list[i].count:'',
                     request = list[i].request,
                     user = null;
                 //alert();
@@ -725,7 +734,7 @@ $(function () {
                          state+'</strong>' +
                         '</div>' +
                         '<div class="contact_sec">' +
-                        '<strong class="primary-font">'+flag+final+'</strong> <span class="badge pull-right"></span>'+
+                        '<strong class="primary-font">'+flag+final+'</strong> <span class="badge bg-danger pull-right">'+count+'</span>'+
                         '</div>' +
                         '</div>' +
                         '</li>';
@@ -734,7 +743,6 @@ $(function () {
 
             }
         }
-
 
 
         function  setmessageContent(list, element, isobjet)
@@ -791,6 +799,30 @@ $(function () {
             else
             {
                 element.empty();
+
+                userProfile = list.profileUser;
+                if(userProfile!=null)
+                {
+                    src = baseHost + userProfile.path;
+                }
+                else
+                {
+                    src = path.emptyImage;
+                }
+                mainSubMessages.params.chat_area.img_sender.attr('src',src);
+
+                friendProfile = list.profileFriend;
+                if(friendProfile!=null)
+                {
+                    src = baseHost + friendProfile.path;
+                }
+                else
+                {
+                    src = path.emptyImage;
+                }
+                mainSubMessages.params.chat_area.img_reciever.attr('src',src);
+
+
                 messages = list.messages;
                 for(var i=0; i<messages.length;i++)
                 {
@@ -962,6 +994,80 @@ $(function () {
         mainSubMessages.params.chat_area.emoticon_btn.hover(function(){
            // $(this).trigger('click');
         });
+
+        function setnotificationMessage(element, list,badge)
+        {
+            element.body.empty();
+
+            var userMessages = null,
+                message = null,
+                createDate=null,
+                sendDate =null,
+                src =null,
+                friend =null,
+                total = 0,
+                friendProfile = null,
+                userProfile =null,
+                content =null,
+                today =new Date(),
+                messages = list;
+            for (var i=0; i<messages.length;i++)
+            {
+
+                userMessage = messages[i].userMessage;
+                friendProfile = messages[i].friendProfile;
+                userProfile = messages[i].userProfile;
+                message = userMessage.message;
+                friend = messages[i].friend;
+                createDate =new Date(message.createDate);
+                if(today.toLocaleDateString()==createDate.toLocaleDateString())
+                {
+                    sendDate = createDate.toLocaleTimeString()
+                }
+                else
+                {
+                    sendDate = createDate.toLocaleDateString();
+                    sendDate = sendDate.replace("/","-");
+                    sendDate = sendDate.replace("/","-");
+                    sendDate+= " "+createDate.toLocaleTimeString();
+                }
+                if(friendProfile!=null)
+                {
+                    src = baseHost + friendProfile.path;
+                }
+                else
+                {
+                    src = path.emptyImage;
+                }
+                total+=messages[i].count;
+                var messageprop = !like(message.contentTuncate)?'emoticon':message.contentTuncate;
+                content =
+                    '<div class="dropdown-divider"></div>'+
+                    '<a class="dropdown-item" href="#">'+
+                    '<div class="row align-items-center">'+
+                    '<div class="col-2"><img src="'+src+'" alt=""></div>'+
+                    '<div class="col-7 ">'+
+                    friend.fullname +'<br>'+
+                    '<span class="text-grey">'+messageprop+'</span>'+
+                    '</div>'+
+                    '<div class="col-3 text-muted small text-right">'+
+                    sendDate+'<br>'+
+                    '<div class="badge badge-success">'+messages[i].count+'</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '</a>';
+                element.body.append(content);
+            }
+
+            if(list.length==0)
+            {
+                mainUserProfile.params.nav.dropdownMenuFreinds_badge.fadeOut();
+            }
+            var length = total<10? "0"+total: total;
+            element.count.html("("+length+")");
+            badge.html(length);
+        }
+
     }
 });
 

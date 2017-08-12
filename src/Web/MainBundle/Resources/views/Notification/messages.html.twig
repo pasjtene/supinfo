@@ -1,27 +1,29 @@
 <div class="dropdown-menu" aria-labelledby="dropdownMenuMessages" id="dropdownMenuMessages-body">
     <h6 class="dropdown-header">
         <div class="row">
-            <div class="col"><strong>Récent <spnan class="count">(50)</spnan></strong></div>
+            <div class="col"><strong>Récent <spnan class="count"></spnan></strong></div>
             <div class="col"><a href="">Tout  marquer comme lu</a></div>
             <div class="col"><a href="">Nouveau message</a></div>
         </div>
     </h6>
     <div class="body">
         {% for i in 1..10 %}
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-                <div class="row align-items-center">
-                    <div class="col"><img src="{{ asset('data/img/empty.png') }}" alt=""></div>
-                    <div class="col">
-                        Danick takam<br>
-                        <span class="text-grey"> It's the good work...</span>
+            {#
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                    <div class="row align-items-center">
+                        <div class="col"><img src="{{ asset('data/img/empty.png') }}" alt=""></div>
+                        <div class="col">
+                            Danick takam<br>
+                            <span class="text-grey"> It's the good work...</span>
+                        </div>
+                        <div class="col text-muted small text-right">
+                            mars <br>
+                            <div class="badge badge-success">14</div>
+                        </div>
                     </div>
-                    <div class="col text-muted small text-right">
-                        mars <br>
-                        <div class="badge badge-success">14</div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            #}
         {% endfor %}
 
     </div>
