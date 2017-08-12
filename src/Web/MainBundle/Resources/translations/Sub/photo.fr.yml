@@ -21,6 +21,11 @@ sub:
       quartier: Quartier
       profession: Profession
       changer: Changer
+      phones: Telephones
+      addPhone: Ajouter
+      lastName: Nom
+      FirstName: Prenom
+      save: Enregister les modifications
   img:
     profile: Mettre comme photo de profile
     published: Rendre publique

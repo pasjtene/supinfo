@@ -21,6 +21,11 @@ sub:
       quartier: Quater
       profession: Profession
       changer: Change
+      phones: Phones
+      addPhone: Add
+      lastName: Last name
+      FirstName: First name
+      save: Save changes
   img:
     profile: Make profile photo
     published: make public
