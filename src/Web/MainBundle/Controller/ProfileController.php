@@ -28,6 +28,7 @@ class ProfileController extends Controller
     public function photosAction(Request $request)
     {
         $array['subPage'] = "photos";
+
         $active = $request->get("active")==null? 1 : $request->get("active");
         $array['active'] = $active;
         return $this->render('MainBundle:Profile:index.html.twig',$array);
@@ -60,6 +61,8 @@ class ProfileController extends Controller
     public function compteAction()
     {
         $array['subPage'] = "compte";
+
+
         return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 
