@@ -48,6 +48,8 @@ var MainSubMessages = function()
         },
         chat_area: {
             body_content : $("#Main-Messages .chat_area"),
+            body_content_action : $("#Main-Messages #message_action"),
+            body_content_detail : $("#Main-Messages .chat_area .chat-body1 p"),
             body : $("#Main-Messages .chat_area .list-unstyled"),
             send: $("#Main-Messages .message_write .btn_send"),
             emoticon_btn:$("#Main-Messages .message_write #chat_bottom_emoyoyi"),
@@ -816,12 +818,12 @@ $(function () {
                     src = path.emptyImage;
                 }
                  content =
-                    '<li class="left clearfix">'+
+                    '<li class="left clearfix" data-id="'+message.id+'">'+
                     '<span class="chat-img1 pull-left">'+
                     '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
                     '</span>'+
-                    '<div class="chat-body1 clearfix">'+
-                    '<p>'+message.content+'</p>'+
+                    '<div class="chat-body1 clearfix" data-id="'+message.id+'">'+
+                    '<p data-id="'+message.id+'">'+message.content+'</p>'+
                     '<div class="chat_time pull-right">'+sendDate+'</div>'+
                     '</div>'+
                     '</li>';
@@ -889,12 +891,12 @@ $(function () {
                         }
                         mainSubMessages.params.chat_area.img_sender.attr('src',src);
                          content =
-                            '<li class="left clearfix">'+
+                            '<li class="left clearfix" data-id="'+message.id+'">'+
                             '<span class="chat-img1 pull-left">'+
                             '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
                             '</span>'+
-                            '<div class="chat-body1 clearfix">'+
-                            '<p>'+message.content+'</p>'+
+                            '<div class="chat-body1 clearfix" data-id="'+message.id+'">'+
+                            '<p data-id="'+message.id+'">'+message.content+'</p>'+
                             '<div class="chat_time pull-right">'+ sendDate+'</div>'+
                             '</div>'+
                             '</li>';
@@ -912,12 +914,12 @@ $(function () {
                         }
                         mainSubMessages.params.chat_area.img_reciever.attr('src',src);
                         content=
-                            '<li class="left clearfix admin_chat">'+
+                            '<li class="left clearfix admin_chat"  data-id="'+message.id+'">'+
                             '<span class="chat-img1 pull-right">'+
                             '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
                             '</span>'+
-                            '<div class="chat-body1 clearfix">'+
-                            '<p>'+message.content+'</p>'+
+                            '<div class="chat-body1 clearfix" data-id="'+message.id+'" >'+
+                            '<p data-id="'+message.id+'">'+message.content+'</p>'+
                             '<div class="chat_time pull-left">'+ sendDate+'</div>'+
                             '</div>'+
                             '</li>';
@@ -1015,6 +1017,41 @@ $(function () {
             post(data,errorMessage,true);
         });
 
+        mainSubMessages.params.chat_area.body.on('click','.chat-body1 p',function(){
+            changeStateMessage(mainSubMessages.params.chat_area.body_content_detail,$(this),true);
+        });
+
+        function changeStateMessage(Elements,ElementToActive,show) {
+           var count=0;
+            var t = Elements.length;
+            for (var i = 0; i < t; i++) {
+                if (Elements.eq(i).hasClass('active_li')) {
+                   count++;
+                }
+            }
+            if (ElementToActive.hasClass('active_li')) {
+                ElementToActive.removeClass('active_li')
+            }
+            else{
+                ElementToActive.addClass('active_li');
+                count++;
+            }
+
+            if(count>0)
+            {
+                if(show)
+                {
+                    mainSubMessages.params.chat_area.body_content_action.fadeIn();
+                }
+            }
+            else
+            {
+                mainSubMessages.params.chat_area.body_content_action.fadeOut();
+            }
+            //alert();
+        }
+
+
         function changeState(Elements, ElementToActive) {
             var t = Elements.length;
             for (var i = 0; i < t; i++) {
@@ -1025,6 +1062,7 @@ $(function () {
             ElementToActive.addClass('active_li');
             //alert();
         }
+
         mainSubMessages.params.chat_area.send.prop('disabled',true);
 
         //lors du  clique sur l'emoticon
