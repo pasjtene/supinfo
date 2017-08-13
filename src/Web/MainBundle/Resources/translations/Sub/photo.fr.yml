@@ -1,9 +1,9 @@
 sub:
   tabs:
     add: Ajouter des photos
-    list:    List
+    list:    Mes photos
     profile: Profile List
-    detail: Détailles de mon profi
+    detail: Mon profile
     friend: Mes amis
     friendc: Amis
     seedetail: Consulter le détail
