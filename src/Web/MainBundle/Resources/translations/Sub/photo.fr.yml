@@ -12,8 +12,10 @@ sub:
     remove_success:  Suppression effectué avec succèss
     myProfilDetail:
       infPersonelles : Informations personelles
+      editinfPersonelles : Modifier informations personelles
       diplome : Diplôme
       adresse: Adresse
+      editadresse: Modifier l'adresse
       sexe: Sexe
       anniv: Birthday
       pay: Pays
@@ -26,6 +28,14 @@ sub:
       lastName: Nom
       FirstName: Prenom
       save: Enregister les modifications
+      account: Mon compte
+      editaccount: Modifier mon compte
+      userName: Nom d'utilisateur
+      editpwd: Modifier le mot de pass
+      cpwd: Mot de passe actuel
+      npwd: Nouveau mot de passe
+      cfpwd: Confirme mot de passe
+      fpwd: Mot de passe oublier
   img:
     profile: Mettre comme photo de profile
     published: Rendre publique
