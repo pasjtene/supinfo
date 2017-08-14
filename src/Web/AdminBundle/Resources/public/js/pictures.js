@@ -238,7 +238,6 @@ $(function()
             for(var i = 1; i < t - 1; i++){
                 pageLinks.eq(i).remove();
             }
-
             getPictures(page);
         });
 

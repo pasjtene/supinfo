@@ -44,6 +44,16 @@ class ProfileController extends Controller
         return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 
+    /**
+     * @Route("/messages/current/{key}", name="main_profile_messages_detail", options={"expose"=true})
+     */
+    public function messagesDetailAction($key)
+    {
+        $array['subPage'] = "messages";
+        $array['key'] = $key;
+        return $this->render('MainBundle:Profile:index.html.twig',$array);
+    }
+
 
     /**
      * @Route("/vips", name="main_profile_vips", options={"expose"=true})

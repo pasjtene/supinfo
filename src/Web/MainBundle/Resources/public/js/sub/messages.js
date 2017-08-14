@@ -31,7 +31,7 @@ var MainSubMessages = function()
                 method: "delete",
                 type: "json"
             },
-            friend:{
+            friendList:{
                 url : baseUrl+"auth/Message/friends/cuurent",
                 method: "get",
                 type: "json"
@@ -48,12 +48,15 @@ var MainSubMessages = function()
         },
         chat_area: {
             body_content : $("#Main-Messages .chat_area"),
+            body_content_action : $("#Main-Messages #message_action"),
+            body_content_detail : $("#Main-Messages .chat_area .chat-body1 p"),
             body : $("#Main-Messages .chat_area .list-unstyled"),
             send: $("#Main-Messages .message_write .btn_send"),
             emoticon_btn:$("#Main-Messages .message_write #chat_bottom_emoyoyi"),
             emoticon_body:$("#Main-Messages .message_write .chat_bottom_emoyoyi .row"),
             img_sender:$("#Main-Messages .message_write .img_sender img"),
-            img_reciever:$("#Main-Messages .message_write .img_reciever img")
+            img_reciever:$("#Main-Messages .message_write .img_reciever img"),
+            key:$("#dropdownMenuMessages-body #key")
         },
         body:{
             message_text: $('#Main-Messages #message-text'),
@@ -170,12 +173,12 @@ var MainSubMessages = function()
             var isok =false;
             $.ajax(
                 {
-                    url: this.params.api.friend.url,
-                    type: this.params.api.friend.method,
+                    url: this.params.api.friendList.url,
+                    type: this.params.api.friendList.method,
                     data: objet,
                     crossDomain: true,
                     headers : {"X-Auth-Token" : currentUser.token},
-                    dataType:  this.params.api.friend.type,
+                    dataType:  this.params.api.friendList.type,
                     success: function (data) {
                         console.log(data);
                         isok =true;
@@ -315,15 +318,15 @@ $(function () {
             var isok =false;
             $.ajax(
                 {
-                    url: mainSubMessages.params.api.friend.url,
-                    type: mainSubMessages.params.api.friend.method,
+                    url: mainSubMessages.params.api.friendList.url,
+                    type: mainSubMessages.params.api.friendList.method,
                     data: objet,
                     crossDomain: true,
                     headers : {"X-Auth-Token" : currentUser.token},
-                    dataType:  mainSubMessages.params.api.friend.type,
+                    dataType:  mainSubMessages.params.api.friendList.type,
                     success: function (data) {
                         console.log(data);
-                        if(data!=null  && data !="null" && data!="undefined")
+                        if(data!=null  && data !="null" && data!="undefined" && data.listUsers!="null" && data.listUsers!=null)
                         {
                             setfriendList(data.listUsers,mainSubMessages.params.member_list.body);
                         }
@@ -672,6 +675,8 @@ $(function () {
 
         //charger la liste des emoticons
         fillEmotion(listEmoticons(),mainSubMessages.params.chat_area.emoticon_body,path.emoticon);
+        var  key = mainSubMessages.params.chat_area.key.val();
+        countfinal = 0;
         function  setfriendList(list, element)
         {
 
@@ -723,25 +728,54 @@ $(function () {
                            state =(toDay-lastLogin)+"ago";
                        }
                     }
-                    var content =
-                        '<li class="left clearfix" data-id='+user.id+'>' +
-                        '<span class="chat-img pull-left">' +
-                        '<img src="'+src+'" alt="User Avatar" class="rounded-circle">' +
-                        '</span>' +
-                        '<div class="chat-body clearfix">' +
-                        '<div class="header_sec">' +
-                        '<strong class="primary-font">'+name+'</strong> <strong class="pull-right">' +
-                         state+'</strong>' +
-                        '</div>' +
-                        '<div class="contact_sec">' +
-                        '<strong class="primary-font">'+flag+final+'</strong> <span class="badge bg-danger pull-right">'+count+'</span>'+
-                        '</div>' +
-                        '</div>' +
-                        '</li>';
+
+                    var conten="";
+                   // alert('key :'+key + " userkey="+user.key);
+                    if(key.trim()==user.key.trim())
+                    {
+                        selectUserId = user.id;
+                        //alert(key);
+                         content =
+                            '<li class="left clearfix active_li" data-id="'+user.id+'" data-key="'+user.key+'">' +
+                            '<span class="chat-img pull-left">' +
+                            '<img src="'+src+'" alt="User Avatar" class="rounded-circle">' +
+                            '</span>' +
+                            '<div class="chat-body clearfix">' +
+                            '<div class="header_sec">' +
+                            '<strong class="primary-font">'+name+'</strong> <strong class="pull-right">' +
+                            state+'</strong>' +
+                            '</div>' +
+                            '<div class="contact_sec">' +
+                            '<strong class="primary-font">'+flag+final+'</strong> <span class="badge bg-danger pull-right"></span>'+
+                            '</div>' +
+                            '</div>' +
+                            '</li>';
+                    }
+                    else
+                    {
+                        countfinal+=count;
+                         content =
+                            '<li class="left clearfix" data-id="'+user.id+'" data-key="'+user.key+'">' +
+                            '<span class="chat-img pull-left">' +
+                            '<img src="'+src+'" alt="User Avatar" class="rounded-circle">' +
+                            '</span>' +
+                            '<div class="chat-body clearfix">' +
+                            '<div class="header_sec">' +
+                            '<strong class="primary-font">'+name+'</strong> <strong class="pull-right">' +
+                            state+'</strong>' +
+                            '</div>' +
+                            '<div class="contact_sec">' +
+                            '<strong class="primary-font">'+flag+final+'</strong> <span class="badge bg-danger pull-right">'+count+'</span>'+
+                            '</div>' +
+                            '</div>' +
+                            '</li>';
+                    }
+
                     element.append(content);
                 }
 
             }
+            mainUserProfile_messages.params.nav.dropdownMenuMessages_badge.html(count);
         }
 
 
@@ -784,12 +818,12 @@ $(function () {
                     src = path.emptyImage;
                 }
                  content =
-                    '<li class="left clearfix">'+
+                    '<li class="left clearfix" data-id="'+message.id+'">'+
                     '<span class="chat-img1 pull-left">'+
                     '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
                     '</span>'+
-                    '<div class="chat-body1 clearfix">'+
-                    '<p>'+message.content+'</p>'+
+                    '<div class="chat-body1 clearfix" data-id="'+message.id+'">'+
+                    '<p data-id="'+message.id+'">'+message.content+'</p>'+
                     '<div class="chat_time pull-right">'+sendDate+'</div>'+
                     '</div>'+
                     '</li>';
@@ -857,12 +891,12 @@ $(function () {
                         }
                         mainSubMessages.params.chat_area.img_sender.attr('src',src);
                          content =
-                            '<li class="left clearfix">'+
+                            '<li class="left clearfix" data-id="'+message.id+'">'+
                             '<span class="chat-img1 pull-left">'+
                             '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
                             '</span>'+
-                            '<div class="chat-body1 clearfix">'+
-                            '<p>'+message.content+'</p>'+
+                            '<div class="chat-body1 clearfix" data-id="'+message.id+'">'+
+                            '<p data-id="'+message.id+'">'+message.content+'</p>'+
                             '<div class="chat_time pull-right">'+ sendDate+'</div>'+
                             '</div>'+
                             '</li>';
@@ -880,12 +914,12 @@ $(function () {
                         }
                         mainSubMessages.params.chat_area.img_reciever.attr('src',src);
                         content=
-                            '<li class="left clearfix admin_chat">'+
+                            '<li class="left clearfix admin_chat"  data-id="'+message.id+'">'+
                             '<span class="chat-img1 pull-right">'+
                             '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
                             '</span>'+
-                            '<div class="chat-body1 clearfix">'+
-                            '<p>'+message.content+'</p>'+
+                            '<div class="chat-body1 clearfix" data-id="'+message.id+'" >'+
+                            '<p data-id="'+message.id+'">'+message.content+'</p>'+
                             '<div class="chat_time pull-left">'+ sendDate+'</div>'+
                             '</div>'+
                             '</li>';
@@ -938,17 +972,27 @@ $(function () {
 
         //lorsqu'on clique sur un user, on charge la conversation
         mainSubMessages.params.member_list.body.on('click','li',function(){
-           selectUserId = $(this).data('id');
-            mainSubMessages.params.chat_area.img_reciever.attr('src',path.emptyImage);
-            mainSubMessages.params.chat_area.img_sender.attr('src',path.emptyImage);
-            var data ={
-                id : currentUser.id,
-                idFriend: selectUserId
-            };
-            mainSubMessages.params.chat_area.send.prop('disabled',false);
-            changeState(mainSubMessages.params.member_list.user_list, $(this));
-            get(data,errorMessage,false);
+            var key = $(this).data('key');
+            window.location.href = Routing.generate('main_profile_messages_detail',{_locale:locale,key:key});
         });
+
+        var  detailint = setInterval(function(){
+            if(selectUserId>0)
+            {
+                clearInterval(detailint);
+                mainSubMessages.params.chat_area.img_reciever.attr('src',path.emptyImage);
+                mainSubMessages.params.chat_area.img_sender.attr('src',path.emptyImage);
+
+                var data ={
+                    id : currentUser.id,
+                    idFriend: selectUserId
+                };
+                mainSubMessages.params.chat_area.send.prop('disabled',false);
+                changeState(mainSubMessages.params.member_list.user_list, $(this));
+                get(data,errorMessage,false);
+            }
+        },100);
+
         mainSubMessages.params.chat_area.send.disabled =false;
      /*  var inter = setInterval(function(){
             if(selectUserId>0)
@@ -973,6 +1017,41 @@ $(function () {
             post(data,errorMessage,true);
         });
 
+        mainSubMessages.params.chat_area.body.on('click','.chat-body1 p',function(){
+            changeStateMessage(mainSubMessages.params.chat_area.body_content_detail,$(this),true);
+        });
+
+        function changeStateMessage(Elements,ElementToActive,show) {
+           var count=0;
+            var t = Elements.length;
+            for (var i = 0; i < t; i++) {
+                if (Elements.eq(i).hasClass('active_li')) {
+                   count++;
+                }
+            }
+            if (ElementToActive.hasClass('active_li')) {
+                ElementToActive.removeClass('active_li')
+            }
+            else{
+                ElementToActive.addClass('active_li');
+                count++;
+            }
+
+            if(count>0)
+            {
+                if(show)
+                {
+                    mainSubMessages.params.chat_area.body_content_action.fadeIn();
+                }
+            }
+            else
+            {
+                mainSubMessages.params.chat_area.body_content_action.fadeOut();
+            }
+            //alert();
+        }
+
+
         function changeState(Elements, ElementToActive) {
             var t = Elements.length;
             for (var i = 0; i < t; i++) {
@@ -983,6 +1062,7 @@ $(function () {
             ElementToActive.addClass('active_li');
             //alert();
         }
+
         mainSubMessages.params.chat_area.send.prop('disabled',true);
 
         //lors du  clique sur l'emoticon

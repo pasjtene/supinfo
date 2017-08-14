@@ -1,9 +1,9 @@
 sub:
   tabs:
     add: Add photos
-    list:    List
+    list:    My photos
     profile: Profile List
-    detail:  My profile détails
+    detail:  My profile
     friend: My friends
     friendc: Friend
     seedetail: See details

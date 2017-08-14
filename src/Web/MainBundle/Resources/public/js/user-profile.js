@@ -513,7 +513,7 @@ $(function(){
                var messageprop = !like(message.contentTuncate)?'emoticon':message.contentTuncate;
                content =
                    '<div class="dropdown-divider"></div>'+
-                   '<a class="dropdown-item" href="#">'+
+                   '<a class="dropdown-item detail-message" href="#" data-key="'+friend.key+'">'+
                    '<div class="row align-items-center">'+
                    '<div class="col-2"><img src="'+src+'" alt=""></div>'+
                    '<div class="col-7 ">'+
@@ -540,6 +540,10 @@ $(function(){
 
 
 
+       mainUserProfile.params.nav.notification.message.body.on('click','.detail-message',function(){
+           var key = $(this).data('key');
+           window.location.href = Routing.generate('main_profile_messages_detail',{_locale:locale,key:key});
+       });
        function like(str) {
            var motif = "^.*<img.*$";
            var  expression = new RegExp(motif,"gi");
