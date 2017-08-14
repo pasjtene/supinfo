@@ -31,9 +31,14 @@
         <link rel="alternate" href="https://www.funglobe.com/fr/" hreflang="fr"/>
         <link rel="alternate" href="https://www.funglobe.com/en/" hreflang="en"/>
 
+
+
+
         {% block stylesheets %}
             <!-- Bootstrap 4 -->
-            <link rel="stylesheet" href="{{ asset('plugin/bootstrap/css/bootstrap.min.css') }}">
+
+            <link rel="stylesheet" href="{{ asset('plugin/bootstrap/css/bootstrap.css') }}">
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
             <!-- Font Awesome -->
             <link rel="stylesheet" href="{{ asset('plugin/font-awesome/font-awesome.min.css') }}">
             <!-- Ionicons -->
@@ -199,6 +204,7 @@
 
 {% block javascripts %}
     <!-- faciliter la manipulation du  controlleur dans le js  -->
+
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
@@ -220,6 +226,7 @@
 
     <script src="{{ asset('plugin/datepicker/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('plugin/bootbox/bootbox.min.js') }}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
    {#
     <script src="{{ asset('plugin/confirm-custom-labels.js') }}"></script>

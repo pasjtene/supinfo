@@ -10,6 +10,8 @@
 {% endblock  %}
 {% block mycss %}
     {{ parent() }}
+    .red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
+    .red-tooltip + .tooltip > .tooltip-arrow { border-bottom-color:#f00; }
     {# mettre le css si la page t'oublige #}
 {% endblock %}
 
@@ -77,8 +79,8 @@
                              <div class="row">
                                  <div class="form-group col-12 col-lg-6" id="block-name">
                                      <label for="name">{% trans from 'register' %} form.body.name {% endtrans %}*</label>
-                                     <input class="form-control" type="text" id="name" placeholder="{% trans from 'register' %} form.placeholder.name {% endtrans %}">
-                                     <small id="lastnameHelp" class="form-text text-muted">{% trans from 'register' %} form.help.lastname {% endtrans %}</small>
+                                     <input type="text" data-toggle="tooltip" data-placement="top" title="The name is required. At least two characters" class="form-control register-tooltip"  id="name" placeholder="{% trans from 'register' %} form.placeholder.name {% endtrans %}">
+
                                      <div class="form-control-feedback">{% trans from 'register' %} form.required.name {% endtrans %}</div>
                                  </div>
                                  <div class="form-group col" id="block-lastname">
@@ -201,5 +203,6 @@
 
 {% block myjs %}
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
+
 {% endblock %}
 
