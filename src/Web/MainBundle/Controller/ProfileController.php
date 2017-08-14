@@ -28,6 +28,7 @@ class ProfileController extends Controller
     public function photosAction(Request $request)
     {
         $array['subPage'] = "photos";
+
         $active = $request->get("active")==null? 1 : $request->get("active");
         $array['active'] = $active;
         return $this->render('MainBundle:Profile:index.html.twig',$array);
@@ -40,6 +41,16 @@ class ProfileController extends Controller
     public function messagesAction()
     {
         $array['subPage'] = "messages";
+        return $this->render('MainBundle:Profile:index.html.twig',$array);
+    }
+
+    /**
+     * @Route("/messages/current/{key}", name="main_profile_messages_detail", options={"expose"=true})
+     */
+    public function messagesDetailAction($key)
+    {
+        $array['subPage'] = "messages";
+        $array['key'] = $key;
         return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 
@@ -60,6 +71,8 @@ class ProfileController extends Controller
     public function compteAction()
     {
         $array['subPage'] = "compte";
+
+
         return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 

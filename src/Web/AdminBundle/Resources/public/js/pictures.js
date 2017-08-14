@@ -73,7 +73,7 @@ $(function()
             {
                 url: adminPictures.params.api.action.pictures + queryString,
                 type: adminPictures.params.api.method.get,
-                headers : {"X-Auth-Token" : tokenbase.value},
+                headers : {"X-Auth-Token" : tokenbase===null?sessionStorage.getItem("fg_token_base"):tokenbase.value},
                 crossDomain: true,
                 success: function (response) {
                     adminPictures.params.attr.id.nb_pics.html(response.total);
@@ -137,7 +137,7 @@ $(function()
         {
             url: adminPictures.params.api.action.changeVisibility,
             type: adminPictures.params.api.method.put,
-            headers: {"X-Auth-Token": tokenbase.value},
+            headers: {"X-Auth-Token": tokenbase===null?sessionStorage.getItem("fg_token_base"):tokenbase.value},
             data: JSON.stringify(data),
             crossDomain: true,
             success: function (response) {
@@ -185,7 +185,7 @@ $(function()
                            {
                                url: adminPictures.params.api.action.pictures,
                                type: adminPictures.params.api.method.delete,
-                               headers: {"X-Auth-Token": tokenbase.value},
+                               headers: {"X-Auth-Token": tokenbase===null?sessionStorage.getItem("fg_token_base"):tokenbase.value},
                                data: JSON.stringify(data),
                                crossDomain: true,
                                success: function (response) {
@@ -238,7 +238,6 @@ $(function()
             for(var i = 1; i < t - 1; i++){
                 pageLinks.eq(i).remove();
             }
-
             getPictures(page);
         });
 
@@ -253,7 +252,7 @@ $(function()
             {
                 url: adminPictures.params.api.action.pictures_member.replace(':id', userId),
                 type: adminPictures.params.api.method.get,
-                headers : {"X-Auth-Token" : tokenbase.value},
+                headers : {"X-Auth-Token" : tokenbase===null?sessionStorage.getItem("fg_token_base"):tokenbase.value},
                 crossDomain: true,
                 success: function (response) {
                     console.log(response);

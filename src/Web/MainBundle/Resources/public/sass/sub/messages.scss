@@ -180,5 +180,18 @@
 
       }
     }
+    #message_action{
+      display: none;
+      position: relative;
+      top: -103px;
+      z-index: 3;
+      margin: 2%;
+      height: 100px;
+      background-color: white;
+      button{
+        max-width: 50px;
+        font-size: 0.7em;
+      }
+    }
   }
 }
