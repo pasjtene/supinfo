@@ -60,8 +60,58 @@ var MainRegister = function()
 $(function(){
 
 
+        $("#name").tooltip({
+            position: {
+                my: "center bottom-20",
+                at: "center top",
+                using: function (position, feedback) {
+                    $(this).css(position);
+                    $("<div>")
+                        .addClass("arrow")
+                        .addClass(feedback.vertical)
+                        .addClass(feedback.horizontal)
+                        .appendTo(this);
+                }
+            }
+        });
+
+
+
+/*
+ $('[data-toggle="tooltip"]').tooltip(options);
+    $( "#name" ).tooltip({
+            position: {
+                my: "center bottom-20",
+                at: "center top",
+                using: function( position, feedback ) {
+                    $( this ).css( position );
+                    $( "<div>" )
+                        .addClass( "arrow" )
+                        .addClass( feedback.vertical )
+                        .addClass( feedback.horizontal )
+                        .appendTo( this );
+                }
+            }
+        });
+
+    $( "a" ).tooltip({
+        position: {
+            my: "center bottom-20",
+            at: "center top",
+            using: function( position, feedback ) {
+                $( this ).css( position );
+                $( "<div>" )
+                    .addClass( "arrow" )
+                    .addClass( feedback.vertical )
+                    .addClass( feedback.horizontal )
+                    .appendTo( this );
+            }
+        }
+    });
+*/
 
     //instancier la classe MainRegister
+
     var mainRegister = new MainRegister();
 
     //tester si  nous somme dans la page d'enregistrement
@@ -75,8 +125,9 @@ $(function(){
             var  test= false;
             test= appMain.function.notValid(user.firstname,3,100);
             if(test){
+
                 return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-            }
+            } else {alert("nottt test");}
 
             test= notValidMail(user.email);
             if(test){
@@ -273,10 +324,10 @@ $(function(){
             if (verify(User)) {
                 //print error message
                 // alert(verify(User));
-
                 mainRegister.params.required.errorMessage.slideDown();
                 mainRegister.params.required.errorMessageText.text(verify(User));
             } else {
+
                 // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
                 //alert(User.joinReason);
@@ -345,7 +396,8 @@ $(function(){
         // mainRegister.params.form.name.focus(function(){
         //   appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         //});
-        mainRegister.params.form.name.keyup(function(){
+        mainRegister.params.form.name.change(function(){
+
             appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         });
         //mainRegister.params.form.name.mouseleave(function(){
@@ -366,7 +418,7 @@ $(function(){
          });
          */
         //email format
-        mainRegister.params.form.email.keyup(function(){
+        mainRegister.params.form.email.change(function(){
             emailFormat(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
         });
 
