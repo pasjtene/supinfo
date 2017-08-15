@@ -30,7 +30,7 @@ var MainUserProfile = function()
                 type: "json"
             },
             deletes: {
-                url : baseUrl+"auth/user/friends/deletes",
+                url : baseUrl+"auth/user/friends/remove",
                 method: "delete",
                 type: "json"
             },

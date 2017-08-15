@@ -185,14 +185,14 @@ $(function(){
 
         //consulter le detail  sur un profile
         mainSubFriends.params.page.on('click','.detail',function(){
-            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,email:$(this).data('email')});
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
         });
 
         // demander l'amitier
         mainSubFriends.params.friend.body.on('click',".add",function(e){
             e.preventDefault();
             trans = Translator.trans('sub.message',{},"default");
-            var email =$(this).data('email');
+            var email =$(this).data('key');
             bootbox.prompt(trans,function(result){
                 if(result){
                     addFriend(currentUser.id,email,result,$('#Main-Subfriends #Main-Subfriends-seach .body #'+$(this).data('preloader')));
@@ -291,7 +291,7 @@ $(function(){
                          '<div class="container py-3">'+
                             '<div class="row align-items-center small">'+
                                 '<div class="col-md-3 ">'+
-                                     '<img src="'+src+'" class="w-100 detail" data-email="'+friends.email+'" >'+
+                                     '<img src="'+src+'" class="w-100 detail" data-key="'+friends.key+'" data-email="'+friends.email+'" >'+
                                 '</div>'+
                                 '<div class="col-md-9 px-3 content" >'+
                                     '<div class="card-block px-3">'+
@@ -372,7 +372,7 @@ $(function(){
                     '<div class="container py-3">'+
                     '<div class="row align-items-center small">'+
                     '<div class="col-md-3 ">'+
-                    '<img src="'+src+'" class="w-100 detail" data-email="'+friends.email+'" >'+
+                    '<img src="'+src+'" class="w-100 detail" data-key="'+friends.key+'" data-email="'+friends.email+'" >'+
                     '</div>'+
                     '<div class="col-md-9 px-3 content" >'+
                     '<div class="card-block px-3">'+
@@ -777,7 +777,7 @@ $(function(){
                     '<div class="container py-3">'+
                         '<div class="row align-items-center small">'+
                             '<div class="col-md-3 ">'+
-                                '<img src="'+src+'" class="w-100 detail" data-email="'+user.email+'">'+
+                                '<img src="'+src+'" class="w-100 detail" data-key="'+user.key+'" data-email="'+user.email+'">'+
                             '</div>'+
                             '<div class="col-md-9 px-3 content">'+
                                 '<div class="card-block px-3">'+
@@ -785,7 +785,7 @@ $(function(){
                                 '<p class="card-text text-muted message-text">'+getJoinReason(user.joinReason)+'</p>'+
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                                 '<p class="card-text text-grey small"> commun friend </p>'+
-                                '<a href="#" class="btn btn-sm btn-primary add" data-email="'+user.email+'"  data-preloader="'+datapreloader+'"  data-id="'+user.id+'"><span class="fa fa-user-plus"></span> '+ add + ' </a>'+
+                                '<a href="#" class="btn btn-sm btn-primary add" data-key="'+user.key+'"  data-email="'+user.email+'"  data-preloader="'+datapreloader+'"  data-id="'+user.id+'"><span class="fa fa-user-plus"></span> '+ add + ' </a>'+
                                 '<a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span>' + message +' </a>'+
                                  preloader+
                             '</div>'+

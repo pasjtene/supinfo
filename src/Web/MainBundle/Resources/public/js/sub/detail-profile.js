@@ -130,7 +130,7 @@ $(function () {
 
 
         //appel de la fonction pour charger les informations
-        fill(currentUser.id,mainSubDetailProfile.params.sub.data('email'));
+        fill(currentUser.id,mainSubDetailProfile.params.sub.data('key'));
 
 
         //demande l'amtier
@@ -138,7 +138,7 @@ $(function () {
             trans = Translator.trans('sub.message',{},"default");
             bootbox.prompt(trans,function(result){
                 if(result){
-                    askFriendShip(currentUser.id,mainSubDetailProfile.params.sub.data('email'), result);
+                    askFriendShip(currentUser.id,mainSubDetailProfile.params.sub.data('key'), result);
                 }
             });
         });

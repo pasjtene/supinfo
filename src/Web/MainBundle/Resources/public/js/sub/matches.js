@@ -35,7 +35,7 @@ $(function () {
 
         //consulter le detail  sur un profile
         mainSubMatches.params.body.content.on('click','.detail-profile',function(){
-            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,email:$(this).data('email')});
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
         });
 
        var intervalusers = setInterval(function(){
@@ -137,7 +137,7 @@ $(function () {
                         }
                         var body =
                                 ' <div class="col-sm-12 col-md-4">'+
-                                ' <div class="card bg-faded detail-profile" data-email="'+user.email+'">'+
+                                ' <div class="card bg-faded detail-profile" data-key="'+user.key+'"  data-email="'+user.email+'">'+
                                 ' <div class="card-block text-center">'+
                                 img+
                                 ' <br>'+
