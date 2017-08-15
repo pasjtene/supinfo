@@ -65,7 +65,7 @@ form:
       year:  L'année est  obligatoire
     gender: Le sexe est  obligatoire
     reason: La raison est obligatoire
-    email: L'adresse email est obligatoire
+    email: Vérifiez votre adresse email.
     password: the password is required (min  5 caractères)
     confirmpassword: Ressaisir le même mot  de passe
     profession: La profession est obligatoire (min  3 charaters)
