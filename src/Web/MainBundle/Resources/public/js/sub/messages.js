@@ -50,6 +50,7 @@ var MainSubMessages = function()
             body_content : $("#Main-Messages .chat_area"),
             body_content_action : $("#Main-Messages #message_action"),
             body_content_detail : $("#Main-Messages .chat_area .chat-body1 p"),
+            body_content_messagewrite : $("#Main-Messages  .message_write"),
             body : $("#Main-Messages .chat_area .list-unstyled"),
             send: $("#Main-Messages .message_write .btn_send"),
             emoticon_btn:$("#Main-Messages .message_write #chat_bottom_emoyoyi"),
@@ -57,6 +58,12 @@ var MainSubMessages = function()
             img_sender:$("#Main-Messages .message_write .img_sender img"),
             img_reciever:$("#Main-Messages .message_write .img_reciever img"),
             key:$("#dropdownMenuMessages-body #key")
+        },
+        btn:{
+            body_content_detail_check : $("#Main-Messages .chat_area .chat-body1 p label input[type='checkbox']"),
+            delete : $("#Main-Messages .message-delete"),
+            foward : $("#Main-Messages .message-foward"),
+            cancel : $("#Main-Messages .message-cancel")
         },
         body:{
             message_text: $('#Main-Messages #message-text'),
@@ -823,7 +830,13 @@ $(function () {
                     '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
                     '</span>'+
                     '<div class="chat-body1 clearfix" data-id="'+message.id+'">'+
-                    '<p data-id="'+message.id+'">'+message.content+'</p>'+
+                    '<p data-id="'+message.id+'">' +
+                    '<label for="'+message.id+'" data-id="'+message.id+'" class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">'+
+                    '<input type="checkbox"  name="'+message.id+'" data-id="'+message.id+'"  id="'+message.id+'" class="rounded-circle custom-control-input ">'+
+                    ' <span class="custom-control-indicator" id="indicator'+message.id+'"></span>'+
+                    '<span class="custom-control-description" >'+ message.content+'</span>'+
+                    '</label>'+
+                    '</p>'+
                     '<div class="chat_time pull-right">'+sendDate+'</div>'+
                     '</div>'+
                     '</li>';
@@ -896,7 +909,13 @@ $(function () {
                             '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
                             '</span>'+
                             '<div class="chat-body1 clearfix" data-id="'+message.id+'">'+
-                            '<p data-id="'+message.id+'">'+message.content+'</p>'+
+                            '<p data-id="'+message.id+'">' +
+                            '<label for="'+message.id+'" data-id="'+message.id+'" class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">'+
+                            '<input type="checkbox"  name="'+message.id+'" data-id="'+message.id+'"  id="'+message.id+'" class="rounded-circle custom-control-input ">'+
+                            ' <span class="custom-control-indicator" id="indicator'+message.id+'"></span>'+
+                            '<span class="custom-control-description" >'+ message.content+'</span>'+
+                            '</label>'+
+                            '</p>'+
                             '<div class="chat_time pull-right">'+ sendDate+'</div>'+
                             '</div>'+
                             '</li>';
@@ -919,7 +938,13 @@ $(function () {
                             '<img  src="'+src+'" alt="User Avatar" class="rounded">'+
                             '</span>'+
                             '<div class="chat-body1 clearfix" data-id="'+message.id+'" >'+
-                            '<p data-id="'+message.id+'">'+message.content+'</p>'+
+                            '<p data-id="'+message.id+'">' +
+                                '<label for="'+message.id+'" data-id="'+message.id+'" class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">'+
+                                    '<input type="checkbox"  name="'+message.id+'" data-id="'+message.id+'"  id="'+message.id+'" class="rounded-circle custom-control-input ">'+
+                                    ' <span class="custom-control-indicator" id="indicator'+message.id+'"></span>'+
+                                    '<span class="custom-control-description" >'+ message.content+'</span>'+
+                                '</label>'+
+                           '</p>'+
                             '<div class="chat_time pull-left">'+ sendDate+'</div>'+
                             '</div>'+
                             '</li>';
@@ -1017,40 +1042,65 @@ $(function () {
             post(data,errorMessage,true);
         });
 
-        mainSubMessages.params.chat_area.body.on('click','.chat-body1 p',function(){
-            changeStateMessage(mainSubMessages.params.chat_area.body_content_detail,$(this),true);
+        mainSubMessages.params.chat_area.body.on('click','.chat-body1 p label',function(){
+            var  checks =  $("#Main-Messages .chat_area .chat-body1 p label input[type='checkbox']");
+           // alert($(this).data('id'));
+            checkCount(checks,$(this));
         });
 
-        function changeStateMessage(Elements,ElementToActive,show) {
+        function checkCount(Elements,activeelement) {
            var count=0;
-            var t = Elements.length;
-            for (var i = 0; i < t; i++) {
-                if (Elements.eq(i).hasClass('active_li')) {
+           // var t = Elements.length;
+
+            activeId= activeelement.data('id');
+
+           Elements.each(function(){
+               if ($(this).prop('checked')) {
                    count++;
-                }
-            }
-            if (ElementToActive.hasClass('active_li')) {
-                ElementToActive.removeClass('active_li')
-            }
-            else{
-                ElementToActive.addClass('active_li');
-                count++;
-            }
+                   id= '#indicator'+$(this).data('id');
+                  $(id).css({ 'background-color': '#0275D8;','color':'white;'});
+               }
+               else if(activeelement ==$(this).data('id')){
+                   id= '#indicator'+$(this).data('id');
+                   $(id).css({ 'background': '#fbf9fa none repeat scroll 0 0;'});
+               }
+
+            });
 
             if(count>0)
             {
-                if(show)
-                {
                     mainSubMessages.params.chat_area.body_content_action.fadeIn();
-                }
+                    mainSubMessages.params.chat_area.body_content_messagewrite.fadeOut();
             }
             else
             {
+                mainSubMessages.params.chat_area.body_content_messagewrite.fadeIn();
                 mainSubMessages.params.chat_area.body_content_action.fadeOut();
             }
-            //alert();
+           // alert(count);
         }
 
+
+        function uncheckCount(Elements) {
+            var count=0;
+            // var t = Elements.length;
+            Elements.each(function(){
+                if ($(this).prop('checked')) {
+                    $(this).attr('checked', false);
+                    id= '#indicator'+$(this).data('id');
+                    $(id).css({ 'background': '#fbf9fa none repeat scroll 0 0;'});
+                }
+            });
+
+            mainSubMessages.params.chat_area.body_content_messagewrite.fadeIn();
+            mainSubMessages.params.chat_area.body_content_action.fadeOut();
+        }
+
+        mainSubMessages.params.btn.cancel.click(function(e){
+            e.preventDefault();
+            var  checks =  $("#Main-Messages .chat_area .chat-body1 p label input[type='checkbox']");
+            uncheckCount(checks);
+        });
 
         function changeState(Elements, ElementToActive) {
             var t = Elements.length;
@@ -1148,6 +1198,7 @@ $(function () {
             badge.html(length);
         }
 
+        $("input[type='checkbox']").checkboxradio();
     }
 });
 
