@@ -19,7 +19,12 @@ var MainDetailProfile = function()
             month : $("#Main-Subdetail-detail-User #month"),
             year : $("#Main-Subdetail-detail-User #year"),
             email : $("#Main-Subdetail-detail-User #email"),
-            lastname : $("#Main-Subdetail-detail-User #lastName")
+            userName : $("#Main-Subdetail-detail-User #userName"),
+            lastname : $("#Main-Subdetail-detail-User #lastName"),
+            cpwd : $("#Main-Subdetail-detail-User #cpwd"),
+            npwd : $("#Main-Subdetail-detail-User #npwd"),
+            cfpwd : $("#Main-Subdetail-detail-User #cfpwd"),
+            gender : $("#Main-Subdetail-detail-User #gender")
         },
         api:{
             compte:
@@ -46,15 +51,27 @@ var MainDetailProfile = function()
                 method: "get",
                 type: "json"
             },
-            editProfil:
+            infoPerso:
             {
-                url : baseUrl+"auth/user/compte/editProfildetail",
+                url : baseUrl+"auth/user/compte/infoPerso",
                 method: "get",
                 type: "json"
             },
-            editBirthday:
+            editAdresse:
             {
-                url : baseUrl+"auth/user/compte/editBirthday",
+                url : baseUrl+"auth/user/compte/editAdresse",
+                method: "get",
+                type: "json"
+            },
+            editAccount:
+            {
+                url : baseUrl+"auth/user/compte/editAccount",
+                method: "get",
+                type: "json"
+            },
+            editpwd:
+            {
+                url : baseUrl+"auth/user/compte/editpwd",
                 method: "get",
                 type: "json"
             }
@@ -69,12 +86,21 @@ var MainDetailProfile = function()
             birthday : $("#Main-Subdetail-detail-User .detail_profile_birthday"),
             email : $("#Main-Subdetail-detail-User .detail_profile_email"),
             phones : $("#Main-Subdetail-detail-User .detail_profile_phones"),
+            userName : $("#Main-Subdetail-detail-User .detail_profile_userName"),
             countryChange : $("#Main-Subdetail-detail-User .countryChange"),
             countryblock : $("#Main-Subdetail-detail-User .countryblock"),
             phoneBlock : $("#Main-Subdetail-detail-User .phoneBlock"),
             phoneChange : $("#Main-Subdetail-detail-User .phoneChange"),
             birthdayBlock : $("#Main-Subdetail-detail-User .birthdayBlock"),
-            birthdayChange : $("#Main-Subdetail-detail-User .birthdayChange")
+            birthdayChange : $("#Main-Subdetail-detail-User .birthdayChange"),
+            infoPersoBlock : $("#Main-Subdetail-detail-User .infoPersoBlock"),
+            infoPersoChange : $("#Main-Subdetail-detail-User .infoPersoChange"),
+            AdresseBlock : $("#Main-Subdetail-detail-User .AdresseBlock"),
+            AdresseChange : $("#Main-Subdetail-detail-User .AdresseChange"),
+            AccountBlock : $("#Main-Subdetail-detail-User .AccountBlock"),
+            AccountChange : $("#Main-Subdetail-detail-User .AccountChange"),
+            pwdBlock : $("#Main-Subdetail-detail-User .pwdBlock"),
+            pwdchange : $("#Main-Subdetail-detail-User .helpers")
         },
         btn:{
             openChange : $("#Main-Subdetail-detail-User .btnOpenchange"),
@@ -85,9 +111,21 @@ var MainDetailProfile = function()
             openPhone : $("#Main-Subdetail-detail-User .btnOpenAddPhone"),
             saveBirth : $("#Main-Subdetail-detail-User .LinkSaveBirth"),
             closeBirth : $("#Main-Subdetail-detail-User .LinkCloseBirth"),
+            LinkSaveInfoPerso : $("#Main-Subdetail-detail-User .LinkSaveInfoPerso"),
+            LinkCloseInfoPerso : $("#Main-Subdetail-detail-User .LinkCloseInfoPerso"),
+            openInfoperso : $("#Main-Subdetail-detail-User .openInfoperso"),
             openBirth : $("#Main-Subdetail-detail-User .btnOpenbirthday"),
             deletePhone : $("#Main-Subdetail-detail-User .deletephone"),
-            editProfil : $("#Main-Subdetail-detail-User #editProfil")
+            editProfil : $("#Main-Subdetail-detail-User #editProfil"),
+            LinkSaveAdresse : $("#Main-Subdetail-detail-User .LinkSaveAdresse"),
+            LinkCloseAdresse : $("#Main-Subdetail-detail-User .LinkCloseAdresse"),
+            openAdresse : $("#Main-Subdetail-detail-User .openAdresse"),
+            LinkSaveAccount : $("#Main-Subdetail-detail-User .LinkSaveAccount"),
+            LinkCloseAccount : $("#Main-Subdetail-detail-User .LinkCloseAccount"),
+            openAccount : $("#Main-Subdetail-detail-User .openAccount"),
+            LinkSavepwd : $("#Main-Subdetail-detail-User .LinkSavepwd"),
+            LinkClosepwd : $("#Main-Subdetail-detail-User .LinkClosepwd"),
+            openPwd : $("#Main-Subdetail-detail-User .openPwd")
         }
     };
 
@@ -119,33 +157,75 @@ $(function(){
                 });
                 clearInterval(chargerPays);
             },100);
-            toogleLinkCountry();
+            toogleLink(mainDetailProfile.params.detail_profile.countryblock, mainDetailProfile.params.detail_profile.countryChange);
+
             mainProfile_detail.params.bg_action.fadeOut();
             e.preventDefault();
         });
 
         mainDetailProfile.params.btn.closeCountry.click(function(e){
-           toogleLinkCountry();
+           toogleLink(mainDetailProfile.params.detail_profile.countryblock,
+               mainDetailProfile.params.detail_profile.countryChange);
+            e.preventDefault();
+        });
+
+        mainDetailProfile.params.btn.openInfoperso.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.infoPersoBlock,
+                mainDetailProfile.params.detail_profile.infoPersoChange);
+            e.preventDefault();
+        });
+
+        mainDetailProfile.params.btn.LinkCloseInfoPerso.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.infoPersoBlock,
+                mainDetailProfile.params.detail_profile.infoPersoChange);
             e.preventDefault();
         });
 
         mainDetailProfile.params.btn.openPhone.click(function(e){
-            toogleLinkPhone();
+            toogleLink(mainDetailProfile.params.detail_profile.phoneBlock,
+                mainDetailProfile.params.detail_profile.phoneChange);
             e.preventDefault();
         });
 
         mainDetailProfile.params.btn.closePhone.click(function(e){
-           toogleLinkPhone();
+            toogleLink(mainDetailProfile.params.detail_profile.phoneBlock,
+                mainDetailProfile.params.detail_profile.phoneChange);
             e.preventDefault();
         });
 
-        mainDetailProfile.params.btn.openBirth.click(function(e){
-            toogleLinkBirthday();
+        mainDetailProfile.params.btn.openAccount.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.AccountBlock,
+                mainDetailProfile.params.detail_profile.AccountChange);
             e.preventDefault();
         });
 
-        mainDetailProfile.params.btn.closeBirth.click(function(e){
-            toogleLinkBirthday();
+        mainDetailProfile.params.btn.LinkCloseAccount.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.AccountBlock,
+                mainDetailProfile.params.detail_profile.AccountChange);
+            e.preventDefault();
+        });
+
+        mainDetailProfile.params.btn.openPwd.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.pwdBlock,
+                mainDetailProfile.params.detail_profile.pwdchange);
+            e.preventDefault();
+        });
+
+        mainDetailProfile.params.btn.LinkClosepwd.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.pwdBlock,
+                mainDetailProfile.params.detail_profile.pwdchange);
+            e.preventDefault();
+        });
+
+        mainDetailProfile.params.btn.openAdresse.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.AdresseBlock,
+                mainDetailProfile.params.detail_profile.AdresseChange);
+            e.preventDefault();
+        });
+
+        mainDetailProfile.params.btn.LinkCloseAdresse.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.AdresseBlock,
+                mainDetailProfile.params.detail_profile.AdresseChange);
             e.preventDefault();
         });
 
@@ -158,37 +238,8 @@ $(function(){
                 bootbox.alert("Veuillez choisir un pays", function(){});
                 mainProfile_detail.params.bg_action.fadeOut();
             }else{
-                $.ajax({
-                    url:  mainDetailProfile.params.api.editCountry.url,
-                    type:  mainDetailProfile.params.api.editCountry.method,
-                    crossDomain: true,
-                    data : data,
-                    headers : {"X-Auth-Token" : currentUser.token},
-                    contentType: false,
-                    dataType:  mainDetailProfile.params.api.editCountry.type,
-                    success: function(response){ // en cas de success
-
-                        if(response!=null && response!="null")
-                        {
-                           // console.log(response);
-                            if(response.userProfile != "null" && response.userProfile != null){
-                                var  user  = response.userProfile.user;  // recuperer le user
-
-                            }else{
-                                var  user  = response.user;  // recuperer le user
-                            }
-                            setdetailAll(mainDetailProfile.params.detail_profile, user);
-                        }
-                    },
-                    error: function (xhr, status, message) { //en cas d'erreur
-                        console.log(status+"\n"+xhr.responseText + '\n' + message );
-                    },
-                    complete:function(){
-                        toogleLinkCountry();
-                        mainProfile_detail.params.bg_action.fadeOut();
-                    }
-
-                });
+                edit(data, mainDetailProfile.params.api.editCountry,
+                    mainDetailProfile.params.detail_profile.countryblock, mainDetailProfile.params.detail_profile.countryChange)
             }
             e.preventDefault();
         });
@@ -203,136 +254,143 @@ $(function(){
                 bootbox.alert("Veuillez saisir un numero pour ajouter", function(){});
                 mainProfile_detail.params.bg_action.fadeOut();
             }else{
-                $.ajax({
-                    url:  mainDetailProfile.params.api.addPhone.url,
-                    type:  mainDetailProfile.params.api.addPhone.method,
-                    crossDomain: true,
-                    data : data,
-                    headers : {"X-Auth-Token" : currentUser.token},
-                    contentType: false,
-                    dataType:  mainDetailProfile.params.api.addPhone.type,
-                    success: function(response){ // en cas de success
+                edit(data, mainDetailProfile.params.api.addPhone,
+                    mainDetailProfile.params.detail_profile.phoneBlock, mainDetailProfile.params.detail_profile.phoneChange)
 
-                        if(response!=null && response!="null")
-                        {
-                             //console.log(response);
-                            if(response.userProfile != "null" && response.userProfile != null){
-                                var  user  = response.userProfile.user;  // recuperer le user
-                            }else{
-                                var  user  = response.user;  // recuperer le user
-                            }
-                            setdetailAll(mainDetailProfile.params.detail_profile, user);
-                        }
-                    },
-                    error: function (xhr, status, message) { //en cas d'erreur
-                        console.log(status+"\n"+xhr.responseText + '\n' + message );
-                    },
-                    complete:function(){
-                        toogleLinkPhone();
-                        mainProfile_detail.params.bg_action.fadeOut();
-                    }
-
-                });
             }
             e.preventDefault();
         });
 
 
-       ////AMODIFIER LE ROFIL DE LUTILISATEUR
-        mainDetailProfile.params.btn.editProfil.click(function(e){
+        ////AMODIFIER LES INFORMATIONS PERSONNELLES
+        mainDetailProfile.params.btn.LinkSaveInfoPerso.click(function(e){
             mainProfile_detail.params.bg_action.fadeIn();
             var data = {id:currentUser.id,
                 email:mainDetailProfile.params.form.email.val(),
                 lastName:mainDetailProfile.params.form.lastname.val(),
                 firstName:mainDetailProfile.params.form.firstName.val(),
                 city:mainDetailProfile.params.form.city.val(),
-                profession:mainDetailProfile.params.form.profession.val()
-            };
-            // console.log(data.pays.length);
-            if(data.email.length == 0){
-                bootbox.alert("Veuillez ", function(){});
-                mainProfile_detail.params.bg_action.fadeOut();
-            }else{
-                $.ajax({
-                    url:  mainDetailProfile.params.api.editProfil.url,
-                    type:  mainDetailProfile.params.api.editProfil.method,
-                    crossDomain: true,
-                    data : data,
-                    headers : {"X-Auth-Token" : currentUser.token},
-                    contentType: false,
-                    dataType:  mainDetailProfile.params.api.editProfil.type,
-                    success: function(response){ // en cas de success
-
-                        if(response!=null && response!="null")
-                        {
-                             //console.log(response);
-                            if(response.userProfile != "null" && response.userProfile != null){
-                                var  user  = response.userProfile.user;  // recuperer le user
-                            }else{
-                                var  user  = response.user;  // recuperer le user
-                            }
-                            setdetailAll(mainDetailProfile.params.detail_profile, user);
-                        }
-                    },
-                    error: function (xhr, status, message) { //en cas d'erreur
-                        console.log(status+"\n"+xhr.responseText + '\n' + message );
-                    },
-                    complete:function(){
-                        mainProfile_detail.params.bg_action.fadeOut();
-                    }
-
-                });
-            }
-            e.preventDefault();
-        });
-
-
-       ////=====MODIFIE LA DATE DE NAISSANCE
-        mainDetailProfile.params.btn.saveBirth.click(function(e){
-            mainProfile_detail.params.bg_action.fadeIn();
-            var data = {id:currentUser.id,
-                        day:mainDetailProfile.params.form.day.val(),
-                        year:mainDetailProfile.params.form.year.val(),
-                        month:mainDetailProfile.params.form.month.val()
+                profession:mainDetailProfile.params.form.profession.val(),
+                day:mainDetailProfile.params.form.day.val(),
+                year:mainDetailProfile.params.form.year.val(),
+                sexe:mainDetailProfile.params.form.gender.val(),
+                birthDate: mainDetailProfile.params.form.day.val()+"-"+mainDetailProfile.params.form.month.val()+"-"+mainDetailProfile.params.form.year.val(),
+                month:mainDetailProfile.params.form.month.val()
             };
             // console.log(data.pays.length);
             if(data.day.length == 0 ||data.year.length == 0 ||data.month.length == 0 ){
                 bootbox.alert("Veuillez veriifier votre date de naissance", function(){});
                 mainProfile_detail.params.bg_action.fadeOut();
             }else{
-                $.ajax({
-                    url:  mainDetailProfile.params.api.editBirthday.url,
-                    type:  mainDetailProfile.params.api.editBirthday.method,
-                    crossDomain: true,
-                    data : data,
-                    headers : {"X-Auth-Token" : currentUser.token},
-                    contentType: false,
-                    dataType:  mainDetailProfile.params.api.editBirthday.type,
-                    success: function(response){ // en cas de success
+                edit(data, mainDetailProfile.params.api.infoPerso,
+                    mainDetailProfile.params.detail_profile.infoPersoBlock, mainDetailProfile.params.detail_profile.infoPersoChange)
 
-                        if(response!=null && response!="null")
-                        {
-                             //console.log(response);
-                            if(response.userProfile != "null" && response.userProfile != null){
-                                var  user  = response.userProfile.user;  // recuperer le user
-                            }else{
-                                var  user  = response.user;  // recuperer le user
-                            }
-                            setdetailAll(mainDetailProfile.params.detail_profile, user);
-                        }
-                    },
-                    error: function (xhr, status, message) { //en cas d'erreur
-                        console.log(status+"\n"+xhr.responseText + '\n' + message );
-                    },
-                    complete:function(){
-                        toogleLinkBirthday();
-                        mainProfile_detail.params.bg_action.fadeOut();
-                    }
-                });
             }
             e.preventDefault();
         });
 
+
+       ////=====MODIFIE LE BLOCK ADRESSE
+        mainDetailProfile.params.btn.LinkSaveAdresse.click(function(e){
+            mainProfile_detail.params.bg_action.fadeIn();
+            var data = {id:currentUser.id,
+                        city:mainDetailProfile.params.form.city.val(),
+                        profession:mainDetailProfile.params.form.profession.val()
+            };
+            // console.log(data.pays.length);
+            if(data.city.length == 0 ||data.profession.length == 0 ){
+                bootbox.alert("Veuillez veriifier vos champs", function(){});
+                mainProfile_detail.params.bg_action.fadeOut();
+            }else{
+                edit(data, mainDetailProfile.params.api.editAdresse,
+                    mainDetailProfile.params.detail_profile.AdresseBlock, mainDetailProfile.params.detail_profile.AdresseChange)
+
+            }
+            e.preventDefault();
+        });
+
+        ////=====MODIFIE LE BLOCK ACCOUNT
+        mainDetailProfile.params.btn.LinkSaveAccount.click(function(e){
+            mainProfile_detail.params.bg_action.fadeIn();
+            var data = {id:currentUser.id,
+                        email:mainDetailProfile.params.form.email.val(),
+                        username:mainDetailProfile.params.form.userName.val()
+            };
+            // console.log(data.pays.length);
+            if(data.email.length == 0 ||data.username.length == 0 ){
+                bootbox.alert("Veuillez veriifier vos champs", function(){});
+                mainProfile_detail.params.bg_action.fadeOut();
+            }
+            else if(!validateEmail(data.email)){
+                bootbox.alert("Veuillez veriifier votre email", function(){});
+                mainProfile_detail.params.bg_action.fadeOut();
+            }
+            else{
+                edit(data, mainDetailProfile.params.api.editAccount,
+                    mainDetailProfile.params.detail_profile.AccountBlock, mainDetailProfile.params.detail_profile.AccountChange)
+
+            }
+            e.preventDefault();
+        });
+
+       ////=====MODIFIE LE MOT DE PASSE
+        mainDetailProfile.params.btn.LinkSavepwd.click(function(e){
+            mainProfile_detail.params.bg_action.fadeIn();
+            var data = {id:currentUser.id,
+                        cpwd:mainDetailProfile.params.form.cpwd.val(),
+                        npwd:mainDetailProfile.params.form.npwd.val(),
+                        cfpwd:mainDetailProfile.params.form.cfpwd.val()
+            };
+            // console.log(data.pays.length);
+            if(data.cpwd.length == 0 ||data.npwd.length == 0 ||data.cfpwd.length == 0 ){
+                bootbox.alert("Veuillez veriifier vos champs", function(){});
+                mainProfile_detail.params.bg_action.fadeOut();
+            }
+            else if(data.npwd != data.cfpwd){
+                bootbox.alert("Confirm password not be same with new passeword", function(){});
+                mainProfile_detail.params.bg_action.fadeOut();
+            }
+            else{
+                edit(data, mainDetailProfile.params.api.editpwd,
+                    mainDetailProfile.params.detail_profile.pwdBlock, mainDetailProfile.params.detail_profile.pwdchange)
+            }
+            e.preventDefault();
+        });
+
+
+
+        function edit(data, params, block, change){
+            $.ajax({
+                url:  params.url,
+                type:  params.method,
+                crossDomain: true,
+                data : data,
+                headers : {"X-Auth-Token" : currentUser.token},
+                contentType: false,
+                dataType:  params.type,
+                success: function(response){ // en cas de success
+
+                    if(response!=null && response!="null")
+                    {
+                        //console.log(response);
+                        if(response.userProfile != "null" && response.userProfile != null){
+                            var  user  = response.userProfile.user;  // recuperer le user
+                        }else{
+                            var  user  = response.user;  // recuperer le user
+                        }
+                        setdetailAll(mainDetailProfile.params.detail_profile, user);
+                    }
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                },
+                complete:function(){
+
+                    mainProfile_detail.params.bg_action.fadeOut();
+                    toogleLink(block,change);
+                }
+            });
+        }
 
         ///====AFFICHE LES DETAILS DU USER
         function getCompte(id)
@@ -356,7 +414,7 @@ $(function(){
                             var  user  = response.userProfile.user;  // recuperer le user
                             var  profile  = response.userProfile;  // recuperer le profile
                             var  geolocation  = response.userProfile.geolocation;  // recuperer les informations sur son plan de localisation lors de la connexion a ne pas modifier ces info
-                           
+
                         }else{
                             var  user  = response.user;  // recuperer le user
                             //bootbox.alert("Nombre d'utilisateur present  dans la base de donnée : " + user.fullname, function(){});
@@ -383,21 +441,19 @@ $(function(){
             });
         }
 
-
-        function toogleLinkCountry(){
-            mainDetailProfile.params.detail_profile.countryblock.toggleClass('hide');
-            mainDetailProfile.params.detail_profile.countryChange.toggleClass('hide');
-        }
-        function toogleLinkBirthday(){
-            mainDetailProfile.params.detail_profile.birthdayBlock.toggleClass('hide');
-            mainDetailProfile.params.detail_profile.birthdayChange.toggleClass('hide');
+        function validateEmail(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
         }
 
-        function toogleLinkPhone(){
+
+
+        function toogleLink(block,Change){
+            block.toggleClass('hide');
+            Change.toggleClass('hide');
             mainDetailProfile.params.form.phoneadd.val("");
-            mainDetailProfile.params.detail_profile.phoneBlock.toggleClass('hide');
-            mainDetailProfile.params.detail_profile.phoneChange.toggleClass('hide');
         }
+
 
 
         //EFFACER UN NUMERO DE LA LISTE DES NUMEROs
@@ -445,18 +501,22 @@ $(function(){
             element.email.html(val.email);
             element.birthday.html(new Date(val.birthDate).toLocaleDateString());
             element.profession.html(val.profession);
+            element.userName.html(val.username);
             var country = getCountry(countryList,val.country);
             var flag ="<img class='sm-img flag' src='"+path.flags+val.country+".png' alt=''/> ";
             element.country.html(flag + country);
             var chainePhones = "";
 
+
             //REMPLIR ES CHAMP POUR LA MODIFICATION
             //console.log(val.email);
             mainDetailProfile.params.form.email.val(val.email);
+            mainDetailProfile.params.form.userName.val(val.username);
             mainDetailProfile.params.form.firstName.val(val.firstName);
             mainDetailProfile.params.form.lastname.val(val.lastName);
             mainDetailProfile.params.form.city.val(val.city);
             mainDetailProfile.params.form.profession.val(val.profession);
+            mainDetailProfile.params.form.gender.val(val.gender);
 
             if(val.phones != null){
                 for(var i = 0; i < val.phones.length; i++){

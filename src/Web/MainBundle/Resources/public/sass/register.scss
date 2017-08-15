@@ -1,10 +1,13 @@
 #mainRegister{
 
-   margin-top: 4em;
+
+
+  margin-top: 4em;
   #modalSave{
 
   }
    #block2{
+     .register-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
       form{
          .form-control-feedback{
             display: none;
@@ -41,6 +44,7 @@
          }
        }
       @media screen and (min-width: 978px) {
+        .register-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
         border-left: 2px solid $default-color;
         #or-content{
           position: relative;

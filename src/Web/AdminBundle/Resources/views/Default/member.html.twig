@@ -14,6 +14,8 @@
 {% endblock %}
 
 {% block main %}
+    {% set member_role = member.roles[0] %}
+
     {% include 'AdminBundle:Inc:pascalnavbar.html.twig' %}
 
     <div class="row" id="adminMember" data-page="adminMember">
@@ -22,7 +24,11 @@
         </div>
         <div class="container">
             <div class="col-sm-12" id="mb-header">
-                <span>{{ member.firstName }} {{ member.lastName }} {% if member.isVip %}(vip){% endif %}</span>
+                <span>
+                    {{ member.firstName }} {{ member.lastName }} {% if member.isVip %}(vip){% endif %}
+                    <br/>
+                    User ID: <b>{{ member.id }}</b>
+                </span>
 
                 <div class="btn-group pull-right" id="mn-user-action">
                     <button type="button" class="btn btn-primary">Action</button>
@@ -48,9 +54,11 @@
                                 {% trans from 'member' %} member.set_vip {% endtrans %}
                             {% endif %}
                         </a>
-                        <a class="dropdown-item" href="#" id="btn-role-action" data-edit="0" data-mid="{{ member.id }}">
-                            {% trans from 'member' %} member.change_role {% endtrans %}
-                        </a>
+                        {% if app.user.isSuperAdmin %}
+                            <a class="dropdown-item" href="#" id="btn-role-action" data-edit="0" data-mid="{{ member.id }}">
+                                {% trans from 'member' %} member.change_role {% endtrans %}
+                            </a>
+                        {% endif %}
                         <a class="dropdown-item" href="#" id="btn-delete-member" data-mid="{{ member.id }}">
                             {% trans from 'member' %} member.delete_member {% endtrans %}
                         </a>
@@ -58,7 +66,6 @@
                 </div>
             </div>
             <div class="col-sm-12">
-                {% set member_role = member.roles[0] %}
                 <table class="table">
                     <thead>
                         <tr>
@@ -144,11 +151,11 @@
                     </tr>
                     <tr>
                         <td>{% trans from 'member' %} member.lbl_join_date {% endtrans %}</td>
-                        <td>{{ joinDate }}</td>
+                        <td>{{ member.joinDate|date('d/m/Y') }} ({{ joinDate }})</td>
                     </tr>
                     <tr>
                         <td>{% trans from 'member' %} member.lbl_last_login {% endtrans %}</td>
-                        <td>{% if lastLogin|length == 0 %} N/C {% else %} {{ lastLogin }} {% endif %}</td>
+                        <td>{% if lastLogin|length == 0 %} N/C {% else %} {{ member.lastLogin|date('d/m/Y') }} ({{ lastLogin }}) {% endif %}</td>
                     </tr>
                     <tr>
                         <td colspan="2" class="text-center">

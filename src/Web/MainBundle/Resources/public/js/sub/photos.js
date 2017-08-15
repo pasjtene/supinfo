@@ -35,7 +35,7 @@ var MainSubPhotos = function()
                 type: "json"
             },
             friend:{
-                url : baseUrl+"auth/user/friends/cuurent",
+                url : baseUrl+"auth/user/friends/current",
                 method: "get",
                 type: "json"
             }
