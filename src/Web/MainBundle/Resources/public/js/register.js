@@ -100,7 +100,7 @@ $(function(){
             if(test){
 
                 return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-            } else {alert("nottt test");}
+            }
 
             test= notValidMail(user.email);
             if(test){
@@ -378,7 +378,7 @@ $(function(){
             }
 
 
-            appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
+            appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,2,100);
         });
         //mainRegister.params.form.name.mouseleave(function(){
         //  appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
@@ -410,6 +410,13 @@ $(function(){
 
         // 3- validation du champs county
         mainRegister.params.form.country.change(function(){
+            if(mainRegister.params.form.country.val()===""){
+                enableTolltip(mainRegister.params.form.country);
+                mainRegister.params.form.country.tooltip("enable");
+            } else {
+                enableTolltip(mainRegister.params.form.country);
+                mainRegister.params.form.country.tooltip("disable");
+            }
             appMain.function.validate(mainRegister.params.required.country,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.country,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.country,appMain.params.required.form_control_feedback,1,100);
         });
 

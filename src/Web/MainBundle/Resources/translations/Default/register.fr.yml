@@ -69,7 +69,7 @@ form:
     password: the password is required (min  5 caractères)
     confirmpassword: Ressaisir le même mot  de passe
     profession: La profession est obligatoire (min  3 charaters)
-    country: Le pays est obligatoire
+    country: sélectionnez votre pays
     lastname: Le prénom est obligatoire
     notification: Est obligatoire
     error: oh  erreur !

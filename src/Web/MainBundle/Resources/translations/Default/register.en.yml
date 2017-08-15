@@ -69,7 +69,7 @@ form:
     password: the password is required (min  5 charaters)
     confirmpassword: pleace retape the same password
     profession: the professsion is required (min  3 charaters)
-    country: the country  is required
+    country: Please select your country
     lastname: The last name ist required
     notification: Is required
     error: Oh error !

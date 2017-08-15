@@ -87,9 +87,8 @@ var   AppMain = function()
 
                         //ajout  de la classe form-control-danger
                         this.addclass(childElement, childError);
-
                         //activation de l'erreur
-                        this.show($("#"+errorElement.attr('id')+" ."+classError))
+                        //this.show($("#"+errorElement.attr('id')+" ."+classError))
 
                     }
                     else {
@@ -149,6 +148,7 @@ var   AppMain = function()
         }
 
 };
+
 
 //TODOo : donner plus d'explicaton sur l'utilisation du tokenbase
 var tokenbase =null;

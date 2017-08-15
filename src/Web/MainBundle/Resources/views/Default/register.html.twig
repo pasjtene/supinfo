@@ -98,7 +98,7 @@
                               <div class="form-group row" id="block-country">
                                   <label for="country" class="col-sm-12 col-lg-3 col-form-label">{% trans from 'register' %} form.body.country {% endtrans %}*</label>
                                   <div class="col-sm-12 col-lg-9" id="block-email">
-                                      <select data-country="{% if app.request.locale=='fr' %}{{ asset('dist/country.json') }} {% else %} {{ asset('dist/country-en.json') }}{% endif %}" class="form-control" type="text" id="country">
+                                      <select data-country="{% if app.request.locale=='fr' %}{{ asset('dist/country.json') }} {% else %} {{ asset('dist/country-en.json') }}{% endif %}" class="form-control" type="text" id="country" title="{% trans from 'register' %} form.required.country {% endtrans %}">
                                           <option  value="">{% trans from 'register' %} form.placeholder.country {% endtrans %}</option>
                                       </select>
                                       <div class="form-control-feedback">{% trans from 'register' %} form.required.country {% endtrans %}</div>
