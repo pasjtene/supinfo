@@ -195,6 +195,7 @@
     #message_action{
       width: 100%;
       table{
+        width: 100%;
         td{
           text-align: center;
         }
@@ -238,13 +239,12 @@
                 width: 70px;
               }
               .flag{
-                width: 12px;
-                height: 2px;
+                width: 18px;
+                height: 18px;
               }
             }
           }
         }
-
         .list-group-item :first-child{
             border-top: 0;
         }

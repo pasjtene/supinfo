@@ -933,7 +933,7 @@ $(function () {
 
                     var isSender =  messages[i].isSender;
 
-                    if(isSender)
+                    if(isSender && userMessage.sendRemove!=true)
                     {
                         if(userProfile!=null)
                         {
@@ -962,7 +962,7 @@ $(function () {
                             '</li>';
 
                     }
-                    else
+                    else if(!isSender && userMessage.recieverRemove!=true )
                     {
                         if(friendProfile!=null)
                         {
@@ -1269,7 +1269,7 @@ $(function () {
         }
 
 
-       function setFowardList(liste,element)
+       function setFowardList(list,element)
         {
             element.empty();
             for(var i=0; i<list.length; i++)
@@ -1320,8 +1320,12 @@ $(function () {
                         sendDate+= " "+createDate.toLocaleTimeString();
                     }
                     */
-
-                    var name = user.lastNameOrFirstname;
+                    var today = new Date();
+                    var currentyear = today.getFullYear();
+                    var year  = user.birthDate.split('-')[0];
+                    var age = currentyear -parseInt(year);
+                    age = age<10 ? '(0'+age+'ans)' : '('+ age+'ans)';
+                    var name = user.fullname;
                     var city = user.city;
                     var joinReason = user.joinReason;
                     var  country = user.country;
@@ -1330,45 +1334,42 @@ $(function () {
                     var flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
                     var profession = user.profession==null || user.profession=="null"?'' : '('+ user.profession +')';
                     var lastLogin = new Date(user.lastLogin);
-                    var toDay = new Date();
+
                     var state = user.isOnline? "<span class='small connect'>(connected)</span>" : null;
                     if(state==null)
                     {
-                        if(lastLogin.toLocaleDateString() == toDay.toLocaleDateString())
+                        if(lastLogin.toLocaleDateString() == today.toLocaleDateString())
                         {
                             state =(toDay-lastLogin)+"ago";
                         }
                     }
 
-                    var conten=
-
-
-                '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">'+
-                        '<table class="mb-1">'+
-                            '<tr>'+
-                                '<td>'+
-                                    '<label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">'+
-                                         '<input type="checkbox" class="custom-control-input">'+
-                                         '<span class="custom-control-indicator"></span>'+
-                                         '<span class="custom-control-description">'+
-                                         '</span>'+
-                                    '</label>'+
-                                '</td>'+
-                                '<td>'+
-                                    '<img src="'+src+'" alt="" class="rounded-circle img">'+
-                                '</td>'+
-                                '<td style="padding-left: 5%">'+
-                                    '<small class="text-muted pull-right">'+profession+'</small>'+
-                                    '<strong class="mb-1">'+name+'</strong>'+
-                                    '<p>'+flag+final+'</p>'+
-                                    '<small class="text-muted">'+joinReason+'</small>'+
-                                '</td>'+
-                            '</tr>'+
-                        '</table>'+
-                    '</a>';
+                    var content=
+                            '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">'+
+                                    '<table class="mb-1">'+
+                                        '<tr>'+
+                                            '<td>'+
+                                                '<label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">'+
+                                                     '<input type="checkbox" class="custom-control-input">'+
+                                                     '<span class="custom-control-indicator"></span>'+
+                                                     '<span class="custom-control-description">'+
+                                                     '</span>'+
+                                                '</label>'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '<img src="'+src+'" alt="" class="rounded-circle img">'+
+                                            '</td>'+
+                                            '<td style="padding-left: 5%">'+
+                                                '<small class="text-muted pull-right">'+state+'</small>'+
+                                                '<strong class="mb-1">'+name+age+'</strong>'+
+                                                '<p>'+flag+final+'</p>'+
+                                                '<small class="text-muted">'+getJoinReason(joinReason)+'</small>'+
+                                            '</td>'+
+                                        '</tr>'+
+                                    '</table>'+
+                                '</a>';
                     element.append(content);
                 }
-
             }
         }
 
