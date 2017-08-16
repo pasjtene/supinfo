@@ -209,4 +209,36 @@
       }
     }
   }
+  #modal-foward{
+    .modal-body{
+      .custom-search-input{
+         margin-bottom: 2%;
+      }
+      .body{
+        max-height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        
+        .list-group-item{
+          border-left: 0;
+          border-right:0;
+          table{
+            width: 100%;
+            tr{
+              .img{
+                height: 70px;
+                width: 70px;
+              }
+            }
+          }
+
+        }
+      
+        .list-group-item :first-child{
+            border-top: 0;
+        }
+
+      }
+    }
+  }
 }

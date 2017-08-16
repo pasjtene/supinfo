@@ -132,7 +132,7 @@
                            <table class="pull-right">
                                <tr>
                                    <td>
-                                       <button class="btn btn-sm btn-warning message-foward">FOWARD</button>
+                                       <button class="btn btn-sm btn-warning message-foward" data-toggle="modal" data-target="#modal-foward">FOWARD</button>
                                    </td>
                                    <td>
                                        <button class="btn btn-sm btn-danger message-delete">DELETE</button>
@@ -148,5 +148,7 @@
            </div> <!--message_section-->
        </div>
    </div>
-
+    {% include 'MainBundle:Inc:foward.html.twig' %}
 </div>
+
+
