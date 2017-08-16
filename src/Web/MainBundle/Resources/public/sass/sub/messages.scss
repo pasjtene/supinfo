@@ -222,6 +222,14 @@
         .list-group-item{
           border-left: 0;
           border-right:0;
+          label{
+           // width: 100%;
+           /* .ui-icon-background, .ui-state-active .ui-icon-background {
+              display: none;
+              background-color:rgba(0, 0, 0, 0) ;
+            }
+            */
+          }
           table{
             width: 100%;
             tr{
@@ -229,11 +237,14 @@
                 height: 70px;
                 width: 70px;
               }
+              .flag{
+                width: 12px;
+                height: 2px;
+              }
             }
           }
-
         }
-      
+
         .list-group-item :first-child{
             border-top: 0;
         }

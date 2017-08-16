@@ -66,7 +66,7 @@ var MainSubMessages = function()
             cancel : $("#Main-Messages .message-cancel")
         },
         foward:{
-            body: $('#Message-forward-body')
+            body: $('#modal-foward .modal-body .body')
         },
         body:{
             message_text: $('#Main-Messages #message-text'),
@@ -216,6 +216,7 @@ $(function () {
             countListMessageUserCurrent = 0,
             countListMessageUserCurrentnew = 0,
             countMessageNotSee = 0,
+            listUsers = null,
             errorMessage = "something is wrong";
 
 
@@ -374,6 +375,7 @@ $(function () {
                         console.log(data);
                         if(data!=null  && data !="null" && data!="undefined" && data.listUsers!="null" && data.listUsers!=null)
                         {
+                            listUsers = data.listUsers;
                             setfriendList(data.listUsers,mainSubMessages.params.member_list.body);
                         }
 
@@ -1151,7 +1153,7 @@ $(function () {
             if(list!='')
             {
                 mainUserProfile_messages.params.bg_action.fadeIn();
-                var data = { id: list};
+                var data = { id: list,idUser:currentUser.id};
                 deleteMessage(data,errorMessage);
             }
         });
@@ -1165,7 +1167,7 @@ $(function () {
             if(list!='')
             {
                 var data = { id: list};
-                var content=mainSubMessages.params.foward.body.html();
+                setFowardList(listUsers,mainSubMessages.params.foward.body);
             }
 
         });
@@ -1266,6 +1268,121 @@ $(function () {
             badge.html(length);
         }
 
+
+       function setFowardList(liste,element)
+        {
+            element.empty();
+            for(var i=0; i<list.length; i++)
+            {
+                var photoApplicant = list[i].photoApplicant,
+                    photoReciever = list[i].photoReciever,
+                    count = list[i].count>0? list[i].count:'',
+                    request = list[i].request,
+                    user = null;
+                //alert();
+                var src = null;
+                if(request.receiver.id==currentUser.id)
+                {
+                    user = request.applicant;
+                    if (( photoApplicant==null || photoApplicant=='null' || photoApplicant.hashname == null || photoApplicant.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoApplicant.path;
+                    }
+                }
+                else
+                {
+                    user =  request.receiver;
+                    if (( photoReciever==null || photoReciever=='null' || photoReciever.hashname == null || photoReciever.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoReciever.path;
+                    }
+                }
+                // alert(user.id + "  current : " + currentUser.id);
+                if(user.id !=currentUser.id && user.type!="System") {
+
+                   /*var  message  = list[i].userMessage.message;
+                   var sendDate =null;
+                   var today =new Date();
+                   var  createDate =new Date(message.createDate);
+                    if(today.toLocaleDateString()==createDate.toLocaleDateString())
+                    {
+                        sendDate = createDate.toLocaleTimeString()
+                    }
+                    else
+                    {
+                        sendDate = createDate.toLocaleDateString();
+                        sendDate = sendDate.replace("/","-");
+                        sendDate = sendDate.replace("/","-");
+                        sendDate+= " "+createDate.toLocaleTimeString();
+                    }
+                    */
+
+                    var name = user.lastNameOrFirstname;
+                    var city = user.city;
+                    var joinReason = user.joinReason;
+                    var  country = user.country;
+                    //var messageprop = !like(message.contentTuncate)?'emoticon':message.contentTuncate;
+                    var final =(city==null || city=="null")? getCountry(countryList,country) :city;
+                    var flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                    var profession = user.profession==null || user.profession=="null"?'' : '('+ user.profession +')';
+                    var lastLogin = new Date(user.lastLogin);
+                    var toDay = new Date();
+                    var state = user.isOnline? "<span class='small connect'>(connected)</span>" : null;
+                    if(state==null)
+                    {
+                        if(lastLogin.toLocaleDateString() == toDay.toLocaleDateString())
+                        {
+                            state =(toDay-lastLogin)+"ago";
+                        }
+                    }
+
+                    var conten=
+
+
+                '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">'+
+                        '<table class="mb-1">'+
+                            '<tr>'+
+                                '<td>'+
+                                    '<label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">'+
+                                         '<input type="checkbox" class="custom-control-input">'+
+                                         '<span class="custom-control-indicator"></span>'+
+                                         '<span class="custom-control-description">'+
+                                         '</span>'+
+                                    '</label>'+
+                                '</td>'+
+                                '<td>'+
+                                    '<img src="'+src+'" alt="" class="rounded-circle img">'+
+                                '</td>'+
+                                '<td style="padding-left: 5%">'+
+                                    '<small class="text-muted pull-right">'+profession+'</small>'+
+                                    '<strong class="mb-1">'+name+'</strong>'+
+                                    '<p>'+flag+final+'</p>'+
+                                    '<small class="text-muted">'+joinReason+'</small>'+
+                                '</td>'+
+                            '</tr>'+
+                        '</table>'+
+                    '</a>';
+                    element.append(content);
+                }
+
+            }
+        }
+
+        function like(str) {
+            var motif = "^.*<img.*$";
+            var  expression = new RegExp(motif,"gi");
+            var test =expression.test(str);
+            if(str=="" || test==false)
+            {
+                return true
+            }
+
+            return false;
+        }
         $("input[type='checkbox']").checkboxradio();
     }
 });

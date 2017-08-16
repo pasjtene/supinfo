@@ -141,7 +141,10 @@ $(function () {
             window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
         });
 
-        //retirer  un utilisateur de la liste d'amis
+        mainSubPhotos.params.tabs.friend.body.on('click','.detail-profile',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
+        });
+
         mainSubPhotos.params.tabs.friend.body.on('click','.remove',function(){
             deleteFriends($(this).data('id'), currentUser.id,mainUserProfile_photos.params.bg_action);
         });
@@ -351,7 +354,7 @@ $(function () {
                                 '<img src="'+src+'" class="responsive img-thumbnail">' +
                             '</div>' +
                             '<div class=" card-block">' +
-                                '<h4 class="card-title">'+user.lastNameOrFirstname+ age+'</h4>' +
+                                '<h4 class="card-title detail-profile" data-key="'+user.key+'">'+user.lastNameOrFirstname+ age+'</h4>' +
                                 '<p class="card-text text-muted message-text">'+getJoinReason(user.joinReason)+'</p>' +
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted"> '+profession+'</span></p>' +
                                 '<p class="card-text text-grey small">'+common+'  </p>' +
