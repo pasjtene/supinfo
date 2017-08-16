@@ -9,6 +9,13 @@
     }
   }
 
+  .name-detail:hover{
+    color: $default-color;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
   .body{
     #zone_profile{
         .connect-box{
