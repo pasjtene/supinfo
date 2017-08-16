@@ -245,7 +245,7 @@ $(function () {
             });
 
 
-        function get(objet,errorMessage,isobjet)
+        function get(objet,errorMessage,isobjet,isdelete)
         {
             $.ajax(
                 {
@@ -267,6 +267,12 @@ $(function () {
                     error: function (xhr, status, message) {
                         console.log(xhr.responseText);
                        // bootbox.alert(errorMessage,function(){});
+                    },
+                    complete: function(){
+                        if(isdelete)
+                        {
+                            mainUserProfile_messages.params.bg_action.fadeOut();
+                        }
                     }
                 }
             );
@@ -304,7 +310,7 @@ $(function () {
                                         id : currentUser.id,
                                         idFriend: selectUserId
                                     };
-                                    get(data,errorMessage,false);
+                                    get(data,errorMessage,false,false);
                                 }
 
                             }
@@ -318,6 +324,36 @@ $(function () {
             );
         }
 
+        function deleteMessage(objet,errorMessage)
+        {
+            $.ajax(
+                {
+                    url: mainSubMessages.params.api.delete.url,
+                    type: mainSubMessages.params.api.delete.method,
+                    data: objet,
+                    crossDomain: true,
+                    dataType:  mainSubMessages.params.api.delete.type,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    success: function (data) {
+                        console.log(data);
+                        var elem ={
+                            id : currentUser.id,
+                            idFriend: selectUserId
+                        };
+                        get(elem,errorMessage,false,true);
+                    },
+                    error: function (xhr, status, message) {
+                        console.log(xhr.responseText);
+                        bootbox.alert(errorMessage,function(){});
+                    },
+                    complete:function()
+                    {
+                        var  checks =  $("#Main-Messages .chat_area .chat-body1 p label input[type='checkbox']");
+                        uncheckCount(checks);
+                    }
+                }
+            );
+        }
         //liste les amis
          fillFriend({ id: currentUser.id },errorMessage);
         function fillFriend(objet,errorMessage)
@@ -1014,23 +1050,12 @@ $(function () {
                 };
                 mainSubMessages.params.chat_area.send.prop('disabled',false);
                 changeState(mainSubMessages.params.member_list.user_list, $(this));
-                get(data,errorMessage,false);
+                get(data,errorMessage,false,false);
             }
         },100);
 
         mainSubMessages.params.chat_area.send.disabled =false;
-     /*  var inter = setInterval(function(){
-            if(selectUserId>0)
-            {
-                clearInterval(inter);
 
-                mainSubMessages.params.chat_area.send.prop('disabled',true);
-            }
-            else{
-                mainSubMessages.params.chat_area.send.prop('disabled',false);
-            }
-        },1000);
-        */
         //envoyer un message
         mainSubMessages.params.chat_area.send.click(function(e){
             e.preventDefault();
@@ -1044,11 +1069,23 @@ $(function () {
 
         mainSubMessages.params.chat_area.body.on('click','.chat-body1 p label',function(){
             var  checks =  $("#Main-Messages .chat_area .chat-body1 p label input[type='checkbox']");
-           // alert($(this).data('id'));
-            checkCount(checks,$(this));
+            //alert($(this).data('id'));
+            checkToogle(checks,$(this));
         });
 
-        function checkCount(Elements,activeelement) {
+        function checkList(Elements) {
+            var count=0;
+           str ='';
+            Elements.each(function(){
+                if ($(this).prop('checked')) {
+                    count++;
+                    str+= $(this).data('id')+";";
+                }
+            });
+            return str;
+        }
+
+        function checkToogle(Elements,activeelement) {
            var count=0;
            // var t = Elements.length;
 
@@ -1058,11 +1095,11 @@ $(function () {
                if ($(this).prop('checked')) {
                    count++;
                    id= '#indicator'+$(this).data('id');
-                  $(id).css({ 'background-color': '#0275D8;','color':'white;'});
+                  //$(id).css({ 'background-color': '#0275D8;','color':'white;'});
                }
                else if(activeelement ==$(this).data('id')){
                    id= '#indicator'+$(this).data('id');
-                   $(id).css({ 'background': '#fbf9fa none repeat scroll 0 0;'});
+                  // $(id).css({ 'background': '#fbf9fa none repeat scroll 0 0;'});
                }
 
             });
@@ -1096,10 +1133,24 @@ $(function () {
             mainSubMessages.params.chat_area.body_content_action.fadeOut();
         }
 
+        //decocher tout
         mainSubMessages.params.btn.cancel.click(function(e){
             e.preventDefault();
             var  checks =  $("#Main-Messages .chat_area .chat-body1 p label input[type='checkbox']");
             uncheckCount(checks);
+        });
+
+        //supprimer un message
+        mainSubMessages.params.btn.delete.click(function(e){
+            e.preventDefault();
+            var  checks =  $("#Main-Messages .chat_area .chat-body1 p label input[type='checkbox']");
+            var list  = checkList(checks);
+            if(list!='')
+            {
+                mainUserProfile_messages.params.bg_action.fadeIn();
+                var data = { id: list};
+                deleteMessage(data,errorMessage);
+            }
         });
 
         function changeState(Elements, ElementToActive) {
