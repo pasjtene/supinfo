@@ -56,12 +56,35 @@ var MainRegister = function()
 
 };
 
+function enableTolltip(element) {
+    $(element).tooltip({
+        position: {
+            my: "center bottom-30",
+            at: "center left",
+            using: function (position, feedback) {
+                //alert(this);
+                $(this).css(position);
+                $("<div>")
+                    .addClass("arrow")
+                    .addClass(feedback.vertical)
+                    .addClass(feedback.horizontal)
+                    .appendTo(this);
+
+            }
+        }
+    });
+}
+
 
 $(function(){
+
+    //enableTolltip("#name");
+    //enableTolltip("#email");
 
 
 
     //instancier la classe MainRegister
+
     var mainRegister = new MainRegister();
 
     //tester si  nous somme dans la page d'enregistrement
@@ -75,6 +98,7 @@ $(function(){
             var  test= false;
             test= appMain.function.notValid(user.firstname,3,100);
             if(test){
+
                 return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
             }
 
@@ -273,10 +297,10 @@ $(function(){
             if (verify(User)) {
                 //print error message
                 // alert(verify(User));
-
                 mainRegister.params.required.errorMessage.slideDown();
                 mainRegister.params.required.errorMessageText.text(verify(User));
             } else {
+
                 // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
                 //alert(User.joinReason);
@@ -345,8 +369,16 @@ $(function(){
         // mainRegister.params.form.name.focus(function(){
         //   appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         //});
-        mainRegister.params.form.name.keyup(function(){
-            appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
+        mainRegister.params.form.name.change(function(){
+            if (notValidName(mainRegister.params.form.name.val())){
+                enableTolltip(mainRegister.params.form.name);
+                mainRegister.params.form.name.tooltip("enable");
+            }else{
+                mainRegister.params.form.name.tooltip('disable');
+            }
+
+
+            appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,2,100);
         });
         //mainRegister.params.form.name.mouseleave(function(){
         //  appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
@@ -366,12 +398,25 @@ $(function(){
          });
          */
         //email format
-        mainRegister.params.form.email.keyup(function(){
+        mainRegister.params.form.email.change(function(){
+            if (notValidMail(mainRegister.params.form.email.val())){
+                enableTolltip(mainRegister.params.form.email);
+                mainRegister.params.form.email.tooltip("enable");
+            }else{
+                mainRegister.params.form.email.tooltip('disable');
+            }
             emailFormat(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
         });
 
         // 3- validation du champs county
         mainRegister.params.form.country.change(function(){
+            if(mainRegister.params.form.country.val()===""){
+                enableTolltip(mainRegister.params.form.country);
+                mainRegister.params.form.country.tooltip("enable");
+            } else {
+                enableTolltip(mainRegister.params.form.country);
+                mainRegister.params.form.country.tooltip("disable");
+            }
             appMain.function.validate(mainRegister.params.required.country,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.country,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.country,appMain.params.required.form_control_feedback,1,100);
         });
 
@@ -480,7 +525,7 @@ $(function(){
                 appMain.function.addclass(childElement, childError);
 
                 //activation de l'erreur
-                appMain.function.show($("#"+errorElement.attr('id')+" ."+classError))
+                //appMain.function.show($("#"+errorElement.attr('id')+" ."+classError))
 
             }
             else {
@@ -506,6 +551,18 @@ $(function(){
             var  expression = new RegExp(motif,"gi");
             var test =expression.test(email)
             if (email=="" || test==false)
+            {
+                return true
+            }
+
+            return false;
+        }
+
+
+
+        function notValidName(name) {
+
+            if (name=="" || name.length < 2 || name.length > 100)
             {
                 return true
             }

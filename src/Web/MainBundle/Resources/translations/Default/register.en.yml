@@ -65,11 +65,11 @@ form:
       year:  the year is required
     gender: the gender is required
     reason: the reason is required
-    email: the adresse mail  is required
+    email: please check your email address.
     password: the password is required (min  5 charaters)
     confirmpassword: pleace retape the same password
     profession: the professsion is required (min  3 charaters)
-    country: the country  is required
+    country: Please select your country
     lastname: The last name ist required
     notification: Is required
     error: Oh error !

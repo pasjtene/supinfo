@@ -86,8 +86,6 @@ $(function () {
 
         //agrandir une photo
         mainSubDetailProfile.params.body.photo.body_photo_detail.on('click', "img",function() {
-            //mainSubDetailProfile.params.body.photo.zoomImg_detail_source.attr('src', $(this).attr('src'));
-            //mainSubDetailProfile.params.body.photo.zoomImg_detail.modal('show');
             bg.bg_photo_content.empty();
             for(var i=0; i<listePhotoHelp.length;i++)
             {
@@ -130,7 +128,7 @@ $(function () {
 
 
         //appel de la fonction pour charger les informations
-        fill(currentUser.id,mainSubDetailProfile.params.sub.data('email'));
+        fill(currentUser.id,mainSubDetailProfile.params.sub.data('key'));
 
 
         //demande l'amtier
@@ -138,7 +136,7 @@ $(function () {
             trans = Translator.trans('sub.message',{},"default");
             bootbox.prompt(trans,function(result){
                 if(result){
-                    askFriendShip(currentUser.id,mainSubDetailProfile.params.sub.data('email'), result);
+                    askFriendShip(currentUser.id,mainSubDetailProfile.params.sub.data('key'), result);
                 }
             });
         });

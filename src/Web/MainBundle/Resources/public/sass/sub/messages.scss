@@ -97,7 +97,19 @@
                 p {
                   background: #fbf9fa none repeat scroll 0 0;
                   padding: 10px;
+
+                  .custom-control-indicator
+                  {
+                    //background: #fbf9fa none repeat scroll 0 0;
+                  }
+
                 }
+              p:hover{
+                .custom-control-indicator
+                {
+                  background: $default-color;
+                }
+              }
               img{
                 max-height: 200px;
                 max-width: 200px;
@@ -181,16 +193,51 @@
       }
     }
     #message_action{
+      width: 100%;
+      table{
+        td{
+          text-align: center;
+        }
+      }
       display: none;
-      position: relative;
-      top: -103px;
-      z-index: 3;
       margin: 2%;
       height: 100px;
       background-color: white;
       button{
         max-width: 50px;
         font-size: 0.7em;
+      }
+    }
+  }
+  #modal-foward{
+    .modal-body{
+      .custom-search-input{
+         margin-bottom: 2%;
+      }
+      .body{
+        max-height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        
+        .list-group-item{
+          border-left: 0;
+          border-right:0;
+          table{
+            width: 100%;
+            tr{
+              .img{
+                height: 70px;
+                width: 70px;
+              }
+            }
+          }
+
+        }
+      
+        .list-group-item :first-child{
+            border-top: 0;
+        }
+
       }
     }
   }
