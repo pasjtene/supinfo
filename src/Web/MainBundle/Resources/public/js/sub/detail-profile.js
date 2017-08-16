@@ -86,8 +86,6 @@ $(function () {
 
         //agrandir une photo
         mainSubDetailProfile.params.body.photo.body_photo_detail.on('click', "img",function() {
-            //mainSubDetailProfile.params.body.photo.zoomImg_detail_source.attr('src', $(this).attr('src'));
-            //mainSubDetailProfile.params.body.photo.zoomImg_detail.modal('show');
             bg.bg_photo_content.empty();
             for(var i=0; i<listePhotoHelp.length;i++)
             {

@@ -65,6 +65,9 @@ var MainSubMessages = function()
             foward : $("#Main-Messages .message-foward"),
             cancel : $("#Main-Messages .message-cancel")
         },
+        foward:{
+            body: $('#Message-forward-body')
+        },
         body:{
             message_text: $('#Main-Messages #message-text'),
             caretposition: $('#Main-Messages #caretposition')
@@ -1151,6 +1154,20 @@ $(function () {
                 var data = { id: list};
                 deleteMessage(data,errorMessage);
             }
+        });
+
+
+        //supprimer un message
+        mainSubMessages.params.btn.foward.click(function(e){
+            e.preventDefault();
+            var  checks =  $("#Main-Messages .chat_area .chat-body1 p label input[type='checkbox']");
+            var list  = checkList(checks);
+            if(list!='')
+            {
+                var data = { id: list};
+                var content=mainSubMessages.params.foward.body.html();
+            }
+
         });
 
         function changeState(Elements, ElementToActive) {
