@@ -36,6 +36,10 @@ sub:
       npwd: Nouveau mot de passe
       cfpwd: Confirme mot de passe
       fpwd: Mot de passe oublier
+      emptyData: Aucune données
+      schoolname: Nom de l'etablissament
+      location: Lieu
+      highlevel: Niveau
   img:
     profile: Mettre comme photo de profile
     published: Rendre publique

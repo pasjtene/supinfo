@@ -186,11 +186,9 @@
                     <input type="text" id="userName" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.userName {% endtrans %}" class="form-control">
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="openPwd">{% trans from 'photo' %} sub.tabs.myProfilDetail.editpwd {% endtrans %}</a>
+                    <a href="{{ path('main_forgot_password') }}" class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.editpwd {% endtrans %}</a>
                 </div>
             </div>
-
-
         </div>
 
 
@@ -223,18 +221,39 @@
 
         </div>
 
+        {#SCHOOL++++++++++++++++++#}
 
-        <div class="col col-sm-6 hide">
-            <div class="card">
+        <div class="col col-sm-6">
+            <div class="card SchoolChange">
                 <h5 class="card-header d-flex flex-row justify-content-between">
                     <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.diplome {% endtrans %}</span>
-                    <a class="p-2 fa fa-2x fa-edit" href="#"></a>
+                    <a class="p-2 openSchool" href="#">{% trans from 'photo' %} sub.tabs.myProfilDetail.addPhone {% endtrans %}</a>
                 </h5>
                 <div class="card-block">
-                    <h4 class="card-title">BEPC</h4>
-                    <h4 class="card-title">PROBATOIRE C</h4>
-                    <h4 class="card-title">BAC C</h4>
-                    <h4 class="card-title">DEC</h4>
+                    <ul class="list-group list-group-flush Stexte detail_profile_school">
+                       <li class="list-group-item"><center><h5>{% trans from 'photo' %} sub.tabs.myProfilDetail.emptyData {% endtrans %}</h5></center></li>
+
+                    </ul>
+                </div>
+            </div>
+            {#====EDIT SCHOOL#}
+            <div class="card SchoolBlock hide">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.diplome {% endtrans %}</span>
+                    <span class="p-2">
+                        <a class=" fa fa-2x fa-save  LinkSaveSchool" href="#"></a>
+                        <a class=" fa fa-2x fa-close  LinkCloseSchool" href="#"></a>
+                    </span>
+                </h5>
+                <div class="card-block">
+                    <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.schoolname {% endtrans %}&nbsp;:&nbsp;</span> <br>
+                    <input type="text" id="schoolname" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.schoolname {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.location {% endtrans %}&nbsp;:&nbsp;</span>
+                    <input type="text" id="location" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.location {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}&nbsp;:&nbsp;</span>
+                    <input type="text" id="highlevel" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}" class="form-control">
 
                 </div>
             </div>

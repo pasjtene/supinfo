@@ -36,6 +36,10 @@ sub:
       npwd: New password
       cfpwd: Confirm password
       fpwd: Recover password
+      emptyData: EMPTY DATA
+      schoolname: School name
+      location: Location
+      highlevel: High level
   img:
     profile: Make profile photo
     published: make public
