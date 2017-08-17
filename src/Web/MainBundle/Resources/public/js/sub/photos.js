@@ -344,7 +344,7 @@ $(function () {
                     var detail = Translator.trans('sub.tabs.seedetail', {}, 'photo'),
                         message = Translator.trans('sub.tabs.message', {}, 'photo'),
                         friend = Translator.trans('sub.tabs.friendc', {}, 'photo'),
-                        common = Translator.trans('sub.noFriend.common', {}, 'photo'),
+                        common = Translator.trans('sub.tabs.nofriend', {}, 'photo'),
                         remove = Translator.trans('sub.tabs.remove', {}, 'photo');
 
                    var body =
@@ -355,7 +355,7 @@ $(function () {
                             '</div>' +
                             '<div class=" card-block">' +
                                 '<h4 class="card-title detail-profile" data-key="'+user.key+'">'+user.lastNameOrFirstname+ age+'</h4>' +
-                                '<p class="card-text text-muted message-text">'+getJoinReason(user.joinReason)+'</p>' +
+                                '<p class="card-text text-muted message-text small">'+getJoinReason(user.joinReason)+'</p>' +
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted"> '+profession+'</span></p>' +
                                 '<p class="card-text text-grey small">'+common+'  </p>' +
                                 '<div class="col-12 text-center dropdown">' +
