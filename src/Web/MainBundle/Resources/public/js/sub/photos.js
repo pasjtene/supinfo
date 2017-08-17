@@ -174,9 +174,10 @@ $(function () {
                     src = baseHost + photo.path;
                 }
                 var active = (photo.id ==$(this).data('active'))? 'active' :'';
+                //console.log('photo = '+ photo.id + " current = "+$(this).data('active') + "active = "+active);
                 var id = "action"+photo.id;
                 var item=
-                    '<div class="carousel-item img-thumbnail'+active+'">'+
+                    '<div class="carousel-item img-thumbnail '+active+'">'+
                     '<img class="d-block img-fluid" src="'+src+'" alt="First slide">'+
                     '<div class="carousel-caption d-none d-md-block" style="">'+
                     '<h3>'+(i+1) +' / ' +listePhotoHelp.length + '</h3>'+
@@ -436,6 +437,8 @@ $(function () {
                     if(response!=null  && response!="null" && response!="undefined")
                     {
                         listePhotoHelp = response;
+                        console.log('liste des profiles');
+                        console.log(listePhotoHelp);
                         setPhotos(mainSubPhotos.params.tabs.list.body_photo,response);
                     }
                 },
@@ -512,9 +515,9 @@ $(function () {
                 var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
                 var id = "action"+photo.id;
                 body+=
-                    '<div class="col-sm-12 col-md-4 col   temxt-center img">'+
-                        '<div class="card">'+
-                            '<div class="col-12 text-center bg-faded img">' +
+                    '<div class="col-sm-12 col-md-4 col   temxt-center img" data-active='+photo.id+' >'+
+                        '<div class="card" data-active='+photo.id+' >'+
+                            '<div class="col-12 text-center bg-faded img" data-active='+photo.id+' >' +
                                 '<img src="'+src+'" data-active='+photo.id+' class="responsive card-img-top rounded img-thumbnail">' +
                             '</div>' +
                             '<div class="card-block bg-faded">'+

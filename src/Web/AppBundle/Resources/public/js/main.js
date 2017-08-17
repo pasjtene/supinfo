@@ -266,7 +266,8 @@ $('html').click(function(event){
    // console.log(event.target);
    // alert(event.target.id );
 });
-//bg.bg_photo_row.css({'height':($(window).height()-$(window).height()/5)+'px'});
-bg.bg_photo_img.css({'max-height':($(window).height()-$(window).height()/5)+'px' + ' !important;'});
+
+bg.bg_photo_row.css({'height':($(window).height()-$(window).height()/30)+'px'});
+bg.bg_photo_img.css({'max-height':($(window).height()-$(window).height()/15)+'px' + ' !important;'});
 
 
