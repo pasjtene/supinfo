@@ -1,9 +1,9 @@
 <div class="dropdown-menu" aria-labelledby="dropdownMenuMessages" id="dropdownMenuMessages-body">
     <h6 class="dropdown-header">
         <div class="row">
-            <div class="col"><strong>Récent <spnan class="count"></spnan></strong></div>
-            <div class="col"><a href="">Tout  marquer comme lu</a></div>
-            <div class="col"><a href="">Nouveau message</a></div>
+            <div class="col"><strong>{% trans from 'messages' %} message.recent {% endtrans %} <spnan class="count"></spnan></strong></div>
+            <div class="col"><a href="">{% trans from 'messages' %} message.read {% endtrans %}</a></div>
+            <div class="col"><a href="">{% trans from 'messages' %} message.new {% endtrans %}</a></div>
         </div>
     </h6>
     <input type="hidden" name="key" id="key" value="{% if key is defined %} {{ key }} {% endif %}">
@@ -29,5 +29,5 @@
 
     </div>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item text-center all" href="{{ path('main_profile_messages') }}">Tout Afficher</a>
+    <a class="dropdown-item text-center all" href="{{ path('main_profile_messages') }}">{% trans from 'messages' %} message.all {% endtrans %}</a>
 </div>
