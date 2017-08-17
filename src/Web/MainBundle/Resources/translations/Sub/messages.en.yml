@@ -1,0 +1,7 @@
+friend:
+  search: Search
+message:
+  block: Block user
+  profile: Profile detail
+  empty: Empty conversation
+  photos: Photos
