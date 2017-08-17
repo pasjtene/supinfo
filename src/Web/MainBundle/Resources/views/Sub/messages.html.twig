@@ -5,7 +5,7 @@
                <div class="row">
                    <div id="custom-search-input">
                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                           <input type="text" class="form-control small" id="inlineFormInputGroup" placeholder="{% trans  from 'friends' %} sub.noFriend.placeholder {% endtrans %}">
+                           <input type="text" class="form-control small" id="inlineFormInputGroup" placeholder="{% trans  from 'messages' %} friend.search {% endtrans %}">
                            <div class="input-group-addon bg-primary text-white"><span class="fa fa-search"></span></div>
                        </div>
                    </div>
@@ -38,14 +38,15 @@
                <div class="row">
                    <div class="new_message_head">
                        <div class="pull-left"><button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message</button></div><div class="pull-right"><div class="dropdown">
-                               <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <button class="dropdown-toggle" type="button" id="dropdown-setting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                    <i class="fa fa-cogs" aria-hidden="true"></i>  Setting
                                    <span class="caret"></span>
                                </button>
-                               <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                                   <li><a href="#">Action</a></li>
-                                   <li><a href="#">Profile</a></li>
-                                   <li><a href="#">Logout</a></li>
+                               <ul class="dropdown-menu dropdown-menu-right setting" aria-labelledby="dropdownMenu1">
+                                   <li class="dropdown-item profile" ><a href="#">{% trans  from 'messages' %} message.profile {% endtrans %}</a></li>
+                                   <li class="dropdown-item block"  ><a href="#">{% trans  from 'messages' %} message.block {% endtrans %}</a></li>
+                                   <li class="dropdown-item empty" ><a href="#">{% trans  from 'messages' %} message.empty {% endtrans %}</a></li>
+                                   <li class="dropdown-item photos" ><a href="#">{% trans  from 'messages' %} message.photos {% endtrans %}</a></li>
                                </ul>
                            </div></div>
                    </div>

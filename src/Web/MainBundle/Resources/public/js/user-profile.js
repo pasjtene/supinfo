@@ -127,6 +127,9 @@ $(function(){
        });
 
 
+       //variable globales
+        var  countFriend= 0;
+        var  countMessage=0;
 
        // js du  filtre
 
@@ -208,6 +211,7 @@ $(function(){
                //charger les entetes de notifications
                if(response.recievers!=null)
                {
+                   countFriend = response.recievers.length;
                    setFriendsNav(mainUserProfile.params.nav.notification.friends,response.recievers,mainUserProfile.params.nav.dropdownMenuFreinds_badge);
                }
                else{
@@ -220,6 +224,7 @@ $(function(){
                }
                if(response.recieveMessages!=null  && response.recieveMessages !="null" && response.recieveMessages!="undefined")
                {
+                   countMessage = response.recieveMessages.length;
                    setnotificationMessage(mainUserProfile.params.nav.notification.message, response.recieveMessages,mainUserProfile.params.nav.dropdownMenuMessages_badge);
                }
 
@@ -393,12 +398,28 @@ $(function(){
        //mainUserProfile.params.nav.dropdownMenuMessages_body.fadeIn();
        //afficher les notifications messages
        mainUserProfile.params.nav.dropdownMenuMessages.on('click', function () {
-           mainUserProfile.params.nav.dropdownMenuMessages_body.fadeIn();
+           if(countMessage>0)
+           {
+               mainUserProfile.params.nav.dropdownMenuMessages_body.fadeIn();
+           }
+           else
+           {
+               var href = $(this).data('href');
+               window.location.href = href;
+           }
        });
 
        //afficher les notifications users
        mainUserProfile.params.nav.dropdownMenuFreinds.on('click', function () {
-           mainUserProfile.params.nav.dropdownMenuFreinds_body.fadeIn();
+           if(countFriend>0)
+           {
+               mainUserProfile.params.nav.dropdownMenuFreinds_body.fadeIn();
+           }
+           else
+           {
+               var href = $(this).data('href');
+               window.location.href = href;
+           }
        });
 
        //cacher les boites de notification

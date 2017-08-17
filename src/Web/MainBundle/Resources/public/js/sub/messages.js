@@ -71,6 +71,13 @@ var MainSubMessages = function()
         body:{
             message_text: $('#Main-Messages #message-text'),
             caretposition: $('#Main-Messages #caretposition')
+        },
+        setting:{
+            profile : $("#Main-Messages .setting .profile"),
+            block : $("#Main-Messages .setting .block"),
+            empty : $("#Main-Messages .setting .empty"),
+            photos : $("#Main-Messages .setting .photos"),
+            btn : $("#Main-Messages #dropdown-setting")
         }
     },
    this.getAll = function(cb,objet,errorMessage)
@@ -217,6 +224,7 @@ $(function () {
             countListMessageUserCurrentnew = 0,
             countMessageNotSee = 0,
             listUsers = null,
+            datakey = null,
             errorMessage = "something is wrong";
 
 
@@ -721,6 +729,17 @@ $(function () {
             });
         }
 
+        //zone settings
+
+        mainSubMessages.params.setting.profile.click(function(e){
+            //alert(Routing.generate('main_profile_detailProfile',{_locale:locale,key:datakey}));
+            //alert(datakey);
+            if(datakey!=null)
+            {
+                window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:datakey});
+            }
+        });
+
         //charger la liste des emoticons
         fillEmotion(listEmoticons(),mainSubMessages.params.chat_area.emoticon_body,path.emoticon);
         var  key = mainSubMessages.params.chat_area.key.val();
@@ -777,10 +796,13 @@ $(function () {
                        }
                     }
 
+
+
                     var conten="";
                    // alert('key :'+key + " userkey="+user.key);
                     if(key.trim()==user.key.trim())
                     {
+                        datakey = user.key;
                         selectUserId = user.id;
                         //alert(key);
                          content =
@@ -790,7 +812,7 @@ $(function () {
                             '</span>' +
                             '<div class="chat-body clearfix">' +
                             '<div class="header_sec">' +
-                            '<strong class="primary-font">'+name+'</strong> <strong class="pull-right">' +
+                            '<strong class="primary-font name-detail" data-key="'+user.key+'" >'+name+'</strong> <strong class="pull-right">' +
                             state+'</strong>' +
                             '</div>' +
                             '<div class="contact_sec">' +
@@ -809,7 +831,7 @@ $(function () {
                             '</span>' +
                             '<div class="chat-body clearfix">' +
                             '<div class="header_sec">' +
-                            '<strong class="primary-font">'+name+'</strong> <strong class="pull-right">' +
+                            '<strong class="primary-font name-detail" data-key="'+user.key+'" >'+name+'</strong> <strong class="pull-right">' +
                             state+'</strong>' +
                             '</div>' +
                             '<div class="contact_sec">' +
@@ -822,6 +844,10 @@ $(function () {
                     element.append(content);
                 }
 
+            }
+            if(datakey!=null)
+            {
+                mainSubMessages.params.setting.btn.fadeIn();
             }
             mainUserProfile_messages.params.nav.dropdownMenuMessages_badge.html(count);
         }
@@ -1038,8 +1064,8 @@ $(function () {
 
         //lorsqu'on clique sur un user, on charge la conversation
         mainSubMessages.params.member_list.body.on('click','li',function(){
-            var key = $(this).data('key');
-            window.location.href = Routing.generate('main_profile_messages_detail',{_locale:locale,key:key});
+            datakey = $(this).data('key');
+            window.location.href = Routing.generate('main_profile_messages_detail',{_locale:locale,key:datakey});
         });
 
         var  detailint = setInterval(function(){
