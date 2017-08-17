@@ -91,15 +91,10 @@ $(function () {
                         else{
                             lastConnect = lastConnect.toLocaleDateString();
                         }
-                        //alert(lastConnect);
-                        var country ="";
-                        for(var k=0; k<countryList.length;k++)
-                        {
-                            if(countryList[k].code.toLowerCase()==user.country.toLowerCase() || countryList[k].value.toLowerCase()==user.country.toLowerCase() )
-                            {
-                                country = countryList[k].value;
-                            }
-                        }
+
+                        var city = user.city;
+                        var  country = user.country;
+                        var final =(city==null || city=="null")? getCountry(countryList,country) :city;
                         var connect =
                             ' <div class="row">'+
                             '<div class="col-1">'+
@@ -108,7 +103,7 @@ $(function () {
                             '<div class="col name text-left"> <strong > '+user.name + '(' + age+'ans)   &nbsp;</strong></div>'+
                             '<div class="col-12 text-left">'+
                              flag+
-                            '<span class="text-muted country">'+country+'</span>'+
+                            '<span class="text-muted country">'+final+'</span>'+
                             '</div>'+
                             '</div>';
 
