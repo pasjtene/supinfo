@@ -61,7 +61,8 @@ var MainUserProfile = function()
         },
         matches:{
             carousel_inner: $("#profile-nav #carousel .carousel-inner"),
-            carousel: $("#profile-nav #carousel")
+            carousel: $("#profile-nav #carousel"),
+            detail : $("#profile-nav #carousel .vip-detail")
         },
         filter:
         {
@@ -364,10 +365,9 @@ $(function(){
                        else {
                            src = baseHost + profilePicture.path;
                        }
-                       var img = '<img class="d-block img-fluid rounded-circle" src="' + src + '" alt="First slide">';
+                       var img = '<img data-toggle="tooltip" data-placement="bottom"   class="d-block img-fluid rounded-circle vip-detail" data-key="'+user.key+'" title="'+user.fullname+'" src="' + src + '" alt="First slide">';
                        //variable de user
                        var today = new Date();
-
                        var currentyear = today.getFullYear();
                        var year = user.birthDate.split('-')[0];
                        var age = currentyear - parseInt(year);
@@ -576,10 +576,65 @@ $(function(){
 
            return false;
        }
+
+       $(".drag-message").click(function () {
+           $('#qnimate').addClass('popup-box-on');
+       });
+       $("#qnimate").draggable();
+       //$("#qnimate").mousedown(handle_mousedown);
+       $("#removeClass").click(function () {
+           $('#qnimate').removeClass('popup-box-on');
+       });
+       function handle_mousedown(e){
+           window.my_dragging = {};
+           my_dragging.pageX0 = e.pageX;
+           my_dragging.pageY0 = e.pageY;
+           my_dragging.elem = this;
+           my_dragging.offset0 = $(this).offset();
+           function handle_dragging(e){
+               var left = my_dragging.offset0.left + (e.pageX - my_dragging.pageX0);
+               var top = my_dragging.offset0.top + (e.pageY - my_dragging.pageY0);
+               $(my_dragging.elem)
+                   .offset({top: top, left: left});
+           }
+           function handle_mouseup(e){
+               $('body')
+                   .off('mousemove', handle_dragging)
+                   .off('mouseup', handle_mouseup);
+           }
+           $('body')
+               .on('mouseup', handle_mouseup)
+               .on('mousemove', handle_dragging);
+       }
+
+
+       //accorder le tooltip et cliquer sur image pour consulter le detail
+       //consulter le detail  sur un profile
+       mainUserProfile.params.matches.carousel.on('click','.vip-detail',function(){
+           window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
+       });
+
+       //setTooltip(mainUserProfile.params.matches.detail);
+       $('[data-toggle="tooltip"]').tooltip();
+
+       function setTooltip(element)
+       {
+           element.tooltip({
+               position: {
+                   my: "center bottom-20",
+                   at: "center top",
+                   using: function( position, feedback ) {
+                       $( this ).css( position );
+                       $( "<div>" )
+                           .addClass( "arrow" )
+                           .addClass( feedback.vertical )
+                           .addClass( feedback.horizontal )
+                           .appendTo( this );
+                   }
+               }
+           });
+       }
    }
-
-
-
 });
 
 
