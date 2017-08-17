@@ -61,7 +61,8 @@ var MainUserProfile = function()
         },
         matches:{
             carousel_inner: $("#profile-nav #carousel .carousel-inner"),
-            carousel: $("#profile-nav #carousel")
+            carousel: $("#profile-nav #carousel"),
+            detail : $("#profile-nav #carousel .vip-detail")
         },
         filter:
         {
@@ -364,10 +365,9 @@ $(function(){
                        else {
                            src = baseHost + profilePicture.path;
                        }
-                       var img = '<img class="d-block img-fluid rounded-circle" src="' + src + '" alt="First slide">';
+                       var img = '<img data-toggle="tooltip" data-placement="bottom"   class="d-block img-fluid rounded-circle vip-detail" data-key="'+user.key+'" title="'+user.fullname+'" src="' + src + '" alt="First slide">';
                        //variable de user
                        var today = new Date();
-
                        var currentyear = today.getFullYear();
                        var year = user.birthDate.split('-')[0];
                        var age = currentyear - parseInt(year);
@@ -606,10 +606,35 @@ $(function(){
                .on('mouseup', handle_mouseup)
                .on('mousemove', handle_dragging);
        }
+
+
+       //accorder le tooltip et cliquer sur image pour consulter le detail
+       //consulter le detail  sur un profile
+       mainUserProfile.params.matches.carousel.on('click','.vip-detail',function(){
+           window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
+       });
+
+       //setTooltip(mainUserProfile.params.matches.detail);
+       $('[data-toggle="tooltip"]').tooltip();
+
+       function setTooltip(element)
+       {
+           element.tooltip({
+               position: {
+                   my: "center bottom-20",
+                   at: "center top",
+                   using: function( position, feedback ) {
+                       $( this ).css( position );
+                       $( "<div>" )
+                           .addClass( "arrow" )
+                           .addClass( feedback.vertical )
+                           .addClass( feedback.horizontal )
+                           .appendTo( this );
+                   }
+               }
+           });
+       }
    }
-
-
-
 });
 
 
