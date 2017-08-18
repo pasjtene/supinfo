@@ -333,7 +333,7 @@ $(function(){
         mainDetailProfile.params.btn.LinkSaveAbout.click(function(e){
             mainProfile_detail.params.bg_action.fadeIn();
             var data = {id:currentUser.id,
-                numberOfChill:mainDetailProfile.params.form.numberOfChill.val(),
+                numberOfChill: parseInt(mainDetailProfile.params.form.numberOfChill.val()),
                 bio:mainDetailProfile.params.form.bio.val(),
                 meetLike:mainDetailProfile.params.form.meetLike.val(),
                 maritalStatus:mainDetailProfile.params.form.maritalStatus.val()
@@ -694,9 +694,9 @@ $(function(){
                 var maritalStatus;
                 element.meetLike.html(profile.meetLike);
 
-                switch (profile.maritalStatus){
+               /* switch (profile.maritalStatus){
                     case "EC":
-                        maritalStatus = "En couple"; break;
+                        maritalStatus = "{% trans from 'photo' %} sub.tabs.myProfilDetail.enCouple {% endtrans %}"; break;
                     case "M":
                         maritalStatus = "Marié(e)"; break;
                     case "D":
@@ -705,8 +705,8 @@ $(function(){
                         maritalStatus = "Veuf(ve)"; break;
                     case "C":
                         maritalStatus = "Célibataire"; break;
-                }
-                element.maritalStatus.html(maritalStatus);
+                }*/
+                element.maritalStatus.html(profile.maritalStatus);
                 mainDetailProfile.params.form.bio.val(profile.aboutMe);
                 mainDetailProfile.params.form.numberOfChill.val(profile.childNumber);
                 mainDetailProfile.params.form.maritalStatus.val(profile.maritalStatus);
@@ -754,7 +754,7 @@ $(function(){
 
                     ch += '<li class="list-group-item">' +
                         '<span class=""><a data-school="'+school[i].id+'" class=" deleteschool fa fa-2x fa-close   " href="#"></a>&nbsp; &nbsp;'+
-                        ''+school[i].name+'&nbsp; &nbsp; '+school[i].location+'&nbsp; &nbsp; '+ getLevelByname(school[i].highLevel) +'&nbsp; &nbsp; '+ school[i].year+'</span> ' +
+                        ''+school[i].name+'&nbsp; &nbsp; '+school[i].location+'&nbsp; &nbsp; '+ school[i].highLevel +'&nbsp; &nbsp; '+ school[i].year+'</span> ' +
                         '</li>'
                 }
             }
@@ -767,18 +767,7 @@ $(function(){
             });
         }
 
-        function getLevelByname(name){
-            var res;
-            switch (name){
-                case "1":
-                    res = "Primary school"; break;
-                case "2":
-                    res = "High school"; break;
-                case "3":
-                    res = "University"; break;
-            }
-            return res;
-        }
+
         // fon fait  l'appel  du fichier
         getCompte(currentUser.id);
 

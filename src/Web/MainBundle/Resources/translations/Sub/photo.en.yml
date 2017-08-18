@@ -46,6 +46,15 @@ sub:
       maritalStatus: Marital status
       meetLike: People I would like to meet
       Qualification: Name of ertificate
+      bio: About me
+      enCouple: In a relationship
+      marie : Married
+      celibataire : Single
+      divorce : Divorced
+      veuf : Widower
+      pschool : Primary school
+      hschool : High school
+      University : University
   img:
     profile: Make profile photo
     published: make public
