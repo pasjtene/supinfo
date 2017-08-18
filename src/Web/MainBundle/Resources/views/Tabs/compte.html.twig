@@ -146,7 +146,7 @@
                     </span>
                 </h5>
                 <div class="card-block">
-                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}&nbsp;:&nbsp;</span>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}&nbsp;:&nbsp; <span class="detail_ville_pays"></span></span>
                    <input type="text" id="city" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}" class="form-control">
                     <br>
                     <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.profession {% endtrans %}&nbsp;:&nbsp;</span>
@@ -221,8 +221,9 @@
 
         </div>
 
-        {#SCHOOL++++++++++++++++++#}
 
+
+        {#SCHOOL++++++++++++++++++#}
         <div class="col col-sm-6">
             <div class="card SchoolChange">
                 <h5 class="card-header d-flex flex-row justify-content-between">
@@ -253,11 +254,81 @@
                     <input type="text" id="location" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.location {% endtrans %}" class="form-control">
                     <br>
                     <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}&nbsp;:&nbsp;</span>
-                    <input type="text" id="highlevel" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}" class="form-control">
+                    <select class=" form-control"   type="text" id="highlevel">
+                        <option  value="">{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}</option>
+                        <option  value="1">Primary school</option>
+                        <option  value="2">High school</option>
+                        <option  value="3">University</option>
+                    </select>
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.Qualification {% endtrans %}&nbsp;:&nbsp;</span>
+                    <input type="text" id="Qualification" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.Qualification {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}&nbsp;:&nbsp;</span>
+                    <select class="custom-select form-control" id="yearC">
+                        <option selected value="">{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}</option>
+                        {% for item in 1950..2014 %}
+                            <option value="{{ item }}"> {{ item }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        {#ABOUT++++++++++++++++++#}
+        <div class="col col-sm-6">
+            <div class="card aboutChange">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.about {% endtrans %}</span>
+                    <a class="p-2 openAbout fa fa-2x fa-edit" href="#"></a>
+                </h5>
+                <div class="card-block">
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_numberOfChill"></span> <br>
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_maritalStatus"></span> <br>
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_meetLike"></span> <br>
+                    <span class="Ftexte">Bio</span> <br>
+                    <span class="Stexte detail_profile_bio"></span> <br>
+
+
+                </div>
+            </div>
+            {#====EDIT ABOUT#}
+            <div class="card aboutBlock hide">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.about {% endtrans %}</span>
+                    <span class="p-2">
+                        <a class=" fa fa-2x fa-save  LinkSaveAbout" href="#"></a>
+                        <a class=" fa fa-2x fa-close  LinkCloseAbout" href="#"></a>
+                    </span>
+                </h5>
+                <div class="card-block">
+                    <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}&nbsp;:&nbsp;</span> <br>
+                    <input type="number" id="numberOfChill" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}" class="form-control">
+                    <br>
+                    <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}&nbsp;:&nbsp;</span> <br>
+                    <select class="p-2   form-control"   type="text" id="maritalStatus">
+                        <option  value="">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}</option>
+                        <option  value="EC">En couple</option>
+                        <option  value="M">Marié</option>
+                        <option  value="C">Célibataire</option>
+                        <option  value="D">Divorcé</option>
+                        <option  value="V">Veuf</option>
+                    </select> <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}&nbsp;:&nbsp;</span>
+                    <textarea rows="3" type="text" id="meetLike" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}" class="form-control"></textarea>
+                    <br>
+                    <span>Bio&nbsp;:&nbsp;</span>
+                    <textarea rows="3" type="text" id="bio" placeholder="My bio" class="form-control"></textarea>
 
                 </div>
             </div>
         </div>
+
+
+
     </div>
 
 
