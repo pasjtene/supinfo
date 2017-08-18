@@ -14,7 +14,7 @@ sub:
     myProfilDetail:
       infPersonelles : Personal informations
       editinfPersonelles : Edit personal informations
-      diplome : Certificate
+      diplome : Education and qualifications
       adresse: Addresse
       editadresse: Edit addresse
       sexe: Sexe
@@ -41,6 +41,11 @@ sub:
       schoolname: School name
       location: Location
       highlevel: High level
+      about: About
+      numberOfChill: Number of Children
+      maritalStatus: Marital status
+      meetLike: People I would like to meet
+      Qualification: Name of ertificate
   img:
     profile: Make profile photo
     published: make public

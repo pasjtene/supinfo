@@ -14,7 +14,7 @@ sub:
     myProfilDetail:
       infPersonelles : Informations personelles
       editinfPersonelles : Modifier informations personelles
-      diplome : Diplôme
+      diplome : Education et qualifications
       adresse: Adresse
       editadresse: Modifier l'adresse
       sexe: Sexe
@@ -41,6 +41,11 @@ sub:
       schoolname: Nom de l'etablissament
       location: Lieu
       highlevel: Niveau
+      about: A propos
+      numberOfChill: Nombre d'enfants
+      maritalStatus: Statut matrimonial
+      meetLike: Le genre de personne que j’aimerais rencontrer
+      Qualification : Diplôme obtenu
   img:
     profile: Mettre comme photo de profile
     published: Rendre publique
