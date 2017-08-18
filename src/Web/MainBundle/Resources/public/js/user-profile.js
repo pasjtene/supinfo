@@ -365,7 +365,7 @@ $(function(){
                        else {
                            src = baseHost + profilePicture.path;
                        }
-                       var img = '<img data-toggle="tooltip" data-placement="bottom"   class="d-block img-fluid rounded-circle vip-detail" data-key="'+user.key+'" title="'+user.fullname+'" src="' + src + '" alt="First slide">';
+                       var img = '<img class="d-block img-fluid rounded-circle vip-detail" data-key="'+user.key+'" title="'+user.fullname+'" src="' + src + '" alt="First slide">';
                        //variable de user
                        var today = new Date();
                        var currentyear = today.getFullYear();
@@ -394,6 +394,7 @@ $(function(){
            element.append(body);
            mainUserProfile.params.page.css({'margin-top':"0em"});
            mainUserProfile.params.matches.carousel.fadeIn();
+           setTooltip(".vip-detail");
        }
        //mainUserProfile.params.nav.dropdownMenuMessages_body.fadeIn();
        //afficher les notifications messages
@@ -615,25 +616,31 @@ $(function(){
        });
 
        //setTooltip(mainUserProfile.params.matches.detail);
-       $('[data-toggle="tooltip"]').tooltip();
+       //$('[data-toggle="tooltip"]').tooltip();
 
-       function setTooltip(element)
-       {
-           element.tooltip({
+
+       function setTooltip(element) {
+           //alert(element);
+           //$(element).tooltip("enable");
+           console.log(element);
+           $(element).tooltip({
                position: {
-                   my: "center bottom-20",
-                   at: "center top",
-                   using: function( position, feedback ) {
-                       $( this ).css( position );
-                       $( "<div>" )
-                           .addClass( "arrow" )
-                           .addClass( feedback.vertical )
-                           .addClass( feedback.horizontal )
-                           .appendTo( this );
+                   my: "center bottom-45",
+                   at: "center left",
+                   using: function (position, feedback) {
+                       //alert(this);
+                       $(this).css(position);
+                       $("<div>")
+                           .addClass("arrow")
+                           .addClass(feedback.vertical)
+                           .addClass(feedback.horizontal)
+                           .appendTo(this);
+
                    }
                }
            });
        }
+       
    }
 });
 
