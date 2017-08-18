@@ -5,6 +5,21 @@
 
 #Main-Messages{
 
+  .name-detail:hover{
+    color: $highligt;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  #dropdown-setting{
+    display: none;
+  }
+  .setting{
+     li{
+       cursor: pointer;
+     }
+  }
   .chat_sidebar{
       #custom-search-input {
         background: #e8e6e7 none repeat scroll 0 0;
@@ -195,6 +210,7 @@
     #message_action{
       width: 100%;
       table{
+        width: 100%;
         td{
           text-align: center;
         }
@@ -222,6 +238,14 @@
         .list-group-item{
           border-left: 0;
           border-right:0;
+          label{
+           // width: 100%;
+           /* .ui-icon-background, .ui-state-active .ui-icon-background {
+              display: none;
+              background-color:rgba(0, 0, 0, 0) ;
+            }
+            */
+          }
           table{
             width: 100%;
             tr{
@@ -229,11 +253,13 @@
                 height: 70px;
                 width: 70px;
               }
+              .flag{
+                width: 18px;
+                height: 18px;
+              }
             }
           }
-
         }
-      
         .list-group-item :first-child{
             border-top: 0;
         }

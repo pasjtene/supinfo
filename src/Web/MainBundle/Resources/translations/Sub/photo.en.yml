@@ -6,6 +6,7 @@ sub:
     detail:  My profile
     friend: My friends
     friendc: Friend
+    nofriend: No friend in common
     seedetail: See details
     message: Write message
     remove: Remove to friends list

@@ -66,11 +66,18 @@ var MainSubMessages = function()
             cancel : $("#Main-Messages .message-cancel")
         },
         foward:{
-            body: $('#Message-forward-body')
+            body: $('#modal-foward .modal-body .body')
         },
         body:{
             message_text: $('#Main-Messages #message-text'),
             caretposition: $('#Main-Messages #caretposition')
+        },
+        setting:{
+            profile : $("#Main-Messages .setting .profile"),
+            block : $("#Main-Messages .setting .block"),
+            empty : $("#Main-Messages .setting .empty"),
+            photos : $("#Main-Messages .setting .photos"),
+            btn : $("#Main-Messages #dropdown-setting")
         }
     },
    this.getAll = function(cb,objet,errorMessage)
@@ -216,6 +223,8 @@ $(function () {
             countListMessageUserCurrent = 0,
             countListMessageUserCurrentnew = 0,
             countMessageNotSee = 0,
+            listUsers = null,
+            datakey = null,
             errorMessage = "something is wrong";
 
 
@@ -374,6 +383,7 @@ $(function () {
                         console.log(data);
                         if(data!=null  && data !="null" && data!="undefined" && data.listUsers!="null" && data.listUsers!=null)
                         {
+                            listUsers = data.listUsers;
                             setfriendList(data.listUsers,mainSubMessages.params.member_list.body);
                         }
 
@@ -719,6 +729,17 @@ $(function () {
             });
         }
 
+        //zone settings
+
+        mainSubMessages.params.setting.profile.click(function(e){
+            //alert(Routing.generate('main_profile_detailProfile',{_locale:locale,key:datakey}));
+            //alert(datakey);
+            if(datakey!=null)
+            {
+                window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:datakey});
+            }
+        });
+
         //charger la liste des emoticons
         fillEmotion(listEmoticons(),mainSubMessages.params.chat_area.emoticon_body,path.emoticon);
         var  key = mainSubMessages.params.chat_area.key.val();
@@ -775,10 +796,13 @@ $(function () {
                        }
                     }
 
+
+
                     var conten="";
                    // alert('key :'+key + " userkey="+user.key);
                     if(key.trim()==user.key.trim())
                     {
+                        datakey = user.key;
                         selectUserId = user.id;
                         //alert(key);
                          content =
@@ -788,7 +812,7 @@ $(function () {
                             '</span>' +
                             '<div class="chat-body clearfix">' +
                             '<div class="header_sec">' +
-                            '<strong class="primary-font">'+name+'</strong> <strong class="pull-right">' +
+                            '<strong class="primary-font name-detail" data-key="'+user.key+'" >'+name+'</strong> <strong class="pull-right">' +
                             state+'</strong>' +
                             '</div>' +
                             '<div class="contact_sec">' +
@@ -807,7 +831,7 @@ $(function () {
                             '</span>' +
                             '<div class="chat-body clearfix">' +
                             '<div class="header_sec">' +
-                            '<strong class="primary-font">'+name+'</strong> <strong class="pull-right">' +
+                            '<strong class="primary-font name-detail" data-key="'+user.key+'" >'+name+'</strong> <strong class="pull-right">' +
                             state+'</strong>' +
                             '</div>' +
                             '<div class="contact_sec">' +
@@ -820,6 +844,10 @@ $(function () {
                     element.append(content);
                 }
 
+            }
+            if(datakey!=null)
+            {
+                mainSubMessages.params.setting.btn.fadeIn();
             }
             mainUserProfile_messages.params.nav.dropdownMenuMessages_badge.html(count);
         }
@@ -931,7 +959,7 @@ $(function () {
 
                     var isSender =  messages[i].isSender;
 
-                    if(isSender)
+                    if(isSender && userMessage.sendRemove!=true)
                     {
                         if(userProfile!=null)
                         {
@@ -960,7 +988,7 @@ $(function () {
                             '</li>';
 
                     }
-                    else
+                    else if(!isSender && userMessage.recieverRemove!=true )
                     {
                         if(friendProfile!=null)
                         {
@@ -1036,8 +1064,8 @@ $(function () {
 
         //lorsqu'on clique sur un user, on charge la conversation
         mainSubMessages.params.member_list.body.on('click','li',function(){
-            var key = $(this).data('key');
-            window.location.href = Routing.generate('main_profile_messages_detail',{_locale:locale,key:key});
+            datakey = $(this).data('key');
+            window.location.href = Routing.generate('main_profile_messages_detail',{_locale:locale,key:datakey});
         });
 
         var  detailint = setInterval(function(){
@@ -1151,7 +1179,7 @@ $(function () {
             if(list!='')
             {
                 mainUserProfile_messages.params.bg_action.fadeIn();
-                var data = { id: list};
+                var data = { id: list,idUser:currentUser.id};
                 deleteMessage(data,errorMessage);
             }
         });
@@ -1165,7 +1193,7 @@ $(function () {
             if(list!='')
             {
                 var data = { id: list};
-                var content=mainSubMessages.params.foward.body.html();
+                setFowardList(listUsers,mainSubMessages.params.foward.body);
             }
 
         });
@@ -1266,6 +1294,122 @@ $(function () {
             badge.html(length);
         }
 
+
+       function setFowardList(list,element)
+        {
+            element.empty();
+            for(var i=0; i<list.length; i++)
+            {
+                var photoApplicant = list[i].photoApplicant,
+                    photoReciever = list[i].photoReciever,
+                    count = list[i].count>0? list[i].count:'',
+                    request = list[i].request,
+                    user = null;
+                //alert();
+                var src = null;
+                if(request.receiver.id==currentUser.id)
+                {
+                    user = request.applicant;
+                    if (( photoApplicant==null || photoApplicant=='null' || photoApplicant.hashname == null || photoApplicant.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoApplicant.path;
+                    }
+                }
+                else
+                {
+                    user =  request.receiver;
+                    if (( photoReciever==null || photoReciever=='null' || photoReciever.hashname == null || photoReciever.hashname == 'null')) {
+                        src = path.emptyImage;
+                    }
+                    else {
+                        src = baseHost + photoReciever.path;
+                    }
+                }
+                // alert(user.id + "  current : " + currentUser.id);
+                if(user.id !=currentUser.id && user.type!="System") {
+
+                   /*var  message  = list[i].userMessage.message;
+                   var sendDate =null;
+                   var today =new Date();
+                   var  createDate =new Date(message.createDate);
+                    if(today.toLocaleDateString()==createDate.toLocaleDateString())
+                    {
+                        sendDate = createDate.toLocaleTimeString()
+                    }
+                    else
+                    {
+                        sendDate = createDate.toLocaleDateString();
+                        sendDate = sendDate.replace("/","-");
+                        sendDate = sendDate.replace("/","-");
+                        sendDate+= " "+createDate.toLocaleTimeString();
+                    }
+                    */
+                    var today = new Date();
+                    var currentyear = today.getFullYear();
+                    var year  = user.birthDate.split('-')[0];
+                    var age = currentyear -parseInt(year);
+                    age = age<10 ? '(0'+age+'ans)' : '('+ age+'ans)';
+                    var name = user.fullname;
+                    var city = user.city;
+                    var joinReason = user.joinReason;
+                    var  country = user.country;
+                    //var messageprop = !like(message.contentTuncate)?'emoticon':message.contentTuncate;
+                    var final =(city==null || city=="null")? getCountry(countryList,country) :city;
+                    var flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                    var profession = user.profession==null || user.profession=="null"?'' : '('+ user.profession +')';
+                    var lastLogin = new Date(user.lastLogin);
+
+                    var state = user.isOnline? "<span class='small connect'>(connected)</span>" : null;
+                    if(state==null)
+                    {
+                        if(lastLogin.toLocaleDateString() == today.toLocaleDateString())
+                        {
+                            state =(toDay-lastLogin)+"ago";
+                        }
+                    }
+
+                    var content=
+                            '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">'+
+                                    '<table class="mb-1">'+
+                                        '<tr>'+
+                                            '<td>'+
+                                                '<label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">'+
+                                                     '<input type="checkbox" class="custom-control-input">'+
+                                                     '<span class="custom-control-indicator"></span>'+
+                                                     '<span class="custom-control-description">'+
+                                                     '</span>'+
+                                                '</label>'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '<img src="'+src+'" alt="" class="rounded-circle img">'+
+                                            '</td>'+
+                                            '<td style="padding-left: 5%">'+
+                                                '<small class="text-muted pull-right">'+state+'</small>'+
+                                                '<strong class="mb-1">'+name+age+'</strong>'+
+                                                '<p>'+flag+final+'</p>'+
+                                                '<small class="text-muted">'+getJoinReason(joinReason)+'</small>'+
+                                            '</td>'+
+                                        '</tr>'+
+                                    '</table>'+
+                                '</a>';
+                    element.append(content);
+                }
+            }
+        }
+
+        function like(str) {
+            var motif = "^.*<img.*$";
+            var  expression = new RegExp(motif,"gi");
+            var test =expression.test(str);
+            if(str=="" || test==false)
+            {
+                return true
+            }
+
+            return false;
+        }
         $("input[type='checkbox']").checkboxradio();
     }
 });

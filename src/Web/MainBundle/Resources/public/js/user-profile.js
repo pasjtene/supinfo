@@ -61,7 +61,8 @@ var MainUserProfile = function()
         },
         matches:{
             carousel_inner: $("#profile-nav #carousel .carousel-inner"),
-            carousel: $("#profile-nav #carousel")
+            carousel: $("#profile-nav #carousel"),
+            detail : $("#profile-nav #carousel .vip-detail")
         },
         filter:
         {
@@ -127,6 +128,9 @@ $(function(){
        });
 
 
+       //variable globales
+        var  countFriend= 0;
+        var  countMessage=0;
 
        // js du  filtre
 
@@ -208,6 +212,7 @@ $(function(){
                //charger les entetes de notifications
                if(response.recievers!=null)
                {
+                   countFriend = response.recievers.length;
                    setFriendsNav(mainUserProfile.params.nav.notification.friends,response.recievers,mainUserProfile.params.nav.dropdownMenuFreinds_badge);
                }
                else{
@@ -220,6 +225,7 @@ $(function(){
                }
                if(response.recieveMessages!=null  && response.recieveMessages !="null" && response.recieveMessages!="undefined")
                {
+                   countMessage = response.recieveMessages.length;
                    setnotificationMessage(mainUserProfile.params.nav.notification.message, response.recieveMessages,mainUserProfile.params.nav.dropdownMenuMessages_badge);
                }
 
@@ -359,10 +365,9 @@ $(function(){
                        else {
                            src = baseHost + profilePicture.path;
                        }
-                       var img = '<img class="d-block img-fluid rounded-circle" src="' + src + '" alt="First slide">';
+                       var img = '<img class="d-block img-fluid rounded-circle vip-detail" data-key="'+user.key+'" title="'+user.fullname+'" src="' + src + '" alt="First slide">';
                        //variable de user
                        var today = new Date();
-
                        var currentyear = today.getFullYear();
                        var year = user.birthDate.split('-')[0];
                        var age = currentyear - parseInt(year);
@@ -389,16 +394,33 @@ $(function(){
            element.append(body);
            mainUserProfile.params.page.css({'margin-top':"0em"});
            mainUserProfile.params.matches.carousel.fadeIn();
+           setTooltip(".vip-detail");
        }
        //mainUserProfile.params.nav.dropdownMenuMessages_body.fadeIn();
        //afficher les notifications messages
        mainUserProfile.params.nav.dropdownMenuMessages.on('click', function () {
-           mainUserProfile.params.nav.dropdownMenuMessages_body.fadeIn();
+           if(countMessage>0)
+           {
+               mainUserProfile.params.nav.dropdownMenuMessages_body.fadeIn();
+           }
+           else
+           {
+               var href = $(this).data('href');
+               window.location.href = href;
+           }
        });
 
        //afficher les notifications users
        mainUserProfile.params.nav.dropdownMenuFreinds.on('click', function () {
-           mainUserProfile.params.nav.dropdownMenuFreinds_body.fadeIn();
+           if(countFriend>0)
+           {
+               mainUserProfile.params.nav.dropdownMenuFreinds_body.fadeIn();
+           }
+           else
+           {
+               var href = $(this).data('href');
+               window.location.href = href;
+           }
        });
 
        //cacher les boites de notification
@@ -555,10 +577,71 @@ $(function(){
 
            return false;
        }
+
+       $(".drag-message").click(function () {
+           $('#qnimate').addClass('popup-box-on');
+       });
+       $("#qnimate").draggable();
+       //$("#qnimate").mousedown(handle_mousedown);
+       $("#removeClass").click(function () {
+           $('#qnimate').removeClass('popup-box-on');
+       });
+       function handle_mousedown(e){
+           window.my_dragging = {};
+           my_dragging.pageX0 = e.pageX;
+           my_dragging.pageY0 = e.pageY;
+           my_dragging.elem = this;
+           my_dragging.offset0 = $(this).offset();
+           function handle_dragging(e){
+               var left = my_dragging.offset0.left + (e.pageX - my_dragging.pageX0);
+               var top = my_dragging.offset0.top + (e.pageY - my_dragging.pageY0);
+               $(my_dragging.elem)
+                   .offset({top: top, left: left});
+           }
+           function handle_mouseup(e){
+               $('body')
+                   .off('mousemove', handle_dragging)
+                   .off('mouseup', handle_mouseup);
+           }
+           $('body')
+               .on('mouseup', handle_mouseup)
+               .on('mousemove', handle_dragging);
+       }
+
+
+       //accorder le tooltip et cliquer sur image pour consulter le detail
+       //consulter le detail  sur un profile
+       mainUserProfile.params.matches.carousel.on('click','.vip-detail',function(){
+           window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
+       });
+
+       //setTooltip(mainUserProfile.params.matches.detail);
+       //$('[data-toggle="tooltip"]').tooltip();
+
+
+       function setTooltip(element) {
+           //alert(element);
+           //$(element).tooltip("enable");
+           console.log(element);
+           $(element).tooltip({
+               position: {
+                   my: "center bottom-45",
+                   at: "center left",
+                   using: function (position, feedback) {
+                       //alert(this);
+                       $(this).css(position);
+                       $("<div>")
+                           .addClass("arrow")
+                           .addClass(feedback.vertical)
+                           .addClass(feedback.horizontal)
+                           .appendTo(this);
+
+                   }
+               }
+           });
+       }
+
    }
-
-
-
 });
 
 

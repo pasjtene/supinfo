@@ -96,7 +96,7 @@ $(function(){
         {
             var appMain = new AppMain();
             var  test= false;
-            test= appMain.function.notValid(user.firstname,3,100);
+            test= appMain.function.notValid(user.firstname,2,100);
             if(test){
 
                 return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();

@@ -11,7 +11,7 @@
 
     </li>
     <li class="nav-item dropdown">
-        <a class="nav-link" href="#"  id="dropdownMenuMessages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link" href="#"  data-href="{{ path('main_profile_messages') }}" id="dropdownMenuMessages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="fa fa-2x fa-comment"></span> <br>
             {% trans from "main-nav" %} messages {% endtrans %} <br>
             <span class="badge badge-danger"></span>
@@ -33,7 +33,7 @@
         </a>
     </li>
     <li class="nav-item dropdown">
-        <a class="nav-link" href="#" id="dropdownMenuFreinds" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link" href="#" data-href="{{ path('main_profile_friends') }}" id="dropdownMenuFreinds" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="fa fa-2x fa-users"></span> <span class="badge badge-danger"></span> <br>
             {% trans from "main-nav" %} friend {% endtrans %}
         </a>

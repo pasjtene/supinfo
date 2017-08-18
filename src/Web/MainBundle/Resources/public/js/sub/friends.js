@@ -188,6 +188,11 @@ $(function(){
             window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
         });
 
+        //consulter le detail  sur un profile
+        mainSubFriends.params.page.on('click','.name-detail',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
+        });
+
         // demander l'amitier
         mainSubFriends.params.friend.body.on('click',".add",function(e){
             e.preventDefault();
@@ -295,7 +300,7 @@ $(function(){
                                 '</div>'+
                                 '<div class="col-md-9 px-3 content" >'+
                                     '<div class="card-block px-3">'+
-                                         '<h4 class="card-title">'+friends.fullname+age+' </h4>'+
+                                         '<h4 class="card-title name-detail" data-key="'+friends.key+'" >'+friends.fullname+age+' </h4>'+
                                          '<p class="card-text text-muted message-text" >'+request.message+'</p>'+
                                          '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                                          '<a href="#" data-id="'+request.id+'" class="btn btn-sm btn-primary confirm" data-preloader="'+datapreloader+'">'+confirm+'</a>'+
@@ -376,7 +381,7 @@ $(function(){
                     '</div>'+
                     '<div class="col-md-9 px-3 content" >'+
                     '<div class="card-block px-3">'+
-                    '<h4 class="card-title">'+friends.fullname+age+' </h4>'+
+                    '<h4 class="card-title name-detail" data-key="'+friends.key+'" >'+friends.fullname+age+' </h4>'+
                     '<p class="card-text text-muted message-text" >'+request.message+'</p>'+
                     '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                     '<a href="#" data-id="'+request.id+'" class="btn btn-sm btn-primary delete" data-preloader="'+datapreloader+'">'+deletesmessages+'</a>'+
@@ -709,7 +714,7 @@ $(function(){
                     '<img src="'+src+'" alt="">' +
                     '</div>' +
                     '<div class="col-4">' +
-                    '<strong>'+ applicant.lastNameOrFirstname +'</strong><br>' +
+                    '<strong class="name-detail" data-key="'+applicant.key+'" >'+ applicant.lastNameOrFirstname +'</strong><br>' +
                     '<span class="text-grey small">'+message+'</span> <br>' +
                     '<span class="text-grey small">'+flagApplicant+getCountry(countryList,applicant.country)+'</span>' +
                     '</div>' +
@@ -781,7 +786,7 @@ $(function(){
                             '</div>'+
                             '<div class="col-md-9 px-3 content">'+
                                 '<div class="card-block px-3">'+
-                                '<h4 class="card-title">'+ user.fullname + age + '</h4>'+
+                                '<h4 class="card-title name-detail" data-key="'+user.key+'" >'+ user.fullname + age + '</h4>'+
                                 '<p class="card-text text-muted message-text">'+getJoinReason(user.joinReason)+'</p>'+
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                                 '<p class="card-text text-grey small"> commun friend </p>'+

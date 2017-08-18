@@ -125,6 +125,15 @@ $(function () {
 
 
 
+        //consulter le detail  sur un profile
+        mainSubDetailProfile.params.body.friendjoint.body.on('click','.name-detail',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
+        });
+
+        //consulter le detail  sur un profile
+        mainSubDetailProfile.params.body.friendalone.body.on('click','.name-detail',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
+        });
 
 
         //appel de la fonction pour charger les informations
@@ -140,6 +149,63 @@ $(function () {
                 }
             });
         });
+
+
+
+        //demander l'amitier
+        mainSubDetailProfile.params.body.friendalone.body.on('click','.friendship',function(){
+            trans = Translator.trans('sub.message',{},"default");
+            var reciever = $(this).data('key');
+            bootbox.prompt(trans,function(result){
+                if(result){
+                    addFriend(currentUser.id,reciever,result, mainUserProfile_detail_profile.params.bg_action);
+                }
+            });
+        });
+
+
+
+
+
+        function addFriend(applicantId,receiverEmail,message,preloader)
+        {
+            preloader.fadeIn();
+            datas = {
+                applicantId: applicantId,
+                receiverEmail: receiverEmail,
+                page : 'listFriend',
+                message: message
+            };
+            $.ajax({
+                url: mainSubDetailProfile.params.api.ask.url,
+                type:  mainSubDetailProfile.params.api.ask.method,
+                data:  datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                dataType:  mainSubDetailProfile.params.api.ask.type,
+                success: function(response){
+                    trans = Translator.trans('sub.success.ask',{},"default");
+                    bootbox.alert(trans,function(){});
+                    window.location.reload();
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    trans = Translator.trans('sub.invitation.error',{},"friends");
+                    bootbox.alert(trans,function(){});
+                },
+                complete:function(){
+                    preloader.fadeOut();
+                }
+
+            });
+        }
+
+
+
+
+
+
+
 
         function fill(id,email){
             var datas ={
@@ -358,10 +424,10 @@ $(function () {
                     '<div class="name">'+
                     '<div class="rounded-circle"> </div>'+
                     '<span class="state text-grey">'+connect+'</span>'+
-                    '<p><strong>'+name+'</strong></p>'+
+                    '<p><strong class="name-detail" data-key="'+friends.key+'">'+name+'</strong></p>'+
                     '</div>'+
                     '<p class="country">'+flag+final+'</p>'+
-                    '<button  class="bg-primary btn friendship"><span class="fa fa-user-plus"></span> '+ ask+'</button>'+
+                    '<button  class="bg-primary btn friendship" data-key="'+friends.key+'" ><span class="fa fa-user-plus"></span> '+ ask+'</button>'+
                     '</div>'+
                     '</div>'+
                     '</div>';
@@ -432,7 +498,7 @@ $(function () {
                     '<div class="name">'+
                     '<div class="rounded-circle"> </div>'+
                     '<span class="state text-grey">'+connect+'</span>'+
-                    '<p><strong>'+name+'</strong></p>'+
+                    '<p><strong class="name-detail" data-key="'+friends.key+'" >'+name+'</strong></p>'+
                     '</div>'+
                     '<p class="country">'+flag+final+'</p>'+
                     '<p class="start-frein">'+trans+' 05/11/12</p>'+
