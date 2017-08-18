@@ -256,9 +256,9 @@
                     <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}&nbsp;:&nbsp;</span>
                     <select class=" form-control"   type="text" id="highlevel">
                         <option  value="">{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}</option>
-                        <option  value="1">Primary school</option>
-                        <option  value="2">High school</option>
-                        <option  value="3">University</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.pschool {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.pschool {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.hschool {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.hschool {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.University {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.University {% endtrans %}</option>
                     </select>
                     <br>
                     <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.Qualification {% endtrans %}&nbsp;:&nbsp;</span>
@@ -267,7 +267,7 @@
                     <span>{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}&nbsp;:&nbsp;</span>
                     <select class="custom-select form-control" id="yearC">
                         <option selected value="">{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}</option>
-                        {% for item in 1950..2014 %}
+                        {% for item in 1980..2017 %}
                             <option value="{{ item }}"> {{ item }}</option>
                         {% endfor %}
                     </select>
@@ -306,29 +306,26 @@
                 </h5>
                 <div class="card-block">
                     <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}&nbsp;:&nbsp;</span> <br>
-                    <input type="number" id="numberOfChill" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}" class="form-control">
+                    <input type="text" maxlength="2" id="numberOfChill" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}" class="form-control">
                     <br>
                     <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}&nbsp;:&nbsp;</span> <br>
                     <select class="p-2   form-control"   type="text" id="maritalStatus">
                         <option  value="">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}</option>
-                        <option  value="EC">En couple</option>
-                        <option  value="M">Marié</option>
-                        <option  value="C">Célibataire</option>
-                        <option  value="D">Divorcé</option>
-                        <option  value="V">Veuf</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.enCouple {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.enCouple {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.marie {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.marie {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.celibataire {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.celibataire {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.divorce {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.divorce {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.veuf {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.veuf {% endtrans %}</option>
                     </select> <br>
                     <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}&nbsp;:&nbsp;</span>
                     <textarea rows="3" type="text" id="meetLike" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}" class="form-control"></textarea>
                     <br>
-                    <span>Bio&nbsp;:&nbsp;</span>
-                    <textarea rows="3" type="text" id="bio" placeholder="My bio" class="form-control"></textarea>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.bio {% endtrans %}&nbsp;:&nbsp;</span>
+                    <textarea rows="3" type="text" id="bio" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.bio {% endtrans %}" class="form-control"></textarea>
 
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
 

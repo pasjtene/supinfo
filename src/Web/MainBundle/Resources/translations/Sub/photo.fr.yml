@@ -46,6 +46,15 @@ sub:
       maritalStatus: Statut matrimonial
       meetLike: Le genre de personne que j’aimerais rencontrer
       Qualification : Diplôme obtenu
+      bio : A propos de moi
+      enCouple : A propos de moi
+      marie : Marié(e)
+      celibataire : Célibataire
+      divorce : Divorcé(e)
+      veuf : Veuf(ve)
+      pschool : Primaire
+      hschool : Secondaire
+      University : Université
   img:
     profile: Mettre comme photo de profile
     published: Rendre publique
