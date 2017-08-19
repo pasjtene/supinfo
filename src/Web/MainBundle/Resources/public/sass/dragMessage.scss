@@ -74,18 +74,18 @@
       border-radius: 25px;
       color: #ff6701;
       font-size: 17px;
-      height: 33px;
-      line-height: 30px;
-      width: 33px;
+      height: 21px;
+      line-height: 19px;
+      width: 21px;
     }
     .bg_none:hover i {
       border: 1px solid #000;
       border-radius: 25px;
-      color: #000;
+      /*color: #000;
       font-size: 17px;
       height: 33px;
       line-height: 30px;
-      width: 33px;
+      width: 33px;*/
     }
     .bg_none {
       background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
@@ -103,39 +103,35 @@
     }
     .popup-messages-footer > #status_message {
       margin: 7px;
-      margin-top: 0.3em;
-      min-height: 50px;
+      margin-top: 2px;
+      min-height: 44px;
       padding: 5px;
       /*border-bottom: solid 1px $test-grey;*/
       border: solid 1px $test-grey;
       background-color: white;
-      border-radius: 3px;
+      border-radius: 2px;
       overflow-y: auto;
       overflow-x: hidden;
       width: 95% !important;
     }
+    /*
     .popup-messages-footer > #status_message:hover {
-      margin: 7px;
-      margin-top: 0.3em;
-      min-height: 50px;
-      padding: 5px;
-      /*border-bottom: solid 1px $test-grey;*/
       border: solid 1px #0084bf;
-      background-color: white;
-      border-radius: 3px;
-      overflow-y: auto;
-      overflow-x: hidden;
-      width: 95% !important;
-    }
+    }*/
     .popup-messages-footer {
       background: #fff none repeat scroll 0 0;
       bottom: 0;
       position: absolute;
       width: 100%;
+
+    }
+
+    .popup-messages-footer:hover {
+      border-top: solid 2px #0084bf;
     }
     .popup-messages-footer .btn-footer {
       overflow: hidden;
-      padding: 2px 5px 10px 6px;
+      padding: 1px 5px 1px 6px;
       width: 100%;
     }
     .simple_round {
