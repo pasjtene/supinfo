@@ -5,11 +5,12 @@ namespace Web\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Web\AppBundle\Controller\TokenAuthenticatedController;
 
 /**
  * @Route("/footer")
  */
-class FooterController extends Controller
+class FooterController extends Controller implements TokenAuthenticatedController
 {
     /**
      * @Route("/", name="main_footer"))
