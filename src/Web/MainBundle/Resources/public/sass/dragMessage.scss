@@ -80,12 +80,16 @@
       border-radius: 50%;
       width: 44px;
     }
-    .popup-messages-footer > textarea {
-      border-bottom: 1px solid #b2b2b2 !important;
-      height: 34px !important;
+    .popup-messages-footer > #status_message {
       margin: 7px;
-      padding: 5px !important;
-      border: medium none;
+      margin-top: 1em;
+      min-height: 30px;
+      padding: 5px;
+      border-bottom: solid 1px $test-grey;
+      background-color: white;
+      border-radius: 6px;
+      overflow-y: auto;
+      overflow-x: hidden;
       width: 95% !important;
     }
     .popup-messages-footer {
