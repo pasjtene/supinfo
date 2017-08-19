@@ -4,7 +4,7 @@ sub:
     list:    Mes photos
     profile: Profile List
     detail: Mon profile
-     nofriend: Aucun ami  en commun
+    nofriend: Aucun ami  en commun
     friend: Mes amis
     friendc: Amis
     seedetail: Consulter le détail
