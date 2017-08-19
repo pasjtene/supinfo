@@ -20,7 +20,7 @@ form:
     content: Wait a few moment
     success: Registration successfull
   body:
-    name: Last name
+    name: Name
     birthday: Birthday
     gender: Gender
     reason: I am  here to
@@ -30,7 +30,7 @@ form:
     profession: Profession
     btnsignup: SignUp
     country: Country
-    lastname: Name
+    lastname: Last name
     reasonList:
       1: Make new friend
       2: Chat
@@ -43,7 +43,7 @@ form:
       month: Month
       year: Year
   placeholder:
-    name: Your last  name
+    name: Your name
     birthday: Your birthday
     gender: Your gender
     reason: choose your reason
@@ -52,13 +52,14 @@ form:
     confirmpassword: Confirm your password
     profession: Give your profession
     country:  Choose your County
-    lastname: Your first  name
+    lastname: Your last  name
     birthdayOption:
       day: Choose the day
       month: Choose the month
       year: Choose the year
   required:
-    name: the name is required (min  3 charaters)
+    name: the name is required (min  2 charaters)
+    lastname: the last name is required (min  2 charaters)
     birthdayOption:
       day: the day is required
       month: the month is required

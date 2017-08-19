@@ -36,6 +36,7 @@ var MainRegister = function()
         },
         required:{
             name : $("#block-name"),
+            lastname : $("#block-lastname"),
             email : $("#block-email"),
             birthday : $("#block-birthday"),
             gender : $("#block-gender"),
@@ -98,9 +99,23 @@ $(function(){
             var  test= false;
             test= appMain.function.notValid(user.firstname,2,100);
             if(test){
-
                 return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
             }
+            test=notValidName(user.firstname);
+            if(test){
+                return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(user.lastname,2,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.lastname.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test=notValidName(user.lastname);
+            if(test){
+                return  $("#"+mainRegister.params.required.lastname.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
 
             test= notValidMail(user.email);
             if(test){
@@ -365,7 +380,7 @@ $(function(){
         var appMain = new AppMain();
         //validation du  formualire au touche
 
-        // 1- validation du champs name
+        // 1-a) validation du champs name
         // mainRegister.params.form.name.focus(function(){
         //   appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         //});
@@ -376,10 +391,23 @@ $(function(){
             }else{
                 mainRegister.params.form.name.tooltip('disable');
             }
-
-
-            appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,2,100);
+            validFormat(false,mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,2,100);
         });
+
+        // 1-b) validation du champ lastname
+        // mainRegister.params.form.name.focus(function(){
+        //   appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
+        //});
+        mainRegister.params.form.lastname.change(function(){
+            if (notValidName(mainRegister.params.form.lastname.val())){
+                enableTolltip(mainRegister.params.form.lastname);
+                mainRegister.params.form.lastname.tooltip("enable");
+            }else{
+                mainRegister.params.form.lastname.tooltip('disable');
+            }
+            validFormat(false,mainRegister.params.required.lastname,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.lastname,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.lastname,appMain.params.required.form_control_feedback,2,100);
+        });
+
         //mainRegister.params.form.name.mouseleave(function(){
         //  appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         //});
@@ -405,7 +433,7 @@ $(function(){
             }else{
                 mainRegister.params.form.email.tooltip('disable');
             }
-            emailFormat(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+            validFormat(true,mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
         });
 
         // 3- validation du champs county
@@ -509,9 +537,18 @@ $(function(){
         }
 
 
-        function emailFormat(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError)
+        function validFormat(isemail, fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError)
         {
-            if (notValidMail(childElement.val())) {
+            var test = false;
+            if(isemail)
+            {
+                test = notValidMail(childElement.val());
+            }
+            else
+            {
+               test = notValidName(childElement.val())
+            }
+            if (test) {
                 //supprimer la classe success si  elle exite dans le parent
                 appMain.function.removeclass(fatherElement,fatherSuccess);
 
@@ -546,10 +583,13 @@ $(function(){
             }
         }
 
+
+
+
         function notValidMail(email) {
-            var motif = "^([ ]{0,}?)([a-zA-Z]([0-9]*)?[._-]?){2,}[@]([a-zA-Z]([0-9]*)?[._-]?){2,}[.][a-z]{2,4}$"
+            var motif = "^([ ]{0,}?)([a-zA-Z]([0-9]*)?[._-]?){2,}[@]([a-zA-Z]([0-9]*)?[._-]?){2,}[.][a-z]{2,4}$";
             var  expression = new RegExp(motif,"gi");
-            var test =expression.test(email)
+            var test =expression.test(email);
             if (email=="" || test==false)
             {
                 return true
@@ -558,11 +598,13 @@ $(function(){
             return false;
         }
 
-
-
         function notValidName(name) {
 
-            if (name=="" || name.length < 2 || name.length > 100)
+            name =name.trim();
+            var motif = "^([ ]*)(([a-zA-Z]+)([-]?)([a-zA-Z0-9]+)([ ]*)([a-zA-Z0-9]*))+$";
+            var  expression = new RegExp(motif,"gi");
+            var test =expression.test(name);
+            if (name=="" || test==false)
             {
                 return true
             }
