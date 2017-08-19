@@ -114,10 +114,10 @@
       overflow-x: hidden;
       width: 95% !important;
     }
-    /*
+   
     .popup-messages-footer > #status_message:hover {
       border: solid 1px #0084bf;
-    }*/
+    }
     .popup-messages-footer {
       background: #fff none repeat scroll 0 0;
       bottom: 0;
@@ -126,9 +126,11 @@
 
     }
 
+    /*
     .popup-messages-footer:hover {
       border-top: solid 2px #0084bf;
     }
+    */
     .popup-messages-footer .btn-footer {
       overflow: hidden;
       padding: 1px 5px 1px 6px;
