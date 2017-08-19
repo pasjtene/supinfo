@@ -5,6 +5,7 @@ namespace Web\MainBundle\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
+use Web\AppBundle\Controller\TokenAuthenticatedController;
 use Web\AppBundle\Entity\User;
 use Web\AppBundle\Tools\FunglobeUserProvider;
 use Web\AppBundle\Tools\FunglobeUtils;
@@ -16,7 +17,7 @@ use Web\AppBundle\Tools\RestClient;
 /**
  * @Route("/friends")
  */
-class FriendsController extends Controller
+class FriendsController extends Controller implements TokenAuthenticatedController
 {
     /**
      * @Route("/accept", name="main_friends_accept", options={"expose"=true})
