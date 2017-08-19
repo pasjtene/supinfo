@@ -30,7 +30,7 @@ form:
     profession: Profession
     btnsignup: SignUp
     country: Country
-    lastname: Last name
+    lastname: first name
     reasonList:
       1: Make new friend
       2: Chat
@@ -52,14 +52,16 @@ form:
     confirmpassword: Confirm your password
     profession: Give your profession
     country:  Choose your County
-    lastname: Your last  name
+    lastname: Your first  name
     birthdayOption:
       day: Choose the day
       month: Choose the month
       year: Choose the year
   required:
     name: the name is required (min  2 charaters)
-    lastname: the last name is required (min  2 charaters)
+    name_tooltip: the name is required
+    lastname_tooltip: the first name is required
+    lastname: the first name is required (min  2 charaters)
     birthdayOption:
       day: the day is required
       month: the month is required
@@ -75,7 +77,7 @@ form:
     notification: Is required
     error: Oh error !
   help:
-    lastname: The poeples like your last name
+    lastname: The poeples like your first name
     emailConfirm:
       title:  <strong> Funglobe </strong>( réseau social pour s'amuser et rencontrer de nouveaux amis)
       objet: Confirme ton adresse email

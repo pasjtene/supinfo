@@ -59,7 +59,9 @@ form:
       year: Choisir l'année
   required:
     name: Le nom  est  requis (min  2 caractères)
-    name: Le prénom ou surnom est  requis (min  2 caractères)
+    name_tooltip: Le nom est obligatoire
+    lastname: Le prénom ou surnom est  requis (min  2 caractères)
+    lastname_tooltip: Le prénom ou surnom est obligatoire
     birthdayOption:
       day: Le jour est  obligatoire
       month: Le mois est obligatoire
