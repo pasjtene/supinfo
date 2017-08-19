@@ -7,5 +7,5 @@ services:
         class: Web\AppBundle\Security\FormAuthenticator
         arguments: ["@router"]
     logout_listener:
-            class: Web\AppBundle\EventListener\LogoutHandler
-            arguments: ['@doctrine.orm.entity_manager']
+        class: Web\AppBundle\EventListener\LogoutHandler
+        arguments: ['@doctrine.orm.entity_manager']
