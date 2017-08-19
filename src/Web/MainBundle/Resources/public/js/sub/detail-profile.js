@@ -227,6 +227,7 @@ $(function () {
                         // set de la premiere partir concernant les info du  user
                         if(response.user!=null)
                         {
+                            selectUserId = response.user.id;
                             setdefault(response.user, mainSubDetailProfile.params.body,response.profile==null? null :baseHost+response.profile.path,mainUserProfile_detail_profile.params.imprtant.important_block_img.data('help'));
                             setcontent(response.user, mainSubDetailProfile.params.body.content, response.listFriends==null? 0: response.listFriends.length,response.listAloneFriends==null ?0 :response.listAloneFriends.length);
                             setabout(response.user, mainSubDetailProfile.params.body.about);
