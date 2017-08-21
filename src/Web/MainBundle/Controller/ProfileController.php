@@ -5,12 +5,13 @@ namespace Web\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Web\AppBundle\Controller\TokenAuthenticatedController;
 use Web\AppBundle\Tools\FunglobeUtils;
 
 /**
  * @Route("/profile")
  */
-class ProfileController extends Controller
+class ProfileController extends Controller implements TokenAuthenticatedController
 {
     /**
      * @Route("/", name="main_profile", options={"expose"=true})

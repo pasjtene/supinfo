@@ -135,7 +135,6 @@ $(function () {
             mainSubPhotos.params.active_tab.attr('value',currentlink);
         });
 
-
         //consulter le detail  sur un profile
         mainSubPhotos.params.tabs.friend.body.on('click','.detail',function(){
             window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});

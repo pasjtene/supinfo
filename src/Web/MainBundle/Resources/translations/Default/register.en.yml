@@ -20,7 +20,7 @@ form:
     content: Wait a few moment
     success: Registration successfull
   body:
-    name: Last name
+    name: Name
     birthday: Birthday
     gender: Gender
     reason: I am  here to
@@ -30,7 +30,7 @@ form:
     profession: Profession
     btnsignup: SignUp
     country: Country
-    lastname: Name
+    lastname: first name
     reasonList:
       1: Make new friend
       2: Chat
@@ -43,7 +43,7 @@ form:
       month: Month
       year: Year
   placeholder:
-    name: Your last  name
+    name: Your name
     birthday: Your birthday
     gender: Your gender
     reason: choose your reason
@@ -58,7 +58,10 @@ form:
       month: Choose the month
       year: Choose the year
   required:
-    name: the name is required (min  3 charaters)
+    name: the name is required (min  2 charaters)
+    name_tooltip: the name is required
+    lastname_tooltip: the first name is required
+    lastname: the first name is required (min  2 charaters)
     birthdayOption:
       day: the day is required
       month: the month is required
@@ -74,7 +77,7 @@ form:
     notification: Is required
     error: Oh error !
   help:
-    lastname: The poeples like your last name
+    lastname: The poeples like your first name
     emailConfirm:
       title:  <strong> Funglobe </strong>( réseau social pour s'amuser et rencontrer de nouveaux amis)
       objet: Confirme ton adresse email

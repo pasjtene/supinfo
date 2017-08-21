@@ -92,6 +92,14 @@ class DefaultController extends Controller
 
         return $this->render('AdminBundle:Default:member-pictures.html.twig', $datas);
     }
+
+    /**
+     * @Route("/home", name="admin_new_home", options={"expose"=true})
+     */
+    public function newHomeAction()
+    {
+        return $this->render('AdminBundle:Default:home.html.twig');
+    }
 }
 
 
