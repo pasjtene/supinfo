@@ -8,6 +8,10 @@ var MainDetailProfile = function()
         sub : $("#Main-Subdetail-detail-User"),
         item: $("#Main-Subdetails-Detail-User"),
         active_tab : $("#Main-Subphotos #active-photo-tab"),
+        var: {
+            schools:null,
+            OldUp:null
+        },
         html: $("html"),
         form: {
             country : $("#Main-Subdetail-detail-User #country"),
@@ -21,6 +25,7 @@ var MainDetailProfile = function()
             email : $("#Main-Subdetail-detail-User #email"),
             userName : $("#Main-Subdetail-detail-User #userName"),
             lastname : $("#Main-Subdetail-detail-User #lastName"),
+            phones : $("#Main-Subdetail-detail-User #phones"),
             cpwd : $("#Main-Subdetail-detail-User #cpwd"),
             npwd : $("#Main-Subdetail-detail-User #npwd"),
             cfpwd : $("#Main-Subdetail-detail-User #cfpwd"),
@@ -33,7 +38,8 @@ var MainDetailProfile = function()
             meetLike : $("#Main-Subdetail-detail-User #meetLike"),
             bio : $("#Main-Subdetail-detail-User #bio"),
             yearC : $("#Main-Subdetail-detail-User #yearC"),
-            Qualification : $("#Main-Subdetail-detail-User #Qualification")
+            Qualification : $("#Main-Subdetail-detail-User #Qualification"),
+            reason : $("#Main-Subdetail-detail-User #reason")
         },
         api:{
             compte:
@@ -96,6 +102,12 @@ var MainDetailProfile = function()
                 method: "get",
                 type: "json"
             },
+            editSchool:
+            {
+                url : baseUrl+"auth/user/compte/editSchool",
+                method: "get",
+                type: "json"
+            },
             about:
             {
                 url : baseUrl+"auth/user/compte/about",
@@ -119,6 +131,7 @@ var MainDetailProfile = function()
             bio : $("#Main-Subdetail-detail-User .detail_profile_bio"),
             maritalStatus : $("#Main-Subdetail-detail-User .detail_profile_maritalStatus"),
             numberOfChill : $("#Main-Subdetail-detail-User .detail_profile_numberOfChill"),
+            reason : $("#Main-Subdetail-detail-User .detail_profile_reason"),
             country_v : $("#Main-Subdetail-detail-User .detail_ville_pays"),
             countryChange : $("#Main-Subdetail-detail-User .countryChange"),
             countryblock : $("#Main-Subdetail-detail-User .countryblock"),
@@ -168,7 +181,8 @@ var MainDetailProfile = function()
             openSchool : $("#Main-Subdetail-detail-User .openSchool"),
             LinkCloseAbout : $("#Main-Subdetail-detail-User .LinkCloseAbout"),
             LinkSaveAbout : $("#Main-Subdetail-detail-User .LinkSaveAbout"),
-            openAbout : $("#Main-Subdetail-detail-User .openAbout")
+            openAbout : $("#Main-Subdetail-detail-User .openAbout"),
+            LinkDelSchool : $("#Main-Subdetail-detail-User .LinkDelSchool")
         }
     };
 
@@ -273,6 +287,7 @@ $(function(){
         });
 
         mainDetailProfile.params.btn.openSchool.click(function(e){
+            //console.log(mainDetailProfile.params.schools);
             toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock,
                 mainDetailProfile.params.detail_profile.SchoolChange);
             e.preventDefault();
@@ -281,6 +296,7 @@ $(function(){
         mainDetailProfile.params.btn.LinkCloseSchool.click(function(e){
             toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock,
                 mainDetailProfile.params.detail_profile.SchoolChange);
+            schoolTrach();
             e.preventDefault();
         });
 
@@ -329,16 +345,17 @@ $(function(){
         });
 
 
-        ////AMODIFIER LE BLOCK ABOUT
+        ////MODIFIER LE BLOCK ABOUT
         mainDetailProfile.params.btn.LinkSaveAbout.click(function(e){
             mainProfile_detail.params.bg_action.fadeIn();
             var data = {id:currentUser.id,
                 numberOfChill: parseInt(mainDetailProfile.params.form.numberOfChill.val()),
                 bio:mainDetailProfile.params.form.bio.val(),
                 meetLike:mainDetailProfile.params.form.meetLike.val(),
+                reason:mainDetailProfile.params.form.reason.val(),
                 maritalStatus:mainDetailProfile.params.form.maritalStatus.val()
             };
-            console.log(data);
+            //console.log(data);
             edit(data, mainDetailProfile.params.api.about,
                 mainDetailProfile.params.detail_profile.aboutBlock, mainDetailProfile.params.detail_profile.aboutChange)
             e.preventDefault();
@@ -353,6 +370,7 @@ $(function(){
                 lastName:mainDetailProfile.params.form.lastname.val(),
                 firstName:mainDetailProfile.params.form.firstName.val(),
                 city:mainDetailProfile.params.form.city.val(),
+                phones:mainDetailProfile.params.form.phones.val(),
                 profession:mainDetailProfile.params.form.profession.val(),
                 day:mainDetailProfile.params.form.day.val(),
                 year:mainDetailProfile.params.form.year.val(),
@@ -393,69 +411,107 @@ $(function(){
         });
 
         ////=====EFFACER LE SCHOOL
-        function deleteSchool(idschool){
+        mainDetailProfile.params.btn.LinkDelSchool.click(function(e){
             mainProfile_detail.params.bg_action.fadeIn();
             var data = {
                 id:parseInt(currentUser.id),
-                idschool:parseInt(idschool)
+                idschool:parseInt(mainDetailProfile.params.var.OldUp)
             };
-            $.ajax({
-                url:  mainDetailProfile.params.api.delSchool.url,
-                type:  mainDetailProfile.params.api.delSchool.method,
-                crossDomain: true,
-                data : data,
-                headers : {"X-Auth-Token" : currentUser.token},
-                contentType: false,
-                dataType:  mainDetailProfile.params.api.delSchool.type,
-                success: function(response){ // en cas de success
+            bootbox.confirm("I you sure you wont to delete ?",function(res){
+                if(res){
+                    $.ajax({
+                        url:  mainDetailProfile.params.api.delSchool.url,
+                         type:  mainDetailProfile.params.api.delSchool.method,
+                         crossDomain: true,
+                         data : data,
+                         headers : {"X-Auth-Token" : currentUser.token},
+                         contentType: false,
+                         dataType:  mainDetailProfile.params.api.delSchool.type,
+                         success: function(response){ // en cas de success
+                         if(response!=null && response!="null")
+                         {
+                             if(response.error != undefined){
+                             bootbox.alert(response.error, function(){});
 
-                    if(response!=null && response!="null")
-                    {
-                        if(response.error != undefined){
-                            bootbox.alert(response.error, function(){});
-                        }
-                        else{
-                            setSchool(mainDetailProfile.params.detail_profile, response.schools);
-                            mainDetailProfile.params.form.schoolname.val("");
-                            mainDetailProfile.params.form.location.val("");
-                            mainDetailProfile.params.form.highlevel.val("");
-                        }
-                    }
-                },
-                error: function (xhr, status, message) { //en cas d'erreur
-                    console.log(status+"\n"+xhr.responseText + '\n' + message );
-                },
-                complete:function(){
+                             }
+                             else{
+                                 setSchool(mainDetailProfile.params.detail_profile, response.schools);
+                             }
+                         }
+                         },
+                         error: function (xhr, status, message) { //en cas d'erreur
+                            console.log(status+"\n"+xhr.responseText + '\n' + message );
+                         },
+                         complete:function(){
+                            mainProfile_detail.params.bg_action.fadeOut();
+                             toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock, mainDetailProfile.params.detail_profile.SchoolChange);
+                         }
+                     });
+                }
+                else{
                     mainProfile_detail.params.bg_action.fadeOut();
                 }
-            });
+
+            })
+
+        });
+
+       /////=====MODIFIE LE SCHOOL
+        function editSchool(id){
+
+            var school = null;
+            var sc = mainDetailProfile.params.var.schools;
+
+            for(var elt = 0; elt < sc.length; elt++){
+                if(sc[elt].id == id )
+                    school = sc[elt];
+            }
+
+            if(school != null)
+            {
+                toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock,mainDetailProfile.params.detail_profile.SchoolChange);
+                mainDetailProfile.params.form.schoolname.val(school.name);
+                mainDetailProfile.params.form.location.val(school.location);
+                mainDetailProfile.params.form.yearC.val(school.year);
+                mainDetailProfile.params.form.Qualification.val(school.qualification);
+                mainDetailProfile.params.form.highlevel.val(school.highLevel);
+                mainDetailProfile.params.var.OldUp = school.id;
+                mainDetailProfile.params.btn.LinkDelSchool.toggleClass('hide');
+            }
         };
 
-       ////=====AJOUTER LE SCHOOL
+       ////=====AJOUTER ET modifierer LE SCHOOL
         mainDetailProfile.params.btn.LinkSaveSchool.click(function(e){
             mainProfile_detail.params.bg_action.fadeIn();
             var data = {id:currentUser.id,
+                        idschool: mainDetailProfile.params.var.OldUp,
                         name:mainDetailProfile.params.form.schoolname.val(),
                         location:mainDetailProfile.params.form.location.val(),
                         year:mainDetailProfile.params.form.yearC.val(),
                         Qualification:mainDetailProfile.params.form.Qualification.val(),
                         level:mainDetailProfile.params.form.highlevel.val()
             };
-            // console.log(data.pays.length);
+             console.log(data);
             if(data.name.length == 0 ||data.location.length == 0 ||data.level.length == 0 ){
                 bootbox.alert("Veuillez veriifier vos champs", function(){});
                 mainProfile_detail.params.bg_action.fadeOut();
             }
             else{
+                var School = null;
+                if(data.idschool == null){
+                    School = mainDetailProfile.params.api.addSchool;
+                }else{
+                    School = mainDetailProfile.params.api.editSchool;
+                }
                 $.ajax({
-                    url:  mainDetailProfile.params.api.addSchool.url,
-                    type:  mainDetailProfile.params.api.addSchool.method,
+                    url:  School.url,
+                    type:  School.method,
                     crossDomain: true,
                     data : data,
                     headers : {"X-Auth-Token" : currentUser.token},
                     contentType: false,
-                    dataType:  mainDetailProfile.params.api.addSchool.type,
-                    success: function(response){ // en cas de success
+                    dataType:  School.type,
+                    success: function(response){
 
                         if(response!=null && response!="null")
                         {
@@ -464,10 +520,6 @@ $(function(){
                             }
                             else{
                                 setSchool(mainDetailProfile.params.detail_profile, response.schools);
-                                mainDetailProfile.params.form.schoolname.val("");
-                                mainDetailProfile.params.form.location.val("");
-                                mainDetailProfile.params.form.highlevel.val("");
-                                mainDetailProfile.params.form.Qualification.val("");
                             }
                         }
                     },
@@ -633,7 +685,16 @@ $(function(){
             mainDetailProfile.params.form.phoneadd.val("");
         }
 
-
+        function schoolTrach(){
+            mainDetailProfile.params.form.schoolname.val("");
+            mainDetailProfile.params.form.location.val("");
+            mainDetailProfile.params.form.highlevel.val("");
+            mainDetailProfile.params.form.Qualification.val("");
+            if(mainDetailProfile.params.var.OldUp != null){
+                mainDetailProfile.params.var.OldUp = null;
+                mainDetailProfile.params.btn.LinkDelSchool.toggleClass('hide');
+            }
+        }
 
         //EFFACER UN NUMERO DE LA LISTE DES NUMEROs
         function deletePhone(phone){
@@ -674,7 +735,7 @@ $(function(){
         }
 
         function setdetailAll(element, val, profile){
-            //console.log(profile);
+            //console.log(val);
             element.name.html(val.fullname);
             element.sex.html(val.gender);
             element.city.html(val.city);
@@ -682,6 +743,8 @@ $(function(){
             element.birthday.html(new Date(val.birthDate).toLocaleDateString());
             element.profession.html(val.profession);
             element.userName.html(val.username);
+            element.reason.html(val.joinReason);
+
             var country = getCountry(countryList,val.country);
             var flag ="<img class='sm-img flag' src='"+path.flags+val.country+".png' alt=''/> ";
             element.country.html(flag + country);
@@ -694,18 +757,6 @@ $(function(){
                 var maritalStatus;
                 element.meetLike.html(profile.meetLike);
 
-               /* switch (profile.maritalStatus){
-                    case "EC":
-                        maritalStatus = "{% trans from 'photo' %} sub.tabs.myProfilDetail.enCouple {% endtrans %}"; break;
-                    case "M":
-                        maritalStatus = "Marié(e)"; break;
-                    case "D":
-                        maritalStatus = "Divorcé(e)"; break;
-                    case "V":
-                        maritalStatus = "Veuf(ve)"; break;
-                    case "C":
-                        maritalStatus = "Célibataire"; break;
-                }*/
                 element.maritalStatus.html(profile.maritalStatus);
                 mainDetailProfile.params.form.bio.val(profile.aboutMe);
                 mainDetailProfile.params.form.numberOfChill.val(profile.childNumber);
@@ -720,6 +771,8 @@ $(function(){
             mainDetailProfile.params.form.firstName.val(val.firstName);
             mainDetailProfile.params.form.lastname.val(val.lastName);
             mainDetailProfile.params.form.city.val(val.city);
+            mainDetailProfile.params.form.reason.val(val.joinReason);
+
             mainDetailProfile.params.form.profession.val(val.profession);
             mainDetailProfile.params.form.gender.val(val.gender);
             var m = new Date(val.birthDate).getMonth();
@@ -729,6 +782,8 @@ $(function(){
             mainDetailProfile.params.form.year.val(new Date(val.birthDate).getFullYear());
 
             if(val.phones != null){
+                element.phones.html(val.phones[0]);
+                mainDetailProfile.params.form.phones.val(val.phones[0]);
                 for(var i = 0; i < val.phones.length; i++){
                     //console.log(chainePhones);
                     chainePhones += "<span class='phonedet '> " +
@@ -737,23 +792,26 @@ $(function(){
                         " </span><br>";
                 }
             }
-            element.phones.html(chainePhones);
+            //AFFICHE TOUS LES PHONES
+            /*element.phones.html(chainePhones);
             mainDetailProfile.params.btn.deletePhone = $("#Main-Subdetail-detail-User .deletephone");
             mainDetailProfile.params.btn.deletePhone.click(function(e){
                 deletePhone($(this).data('phone'));
                 //bootbox.alert("phone" + $(this).data('phone'), function(){});
                 e.preventDefault();
-            });
+            });*/
         }
 
         function setSchool(elt, school){
             var ch = "";
+            schoolTrach();
+            mainDetailProfile.params.var.schools = school;
             //console.log(school);
             if(school != null){
                 for(var i = 0; i < school.length; i++){
 
                     ch += '<li class="list-group-item">' +
-                        '<span class=""><a data-school="'+school[i].id+'" class=" deleteschool fa fa-2x fa-close   " href="#"></a>&nbsp; &nbsp;'+
+                        '<span class=""><a data-school="'+school[i].id+'" class=" deleteschool fa fa-2x fa-edit   " href="#"></a>&nbsp; &nbsp;'+
                         ''+school[i].name+'&nbsp; &nbsp; '+school[i].location+'&nbsp; &nbsp; '+ school[i].highLevel +'&nbsp; &nbsp; '+ school[i].year+'</span> ' +
                         '</li>'
                 }
@@ -761,7 +819,7 @@ $(function(){
             elt.school.html(ch);
             mainDetailProfile.params.btn.deleteschool = $("#Main-Subdetail-detail-User .deleteschool");
             mainDetailProfile.params.btn.deleteschool.click(function(e){
-                deleteSchool($(this).data('school'));
+                editSchool($(this).data('school'));
                 //bootbox.alert("phone" + $(this).data('phone'), function(){});
                 e.preventDefault();
             });
