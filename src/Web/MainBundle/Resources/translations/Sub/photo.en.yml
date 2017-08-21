@@ -24,7 +24,7 @@ sub:
       quartier: Quater
       profession: Profession
       changer: Change
-      phones: Phones
+      phones: Phone
       addPhone: Add
       lastName: Last name
       FirstName: First name
