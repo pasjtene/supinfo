@@ -75,14 +75,6 @@
                               <br>
                               <br>
                              <div class="row">
-                                 <div class=" col-12 col-lg-6">
-                                     <label for="name">{% trans from 'register' %} form.body.name {% endtrans %}*</label>
-                                     <div class="form-group" id="block-name">
-                                         <input type="text" data-toggle="tooltip" data-placement="top" title="{% trans from 'register' %} form.required.name_tooltip {% endtrans %}" class="form-control register-tooltip"  id="name" placeholder="{% trans from 'register' %} form.placeholder.name {% endtrans %}">
-                                         <div class="form-control-feedback">{% trans from 'register' %} form.required.name {% endtrans %}</div>
-                                     </div>
-                                 </div>
-
                                  <div class="col">
                                      <label for="lastname">{% trans from 'register' %} form.body.lastname {% endtrans %}*</label>
                                      <div class="form-group" id="block-lastname">
@@ -92,6 +84,13 @@
                                      </div>
                                  </div>
 
+                                 <div class=" col-12 col-lg-6">
+                                     <label for="name">{% trans from 'register' %} form.body.name {% endtrans %}*</label>
+                                     <div class="form-group" id="block-name">
+                                         <input type="text" data-toggle="tooltip" data-placement="top" title="{% trans from 'register' %} form.required.name_tooltip {% endtrans %}" class="form-control register-tooltip"  id="name" placeholder="{% trans from 'register' %} form.placeholder.name {% endtrans %}">
+                                         <div class="form-control-feedback">{% trans from 'register' %} form.required.name {% endtrans %}</div>
+                                     </div>
+                                 </div>
                              </div>
 
                               <div class="form-group row" id="block-email">
