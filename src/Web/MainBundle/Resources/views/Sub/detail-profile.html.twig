@@ -1,4 +1,4 @@
-<div class="card-block" data-sub="detail-profile" id="Main-Subdetail-profile" data-email="{{ email }}">
+<div class="card-block iswriteMessage" data-write="yes" data-sub="detail-profile" id="Main-Subdetail-profile" data-key="{{ key }}">
     <div id="chargement-detail-profile" class="row">
         <div class="col-12 text-center">
             <img src="{{ asset('dist/loader.gif') }}" alt="">
@@ -12,7 +12,7 @@
             <div class="name full_name"> </div>
             <div class="full_profession text-muted"> </div>
             <br>
-            <button class="bg-success btn"> <span class="fa fa-comment"></span> {% trans from  'detail-profile' %} sub.writeMessage {% endtrans %}</button>
+            <button class="bg-success btn drag-message"> <span class="fa fa-comment"></span> {% trans from  'detail-profile' %} sub.writeMessage {% endtrans %}</button>
             <div class="content">
                 <hr>
                 <div class="row">

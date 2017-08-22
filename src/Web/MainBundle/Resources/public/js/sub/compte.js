@@ -8,6 +8,10 @@ var MainDetailProfile = function()
         sub : $("#Main-Subdetail-detail-User"),
         item: $("#Main-Subdetails-Detail-User"),
         active_tab : $("#Main-Subphotos #active-photo-tab"),
+        var: {
+            schools:null,
+            OldUp:null
+        },
         html: $("html"),
         form: {
             country : $("#Main-Subdetail-detail-User #country"),
@@ -21,10 +25,21 @@ var MainDetailProfile = function()
             email : $("#Main-Subdetail-detail-User #email"),
             userName : $("#Main-Subdetail-detail-User #userName"),
             lastname : $("#Main-Subdetail-detail-User #lastName"),
+            phones : $("#Main-Subdetail-detail-User #phones"),
             cpwd : $("#Main-Subdetail-detail-User #cpwd"),
             npwd : $("#Main-Subdetail-detail-User #npwd"),
             cfpwd : $("#Main-Subdetail-detail-User #cfpwd"),
-            gender : $("#Main-Subdetail-detail-User #gender")
+            gender : $("#Main-Subdetail-detail-User #gender"),
+            schoolname : $("#Main-Subdetail-detail-User #schoolname"),
+            location : $("#Main-Subdetail-detail-User #location"),
+            highlevel : $("#Main-Subdetail-detail-User #highlevel"),
+            numberOfChill : $("#Main-Subdetail-detail-User #numberOfChill"),
+            maritalStatus : $("#Main-Subdetail-detail-User #maritalStatus"),
+            meetLike : $("#Main-Subdetail-detail-User #meetLike"),
+            bio : $("#Main-Subdetail-detail-User #bio"),
+            yearC : $("#Main-Subdetail-detail-User #yearC"),
+            Qualification : $("#Main-Subdetail-detail-User #Qualification"),
+            reason : $("#Main-Subdetail-detail-User #reason")
         },
         api:{
             compte:
@@ -74,6 +89,30 @@ var MainDetailProfile = function()
                 url : baseUrl+"auth/user/compte/editpwd",
                 method: "get",
                 type: "json"
+            },
+            addSchool:
+            {
+                url : baseUrl+"auth/user/compte/addSchool",
+                method: "get",
+                type: "json"
+            },
+            delSchool:
+            {
+                url : baseUrl+"auth/user/compte/delSchool",
+                method: "get",
+                type: "json"
+            },
+            editSchool:
+            {
+                url : baseUrl+"auth/user/compte/editSchool",
+                method: "get",
+                type: "json"
+            },
+            about:
+            {
+                url : baseUrl+"auth/user/compte/about",
+                method: "get",
+                type: "json"
             }
         },
         photo: $("#Main-Subdetail-detail-User .photoDetail"),
@@ -87,6 +126,13 @@ var MainDetailProfile = function()
             email : $("#Main-Subdetail-detail-User .detail_profile_email"),
             phones : $("#Main-Subdetail-detail-User .detail_profile_phones"),
             userName : $("#Main-Subdetail-detail-User .detail_profile_userName"),
+            school : $("#Main-Subdetail-detail-User .detail_profile_school"),
+            meetLike : $("#Main-Subdetail-detail-User .detail_profile_meetLike"),
+            bio : $("#Main-Subdetail-detail-User .detail_profile_bio"),
+            maritalStatus : $("#Main-Subdetail-detail-User .detail_profile_maritalStatus"),
+            numberOfChill : $("#Main-Subdetail-detail-User .detail_profile_numberOfChill"),
+            reason : $("#Main-Subdetail-detail-User .detail_profile_reason"),
+            country_v : $("#Main-Subdetail-detail-User .detail_ville_pays"),
             countryChange : $("#Main-Subdetail-detail-User .countryChange"),
             countryblock : $("#Main-Subdetail-detail-User .countryblock"),
             phoneBlock : $("#Main-Subdetail-detail-User .phoneBlock"),
@@ -100,7 +146,11 @@ var MainDetailProfile = function()
             AccountBlock : $("#Main-Subdetail-detail-User .AccountBlock"),
             AccountChange : $("#Main-Subdetail-detail-User .AccountChange"),
             pwdBlock : $("#Main-Subdetail-detail-User .pwdBlock"),
-            pwdchange : $("#Main-Subdetail-detail-User .helpers")
+            pwdchange : $("#Main-Subdetail-detail-User .helpers"),
+            SchoolBlock : $("#Main-Subdetail-detail-User .SchoolBlock"),
+            aboutChange : $("#Main-Subdetail-detail-User .aboutChange"),
+            aboutBlock : $("#Main-Subdetail-detail-User .aboutBlock"),
+            SchoolChange : $("#Main-Subdetail-detail-User .SchoolChange")
         },
         btn:{
             openChange : $("#Main-Subdetail-detail-User .btnOpenchange"),
@@ -125,7 +175,14 @@ var MainDetailProfile = function()
             openAccount : $("#Main-Subdetail-detail-User .openAccount"),
             LinkSavepwd : $("#Main-Subdetail-detail-User .LinkSavepwd"),
             LinkClosepwd : $("#Main-Subdetail-detail-User .LinkClosepwd"),
-            openPwd : $("#Main-Subdetail-detail-User .openPwd")
+            openPwd : $("#Main-Subdetail-detail-User .openPwd"),
+            LinkSaveSchool : $("#Main-Subdetail-detail-User .LinkSaveSchool"),
+            LinkCloseSchool : $("#Main-Subdetail-detail-User .LinkCloseSchool"),
+            openSchool : $("#Main-Subdetail-detail-User .openSchool"),
+            LinkCloseAbout : $("#Main-Subdetail-detail-User .LinkCloseAbout"),
+            LinkSaveAbout : $("#Main-Subdetail-detail-User .LinkSaveAbout"),
+            openAbout : $("#Main-Subdetail-detail-User .openAbout"),
+            LinkDelSchool : $("#Main-Subdetail-detail-User .LinkDelSchool")
         }
     };
 
@@ -181,6 +238,18 @@ $(function(){
             e.preventDefault();
         });
 
+        mainDetailProfile.params.btn.openAbout.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.aboutBlock,
+                mainDetailProfile.params.detail_profile.aboutChange);
+            e.preventDefault();
+        });
+
+        mainDetailProfile.params.btn.LinkCloseAbout.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.aboutBlock,
+                mainDetailProfile.params.detail_profile.aboutChange);
+            e.preventDefault();
+        });
+
         mainDetailProfile.params.btn.openPhone.click(function(e){
             toogleLink(mainDetailProfile.params.detail_profile.phoneBlock,
                 mainDetailProfile.params.detail_profile.phoneChange);
@@ -206,8 +275,8 @@ $(function(){
         });
 
         mainDetailProfile.params.btn.openPwd.click(function(e){
-            toogleLink(mainDetailProfile.params.detail_profile.pwdBlock,
-                mainDetailProfile.params.detail_profile.pwdchange);
+           // toogleLink(mainDetailProfile.params.detail_profile.pwdBlock,
+              //  mainDetailProfile.params.detail_profile.pwdchange);
             e.preventDefault();
         });
 
@@ -217,7 +286,21 @@ $(function(){
             e.preventDefault();
         });
 
-        mainDetailProfile.params.btn.openAdresse.click(function(e){
+        mainDetailProfile.params.btn.openSchool.click(function(e){
+            //console.log(mainDetailProfile.params.schools);
+            toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock,
+                mainDetailProfile.params.detail_profile.SchoolChange);
+            e.preventDefault();
+        });
+
+        mainDetailProfile.params.btn.LinkCloseSchool.click(function(e){
+            toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock,
+                mainDetailProfile.params.detail_profile.SchoolChange);
+            schoolTrach();
+            e.preventDefault();
+        });
+
+         mainDetailProfile.params.btn.openAdresse.click(function(e){
             toogleLink(mainDetailProfile.params.detail_profile.AdresseBlock,
                 mainDetailProfile.params.detail_profile.AdresseChange);
             e.preventDefault();
@@ -262,7 +345,24 @@ $(function(){
         });
 
 
-        ////AMODIFIER LES INFORMATIONS PERSONNELLES
+        ////MODIFIER LE BLOCK ABOUT
+        mainDetailProfile.params.btn.LinkSaveAbout.click(function(e){
+            mainProfile_detail.params.bg_action.fadeIn();
+            var data = {id:currentUser.id,
+                numberOfChill: parseInt(mainDetailProfile.params.form.numberOfChill.val()),
+                bio:mainDetailProfile.params.form.bio.val(),
+                meetLike:mainDetailProfile.params.form.meetLike.val(),
+                reason:mainDetailProfile.params.form.reason.val(),
+                maritalStatus:mainDetailProfile.params.form.maritalStatus.val()
+            };
+            //console.log(data);
+            edit(data, mainDetailProfile.params.api.about,
+                mainDetailProfile.params.detail_profile.aboutBlock, mainDetailProfile.params.detail_profile.aboutChange)
+            e.preventDefault();
+        });
+
+
+       ////AMODIFIER LES INFORMATIONS PERSONNELLES
         mainDetailProfile.params.btn.LinkSaveInfoPerso.click(function(e){
             mainProfile_detail.params.bg_action.fadeIn();
             var data = {id:currentUser.id,
@@ -270,6 +370,7 @@ $(function(){
                 lastName:mainDetailProfile.params.form.lastname.val(),
                 firstName:mainDetailProfile.params.form.firstName.val(),
                 city:mainDetailProfile.params.form.city.val(),
+                phones:mainDetailProfile.params.form.phones.val(),
                 profession:mainDetailProfile.params.form.profession.val(),
                 day:mainDetailProfile.params.form.day.val(),
                 year:mainDetailProfile.params.form.year.val(),
@@ -298,7 +399,7 @@ $(function(){
                         profession:mainDetailProfile.params.form.profession.val()
             };
             // console.log(data.pays.length);
-            if(data.city.length == 0 ||data.profession.length == 0 ){
+            if(data.profession.length == 0 ){
                 bootbox.alert("Veuillez veriifier vos champs", function(){});
                 mainProfile_detail.params.bg_action.fadeOut();
             }else{
@@ -309,7 +410,133 @@ $(function(){
             e.preventDefault();
         });
 
-        ////=====MODIFIE LE BLOCK ACCOUNT
+        ////=====EFFACER LE SCHOOL
+        mainDetailProfile.params.btn.LinkDelSchool.click(function(e){
+            mainProfile_detail.params.bg_action.fadeIn();
+            var data = {
+                id:parseInt(currentUser.id),
+                idschool:parseInt(mainDetailProfile.params.var.OldUp)
+            };
+            bootbox.confirm("I you sure you wont to delete ?",function(res){
+                if(res){
+                    $.ajax({
+                        url:  mainDetailProfile.params.api.delSchool.url,
+                         type:  mainDetailProfile.params.api.delSchool.method,
+                         crossDomain: true,
+                         data : data,
+                         headers : {"X-Auth-Token" : currentUser.token},
+                         contentType: false,
+                         dataType:  mainDetailProfile.params.api.delSchool.type,
+                         success: function(response){ // en cas de success
+                         if(response!=null && response!="null")
+                         {
+                             if(response.error != undefined){
+                             bootbox.alert(response.error, function(){});
+
+                             }
+                             else{
+                                 setSchool(mainDetailProfile.params.detail_profile, response.schools);
+                             }
+                         }
+                         },
+                         error: function (xhr, status, message) { //en cas d'erreur
+                            console.log(status+"\n"+xhr.responseText + '\n' + message );
+                         },
+                         complete:function(){
+                            mainProfile_detail.params.bg_action.fadeOut();
+                             toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock, mainDetailProfile.params.detail_profile.SchoolChange);
+                         }
+                     });
+                }
+                else{
+                    mainProfile_detail.params.bg_action.fadeOut();
+                }
+
+            })
+
+        });
+
+       /////=====MODIFIE LE SCHOOL
+        function editSchool(id){
+
+            var school = null;
+            var sc = mainDetailProfile.params.var.schools;
+
+            for(var elt = 0; elt < sc.length; elt++){
+                if(sc[elt].id == id )
+                    school = sc[elt];
+            }
+
+            if(school != null)
+            {
+                toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock,mainDetailProfile.params.detail_profile.SchoolChange);
+                mainDetailProfile.params.form.schoolname.val(school.name);
+                mainDetailProfile.params.form.location.val(school.location);
+                mainDetailProfile.params.form.yearC.val(school.year);
+                mainDetailProfile.params.form.Qualification.val(school.qualification);
+                mainDetailProfile.params.form.highlevel.val(school.highLevel);
+                mainDetailProfile.params.var.OldUp = school.id;
+                mainDetailProfile.params.btn.LinkDelSchool.toggleClass('hide');
+            }
+        };
+
+       ////=====AJOUTER ET modifierer LE SCHOOL
+        mainDetailProfile.params.btn.LinkSaveSchool.click(function(e){
+            mainProfile_detail.params.bg_action.fadeIn();
+            var data = {id:currentUser.id,
+                        idschool: mainDetailProfile.params.var.OldUp,
+                        name:mainDetailProfile.params.form.schoolname.val(),
+                        location:mainDetailProfile.params.form.location.val(),
+                        year:mainDetailProfile.params.form.yearC.val(),
+                        Qualification:mainDetailProfile.params.form.Qualification.val(),
+                        level:mainDetailProfile.params.form.highlevel.val()
+            };
+             console.log(data);
+            if(data.name.length == 0 ||data.location.length == 0 ||data.level.length == 0 ){
+                bootbox.alert("Veuillez veriifier vos champs", function(){});
+                mainProfile_detail.params.bg_action.fadeOut();
+            }
+            else{
+                var School = null;
+                if(data.idschool == null){
+                    School = mainDetailProfile.params.api.addSchool;
+                }else{
+                    School = mainDetailProfile.params.api.editSchool;
+                }
+                $.ajax({
+                    url:  School.url,
+                    type:  School.method,
+                    crossDomain: true,
+                    data : data,
+                    headers : {"X-Auth-Token" : currentUser.token},
+                    contentType: false,
+                    dataType:  School.type,
+                    success: function(response){
+
+                        if(response!=null && response!="null")
+                        {
+                            if(response.error != undefined){
+                                bootbox.alert(response.error, function(){});
+                            }
+                            else{
+                                setSchool(mainDetailProfile.params.detail_profile, response.schools);
+                            }
+                        }
+                    },
+                    error: function (xhr, status, message) { //en cas d'erreur
+                        console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    },
+                    complete:function(){
+
+                        mainProfile_detail.params.bg_action.fadeOut();
+                        toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock, mainDetailProfile.params.detail_profile.SchoolChange);
+                    }
+                });
+            }
+            e.preventDefault();
+        });
+
+       ////=====MODIFIE LE BLOCK ACCOUNT
         mainDetailProfile.params.btn.LinkSaveAccount.click(function(e){
             mainProfile_detail.params.bg_action.fadeIn();
             var data = {id:currentUser.id,
@@ -358,7 +585,6 @@ $(function(){
         });
 
 
-
         function edit(data, params, block, change){
             $.ajax({
                 url:  params.url,
@@ -372,13 +598,19 @@ $(function(){
 
                     if(response!=null && response!="null")
                     {
-                        //console.log(response);
-                        if(response.userProfile != "null" && response.userProfile != null){
-                            var  user  = response.userProfile.user;  // recuperer le user
-                        }else{
-                            var  user  = response.user;  // recuperer le user
+                        if(response.error != undefined){
+                            bootbox.alert(response.error, function(){});
                         }
-                        setdetailAll(mainDetailProfile.params.detail_profile, user);
+                        else{
+                            if(response.userProfile != "null" && response.userProfile != null){
+                                var  user  = response.userProfile.user;  // recuperer le user
+                                var  profile  = response.userProfile;
+                            }else{
+                                var  user  = response.user;  // recuperer le user
+                            }
+                            setdetailAll(mainDetailProfile.params.detail_profile, user, profile);
+                        }
+
                     }
                 },
                 error: function (xhr, status, message) { //en cas d'erreur
@@ -408,8 +640,6 @@ $(function(){
 // en cas de success
                     if(response!=null && response!="null")
                     {
-                        console.log(response);
-
                         if(response.userProfile != "null" && response.userProfile != null){
                             var  user  = response.userProfile.user;  // recuperer le user
                             var  profile  = response.userProfile;  // recuperer le profile
@@ -417,15 +647,16 @@ $(function(){
 
                         }else{
                             var  user  = response.user;  // recuperer le user
-                            //bootbox.alert("Nombre d'utilisateur present  dans la base de donnée : " + user.fullname, function(){});
+                            //bootbox.alert("Nombre d'utilisateur present  dans la base de donnï¿½e : " + user.fullname, function(){});
                         }
                         if(response.photo != null && response.photo != 'null'){
                             mainDetailProfile.params.photo.attr('src', baseHost+response.photo.path);
                         }else{
                             mainDetailProfile.params.photo.attr('src', path.emptyImage);
                         }
-                        setdetailAll(mainDetailProfile.params.detail_profile, user);
 
+                        setdetailAll(mainDetailProfile.params.detail_profile, user, profile);
+                        setSchool(mainDetailProfile.params.detail_profile, response.schools);
                     }
 
 
@@ -454,7 +685,16 @@ $(function(){
             mainDetailProfile.params.form.phoneadd.val("");
         }
 
-
+        function schoolTrach(){
+            mainDetailProfile.params.form.schoolname.val("");
+            mainDetailProfile.params.form.location.val("");
+            mainDetailProfile.params.form.highlevel.val("");
+            mainDetailProfile.params.form.Qualification.val("");
+            if(mainDetailProfile.params.var.OldUp != null){
+                mainDetailProfile.params.var.OldUp = null;
+                mainDetailProfile.params.btn.LinkDelSchool.toggleClass('hide');
+            }
+        }
 
         //EFFACER UN NUMERO DE LA LISTE DES NUMEROs
         function deletePhone(phone){
@@ -494,7 +734,8 @@ $(function(){
 
         }
 
-        function setdetailAll(element, val){
+        function setdetailAll(element, val, profile){
+            //console.log(val);
             element.name.html(val.fullname);
             element.sex.html(val.gender);
             element.city.html(val.city);
@@ -502,11 +743,26 @@ $(function(){
             element.birthday.html(new Date(val.birthDate).toLocaleDateString());
             element.profession.html(val.profession);
             element.userName.html(val.username);
+            element.reason.html(val.joinReason);
+
             var country = getCountry(countryList,val.country);
             var flag ="<img class='sm-img flag' src='"+path.flags+val.country+".png' alt=''/> ";
             element.country.html(flag + country);
+            element.country_v.html(flag + country);
             var chainePhones = "";
 
+            if(profile != null){
+                element.bio.html(profile.aboutMe);
+                element.numberOfChill.html(profile.childNumber);
+                var maritalStatus;
+                element.meetLike.html(profile.meetLike);
+
+                element.maritalStatus.html(profile.maritalStatus);
+                mainDetailProfile.params.form.bio.val(profile.aboutMe);
+                mainDetailProfile.params.form.numberOfChill.val(profile.childNumber);
+                mainDetailProfile.params.form.maritalStatus.val(profile.maritalStatus);
+                mainDetailProfile.params.form.meetLike.val(profile.meetLike);
+            }
 
             //REMPLIR ES CHAMP POUR LA MODIFICATION
             //console.log(val.email);
@@ -515,10 +771,19 @@ $(function(){
             mainDetailProfile.params.form.firstName.val(val.firstName);
             mainDetailProfile.params.form.lastname.val(val.lastName);
             mainDetailProfile.params.form.city.val(val.city);
+            mainDetailProfile.params.form.reason.val(val.joinReason);
+
             mainDetailProfile.params.form.profession.val(val.profession);
             mainDetailProfile.params.form.gender.val(val.gender);
+            var m = new Date(val.birthDate).getMonth();
+            //console.log(m);
+            mainDetailProfile.params.form.month.val(m+1);
+            mainDetailProfile.params.form.day.val(new Date(val.birthDate).getDate());
+            mainDetailProfile.params.form.year.val(new Date(val.birthDate).getFullYear());
 
             if(val.phones != null){
+                element.phones.html(val.phones[0]);
+                mainDetailProfile.params.form.phones.val(val.phones[0]);
                 for(var i = 0; i < val.phones.length; i++){
                     //console.log(chainePhones);
                     chainePhones += "<span class='phonedet '> " +
@@ -527,15 +792,43 @@ $(function(){
                         " </span><br>";
                 }
             }
-            element.phones.html(chainePhones);
+            //AFFICHE TOUS LES PHONES
+            /*element.phones.html(chainePhones);
             mainDetailProfile.params.btn.deletePhone = $("#Main-Subdetail-detail-User .deletephone");
             mainDetailProfile.params.btn.deletePhone.click(function(e){
                 deletePhone($(this).data('phone'));
                 //bootbox.alert("phone" + $(this).data('phone'), function(){});
                 e.preventDefault();
+            });*/
+        }
+
+        function setSchool(elt, school){
+            var ch = "";
+            schoolTrach();
+            mainDetailProfile.params.var.schools = school;
+            //console.log(school);
+            if(school != null){
+                for(var i = 0; i < school.length; i++){
+
+                    ch += '<li class="list-group-item">' +
+                        '<span class=""><a data-school="'+school[i].id+'" class=" deleteschool fa fa-2x fa-edit   " href="#"></a>&nbsp; &nbsp;'+
+                        ''+school[i].name+'&nbsp; &nbsp; '+school[i].location+'&nbsp; &nbsp; '+ school[i].highLevel +'&nbsp; &nbsp; '+ school[i].year+'</span> ' +
+                        '</li>'
+                }
+            }
+            elt.school.html(ch);
+            mainDetailProfile.params.btn.deleteschool = $("#Main-Subdetail-detail-User .deleteschool");
+            mainDetailProfile.params.btn.deleteschool.click(function(e){
+                editSchool($(this).data('school'));
+                //bootbox.alert("phone" + $(this).data('phone'), function(){});
+                e.preventDefault();
             });
         }
+
+
         // fon fait  l'appel  du fichier
         getCompte(currentUser.id);
+
+
     }
 });

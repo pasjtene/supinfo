@@ -99,12 +99,12 @@ class ProfileController extends Controller implements TokenAuthenticatedControll
 
 
     /**
-     * @Route("/detail/profile/{email}", name="main_profile_detailProfile", options={"expose"=true})
+     * @Route("/detail/profile/{key}", name="main_profile_detailProfile", options={"expose"=true})
      */
-    public function detailProfileAction($email)
+    public function detailProfileAction($key)
     {
         $array['subPage'] = "detail-profile";
-        $array['email'] = $email;
+        $array['key'] = $key;
         return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 

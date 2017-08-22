@@ -36,6 +36,7 @@ var MainRegister = function()
         },
         required:{
             name : $("#block-name"),
+            lastname : $("#block-lastname"),
             email : $("#block-email"),
             birthday : $("#block-birthday"),
             gender : $("#block-gender"),
@@ -56,12 +57,35 @@ var MainRegister = function()
 
 };
 
+function enableTolltip(element) {
+    $(element).tooltip({
+        position: {
+            my: "center bottom-30",
+            at: "center left",
+            using: function (position, feedback) {
+                //alert(this);
+                $(this).css(position);
+                $("<div>")
+                    .addClass("arrow")
+                    .addClass(feedback.vertical)
+                    .addClass(feedback.horizontal)
+                    .appendTo(this);
+
+            }
+        }
+    });
+}
+
 
 $(function(){
+
+    //enableTolltip("#name");
+    //enableTolltip("#email");
 
 
 
     //instancier la classe MainRegister
+
     var mainRegister = new MainRegister();
 
     //tester si  nous somme dans la page d'enregistrement
@@ -73,10 +97,25 @@ $(function(){
         {
             var appMain = new AppMain();
             var  test= false;
-            test= appMain.function.notValid(user.firstname,3,100);
+            test= appMain.function.notValid(user.firstname,2,100);
             if(test){
                 return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
             }
+            test=notValidName(user.firstname);
+            if(test){
+                return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(user.lastname,2,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.lastname.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test=notValidName(user.lastname);
+            if(test){
+                return  $("#"+mainRegister.params.required.lastname.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
 
             test= notValidMail(user.email);
             if(test){
@@ -273,10 +312,10 @@ $(function(){
             if (verify(User)) {
                 //print error message
                 // alert(verify(User));
-
                 mainRegister.params.required.errorMessage.slideDown();
                 mainRegister.params.required.errorMessageText.text(verify(User));
             } else {
+
                 // alert(mainRegister.params.api.action.save);
                 //jQuery.support.cors = true;
                 //alert(User.joinReason);
@@ -341,13 +380,34 @@ $(function(){
         var appMain = new AppMain();
         //validation du  formualire au touche
 
-        // 1- validation du champs name
+        // 1-a) validation du champs name
         // mainRegister.params.form.name.focus(function(){
         //   appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         //});
-        mainRegister.params.form.name.keyup(function(){
-            appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
+        mainRegister.params.form.name.change(function(){
+            if (notValidName(mainRegister.params.form.name.val())){
+                enableTolltip(mainRegister.params.form.name);
+                mainRegister.params.form.name.tooltip("enable");
+            }else{
+                mainRegister.params.form.name.tooltip('disable');
+            }
+            validFormat(false,mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,2,100);
         });
+
+        // 1-b) validation du champ lastname
+        // mainRegister.params.form.name.focus(function(){
+        //   appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
+        //});
+        mainRegister.params.form.lastname.change(function(){
+            if (notValidName(mainRegister.params.form.lastname.val())){
+                enableTolltip(mainRegister.params.form.lastname);
+                mainRegister.params.form.lastname.tooltip("enable");
+            }else{
+                mainRegister.params.form.lastname.tooltip('disable');
+            }
+            validFormat(false,mainRegister.params.required.lastname,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.lastname,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.lastname,appMain.params.required.form_control_feedback,2,100);
+        });
+
         //mainRegister.params.form.name.mouseleave(function(){
         //  appMain.function.validate(mainRegister.params.required.name,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.name,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.name,appMain.params.required.form_control_feedback,3,100);
         //});
@@ -366,12 +426,25 @@ $(function(){
          });
          */
         //email format
-        mainRegister.params.form.email.keyup(function(){
-            emailFormat(mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
+        mainRegister.params.form.email.change(function(){
+            if (notValidMail(mainRegister.params.form.email.val())){
+                enableTolltip(mainRegister.params.form.email);
+                mainRegister.params.form.email.tooltip("enable");
+            }else{
+                mainRegister.params.form.email.tooltip('disable');
+            }
+            validFormat(true,mainRegister.params.required.email,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.email,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.email,appMain.params.required.form_control_feedback,8,100);
         });
 
         // 3- validation du champs county
         mainRegister.params.form.country.change(function(){
+            if(mainRegister.params.form.country.val()===""){
+                enableTolltip(mainRegister.params.form.country);
+                mainRegister.params.form.country.tooltip("enable");
+            } else {
+                enableTolltip(mainRegister.params.form.country);
+                mainRegister.params.form.country.tooltip("disable");
+            }
             appMain.function.validate(mainRegister.params.required.country,appMain.params.required.has_danger,appMain.params.required.has_success,mainRegister.params.form.country,appMain.params.required.form_control_danger,appMain.params.required.form_control_success,mainRegister.params.required.country,appMain.params.required.form_control_feedback,1,100);
         });
 
@@ -464,9 +537,18 @@ $(function(){
         }
 
 
-        function emailFormat(fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError)
+        function validFormat(isemail, fatherElement,fatherError,fatherSuccess, childElement, childError, childSuccess, errorElement, classError)
         {
-            if (notValidMail(childElement.val())) {
+            var test = false;
+            if(isemail)
+            {
+                test = notValidMail(childElement.val());
+            }
+            else
+            {
+               test = notValidName(childElement.val())
+            }
+            if (test) {
                 //supprimer la classe success si  elle exite dans le parent
                 appMain.function.removeclass(fatherElement,fatherSuccess);
 
@@ -480,7 +562,7 @@ $(function(){
                 appMain.function.addclass(childElement, childError);
 
                 //activation de l'erreur
-                appMain.function.show($("#"+errorElement.attr('id')+" ."+classError))
+                //appMain.function.show($("#"+errorElement.attr('id')+" ."+classError))
 
             }
             else {
@@ -501,11 +583,28 @@ $(function(){
             }
         }
 
+
+
+
         function notValidMail(email) {
-            var motif = "^([ ]{0,}?)([a-zA-Z]([0-9]*)?[._-]?){2,}[@]([a-zA-Z]([0-9]*)?[._-]?){2,}[.][a-z]{2,4}$"
+            var motif = "^([ ]{0,}?)([a-zA-Z]([0-9]*)?[._-]?){2,}[@]([a-zA-Z]([0-9]*)?[._-]?){2,}[.][a-z]{2,4}$";
             var  expression = new RegExp(motif,"gi");
-            var test =expression.test(email)
+            var test =expression.test(email);
             if (email=="" || test==false)
+            {
+                return true
+            }
+
+            return false;
+        }
+
+        function notValidName(name) {
+
+            name =name.trim();
+            var motif = "^([ ]*)(([a-zA-Z]+)([-]?)([a-zA-Z0-9]+)([ ]*)([a-zA-Z0-9]*))+$";
+            var  expression = new RegExp(motif,"gi");
+            var test =expression.test(name);
+            if (name=="" || test==false)
             {
                 return true
             }

@@ -106,7 +106,6 @@
         }
       }
     }
-
     #Main-Subphotos-friends{
         .zoomImgSourceFriends{
             max-width: 90%;
@@ -120,6 +119,12 @@
         .body{
           .card{
             margin-top: 4%;
+            .card-title:hover{
+              color: $default-color;
+              font-weight: bold;
+              cursor: pointer;
+              text-decoration: underline;
+            }
             .img{
               img{
                 height: 150px;

@@ -185,14 +185,19 @@ $(function(){
 
         //consulter le detail  sur un profile
         mainSubFriends.params.page.on('click','.detail',function(){
-            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,email:$(this).data('email')});
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
+        });
+
+        //consulter le detail  sur un profile
+        mainSubFriends.params.page.on('click','.name-detail',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
         });
 
         // demander l'amitier
         mainSubFriends.params.friend.body.on('click',".add",function(e){
             e.preventDefault();
             trans = Translator.trans('sub.message',{},"default");
-            var email =$(this).data('email');
+            var email =$(this).data('key');
             bootbox.prompt(trans,function(result){
                 if(result){
                     addFriend(currentUser.id,email,result,$('#Main-Subfriends #Main-Subfriends-seach .body #'+$(this).data('preloader')));
@@ -291,11 +296,11 @@ $(function(){
                          '<div class="container py-3">'+
                             '<div class="row align-items-center small">'+
                                 '<div class="col-md-3 ">'+
-                                     '<img src="'+src+'" class="w-100 detail" data-email="'+friends.email+'" >'+
+                                     '<img src="'+src+'" class="w-100 detail" data-key="'+friends.key+'" data-email="'+friends.email+'" >'+
                                 '</div>'+
                                 '<div class="col-md-9 px-3 content" >'+
                                     '<div class="card-block px-3">'+
-                                         '<h4 class="card-title">'+friends.fullname+age+' </h4>'+
+                                         '<h4 class="card-title name-detail" data-key="'+friends.key+'" >'+friends.fullname+age+' </h4>'+
                                          '<p class="card-text text-muted message-text" >'+request.message+'</p>'+
                                          '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                                          '<a href="#" data-id="'+request.id+'" class="btn btn-sm btn-primary confirm" data-preloader="'+datapreloader+'">'+confirm+'</a>'+
@@ -372,11 +377,11 @@ $(function(){
                     '<div class="container py-3">'+
                     '<div class="row align-items-center small">'+
                     '<div class="col-md-3 ">'+
-                    '<img src="'+src+'" class="w-100 detail" data-email="'+friends.email+'" >'+
+                    '<img src="'+src+'" class="w-100 detail" data-key="'+friends.key+'" data-email="'+friends.email+'" >'+
                     '</div>'+
                     '<div class="col-md-9 px-3 content" >'+
                     '<div class="card-block px-3">'+
-                    '<h4 class="card-title">'+friends.fullname+age+' </h4>'+
+                    '<h4 class="card-title name-detail" data-key="'+friends.key+'" >'+friends.fullname+age+' </h4>'+
                     '<p class="card-text text-muted message-text" >'+request.message+'</p>'+
                     '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                     '<a href="#" data-id="'+request.id+'" class="btn btn-sm btn-primary delete" data-preloader="'+datapreloader+'">'+deletesmessages+'</a>'+
@@ -709,7 +714,7 @@ $(function(){
                     '<img src="'+src+'" alt="">' +
                     '</div>' +
                     '<div class="col-4">' +
-                    '<strong>'+ applicant.lastNameOrFirstname +'</strong><br>' +
+                    '<strong class="name-detail" data-key="'+applicant.key+'" >'+ applicant.lastNameOrFirstname +'</strong><br>' +
                     '<span class="text-grey small">'+message+'</span> <br>' +
                     '<span class="text-grey small">'+flagApplicant+getCountry(countryList,applicant.country)+'</span>' +
                     '</div>' +
@@ -777,15 +782,15 @@ $(function(){
                     '<div class="container py-3">'+
                         '<div class="row align-items-center small">'+
                             '<div class="col-md-3 ">'+
-                                '<img src="'+src+'" class="w-100 detail" data-email="'+user.email+'">'+
+                                '<img src="'+src+'" class="w-100 detail" data-key="'+user.key+'" data-email="'+user.email+'">'+
                             '</div>'+
                             '<div class="col-md-9 px-3 content">'+
                                 '<div class="card-block px-3">'+
-                                '<h4 class="card-title">'+ user.fullname + age + '</h4>'+
+                                '<h4 class="card-title name-detail" data-key="'+user.key+'" >'+ user.fullname + age + '</h4>'+
                                 '<p class="card-text text-muted message-text">'+getJoinReason(user.joinReason)+'</p>'+
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                                 '<p class="card-text text-grey small"> commun friend </p>'+
-                                '<a href="#" class="btn btn-sm btn-primary add" data-email="'+user.email+'"  data-preloader="'+datapreloader+'"  data-id="'+user.id+'"><span class="fa fa-user-plus"></span> '+ add + ' </a>'+
+                                '<a href="#" class="btn btn-sm btn-primary add" data-key="'+user.key+'"  data-email="'+user.email+'"  data-preloader="'+datapreloader+'"  data-id="'+user.id+'"><span class="fa fa-user-plus"></span> '+ add + ' </a>'+
                                 '<a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span>' + message +' </a>'+
                                  preloader+
                             '</div>'+

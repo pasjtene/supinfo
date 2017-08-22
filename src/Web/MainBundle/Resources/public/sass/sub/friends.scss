@@ -1,5 +1,11 @@
 #Main-Subfriends{
 
+    .name-detail:hover{
+        color: $default-color;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: underline;
+    }
     img:hover{
         cursor: pointer;
     }

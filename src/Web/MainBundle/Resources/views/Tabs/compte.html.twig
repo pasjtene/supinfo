@@ -38,7 +38,7 @@
                         <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.phones {% endtrans %}</span> <br>
                         <span  class="phoneChange d-flex flex-row justify-content-between">
                             <span class="Stexte detail_profile_phones"></span>
-                            <a href="#" class="btnOpenAddPhone">{% trans from 'photo' %} sub.tabs.myProfilDetail.addPhone {% endtrans %}</a>
+                            <a href="#" class="btnOpenAddPhone hide">{% trans from 'photo' %} sub.tabs.myProfilDetail.addPhone {% endtrans %}</a>
                         </span>
                         <div   class="blockedit d-flex flex-row hide phoneBlock">
                             <input id="phoneadd" type="text" class="p-2 col-sm-10 form-control" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.phones {% endtrans %}">
@@ -65,6 +65,9 @@
                         <br>
                         <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.FirstName {% endtrans %} &nbsp;:&nbsp;</span>
                         <input type="text" id="firstName" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.FirstName {% endtrans %}" class="form-control ">
+                        <br>
+                        <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.phones {% endtrans %} &nbsp;:&nbsp;</span>
+                        <input type="text" id="phones" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.phones {% endtrans %}" class="form-control ">
                         <br>
                         <span>{% trans from 'register' %} form.placeholder.gender {% endtrans %} &nbsp;:&nbsp;</span>
                         <select style="margin-bottom: 20px" class="custom-select form-control " id="gender">
@@ -146,7 +149,7 @@
                     </span>
                 </h5>
                 <div class="card-block">
-                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}&nbsp;:&nbsp;</span>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}&nbsp;:&nbsp; <span class="detail_ville_pays"></span></span>
                    <input type="text" id="city" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}" class="form-control">
                     <br>
                     <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.profession {% endtrans %}&nbsp;:&nbsp;</span>
@@ -186,11 +189,9 @@
                     <input type="text" id="userName" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.userName {% endtrans %}" class="form-control">
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="openPwd">{% trans from 'photo' %} sub.tabs.myProfilDetail.editpwd {% endtrans %}</a>
+                    <a href="{{ path('main_forgot_password') }}" class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.editpwd {% endtrans %}</a>
                 </div>
             </div>
-
-
         </div>
 
 
@@ -224,17 +225,116 @@
         </div>
 
 
-        <div class="col col-sm-6 hide">
-            <div class="card">
+
+        {#SCHOOL++++++++++++++++++#}
+        <div class="col col-sm-6">
+            <div class="card SchoolChange">
                 <h5 class="card-header d-flex flex-row justify-content-between">
                     <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.diplome {% endtrans %}</span>
-                    <a class="p-2 fa fa-2x fa-edit" href="#"></a>
+                    <a class="p-2 openSchool" href="#">{% trans from 'photo' %} sub.tabs.myProfilDetail.addPhone {% endtrans %}</a>
                 </h5>
                 <div class="card-block">
-                    <h4 class="card-title">BEPC</h4>
-                    <h4 class="card-title">PROBATOIRE C</h4>
-                    <h4 class="card-title">BAC C</h4>
-                    <h4 class="card-title">DEC</h4>
+                    <ul class="list-group list-group-flush Stexte detail_profile_school">
+                       <li class="list-group-item"><center><h5>{% trans from 'photo' %} sub.tabs.myProfilDetail.emptyData {% endtrans %}</h5></center></li>
+
+                    </ul>
+                </div>
+            </div>
+            {#====EDIT SCHOOL#}
+            <div class="card SchoolBlock hide">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.diplome {% endtrans %}</span>
+                    <span class="p-2">
+                        <a class=" fa fa-2x fa-save  LinkSaveSchool" href="#"></a>
+                        <a class=" fa fa-2x fa-trash-o  LinkDelSchool hide" href="#"></a>
+                        <a class=" fa fa-2x fa-close  LinkCloseSchool" href="#"></a>
+                    </span>
+                </h5>
+                <div class="card-block">
+                    <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.schoolname {% endtrans %}&nbsp;:&nbsp;</span> <br>
+                    <input type="text" id="schoolname" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.schoolname {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.location {% endtrans %}&nbsp;:&nbsp;</span>
+                    <input type="text" id="location" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.location {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}&nbsp;:&nbsp;</span>
+                    <select class=" form-control"   type="text" id="highlevel">
+                        <option  value="">{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.pschool {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.pschool {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.hschool {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.hschool {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.University {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.University {% endtrans %}</option>
+                    </select>
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.Qualification {% endtrans %}&nbsp;:&nbsp;</span>
+                    <input type="text" id="Qualification" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.Qualification {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}&nbsp;:&nbsp;</span>
+                    <select class="custom-select form-control" id="yearC">
+                        <option selected value="">{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}</option>
+                        {% for item in 1980..2017 %}
+                            <option value="{{ item }}"> {{ item }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        {#ABOUT++++++++++++++++++#}
+        <div class="col col-sm-6">
+            <div class="card aboutChange">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.about {% endtrans %}</span>
+                    <a class="p-2 openAbout fa fa-2x fa-edit" href="#"></a>
+                </h5>
+                <div class="card-block">
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_numberOfChill"></span> <br>
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_maritalStatus"></span> <br>
+                    <span class="Ftexte">{% trans from 'register' %} form.body.reason {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_reason"></span> <br>
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_meetLike"></span> <br>
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.bio {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_bio"></span> <br>
+
+
+                </div>
+            </div>
+            {#====EDIT ABOUT#}
+            <div class="card aboutBlock hide">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.about {% endtrans %}</span>
+                    <span class="p-2">
+                        <a class=" fa fa-2x fa-save  LinkSaveAbout" href="#"></a>
+                        <a class=" fa fa-2x fa-close  LinkCloseAbout" href="#"></a>
+                    </span>
+                </h5>
+                <div class="card-block">
+                    <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}&nbsp;:&nbsp;</span> <br>
+                    <input type="text" maxlength="2" id="numberOfChill" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}" class="form-control">
+                    <br>
+                    <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}&nbsp;:&nbsp;</span> <br>
+                    <select class="p-2   form-control"   type="text" id="maritalStatus">
+                        <option  value="">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.enCouple {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.enCouple {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.marie {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.marie {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.celibataire {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.celibataire {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.divorce {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.divorce {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.veuf {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.veuf {% endtrans %}</option>
+                    </select> <br>
+                    <span >{% trans from 'register' %} form.body.reason {% endtrans %}&nbsp;:&nbsp;</span><br>
+                    <select class=" form-control" id="reason">
+                        <option selected value="">{% trans from 'register' %} form.placeholder.reason {% endtrans %}</option>
+                        <option value="{% trans from 'register' %} form.body.reasonList.1 {% endtrans %}">{% trans from 'register' %} form.body.reasonList.1 {% endtrans %}</option>
+                        <option value="{% trans from 'register' %} form.body.reasonList.2 {% endtrans %}">{% trans from 'register' %} form.body.reasonList.2 {% endtrans %}</option>
+                        <option value="{% trans from 'register' %} form.body.reasonList.3 {% endtrans %}">{% trans from 'register' %} form.body.reasonList.3 {% endtrans %}</option>
+                    </select> <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}&nbsp;:&nbsp;</span>
+                    <textarea rows="3" type="text" id="meetLike" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}" class="form-control"></textarea>
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.bio {% endtrans %}&nbsp;:&nbsp;</span>
+                    <textarea rows="3" type="text" id="bio" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.bio {% endtrans %}" class="form-control"></textarea>
 
                 </div>
             </div>
