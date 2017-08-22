@@ -94,11 +94,11 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/home", name="admin_new_home", options={"expose"=true})
+     * @Route("/home", name="admin_statistics", options={"expose"=true})
      */
-    public function newHomeAction()
+    public function statisticsAction()
     {
-        return $this->render('AdminBundle:Default:home.html.twig');
+        return $this->render('AdminBundle:Admin:statistics.html.twig');
     }
 }
 
