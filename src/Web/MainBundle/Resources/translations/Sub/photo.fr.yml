@@ -5,6 +5,7 @@ sub:
     profile: Profile List
     detail: Mon profile
     nofriend: Aucun ami  en commun
+    action: Action
     friend: Mes amis
     friendc: Amis
     seedetail: Consulter le détail
@@ -24,7 +25,7 @@ sub:
       quartier: Quartier
       profession: Profession
       changer: Changer
-      phones: Telephones
+      phones: Telephone
       addPhone: Ajouter
       lastName: Nom
       FirstName: Prenom

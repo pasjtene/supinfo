@@ -213,6 +213,27 @@ var MainSubMessages = function()
 
 
 $(function () {
+    //Pour le chatBox, on doit mieux arranger avec les variables
+    $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color");
+    $("#drag-message .popup-box").mouseover(function(){
+
+        $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color-active");
+        $("#drag-message .popup-box .popup-head").removeClass("chatbox-header-bg-color");
+        //alert("Clicked");
+    });
+
+    $("#drag-message .popup-box").mouseout(function(){
+
+        $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color");
+        $("#drag-message .popup-box .popup-head").removeClass("chatbox-header-bg-color-active");
+        //alert("Clicked");
+        if($("#status_message").is(":focus")){
+            $("#drag-message .popup-box .popup-head").removeClass("chatbox-header-bg-color");
+            $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color-active");
+        }
+    });
+    //Fin chatbox
+
     var mainSubMessages = new MainSubMessages(),
         mainUserProfile_messages = new MainUserProfile();
 

@@ -4,6 +4,7 @@ sub:
     list:    My photos
     profile: Profile List
     detail:  My profile
+    action: Action
     friend: My friends
     friendc: Friend
     nofriend: No friend in common
@@ -24,7 +25,7 @@ sub:
       quartier: Quater
       profession: Profession
       changer: Change
-      phones: Phones
+      phones: Phone
       addPhone: Add
       lastName: Last name
       FirstName: First name

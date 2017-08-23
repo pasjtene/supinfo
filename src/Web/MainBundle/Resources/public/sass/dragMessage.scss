@@ -3,15 +3,35 @@
     position: fixed;
     bottom: 0;
     right: 0;
+
+    #userCurrentName {
+      color: rgba(0,0,0,.85);
+      font-size: 13px;
+      font-weight: 300;
+      font-family: Source Sans Pro,Helvetica,Arial,sans-serif,Hiragino Kaku Gothic Pro,Meiryo,Hiragino Sans GB W3,
+      Noto Naskh Arabic,Droid Arabic Naskh,Geeza Pro,Simplified Arabic,Noto Sans Thai,Thonburi,Dokchampa,
+      Droid Sans Thai,Droid Sans Fallback,-apple-system,'.SFNSDisplay-Regular',Heiti SC,Microsoft Yahei,Segoe UI;
+    }
+    #userCurrentName:hover {
+      cursor:pointer;
+      color:#0084bf;
+      font-weight: 300;
+      text-decoration: underline;
+      font-size: 15px;
+      font-family: Source Sans Pro,Helvetica,Arial,sans-serif,Hiragino Kaku Gothic Pro,Meiryo,Hiragino Sans GB W3,
+      Noto Naskh Arabic,Droid Arabic Naskh,Geeza Pro,Simplified Arabic,Noto Sans Thai,Thonburi,Dokchampa,
+      Droid Sans Thai,Droid Sans Fallback,-apple-system,'.SFNSDisplay-Regular',Heiti SC,Microsoft Yahei,Segoe UI;
+    }
     .popup-box {
       background-color: #ffffff;
       border: 1px solid #b0b0b0;
-      border-radius: 6px;
+      border-radius: 2px 2px 0 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,.25);
       bottom: 0;
       display: none;
       height: 415px;
       position: fixed;
-      right: 70px;
+      right: 17%;
       width: 300px;
       font-family: 'Open Sans', sans-serif;
     }
@@ -39,7 +59,7 @@
       display: block !important;
     }
     .popup-box .popup-head {
-      background-color: #fff;
+      /*background-color: #d9edf7;*/
       clear: both;
       color: #7b7b7b;
       display: inline-table;
@@ -47,24 +67,31 @@
       padding: 7px 10px;
       width: 100%;
       font-family: Oswald;
+      box-shadow: 0 4px 8px rgba(0,0,0,.25);
     }
+
+    .popup-box .popup-head:hover {
+      background-color: #5bc0de;
+    }
+
+
     .bg_none i {
       border: 1px solid #ff6701;
       border-radius: 25px;
       color: #ff6701;
       font-size: 17px;
-      height: 33px;
-      line-height: 30px;
-      width: 33px;
+      height: 21px;
+      line-height: 19px;
+      width: 21px;
     }
     .bg_none:hover i {
       border: 1px solid #000;
       border-radius: 25px;
-      color: #000;
+      /*color: #000;
       font-size: 17px;
       height: 33px;
       line-height: 30px;
-      width: 33px;
+      width: 33px;*/
     }
     .bg_none {
       background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
@@ -82,39 +109,37 @@
     }
     .popup-messages-footer > #status_message {
       margin: 7px;
-      margin-top: 0.3em;
-      min-height: 50px;
+      margin-top: 2px;
+      min-height: 44px;
       padding: 5px;
       /*border-bottom: solid 1px $test-grey;*/
       border: solid 1px $test-grey;
       background-color: white;
-      border-radius: 3px;
+      border-radius: 2px;
       overflow-y: auto;
       overflow-x: hidden;
       width: 95% !important;
     }
+
     .popup-messages-footer > #status_message:hover {
-      margin: 7px;
-      margin-top: 0.3em;
-      min-height: 50px;
-      padding: 5px;
-      /*border-bottom: solid 1px $test-grey;*/
       border: solid 1px #0084bf;
-      background-color: white;
-      border-radius: 3px;
-      overflow-y: auto;
-      overflow-x: hidden;
-      width: 95% !important;
     }
     .popup-messages-footer {
       background: #fff none repeat scroll 0 0;
       bottom: 0;
       position: absolute;
       width: 100%;
+
     }
+
+    /*
+    .popup-messages-footer:hover {
+      border-top: solid 2px #0084bf;
+    }
+    */
     .popup-messages-footer .btn-footer {
       overflow: hidden;
-      padding: 2px 5px 10px 6px;
+      padding: 1px 5px 1px 6px;
       width: 100%;
     }
     .simple_round {
