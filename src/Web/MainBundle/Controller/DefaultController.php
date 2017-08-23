@@ -26,7 +26,6 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         {
             return $this->redirect($this->generateUrl("main_profile"));
         }
-
         $days =[];
         $months =[];
         $years =[];
