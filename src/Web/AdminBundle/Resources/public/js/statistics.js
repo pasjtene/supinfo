@@ -1,3 +1,4 @@
+
 var AdminStat = function(){
   this.params ={
       page : $('#AdminStat'),
@@ -37,6 +38,15 @@ var AdminStat = function(){
           count:{
               //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user
               all: $('#AdminStat table tr .numberpicture'),
+              pictureToday: $('#AdminStat table tr .NumberpictureTodays'),
+              pictureYesterday: $('#AdminStat table tr .NumberYesterdaypictures'),
+              pictureWeek: $('#AdminStat table tr .NumberpictureWeeks'),
+              pictureMonth: $('#AdminStat table tr .NumberpictureMonths'),
+              UserWithoutPicture: $('#AdminStat table tr .NumberuserWithoutPictures'),
+
+
+
+
           },
           graph:{
 
@@ -93,7 +103,13 @@ $(function(){
 
         function setCountPictureView(objet,element){
             element.all.html(objet.numberpictures);
-            alert(objet.numberpictures);
+            element.pictureToday.html(objet.NumberpictureTodays);
+            element.pictureYesterday.html(objet.NumberYesterdaypictures);
+            element.pictureWeek.html(objet.NumberpictureWeeks);
+            element.pictureMonth.html(objet.NumberpictureMonths);
+            element.UserWithoutPicture.html(objet.NumberuserWithoutPictures);
+
+
         }
 
         function fillCountPicture()
@@ -109,7 +125,6 @@ $(function(){
                     if(response!=null && response!="null")
                     {
                         setCountPictureView(response,adminStat.params.picture.count);
-                        console.log("---------count picture---------");
                         console.log(response);
                     }
 
