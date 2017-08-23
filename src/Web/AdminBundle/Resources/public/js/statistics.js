@@ -1,4 +1,3 @@
-alert();
 var AdminStat = function(){
   this.params ={
       page : $('#AdminStat'),
