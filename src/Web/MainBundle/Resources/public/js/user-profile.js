@@ -711,7 +711,7 @@ $(function(){
                                countListMessageUserCurrentnew = countListMessageUserCurrent;
                                src = baseHost + data.profileFriend.path;
                                mainUserProfile.params.chat.header.Profile.attr('src',src);
-                               mainUserProfile.params.chat.header.name.html(data.friend.lastNameOrFirstname);
+                               mainUserProfile.params.chat.header.name.html(data.friend.fullname);
                                setmessageContent(data,mainUserProfile.params.chat.body.main,isobjet);
                            }
                        },

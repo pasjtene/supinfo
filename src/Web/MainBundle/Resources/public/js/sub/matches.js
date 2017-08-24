@@ -100,7 +100,7 @@ $(function () {
                             '<div class="col-1">'+
                             '<div class="rounded-circle connect" ></div>'+
                             '</div>'+
-                            '<div class="col name text-left"> <strong > '+user.name + '(' + age+'ans)   &nbsp;</strong></div>'+
+                            '<div class="col name text-left"> <strong > '+user.lastNameOrFirstname + '(' + age+'ans)   &nbsp;</strong></div>'+
                             '<div class="col-12 text-left">'+
                              flag+
                             '<span class="text-muted country">'+final+'</span>'+
@@ -112,7 +112,7 @@ $(function () {
                                 '<div class="col-1">'+
                                     '<div class="rounded-circle no-connect" ></div>'+
                                 '</div>'+
-                                '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)    &nbsp;</strong></div>'+
+                                '<div class="col name text-left"> <strong > '+user.lastNameOrFirstname + '(' + age+'ans)    &nbsp;</strong></div>'+
                                     '<div class="col-12 text-left">'+
                                     flag+
                                     '<span class="text-muted country">'+user.country+'</span>'+
@@ -137,7 +137,7 @@ $(function () {
                                 img+
                                 ' <br>'+
                                 state+
-                                '<div class="row text-left bg-white">'+
+                                '<div class="row text-left">'+
                                 '<div class="col">'+
                                 '<a href=""><span class="fa fa-thumbs-o-up">like picture</span></a>'+
                                 '</div>'+

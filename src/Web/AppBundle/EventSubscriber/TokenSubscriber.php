@@ -9,6 +9,7 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage;
 use Web\AppBundle\Controller\TokenAuthenticatedController;
 use Web\AppBundle\Entity\User;
 use Web\AppBundle\Security\FormAuthenticator;
@@ -58,26 +59,38 @@ class TokenSubscriber implements EventSubscriberInterface
 
             $this->logger->info($url);
 
-            $this->token = $request->cookies->get(FormAuthenticator::USER_COOKIE_NAME);
+            /** @var User $userConnecte */
+            $userConnecte  = $this->tokenStorage->getToken()->getUser();
+            $userConnecte  = $userConnecte=="anon."? null: $userConnecte;
+            //$user= $this->container->get('security.token_storage')->getToken()->getUser();
 
-            //var_dump($this->token);
-            //die();
-
-            if(!is_null($this->token))
+           // var_dump($userConnecte);
+           // die();
+            if(is_null($userConnecte))
             {
-                $tab = explode('|', $this->token);
+                $this->token = $request->cookies->get(FormAuthenticator::USER_COOKIE_NAME);
 
-                $this->user = $this->getUser($tab[0], $tab[1]);
+                //var_dump($this->token);
+                //die();
 
-                if(!is_null($this->user))
+                if(!is_null($this->token))
                 {
-                    $this->user->setToken($tab[1]);
 
-                    $token = new UsernamePasswordToken($this->user, null, 'main', $this->user->getRoles());
-                    $this->tokenStorage->setToken($token);
-                    $this->session->set('_security_main',serialize($token));
+                    $tab = explode('|', $this->token);
+
+                    $this->user = $this->getUser($tab[0], $tab[1]);
+
+
+                    if(!is_null($this->user))
+                    {
+                        $this->user->setToken($tab[1]);
+                        $token = new UsernamePasswordToken($this->user, null, 'main', $this->user->getRoles());
+                        $this->tokenStorage->setToken($token);
+                        $this->session->set('_security_main',serialize($token));
+                    }
                 }
             }
+
         }
     }
 
