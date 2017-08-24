@@ -167,7 +167,7 @@ var path =
 };
 
 function getJoinReason(value){
-    value = value.trim();
+   /* value = value.trim();
     var result = "";
     if(locale=="en"){
         switch(value){
@@ -202,7 +202,8 @@ function getJoinReason(value){
             }
         }
     }
-    return result;
+    return result;*/
+    return 'ok dex';
 };
 //cette fonction fait un appel a la route xxx sur l'api qui calcul et genere le token
 appMain.getAppToken(function(data){

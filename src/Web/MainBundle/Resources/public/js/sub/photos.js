@@ -359,15 +359,15 @@ $(function () {
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted"> '+profession+'</span></p>' +
                                 '<p class="card-text text-grey small">'+common+'  </p>' +
                                 '<div class="col-12 text-center dropdown">' +
-                                '<button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
-                                    '<span class="fa fa-check"></span>' +friend+
-                                '</button>' +
-                                '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
-                                    '<a class="dropdown-item detail" data-id="'+user.id+'" data-key="'+user.key+'" data-email="'+user.email+'" href="#"><span class="fa fa-list"></span>'+detail+' </a>' +
-                                    '<a class="dropdown-item writemessage" data-id="'+user.id+'"  href="#"><span class="fa fa-comment"></span>'+message+'  </a>' +
-                                    '<a class="dropdown-item remove" data-id="'+request.id+'" href="#"><span class="fa fa-remove"></span> '+remove+' </a>' +
+                                    '<button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                        '<span class="fa fa-check"></span>' +friend+
+                                    '</button>' +
+                                    '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                                        '<a class="dropdown-item detail" data-id="'+user.id+'" data-key="'+user.key+'" data-email="'+user.email+'" href="#"><span class="fa fa-list"></span>'+detail+' </a>' +
+                                        '<a class="dropdown-item writemessage" data-id="'+user.id+'"  href="#"><span class="fa fa-comment"></span>'+message+'  </a>' +
+                                        '<a class="dropdown-item remove" data-id="'+request.id+'" href="#"><span class="fa fa-remove"></span> '+remove+' </a>' +
+                                    '</div>' +
                                 '</div>' +
-                            '</div>' +
                             '</div>' +
                         '</div>' +
                     '</div>';

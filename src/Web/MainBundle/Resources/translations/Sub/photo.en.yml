@@ -4,6 +4,7 @@ sub:
     list:    My photos
     profile: Profile List
     detail:  My profile
+    action: Action
     friend: My friends
     friendc: Friend
     nofriend: No friend in common
@@ -55,6 +56,11 @@ sub:
       pschool : Primary school
       hschool : High school
       University : University
+      notgiven : Not given
+      delete : Delete
+      save : Save
+      cancel : Cancel
+      edit : Edit
   img:
     profile: Make profile photo
     published: make public

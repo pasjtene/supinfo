@@ -26,7 +26,23 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         {
             return $this->redirect($this->generateUrl("main_profile"));
         }
-        return $this->redirect($this->generateUrl("main_register"));
+        $days =[];
+        $months =[];
+        $years =[];
+
+        for($i=1; $i<32;$i++){
+            $days[] = $i<10? "0".$i:$i;
+        }
+        for($i=1; $i<13;$i++){
+            $months[] = $i<10? "0".$i:$i;
+        }
+        $year = (int)date("Y");
+        $year = $year -5;
+        for($i=$year; $i>1960;$i--){
+            $years[] = $i;
+        }
+        $array = ["days"=>$days,"months"=>$months, "years"=>$years];
+        return $this->render('MainBundle:Default:register.html.twig',$array);
     }
 
 
@@ -123,23 +139,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
      */
     public function registerAction(Request $request)
     {
-        $days =[];
-        $months =[];
-        $years =[];
-
-        for($i=1; $i<32;$i++){
-            $days[] = $i<10? "0".$i:$i;
-        }
-        for($i=1; $i<13;$i++){
-            $months[] = $i<10? "0".$i:$i;
-        }
-        $year = (int)date("Y");
-        $year = $year -5;
-        for($i=$year; $i>1960;$i--){
-            $years[] = $i;
-        }
-        $array = ["days"=>$days,"months"=>$months, "years"=>$years];
-        return $this->render('MainBundle:Default:register.html.twig',$array);
+        return $this->redirect($this->generateUrl("main_homepage"));
     }
 
 

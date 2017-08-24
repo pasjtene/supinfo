@@ -97,14 +97,7 @@ $(function(){
         {
             var appMain = new AppMain();
             var  test= false;
-            test= appMain.function.notValid(user.firstname,2,100);
-            if(test){
-                return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-            }
-            test=notValidName(user.firstname);
-            if(test){
-                return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
-            }
+
 
             test= appMain.function.notValid(user.lastname,2,100);
             if(test){
@@ -114,6 +107,15 @@ $(function(){
             test=notValidName(user.lastname);
             if(test){
                 return  $("#"+mainRegister.params.required.lastname.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+
+            test= appMain.function.notValid(user.firstname,2,100);
+            if(test){
+                return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
+            }
+            test=notValidName(user.firstname);
+            if(test){
+                return  $("#"+mainRegister.params.required.name.attr('id')+" ."+appMain.params.required.form_control_feedback).text();
             }
 
 

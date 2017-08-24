@@ -5,6 +5,7 @@ sub:
     profile: Profile List
     detail: Mon profile
     nofriend: Aucun ami  en commun
+    action: Action
     friend: Mes amis
     friendc: Amis
     seedetail: Consulter le détail
@@ -55,6 +56,11 @@ sub:
       pschool : Primaire
       hschool : Secondaire
       University : Université
+      notgiven :  Non indiquée
+      delete : Effacer
+      save : Sauvegader
+      cancel : Annuler
+      edit : Modifier
   img:
     profile: Mettre comme photo de profile
     published: Rendre publique
