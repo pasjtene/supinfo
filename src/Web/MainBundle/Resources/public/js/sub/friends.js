@@ -85,7 +85,7 @@ $(function(){
             processData: false,
             dataType:  mainSubFriends.params.api.fill.type,
             success: function(response){
-                console.log(response);
+                
 
                 if(response!=null && response!="null")
                 {
@@ -93,6 +93,7 @@ $(function(){
                     var test2= false;
                     if(response.listRecievers!=null && response.listRecievers!="null"  && response.listRecievers!="undefined")
                     {
+                        console.log(response);
                         test1 =true;
                         mainSubFriends.params.ask.head.number.html(response.listRecievers.length);
                         if(response.listApplicants!=null && response.listApplicants!="null"  && response.listApplicants!="undefined"){
@@ -787,7 +788,7 @@ $(function(){
                             '<div class="col-md-9 px-3 content">'+
                                 '<div class="card-block px-3">'+
                                 '<h4 class="card-title name-detail" data-key="'+user.key+'" >'+ user.fullname + age + '</h4>'+
-                                '<p class="card-text text-muted message-text">'+getJoinReason(user.joinReason)+'</p>'+
+                                '<p class="card-text text-muted message-text">'+user.joinReason+'</p>'+
                                 '<p class="card-text text-grey small"><span class="pays">'+flag+final+'</span> <span class="profession text-muted">'+profession+'</span></p>'+
                                 '<p class="card-text text-grey small"> commun friend </p>'+
                                 '<a href="#" class="btn btn-sm btn-primary add" data-key="'+user.key+'"  data-email="'+user.email+'"  data-preloader="'+datapreloader+'"  data-id="'+user.id+'"><span class="fa fa-user-plus"></span> '+ add + ' </a>'+

@@ -56,6 +56,11 @@ sub:
       pschool : Primaire
       hschool : Secondaire
       University : Université
+      notgiven :  Non indiquée
+      delete : Effacer
+      save : Sauvegader
+      cancel : Annuler
+      edit : Modifier
   img:
     profile: Mettre comme photo de profile
     published: Rendre publique

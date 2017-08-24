@@ -1,4 +1,29 @@
 fieldset{
   border: solid 1px red;
 }
-
+#adm-content
+{
+  display: flex;
+  #adm-main-nav{
+    width:220px;
+    min-height: 700px;
+    background-color: #222d32;
+    color: #fff;
+    position: fixed;
+    ul{
+      margin-top: 57px;
+      li{
+        a{
+          border-bottom: solid 1px rgb(128, 128, 128);
+          color: #fff !important;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  #adm-mn-content{
+    width: calc(100% - 220px);
+    min-height: 200px;
+    margin-left: 220px;
+  }
+}
