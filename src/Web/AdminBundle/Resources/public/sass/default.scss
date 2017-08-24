@@ -9,7 +9,12 @@ fieldset{
   text-align: center;
   width: 72px;
 }
-#adm-content
+.sidenav-brand{
+  padding-bottom: 1px !important;
+  background: #0275d8;
+  border-bottom: 1px solid #0275d8;
+}
+/*#adm-content
 {
   display: flex;
   #adm-main-nav{
@@ -34,4 +39,4 @@ fieldset{
     min-height: 200px;
     margin-left: 220px;
   }
-}
+}*/
