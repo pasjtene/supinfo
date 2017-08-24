@@ -10,11 +10,13 @@ var MainDetailProfile = function()
         active_tab : $("#Main-Subphotos #active-photo-tab"),
         var: {
             schools:null,
-            OldUp:null
+            OldUp:null,
+            country: null
         },
         html: $("html"),
         form: {
             country : $("#Main-Subdetail-detail-User #country"),
+            countryc : $("#Main-Subdetail-detail-User #countryc"),
             phoneadd : $("#Main-Subdetail-detail-User #phoneadd"),
             firstName : $("#Main-Subdetail-detail-User #firstName"),
             city : $("#Main-Subdetail-detail-User #city"),
@@ -198,27 +200,16 @@ $(function(){
 
     if(mainDetailProfile.params.sub.data('sub')=="Main-Subdetail-detail-User" && mainDetailProfile.params.active_tab.val()==4)
     {
-       // console.log(mainDetailProfile.params.btn.openChange);
+
         mainDetailProfile.params.btn.openChange.click(function(e){
             mainProfile_detail.params.bg_action.fadeIn();
-            var chargerPays = setInterval(function(){
-                console.log("bad : " + geolocationbad);
-                //il faut  marcher
-                //charger la liste des pays
-                $.getJSON(mainDetailProfile.params.form.country.data("country"), function(data){
-                    //mainRegister.params.form.country.empty();
-                    $.each(data,function(index,value){
-                        var option = "<option  value='"+index+"'>"+value+"</option>";
-                        mainDetailProfile.params.form.country.append(option);
-                    });
-                });
-                clearInterval(chargerPays);
-            },100);
-            toogleLink(mainDetailProfile.params.detail_profile.countryblock, mainDetailProfile.params.detail_profile.countryChange);
-
+            loadCountry(mainDetailProfile.params.form.country);
             mainProfile_detail.params.bg_action.fadeOut();
+            toogleLink(mainDetailProfile.params.detail_profile.countryblock, mainDetailProfile.params.detail_profile.countryChange);
             e.preventDefault();
         });
+
+
 
         mainDetailProfile.params.btn.closeCountry.click(function(e){
            toogleLink(mainDetailProfile.params.detail_profile.countryblock,
@@ -288,6 +279,9 @@ $(function(){
 
         mainDetailProfile.params.btn.openSchool.click(function(e){
             //console.log(mainDetailProfile.params.schools);
+            mainProfile_detail.params.bg_action.fadeIn();
+            loadCountry(mainDetailProfile.params.form.countryc);
+            mainProfile_detail.params.bg_action.fadeOut();
             toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock,
                 mainDetailProfile.params.detail_profile.SchoolChange);
             e.preventDefault();
@@ -399,14 +393,9 @@ $(function(){
                         profession:mainDetailProfile.params.form.profession.val()
             };
             // console.log(data.pays.length);
-            if(data.profession.length == 0 ){
-                bootbox.alert("Veuillez veriifier vos champs", function(){});
-                mainProfile_detail.params.bg_action.fadeOut();
-            }else{
-                edit(data, mainDetailProfile.params.api.editAdresse,
-                    mainDetailProfile.params.detail_profile.AdresseBlock, mainDetailProfile.params.detail_profile.AdresseChange)
+            edit(data, mainDetailProfile.params.api.editAdresse,
+                mainDetailProfile.params.detail_profile.AdresseBlock, mainDetailProfile.params.detail_profile.AdresseChange)
 
-            }
             e.preventDefault();
         });
 
@@ -461,7 +450,8 @@ $(function(){
 
             var school = null;
             var sc = mainDetailProfile.params.var.schools;
-
+            mainProfile_detail.params.bg_action.fadeIn();
+            loadCountry(mainDetailProfile.params.form.countryc);
             for(var elt = 0; elt < sc.length; elt++){
                 if(sc[elt].id == id )
                     school = sc[elt];
@@ -471,13 +461,15 @@ $(function(){
             {
                 toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock,mainDetailProfile.params.detail_profile.SchoolChange);
                 mainDetailProfile.params.form.schoolname.val(school.name);
-                mainDetailProfile.params.form.location.val(school.location);
+                mainDetailProfile.params.form.countryc.val(school.country);
+                mainDetailProfile.params.form.location.val(school.city);
                 mainDetailProfile.params.form.yearC.val(school.year);
                 mainDetailProfile.params.form.Qualification.val(school.qualification);
                 mainDetailProfile.params.form.highlevel.val(school.highLevel);
                 mainDetailProfile.params.var.OldUp = school.id;
                 mainDetailProfile.params.btn.LinkDelSchool.toggleClass('hide');
             }
+            mainProfile_detail.params.bg_action.fadeOut();
         };
 
        ////=====AJOUTER ET modifierer LE SCHOOL
@@ -486,17 +478,19 @@ $(function(){
             var data = {id:currentUser.id,
                         idschool: mainDetailProfile.params.var.OldUp,
                         name:mainDetailProfile.params.form.schoolname.val(),
-                        location:mainDetailProfile.params.form.location.val(),
+                        city:mainDetailProfile.params.form.location.val(),
+                        country:mainDetailProfile.params.form.countryc.val(),
                         year:mainDetailProfile.params.form.yearC.val(),
                         Qualification:mainDetailProfile.params.form.Qualification.val(),
                         level:mainDetailProfile.params.form.highlevel.val()
             };
-             console.log(data);
-            if(data.name.length == 0 ||data.location.length == 0 ||data.level.length == 0 ){
+
+            if(data.name.length == 0  ){
                 bootbox.alert("Veuillez veriifier vos champs", function(){});
                 mainProfile_detail.params.bg_action.fadeOut();
             }
             else{
+
                 var School = null;
                 if(data.idschool == null){
                     School = mainDetailProfile.params.api.addSchool;
@@ -532,6 +526,7 @@ $(function(){
                         toogleLink(mainDetailProfile.params.detail_profile.SchoolBlock, mainDetailProfile.params.detail_profile.SchoolChange);
                     }
                 });
+
             }
             e.preventDefault();
         });
@@ -672,6 +667,20 @@ $(function(){
             });
         }
 
+        function loadCountry(block){
+            var chargerPays = setInterval(function(){
+                //mainDetailProfile.params.var.country = true;
+                $.getJSON(block.data("country"), function(data){
+                    //mainRegister.params.form.country.empty();
+                    $.each(data,function(index,value){
+                        var option = "<option  value='"+index+"'>"+value+"</option>";
+                        block.append(option);
+                    });
+                });
+                clearInterval(chargerPays);
+            },100);
+        }
+
         function validateEmail(email) {
             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email);
@@ -752,12 +761,23 @@ $(function(){
             var chainePhones = "";
 
             if(profile != null){
-                element.bio.html(profile.aboutMe);
-                element.numberOfChill.html(profile.childNumber);
-                var maritalStatus;
-                element.meetLike.html(profile.meetLike);
 
-                element.maritalStatus.html(profile.maritalStatus);
+                if(profile.aboutMe != null){
+                    element.bio.html(profile.aboutMe);
+                }
+
+                if(profile.childNumber != null){
+                    element.numberOfChill.html(profile.childNumber);
+                }
+                var maritalStatus;
+
+                if(profile.meetLike != null){
+                    element.meetLike.html(profile.meetLike);
+                }
+
+                if(profile.maritalStatus != null){
+                    element.maritalStatus.html(profile.maritalStatus);
+                }
                 mainDetailProfile.params.form.bio.val(profile.aboutMe);
                 mainDetailProfile.params.form.numberOfChill.val(profile.childNumber);
                 mainDetailProfile.params.form.maritalStatus.val(profile.maritalStatus);
@@ -770,10 +790,18 @@ $(function(){
             mainDetailProfile.params.form.userName.val(val.username);
             mainDetailProfile.params.form.firstName.val(val.firstName);
             mainDetailProfile.params.form.lastname.val(val.lastName);
-            mainDetailProfile.params.form.city.val(val.city);
-            mainDetailProfile.params.form.reason.val(val.joinReason);
+            if(val.city != null){
+                mainDetailProfile.params.form.city.val(val.city);
+            }
 
-            mainDetailProfile.params.form.profession.val(val.profession);
+
+            if(val.joinReason != null){
+                mainDetailProfile.params.form.reason.val(val.joinReason);
+            }
+
+            if(val.profession != null){
+                mainDetailProfile.params.form.profession.val(val.profession);
+            }
             mainDetailProfile.params.form.gender.val(val.gender);
             var m = new Date(val.birthDate).getMonth();
             //console.log(m);
@@ -809,23 +837,21 @@ $(function(){
             //console.log(school);
             if(school != null){
                 for(var i = 0; i < school.length; i++){
-
+                    var flag ="<img class='sm-img flag' src='"+path.flags+school[i].country+".png' alt=''/> ";
                     ch += '<li class="list-group-item">' +
                         '<span class=""><a data-school="'+school[i].id+'" class=" deleteschool fa fa-2x fa-edit   " href="#"></a>&nbsp; &nbsp;'+
-                        ''+school[i].name+'&nbsp; &nbsp; '+school[i].location+'&nbsp; &nbsp; '+ school[i].highLevel +'&nbsp; &nbsp; '+ school[i].year+'</span> ' +
+                        ''+school[i].name+'&nbsp; &nbsp; '+flag + school[i].city+'&nbsp; &nbsp; '+ school[i].highLevel +'&nbsp; &nbsp; '+ school[i].year+'</span> ' +
                         '</li>'
                 }
+                elt.school.html(ch);
+                mainDetailProfile.params.btn.deleteschool = $("#Main-Subdetail-detail-User .deleteschool");
+                mainDetailProfile.params.btn.deleteschool.click(function(e){
+                    editSchool($(this).data('school'));
+                    //bootbox.alert("phone" + $(this).data('phone'), function(){});
+                    e.preventDefault();
+                });
             }
-            elt.school.html(ch);
-            mainDetailProfile.params.btn.deleteschool = $("#Main-Subdetail-detail-User .deleteschool");
-            mainDetailProfile.params.btn.deleteschool.click(function(e){
-                editSchool($(this).data('school'));
-                //bootbox.alert("phone" + $(this).data('phone'), function(){});
-                e.preventDefault();
-            });
         }
-
-
         // fon fait  l'appel  du fichier
         getCompte(currentUser.id);
 
