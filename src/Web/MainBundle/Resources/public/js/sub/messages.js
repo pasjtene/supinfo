@@ -213,25 +213,52 @@ var MainSubMessages = function()
 
 
 $(function () {
-    //Pour le chatBox, on doit mieux arranger avec les variables
-    $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color");
-    $("#drag-message .popup-box").mouseover(function(){
 
-        $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color-active");
-        $("#drag-message .popup-box .popup-head").removeClass("chatbox-header-bg-color");
-        //alert("Clicked");
+//Pour le chatBox, on doit mieux arranger avec les variables
+    $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color");
+
+    //added ids to the chat btn menu and chat btn group
+    $("#chat-btn-menu").click(function(){
+        $("#chat-btns").toggleClass("show");
     });
 
-    $("#drag-message .popup-box").mouseout(function(){
-
-        $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color");
-        $("#drag-message .popup-box .popup-head").removeClass("chatbox-header-bg-color-active");
-        //alert("Clicked");
-        if($("#status_message").is(":focus")){
-            $("#drag-message .popup-box .popup-head").removeClass("chatbox-header-bg-color");
+    $("div").click(function(e){
+        var $th = $(this);
+        var classs = $(this).attr("class");
+        console.log("The Class 000 is "+classs);
+        if($th.hasClass("btn-group") && $th.hasClass("popup-box")){
+            alert("Yes");
             $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color-active");
+            $("#drag-message .popup-box .popup-head").removeClass("chatbox-header-bg-color");
+            console.log("The class 11 is "+classs);
+        } else if($th.hasClass("popup-box")&& !$th.hasClass("btn-group")){
+            $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color-active");
+            $("#drag-message .popup-box .popup-head").removeClass("chatbox-header-bg-color");
+            console.log("The class 2 is "+classs);
+            //alert("no");
+            e.stopPropagation();
+        } else if(!$th.hasClass("btn-group") && !$th.hasClass("popup-box")){
+            $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color");
+            $("#drag-message .popup-box .popup-head").removeClass("chatbox-header-bg-color-active");
+            console.log("The class 3 is "+classs);
+            //$("#chat-btns").removeClass("show");
+            //alert("noooo");
+            //e.stopPropagation();
         }
     });
+    $("div").click(function(e){
+        var $th = $(this);
+        var classs = $(this).attr("class");
+        console.log("The Class 000 is "+classs);
+        if($th.hasClass("btn-group")){
+            // alert("Yes");
+            $("#chat-btns").addClass("show");
+            e.stopPropagation();
+        } else {
+            $("#chat-btns").removeClass("show");
+        }
+    });
+
     //Fin chatbox
 
     var mainSubMessages = new MainSubMessages(),
