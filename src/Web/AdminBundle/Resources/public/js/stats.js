@@ -1,58 +1,57 @@
-
 var AdminStat = function(){
-  this.params ={
-      page : $('#AdminStat'),
-      api:{
-          user:{
-              url: baseUrl+'auth/count',
-              type: "get",
-              contenType: "json"
-          },
-          picture:{
-              url: baseUrl+'auth/count/picture',
-              type: "get",
-              contenType: "json"
-          }
+    this.params ={
+        page : $('#AdminStat'),
+        api:{
+            user:{
+                url: baseUrl+'auth/count',
+                type: "get",
+                contenType: "json"
+            },
+            picture:{
+                url: baseUrl+'auth/count/picture',
+                type: "get",
+                contenType: "json"
+            }
 
-      },
-      user:{
-          count:{
-              //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user
-              all: $('#AdminStat table tr .countuser'),
-              //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de vips
-              vip: $('#AdminStat table tr .countuservip'),
-              //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit today
-              jointoday: $('#AdminStat table tr .joinTodays'),
-              //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit yesterday
-              jointyesterday: $('#AdminStat table tr .membersWhoJoinedYesterdays'),
-              //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit from one week
-              jointoneweek: $('#AdminStat table tr .membersWhoJoinedfromoneWeeks'),
-              //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit from one month
-              jointonemonth: $('#AdminStat table tr .membersWhoJoinedfromoneMonths'),
-          },
-          graph:{
+        },
+        user:{
+            count:{
+                //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user
+                all: $('#AdminStat table tr .countuser'),
+                //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de vips
+                vip: $('#AdminStat table tr .countuservip'),
+                //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit today
+                jointoday: $('#AdminStat table tr .joinTodays'),
+                //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit yesterday
+                jointyesterday: $('#AdminStat table tr .membersWhoJoinedYesterdays'),
+                //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit from one week
+                jointoneweek: $('#AdminStat table tr .membersWhoJoinedfromoneWeeks'),
+                //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user inscrit from one month
+                jointonemonth: $('#AdminStat table tr .membersWhoJoinedfromoneMonths'),
+            },
+            graph:{
 
-          }
-      },
-      picture:{
-          count:{
-              //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user
-              all: $('#AdminStat table tr .numberpicture'),
-              pictureToday: $('#AdminStat table tr .NumberpictureTodays'),
-              pictureYesterday: $('#AdminStat table tr .NumberYesterdaypictures'),
-              pictureWeek: $('#AdminStat table tr .NumberpictureWeeks'),
-              pictureMonth: $('#AdminStat table tr .NumberpictureMonths'),
-              UserWithoutPicture: $('#AdminStat table tr .NumberuserWithoutPictures'),
-
-
+            }
+        },
+        picture:{
+            count:{
+                //on cible l'element  dans la page html (l'element  qui  doit  contenir le nombre de user
+                all: $('#AdminStat table tr .numberpicture'),
+                pictureToday: $('#AdminStat table tr .NumberpictureTodays'),
+                pictureYesterday: $('#AdminStat table tr .NumberYesterdaypictures'),
+                pictureWeek: $('#AdminStat table tr .NumberpictureWeeks'),
+                pictureMonth: $('#AdminStat table tr .NumberpictureMonths'),
+                UserWithoutPicture: $('#AdminStat table tr .NumberuserWithoutPictures'),
 
 
-          },
-          graph:{
 
-          }
-      }
-  }
+
+            },
+            graph:{
+
+            }
+        }
+    }
 };
 
 
