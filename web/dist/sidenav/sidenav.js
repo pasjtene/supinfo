@@ -27,10 +27,12 @@
           self.toggleOverlay();
 
         } else if (!$target.closest(self.$el)[0]){
-          self.$el.removeClass('show');
-          $('body').removeClass('sidenav-no-scroll');
+          if(!self.$el.hasClass('freeze')){
+              self.$el.removeClass('show');
+              $('body').removeClass('sidenav-no-scroll');
 
-          self.hideOverlay();
+              self.hideOverlay();
+          }
         }
       });
     },

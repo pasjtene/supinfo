@@ -8,6 +8,7 @@
     {{ parent() }}
     {# mettre le css si la page t'oublige #}
     <link rel="stylesheet" href="{{ asset('dist/sidenav/sidenav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('plugin/nanoScroller/nanoscroller.min.css') }}" type="text/css">
 {% endblock %}
 
 {% block header %}
@@ -17,7 +18,7 @@
 {% block main %}
     {% include 'AdminBundle:Inc:pascalnavbar.html.twig' %}
 
-    <nav class="sidenav show" data-sidenav data-sidenav-toggle="#sidenav-toggle">
+    <nav class="sidenav show freeze" data-sidenav data-sidenav-toggle="#sidenav-toggle">
         <div class="sidenav-brand">FUNGLOBE</div>
 
         <div class="sidenav-header">
@@ -25,93 +26,95 @@
             <small>Profil</small>
         </div>
 
-        <ul class="sidenav-menu">
-            <li>
-                <a href="#" data-sidenav-dropdown-toggle class="active">
-                    <span class="sidenav-link-icon"><i class="fa fa-users"></i></span>
-                    <span class="sidenav-link-title">Members</span>
-                    <span class="sidenav-dropdown-icon show" data-sidenav-dropdown-icon>
+        <div class="nanon">
+            <div class="nano-contentn">
+                <ul class="sidenav-menu">
+                    <li>
+                        <a href="#" data-sidenav-dropdown-toggle class="active">
+                            <span class="sidenav-link-icon"><i class="fa fa-users"></i></span>
+                            <span class="sidenav-link-title">Members</span>
+                            <span class="sidenav-dropdown-icon show" data-sidenav-dropdown-icon>
                         <i class="fa fa-angle-down"></i>
                     </span>
-                    <span class="sidenav-dropdown-icon" data-sidenav-dropdown-icon>
+                            <span class="sidenav-dropdown-icon" data-sidenav-dropdown-icon>
                         <i class="fa fa-angle-up"></i>
                     </span>
-                </a>
+                        </a>
 
-                <ul class="sidenav-dropdown" data-sidenav-dropdown>
-                    <li><a href="#">Members list</a></li>
-                    <li><a href="#">Denounced members</a></li>
-                    <li><a href="#">Spam members</a></li>
-                    <li><a href="#">Deleted members</a></li>
-                </ul>
-            </li>
+                        <ul class="sidenav-dropdown" data-sidenav-dropdown>
+                            <li><a href="#">Members list</a></li>
+                            <li><a href="#">Denounced members</a></li>
+                            <li><a href="#">Spam members</a></li>
+                            <li><a href="#">Deleted members</a></li>
+                        </ul>
+                    </li>
 
-            <li>
-                <a href="#" data-sidenav-dropdown-toggle>
-                    <span class="sidenav-link-icon"><i class="fa fa-image"></i></span>
-                    <span class="sidenav-link-title">Pictures</span>
-                    <span class="sidenav-dropdown-icon show" data-sidenav-dropdown-icon>
+                    <li>
+                        <a href="#" data-sidenav-dropdown-toggle>
+                            <span class="sidenav-link-icon"><i class="fa fa-image"></i></span>
+                            <span class="sidenav-link-title">Pictures</span>
+                            <span class="sidenav-dropdown-icon show" data-sidenav-dropdown-icon>
                         <i class="fa fa-angle-down"></i>
                     </span>
-                    <span class="sidenav-dropdown-icon" data-sidenav-dropdown-icon>
+                            <span class="sidenav-dropdown-icon" data-sidenav-dropdown-icon>
                         <i class="fa fa-angle-up"></i>
                     </span>
-                </a>
+                        </a>
 
-                <ul class="sidenav-dropdown" data-sidenav-dropdown>
-                    <li><a href="#">Latest pictures</a></li>
-                    <li><a href="#">Denounced pictures</a></li>
-                </ul>
-            </li>
+                        <ul class="sidenav-dropdown" data-sidenav-dropdown>
+                            <li><a href="#">Latest pictures</a></li>
+                            <li><a href="#">Denounced pictures</a></li>
+                        </ul>
+                    </li>
 
-            <li>
-                <a href="#" data-sidenav-dropdown-toggle>
-                    <span class="sidenav-link-icon"><i class="fa fa-envelope"></i></span>
-                    <span class="sidenav-link-title">Messages</span>
-                    <span class="sidenav-dropdown-icon show" data-sidenav-dropdown-icon>
+                    <li>
+                        <a href="#" data-sidenav-dropdown-toggle>
+                            <span class="sidenav-link-icon"><i class="fa fa-envelope"></i></span>
+                            <span class="sidenav-link-title">Messages</span>
+                            <span class="sidenav-dropdown-icon show" data-sidenav-dropdown-icon>
                         <i class="fa fa-angle-down"></i>
                     </span>
-                    <span class="sidenav-dropdown-icon" data-sidenav-dropdown-icon>
+                            <span class="sidenav-dropdown-icon" data-sidenav-dropdown-icon>
                         <i class="fa fa-angle-up"></i>
                     </span>
-                </a>
+                        </a>
 
-                <ul class="sidenav-dropdown" data-sidenav-dropdown>
-                    <li><a href="#">Latest messages</a></li>
-                    <li><a href="#">Blocked messages</a></li>
-                    <li><a href="#">Suspect messages</a></li>
-                    <li><a href="#">Spam messages</a></li>
+                        <ul class="sidenav-dropdown" data-sidenav-dropdown>
+                            <li><a href="#">Latest messages</a></li>
+                            <li><a href="#">Blocked messages</a></li>
+                            <li><a href="#">Suspect messages</a></li>
+                            <li><a href="#">Spam messages</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="sidenav-link-icon"><i class="fa fa-gears"></i></span>
+                            <span class="sidenav-link-title">Settings</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="sidenav-link-icon"><i class="fa fa-area-chart"></i></span>
+                            <span class="sidenav-link-title">Statistics</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path('main_logout') }}">
+                            <span class="sidenav-link-icon"><i class="fa fa-sign-out"></i></span>
+                            <span class="sidenav-link-title">Logout</span>
+                        </a>
+                    </li>
                 </ul>
-            </li>
-
-            <li>
-                <a href="#">
-                    <span class="sidenav-link-icon"><i class="fa fa-gears"></i></span>
-                    <span class="sidenav-link-title">Settings</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <span class="sidenav-link-icon"><i class="fa fa-area-chart"></i></span>
-                    <span class="sidenav-link-title">Statistics</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ path('main_logout') }}">
-                    <span class="sidenav-link-icon"><i class="fa fa-sign-out"></i></span>
-                    <span class="sidenav-link-title">Logout</span>
-                </a>
-            </li>
-        </ul>
+            </div>
+        </div>
     </nav>
 
-    <a href="#" class="toggle" id="sidenav-toggle">
-        <i class="fa fa-bars"></i>
-    </a>
+    <!--<a href="#" class="toggle" id="sidenav-toggle"><i class="fa fa-bars"></i></a>-->
 
-    <div id="adm-mn-content">
+    <div id="adm-content">
         {% block admcontent %}
 
         {% endblock %}
@@ -119,7 +122,8 @@
 {% endblock %}
 
 {% block myjs %}
-    <script src="{{ asset('dist/sidenav/sidenav.min.js') }}"></script>
+    <script src="{{ asset('dist/sidenav/sidenav.js') }}"></script>
+    <script src="{{ asset('plugin/nanoScroller/jquery.nanoscroller.min.js') }}"></script>
     <script>$('[data-sidenav]').sidenav();</script>
 {% endblock %}
 
