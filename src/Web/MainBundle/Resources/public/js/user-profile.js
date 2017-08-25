@@ -137,6 +137,28 @@ var MainUserProfile = function()
                 btn: $('#qnimate .popup-messages-footer .btn-footer'),
                 send: $('#qnimate .popup-messages-footer .btn-footer .btn-send')
             }
+        },
+        chatbox:{
+            father: $('#drag-messageA'),
+            main: $('.chatcontent'),
+            btnMessage: $('.drag-message'),
+            header:{
+                main: $(".chatcontent .popup-head"),
+                close: $(".chatcontent .popup-head .closeChat"),
+                setting: $(".chatcontent .popup-head .btn-group"),
+                Profile: $(".chatcontent .popup-head .userCurrentProfile"),
+                name: $(".chatcontent .popup-head .userCurrentName")
+
+            },
+            body:{
+                main: $('.chatcontent .popup-messages')
+            },
+            footer:{
+                main: $('.chatcontent .popup-messages-footer'),
+                message: $('.chatcontent .popup-messages-footer #status_message'),
+                btn: $('.chatcontent .popup-messages-footer .btn-footer'),
+                send: $('.chatcontent .popup-messages-footer .btn-footer .btn-send')
+            }
         }
     };
 
@@ -690,7 +712,7 @@ $(function(){
            });
        }
 
-       if(mainUserProfile.params.iswriteMessage.data('write') =='yes')
+      /* if(mainUserProfile.params.iswriteMessage.data('write') =='yes')
        {
 
            function get(objet,errorMessage,isobjet,isdelete)
@@ -1060,6 +1082,15 @@ $(function(){
                }
            });
        }
+       */
+
+
+
+       // debut  implementation du  chat
+      // mainUserProfile.params.chat.btnMessage.click(function () {
+      // });
+      // mainUserProfile.params.chatbox.main.addClass('popup-box-on');
+
    }
 });
 
