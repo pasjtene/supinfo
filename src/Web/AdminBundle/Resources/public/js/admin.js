@@ -36,7 +36,7 @@ var AdminApp =
         this.Methods.SetHeight(this.Main.Id.Content, height);
 
         //Appliquer un scrollbar customisé
-        $(this.Main.Class).nanoScroller();
+        //$(this.Main.Class).nanoScroller();
     },
     Modules: {
         Members: function(){
