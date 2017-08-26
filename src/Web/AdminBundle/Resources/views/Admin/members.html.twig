@@ -1,0 +1,77 @@
+{% extends 'AdminBundle::admin-layout.html.twig' %}
+
+{% block admcontent %}
+    <div class="row" style="position: relative">
+        <div class="offset-1 col-sm-10" id="adminMembers" data-page="adminMembers">
+            <div id="number_of_users">{% trans from 'admin' %}admin.members.number {% endtrans %}: </div>
+            <div id="nb_users_div"><span id="total_users"></span></div>
+            <div id="nbusers">Number of selected users:
+                <span class="badge badge-pill badge-success nbrofchkbox"></span>
+            </div>
+            <div id="order-zone">
+                <select id="cb-property" class="cb-order">
+                    <option value="joinDate">{% trans from 'admin' %}admin.members.fltjdate {% endtrans %}</option>
+                    <option value="firstName">{% trans from 'admin' %}admin.members.fltfname {% endtrans %}</option>
+                    <option value="country">{% trans from 'admin' %}admin.members.fltcountry {% endtrans %}</option>
+                </select>
+                <select id="cb-order" class="cb-order">
+                    <option value="ASC">{% trans from 'admin' %}admin.members.ordasc {% endtrans %}</option>
+                    <option value="DESC">{% trans from 'admin' %}admin.members.orddesc {% endtrans %}</option>
+                </select>
+                <button id="btn-order-users" class="btn btn-default">{% trans from 'admin' %}admin.members.filter {% endtrans %}</button>
+            </div>
+            <div class="input-group" style="margin-bottom: 5px;">
+                <input type="text" class="form-control" placeholder="{% trans from 'admin' %} admin.members.search_hint {% endtrans %}" id="ipt-search-user">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" id="btn-search-user">{% trans from 'admin' %}admin.members.search {% endtrans %}</button>
+              </span>
+            </div>
+            <br/>
+            <div id="users-loader">
+                <img src="{{ asset('dist/loader.gif') }}"/>
+            </div>
+            <table id="user_list" class="table table-bordered table-hover table-sm table-striped table-success users_table">
+               <thead>
+                   <tr>
+                       <th>#</th>
+                       <th>{% trans from 'admin' %}admin.members.firstname {% endtrans %}</th>
+                       <th>id</th>
+                       <th>Email</th>
+                       <th>Join Date</th>
+                       <th>{% trans from 'admin' %}admin.members.country {% endtrans %}</th>
+                       <th>{% trans from 'admin' %}admin.members.gender {% endtrans %}</th>
+                       <th>{% trans from 'admin' %}admin.members.status {% endtrans %}</th>
+                       <th>{% trans from 'admin' %}admin.members.vip {% endtrans %}</th>
+                       <th>{% trans from 'admin' %}admin.members.select {% endtrans %}</th>
+                   </tr>
+               </thead>
+                <tbody id="users_table_body">
+
+                </tbody>
+            </table>
+
+            <div id="users-pagination-content" style="width: 100%">
+                <ul class="pagination pull-right" id="users-pagination">
+                    <li class="page-item"><a class="page-link" href="#" id="pg-prev" data-page="1">&lt;</a></li>
+                    <li class="page-item"><a class="page-link" href="#" id="pg-next" data-page="1">&gt;</a></li>
+                </ul>
+            </div>
+            <br/>
+            <div>
+                <button class="btn btn-sm btn-danger" id="btn_delete_users">{% trans from 'admin' %}admin.members.delete {% endtrans %} <span class="badge badge-pill badge-success nbrofchkbox"></span></button>
+                <button class="btn btn-sm btn-info" id="btn-lock-members">{% trans from 'admin' %}admin.members.block {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
+                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-email">{% trans from 'admin' %}admin.members.email {% endtrans %}<span class="badge badge-pill badge-info nbrofchkbox"></span></button>
+                <button class="btn btn-sm btn-warning" id="btn-vip-members">{% trans from 'admin' %}admin.members.setvip {% endtrans %} <span class="badge badge-pill badge-success nbrofchkbox"></span></button>
+                <button class="btn btn-sm btn-info" id="btn-unlock-members">{% trans from 'admin' %}admin.members.unblock {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
+                <button class="btn btn-sm btn-danger" id="btn-unvip-members">{% trans from 'admin' %}admin.members.unvip {% endtrans %} <span class="badge badge-pill badge-danger nbrofchkbox"></span></button>
+            </div>
+        </div>
+    </div>
+
+    {% include 'AdminBundle:Inc:eric-modal-email.html.twig' %}
+{% endblock %}
+
+
+{% block myjs %}
+    <script src="{{ asset('plugin/ckeditor/ckeditor.js') }}"></script>
+{% endblock %}
