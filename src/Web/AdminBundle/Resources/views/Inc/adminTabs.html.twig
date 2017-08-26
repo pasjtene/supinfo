@@ -1,0 +1,67 @@
+<div class="admin_page_title">
+    Welcome to FunGlobe Admin page
+</div>
+<div class="container">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home" role="tab">{% trans from 'admin' %}admin.statistics.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile" role="tab">{% trans from 'admin' %}admin.members.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#messages" role="tab">{% trans from 'admin' %}admin.messages.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#photos" role="tab">{% trans from 'admin' %}admin.photos.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#spam" role="tab">{% trans from 'admin' %}admin.spam.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#userdenounced" role="tab">
+                {% trans from 'admin' %}admin.userdenounced.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#photosdenounced" role="tab">
+                {% trans from 'admin' %}admin.picturedenounced.title {% endtrans %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#blocmessage" role="tab">
+                {% trans from 'admin' %}admin.blocmessage.title {% endtrans %}</a>
+        </li>
+        {% if app.user.isSuperAdmin %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#settings" role="tab">
+                    {% trans from 'admin' %}admin.settings.title {% endtrans %}</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content" id="admin-tabs">
+        <div class="tab-pane active" id="home" role="tabpanel" data-tab="adminStatistics">
+            {% include 'AdminBundle:Tab:stats.html.twig' %}
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel" data-tab="adminMembers">
+            {% include 'AdminBundle:Tab:members.html.twig' %}
+        </div>
+        <div class="tab-pane" id="messages" role="tabpanel" data-tab="adminMessages">
+            {% include 'AdminBundle:Tab:j.html.twig' %}
+        </div>
+        <div class="tab-pane" id="photos" role="tabpanel" data-tab="adminPictures">
+            {% include 'AdminBundle:Tab:pictures.html.twig' %}
+        </div>
+        <div class="tab-pane" id="spam" role="tabpanel">All spam messages will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="userdenounced" role="tabpanel">All user will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="blocmessage" role="tabpanel">All messages will be here, and the moderator can delete or mark as invalid</div>
+        <div class="tab-pane" id="photosdenounced" role="tabpanel">All photos will be here, and the moderator can delete or mark as invalid</div>
+
+        {% if app.user.isSuperAdmin %}
+            <div class="tab-pane" id="settings" role="tabpanel" data-tab="adminSettings">
+                {% include 'AdminBundle:Tab:settings.html.twig' %}
+            </div>
+        {% endif %}
+    </div>
+</div>
