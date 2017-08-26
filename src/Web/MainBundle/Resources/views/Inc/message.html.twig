@@ -3,8 +3,8 @@
         <div class="popup-head">
             <div class="popup-head-left pull-left"><img id="userCurrentProfile" src="{{ asset('data/img/empty.png') }}" alt="iamgurdeeposahan"> <span id="userCurrentName">   </span></div>
             <div class="popup-head-right pull-right">
-                <div class="btn-group">
-                    <button class="chat-header-button" data-toggle="dropdown" type="button" aria-expanded="false">
+                <div id="chat-btns" class="btn-group ">
+                    <button id="chat-btn-menu" class="chat-header-button" type="button" aria-expanded="false">
                         <i class="fa fa-cog"></i> </button>
                     <ul role="menu" class="dropdown-menu pull-right">
                         <li><a href="#">{% trans  from 'messages' %} message.profile {% endtrans %}</a></li>

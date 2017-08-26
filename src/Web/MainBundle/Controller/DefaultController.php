@@ -37,8 +37,8 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
             $months[] = $i<10? "0".$i:$i;
         }
         $year = (int)date("Y");
-        $year = $year -5;
-        for($i=$year; $i>1960;$i--){
+        $year = $year -16;
+        for($i=$year; $i>1930;$i--){
             $years[] = $i;
         }
         $array = ["days"=>$days,"months"=>$months, "years"=>$years];

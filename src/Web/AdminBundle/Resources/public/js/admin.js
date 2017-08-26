@@ -34,10 +34,6 @@ var AdminApp =
         //Fixer la haute minimale de la zone de contenu
         var height = $(window).height();
         this.Methods.SetHeight(this.Main.Id.Content, height);
-
-        //Appliquer un scrollbar customisé
-
-        //$(this.Main.Class).nanoScroller();
     },
     Modules: {
         Members: function(){

@@ -51,11 +51,14 @@
                     {% include "MainBundle:Sub:detail-profile.html.twig" %}
                 {% endif %}
             {% endif %}
+            {% include "MainBundle:Inc:chatBox.html.twig" %}
         </div>
         <div class="col" id="publicity">
             {% include "MainBundle:Inc:publicity.html.twig" %}
         </div>
+      {#
         {% include "MainBundle:Inc:message.html.twig" %}
+      #}
     </div>
 {% endblock %}
 
