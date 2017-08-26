@@ -42,7 +42,7 @@
                         </a>
 
                         <ul class="sidenav-dropdown" data-sidenav-dropdown>
-                            <li><a href="#">Members list</a></li>
+                            <li><a id="latest_members" href="#">Members list</a></li>
                             <li><a href="#">Denounced members</a></li>
                             <li><a href="#">Spam members</a></li>
                             <li><a href="#">Deleted members</a></li>
@@ -62,7 +62,7 @@
                         </a>
 
                         <ul class="sidenav-dropdown" data-sidenav-dropdown>
-                            <li><a href="#">Latest pictures</a></li>
+                            <li><a id="latest-pictures" href="#">Latest pictures</a></li>
                             <li><a href="#">Denounced pictures</a></li>
                         </ul>
                     </li>
@@ -95,9 +95,9 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a  href="#">
                             <span class="sidenav-link-icon"><i class="fa fa-area-chart"></i></span>
-                            <span class="sidenav-link-title">Statistics</span>
+                            <span class="sidenav-link-title" id="stats-link">Statistics</span>
                         </a>
                     </li>
 
@@ -115,6 +115,24 @@
     <!--<a href="#" class="toggle" id="sidenav-toggle"><i class="fa fa-bars"></i></a>-->
 
     <div id="adm-content">
+
+        <div id="admin-help">
+            {% include 'AdminBundle:Tab:admin-help.html.twig' %}
+        </div>
+
+        <div id="latest-members-list">
+            {% include 'AdminBundle:Tab:members.html.twig' %}
+        </div>
+
+        <div id="latest-pictures-list">
+            {% include 'AdminBundle:Tab:pictures.html.twig' %}
+        </div>
+
+
+        <div id="stats">
+            {% include 'AdminBundle:Tab:stats.html.twig' %}
+        </div>
+
         {% block admcontent %}
 
         {% endblock %}

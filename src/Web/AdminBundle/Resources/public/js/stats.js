@@ -56,6 +56,17 @@ var AdminStat = function(){
 
 
 $(function(){
+
+    $("#stats").hide();
+    $("#latest-pictures-list").hide();
+
+    $("#stats-link").click(function () {
+        $("#admin-help").hide();
+        $("#latest-members-list").hide();
+        $("#latest-pictures-list").hide();
+        $("#stats").show();
+    });
+
     adminStat = new AdminStat();
     if(adminStat.params.page.data('page')=="Stat")
     {
