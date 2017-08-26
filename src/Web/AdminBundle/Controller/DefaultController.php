@@ -100,7 +100,8 @@ class DefaultController extends Controller
     {
         $datas = ['menuindex' => 4];
 
-        return $this->render('AdminBundle:Admin:statistics.html.twig', $datas);
+        //return $this->render('AdminBundle:Admin:statistics.html.twig', $datas);
+        return $this->render('AdminBundle::p-admin-layout.html.twig', $datas);
     }
 
     /**

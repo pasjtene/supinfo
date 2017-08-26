@@ -168,6 +168,42 @@ function jupdateCount () {
 
 }
 
+function selectedUsersList() {
+    var selectedUsers = getSelectedUsers();
+
+    deleteUsers(selectedUsers);
+}
+
+function deleteUsers(v) {
+    alert("Deleting users with ids: "+v);
+    $.ajax(
+        {
+            url: adminHome.params.api.action.delete_users + v,
+            type: adminHome.params.api.method.delete,
+            headers : {"X-Auth-Token" : tokenbase.value},
+            crossDomain: true,
+            success: function (users) {
+                $.each(users, function(i, user){
+                    updateCount();
+                });
+
+                //refresh the members table
+                setMember();
+                adminHome.params.attr.id.nbusers.hide();
+                //Update the number of selected checkboxes
+
+            },
+            error: function (xhr, status, message) { //en cas d'erreur
+                //console.log(status+"\n"+xhr.responseText + '\n' + message );
+                console.log(status+"\n" + message );
+            }
+        }
+    );
+
+}
+
+
+
 $(function(){
 
     // instanciation  de la classe AdminHome
@@ -197,13 +233,7 @@ $(function(){
         $("#latest-members-list").show();
     });
 
-
-
-
-
-
-
-
+/*
     //tester si  la page actuelle c'est adminHome
     if(adminHome.params.page.data('page')=="adminHome")
     {
@@ -228,40 +258,7 @@ $(function(){
         })
 
 
-        function selectedUsersList() {
-            var selectedUsers = getSelectedUsers();
-
-            deleteUsers(selectedUsers);
-        }
-
-
-        function deleteUsers(v) {
-            alert("Deleting users with ids: "+v);
-            $.ajax(
-                {
-                    url: adminHome.params.api.action.delete_users + v,
-                    type: adminHome.params.api.method.delete,
-                    headers : {"X-Auth-Token" : tokenbase.value},
-                    crossDomain: true,
-                    success: function (users) {
-                        $.each(users, function(i, user){
-                            updateCount();
-                        });
-
-                        //refresh the members table
-                        setMember();
-                        adminHome.params.attr.id.nbusers.hide();
-                        //Update the number of selected checkboxes
-
-                    },
-                    error: function (xhr, status, message) { //en cas d'erreur
-                        //console.log(status+"\n"+xhr.responseText + '\n' + message );
-                        console.log(status+"\n" + message );
-                    }
-                }
-            );
-
-        }
-
     }
+    */
+
 });
