@@ -49,6 +49,14 @@ var AdminMemberProfile = function()
 
 $(function()
 {
+    var countries = [];
+
+    var getCountriesList = function(){
+        $.getJSON(path.country[locale], function (result) {
+            countries = result;
+        });
+    };
+
     var adminMemberProfile = new AdminMemberProfile();
 
     var checkIp = function()
@@ -59,7 +67,7 @@ $(function()
         {
             url: adminMemberProfile.params.api.action.blockedIp + "?ip="+ip,
             type: adminMemberProfile.params.api.method.get,
-            headers: {"X-Auth-Token": tokenbase.value},
+            headers: {"X-Auth-Token": currentUser.token},
             crossDomain: true,
             success: function (response) {
                 //console.log(response);
@@ -73,8 +81,10 @@ $(function()
         });
     };
 
-    if(adminMemberProfile.params.page.data('page'))
+    if(adminMemberProfile.params.page.data('page') === "adminMember")
     {
+        getCountriesList();
+
         var country = adminMemberProfile.params.attr.id.country.data('country');
 
         setTimeout(function(){
@@ -105,7 +115,7 @@ $(function()
                     $.ajax({
                         url: adminMemberProfile.params.api.action.update + id + '/role',
                         type: adminMemberProfile.params.api.method.put,
-                        headers : {"X-Auth-Token" : tokenbase.value},
+                        headers : {"X-Auth-Token" : currentUser.token},
                         data: data,
                         crossDomain: true,
                         success: function (response) {
@@ -134,7 +144,7 @@ $(function()
             $.ajax({
                 url: adminMemberProfile.params.api.action.lock,
                 type: adminMemberProfile.params.api.method.put,
-                headers : {"X-Auth-Token" : tokenbase.value},
+                headers : {"X-Auth-Token" : currentUser.token},
                 data: data,
                 crossDomain: true,
                 success: function (response) {
@@ -155,7 +165,7 @@ $(function()
             $.ajax({
                 url: adminMemberProfile.params.api.action.vip,
                 type: adminMemberProfile.params.api.method.put,
-                headers : {"X-Auth-Token" : tokenbase.value},
+                headers : {"X-Auth-Token" : currentUser.token},
                 data: data,
                 crossDomain: true,
                 success: function (response) {
@@ -178,7 +188,7 @@ $(function()
                    $.ajax({
                        url: adminMemberProfile.params.api.action.delete + mid,
                        type: adminMemberProfile.params.api.method.delete,
-                       headers : {"X-Auth-Token" : tokenbase.value},
+                       headers : {"X-Auth-Token" : currentUser.token},
                        crossDomain: true,
                        success: function (users) {
                             window.location = Routing.generate('admin_home', {_locale: locale});
@@ -199,7 +209,7 @@ $(function()
             {
                 url: adminMemberProfile.params.api.action.blockedIp,
                 type: adminMemberProfile.params.api.method.post,
-                headers: {"X-Auth-Token": tokenbase.value},
+                headers: {"X-Auth-Token": currentUser.token},
                 data: JSON.stringify({ip: ip}),
                 crossDomain: true,
                 success: function (response) {
@@ -246,7 +256,7 @@ $(function()
                 $.ajax({
                     url: adminMemberProfile.params.api.action.country,
                     type: adminMemberProfile.params.api.method.put,
-                    headers : {"X-Auth-Token" : tokenbase.value},
+                    headers : {"X-Auth-Token" : currentUser.token},
                     data: data,
                     crossDomain: true,
                     success: function (response) {

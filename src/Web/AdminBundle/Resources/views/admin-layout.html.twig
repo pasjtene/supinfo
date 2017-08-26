@@ -30,7 +30,7 @@
             <div class="nano-contentn">
                 <ul class="sidenav-menu">
                     <li>
-                        <a href="#" data-sidenav-dropdown-toggle class="active">
+                        <a href="#" data-sidenav-dropdown-toggle class="{% if menuindex == 0 %}active{% endif %}">
                             <span class="sidenav-link-icon"><i class="fa fa-users"></i></span>
                             <span class="sidenav-link-title">Members</span>
                             <span class="sidenav-dropdown-icon show" data-sidenav-dropdown-icon>
@@ -40,9 +40,8 @@
                         <i class="fa fa-angle-up"></i>
                     </span>
                         </a>
-
                         <ul class="sidenav-dropdown" data-sidenav-dropdown>
-                            <li><a href="#">Members list</a></li>
+                            <li><a href="{{ path('admin_members') }}">Members list</a></li>
                             <li><a href="#">Denounced members</a></li>
                             <li><a href="#">Spam members</a></li>
                             <li><a href="#">Deleted members</a></li>
@@ -50,10 +49,10 @@
                     </li>
 
                     <li>
-                        <a href="#" data-sidenav-dropdown-toggle>
+                        <a href="#" data-sidenav-dropdown-toggle class="{% if menuindex == 1 %}active{% endif %}">
                             <span class="sidenav-link-icon"><i class="fa fa-image"></i></span>
                             <span class="sidenav-link-title">Pictures</span>
-                            <span class="sidenav-dropdown-icon show" data-sidenav-dropdown-icon>
+                            <span class="sidenav-dropdown-icon show" data-sidenav-dropdown-i1con>
                         <i class="fa fa-angle-down"></i>
                     </span>
                             <span class="sidenav-dropdown-icon" data-sidenav-dropdown-icon>
@@ -62,13 +61,13 @@
                         </a>
 
                         <ul class="sidenav-dropdown" data-sidenav-dropdown>
-                            <li><a href="#">Latest pictures</a></li>
+                            <li><a href="{{ path('admin_pictures') }}">Latest pictures</a></li>
                             <li><a href="#">Denounced pictures</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#" data-sidenav-dropdown-toggle>
+                        <a href="#" data-sidenav-dropdown-toggle class="{% if menuindex == 2 %}active{% endif %}">
                             <span class="sidenav-link-icon"><i class="fa fa-envelope"></i></span>
                             <span class="sidenav-link-title">Messages</span>
                             <span class="sidenav-dropdown-icon show" data-sidenav-dropdown-icon>
@@ -88,14 +87,14 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="{{ path('admin_settings') }}" class="{% if menuindex == 3 %}active{% endif %}">
                             <span class="sidenav-link-icon"><i class="fa fa-gears"></i></span>
                             <span class="sidenav-link-title">Settings</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="{{ path('admin_home') }}" class="{% if menuindex == 4 %}active{% endif %}">
                             <span class="sidenav-link-icon"><i class="fa fa-area-chart"></i></span>
                             <span class="sidenav-link-title">Statistics</span>
                         </a>

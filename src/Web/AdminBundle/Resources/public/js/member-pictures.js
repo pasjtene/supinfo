@@ -73,7 +73,7 @@ $(function()
         {
             url: adminMemberPictures.params.api.action.pictures + queryString,
             type: adminMemberPictures.params.api.method.get,
-            headers : {"X-Auth-Token" : tokenbase===null?sessionStorage.getItem("fg_token_base"):tokenbase.value},
+            headers : {"X-Auth-Token" : currentUser.token},
             crossDomain: true,
             success: function (response) {
                 adminMemberPictures.params.attr.id.nb_pics.html(response.total);
@@ -143,7 +143,7 @@ $(function()
         {
             url: adminMemberPictures.params.api.action.changeVisibility,
             type: adminMemberPictures.params.api.method.put,
-            headers: {"X-Auth-Token": tokenbase===null?sessionStorage.getItem("fg_token_base"):tokenbase.value},
+            headers: {"X-Auth-Token": currentUser.token},
             data: JSON.stringify(data),
             crossDomain: true,
             success: function (response) {
@@ -183,7 +183,7 @@ $(function()
                            {
                                url: adminMemberPictures.params.api.action.pictures,
                                type: adminMemberPictures.params.api.method.delete,
-                               headers: {"X-Auth-Token": tokenbase===null?sessionStorage.getItem("fg_token_base"):tokenbase.value},
+                               headers: {"X-Auth-Token": currentUser.token},
                                data: JSON.stringify(data),
                                crossDomain: true,
                                success: function (response) {
@@ -251,7 +251,7 @@ $(function()
             {
                 url: adminMemberPictures.params.api.action.pictures_member.replace(':id', userId),
                 type: adminMemberPictures.params.api.method.get,
-                headers : {"X-Auth-Token" : tokenbase===null?sessionStorage.getItem("fg_token_base"):tokenbase.value},
+                headers : {"X-Auth-Token" : currentUser.token},
                 crossDomain: true,
                 success: function (response) {
                     console.log(response);

@@ -1,0 +1,174 @@
+{% extends 'AdminBundle::admin-layout.html.twig' %}
+
+{% block title %}
+    {% trans from 'member' %} member.title {% endtrans %}
+{% endblock  %}
+
+{% block admcontent %}
+    {% set member_role = member.roles[0] %}
+
+    <div class="row">
+        <div class="offset-1 col-sm-10" id="adminMember" data-page="adminMember">
+            <div class="admin_page_title">
+                {% trans from 'member' %} member.page_title {% endtrans %}
+            </div>
+            <div class="container">
+                <div class="col-sm-12" id="mb-header">
+                <span>
+                    {{ member.firstName }} {{ member.lastName }} {% if member.isVip %}(vip){% endif %}
+                    <br/>
+                    User ID: <b>{{ member.id }}</b>
+                </span>
+
+                    <div class="btn-group pull-right" id="mn-user-action">
+                        <button type="button" class="btn btn-primary">Action</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('admin_view_member_picture', {'id': member.id}) }}" id="btn-view-pictures">
+                                {% trans from 'member' %} member.view_pictures {% endtrans %}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" id="btn-status-member" data-mid="{{ member.id }}" data-action="{% if member.enabled %}set{% else %}unset{% endif %}">
+                                {% if member.enabled %}
+                                    {% trans from 'member' %} member.set_locked {% endtrans %}
+                                {% else %}
+                                    {% trans from 'member' %} member.unset_locked {% endtrans %}
+                                {% endif %}
+                            </a>
+                            <a class="dropdown-item" href="#" id="btn-vip-member" data-mid="{{ member.id }}" data-action="{% if member.isVip %}unset{% else %}set{% endif %}">
+                                {% if member.isVip %}
+                                    {% trans from 'member' %} member.unset_vip {% endtrans %}
+                                {% else %}
+                                    {% trans from 'member' %} member.set_vip {% endtrans %}
+                                {% endif %}
+                            </a>
+                            {% if app.user.isSuperAdmin %}
+                                <a class="dropdown-item" href="#" id="btn-role-action" data-edit="0" data-mid="{{ member.id }}">
+                                    {% trans from 'member' %} member.change_role {% endtrans %}
+                                </a>
+                            {% endif %}
+                            <a class="dropdown-item" href="#" id="btn-delete-member" data-mid="{{ member.id }}">
+                                {% trans from 'member' %} member.delete_member {% endtrans %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>{% trans from 'member' %} member.th_property {% endtrans %}</th>
+                            <th>{% trans from 'member' %} member.th_value {% endtrans %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                {% trans from 'member' %} member.lbl_role {% endtrans %}
+                            </td>
+                            <td>
+                                <select id="cb-roles" class="form-control" data-role="{{ member_role }}" disabled>
+                                    {% for role in roles %}
+                                        <option value="{{ role['value'] }}" {% if member_role == role['value'] %}selected{% endif %}>{{ role['name_'~app.request.locale] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{% trans from 'member' %} member.lbl_email {% endtrans %}</td>
+                            <td>{{ member.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% trans from 'member' %} member.lbl_birth {% endtrans %}</td>
+                            <td>{{ member.birthDate|date('d/m/Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% trans from 'member' %} member.lbl_gender {% endtrans %}</td>
+                            <td>
+                                {% if member.gender == 'M'  %}
+                                    {% trans from 'member' %} member.val_male {% endtrans %}
+                                {% else %}
+                                    {% trans from 'member' %} member.val_female {% endtrans %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{% trans from 'member' %} member.lbl_country {% endtrans %}</td>
+                            <td>
+                                <span id="mb-country" data-country="{{ member.country }}"></span>
+                                <button id="btn-mb-country" class="btn btn-primary" data-action="0" data-mid="{{ member.id }}">
+                                    {% trans from 'member' %} member.lbl_change_country {% endtrans %}
+                                </button>
+                                <select id="cb-country" class="invisible" data-path="{% if app.request.locale=='fr' %}{{ asset('dist/country.json') }} {% else %} {{ asset('dist/country-en.json') }}{% endif %}"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{% trans from 'member' %} member.lbl_ipaddress {% endtrans %}</td>
+                            <td>
+                                {% if profile == null or (profile != null and profile.geolocation == null) %}
+                                    {% trans from 'member' %} member.lbl_no_ip {% endtrans %}
+                                {% else %}
+                                    <span id="user-ip">{{ profile.geolocation.ipAddress }}</span>
+                                    <a href="#" data-ip="{{ profile.geolocation.ipAddress }}" id="btn-block-ip">{% trans from 'member' %} member.set_locked {% endtrans %}</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{% trans from 'member' %} member.lbl_vip {% endtrans %}</td>
+                            <td>
+                                {% if member.isVip  %}
+                                    {% trans from 'member' %} member.lbl_yes {% endtrans %}
+                                {% else %}
+                                    {% trans from 'member' %} member.lbl_no {% endtrans %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{% trans from 'member' %} member.lbl_blocked {% endtrans %}</td>
+                            <td>
+                                {% if member.enabled  %}
+                                    {% trans from 'member' %} member.lbl_no {% endtrans %}
+                                {% else %}
+                                    {% trans from 'member' %} member.lbl_yes {% endtrans %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{% trans from 'member' %} member.lbl_profession {% endtrans %}</td>
+                            <td>{{ member.profession == null ? 'N/C' : member.profession }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% trans from 'member' %} member.lbl_join_date {% endtrans %}</td>
+                            <td>{{ member.joinDate|date('d/m/Y') }} ({{ joinDate }})</td>
+                        </tr>
+                        <tr>
+                            <td>{% trans from 'member' %} member.lbl_last_login {% endtrans %}</td>
+                            <td>{% if lastLogin|length == 0 %} N/C {% else %} {{ member.lastLogin|date('d/m/Y') }} ({{ lastLogin }}) {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <a href="{{ path('admin_home') }}">
+                                    <span class="glyphicon glyphicon-arrow-left"></span> {% trans from 'member' %} member.lbl_back_home {% endtrans %}
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
