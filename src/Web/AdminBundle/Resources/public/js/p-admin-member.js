@@ -184,11 +184,11 @@ function deleteUsers(v) {
             crossDomain: true,
             success: function (users) {
                 $.each(users, function(i, user){
-                    updateCount();
+                    jupdateCount();
                 });
 
                 //refresh the members table
-                setMember();
+                jsetMember();
                 adminHome.params.attr.id.nbusers.hide();
                 //Update the number of selected checkboxes
 
