@@ -11,8 +11,7 @@ var AdminStat = function(){
                 url: baseUrl+'auth/count/picture',
                 type: "get",
                 contenType: "json"
-            }
-
+            },
         },
         user:{
             count:{
@@ -42,15 +41,12 @@ var AdminStat = function(){
                 pictureWeek: $('#AdminStat table tr .NumberpictureWeeks'),
                 pictureMonth: $('#AdminStat table tr .NumberpictureMonths'),
                 UserWithoutPicture: $('#AdminStat table tr .NumberuserWithoutPictures'),
-
-
-
-
             },
             graph:{
 
             }
         }
+
     }
 };
 
@@ -59,8 +55,6 @@ $(function(){
     adminStat = new AdminStat();
     if(adminStat.params.page.data('page')=="Stat")
     {
-
-
         fillCounUser();
         fillCountPicture();
 
