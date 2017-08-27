@@ -1,7 +1,6 @@
 admin:
   blocmessage:
    title: Block messages
-
   members:
    title: Members
    number: Number of users
