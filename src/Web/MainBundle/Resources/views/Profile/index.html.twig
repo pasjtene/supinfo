@@ -32,7 +32,7 @@
             {% include "MainBundle:Inc:important.html.twig" %}
         </div>
         <div class="col-md-8 col-sm-12 card" id="main-body">
-            <button id="notifie">clique pour me notifier</button>
+            <button id="notifie" style="display: none;">clique pour me notifier</button>
             {% if subPage is defined %}
                 {% if subPage=="matches" %}
                     {% include "MainBundle:Sub:matches.html.twig" %}
