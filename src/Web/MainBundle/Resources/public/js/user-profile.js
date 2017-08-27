@@ -137,6 +137,28 @@ var MainUserProfile = function()
                 btn: $('#qnimate .popup-messages-footer .btn-footer'),
                 send: $('#qnimate .popup-messages-footer .btn-footer .btn-send')
             }
+        },
+        chatbox:{
+            father: $('#drag-messageA'),
+            main: $('.chatcontent'),
+            btnMessage: $('.drag-message'),
+            header:{
+                main: $(".chatcontent .popup-head"),
+                close: $(".chatcontent .popup-head .closeChat"),
+                setting: $(".chatcontent .popup-head .btn-group"),
+                Profile: $(".chatcontent .popup-head .userCurrentProfile"),
+                name: $(".chatcontent .popup-head .userCurrentName")
+
+            },
+            body:{
+                main: $('.chatcontent .popup-messages')
+            },
+            footer:{
+                main: $('.chatcontent .popup-messages-footer'),
+                message: $('.chatcontent .popup-messages-footer #status_message'),
+                btn: $('.chatcontent .popup-messages-footer .btn-footer'),
+                send: $('.chatcontent .popup-messages-footer .btn-footer .btn-send')
+            }
         }
     };
 
@@ -690,7 +712,7 @@ $(function(){
            });
        }
 
-       if(mainUserProfile.params.iswriteMessage.data('write') =='yes')
+      /* if(mainUserProfile.params.iswriteMessage.data('write') =='yes')
        {
 
            function get(objet,errorMessage,isobjet,isdelete)
@@ -1060,6 +1082,70 @@ $(function(){
                }
            });
        }
+       */
+
+
+
+       // debut  implementation du  chat
+      // mainUserProfile.params.chat.btnMessage.click(function () {
+      // });
+      // mainUserProfile.params.chatbox.main.addClass('popup-box-on');
+
+
+    /*
+       // Premièrement, vérifions que nous avons la permission de notifier
+       // Sinon, demandons la permission
+       if (window.Notification && Notification.permission !== "granted") {
+           Notification.requestPermission(function (status) {
+               if (Notification.permission !== status) {
+                   Notification.permission = status;
+               }
+           });
+       }
+
+       var button = $('#notifie');
+
+       button.on('click', function () {
+           // Si l'utilisateur accepte les notifications
+           // essayons d'envoyer 10 notifications
+           if (window.Notification && Notification.permission === "granted") {
+               for (var i = 0; i < 10; i++) {
+                   // Grâce au tag, nous ne devrions voir que la notification "Hey! 9"
+                   var n = new Notification("Hey! " + i, {tag: 'soManyNotification'});
+               }
+           }
+
+           // Si l'utilisateur n'a pas choisi s'il accepte d'être notifié // Note: à cause de Chrome, nous ne sommes pas certains que la
+           // propriété permission soit définie, par conséquent il n'est pas
+           // sûr de vérifier la valeur par défault.
+           else if (window.Notification && Notification.permission !== "denied") {
+               Notification.requestPermission(function (status) {
+                   if (Notification.permission !== status) {
+                       Notification.permission = status;
+                   }
+
+                   // Si l'utilisateur a accepté les notifications
+                   if (status === "granted") {
+                       for (var i = 0; i < 10; i++) {
+                           // Grâce au tag, nous ne devrions voir que la notification "Hey! 9"
+                           var n = new Notification("Hey! " + i, {tag: 'soManyNotification'});
+                       }
+                   }
+
+                   // Sinon on bascule sur une alerte modale
+                   else {
+                       alert("Hey!");
+                   }
+               });
+           }
+
+           // Si l'utilisateur refuse les notifications
+           else {
+               // on bascule sur une alerte modale
+               alert("Hey!");
+           }
+       });
+    */
    }
 });
 

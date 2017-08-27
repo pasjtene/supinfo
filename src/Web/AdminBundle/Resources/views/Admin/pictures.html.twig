@@ -1,0 +1,54 @@
+{% extends 'AdminBundle::admin-layout.html.twig' %}
+
+{% block admcontent %}
+    <div class="row" id="adminPictures" data-page="adminPictures">
+        <div class="offset-1 col-sm-10">
+            <div class="row" style="position: relative">
+                <div class="col-lg-12" id="pics-header">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            {% trans from 'pictures' %} pictures.pics_total {% endtrans %} <b><span id="nb-pics">00</span></b>
+                        </div>
+                        <div class="col-lg-5" id="loader">
+                            <div id="pics-loader">
+                                <img src="{{ asset('dist/loader.gif') }}"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="dropdown pull-right">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans from 'pictures' %} pictures.pics_action {% endtrans %}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#" id="mn-private-pics">{% trans from 'pictures' %} pictures.mn_private {% endtrans %}</a>
+                                    <a class="dropdown-item" href="#" id="mn-public-pics">{% trans from 'pictures' %} pictures.mn_public {% endtrans %}</a>
+                                    <a class="dropdown-item" href="#" id="mn-delete-pics">{% trans from 'pictures' %} pictures.mn_delete {% endtrans %}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div id="hr-line"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="row" id="pictures-view">
+
+                    </div>
+
+                    <br/>
+
+                    <div id="pics-pagination-content" style="width: 100%">
+                        <ul class="pagination pull-right" id="pics-pagination">
+                            <li class="page-item"><a class="pic-pg-link" href="#" id="ppg-prev" data-page="1">&lt;</a></li>
+                            <li class="page-item"><a class="pic-pg-link" href="#" id="ppg-next" data-page="1">&gt;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'AdminBundle:Inc:eric-picture-carousel.html.twig' %}
+{% endblock %}

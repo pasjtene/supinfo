@@ -58,10 +58,8 @@
   border: 1px solid #ddd;
 }
 
-#admin-tabs, #adminMemberPictures
+#adminPictures, #adminMemberPictures
 {
-  #photos
-  {
     #pics-header
     {
       padding-top: 5px;
@@ -85,13 +83,13 @@
         margin-top: 5px;
       }
     }
+
     #pictures-view
     {
       position: relative;
       z-index: 90;
       @extend .box-pics-item;
     }
-  }
 }
 #bg-pictures{
   position: fixed;
@@ -125,6 +123,42 @@
         background-color: #000;
         width: 150px;
       }
+    }
+  }
+}
+
+#admin-tabs, #adminMemberPictures
+{
+  #photos
+  {
+    #pics-header
+    {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      #nb-picture{
+        font-weight: bold;
+      }
+      #loader{
+        text-align:center;
+        #pics-loader {
+          display: none;
+          img{
+            width: 32px;
+            height: 32px;
+          }
+        }
+      }
+      #hr-line{
+        width: 100%;
+        border: solid 2px #0000cc;
+        margin-top: 5px;
+      }
+    }
+    #pictures-view
+    {
+      position: relative;
+      z-index: 90;
+      @extend .box-pics-item;
     }
   }
 }

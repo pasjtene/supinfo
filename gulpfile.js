@@ -146,7 +146,8 @@ var concatJsTask = function()
 
     return gulp.src(jsPaths)
             .pipe(concat('master.min.js'))
-            .pipe(gulp.dest('./web/data/js'));
+            .pipe(gulp.dest('./web/data/js'))
+            .pipe(livereload());
 };
 
 var concatJsAppTask = function()
@@ -158,6 +159,16 @@ var concatJsAppTask = function()
         .pipe(gulp.dest('./web/data/js'));
 };
 
+var sideNavTask = function()
+{
+    gulp.src(['./web/dist/sidenav/*.js'])
+        .pipe(uglify('sidenav.min.js', {
+            outSourceMap: true
+        }))
+        .pipe(gulp.dest('web/dist/sidenav'));
+
+    console.log('Sidenav.js uglified successfully !');
+};
 
 gulp.task('default', function(){
     exec('php bin/console assets:install --symlink', logStdOutAndErr);
@@ -230,7 +241,10 @@ gulp.task('allprod', ['installAssets'], function()
     currentTask = 'allprod';
 });
 
-
+gulp.task('sidenav', function()
+{
+    sideNavTask();
+});
 
 
 
@@ -254,7 +268,7 @@ var logStdOutAndErr = function (err, stdout, stderr)
     {
         concatJsTask();
         concatJsAppTask();
-        paramsTask();
+        //paramsTask();
     }
     else if(currentTask === 'img')
     {
@@ -304,7 +318,7 @@ gulp.task('watchprod', function ()
         .on('change', function(event){
             console.log('File '+event.path+' has been '+event.type);
 
-            currentTask = 'jsdev';
+            currentTask = 'js';
         });
 });
 
@@ -323,7 +337,7 @@ gulp.task('watch', function ()
 
     gulp.watch('./src/Web/*/Resources/public/js/**/*.js', ['installAssets'])
         .on('change', function(event){
-            console.log('File '+event.path+'dev has been  '+event.type);
+            console.log('File '+event.path+' dev has been '+event.type);
 
             currentTask = 'jsdev';
         });

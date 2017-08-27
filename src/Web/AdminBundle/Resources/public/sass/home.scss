@@ -2,6 +2,10 @@
   // your sass here
 
 }
+#adminMembers{
+  background-color: #fff;
+  padding-bottom: 15px;
+}
 .admin_page_title {
   margin-top: 50px;
   margin-bottom: 20px;
@@ -61,6 +65,8 @@
     ul{
       position: absolute;
       right: 20px;
+      top: 5px;
+      font-weight: bold;
     }
   }
 }

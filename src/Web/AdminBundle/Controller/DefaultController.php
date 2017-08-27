@@ -26,7 +26,7 @@ class DefaultController extends Controller
      */
     public function memberAction(Request $request, $id)
     {
-        $datas = ['member' => null, 'roles' => []];
+        $datas = ['menuindex' => 0, 'member' => null, 'roles' => []];
 
         $cookie = $request->cookies->get(FormAuthenticator::USER_COOKIE_NAME);
 
@@ -62,7 +62,7 @@ class DefaultController extends Controller
         $datas['lastLogin'] = $lastLogin;
         $datas['joinDate'] = $jDate;
 
-        return $this->render('AdminBundle:Default:member.html.twig', $datas);
+        return $this->render('AdminBundle:Admin:member.html.twig', $datas);
     }
 
     /**
@@ -70,7 +70,7 @@ class DefaultController extends Controller
      */
     public function memberPicturesAction(Request $request, $id)
     {
-        $datas = ['member' => null];
+        $datas = ['menuindex' => 0, 'member' => null];
 
         $cookie = $request->cookies->get(FormAuthenticator::USER_COOKIE_NAME);
 
@@ -90,7 +90,7 @@ class DefaultController extends Controller
             }
         }
 
-        return $this->render('AdminBundle:Default:member-pictures.html.twig', $datas);
+        return $this->render('AdminBundle:Admin:member-pictures.html.twig', $datas);
     }
 
     /**
@@ -98,8 +98,42 @@ class DefaultController extends Controller
      */
     public function statisticsAction()
     {
-        return $this->render('AdminBundle:Admin:statistics.html.twig');
+        $datas = ['menuindex' => 4];
+
+        //return $this->render('AdminBundle:Admin:statistics.html.twig', $datas);
+        return $this->render('AdminBundle::p-admin-layout.html.twig', $datas);
     }
+
+    /**
+     * @Route("/members", name="admin_members", options={"expose"=true})
+     */
+    public function membersAction()
+    {
+        $datas = ['menuindex' => 0];
+
+        return $this->render('AdminBundle:Admin:members.html.twig', $datas);
+    }
+
+    /**
+     * @Route("/pictures", name="admin_pictures", options={"expose"=true})
+     */
+    public function picturesAction()
+    {
+        $datas = ['menuindex' => 1];
+
+        return $this->render('AdminBundle:Admin:pictures.html.twig', $datas);
+    }
+
+    /**
+     * @Route("/settings", name="admin_settings", options={"expose"=true})
+     */
+    public function settingsAction()
+    {
+        $datas = ['menuindex' => 4];
+
+        return $this->render('AdminBundle:Admin:settings.html.twig', $datas);
+    }
+
 }
 
 
