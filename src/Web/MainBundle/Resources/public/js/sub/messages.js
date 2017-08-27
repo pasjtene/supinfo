@@ -213,7 +213,7 @@ var MainSubMessages = function()
 
 
 $(function () {
-
+/*
 //Pour le chatBox, on doit mieux arranger avec les variables
     $("#drag-message .popup-box .popup-head").addClass("chatbox-header-bg-color");
 
@@ -221,6 +221,7 @@ $(function () {
     $("#chat-btn-menu").click(function(){
         $("#chat-btns").toggleClass("show");
     });
+
 
     $("div").click(function(e){
         var $th = $(this);
@@ -246,10 +247,11 @@ $(function () {
             //e.stopPropagation();
         }
     });
+
     $("div").click(function(e){
         var $th = $(this);
         var classs = $(this).attr("class");
-        console.log("The Class 000 is "+classs);
+        console.log("The Class 000 11 is "+classs);
         if($th.hasClass("btn-group")){
             // alert("Yes");
             $("#chat-btns").addClass("show");
@@ -258,7 +260,7 @@ $(function () {
             $("#chat-btns").removeClass("show");
         }
     });
-
+*/
     //Fin chatbox
 
     var mainSubMessages = new MainSubMessages(),

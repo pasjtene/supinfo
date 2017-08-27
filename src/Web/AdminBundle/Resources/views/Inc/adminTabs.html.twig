@@ -59,9 +59,9 @@
         <div class="tab-pane" id="photosdenounced" role="tabpanel">All photos will be here, and the moderator can delete or mark as invalid</div>
 
         {% if app.user.isSuperAdmin %}
-        <div class="tab-pane" id="settings" role="tabpanel" data-tab="adminSettings">
-            {% include 'AdminBundle:Tab:settings.html.twig' %}
-        </div>
+            <div class="tab-pane" id="settings" role="tabpanel" data-tab="adminSettings">
+                {% include 'AdminBundle:Tab:settings.html.twig' %}
+            </div>
         {% endif %}
     </div>
 </div>
