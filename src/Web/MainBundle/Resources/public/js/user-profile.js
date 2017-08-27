@@ -1091,6 +1091,61 @@ $(function(){
       // });
       // mainUserProfile.params.chatbox.main.addClass('popup-box-on');
 
+
+    /*
+       // Premièrement, vérifions que nous avons la permission de notifier
+       // Sinon, demandons la permission
+       if (window.Notification && Notification.permission !== "granted") {
+           Notification.requestPermission(function (status) {
+               if (Notification.permission !== status) {
+                   Notification.permission = status;
+               }
+           });
+       }
+
+       var button = $('#notifie');
+
+       button.on('click', function () {
+           // Si l'utilisateur accepte les notifications
+           // essayons d'envoyer 10 notifications
+           if (window.Notification && Notification.permission === "granted") {
+               for (var i = 0; i < 10; i++) {
+                   // Grâce au tag, nous ne devrions voir que la notification "Hey! 9"
+                   var n = new Notification("Hey! " + i, {tag: 'soManyNotification'});
+               }
+           }
+
+           // Si l'utilisateur n'a pas choisi s'il accepte d'être notifié // Note: à cause de Chrome, nous ne sommes pas certains que la
+           // propriété permission soit définie, par conséquent il n'est pas
+           // sûr de vérifier la valeur par défault.
+           else if (window.Notification && Notification.permission !== "denied") {
+               Notification.requestPermission(function (status) {
+                   if (Notification.permission !== status) {
+                       Notification.permission = status;
+                   }
+
+                   // Si l'utilisateur a accepté les notifications
+                   if (status === "granted") {
+                       for (var i = 0; i < 10; i++) {
+                           // Grâce au tag, nous ne devrions voir que la notification "Hey! 9"
+                           var n = new Notification("Hey! " + i, {tag: 'soManyNotification'});
+                       }
+                   }
+
+                   // Sinon on bascule sur une alerte modale
+                   else {
+                       alert("Hey!");
+                   }
+               });
+           }
+
+           // Si l'utilisateur refuse les notifications
+           else {
+               // on bascule sur une alerte modale
+               alert("Hey!");
+           }
+       });
+    */
    }
 });
 
