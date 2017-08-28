@@ -4,6 +4,7 @@ refer:
 title: Fublobe | Bienvenue
 loading: En cours de chargement ...
 see: Vu le
+emoticons: Liste des émoticons
 preference:
   title: Appliquer un filtre
 
@@ -43,7 +44,7 @@ important:
   friends: Amis
   popularity: Popularité
   bonus: Bonus
-  photo: Telecharger les photos
+  photo: Mes info funglobe
   popularity_option:
     1: Trop  faible
     2: Faible

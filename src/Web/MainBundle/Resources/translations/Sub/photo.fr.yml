@@ -1,0 +1,94 @@
+sub:
+  tabs:
+    add: Ajouter des photos
+    list:    Mes photos
+    profile: Profile List
+    detail: Mon profile
+    nofriend: Aucun ami  en commun
+    action: Action
+    friend: Mes amis
+    friendc: Amis
+    seedetail: Consulter le détail
+    message: Ecrire un message
+    remove: Retirer de la liste d'ami
+    remove_success:  Suppression effectué avec succèss
+    myProfilDetail:
+      infPersonelles : Informations personelles
+      editinfPersonelles : Modifier informations personelles
+      diplome : Education et qualifications
+      adresse: Adresse
+      editadresse: Modifier l'adresse
+      sexe: Sexe
+      anniv: Birthday
+      pay: Pays
+      ville: Ville
+      quartier: Quartier
+      profession: Profession
+      changer: Changer
+      phones: Telephone
+      addPhone: Ajouter
+      lastName: Nom
+      FirstName: Prenom
+      save: Enregister les modifications
+      account: Mon compte
+      editaccount: Modifier mon compte
+      userName: Nom d'utilisateur
+      editpwd: Modifier le mot de pass
+      cpwd: Mot de passe actuel
+      npwd: Nouveau mot de passe
+      cfpwd: Confirme mot de passe
+      fpwd: Mot de passe oublier
+      emptyData: Aucune données
+      schoolname: Nom de l'etablissament
+      location: Lieu
+      highlevel: Niveau
+      about: A propos
+      numberOfChill: Nombre d'enfants
+      maritalStatus: Statut matrimonial
+      meetLike: Le genre de personne que j’aimerais rencontrer
+      Qualification : Diplôme obtenu
+      bio : A propos de moi
+      enCouple : A propos de moi
+      marie : Marié(e)
+      celibataire : Célibataire
+      divorce : Divorcé(e)
+      veuf : Veuf(ve)
+      pschool : Primaire
+      hschool : Secondaire
+      University : Université
+      notgiven :  Non indiquée
+      delete : Effacer
+      save : Sauvegader
+      cancel : Annuler
+      edit : Modifier
+  img:
+    profile: Mettre comme photo de profile
+    published: Rendre publique
+    private: Rendre privee
+    delete: Effacer
+    like: Like
+    action: Action
+    error_ext: is not  allocated
+    error_size: is too big for upload. max sise(2Mo)
+  body:
+    close: Close
+    error_message: woh! Something  is wrong
+    success_message: Deleted successfully
+    confirm_message: Voulez vous effacer cette photo ?
+    cancel_message: Canceled
+    setprofile:
+      success: your profile photo is changed
+      error: woh! Something  is wrong
+    published:
+      success: the profile visibilty  has changed
+      error:  woh! Something  is wrong
+    state :
+      private: privée
+      public: Publié le
+  modal:
+    name: Name
+    message: Message
+    state:
+      title: State
+      error : error
+      success: success

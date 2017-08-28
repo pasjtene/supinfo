@@ -2,3 +2,6 @@ success:
   requestMail: We have sent you an e-mail again to email_resp
 error:
   requestMail: Failed to send mail. It appears that the server encountered a problem do not hesitate to retry afterwards.
+accept:
+  success:  You are now friend of name. You can trade as you see fit. <br/> Funglobe congratulates you on your loneliness
+  error: Failed to send mail. It appears that the server encountered a problem do not hesitate to retry afterwards.

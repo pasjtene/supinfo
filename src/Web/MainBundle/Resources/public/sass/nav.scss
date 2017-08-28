@@ -12,8 +12,12 @@
     img{
       margin-top: 1em;
       height: 75px;
+      width: 75px;
     }
 
+    .vip-detail{
+      cursor: pointer;
+    }
   }
 }
 
@@ -21,7 +25,7 @@
     #dropdownMenuMessages-body{
         position: fixed;
         top: 48px;
-        left: 8em;
+        left: 8%;
     }
 
     #dropdownMenuFreinds-body{
@@ -29,6 +33,24 @@
       top: 48px;
       left: 9em;
     }
+  .body{
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    img{
+      height: 40px;
+      width: 40px;
+    }
+    .flag{
+      height: 20px;
+      width: 20px;
+    }
+    .preloader{
+      width: 30%;
+      height: 9px;
+      display: none;
+    }
+  }
   .all{
       color: $default-color;
   }

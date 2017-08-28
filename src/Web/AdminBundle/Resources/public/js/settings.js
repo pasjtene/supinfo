@@ -5,7 +5,7 @@
 var AdminSettings = function()
 {
     this.params = {
-        page : $('#adminHome'),
+        page : $('#adminSettings'),
         attr: {
             id:{
                 btn_save_settings: $("#btn-save-settings"),
@@ -54,29 +54,21 @@ $(function(){
     };
 
     //Tester si  la page actuelle c'est adminMember
-    if(adminSettings.params.page.data('page') === "adminHome")
+    if(adminSettings.params.page.data('page') === "adminSettings")
     {
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e)
-        {
-            if ($('.nav-tabs .active').attr('href')==="#settings")
+        $.ajax({
+            url: adminSettings.params.api.action.settings,
+            type: adminSettings.params.api.method.get,
+            headers : {"X-Auth-Token" : currentUser.token},
+            crossDomain: true,
+            success: function (response)
             {
-                $.ajax(
-                    {
-                        url: adminSettings.params.api.action.settings,
-                        type: adminSettings.params.api.method.get,
-                        headers : {"X-Auth-Token" : tokenbase.value},
-                        crossDomain: true,
-                        success: function (response)
-                        {
-                            settings = response;
-                            console.log(settings);
-                            fillInput(settings);
-                        },
-                        error: function (xhr, status, message) { //en cas d'erreur
-                            console.log(status+"\n"+xhr.responseText + '\n' + message );
-                        }
-                    }
-                );
+                settings = response;
+                console.log(settings);
+                fillInput(settings);
+            },
+            error: function (xhr, status, message) { //en cas d'erreur
+                console.log(status+"\n"+xhr.responseText + '\n' + message );
             }
         });
 
@@ -95,7 +87,7 @@ $(function(){
                 {
                     url: adminSettings.params.api.action.settings,
                     type: adminSettings.params.api.method.put,
-                    headers : {"X-Auth-Token" : tokenbase.value},
+                    headers : {"X-Auth-Token" : currentUser.token},
                     data: data,
                     crossDomain: true,
                     success: function (response)

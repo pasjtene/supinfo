@@ -1,0 +1,157 @@
+{% extends 'AdminBundle::admin-layout.html.twig' %}
+
+{% block admcontent %}
+    <div class="row">
+        <div class="offset-1 col-sm-10">
+            <div id='AdminStat' data-page='Stat' class="stats-tab">
+                <div id="Main-stat" data-sub="Main-Subdetail-detail-User">
+                    <div class="row">
+                        <div class="col col-sm-6">
+                            <div class="card infoPersoChange">
+                                <h3 class="card-header d-flex flex-row justify-content-between">
+
+                                    <span class="p-2">{% trans from 'photo' %} MEMBERS STATISTICS {% endtrans %}</span>
+                                </h3>
+                                {#------------members#}
+                                <div class="card-block ">
+                                    <div class="col-xs-12 col-sm-12 col">
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF USERS :</th>
+                                                    <th  class='countuser'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF VIP USERS :</th>
+                                                    <th class='countuservip'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF USERS WHO JOINTED TODAY :</th>
+                                                    <th class='joinTodays'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF USERS WHO JOINTED YESTERDAY :</th>
+                                                    <th class='membersWhoJoinedYesterdays'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF USERS WHO JOINTED THIS WEEK :</th>
+                                                    <th class='membersWhoJoinedfromoneWeeks'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF USERS WHO JOINTED THIS MONTH :</th>
+                                                    <th class='membersWhoJoinedfromoneMonths'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card hide infoPersoBlock">
+                                <h5 class="card-header d-flex flex-row justify-content-between">
+                                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.editinfPersonelles {% endtrans %}</span>
+                                </h5>
+
+                            </div>
+                        </div>
+                        {#----------------------==== picture#}
+                        <div class="col col-sm-6">
+                            <div class="card AdresseChange">
+                                <h3 class="card-header d-flex flex-row justify-content-between">
+                                    <span class="p-2">{% trans from 'photo' %}MEMBERS PICTURES {% endtrans %}</span>
+                                </h3>
+                                <div class="card-block">
+                                    <div class="col-xs-12 col-sm-12 col">
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF PICTURES :</th>
+                                                    <th class='numberpicture'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF PICTURES OF TODAY :</th>
+                                                    <th class='NumberpictureTodays'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF PICTURES OF YESTERDAY :</th>
+                                                    <th class='NumberYesterdaypictures'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF PICTURES FROM ONE WEEK :</th>
+                                                    <th class='NumberpictureWeeks'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF PICTURES FROM ONE MONTH :</th>
+                                                    <th class='NumberpictureMonths'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th>NUMBER OF USERS WITHOUT PICTURES  :</th>
+                                                    <th class='NumberuserWithoutPictures'></th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class='row espace'>
+                                            <table>
+                                                <tr>
+                                                    <th> USER WITH MAXIMUM PICTURES  :</th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#---------------=========MESSAGES#}
+                        <div class="col col-sm-6">
+                            <div class="card AccountChange">
+                                <h3 class="card-header d-flex flex-row justify-content-between">
+                                    <span class="p-2">{% trans from 'photo' %} MESSAGES STATISTICS {% endtrans %}</span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

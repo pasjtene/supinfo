@@ -5,12 +5,13 @@ namespace Web\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Web\AppBundle\Controller\TokenAuthenticatedController;
 use Web\AppBundle\Tools\FunglobeUtils;
 
 /**
  * @Route("/profile")
  */
-class ProfileController extends Controller
+class ProfileController extends Controller implements TokenAuthenticatedController
 {
     /**
      * @Route("/", name="main_profile", options={"expose"=true})
@@ -28,6 +29,7 @@ class ProfileController extends Controller
     public function photosAction(Request $request)
     {
         $array['subPage'] = "photos";
+
         $active = $request->get("active")==null? 1 : $request->get("active");
         $array['active'] = $active;
         return $this->render('MainBundle:Profile:index.html.twig',$array);
@@ -40,6 +42,16 @@ class ProfileController extends Controller
     public function messagesAction()
     {
         $array['subPage'] = "messages";
+        return $this->render('MainBundle:Profile:index.html.twig',$array);
+    }
+
+    /**
+     * @Route("/messages/current/{key}", name="main_profile_messages_detail", options={"expose"=true})
+     */
+    public function messagesDetailAction($key)
+    {
+        $array['subPage'] = "messages";
+        $array['key'] = $key;
         return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 
@@ -60,6 +72,8 @@ class ProfileController extends Controller
     public function compteAction()
     {
         $array['subPage'] = "compte";
+
+
         return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 
@@ -85,12 +99,12 @@ class ProfileController extends Controller
 
 
     /**
-     * @Route("/detail/profile/{email}", name="main_profile_detailProfile", options={"expose"=true})
+     * @Route("/detail/profile/{key}", name="main_profile_detailProfile", options={"expose"=true})
      */
-    public function detailProfileAction($email)
+    public function detailProfileAction($key)
     {
         $array['subPage'] = "detail-profile";
-        $array['email'] = $email;
+        $array['key'] = $key;
         return $this->render('MainBundle:Profile:index.html.twig',$array);
     }
 

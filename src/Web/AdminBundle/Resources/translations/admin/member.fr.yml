@@ -6,6 +6,8 @@ member:
   unset_vip: Retirer VIP
   set_locked: Bloquer
   unset_locked: Débloquer
+  delete_member: Supprimer
+  view_pictures: Voir les photos
   th_property: Propriétés
   th_value: Valeurs
   lbl_role: Rôle du membre :
@@ -16,10 +18,17 @@ member:
   val_female: Feminin
   lbl_country: Pays :
   lbl_ipaddress: Adresse IP :
+  lbl_no_ip: Non disponible
   lbl_vip: Membre VIP:
   lbl_blocked: Membre Bloqué :
   lbl_profession: Profession :
+  lbl_join_date: Date d'inscription :
   lbl_last_login: Date de dernière connexion :
   lbl_back_home : Retour
   lbl_yes: Oui
   lbl_no: Non
+  lbl_change_country: Changer
+  lbl_save_country: Sauvegarder
+  pictures:
+      title: Photo de l'utilisateur
+      lbl_pic: photos

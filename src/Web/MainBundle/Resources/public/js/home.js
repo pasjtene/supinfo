@@ -29,16 +29,16 @@ $(function(){
     }
     if(mainHome.params.mainHorizontalNav.data("menu")!="undefined" && mainHome.params.mainHorizontalNav.data("menu")=="mainHorizontalNav")
     {
-        setScroll(mainHome.params.mainHorizontalNav, mainHome.params.classname);
+        //setScroll(mainHome.params.mainHorizontalNav, mainHome.params.classname);
     }
 
     if(mainHome.params.nav.data("menu")!="undefined" && mainHome.params.nav.data("menu")=="nav")
     {
         mainHome.params.dropdownClass.dropdown();
-        setScroll(mainHome.params.nav, mainHome.params.classname);
+        //setScroll(mainHome.params.nav, mainHome.params.classname);
     }
 
-    function setScroll(menu, classFixed)
+  /*  function setScroll(menu, classFixed)
     {
         // On recupere la position du bloc par rapport au haut du site
         var position_top_raccourci = menu.offset().top;
@@ -50,14 +50,14 @@ $(function(){
             if ($(this).scrollTop() > position_top_raccourci) {
 
                 //on ajoute la classe classFixed
-                menu.addClass(classFixed);
+               // menu.addClass(classFixed);
             } else {
                 //sinon on retire la classe "fixNavigation" a <div id="navigation">
-                menu.removeClass(classFixed);
+               // menu.removeClass(classFixed);
             }
         });
     }
-
+    */
     setInterval(function(){
         //setFooter();
     },100);

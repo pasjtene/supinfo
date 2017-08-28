@@ -1,0 +1,82 @@
+
+
+<div class="modal fade" id="modal-foward" tabindex="-1" role="dialog" aria-labelledby="modal-fowardLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="modal-fowardLabel">Foward</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="custom-search-input">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <input type="text" class="form-control small" id="inlineFormInputGroup" placeholder="{% trans  from 'messages' %} Search {% endtrans %}">
+                        <div class="input-group-addon bg-primary text-white"><span class="fa fa-search"></span></div>
+                    </div>
+                </div>
+                <div class="list-group body" id="Message-forward-body">
+
+                    {#
+                            {% for i in 1..10 %}
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <table class="mb-1">
+                                <tr>
+                                    <td>
+                                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <img src="{{ asset('data/img/empty.png') }}" alt="" class="rounded-circle img">
+                                    </td>
+                                    <td style="padding-left: 5%">
+                                        <small class="text-muted pull-right">3 days ago</small>
+                                        <strong class="mb-1">Danick takam</strong>
+                                        <p> je suis un exemple de message</p>
+                                        <small class="text-muted">I am here to meet  a new frends </small>
+                                    </td>
+                                </tr>
+                            </table>
+                        </a>
+                    {% endfor %}
+                    #}
+
+
+                    {#
+                             <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                                <input type="checkbox" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">
+                                     <table class="mb-1">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <img src="{{ asset('data/img/empty.png') }}" alt="" class="rounded-circle img">
+                                                                        </td>
+                                                                        <td style="padding-left: 5%">
+                                                                            <small class="text-muted pull-right">3 days ago</small>
+                                                                            <strong class="mb-1">Danick takam</strong>
+                                                                            <p> je suis un exemple de message</p>
+                                                                            <small class="text-muted">I am here to meet  a new frends </small>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                </span>
+                            </label>
+                        </a>
+
+                    #}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </div>
+</div>

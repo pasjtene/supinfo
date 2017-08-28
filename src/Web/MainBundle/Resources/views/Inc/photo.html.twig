@@ -1,6 +1,6 @@
 <div class="card" id="photo-request" data-inc="photo-request">
     <div class="card-block">
-        <h4 class="card-title"> <strong>{{ app.user.lastname~' '~app.user.firstname }}</strong>,</h4>
+        <h4 class="card-title"> <strong>{% trans from 'photo' %} body.welcome  {% endtrans %} {{ app.user.lastname~' '~app.user.firstname }}</strong>,</h4>
         <h6 class="card-subtitle mb-2 text-muted">{% trans from 'photo' %} body.title  {% endtrans %}</h6>
         <p class="card-text">{% trans from 'photo' %} body.content  {% endtrans %}  </p>
         <p class="text-muted">{% trans from 'photo' %} body.required  {% endtrans %}</p>

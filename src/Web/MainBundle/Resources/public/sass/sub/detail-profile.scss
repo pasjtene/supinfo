@@ -9,6 +9,13 @@
     }
   }
 
+  .name-detail:hover{
+    color: $default-color;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
   .body{
     #zone_profile{
         .connect-box{
@@ -28,7 +35,7 @@
          font-size: 1.1rem;
        }
       .content{
-        div,{
+        div{
           padding-top:0;
           padding-bottom:0;
           margin-bottom: 0;
@@ -80,6 +87,11 @@
             height: 180px;
             cursor: pointer;
           }
+
+          .flag{
+            height: 20px;
+            width: 20px;
+          }
           .name{
             div{
               height: 15px;
@@ -100,6 +112,7 @@
             }
           }
         }
+
       }
     }
 

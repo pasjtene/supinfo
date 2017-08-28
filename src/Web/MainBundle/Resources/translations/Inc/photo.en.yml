@@ -18,3 +18,4 @@ body:
   print: Print
   save: Save
   notification: photo as successfull  save!
+  welcome: Welcome

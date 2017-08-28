@@ -3,6 +3,7 @@ refer:
   description:  Over 51 Million people are having fun  and making new friends on Funglobe every day. Jump in !
 title: Fublobe | Welcome
 see: See to
+emoticons: Emoticons list
 loading: Loading ...
 preference:
   title: Apply a filter
@@ -45,7 +46,7 @@ important:
   friends: Friends
   popularity: Popularity
   bonus: Bonus
-  photo: Upload the pictures
+  photo: My funglobe
   popularity_option:
     1: Too bad
     2: bad

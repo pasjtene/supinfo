@@ -1,5 +1,5 @@
 
-<ul class="nav justify-content-center bg-primary" id="nav" data-menu="nav">
+<ul class="nav justify-content-center bg-primary fixed-top" id="nav" data-menu="nav">
     <li class="nav-item" id="logo">
         <a class="nav-link active" href="{{ path('main_profile') }}">Funglobe</a>
     </li>
@@ -11,16 +11,18 @@
 
     </li>
     <li class="nav-item dropdown">
-        <a class="nav-link" href="#"  id="dropdownMenuMessages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="fa fa-2x fa-comment"></span> <span class="badge badge-danger">35</span> <br>
-            {% trans from "main-nav" %} messages {% endtrans %}
+        <a class="nav-link" href="#"  data-href="{{ path('main_profile_messages') }}" id="dropdownMenuMessages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-2x fa-comment"></span> <br>
+            {% trans from "main-nav" %} messages {% endtrans %} <br>
+            <span class="badge badge-danger"></span>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="#">
-            <span class="fa fa-2x fa-bell"></span>  <span class="badge badge-danger">15</span> <br>
-            {% trans from "main-nav" %}notification {% endtrans %}
+            <span class="fa fa-2x fa-bell"></span> <br>
+            {% trans from "main-nav" %}notification {% endtrans %}<br>
+            <span class="badge badge-danger"></span>
         </a>
     </li>
 
@@ -31,8 +33,8 @@
         </a>
     </li>
     <li class="nav-item dropdown">
-        <a class="nav-link" href="#" id="dropdownMenuFreinds" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="fa fa-2x fa-users"></span> <span class="badge badge-danger">02</span> <br>
+        <a class="nav-link" href="#" data-href="{{ path('main_profile_friends') }}" id="dropdownMenuFreinds" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-2x fa-users"></span> <span class="badge badge-danger"></span> <br>
             {% trans from "main-nav" %} friend {% endtrans %}
         </a>
     </li>
