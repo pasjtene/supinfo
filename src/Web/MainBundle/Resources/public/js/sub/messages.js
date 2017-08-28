@@ -1144,6 +1144,12 @@ $(function () {
             return false;
         }
         $("input[type='checkbox']").checkboxradio();
+
+        //emoticons
+
+
+
+
     }
 });
 

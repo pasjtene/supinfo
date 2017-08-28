@@ -171,7 +171,8 @@ var listUsers = null,
 $(function(){
 
 
-    var mainUserProfile = new MainUserProfile();
+    var mainUserProfile = new MainUserProfile(),
+        appEmoticons = new AppEmoticons();
 
    if(mainUserProfile.params.page.data('page')=="mainUserProfile")
    {
@@ -1146,6 +1147,17 @@ $(function(){
            }
        });
     */
+
+       //emoticons
+       appEmoticons.params.btn.popover({
+           html : true,
+           content: function() {
+               return appEmoticons.params.body.html();
+           }
+       });
+       appEmoticons.params.btn.click(function(e){
+           e.preventDefault();
+       });
    }
 });
 
