@@ -24,7 +24,8 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         //http://symfony.com/doc/current/event_dispatcher/before_after_filters.html
         if($request->cookies->get(FormAuthenticator::USER_COOKIE_NAME))
         {
-            return $this->redirect($this->generateUrl("main_profile"));
+            //return $this->redirect($this->generateUrl("main_profile"));
+            return $this->render('MainBundle:Footer:about.html.twig');
         }
         $days =[];
         $months =[];
@@ -42,7 +43,8 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
             $years[] = $i;
         }
         $array = ["days"=>$days,"months"=>$months, "years"=>$years];
-        return $this->render('MainBundle:Default:register.html.twig',$array);
+        //return $this->render('MainBundle:Default:register.html.twig',$array);
+        return $this->render('MainBundle:Footer:about.html.twig');
     }
 
 
