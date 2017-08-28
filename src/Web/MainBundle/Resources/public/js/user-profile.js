@@ -1153,7 +1153,8 @@ $(function(){
            html : true,
            content: function() {
                return appEmoticons.params.body.html();
-           }
+           },
+           trigger: 'focus'
        });
        appEmoticons.params.btn.click(function(e){
            e.preventDefault();
