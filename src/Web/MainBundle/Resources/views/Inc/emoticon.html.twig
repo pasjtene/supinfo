@@ -2,12 +2,7 @@
     <div class="row justify-content-center bodyEmoticon">
         <div class="col-5 list">
             <div class="list-group">
-                <a href="#" class="list-group-item active small">
-                    Cras justo
-                </a>
-                {% for i in 1..55 %}
-                    <a href="#" class="list-group-item list-group-item-action small">liste des emoticons {{ i }} </a>
-                {% endfor %}
+                {% include "MainBundle:Inc:emoticon.html.twig" %}
             </div>
         </div>
         <div class="col emoji">
