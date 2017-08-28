@@ -106,18 +106,7 @@
                            </div>
                            <div class="col text-center">
                                <div class="dropup drop-emoyoyi">
-                                   <a href="#" class="text-muted" id="chat_bottom_emoyoyi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  > <span class="fa fa-2x fa-smile-o"></span></a>
-                                   <div class="dropdown-menu chat_bottom_emoyoyi" aria-labelledby="chat_bottom_emoyoyi" >
-                                       <div class="row">
-                                          {#
-                                             {% for i in 1..30 %}
-                                               <a class="dropdown-item col-3" href="#">
-                                                   <img class="" src="{{ asset('data/img/empty.png') }}"  alt="">
-                                               </a>
-                                           {% endfor %}
-                                          #}
-                                       </div>
-                                   </div>
+                                   <a href="#" class="text-muted chat_bottom_emoyoyi"  data-content="" data-original-title="{% trans from 'user-profile' %} emoticons {% endtrans %}"  data-placement="top" > <span class="fa fa-2x fa-smile-o"></span></a>
                                </div>
                            </div>
                            <div class="col pull-right">

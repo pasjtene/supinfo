@@ -264,6 +264,7 @@ $(function () {
     //Fin chatbox
 
     var mainSubMessages = new MainSubMessages(),
+         appEmoticons = new AppEmoticons(),
         mainUserProfile_messages = new MainUserProfile();
 
     if(mainSubMessages.params.sub.data('sub')=="messages") {
@@ -275,8 +276,9 @@ $(function () {
             countMessageNotSee = 0,
             listUsers = null,
             datakey = null,
-            errorMessage = "something is wrong";
-
+            errorMessage = "something is wrong",
+            key = mainSubMessages.params.chat_area.key.val(),
+            countfinal = 0;
 
             // declancher l'accuse de reception
             setInterval(function(){
@@ -294,9 +296,9 @@ $(function () {
             mainSubMessages.params.body.message_text.keyup(function(e){
                 //placeCaretAtEnd($(this).get(0));
                if(e.keyCode==32){
-                 if( translateEmotion(listEmoticons(),$(this),path.emoticon))
+                 if( appEmoticons.function.translateEmotion(listEmoticons(),$(this),path.emoticon))
                  {
-                     setCaret($(this).get(0),false);
+                    setCaret($(this).get(0),false);
                  }
                }
                 if(e.keyCode==13)
@@ -305,7 +307,6 @@ $(function () {
                     mainSubMessages.params.chat_area.send.trigger('click');
                 }
             });
-
 
         function get(objet,errorMessage,isobjet,isdelete)
         {
@@ -490,9 +491,8 @@ $(function () {
         });
 
         //charger la liste des emoticons
-        fillEmotion(listEmoticons(),mainSubMessages.params.chat_area.emoticon_body,path.emoticon);
-        var  key = mainSubMessages.params.chat_area.key.val();
-        countfinal = 0;
+        appEmoticons.function.fillEmotion(listEmoticons(),mainSubMessages.params.chat_area.emoticon_body,path.emoticon);
+
         function  setfriendList(list, element)
         {
 
@@ -947,7 +947,7 @@ $(function () {
         //lors du  clique sur l'emoticon
         mainSubMessages.params.chat_area.emoticon_body.on('click','a',function(e){
             e.preventDefault();
-           mainSubMessages.params.body.message_text.append(getEmotions($(this).data('img'),''));
+           mainSubMessages.params.body.message_text.append(appEmoticons.function.getEmotions($(this).data('img'),''));
         });
 
         mainSubMessages.params.chat_area.emoticon_btn.hover(function(){
@@ -1144,6 +1144,12 @@ $(function () {
             return false;
         }
         $("input[type='checkbox']").checkboxradio();
+
+        //emoticons
+
+
+
+
     }
 });
 

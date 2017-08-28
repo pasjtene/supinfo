@@ -1,7 +1,27 @@
 #mainUserProfile{
   // write css here
 
+  .popover.bs-tether-element-attached-bottom, .popover.popover-to{
+    min-width: 400px;
+  }
 
+  .bodyEmoticon{
+    min-width:400px;
+    img{
+      margin-bottom: 3%;
+      height: 40px;
+      width: 40px;
+    }
+    .list{
+      max-height: 500px;
+      overflow-x:hidden;
+      overflow-y: auto;
+    }
+    .emoji{
+      @extend  .list;
+
+    }
+  }
   margin-top: 2em;
   .jimg {
     border: 1px solid red;
