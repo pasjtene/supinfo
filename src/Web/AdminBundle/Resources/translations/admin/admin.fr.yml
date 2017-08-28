@@ -23,6 +23,8 @@ admin:
    email: Ecrire aux utilisateurs
    setvip: Marqué comme VIP
    unvip: retiré comme VIP
+   search_hint: Rechercher un nom, prénom ou adresse email...
+   search: Rechercher
 
   messages:
    title: Messages
@@ -37,7 +39,7 @@ admin:
    title: Utilisateurs Spam
 
   statistics:
-   title: statistiques
+   title: Statistiques
 
   userdenounced:
    title: Utilisateurs dénoncés
@@ -45,3 +47,6 @@ admin:
    title: Liste des utilisateurs
   settings:
    title: Paramètres
+  nav:
+    profile: Profil
+    logout: Déconnexion

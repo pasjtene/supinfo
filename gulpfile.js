@@ -16,7 +16,6 @@ var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 
 var jsPaths = [
-    './web/bundles/app/js/*.js',
     './web/bundles/main/js/*.js',
     './web/bundles/main/js/sub/*.js',
     './web/bundles/admin/js/*.js'
@@ -25,6 +24,11 @@ var jsPaths = [
 var jsParamsPaths = [
     './web/bundles/app/js/Inc/*.js'
 ];
+
+var jsAppPaths = [
+    './web/bundles/app/js/*.js'
+];
+
 
 /*var sassPaths = [
     './web/bundles/app/sass/main.scss',
@@ -125,13 +129,45 @@ var paramsTask = function()
     console.log('Uglify JS Parameters files successfull !');
 };
 
+var appTask = function()
+{
+    gulp.src(jsAppPaths)
+        .pipe(uglify('app.min.js', {
+            outSourceMap: true
+        }))
+        .pipe(gulp.dest('web/data/js'))
+        .pipe(livereload());
+    console.log('Uglify JS AppBundle files successfull !');
+};
+
 var concatJsTask = function()
 {
     console.log('Concatening JS files !');
 
     return gulp.src(jsPaths)
             .pipe(concat('master.min.js'))
-            .pipe(gulp.dest('./web/data/js'));
+            .pipe(gulp.dest('./web/data/js'))
+            .pipe(livereload());
+};
+
+var concatJsAppTask = function()
+{
+    console.log('Concatening JS appBundle files !');
+
+    return gulp.src(jsAppPaths)
+        .pipe(concat('app.min.js'))
+        .pipe(gulp.dest('./web/data/js'));
+};
+
+var sideNavTask = function()
+{
+    gulp.src(['./web/dist/sidenav/*.js'])
+        .pipe(uglify('sidenav.min.js', {
+            outSourceMap: true
+        }))
+        .pipe(gulp.dest('web/dist/sidenav'));
+
+    console.log('Sidenav.js uglified successfully !');
 };
 
 gulp.task('default', function(){
@@ -195,6 +231,23 @@ gulp.task('file', ['installAssets'], function()
     currentTask = 'file';
 });
 
+gulp.task('all', ['installAssets'], function()
+{
+    currentTask = 'all';
+});
+
+gulp.task('allprod', ['installAssets'], function()
+{
+    currentTask = 'allprod';
+});
+
+gulp.task('sidenav', function()
+{
+    sideNavTask();
+});
+
+
+
 // Without this function exec() will not show any output
 var logStdOutAndErr = function (err, stdout, stderr)
 {
@@ -208,12 +261,14 @@ var logStdOutAndErr = function (err, stdout, stderr)
     else if(currentTask === 'js')
     {
         uglifyTask();
+        appTask();
         paramsTask();
 
     } else if (currentTask === 'jsdev')
     {
         concatJsTask();
-        paramsTask();
+        concatJsAppTask();
+        //paramsTask();
     }
     else if(currentTask === 'img')
     {
@@ -226,6 +281,24 @@ var logStdOutAndErr = function (err, stdout, stderr)
     else if(currentTask === 'file')
     {
         uglifyTask();
+    }
+    else if(currentTask === 'all')
+    {
+        sassTask();
+        concatJsTask();
+        concatJsAppTask();
+        paramsTask();
+        imageTask();
+        audioTask();
+    }
+    else if(currentTask === 'allprod')
+    {
+        sassTask();
+        uglifyTask();
+        appTask();
+        paramsTask();
+        imageTask();
+        audioTask();
     }
 };
 
@@ -264,7 +337,7 @@ gulp.task('watch', function ()
 
     gulp.watch('./src/Web/*/Resources/public/js/**/*.js', ['installAssets'])
         .on('change', function(event){
-            console.log('File '+event.path+'dev has been  '+event.type);
+            console.log('File '+event.path+' dev has been '+event.type);
 
             currentTask = 'jsdev';
         });

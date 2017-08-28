@@ -43,7 +43,7 @@ form:
       month: Mois
       year: Année
   placeholder:
-    name: Entrer nom
+    name: Entrer votre nom
     birthday: Entrer date de naissance
     gender: Choisisser votre sexe
     reason: Choisissez la raison
@@ -58,19 +58,22 @@ form:
       month: Choisir le mois
       year: Choisir l'année
   required:
-    name: Le nom  est  requis (min  3 caractères)
+    name: Le nom  est  requis (min  2 caractères)
+    name_tooltip: Le nom est obligatoire
+    lastname: Le prénom ou surnom est  requis (min  2 caractères)
+    lastname_tooltip: Le prénom ou surnom est obligatoire
     birthdayOption:
       day: Le jour est  obligatoire
       month: Le mois est obligatoire
       year:  L'année est  obligatoire
     gender: Le sexe est  obligatoire
     reason: La raison est obligatoire
-    email: L'adresse email est obligatoire
+    email: Vérifiez votre adresse email.
     password: the password is required (min  5 caractères)
     confirmpassword: Ressaisir le même mot  de passe
     profession: La profession est obligatoire (min  3 charaters)
-    country: Le pays est obligatoire
-    lastname: Le prénom est obkigatoire
+    country: sélectionnez votre pays
+    lastname: Le prénom est obligatoire
     notification: Est obligatoire
     error: oh  erreur !
   help:

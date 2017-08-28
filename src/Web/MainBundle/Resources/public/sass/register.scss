@@ -1,13 +1,12 @@
-$body-background : #FFFFFF;
-$content-background: #F7F7F7;
-
 #mainRegister{
 
-   margin-top: 1em;
+
+  margin-top: 4em;
   #modalSave{
 
   }
    #block2{
+     .register-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
       form{
          .form-control-feedback{
             display: none;
@@ -44,12 +43,13 @@ $content-background: #F7F7F7;
          }
        }
       @media screen and (min-width: 978px) {
+        .register-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
         border-left: 2px solid $default-color;
         #or-content{
           position: relative;
           left: -4.55em;
           top: -2.3em;
-          background-color: white;
+          background-color:$body;
           width: 3em;
           height: 2em;
           text-align: center;

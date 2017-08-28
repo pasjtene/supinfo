@@ -1,4 +1,4 @@
-<div class="card-block bg-faded" data-sub="friends" id="Main-Subfriends">
+<div class="card-block bg-faded iswriteMessage" data-write="yes" data-sub="friends" id="Main-Subfriends">
     <div id="Main-Subfriends-Message">
         <div class="modal fade" id="Message-box" tabindex="-1" role="dialog" aria-labelledby="messageBoxLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -10,16 +10,75 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <textarea class="form-control" id="message-textarea" rows="8" placeholder=" {% trans from 'friends' %} sub.chat.placeholder {% endtrans %}"></textarea>
-                            </div>
-                        </form>
+                        <div class="panel-body">
+                            <ul class="chat">
+                                <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                        </div>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                            dolor, quis ullamcorper ligula sodales.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                        </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                        </div>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                            dolor, quis ullamcorper ligula sodales.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                        </div>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                            dolor, quis ullamcorper ligula sodales.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="right clearfix"><span class="chat-img pull-right">
+                                        <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                        </div>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                            dolor, quis ullamcorper ligula sodales.
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
-                        <span class="fa fa-files-o fa-2x"></span>
-                        <span class="fa fa-frown-o fa-2x"></span>
-                        <button type="button" class="btn btn-primary btn-sm"> <span class="fa fa-paper-plane"></span> Envoyer</button>
+                        <div class="input-group">
+                            <textarea name="" id="" cols="40" rows="1"></textarea>
+                        </div>
+                        <button class="bg_none btn-success rounded-circle"><i class="fa fa-smile-o"></i> </button>
+                        <button class="bg_none btn-warning rounded-circle"><i class="fa fa-paperclip"></i> </button>
+                        <button class="bg_none pull-right btn-primary rounded-circle"><i class="fa fa-thumbs-up"></i> </button>
                     </div>
                 </div>
             </div>
@@ -27,12 +86,13 @@
     </div>
     <div class="card" id="Main-Subfriends-ask">
         <div class="card-header bg-white">
-            <h5 class=""><strong> {% trans with {'number':38} from 'friends' %} sub.invitation.title {% endtrans %} </strong></h5>
+            <h5 class=""><strong> {% trans  from 'friends' %} sub.invitation.title1 {% endtrans %} <span class="number"></span> {% trans  from 'friends' %} sub.invitation.title2 {% endtrans %}   </strong></h5>
             <a href="" class="small">{% trans  from 'friends' %} sub.invitation.view {% endtrans %}</a>
         </div>
         <div class="card-block">
-            <div class="body">
-                {% for i in 1..4 %}
+            <div class="body" data-help="{{ asset('data/img/empty.png') }}">
+               {#
+                     {% for i in 1..4 %}
                     {% set id=i %}
                     <section>
                         <div class="container py-3">
@@ -60,6 +120,49 @@
                         <hr>
                     </section>
                 {% endfor %}
+               #}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card" id="Main-Subfriends-send">
+        <div class="card-header bg-white">
+            <h5 class=""><strong>  {% trans  from 'friends' %} sub.invitation.request1 {% endtrans %} <span class="number"></span> {% trans  from 'friends' %} sub.invitation.request2 {% endtrans %} </strong></h5>
+            <a href="" class="small">{% trans  from 'friends' %} sub.invitation.reply {% endtrans %}</a>
+        </div>
+        <div class="card-block">
+            <div class="body" data-help="{{ asset('data/img/empty.png') }}">
+                {#
+                      {% for i in 1..4 %}
+                     {% set id=i %}
+                     <section>
+                         <div class="container py-3">
+                             <div class="row align-items-center small">
+                                 <div class="col-md-3 ">
+                                     <img src="{{ asset('data/img/empty.png') }}" class="w-100">
+                                 </div>
+                                 <div class="col-md-9 px-3 content" >
+                                     <div class="card-block px-3">
+                                         <h4 class="card-title">User Name </h4>
+                                         <p class="card-text text-muted message-text" >Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </p>
+                                         <p class="card-text text-grey small"><span class="pays">pays</span> <span class="profession text-muted"> (Profession)</span></p>
+                                         <p class="card-text text-grey small">{% trans with {'number':11}  from 'friends' %} sub.invitation.common {% endtrans %} </p>
+                                         <a href="#" class="btn btn-sm btn-primary">{% trans  from 'friends' %} sub.invitation.confirm {% endtrans %}</a>
+                                         <a href="#" data-toggle="modal" data-target="#Message-box" class="btn btn-sm btn-success"><span class="fa fa-comment"></span> {% trans  from 'friends' %} sub.invitation.message {% endtrans %}</a>
+                                         <a href="#" class="btn btn-sm btn-danger dropdown-toggle" id="{{ id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans  from 'friends' %} sub.invitation.action {% endtrans %}</a>
+                                         <div class="dropdown-menu" aria-labelledby="{{ id }}" style="line-height: 1rem;">
+                                             <a class="dropdown-item" href="#">{% trans  from 'friends' %} sub.invitation.delete {% endtrans %}</a>
+                                             <a class="dropdown-item" href="#">{% trans  from 'friends' %} sub.invitation.block {% endtrans %}</a>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <hr>
+                     </section>
+                 {% endfor %}
+                #}
             </div>
         </div>
     </div>
@@ -73,16 +176,23 @@
         <div class="card-block">
             <div class="container">
                 <div class="row">
-                    <form id="custom-search-form" class="form-search form-horizontal pull-right col-12">
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{% trans  from 'friends' %} sub.noFriend.placeholder {% endtrans %}">
-                            <div class="input-group-addon bg-primary text-white"><span class="fa fa-search"></span></div>
-                        </div>
-                    </form>
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <input type="text" autocomplete="off" class="form-control" list="Main-Subfriends-seach-list" id="Main-Subfriends-seach-input" placeholder="{% trans  from 'friends' %} sub.noFriend.placeholder {% endtrans %}">
+                        <div id="Main-Subfriends-seach-btn" class="input-group-addon bg-primary text-white"><span class="fa fa-search"></span></div>
+                        <datalist id="Main-Subfriends-seach-list">
+
+                        </datalist>
+                    </div>
+                    <br>
+                  <div class="col-12 text-center">
+                      <br><br>
+                      <img src="{{ asset('data/img/facebook.gif') }}" alt="" class="img-search">
+                  </div>
                 </div>
             </div>
            <div class="body">
-               {% for i in 1..10 %}
+              {#
+                 {% for i in 1..10 %}
                    {% set id= 'action'~i %}
                    <section>
                        <div class="container py-3">
@@ -106,6 +216,8 @@
                        <hr>
                    </section>
                {% endfor %}
+
+              #}
            </div>
         </div>
     </div>

@@ -1,0 +1,72 @@
+<div id="bodyEmoticon" style="display: none">
+    <div class="row justify-content-center bodyEmoticon">
+        <div class="col-5 list">
+            <div class="list-group">
+                <a href="#emotions1" class="list-group-item active small">     emotions 1</a>
+                <a href="#emotions2" class="list-group-item list-group-item-action small">emotions 2 </a>
+                <a href="#emotions3" class="list-group-item list-group-item-action small"> emotions3 </a>
+                <a href="#emotions4" class="list-group-item list-group-item-action small">emotions 4 </a>
+                <a href="#emotions5" class="list-group-item list-group-item-action small"> emotions 5</a>
+                <a href="#emotions6" class="list-group-item list-group-item-action small"> emotions 6</a>
+                <a href="#AliboronzBlue" class="list-group-item list-group-item-action small"> Aliboronz Blue</a>
+                <a href="#AliboronzGreen" class="list-group-item list-group-item-action small"> Aliboronz Green</a>
+                <a href="#Alphabet1" class="list-group-item list-group-item-action small"> Alphabet 1 </a>
+                <a href="#Alphabet2" class="list-group-item list-group-item-action small"> Alphabet 2 </a>
+                <a href="#Alphabet3" class="list-group-item list-group-item-action small"> Alphabet 3</a>
+                <a href="#Alphabet4" class="list-group-item list-group-item-action small"> Alphabet 4 </a>
+                <a href="#amour2" class="list-group-item list-group-item-action small"> amour 2</a>
+                <a href="#amour3" class="list-group-item list-group-item-action small"> amour 3 </a>
+                <a href="#Amour" class="list-group-item list-group-item-action small"> Amour </a>
+                <a href="#Anniversaire" class="list-group-item list-group-item-action small"> Anniversaire </a>
+                <a href="#Appetit" class="list-group-item list-group-item-action small">  Appetit </a>
+                <a href="#Automneethalloween1" class="list-group-item list-group-item-action small"> Automne et halloween 1</a>
+                <a href="#Automneethalloween2" class="list-group-item list-group-item-action small"> Automne et halloween 2 </a>
+                <a href="#Bebe" class="list-group-item list-group-item-action small"> Bebe </a>
+                <a href="#chiens et chiots" class="list-group-item list-group-item-action small"> chiensetchiots </a>
+                <a href="#Citrouilles" class="list-group-item list-group-item-action small"> Citrouilles </a>
+                <a href="#Colere" class="list-group-item list-group-item-action small"> Colere </a>
+                <a href="#Confus" class="list-group-item list-group-item-action small"> Confus </a>
+                <a href="#Content" class="list-group-item list-group-item-action small"> Content </a>
+                <a href="#Disney" class="list-group-item list-group-item-action small"> Disney </a>
+                <a href="#Divers" class="list-group-item list-group-item-action small"> Divers </a>
+                <a href="#Dormir" class="list-group-item list-group-item-action small"> Dormir </a>
+                <a href="#Fantastique" class="list-group-item list-group-item-action small"> Fantastique </a>
+                <a href="#Fumeur" class="list-group-item list-group-item-action small"> Fumeur </a>
+                <a href="#Halloween1" class="list-group-item list-group-item-action small"> Halloween 1 </a>
+                <a href="#Halloween2" class="list-group-item list-group-item-action small"> Halloween 2 </a>
+                <a href="#Halloween3" class="list-group-item list-group-item-action small"> Halloween 3 </a>
+                <a href="#Halloween4" class="list-group-item list-group-item-action small"> Halloween 4 </a>
+                <a href="#Halloween" class="list-group-item list-group-item-action small"> Halloween </a>
+                <a href="#HelloKitty" class="list-group-item list-group-item-action small"> HelloKitty </a>
+                <a href="#Marine" class="list-group-item list-group-item-action small"> Marine </a>
+                <a href="#Militaire" class="list-group-item list-group-item-action small"> Militaire </a>
+                <a href="#Noel1" class="list-group-item list-group-item-action small"> Noel 1 </a>
+                <a href="#Noel2" class="list-group-item list-group-item-action small"> Noel 2 </a>
+                <a href="#Noel3" class="list-group-item list-group-item-action small"> Noel 3 </a>
+                <a href="#Noel4" class="list-group-item list-group-item-action small"> Noel 4  </a>
+                <a href="#NouvelAn" class="list-group-item list-group-item-action small"> Nouvel An </a>
+                <a href="#Pensif" class="list-group-item list-group-item-action small"> Pensif </a>
+                <a href="#PereNoel" class="list-group-item list-group-item-action small"> Père Noel</a>
+                <a href="#SaintValentin" class="list-group-item list-group-item-action small"> Saint Valentin </a>
+                <a href="#Surpris" class="list-group-item list-group-item-action small"> Surpris </a>
+                <a href="#Texte" class="list-group-item list-group-item-action small">  Texte </a>
+                <a href="#Timbres1" class="list-group-item list-group-item-action small"> Timbres 1 </a>
+                <a href="#Timbres2" class="list-group-item list-group-item-action small"> Timbres 2 </a>
+                <a href="#Timbres3" class="list-group-item list-group-item-action small"> Timbres 3 </a>
+                <a href="#Travail" class="list-group-item list-group-item-action small"> Travail </a>
+                <a href="#Triste" class="list-group-item list-group-item-action small"> Triste </a>
+                <a href="#Violence" class="list-group-item list-group-item-action small"> Violence </a>
+                <a href="#Zodiaque" class="list-group-item list-group-item-action small"> Zodiaque </a>
+            </div>
+        </div>
+        <div class="col emoji">
+            <div class="row">
+                {% for i in 1..40 %}
+                    <div class="col-3 element">
+                        <img src="{{ asset('data/img/empty.png') }}" alt="" style="margin-bottom: 3%; height: 40px; width: 40px;">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

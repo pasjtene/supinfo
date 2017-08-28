@@ -1,0 +1,348 @@
+<div id="Main-Subdetail-detail-User" data-sub="Main-Subdetail-detail-User">
+    <div class="card">
+        <img class="card-img-top banner" src="{{ asset('data/img/color.jpg') }}" alt="Card image cap">
+        <div class="card-block">
+            <div class="d-flex flex-row justify-content-between">
+                <div class="p-2"></div>
+                <div class="p-2 bannertof"><img src="http://placehold.it/128x128" class="photoDetail" alt="http://placehold.it/128x128"></div>
+
+                <div class="p-2 "><a class="hide fa fa-2x fa-edit"  href="#"></a></div>
+            </div>
+            <div class="justify-content-center d-flex flex-row">
+                <h5 class="nameB card-text detail_profile_name"></h5>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-6">
+            <div class="card infoPersoChange">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.infPersonelles {% endtrans %}</span>
+                    <a class=" p-2 fa fa-2x fa-edit openInfoperso" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.edit {% endtrans %}"   href="#"></a>
+                </h5>
+                {#------------INFORMATIONS PERSONELLES#}
+                <div class="card-block ">
+                    <div class="col-xs-12 col-sm-12 col">
+                        <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.sexe {% endtrans %}</span> <br>
+                        <span class="Stexte detail_profile_sex"></span> <br>
+
+                        {#---------------Edit birtday#}
+                        <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.anniv {% endtrans %}</span> <br>
+                        <span  class="birthdayChange  d-flex flex-row justify-content-between">
+                           <span class="Stexte detail_profile_birthday"></span>
+                            <a href="#" class="hide btnOpenbirthday">{% trans from 'photo' %} sub.tabs.myProfilDetail.changer {% endtrans %}</a>
+                        </span>
+
+
+                        {#-------Add phone number#}
+                        <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.phones {% endtrans %}</span> <br>
+                        <span  class="phoneChange d-flex flex-row justify-content-between">
+                            <span class="Stexte detail_profile_phones">{% trans from 'photo' %} sub.tabs.myProfilDetail.notgiven {% endtrans %}</span>
+                            <a href="#" class="btnOpenAddPhone hide">{% trans from 'photo' %} sub.tabs.myProfilDetail.addPhone {% endtrans %}</a>
+                        </span>
+                        <div   class="blockedit d-flex flex-row hide phoneBlock">
+                            <input id="phoneadd" type="text" class="p-2 col-sm-10 form-control" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.phones {% endtrans %}">
+                            <a class="p-2 col fa fa-2x fa-save  LinkSavePhone" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.save {% endtrans %}"  href="#"></a>
+                            <a class="p-2 col fa fa-2x fa-close  LinkClosePhone" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.cancel {% endtrans %}"  href="#"></a>
+                        </div><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card hide infoPersoBlock">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.editinfPersonelles {% endtrans %}</span>
+                    <span class="p-2">
+                        <a class=" fa fa-2x fa-save  LinkSaveInfoPerso " data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.save {% endtrans %}" href="#"></a>
+                        <a class=" fa fa-2x fa-close  LinkCloseInfoPerso" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.cancel {% endtrans %}" href="#"></a>
+                    </span>
+                </h5>
+                {#------------EDIT INFORMATIONS PERSONELLES#}
+                <div class="card-block ">
+                    <div class="col-sm-12 col blockedit">
+                        <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.lastName {% endtrans %} &nbsp;:&nbsp;</span>
+                        <input type="text" id="lastName" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.lastName {% endtrans %}" class="form-control ">
+                        <br>
+                        <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.FirstName {% endtrans %} &nbsp;:&nbsp;</span>
+                        <input type="text" id="firstName" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.FirstName {% endtrans %}" class="form-control ">
+                        <br>
+                        <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.phones {% endtrans %} &nbsp;:&nbsp;</span>
+                        <input type="text" id="phones" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.phones {% endtrans %}" class="form-control ">
+                        <br>
+                        <span>{% trans from 'register' %} form.placeholder.gender {% endtrans %} &nbsp;:&nbsp;</span>
+                        <select style="margin-bottom: 20px" class="custom-select form-control " id="gender">
+                            <option selected value="">{% trans from 'register' %} form.placeholder.gender {% endtrans %}</option>
+                            <option value="M">{% trans from 'register' %} form.body.genderList.1 {% endtrans %}</option>
+                            <option value="F">{% trans from 'register' %} form.body.genderList.2 {% endtrans %}</option>
+                        </select>
+                        <br>
+                        <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.anniv {% endtrans %}&nbsp;:&nbsp;</span>
+                        <div   class="blockedit d-flex flex-row  birthdayBlock">
+
+                            <select class="custom-select form-control" id="day">
+                                <option selected value="">{% trans from 'register' %} form.body.birthdayOption.day {% endtrans %}</option>
+                                {% for item in 1..31 %}
+                                    <option value="{{ item }}"> {{ item }}</option>
+                                {% endfor %}
+                            </select>
+                            <select class="custom-select form-control" id="month">
+                                <option selected value="">{% trans from 'register' %} form.body.birthdayOption.month {% endtrans %}</option>
+                                {% for item in 1..12 %}
+                                    <option value="{{ item }}"> {{ item }}</option>
+                                {% endfor %}
+                            </select>
+                            <select class="custom-select form-control" id="year">
+                                <option selected value="">{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}</option>
+                                {% for item in 1950..2014 %}
+                                    <option value="{{ item }}"> {{ item }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {#----------------------==== ADRESSE#}
+        <div class="col col-sm-6">
+            <div class="card AdresseChange">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.adresse {% endtrans %}</span>
+                    <a class="openAdresse p-2 fa fa-2x fa-edit" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.edit {% endtrans %}"  href="#"></a>
+                </h5>
+                <div class="card-block">
+                    <div class="col-xs-12 col-sm-12 col">
+
+                        {#------Edit country#}
+                        <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.pay {% endtrans %}</span> <br>
+                        <span  class="countryChange d-flex flex-row justify-content-between">
+                            <span class="Stexte detail_profile_country">{% trans from 'photo' %} sub.tabs.myProfilDetail.notgiven {% endtrans %}</span>
+                            <a href="#" class="btnOpenchange">{% trans from 'photo' %} sub.tabs.myProfilDetail.changer {% endtrans %}</a>
+                        </span>
+                        <div   class="hide d-flex flex-row blockedit countryblock ">
+                            <select class="p-2 col-sm-10 form-control" data-country="{% if app.request.locale=='fr' %}{{ asset('dist/country.json') }} {% else %} {{ asset('dist/country-en.json') }}{% endif %}" type="text" id="country">
+                                <option  value="">{% trans from 'register' %} form.placeholder.country {% endtrans %}</option>
+                            </select>
+                            <a class="p-2 col fa fa-2x fa-save linkSaveCountry" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.save {% endtrans %}"  href="#"></a>
+                            <a class="p-2 col fa fa-2x fa-close linkCloseCountry" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.cancel {% endtrans %}"  href="#"></a>
+                        </div>
+                        <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}</span> <br>
+                        <span class="Stexte detail_profile_city">{% trans from 'photo' %} sub.tabs.myProfilDetail.notgiven {% endtrans %}</span> <br>
+                        <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.profession {% endtrans %}</span> <br>
+                        <span class="Stexte detail_profile_profession">{% trans from 'photo' %} sub.tabs.myProfilDetail.notgiven {% endtrans %}</span> <br>
+                        {#<span class="Ftexte hide">{% trans from 'photo' %} sub.tabs.myProfilDetail.quartier {% endtrans %}</span> <br>
+                       <span class="Stexte hide">Bonamoussadi</span> <br>#}
+                    </div>
+                </div>
+            </div>
+            <div class="card hide AdresseBlock">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.editadresse {% endtrans %}</span>
+                    <span class="p-2">
+                        <a class=" fa fa-2x fa-save  LinkSaveAdresse" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.save {% endtrans %}"  href="#"></a>
+                        <a class=" fa fa-2x fa-close  LinkCloseAdresse" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.cancel {% endtrans %}"  href="#"></a>
+                    </span>
+                </h5>
+                <div class="card-block">
+                    <span class="detail_ville_pays"></span> <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}&nbsp;:&nbsp; </span>
+                   <input type="text" id="city" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.profession {% endtrans %}&nbsp;:&nbsp;</span>
+                    <input type="text" id="profession" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.profession {% endtrans %}" class="form-control col ">
+                </div>
+            </div>
+        </div>
+
+        {#---------------=========ACCOUNT#}
+        <div class="col col-sm-6">
+            <div class="card AccountChange">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.account {% endtrans %}</span>
+                    <a class="openAccount p-2 fa fa-2x fa-edit" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.edit {% endtrans %}"  href="#"></a>
+                </h5>
+                <div class="card-block">
+                    <span class="Ftexte">Email</span> <br>
+                    <span class="Stexte detail_profile_email"></span> <br>
+
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.userName {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_userName"></span> <br>
+                </div>
+            </div>
+            <div class="card AccountBlock hide">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.editaccount {% endtrans %}</span>
+                    <span class="p-2">
+                        <a class=" fa fa-2x fa-save  LinkSaveAccount" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.save {% endtrans %}"  href="#"></a>
+                        <a class=" fa fa-2x fa-close  LinkCloseAccount" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.cancel {% endtrans %}"  href="#"></a>
+                    </span>
+                </h5>
+                <div class="card-block">
+                    <span class="">Email&nbsp;:&nbsp;</span> <br>
+                    <input type="email" id="email" placeholder="email" class="form-control">
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.userName {% endtrans %}&nbsp;:&nbsp;</span>
+                    <input type="text" id="userName" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.userName {% endtrans %}" class="form-control">
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('main_forgot_password') }}" class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.editpwd {% endtrans %}</a>
+                </div>
+            </div>
+        </div>
+
+
+        {#---------------=========PASSEWORD#}
+        <div class="col col-sm-6 pwdBlock hide">
+            <div class="card helpers hide">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.editpwd {% endtrans %}</span>
+                    <span class="p-2">
+                        <a class=" fa fa-2x fa-save  LinkSavepwd" href="#"></a>
+                        <a class=" fa fa-2x fa-close  LinkClosepwd" href="#"></a>
+                    </span>
+                </h5>
+                <div class="card-block">
+                    <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.cpwd {% endtrans %}&nbsp;:&nbsp;</span> <br>
+                    <input type="password" id="cpwd" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.cpwd {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.npwd {% endtrans %}&nbsp;:&nbsp;</span>
+                    <input type="text" id="npwd" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.npwd {% endtrans %}" class="form-control">
+                    <br><span>{% trans from 'photo' %} sub.tabs.myProfilDetail.cfpwd {% endtrans %}&nbsp;:&nbsp;</span>
+                    <input type="text" id="cfpwd" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.cfpwd {% endtrans %}" class="form-control">
+
+
+                </div>
+                <div class="card-footer">
+                    <a href="#">{% trans from 'photo' %} sub.tabs.myProfilDetail.fpwd {% endtrans %}</a>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        {#SCHOOL++++++++++++++++++#}
+        <div class="col col-sm-6">
+            <div class="card SchoolChange">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.diplome {% endtrans %}</span>
+                    <a class="p-2 openSchool" href="#">
+                        {% trans from 'photo' %} sub.tabs.myProfilDetail.addPhone {% endtrans %}</a>
+                </h5>
+                <div class="card-block">
+                    <ul class="list-group list-group-flush Stexte detail_profile_school">
+                       <li class="list-group-item">{% trans from 'photo' %} sub.tabs.myProfilDetail.notgiven {% endtrans %}</li>
+
+                    </ul>
+                </div>
+            </div>
+            {#====EDIT SCHOOL#}
+            <div class="card SchoolBlock hide">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.diplome {% endtrans %}</span>
+                    <span class="p-2">
+                        <a class=" fa fa-2x fa-save  LinkSaveSchool" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.save {% endtrans %}"  href="#"></a>
+                        <a class=" fa fa-2x fa-trash-o  LinkDelSchool hide" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.delete {% endtrans %}"  href="#"></a>
+                        <a class=" fa fa-2x fa-close  LinkCloseSchool" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.cancel {% endtrans %}"  href="#"></a>
+                    </span>
+                </h5>
+                <div class="card-block">
+                    <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.schoolname {% endtrans %}&nbsp;:&nbsp;</span> <br>
+                    <input type="text" id="schoolname" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.schoolname {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'register' %} form.placeholder.country {% endtrans %}&nbsp;:&nbsp; </span>
+                    <select class="p-2 col-sm-10 form-control" data-country="{% if app.request.locale=='fr' %}{{ asset('dist/country.json') }} {% else %} {{ asset('dist/country-en.json') }}{% endif %}" type="text" id="countryc">
+                        <option  value="">{% trans from 'register' %} form.placeholder.country {% endtrans %}</option>
+                    </select><br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}&nbsp;:&nbsp; </span>
+                    <input type="text" id="location" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.ville {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}&nbsp;:&nbsp;</span>
+                    <select class=" form-control"   type="text" id="highlevel">
+                        <option  value="">{% trans from 'photo' %} sub.tabs.myProfilDetail.highlevel {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.pschool {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.pschool {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.hschool {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.hschool {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.University {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.University {% endtrans %}</option>
+                    </select>
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.Qualification {% endtrans %}&nbsp;:&nbsp;</span>
+                    <input type="text" id="Qualification" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.Qualification {% endtrans %}" class="form-control">
+                    <br>
+                    <span>{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}&nbsp;:&nbsp;</span>
+                    <select class="custom-select form-control" id="yearC">
+                        <option selected value="">{% trans from 'register' %} form.body.birthdayOption.year {% endtrans %}</option>
+                        {% for item in 1980..2017 %}
+                            <option value="{{ item }}"> {{ item }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        {#ABOUT++++++++++++++++++#}
+        <div class="col col-sm-6">
+            <div class="card aboutChange">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.about {% endtrans %}</span>
+                    <a class="p-2 openAbout fa fa-2x fa-edit" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.edit {% endtrans %}"  href="#"></a>
+                </h5>
+                <div class="card-block">
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_numberOfChill">{% trans from 'photo' %} sub.tabs.myProfilDetail.notgiven {% endtrans %}</span> <br>
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_maritalStatus">{% trans from 'photo' %} sub.tabs.myProfilDetail.notgiven {% endtrans %}</span> <br>
+                    <span class="Ftexte">{% trans from 'register' %} form.body.reason {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_reason">{% trans from 'photo' %} sub.tabs.myProfilDetail.notgiven {% endtrans %}</span> <br>
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_meetLike">{% trans from 'photo' %} sub.tabs.myProfilDetail.notgiven {% endtrans %}</span> <br>
+                    <span class="Ftexte">{% trans from 'photo' %} sub.tabs.myProfilDetail.bio {% endtrans %}</span> <br>
+                    <span class="Stexte detail_profile_bio">{% trans from 'photo' %} sub.tabs.myProfilDetail.notgiven {% endtrans %}</span> <br>
+
+
+                </div>
+            </div>
+            {#====EDIT ABOUT#}
+            <div class="card aboutBlock hide">
+                <h5 class="card-header d-flex flex-row justify-content-between">
+                    <span class="p-2">{% trans from 'photo' %} sub.tabs.myProfilDetail.about {% endtrans %}</span>
+                    <span class="p-2">
+                        <a class=" fa fa-2x fa-save  LinkSaveAbout" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.save {% endtrans %}"  href="#"></a>
+                        <a class=" fa fa-2x fa-close  LinkCloseAbout" data-toggle="tooltip" data-placement="left" title="{% trans from 'photo' %} sub.tabs.myProfilDetail.cancel {% endtrans %}"  href="#"></a>
+                    </span>
+                </h5>
+                <div class="card-block">
+                    <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}&nbsp;:&nbsp;</span> <br>
+                    <input type="text" maxlength="2" id="numberOfChill" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.numberOfChill {% endtrans %}" class="form-control">
+                    <br>
+                    <span class="">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}&nbsp;:&nbsp;</span> <br>
+                    <select class="p-2   form-control"   type="text" id="maritalStatus">
+                        <option  value="">{% trans from 'photo' %} sub.tabs.myProfilDetail.maritalStatus {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.enCouple {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.enCouple {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.marie {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.marie {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.celibataire {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.celibataire {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.divorce {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.divorce {% endtrans %}</option>
+                        <option  value="{% trans from 'photo' %} sub.tabs.myProfilDetail.veuf {% endtrans %}">{% trans from 'photo' %} sub.tabs.myProfilDetail.veuf {% endtrans %}</option>
+                    </select> <br>
+                    <span >{% trans from 'register' %} form.body.reason {% endtrans %}&nbsp;:&nbsp;</span><br>
+                    <select class=" form-control" id="reason">
+                        <option selected value="">{% trans from 'register' %} form.placeholder.reason {% endtrans %}</option>
+                        <option value="{% trans from 'register' %} form.body.reasonList.1 {% endtrans %}">{% trans from 'register' %} form.body.reasonList.1 {% endtrans %}</option>
+                        <option value="{% trans from 'register' %} form.body.reasonList.2 {% endtrans %}">{% trans from 'register' %} form.body.reasonList.2 {% endtrans %}</option>
+                        <option value="{% trans from 'register' %} form.body.reasonList.3 {% endtrans %}">{% trans from 'register' %} form.body.reasonList.3 {% endtrans %}</option>
+                    </select> <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}&nbsp;:&nbsp;</span>
+                    <textarea rows="3" type="text" id="meetLike" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.meetLike {% endtrans %}" class="form-control"></textarea>
+                    <br>
+                    <span>{% trans from 'photo' %} sub.tabs.myProfilDetail.bio {% endtrans %}&nbsp;:&nbsp;</span>
+                    <textarea rows="3" type="text" id="bio" placeholder="{% trans from 'photo' %} sub.tabs.myProfilDetail.bio {% endtrans %}" class="form-control"></textarea>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

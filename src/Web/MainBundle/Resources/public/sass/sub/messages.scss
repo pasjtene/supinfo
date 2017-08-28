@@ -1,5 +1,24 @@
-#Main-Messages{
+.active_li{
+  background: #428bca none repeat scroll 0 0 !important;
+  color: #fff !important;
+}
 
+#Main-Messages{
+  .name-detail:hover{
+    color: $highligt;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  #dropdown-setting{
+    display: none;
+  }
+  .setting{
+     li{
+       cursor: pointer;
+     }
+  }
   .chat_sidebar{
       #custom-search-input {
         background: #e8e6e7 none repeat scroll 0 0;
@@ -38,11 +57,18 @@
                    border-bottom:none;
                  }
               }
-
            }
+        .list-unstyled{
+           .flag{
+             height: 10px;
+             left: 10px;
+           }
+          .connect{
+            color: $highligt;
+          }
+        }
         li:hover {
-          background: #428bca none repeat scroll 0 0;
-          color: #fff;
+          @extend  .active_li;
           cursor:pointer;
         }
       }
@@ -85,7 +111,23 @@
                 p {
                   background: #fbf9fa none repeat scroll 0 0;
                   padding: 10px;
+
+                  .custom-control-indicator
+                  {
+                    //background: #fbf9fa none repeat scroll 0 0;
+                  }
+
                 }
+              p:hover{
+                .custom-control-indicator
+                {
+                  background: $default-color;
+                }
+              }
+              img{
+                max-height: 200px;
+                max-width: 200px;
+              }
             }
 
             .admin_chat  {
@@ -103,21 +145,124 @@
       }
 
     .message_write {
-      background: #f5f3f3 none repeat scroll 0 0;
+     // background: #f5f3f3 none repeat scroll 0 0;
       float: left;
       padding: 15px;
       width: 100%;
-      textarea.form-control {
-        height: 70px;
+      .message_hep{
+        img{
+          height: 50px;
+          max-width: 50px;
+        }
+      }
+      #message-text {
+        min-height: 30px;
         padding: 10px;
+        border-bottom: solid 1px $test-grey;
+        background-color: white;
+        border-radius: 6px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-width: 100%;
+       /* display: flex;
+        text-wrap: normal;
+        flex-wrap: wrap;
+        */
+        img{
+          max-height:30px;
+          max-width: 30px;
+        }
+      }
+
+      [contenteditable=true]:empty:before{
+        content: attr(placeholder);
+        display: block; /* For Firefox */
+      }
+      #message-text:focus{
+        border-bottom: solid 1px $highligt;
       }
       .chat_bottom {
         float: left;
-        margin-top: 13px;
+        margin-top: 13px ;
         width: 100%;
+        .fa-2x{
+          font-size: 1.4em;
+        }
+        .drop-emoyoyi{
+          .chat_bottom_emoyoyi{
+            min-width: 300px;
+            max-height: 400px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            img{
+              max-height: 30px;
+              max-width: 30px;
+            }
+          }
+        }
       }
       .upload_btn {
         color: #777777;
+
+      }
+    }
+    #message_action{
+      width: 100%;
+      table{
+        width: 100%;
+        td{
+          text-align: center;
+        }
+      }
+      display: none;
+      margin: 2%;
+      height: 100px;
+      background-color: white;
+      button{
+        max-width: 50px;
+        font-size: 0.7em;
+      }
+    }
+  }
+  #modal-foward{
+    .modal-body{
+      .custom-search-input{
+         margin-bottom: 2%;
+      }
+      .body{
+        max-height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        
+        .list-group-item{
+          border-left: 0;
+          border-right:0;
+          label{
+           // width: 100%;
+           /* .ui-icon-background, .ui-state-active .ui-icon-background {
+              display: none;
+              background-color:rgba(0, 0, 0, 0) ;
+            }
+            */
+          }
+          table{
+            width: 100%;
+            tr{
+              .img{
+                height: 70px;
+                width: 70px;
+              }
+              .flag{
+                width: 18px;
+                height: 18px;
+              }
+            }
+          }
+        }
+        .list-group-item :first-child{
+            border-top: 0;
+        }
+
       }
     }
   }

@@ -80,6 +80,10 @@ $(function(){
         //image courent
         var currentImg = [];
 
+        var number =0;
+
+        var messageFinal = $('<ul class="list-group"></ul>');
+
         // force le background a ne pas reagir lorsqu'on   clic
         mainPhotoRequest.params.id.modal_photo.click(function(){
             mainPhotoRequest.params.id.modal_photo.modal("show");
@@ -140,7 +144,7 @@ $(function(){
             var files = e.originalEvent.dataTransfer.files;
 
             //recuperer le nombre de fichier
-            countfile = files.length;
+            countfile = 0;
 
             //initialiser  l'index
             currentIndex=0;
@@ -149,10 +153,42 @@ $(function(){
             {
                 var fd = new FormData();
                 var file = files[i];
-                currentImg.push(file.name);
-                fd.append('file',file);
-                uploadData(fd);
+
+                var error = Translator.trans("sub.img.error_ext",{},"photo");
+                var error_size = Translator.trans("sub.img.error_size",{},"photo");
+                var error_message = Translator.trans("sub.modal.state.error",{},"photo");
+                var size = Math.round(file.size/(1024*1024));
+                if(isValidLenght(size,2)){
+                    if(isValidExt(file.type)){
+                        countfile++;
+                        currentImg.push(file.name);
+                        fd.append('file',file);
+                        uploadData(fd);
+                    }
+                    else{
+                        number++;
+                        var content = '<li class="list-group-item list-group-item-action list-group-item-danger">'+number+')'+ file.name+'<strong> ext : '+ file.type+' '+error+'</strong></li>';
+
+                        messageFinal.append(content);
+                    }
+
+                }
+                else{
+                    number++;
+                    var content = '<li class="list-group-item list-group-item-action list-group-item-danger">'+number+')'+ file.name +'<strong> size : '+size+'Mo '+error_size+'</strong></li>';
+                    messageFinal.append(content);
+                }
             }
+            if(countfile==currentIndex) {
+                //on cache le bg
+                mainPhotoRequest.params.id.bg.fadeOut();
+
+
+                // affiche le modal pour la notification
+                bootbox.alert(messageFinal.html(), function(){});
+
+            }
+
         });
 
         // Open file selector on button click
@@ -176,7 +212,7 @@ $(function(){
 
             var files = inputfile[0].files;
             //recuperer le nombre de fichier
-            countfile = files.length;
+            countfile = 0;
 
             //initialiser  l'index
             currentIndex=0;
@@ -185,10 +221,40 @@ $(function(){
             {
                 var fd = new FormData();
                 var file = files[i];
-                currentImg.push(file.name);
-                fd.append('file',file);
-                // console.log(fd.get('file'));
-                uploadData(fd);
+
+                var error = Translator.trans("sub.img.error_ext",{},"photo");
+                var error_size = Translator.trans("sub.img.error_size",{},"photo");
+                var error_message = Translator.trans("sub.modal.state.error",{},"photo");
+                var size = Math.round(file.size/(1024*1024));
+                if(isValidLenght(size,2)){
+                    if(isValidExt(file.type)){
+                        countfile++;
+                        currentImg.push(file.name);
+                        fd.append('file',file);
+                        uploadData(fd);
+                    }
+                    else{
+                        number++;
+                        var content = '<li class="list-group-item list-group-item-action list-group-item-danger">'+number+')'+ file.name+'<strong> ext : '+ file.type+' '+error+'</strong></li>';
+
+                        messageFinal.append(content);
+                    }
+
+                }
+                else{
+                    number++;
+                    var content = '<li class="list-group-item list-group-item-action list-group-item-danger">'+number+')'+ file.name +'<strong> size : '+size+'Mo '+error_size+'</strong></li>';
+                    messageFinal.append(content);
+                }
+            }
+            if(countfile==currentIndex) {
+                //on cache le bg
+                mainPhotoRequest.params.id.bg.fadeOut();
+
+
+                // affiche le modal pour la notification
+                bootbox.alert(messageFinal.html(), function(){});
+
             }
         });
 
@@ -218,6 +284,7 @@ $(function(){
                     console.log(response);
                     //incrementer l'index
                     currentIndex++;
+                    number++;
                     if(currentImg[currentIndex]!=null)
                     {
                         mainPhotoRequest.params.id.bg_message.empty();
@@ -226,8 +293,23 @@ $(function(){
                     }
                     addThumbnail(response);
                 },
-                error: function (xhr, status, message) { //en cas d'erreur
-                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                error: function (message) { //en cas d'erreur
+                    //console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    var error_size = Translator.trans("sub.img.error_size",{},"photo");
+                    var error_message = Translator.trans("sub.modal.state.error",{},"photo");
+                    number++;
+                    var content = '<li class="list-group-item list-group-item-action list-group-item-danger">'+number+')'+ currentImg[currentIndex]+'<strong>' +  message.responseText + '</strong></li>';
+
+                    messageFinal.append(content);
+                    currentIndex++;
+                    if(countfile==currentIndex) {
+                        //on cache le bg
+                        mainPhotoRequest.params.id.bg.fadeOut();
+
+                        // affiche le modal pour la notification
+                        bootbox.alert(messageFinal.html(), function(){});
+
+                    }
                 },
                 complete:function(){
                     console.log("Request finished.");
@@ -259,16 +341,20 @@ $(function(){
             $("#thumbnail_"+num).append('<div class="col node"> <img src="'+src+'" >');
             $("#thumbnail_"+num).append('<div class="size">'+size+'</div></div>');
 
+            var content = '<li class="list-group-item list-group-item-action list-group-item-success">'+number+')'+ name +'<strong> size : '+ size +'</strong></li>';
+
+            messageFinal.append(content);
 
             // on teste si  le countfile a attient l'index max du  tableau  de fichier
             if(countfile==currentIndex)
             {
                 //on cache le bg
-               mainPhotoRequest.params.id.bg.slideUp();
-
+                mainPhotoRequest.params.id.bg.fadeOut();
 
                 // affiche le modal pour la notification
-               mainPhotoRequest.params.id.modal_photo.modal("show");
+                bootbox.alert(messageFinal.html(), function(result){
+                    mainPhotoRequest.params.id.modal_photo.modal("show");
+                });
 
             }
 
@@ -402,5 +488,30 @@ $(function(){
             mainPhotoRequest.params.webcam.startbutton.prop("disabled",true);
             init();
         });
+
+
+        //verifier si l'extension d'un fichier
+        function isValidExt(fileExtension)
+        {
+
+            var fileExtension = fileExtension.toLowerCase();
+            var pattern ="^image/(png|jpg|gif|jpeg|bnp)$"
+            var regex = new RegExp(pattern);
+            if(regex.test(fileExtension)){
+                return true;
+            }
+            return false;
+        }
+
+        //verifier si la taille d'un fichier est  convenable
+        function isValidLenght(filesize,compaeSize)
+        {
+            if(filesize<=compaeSize){
+                return true;
+            }
+            return false;
+        }
+
+
     }
 });

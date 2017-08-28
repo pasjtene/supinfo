@@ -32,6 +32,8 @@
             {% include "MainBundle:Inc:important.html.twig" %}
         </div>
         <div class="col-md-8 col-sm-12 card" id="main-body">
+            {% include "MainBundle:Inc:emoticon.html.twig" %}
+            <button id="notifie" style="display: none;">clique pour me notifier</button>
             {% if subPage is defined %}
                 {% if subPage=="matches" %}
                     {% include "MainBundle:Sub:matches.html.twig" %}
@@ -51,10 +53,14 @@
                     {% include "MainBundle:Sub:detail-profile.html.twig" %}
                 {% endif %}
             {% endif %}
+            {% include "MainBundle:Inc:chatBox.html.twig" %}
         </div>
         <div class="col" id="publicity">
             {% include "MainBundle:Inc:publicity.html.twig" %}
         </div>
+      {#
+        {% include "MainBundle:Inc:message.html.twig" %}
+      #}
     </div>
 {% endblock %}
 
@@ -67,5 +73,8 @@
     <script src="{{ url('bazinga_jstranslation_js', { 'domain': 'photo' }) }}"></script>
     <script src="{{ url('bazinga_jstranslation_js', { 'domain': 'matches' }) }}"></script>
     <script src="{{ url('bazinga_jstranslation_js', { 'domain': 'default' }) }}"></script>
+    <script src="{{ url('bazinga_jstranslation_js', { 'domain': 'friends' }) }}"></script>
+    <script src="{{ url('bazinga_jstranslation_js', { 'domain': 'matches' }) }}"></script>
+    <script src="{{ url('bazinga_jstranslation_js', { 'domain': 'messages' }) }}"></script>
 {% endblock %}
 

@@ -2,25 +2,49 @@
 
 namespace Web\MainBundle\Controller;
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Web\AppBundle\Controller\TokenAuthenticatedController;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Web\AppBundle\Entity\User;
-use Web\AppBundle\Tools\FunglobeUserProvider;
-use Web\AppBundle\Tools\FunglobeUtils;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Web\AppBundle\Security\FormAuthenticator;
+use Web\AppBundle\Tools\FunglobeUtils;
 use Web\AppBundle\Tools\RestClient;
 
-class DefaultController extends Controller
+class DefaultController extends Controller implements TokenAuthenticatedController
 {
     /**
      * @Route("/", name="main_homepage", options={"expose"=true})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->redirect($this->generateUrl("main_register"));
+        // lien imortant  pour implementer le persist des urls
+        //http://symfony.com/doc/current/event_dispatcher/before_after_filters.html
+        if($request->cookies->get(FormAuthenticator::USER_COOKIE_NAME))
+        {
+            //return $this->redirect($this->generateUrl("main_profile"));
+            return $this->render('MainBundle:Footer:about.html.twig');
+        }
+        $days =[];
+        $months =[];
+        $years =[];
+
+        for($i=1; $i<32;$i++){
+            $days[] = $i<10? "0".$i:$i;
+        }
+        for($i=1; $i<13;$i++){
+            $months[] = $i<10? "0".$i:$i;
+        }
+        $year = (int)date("Y");
+        $year = $year -16;
+        for($i=$year; $i>1930;$i--){
+            $years[] = $i;
+        }
+        $array = ["days"=>$days,"months"=>$months, "years"=>$years];
+        //return $this->render('MainBundle:Default:register.html.twig',$array);
+        return $this->render('MainBundle:Footer:about.html.twig');
     }
 
 
@@ -117,23 +141,7 @@ class DefaultController extends Controller
      */
     public function registerAction(Request $request)
     {
-        $days =[];
-        $months =[];
-        $years =[];
-
-        for($i=1; $i<32;$i++){
-            $days[] = $i<10? "0".$i:$i;
-        }
-        for($i=1; $i<13;$i++){
-            $months[] = $i<10? "0".$i:$i;
-        }
-        $year = (int)date("Y");
-        $year = $year -5;
-        for($i=$year; $i>1960;$i--){
-            $years[] = $i;
-        }
-        $array = ["days"=>$days,"months"=>$months, "years"=>$years];
-        return $this->render('MainBundle:Default:register.html.twig',$array);
+        return $this->redirect($this->generateUrl("main_homepage"));
     }
 
 
@@ -176,6 +184,11 @@ class DefaultController extends Controller
      */
     public function loginAction(Request $request)
     {
+        if($request->cookies->get(FormAuthenticator::USER_COOKIE_NAME))
+        {
+            return $this->redirect($this->generateUrl("main_profile"));
+        }
+
         $datas = ['error' => '', 'username' => '', "login"=>"ok"];
 
         /** @var AuthenticationException $error */

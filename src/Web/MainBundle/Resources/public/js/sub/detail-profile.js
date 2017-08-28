@@ -56,6 +56,14 @@ var MainSubDetailProfile = function()
                 countFriend: $("#zone_profile .content .countFriend"),
                 profession: $("#zone_profile .content .profession"),
                 joinReason: $("#zone_profile .content .joinReason")
+            },
+            friendjoint:{
+                body : $("#Main-Subdetail-profile-friends #body-photo-detail-profile-freinds #friend-join")
+
+            },
+            friendalone:{
+                body : $("#Main-Subdetail-profile-friends #body-photo-detail-profile-freinds #friend-alone")
+
             }
         }
     };
@@ -69,17 +77,43 @@ $(function () {
 
     if(mainSubDetailProfile.params.sub.data('sub')=="detail-profile")
     {
+        var listePhotoHelp = null;
+
         //afficher le preloader
         mainSubDetailProfile.params.body.chargement.fadeOut();
         mainSubDetailProfile.params.bg_action.fadeIn();
         mainSubDetailProfile.params.body.body.fadeOut();
 
-
-
         //agrandir une photo
         mainSubDetailProfile.params.body.photo.body_photo_detail.on('click', "img",function() {
-            mainSubDetailProfile.params.body.photo.zoomImg_detail_source.attr('src', $(this).attr('src'));
-            mainSubDetailProfile.params.body.photo.zoomImg_detail.modal('show');
+            bg.bg_photo_content.empty();
+            for(var i=0; i<listePhotoHelp.length;i++)
+            {
+                var photo = listePhotoHelp[i];
+                var src = null;
+                if(photo.visibility=="public")
+                {
+                    if ((photo.hashname == null || photo.hashname == 'null')) {
+                        src = element.data('help');
+                    }
+                    else {
+                        src = baseHost + photo.path;
+                    }
+                    var active = (photo.id ==$(this).data('active'))? 'active' :'';
+                    var id = "action"+photo.id;
+                    var item=
+                        '<div class="carousel-item img-thumbnail '+active+'">'+
+                        '<img class="d-block img-fluid" src="'+src+'" alt="First slide">'+
+                        '<div class="carousel-caption d-none d-md-block" style="">'+
+                        '<h3>'+(i+1) +' / ' +listePhotoHelp.length + '</h3>'+
+                        '</div>'+
+                        '</div>';
+                    bg.bg_photo_content.append(item);
+                }
+
+            }
+            bg.bg_photo.fadeIn();
+            bg.bg_photo.css({'z-index':10});
         });
 
         //agrandir une photo option friend
@@ -91,10 +125,19 @@ $(function () {
 
 
 
+        //consulter le detail  sur un profile
+        mainSubDetailProfile.params.body.friendjoint.body.on('click','.name-detail',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
+        });
+
+        //consulter le detail  sur un profile
+        mainSubDetailProfile.params.body.friendalone.body.on('click','.name-detail',function(){
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
+        });
 
 
         //appel de la fonction pour charger les informations
-        fill(currentUser.id,mainSubDetailProfile.params.sub.data('email'));
+        fill(currentUser.id,mainSubDetailProfile.params.sub.data('key'));
 
 
         //demande l'amtier
@@ -102,10 +145,67 @@ $(function () {
             trans = Translator.trans('sub.message',{},"default");
             bootbox.prompt(trans,function(result){
                 if(result){
-                    askFriendShip(currentUser.id,mainSubDetailProfile.params.sub.data('email'), result);
+                    askFriendShip(currentUser.id,mainSubDetailProfile.params.sub.data('key'), result);
                 }
             });
         });
+
+
+
+        //demander l'amitier
+        mainSubDetailProfile.params.body.friendalone.body.on('click','.friendship',function(){
+            trans = Translator.trans('sub.message',{},"default");
+            var reciever = $(this).data('key');
+            bootbox.prompt(trans,function(result){
+                if(result){
+                    addFriend(currentUser.id,reciever,result, mainUserProfile_detail_profile.params.bg_action);
+                }
+            });
+        });
+
+
+
+
+
+        function addFriend(applicantId,receiverEmail,message,preloader)
+        {
+            preloader.fadeIn();
+            datas = {
+                applicantId: applicantId,
+                receiverEmail: receiverEmail,
+                page : 'listFriend',
+                message: message
+            };
+            $.ajax({
+                url: mainSubDetailProfile.params.api.ask.url,
+                type:  mainSubDetailProfile.params.api.ask.method,
+                data:  datas,
+                crossDomain: true,
+                headers : {"X-Auth-Token" : currentUser.token},
+                dataType:  mainSubDetailProfile.params.api.ask.type,
+                success: function(response){
+                    trans = Translator.trans('sub.success.ask',{},"default");
+                    bootbox.alert(trans,function(){});
+                    window.location.reload();
+                },
+                error: function (xhr, status, message) { //en cas d'erreur
+                    console.log(status+"\n"+xhr.responseText + '\n' + message );
+                    trans = Translator.trans('sub.invitation.error',{},"friends");
+                    bootbox.alert(trans,function(){});
+                },
+                complete:function(){
+                    preloader.fadeOut();
+                }
+
+            });
+        }
+
+
+
+
+
+
+
 
         function fill(id,email){
             var datas ={
@@ -125,35 +225,55 @@ $(function () {
                     if(response!=null  && response!="null" && response!="undefined")
                     {
                         // set de la premiere partir concernant les info du  user
-                        setdefault(response.user, mainSubDetailProfile.params.body,baseHost+response.profile.path,mainUserProfile_detail_profile.params.imprtant.important_block_img.data('help'));
-                        setcontent(response.user, mainSubDetailProfile.params.body.content, response.listFriends.length,response.listAloneFriends.length);
-                        setabout(response.user, mainSubDetailProfile.params.body.about);
-
-                        //modifier l'etat de connexion
-                        if(!response.user.isOnline)
+                        if(response.user!=null)
                         {
-                            mainSubDetailProfile.params.body.connect.css({'background-color':'rgba(0,0,0,.125)'});
+                            selectUserId = response.user.id;
+                            setdefault(response.user, mainSubDetailProfile.params.body,response.profile==null? null :baseHost+response.profile.path,mainUserProfile_detail_profile.params.imprtant.important_block_img.data('help'));
+                            setcontent(response.user, mainSubDetailProfile.params.body.content, response.listFriends==null? 0: response.listFriends.length,response.listAloneFriends==null ?0 :response.listAloneFriends.length);
+                            setabout(response.user, mainSubDetailProfile.params.body.about);
+                            //modifier l'etat de connexion
+                            if(!response.user.isOnline)
+                            {
+                                mainSubDetailProfile.params.body.connect.css({'background-color':'rgba(0,0,0,.125)'});
+                            }
                         }
 
+                        if(response.listAloneFriends!=null){
+                            setFriendAlone( mainSubDetailProfile.params.body.friendalone.body,response.listAloneFriends,response.user);
+                        }
+                        if(response.listFriends!=null){
+                            setFriendJoin(mainSubDetailProfile.params.body.friendjoint.body,response.listFriends);
+                        }
 
+                        mainSubDetailProfile.params.link_friend_span.html("("+((response.listAloneFriends==null?0:response.listAloneFriends.length)+(response.listFriends==null? 0: response.listFriends.length))+")");
                         if(response.ask!=null )
                         {
                             var ask = response.ask;
                             if(ask.state || ask.decision=="3" || ask.decision=="0"){
                                 mainSubDetailProfile.params.body.ask.fadeOut();
                                 //mainSubDetailProfile.params.bg_action.fadeOut();
-
                             }
                             else{
                                 mainSubDetailProfile.params.body.ask.fadeIn();
                             }
                         }
 
+                        if(response.reply!=null )
+                        {
+                            var reply = response.reply;
+                            if(reply.state || reply.decision=="3" || reply.decision=="0"){
+                                mainSubDetailProfile.params.body.ask.fadeOut();
+                                //mainSubDetailProfile.params.bg_action.fadeOut();
+                            }
+                            else{
+                                mainSubDetailProfile.params.body.ask.fadeIn();
+                            }
+                        }
                         //charger les photos
                         mainSubDetailProfile.params.link_photo_span.html('('+response.listPhotos.length+')');
 
                         setPhotos(mainSubDetailProfile.params.body.photo.body_photo_detail,response.listPhotos);
-
+                        listePhotoHelp= response.listPhotos;
                         //charger les amis
                     }
                 },
@@ -161,7 +281,7 @@ $(function () {
                     console.log(status+"\n"+xhr.responseText + '\n' + message );
                     //hide le preloader
                     //mainSubDetailProfile.params.body.chargement.fadeOut();
-                    mainSubDetailProfile.params.bg_action.Up();
+                    mainSubDetailProfile.params.bg_action.fadeOut();
                 },
                 complete:function(){
                     console.log("Request finished.");
@@ -172,94 +292,6 @@ $(function () {
                 }
 
             });
-
-            function setabout(user,element)
-            {
-                var flag ="<img class='sm-img' src='"+mainSubDetailProfile.params.path+user.country+".png' alt=''/> ";
-                element.name.html(user.fullname);
-                element.gender.html(user.gender);
-                element.country.html(flag);
-                element.country.append(user.country);
-                element.city.html(user.city);
-                element.phone.empty();
-                if(user.phones!=null && user.phones.length>0)
-                {
-                    for(var i=0; i<user.phones.length;i++){
-                        element.phone.append(user.phones[i]+"/");
-                    }
-                }
-                //variable de user
-                var today=new Date();
-
-                var currentyear = today.getFullYear();
-                var year  = user.birthDate.split('-')[0];
-                var age = currentyear -parseInt(year);
-                element.age.html(age+'ans');
-
-            }
-
-
-            function setPhotos(element,list){
-
-                element.empty();
-
-                var body = "";
-                for(var i=0; i<list.length; i++)
-                {
-                    var photo = list[i];
-                    var src = null;
-                   if(photo.visibility=="public")
-                   {
-                       if ((photo.hashname == null || photo.hashname == 'null')) {
-                           src = element.data('help');
-                       }
-                       else {
-                           src = baseHost + photo.path;
-                       }
-                       var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
-                       var id = "action"+photo.id;
-                       body+=
-                           '<div class="col-sm-12 col-md-6 col  text-center align-content-center img">'+
-                               '<div class="card">'+
-                                    '<img src="'+src+'" alt="" class="card-img-top ">' +
-                                   '<div class="card-block text-right">'+
-                                        '<span class="fa fa-thumbs-o-up ">('+photo.id+')</span>'+
-                                   '</div>'+
-                               '</div>'+
-                           '</div>';
-                   }
-                }
-                element.append(body);
-            }
-
-            function setcontent(user,element,countFriends, countFriendAlone)
-            {
-                element.vip.html(user.isVip?'yes':'no');
-                element.countFriend.html("["+(countFriendAlone+countFriends)+"]["+countFriends+"]");
-                element.profession.html(user.profession);
-                element.joinReason.html(user.joinReason);
-            }
-
-
-            function setdefault(user,element,img , imghelp)
-            {
-                element.full_name.html(user.fullname);
-                element.full_profession.html(user.profession);
-                setpicture(element.img_profile, img,imghelp);
-            }
-
-
-            function setpicture(element,img,helpImg){
-                if(img==null || img=="undefined")
-                {
-                    element.attr("src",helpImg);
-                }
-                else{
-                    element.attr("src",img);
-                }
-                return element;
-            }
-
 
         }
 
@@ -283,13 +315,7 @@ $(function () {
                     {
                         if(response!=null )
                         {
-                            var ask = response;
-                            if(ask.state || ask.decision=="3" || ask.decision=="0"){
-                                mainSubDetailProfile.params.body.ask.fadeOut();
-                            }
-                            else{
-                                mainSubDetailProfile.params.body.ask.fadeIn();
-                            }
+                            mainSubDetailProfile.params.body.ask.fadeOut();
                         }
                         trans = Translator.trans('sub.success.ask',{},"default");
                         bootbox.alert(trans,function(result){});
@@ -311,96 +337,243 @@ $(function () {
                 }
 
             });
+        }
 
-            function setabout(user,element)
+        function setabout(user,element)
+        {
+            var flag ="<img class='sm-img' src='"+mainSubDetailProfile.params.path+user.country+".png' alt=''/> ";
+            element.name.html(user.fullname);
+            element.gender.html(user.gender);
+            element.country.html(flag);
+            element.country.append(getCountry(countryList,user.country));
+            element.city.html(user.city);
+            element.phone.empty();
+            if(user.phones!=null && user.phones.length>0)
             {
-                var flag ="<img class='sm-img' src='"+mainSubDetailProfile.params.path+user.country+".png' alt=''/> ";
-                element.name.html(user.fullname);
-                element.gender.html(user.gender);
-                element.country.html(flag);
-                element.country.append(user.country);
-                element.city.html(user.city);
-                element.phone.empty();
-                if(user.phones!=null && user.phones.length>0)
-                {
-                    for(var i=0; i<user.phones.length;i++){
-                        element.phone.append(user.phones[i]+"/");
-                    }
+                for(var i=0; i<user.phones.length;i++){
+                    element.phone.append(user.phones[i]+"/");
                 }
-                //variable de user
-                var today=new Date();
-
-                var currentyear = today.getFullYear();
-                var year  = user.birthDate.split('-')[0];
-                var age = currentyear -parseInt(year);
-                element.age.html(age+'ans');
-
             }
+            //variable de user
+            var today=new Date();
 
-
-            function setPhotos(element,list){
-
-                element.empty();
-
-                var body = "";
-                for(var i=0; i<list.length; i++)
-                {
-                    var photo = list[i];
-                    var src = null;
-                    if(photo.visibility=="public")
-                    {
-                        if ((photo.hashname == null || photo.hashname == 'null')) {
-                            src = element.data('help');
-                        }
-                        else {
-                            src = baseHost + photo.path;
-                        }
-                        var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
-                        var id = "action"+photo.id;
-                        body+=
-                            '<div class="col-sm-12 col-md-6 col  text-center align-content-center img">'+
-                            '<div class="card">'+
-                            '<img src="'+src+'" alt="" class="card-img-top ">' +
-                            '<div class="card-block text-right">'+
-                            '<span class="fa fa-thumbs-o-up ">('+photo.id+')</span>'+
-                            '</div>'+
-                            '</div>'+
-                            '</div>';
-                    }
-                }
-                element.append(body);
-            }
-
-            function setcontent(user,element,countFriends, countFriendAlone)
-            {
-                element.vip.html(user.isVip?'yes':'no');
-                element.countFriend.html("["+(countFriendAlone+countFriends)+"]["+countFriends+"]");
-                element.profession.html(user.profession);
-                element.joinReason.html(user.joinReason);
-            }
-
-
-            function setdefault(user,element,img , imghelp)
-            {
-                element.full_name.html(user.fullname);
-                element.full_profession.html(user.profession);
-                setpicture(element.img_profile, img,imghelp);
-            }
-
-
-            function setpicture(element,img,helpImg){
-                if(img==null || img=="undefined")
-                {
-                    element.attr("src",helpImg);
-                }
-                else{
-                    element.attr("src",img);
-                }
-                return element;
-            }
-
+            var currentyear = today.getFullYear();
+            var year  = user.birthDate.split('-')[0];
+            var age = currentyear -parseInt(year);
+            element.age.html(age+'ans');
 
         }
+
+        function setFriendAlone(element,list,reciever){
+            element.empty();
+            var discover = Translator.trans('sub.discover',{},"default");
+               var head=
+                ' <div class="col-12">'+
+                        discover +
+                    '<hr>'+
+                  '</div>';
+            element.append(head);
+            var body = "";
+            for(var i=0; i<list.length; i++)
+            {
+                var friends = null,
+                    src =null,
+                    name=null,
+                    city = null,
+                    country =null,
+                    connect=null,
+                    flag=null,
+                    createDate =null,
+                    id=null,
+                    trans = Translator.trans('sub.becomeFriends',{},"default"),
+                    ask = Translator.trans('sub.ask',{},"default");
+                if(list[i].request.receiver.id==currentUser.id || list[i].request.receiver.id==reciever.id )
+                {
+                    friends = list[i].request.applicant;
+                    if ((list[i].photoApplicant==null || list[i].photoReciever=='null' || list[i].photoApplicant.hashname == null || list[i].photoApplicant.hashname == 'null')) {
+                        src = element.data('help');
+                    }
+                    else {
+                        src = baseHost + list[i].photoApplicant.path;
+                    }
+                }
+                else
+                {
+                    friends =  list[i].request.receiver;
+                    if ((list[i].photoReciever==null || list[i].photoReciever=='null' || list[i].photoReciever.hashname == null || list[i].photoReciever.hashname == 'null')) {
+                        src = element.data('help');
+                    }
+                    else {
+                        src = baseHost + list[i].photoReciever.path;
+                    }
+                }
+                name = friends.lastNameOrFirstname;
+                id = 'friendalone'+friends.id;
+                city = friends.city;
+                country = friends.country;
+                var final =(city==null || city=="null")? getCountry(countryList,country) :city;
+                createDate = new  Date(friends.createDate);
+                flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                connect =friends.isOnline? Translator.trans('sub.connected',{},"default"):Translator.trans('sub.noconnected',{},"default");
+                body+=
+                    ' <div class="col-sm-12 col-md-6   text-center img">'+
+                    '<div class="card">'+
+                    '<div class="col-12 text-center bg-faded ">' +
+                    '<img src="'+src+'" class="responsive card-img-top rounded img-thumbnail">' +
+                    '</div>' +
+                    '<div class="card-block text-right">'+
+                    '<div class="name">'+
+                    '<div class="rounded-circle"> </div>'+
+                    '<span class="state text-grey">'+connect+'</span>'+
+                    '<p><strong class="name-detail" data-key="'+friends.key+'">'+name+'</strong></p>'+
+                    '</div>'+
+                    '<p class="country">'+flag+final+'</p>'+
+                    '<button  class="bg-primary btn friendship" data-key="'+friends.key+'" ><span class="fa fa-user-plus"></span> '+ ask+'</button>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>';
+
+
+            }
+            element.append(body);
+        }
+
+        function setFriendJoin(element,list){
+
+            element.empty();
+
+            var commonFreinds = Translator.trans('sub.commonFreinds',{},"default");
+            var head=
+                ' <div class="col-12">'+
+                    commonFreinds +
+                    '<hr>'+
+                '</div>';
+            element.append(head);
+
+            var body = "";
+            for(var i=0; i<list.length; i++)
+            {
+                var friends = null,
+                    src =null,
+                    name=null,
+                    city = null,
+                    country =null,
+                    connect=null,
+                    flag=null,
+                    createDate =null,
+                    trans = Translator.trans('sub.becomeFriends',{},"default");
+                if(list[i].request.receiver.id==currentUser.id)
+                {
+                    friends = list[i].request.applicant;
+                    if (( list[i].photoApplicant==null || list[i].photoApplicant=='null' || list[i].photoApplicant.hashname == null || list[i].photoApplicant.hashname == 'null')) {
+                        src = element.data('help');
+                    }
+                    else {
+                        src = baseHost + list[i].photoApplicant.path;
+                    }
+                }
+                else
+                {
+                    friends =  list[i].request.receiver;
+                    if (( list[i].photoReciever==null || list[i].photoReciever=='null' || list[i].photoReciever.hashname == null || list[i].photoReciever.hashname == 'null')) {
+                        src = element.data('help');
+                    }
+                    else {
+                        src = baseHost + list[i].photoReciever.path;
+                    }
+                }
+                name = friends.lastNameOrFirstname;
+                city = friends.city;
+                country = friends.country;
+                var final =(city==null || city=="null")? getCountry(countryList,country) :city;
+                createDate = new  Date(friends.createDate);
+                flag ="<img class='sm-img flag' src='"+path.flags+country+".png' alt=''/> ";
+                connect =friends.isOnline? Translator.trans('sub.connected',{},"default"):Translator.trans('sub.noconnected',{},"default");
+                body+=
+                    ' <div class="col-sm-12 col-md-6   text-center img">'+
+                    '<div class="card">'+
+                    '<div class="col-12 text-center bg-faded img">' +
+                    '<img src="'+src+'" class="responsive card-img-top rounded img-thumbnail">' +
+                    '</div>' +
+                    '<div class="card-block text-right">'+
+                    '<div class="name">'+
+                    '<div class="rounded-circle"> </div>'+
+                    '<span class="state text-grey">'+connect+'</span>'+
+                    '<p><strong class="name-detail" data-key="'+friends.key+'" >'+name+'</strong></p>'+
+                    '</div>'+
+                    '<p class="country">'+flag+final+'</p>'+
+                    '<p class="start-frein">'+trans+' 05/11/12</p>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>';
+
+
+            }
+            element.append(body);
+        }
+        function setPhotos(element,list){
+
+            element.empty();
+
+            var body = "";
+            for(var i=0; i<list.length; i++)
+            {
+                var photo = list[i];
+                var src = null;
+                if(photo.visibility=="public")
+                {
+                    if ((photo.hashname == null || photo.hashname == 'null')) {
+                        src = element.data('help');
+                    }
+                    else {
+                        src = baseHost + photo.path;
+                    }
+                    var img = '<img src="'+ src +'" alt="" class="card-img-top rounded">';
+                    var id = "action"+photo.id;
+                    body+=
+                        '<div class="col-sm-12 col-md-6 col  text-center align-content-center img">'+
+                        '<div class="card">'+
+                        '<div class="col-12 text-center bg-faded ">' +
+                        '<img src="'+src+'" data-active='+photo.id+' class="responsive card-img-top rounded img-thumbnail">' +
+                        '</div>' +
+                        '<div class="card-block text-right">'+
+                        '<span class="fa fa-thumbs-o-up ">('+photo.id+')</span>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>';
+                }
+            }
+            element.append(body);
+        }
+
+        function setcontent(user,element,countFriends, countFriendAlone)
+        {
+            element.vip.html(user.isVip?'yes':'no');
+            element.countFriend.html("["+(countFriendAlone+countFriends)+"]["+countFriends+"]");
+            element.profession.html(user.profession);
+            element.joinReason.html(getJoinReason(user.joinReason));
+        }
+
+
+        function setdefault(user,element,img , imghelp)
+        {
+            element.full_name.html(user.fullname);
+            element.full_profession.html(user.profession);
+            setpicture(element.img_profile, img,imghelp);
+        }
+
+
+        function setpicture(element,img,helpImg){
+            if(img==null || img=="undefined")
+            {
+                element.attr("src",helpImg);
+            }
+            else{
+                element.attr("src",img);
+            }
+            return element;
+        }
+
     }
 });
 

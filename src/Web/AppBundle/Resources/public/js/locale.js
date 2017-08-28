@@ -7,4 +7,5 @@ var AppLocale = {};
 $(function()
 {
 
+
 });

@@ -1,7 +1,6 @@
 admin:
   blocmessage:
    title: Block messages
-
   members:
    title: Members
    number: Number of users
@@ -23,6 +22,8 @@ admin:
    email: Email users
    setvip: Set users as VIP
    unvip: Unset users as VIP
+   search_hint: Search a lastname, firstname or email address...
+   search: Search
 
   messages:
    title: Messages
@@ -37,7 +38,7 @@ admin:
    title: Spam users
 
   statistics:
-   title: statistics
+   title: Statistics
 
   userdenounced:
    title: Users denounced
@@ -45,3 +46,6 @@ admin:
    title: Show all users
   settings:
    title: Settings
+  nav:
+    profile: Profile
+    logout: Logout

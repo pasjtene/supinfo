@@ -1,4 +1,57 @@
 fieldset{
   border: solid 1px red;
 }
+#sidenav-toggle {
+  color: #666;
+  display: none;
+  height: 54px;
+  line-height: 72px;
+  text-align: center;
+  width: 72px;
+}
+.sidenav-brand{
+  padding-bottom: 1px !important;
+  background: #0275d8;
+  border-bottom: 1px solid #0275d8;
+}
+#adm-content
+{
+  background-color: #ecf0f5;
+  //z-index: 800;
+  margin-left: 256px;
+  min-height: 700px;
+  margin-top: 50px;
+  padding: 15px;
+}
 
+#latest-members-list {
+  margin-left: 5px ;
+  margin-top: 50px ;
+  display: block;
+  border: 2px solid lightgrey;
+  padding: 20px;
+
+}
+
+#latest-pictures-list {
+  margin-top: 50px ;
+  display: block;
+  border: 2px solid blue;
+  padding: 20px;
+}
+
+#admin-home-page {
+  margin-top: 50px;
+}
+
+#stats {
+  margin-top: 50px;
+}
+
+.admin-member-list-page {
+  //margit
+}
+
+.users_table {
+  background: white;
+}

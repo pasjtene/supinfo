@@ -1,0 +1,72 @@
+#Main-Subdetail-detail-User{
+  padding: 16px 0px 16px 0px;
+  a{
+    text-decoration: none;
+  }
+  .modal-body{
+    input{
+      margin-bottom: 8px;
+    }
+  }
+  .hide{
+    visibility: hidden;
+    display: none!important;
+  }
+  .blockedit{
+    .fa{
+      font-size: 16px;
+    }
+    input{
+      height: 32px!important;
+    }
+    select{
+      height: 36px!important;
+    }
+  }
+  .detail_profile_phones{
+    .fa{
+      color: red!important;
+      font-size: 16px;
+      padding-top: 6px;
+    }
+  }
+
+  .detail_profile_school{
+    .fa{
+      font-size: 16px;
+      padding-top: 6px;
+    }
+  }
+  .banner{
+    height: 200px;
+  }
+  .bannertof{
+    margin-top: -100px;
+    img{
+      border-radius: 50%;
+      height: 128px;
+      width: 128px;
+      border: 2px solid #fafafa;
+    }
+
+  }
+  .nameB{
+    margin-left: -30px;
+    color: #616161;
+  }
+  .Ftexte{
+    color: #616161;
+    font-size: 13px;
+  }
+  .Stexte{
+    color: #000;
+  }
+  h5{
+    span, a{
+      font-size: 18px;
+    }
+  }
+  .card{
+    margin-bottom: 8px;
+  }
+}

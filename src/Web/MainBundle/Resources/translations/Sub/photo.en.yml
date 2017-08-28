@@ -1,31 +1,90 @@
 sub:
   tabs:
-    add: Add
-    list:    List
+    add: Add photos
+    list:    My photos
     profile: Profile List
+    detail:  My profile
+    action: Action
+    friend: My friends
+    friendc: Friend
+    nofriend: No friend in common
+    seedetail: See details
+    message: Write message
+    remove: Remove to friends list
+    remove_success: The remove it's successfull
+    myProfilDetail:
+      infPersonelles : Personal informations
+      editinfPersonelles : Edit personal informations
+      diplome : Education and qualifications
+      adresse: Addresse
+      editadresse: Edit addresse
+      sexe: Sexe
+      anniv: Birthday
+      pay: Country
+      ville: City
+      quartier: Quater
+      profession: Profession
+      changer: Change
+      phones: Phone
+      addPhone: Add
+      lastName: Last name
+      FirstName: First name
+      save: Save changes
+      account: My account
+      editaccount: Edit my account
+      userName: User name
+      editpwd: Edit password
+      cpwd: Current password
+      npwd: New password
+      cfpwd: Confirm password
+      fpwd: Recover password
+      emptyData: EMPTY DATA
+      schoolname: School name
+      location: Location
+      highlevel: High level
+      about: About
+      numberOfChill: Number of Children
+      maritalStatus: Marital status
+      meetLike: People I would like to meet
+      Qualification: Name of ertificate
+      bio: About me
+      enCouple: In a relationship
+      marie : Married
+      celibataire : Single
+      divorce : Divorced
+      veuf : Widower
+      pschool : Primary school
+      hschool : High school
+      University : University
+      notgiven : Not given
+      delete : Delete
+      save : Save
+      cancel : Cancel
+      edit : Edit
   img:
-    profile: Take like profile
-    published: published
-    private: To deprive
+    profile: Make profile photo
+    published: make public
+    private: Make private
     delete: Delete
     like: Like
+    action: Action
     error_ext: is not  allocated
-    error_size: is to big for upload max sise(2Mo)
+    error_size: is too big for upload. max sise(2Mo)
   body:
     close: Close
-    error_message: woh! Something  as wrong
-    success_message: Delete as successfull
-    confirm_message: Do you really want  to delete this photo?
+    error_message: woh! Something  is wrong
+    success_message: Deleted successfully
+    confirm_message: Do you really want to delete this photo?
     cancel_message: Canceled
     setprofile:
-      success: your profile is change
-      error: woh! Something  as wrong
+      success: your profile photo is changed
+      error: woh! Something  is wrong
     published:
-      success: the profile visibilty  has change
-      error:  woh! Something  as wrong
+      success: the profile visibilty  has changed
+      error:  woh! Something  is wrong
     state :
       private: private
-      public: published to
+      public: Public to
   modal:
     name: Name
     message: Message

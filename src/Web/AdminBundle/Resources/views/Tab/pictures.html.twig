@@ -2,7 +2,7 @@
     <div class="col-lg-12" id="pics-header">
         <div class="row">
             <div class="col-lg-3">
-                Nombre de photos : <b><span id="nb-pics">00</span></b>
+                {% trans from 'pictures' %} pictures.pics_total {% endtrans %} <b><span id="nb-pics">00</span></b>
             </div>
             <div class="col-lg-5" id="loader">
                 <div id="pics-loader">
@@ -12,11 +12,12 @@
             <div class="col-lg-4">
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Pictures action
+                        {% trans from 'pictures' %} pictures.pics_action {% endtrans %}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#" id="mn-private-pics">Set private</a>
-                        <a class="dropdown-item" href="#" id="mn-delete-pics">Delete</a>
+                        <a class="dropdown-item" href="#" id="mn-private-pics">{% trans from 'pictures' %} pictures.mn_private {% endtrans %}</a>
+                        <a class="dropdown-item" href="#" id="mn-public-pics">{% trans from 'pictures' %} pictures.mn_public {% endtrans %}</a>
+                        <a class="dropdown-item" href="#" id="mn-delete-pics">{% trans from 'pictures' %} pictures.mn_delete {% endtrans %}</a>
                     </div>
                 </div>
             </div>
@@ -28,106 +29,7 @@
 
     <div class="col-lg-12">
         <div class="row" id="pictures-view">
-            <!--<div class="col-lg-3">
-                <div class="bp-item bp-house">
-                    <div class="item-media">
-                        <img class="item-img" src="{{ asset('dist/photo2.png') }}" alt="" />
-                    </div>
-                    <div class="item-details">
-                        <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
-                            <a href="#" id="user-id">User Id</a>
-                        </div>
-                        <div class="bp-details">Visibilité : <b>Private</b></div>
-                        <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="bp-item bp-house">
-                    <div class="item-media">
-                        <img class="item-img" src="{{ asset('dist/photo2.png') }}" alt="" />
-                    </div>
-                    <div class="item-details">
-                        <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
-                            <a href="#" id="user-id">User Id</a>
-                        </div>
-                        <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="bp-item bp-house">
-                    <div class="item-media">
-                        <img class="item-img" src="{{ asset('dist/photo2.png') }}" alt="" />
-                    </div>
-                    <div class="item-details">
-                        <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
-                            <a href="#" id="user-id">User Id</a>
-                        </div>
-                        <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="bp-item bp-house">
-                    <div class="item-media">
-                        <img class="item-img" src="{{ asset('dist/photo2.png') }}" alt="" />
-                    </div>
-                    <div class="item-details">
-                        <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
-                            <a href="#" id="user-id">User Id</a>
-                        </div>
-                        <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="bp-item bp-house">
-                    <div class="item-media">
-                        <img class="item-img" src="{{ asset('dist/photo2.png') }}" alt="" />
-                    </div>
-                    <div class="item-details">
-                        <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
-                            <a href="#" id="user-id">User Id</a>
-                        </div>
-                        <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="bp-item bp-house">
-                    <div class="item-media">
-                        <img class="item-img" src="{{ asset('dist/photo2.png') }}" alt="" />
-                    </div>
-                    <div class="item-details">
-                        <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
-                            <a href="#" id="user-id">User Id</a>
-                        </div>
-                        <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="bp-item bp-house">
-                    <div class="item-media">
-                        <img class="item-img" src="{{ asset('dist/photo2.png') }}" alt="" />
-                    </div>
-                    <div class="item-details">
-                        <div class="bp-details">
-                            <span><input type="checkbox" class="pics-chk" value="1"/></span>
-                            <a href="#" id="user-id">User name</a>
-                        </div>
-                        <div class="bp-details">Visibilité : <b>Private</b></div>
-                        <div class="bp-details">Ajouté le : <b>13/07/2017 15:29:53</b></div>
-                    </div>
-                </div>
-            </div>-->
+
         </div>
 
         <br/>

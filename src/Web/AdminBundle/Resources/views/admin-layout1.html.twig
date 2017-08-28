@@ -1,0 +1,67 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}
+    {% trans from 'home' %} title {% endtrans %}
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+
+{% block header %}
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+{% endblock %}
+
+{% block main %}
+    {% include 'AdminBundle:Inc:pascalnavbar.html.twig' %}
+
+    <div id="adm-content">
+        <div id="adm-main-nav">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('admin_statistics') }}">{% trans from 'admin' %}admin.statistics.title {% endtrans %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{% trans from 'admin' %}admin.members.title {% endtrans %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{% trans from 'admin' %}admin.messages.title {% endtrans %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{% trans from 'admin' %}admin.photos.title {% endtrans %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{% trans from 'admin' %}admin.spam.title {% endtrans %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{% trans from 'admin' %}admin.userdenounced.title {% endtrans %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{% trans from 'admin' %}admin.picturedenounced.title {% endtrans %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{% trans from 'admin' %}admin.blocmessage.title {% endtrans %}</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link">{% trans from 'admin' %}admin.settings.title {% endtrans %}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="adm-mn-content">
+            {% block admcontent %}
+
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block myjs %}
+
+{% endblock %}
+
+
+
+
+

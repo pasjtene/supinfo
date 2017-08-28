@@ -35,7 +35,7 @@ $(function () {
 
         //consulter le detail  sur un profile
         mainSubMatches.params.body.content.on('click','.detail-profile',function(){
-            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,email:$(this).data('email')});
+            window.location.href = Routing.generate('main_profile_detailProfile',{_locale:locale,key:$(this).data('key')});
         });
 
        var intervalusers = setInterval(function(){
@@ -91,24 +91,19 @@ $(function () {
                         else{
                             lastConnect = lastConnect.toLocaleDateString();
                         }
-                        //alert(lastConnect);
-                        var country ="";
-                        for(var k=0; k<countryList.length;k++)
-                        {
-                            if(countryList[k].code.toLowerCase()==user.country.toLowerCase() || countryList[k].value.toLowerCase()==user.country.toLowerCase() )
-                            {
-                                country = countryList[k].value;
-                            }
-                        }
+
+                        var city = user.city;
+                        var  country = user.country;
+                        var final =(city==null || city=="null")? getCountry(countryList,country) :city;
                         var connect =
                             ' <div class="row">'+
                             '<div class="col-1">'+
                             '<div class="rounded-circle connect" ></div>'+
                             '</div>'+
-                            '<div class="col name text-left"> <strong > '+user.name + '(' + age+'ans)   &nbsp;</strong></div>'+
+                            '<div class="col name text-left"> <strong > '+user.lastNameOrFirstname + '(' + age+'ans)   &nbsp;</strong></div>'+
                             '<div class="col-12 text-left">'+
                              flag+
-                            '<span class="text-muted country">'+country+'</span>'+
+                            '<span class="text-muted country">'+final+'</span>'+
                             '</div>'+
                             '</div>';
 
@@ -117,7 +112,7 @@ $(function () {
                                 '<div class="col-1">'+
                                     '<div class="rounded-circle no-connect" ></div>'+
                                 '</div>'+
-                                '<div class="col name text-left"> <strong > '+user.firstName + '(' + age+'ans)    &nbsp;</strong></div>'+
+                                '<div class="col name text-left"> <strong > '+user.lastNameOrFirstname + '(' + age+'ans)    &nbsp;</strong></div>'+
                                     '<div class="col-12 text-left">'+
                                     flag+
                                     '<span class="text-muted country">'+user.country+'</span>'+
@@ -137,12 +132,12 @@ $(function () {
                         }
                         var body =
                                 ' <div class="col-sm-12 col-md-4">'+
-                                ' <div class="card bg-faded detail-profile" data-email="'+user.email+'">'+
+                                ' <div class="card bg-faded detail-profile" data-key="'+user.key+'"  data-email="'+user.email+'">'+
                                 ' <div class="card-block text-center">'+
                                 img+
                                 ' <br>'+
                                 state+
-                                '<div class="row text-left bg-white">'+
+                                '<div class="row text-left">'+
                                 '<div class="col">'+
                                 '<a href=""><span class="fa fa-thumbs-o-up">like picture</span></a>'+
                                 '</div>'+
