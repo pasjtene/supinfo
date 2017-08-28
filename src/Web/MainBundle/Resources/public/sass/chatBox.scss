@@ -1,5 +1,31 @@
-#mainUserProfile {
+.popover{
+  max-width: 400px;
+}
 
+.bodyEmoticon {
+  height: 310px;
+  .element{
+    img {
+      margin-bottom: 0.8em;
+      height: 40px;
+      width: 40px;
+    }
+  }
+  .list {
+    max-height: 290px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    .list-group-item{
+      border-right: 0;
+      border-left: 0;
+      padding: 0.2em;
+    }
+  }
+  .emoji {
+    @extend .list;
+  }
+}
+#mainUserProfile {
   .drag-message_body {
     position: fixed;
     bottom: 0;
