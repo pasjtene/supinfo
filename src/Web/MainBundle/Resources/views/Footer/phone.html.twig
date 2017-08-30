@@ -20,119 +20,12 @@
 {% block header %}
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
- <div id="phone">
-<div id="main_phone">
-    <div class="element">
-        <div class="row" id="main_phone">
-            <div class="row">
-                <div class ="col-sm-12 col  col-lg-6" >
 
-                    <div class="container">
-                        <p>
-                        <h4>{% trans from 'phone' %} phone.block1 {% endtrans %}</h4>
-                        </p>
-                        <p>
-                        <form class="form-inline">
-
-                            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-                                <option selected>+237  </option>
-                                <option value="1">+238 </option>
-                                <option value="2">+33</option>
-                                <option value="3">+44</option>
-                                <input type="text" class="form-control" placeholder={% trans from 'phone' %} phone.block17 {% endtrans %}>
-                            </select>
-
-                        </form>
-                        </p>
-                        <p>
-                        <form class="form-inline">
-                            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                                <input type="checkbox" class="custom-control-input">
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">{% trans from 'phone' %} phone.block2 {% endtrans %}</span>
-                            </label>
-                        </form>
-                        </p>
-                        <p>
-                        <form class="form-inline">
-                            <button type="submit" class="btn btn-primary">{% trans from 'phone' %} phone.block3 {% endtrans %}</button>
-                        </form>
-                        </p>
-                    </div>
-                </div>
-                <div class="col col-lg-6" id="mac">
-                    <p>
-
-                    <strong><h2 text-align="center" > {% trans from 'phone' %} phone.block4 {% endtrans %}  </h2></strong>
-                    </p>
-                    <div class="mac2">
-                    <img  class="banner_im" src="{{ asset('data/img/image5.jpg') }}" alt="">
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            {% trans from 'phone' %}  phone.block5 {% endtrans %}:
-        </div>
-        <div class="col">
-            <p>
-                <a   href="{{ path('main_footer_phone') }}"> <i class="fa fa-android"></i>{% trans from 'phone' %}  phone.block6 {% endtrans %} </a>
-            </p>
-        </div>
-        <div class="col">
-            <p>
-                <a  href="{{ path('main_footer_phone') }}"><i class="fa fa-windows"></i> {% trans from 'phone' %} phone.block7 {% endtrans %} </a>
-            </p>
-        </div>
-        <div class="col">
-            <p>
-                <a  href="{{ path('main_footer_phone') }}"><i class="fa fa-windows"></i> {% trans from 'phone' %} phone.block8 {% endtrans %} </a>
-            </p>
-        </div>
-    </div>
-</div>
 {% endblock %}
 
 {% block main %}
- <div id="main_phone">
-    <div class="col col-lg-4">
-        <div class="row">
-            <div class="col"><img  class="banner_img" src="{{ asset('data/img/prin.jpg') }}" alt=""></div>
-            <div class="col">{% trans from 'phone' %} phone.block10 {% endtrans %}</div>
-            <div class="col"> {% trans from 'phone' %} phone.block9 {% endtrans %} : <a href="https://www.funglobe.com">mob.funglobe.com </a></div>
-            <div class="col"></div>
-        </div>
-     </div>
-<div class="col-sm-12 hautspace" >
-    <p>
-        <strong>
-            <h1>
-                Funglobe: {% trans from 'phone' %} phone.block11 {% endtrans %}
-            </h1>
-        </strong>
-    </p>
-</div>
-    <div class="container hautspace">
+<h1>S'inscrire à SUPINFO</h1>
 
-        <div class="row">
-            <div class="col-sm-6">
-                <p>
-                    {% trans from 'phone' %} phone.block12 {% endtrans %} <a href="#"> {% trans from 'phone' %} phone.block13
-                        {% endtrans %}</a> {% trans from 'phone' %} phone.block14 {% endtrans %}
-                </p>
-            </div>
-            <div class="col-sm-6">
-                <p>
-                    {% trans from 'phone' %} phone.block15 {% endtrans %}
-                </p>
-            </div>
-        </div>
-    </div>
- </div>
- </div>
 {% endblock %}
 
 {% block myjs %}
