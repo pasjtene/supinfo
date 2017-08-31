@@ -198,8 +198,23 @@ $content-background: #F7F7F7;
        background: src="{{ asset('data/img/emploi1.jpg') }}"  no-repeat center center fixed;
 
        float: left;
-       z-index: 1 !important;
+       /*z-index: 1 !important;*/
        position: absolute;
+       overflow: hidden;
+       margin-left: 200px;
+     }
+
+     .students-img1 {
+       background: src="{{ asset('data/img/emploi1.jpg') }}"  no-repeat center center fixed;
+
+       float: left;
+       /*z-index: 1 !important;*/
+       position: absolute;
+       overflow: hidden;
+     }
+
+     .img-content {
+       /*border: 2px solid red;*/
        height: 510px;
        overflow: hidden;
      }
@@ -213,7 +228,6 @@ $content-background: #F7F7F7;
        font-weight: 600;
        z-index: 100;
        position: relative;
-
        padding-top: 10px !important;
      }
 
