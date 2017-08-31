@@ -170,26 +170,161 @@ $content-background: #F7F7F7;
        position: relative;
      }
 
-     .line{
-       height: 4.3cm;
-       border-bottom: 5px solid orange;
+     .footer-top{
+       min-height: 75px;
+       background-color: rgba(0,0,0,0.6);
+       display: block;
        width: 100%;
-       background-color: darkgrey !important;
        color: white;
        text-align: center;
-       font-size: 2em;
-       font-weight: bold;
-       font-family: "Times New Roman";
-       padding-bottom: 1cm;
-       padding-left: 20%;
-       margin: 0px !important;
+     }
 
+     .footer-bottom {
+       display: block;
+       width: 100%;
+       min-height: 400px;
+       background-color: #222222;
+       color: white;
+       /* background-color: #271549;*/
+      }
+
+     .background-image {
+       background-size: cover;
+       background-position: left center;
+       background-color: transparent!important;
      }
-     .centre{
-       padding-left: 1cm;
+
+     .students-img {
+       background: src="{{ asset('data/img/emploi1.jpg') }}"  no-repeat center center fixed;
+
+       float: left;
+       z-index: 1 !important;
+       position: absolute;
+       height: 510px;
+       overflow: hidden;
      }
-     .culture{
-       /*background-color:gainsboro;*/
+
+     .ti {
+       text-transform: uppercase;
+       color: #fdce37;
+       font-size: 40px;
+       line-height: 42px;
+       margin: 0 0 10px;
+       font-weight: 600;
+       z-index: 100;
+       position: relative;
+
+       padding-top: 10px !important;
+     }
+
+     .edito-content {
+       background-color: rgba(255,255,255,.95);
+       padding: 70px 0 70px 30px;
+       margin-left: auto;
+       width: 490px;
+       position: relative;
+       text-align: left;
+       z-index: 2;
+     }
+
+     .edito .triangle-left:before {
+       left: -214px;
+       background: -webkit-linear-gradient(left bottom,transparent 50%,rgba(255,255,255,.95) 50%);
+       background: linear-gradient(to right top,transparent 50%,rgba(255,255,255,.95) 50%);
+     }
+
+     .edito .triangle-left:after {
+       left: -214px;
+       background: -webkit-linear-gradient(left top,transparent 50%,rgba(255,255,255,.95) 50%);
+       background: linear-gradient(to right bottom,transparent 50%,rgba(255,255,255,.95) 50%);
+     }
+
+     .edito .triangle-left:after {
+       top: 0;
+     }
+
+     .edito .triangle-left:before {
+       top: 50%;
+     }
+
+
+   .edito .triangle-left:before, .edito .triangle-left:after {
+     width: 214px;
+     height: 50%;
+     position: absolute;
+     content: "";
+   }
+
+   .triangle-left:before {
+     left: -40px;
+     background: -webkit-linear-gradient(left bottom,transparent 50%,#fff 50%);
+     background: linear-gradient(to right top,transparent 50%,#fff 50%);
+   }
+
+   .triangle-left:before {
+     top: 50%;
+   }
+
+   .triangle-left:before, .triangle-left:after {
+     width: 40px;
+     height: 50%;
+     position: absolute;
+     content: "";
+   }
+
+
+
+     .edito-content:after {
+       content: "";
+       display: block;
+       height: 100%;
+       width: 50vw;
+       position: absolute;
+       top: 0;
+       right: -50vw;
+       background-color: rgba(255,255,255,.95);
+     }
+
+   * {
+     box-sizing: border-box;
+   }
+
+     .edito .titre, .edito form h2, form .edito h2, .edito .nf-form-cont h2, .nf-form-cont .edito h2, .edito form .nf-response-msg p, form .nf-response-msg .edito p, .edito .nf-form-cont .nf-response-msg p, .nf-form-cont .nf-response-msg .edito p {
+       font-size: 40px;
+       line-height: 42px;
+     }
+
+
+
+     .titre, form h2, .nf-form-cont h2, form .nf-response-msg p, .nf-form-cont .nf-response-msg p {
+       text-transform: uppercase;
+       color: #fdce37;
+       font-size: 20px;
+       line-height: 23px;
+       margin: 0 0 10px;
+       font-weight: 600;
+     }
+
+      .line{
+        height: 4.3cm;
+        border-bottom: 5px solid orange;
+        width: 100%;
+        background-color: darkgrey !important;
+        color: white;
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+        font-family: "Times New Roman";
+        padding-bottom: 1cm;
+        padding-left: 20%;
+        margin: 0px !important;
+
+      }
+      .centre{
+        padding-left: 1cm;
+      }
+      .culture{
+        /*background-color:gainsboro;*/
        border-bottom: 1px solid orange;
        border-left: 2px solid yellowgreen;
      }
