@@ -158,14 +158,101 @@ $content-background: #F7F7F7;
        margin-right: 8px;
      }
 
-     .programmes {
+     .programmes-main-div {
        background-color: #efeef3;
      }
+     .programme {
+       text-align: center;
+       color: #271549;
+       background-color: #fff;
+       padding: 0 30px 40px;
+       width: 264px;
+       position: relative;
+       margin: 28px 14px 45px;
+     }
+
+     .programme .diamant {
+       color: #fff;
+       font-size: 40px;
+       text-align: center;
+       position: relative;
+       top: -48px;
+       margin-bottom: 40px;
+     }
+
+     .programme .diamant-shape {
+       width: 0;
+       height: 0;
+       border: 72px solid transparent;
+       border-bottom: 18px solid #271549;
+       border-top: 0;
+       position: relative;
+       display: inline-block;
+     }
+
+     .programme .diamant-shape:before {
+       border-top: 83px solid #efeef3;
+     }
+
+     .programme .diamant-shape:before {
+       left: -83px;
+       border: 83px solid transparent;
+       border-top: 83px solid #fff;
+     }
+     .programme .diamant-shape:after, .programme .diamant-shape:before {
+       content: "";
+       position: absolute;
+       top: 18px;
+       width: 0;
+       height: 0;
+       border-bottom: 0;
+     }
+
+     .programme .diamant-shape:after {
+       left: -72px;
+       border: 72px solid transparent;
+       border-top: 72px solid #271549;
+     }
+
+     .programme .diamant-content {
+       width: 100%;
+       position: absolute;
+       top: 34px;
+     }
+
+     .programme h3 {
+       font-size: 30px;
+       line-height: 32px;
+       margin: 0 0 18px;
+       padding: 16px 0;
+       border-top: 1px solid rgba(28,12,55,.15);
+       border-bottom: 1px solid rgba(28,12,55,.15);
+     }
+
+     .titre-prog
+     {
+       text-transform: uppercase;
+       color: #fdce37;
+       font-size: 20px;
+       line-height: 23px;
+       margin: 0 0 10px;
+       font-weight: 600;
+     }
+
 
      .inner {
        width: -webkit-calc(100% - 50px);
        width: calc(100% - 50px);
        max-width: 1140px;
+       margin: 0 auto;
+       position: relative;
+     }
+
+     .inner-prog {
+       width: -webkit-calc(100% - 50px);
+       width: calc(100% - 50px);
+       /*border: 2px solid red;
+       max-width: 1140px;*/
        margin: 0 auto;
        position: relative;
      }
