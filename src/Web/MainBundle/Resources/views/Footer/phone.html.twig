@@ -6,29 +6,68 @@
 {% endblock %}
 
 {% block title %}
-
+    <div>
+        {% trans from 'phone' %} phone.block16 {% endtrans %}
+    </div>
 {% endblock  %}
 
 {% block mycss %}
-
+    {{ parent() }}
     {# mettre le css si la page t'oublige #}
 
 {% endblock %}
 
 {% block header %}
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
-    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
 
+    <div class="firstbar ">
+        <div class="espace">
+            <div id="mains" class="margin_top">
+                <ul>
+                    <li class="drop"><a href="#home">Home</a></li>
+                    <li>
+                        <a href="{{ path('main_footer_phone') }}">{% trans from 'footer' %} Admission {% endtrans %}</a>
+                    </li>
+                    <li class="drop"><a href="#news">Preregistration</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Courses</a>
+                        <div class="dropdown-content">
+                            <a href="#">Level 1</a>
+                            <a href="#">Level 2</a>
+                            <a href="#">Level 3</a>
+                        </div>
+                    </li>
+                    <li class="drop"><a href="#news">Programs</a></li>
+                    <li><a href="#news">Campus</a></li>
+                    <li><a href="#news">Students</a></li>
+                    <li><a href="#news">Diplomas</a></li>
+                    <li><a href="#news">Documentation</a></li>
+                    <li><a href="#news">Business</a></li>
+                    <li><a href="#news">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="secondbar">
+        <div  class="centreurs">
+            <h3>INTÉGRER SUPINFO CAMEROUN</h3>
+        </div>
+    </div>
+    {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
 {% endblock %}
 
 {% block main %}
 
-ftgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+
 {% endblock %}
 
 {% block myjs %}
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
 {% endblock %}
+
+
+
+
 
 
 
