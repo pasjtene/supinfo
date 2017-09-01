@@ -20,59 +20,217 @@
 {% block header %}
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
 {% endblock %}
-{% block main %}
-
-{% endblock %}
 
 {% block  mainLg %}
     <div id="main_about">
-
         <div class="message_and_image">
             <div class="message_on_image">{% trans from 'about' %} about.block1 {% endtrans %}</div>
 
             <div id="about_top" style="background-image:url('{{ asset('data/img/about4.jpg') }}')">
                 <img  id="top_img" src="{{ asset('data/img/about4.jpg') }}" alt="">
-
                 {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
             </div>
         </div>
+
         <div class="row line">
             <div> SupInfo: {% trans from 'about' %} about.block16 {% endtrans %} </div>
             <div class="centre">
                 <a href="{{ path('main_login') }}"><button type="button" class="btn  btn-success">{% trans from 'about' %} about.title2 {% endtrans %}</button></a>
             </div>
         </div>
-        <div class ="container">
-            <div class="container espace text-center">
-                <p><h3><strong>{% trans from 'about' %} about.block2 {% endtrans %}</strong></h3></p>
-                <div class="row espace">
-                    <div class="col-sm-4">
-                        <a href="{{ path('main_footer_job') }}"> <h2><strong><p>{% trans from 'about' %} about.title4 {% endtrans %}</p></strong></h2>
-                            <img  class="banner_i" src="{{ asset('data/img/emploi1.jpg') }}" alt="" class="img-responsive" style="width:100%">
-                        </a>
-                        <p></p>
+
+
+        <div class="row section admission">
+            <h2 class="bloc-title">ADMISSIONS</h2>
+            <div class="inner padding">
+                <div class="flex">
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
                     </div>
-                    <div class="col-sm-4">
-                        <div  style="width:100%">
-                            <h5><p><strong>{% trans from 'about' %} about.block6 {% endtrans %}</strong></p></h5>
-                            <h5> <p><strong>{% trans from 'about' %} about.block7 {% endtrans %}</strong></p></h5>
-                            <p></p>
-                            <p></p>
-                            <a href="{{ path('main_footer_job') }}"><p><button type="button" class="btn btn-success">{% trans from 'about' %} about.block81 {% endtrans %}</button></p></a>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="section programmes-main-div">
+            <h2 class="bloc-title">PROGRAMMES</h2>
+
+            <div class="inner-prog padding">
+                <div class="flex">
+
+                        <div class="programme">
+                            <div class="diamant">
+                                <div class="diamant-shape">
+
+                                </div>
+                                <div class="diamant-content"> &beta; </div>
+                            </div>
+                            <h4>Premiere Annee</h4>
+                            <h3 class="titre-prog">Decouvrir</h3>
+                            {% trans from 'about' %} about.bac1 {% endtrans %}
                         </div>
-                        <p></p>
-                    </div>
-                    <div class="col-sm-4">
-                        <p>
-                            <button type="button" class="btn btn-primary"><h3>{% trans from 'about' %} about.block8 {% endtrans %}:</h3> <span class="badge"><h3>40 M </h3></span></button>
-                        </p>
-                        <p>
-                            <button type="button" class="btn btn-primary"><h3>{% trans from 'about' %} about.block9 {% endtrans %}:</h3> <span class="badge"><h3>2 M</h3></span></button>
-                        </p>
+
+                        <div class="programme">
+                            <div class="diamant">
+                                <div class="diamant-shape">
+
+                                </div>
+                                <div class="diamant-content"> &kappa; </div>
+                            </div>
+                            <h4>Deuxieme Annee</h4>
+                            <h3 class="titre-prog">Aprendre</h3>
+                            {% trans from 'about' %} about.bac1 {% endtrans %}
+                        </div>
+
+                        <div class="programme">
+                            <div class="diamant">
+                                <div class="diamant-shape">
+
+                                </div>
+                                <div class="diamant-content"> &phi; </div>
+                            </div>
+                            <h4>Troisieme Annee</h4>
+                            <h3 class="titre-prog">Maitriser</h3>
+                            {% trans from 'about' %} about.bac1 {% endtrans %}
+                        </div>
+
+                        <div class="programme">
+                            <div class="diamant">
+                                <div class="diamant-shape">
+
+                                </div>
+                                <div class="diamant-content"> &omega; </div>
+                            </div>
+                            <h4>Quatrieme Annee</h4>
+                            <h3 class="titre-prog">Perfectioner</h3>
+                            {% trans from 'about' %} about.bac1 {% endtrans %}
+                        </div>
+
+                        <div class="programme">
+                            <div class="diamant">
+                                <div class="diamant-shape">
+
+                                </div>
+                                <div class="diamant-content"> &epsilon; </div>
+                            </div>
+                            <h4>Cinquieme Annee</h4>
+                            <h3 class="titre-prog">Expert</h3>
+                            {% trans from 'about' %} about.bac1 {% endtrans %}
+                        </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section admission background-image parallax-window" data-parallax="scroll" data-image-src="{{ asset('data/img/emploi1.jpg') }}" data-position="left top">
+
+            <div class="edito img-content">
+                <div class="students-img1">
+                    <img  src="{{ asset('data/img/computerstudents4.jpg') }}" alt="" style="width:100%">
+                </div>
+                <div class="students-img">
+                    <img  src="{{ asset('data/img/computerstudents.jpg') }}" alt="" style="width:100%">
+                </div>
+                <div class="inner">
+
+                    <div class="edito-content">
+                        <div class="triangle-left"></div>
+                        <div class="contenu">
+                            <div class="ti">{% trans from 'about' %} about.contenu1 {% endtrans %}</div>
+                            <p>{% trans from 'about' %} about.contenu2 {% endtrans %}</p>
+                            <p>{% trans from 'about' %} about.contenu3 {% endtrans %}</p>
+
+                        </div>
+
                     </div>
                 </div>
-
             </div>
+        </div>
+
+
+        <div class="section programmes-main-div">
+            <h2 class="bloc-title">{% trans from 'about' %} about.news {% endtrans %}</h2>
+
+            <div class="inner padding">
+                <div class="flex">
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section admission">
+            <h2 class="bloc-title">CAMPUS</h2>
+            <div class="inner padding">
+                <div class="flex">
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class ="container">
+
+
+
             <div id="image_gallery">
                 <div class="responsive">
                     <div class="gallery">
@@ -111,11 +269,17 @@
             </div>
 
         </div>
+        <div class="footer-top">
+                this is the footer top
+        </div>
+        <div class="footer-bottom">
+                this is the footer bottom
+        </div>
     </div>
 {% endblock %}
 
 {% block footer %}
-    {% include "MainBundle:Footer:registerFooter.html.twig" %}
+
 {% endblock %}
 {% block myjs %}
     {# mettre des liens vers des pages externe js si c'est  necessaire #}
