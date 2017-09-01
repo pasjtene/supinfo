@@ -19,7 +19,7 @@
 
 {% block header %}
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
-
+ <div class="bagroun tail">
     <div class="firstbar ">
         <div class="espace">
             <div id="mains" class="margin_top">
@@ -54,10 +54,11 @@
           </div>
     </div>
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
-
+ </div>
 {% endblock %}
 
 {% block main %}
+<div class="bagroun">
     <div class="row">
         <div class="col-sm-8 left_space">
             <img class="wid"  src="{{ asset('data/img/adm3.jpg') }}" alt="">
@@ -69,14 +70,14 @@
                   permet toutes les admissions post-Bac, Bac+2, Bac+3 et sous conditions, les admissions parallèles.
               </p>
                <p>
-                   Notre outil d’évaluation des compétences vous permet d’intégrer l’EPSI tout au long de l’année.
+                   Notre outil d’évaluation des compétences vous permet d’intégrer Sup Info tout au long de l’année.
                </p>
                 <p>
-                    Salariés, demandeurs d’emplois, vous pouvez également intégrer l’EPSI et bénéficier de
+                    Salariés, demandeurs d’emplois, vous pouvez également intégrer Sup Info et bénéficier de
                     la VAE (Validation des Acquis et de l’Expérience).
                 </p>
                 <p>
-                    Les formations de l’EPSI sont éligibles au CPF (Compte Personnel de Formation).
+                    Les formations de Sup Info sont éligibles au CPF (Compte Personnel de Formation).
                 </p>
                 <p>
                     Je candidate en 1 clic ! – ou Les étapes d’admission : un processus efficace, rapide, une réponse personnalisée
@@ -84,10 +85,12 @@
             </div>
         </div>
         <div class="col-sm-4 ">
-
+            <div class="hexagon">
+                <h3>PROGRAMMES SUP INFO CAMEROUN</h3>
+            </div>
         </div>
     </div>
-
+</div>
 
 {% endblock %}
 
