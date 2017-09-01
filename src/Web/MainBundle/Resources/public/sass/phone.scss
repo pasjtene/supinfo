@@ -1,26 +1,76 @@
-#phone{
-  background-color: #fff;
-  border-color: #fff;
-}
-#main_phone{
-.element{
-  background-color:#0275D8;
-  height: 50%;
-  color: white;
-  padding-left: 3%;
-
-}
-.btn-primary{
-  background-color:cornflowerblue;
-}
-.col-sm-12{
+.secondbar{
+  height: 3cm;
+  background-color: #75438a;
   text-align: center;
+  color: white;
+  padding-top: 0.5cm;
 }
-.col-sm-6{
-  text-align: justify;
-}
-  .hautspace{
-    padding-top: 1cm;
+.firstbar{
+  color: #271549;
+  .espace{
+    padding-top: 2cm;
+    padding-left: 5cm;
+    padding-right: 3cm;
+  }
+  height: 5cm;
+  background-color: #271549;
+  #mains{
+    .drop{
+      color: black;
+    }
+    ul {
+      color: #271549;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: white;
+      font-size: 0.8em;
+    }
+
+    li {
+      float: left;
+      color: #271549;
+    }
+
+    li a, .dropbtn {
+      color: #271549;
+      display: inline-block;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover, .dropdown:hover .dropbtn {
+      background-color: yellowgreen;
+    }
+
+    li.dropdown {
+      display: inline-block;
+    }
+
+    .dropdown-content {
+
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: #271549;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {background-color: #f1f1f1}
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
   }
 }
 
