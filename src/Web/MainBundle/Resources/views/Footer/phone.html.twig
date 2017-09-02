@@ -19,7 +19,7 @@
 
 {% block header %}
     {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
-
+ <div class="bagroun tail">
     <div class="firstbar ">
         <div class="espace">
             <div id="mains" class="margin_top">
@@ -54,45 +54,101 @@
           </div>
     </div>
     {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
-
+ </div>
 {% endblock %}
 
 {% block main %}
+<div class="bagroun">
     <div class="row">
         <div class="col-sm-8 left_space">
             <img class="wid"  src="{{ asset('data/img/adm3.jpg') }}" alt="">
             <div class="justif">
-             <p><h4>TOUS LES CHEMINS MÈNENT À SUP INFO CAMEROUN</h4></p>
-             <p><h5>L’ACQUISITION DE COMPÉTENCES : LE COEUR DE NOTRE SYSTÈME D’ADMISSION</h5></p>
-              <p>
+                <p><h4>TOUS LES CHEMINS MÈNENT À SUP INFO CAMEROUN</h4></p>
+                <p><h5>L’ACQUISITION DE COMPÉTENCES : LE COEUR DE NOTRE SYSTÈME D’ADMISSION</h5></p>
+                <p>
                   Le programme modulaire, basé sur l’acquisition des compétences du parcours Ingénierie Informatique,
                   permet toutes les admissions post-Bac, Bac+2, Bac+3 et sous conditions, les admissions parallèles.
-              </p>
-               <p>
-                   Notre outil d’évaluation des compétences vous permet d’intégrer l’EPSI tout au long de l’année.
-               </p>
+                 </p>
+                 <p>
+                   Notre outil d’évaluation des compétences vous permet d’intégrer Sup Info tout au long de l’année.
+                </p>
                 <p>
-                    Salariés, demandeurs d’emplois, vous pouvez également intégrer l’EPSI et bénéficier de
+                    Salariés, demandeurs d’emplois, vous pouvez également intégrer Sup Info et bénéficier de
                     la VAE (Validation des Acquis et de l’Expérience).
                 </p>
                 <p>
-                    Les formations de l’EPSI sont éligibles au CPF (Compte Personnel de Formation).
+                    Les formations de Sup Info sont éligibles au CPF (Compte Personnel de Formation).
                 </p>
                 <p>
                     Je candidate en 1 clic ! – ou Les étapes d’admission : un processus efficace, rapide, une réponse personnalisée
                 </p>
             </div>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-sm-4">
+            <div class="hexagon">
+                <div class="hexa">
+                    <h5>PROGRAMMES SUP INFO CAMEROUN</h5>
+                    <hr style="background-color: black">
+                    <a href="">PANORAMA DES ÉTUDES </a></br>
+                    <a href="">BACHELOR INFORMATIQUE BAC+3</a></br>
+                    <a href="">INGÉNIERIE INFORMATIQUE BAC+5</a></br>
+                    <a href="">LES TITRES ET DIPLOMES</a></br>
+                    <a href="">LES OUTILS NUMÉRIQUES</a></br>
+                    <a href="">LES SPÉCIALISATIONS</a></br>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
 
+            <div class="accordeon">
+
+                <h2 class="accordeon-title">Étape 1<span class="plus"></span></h2>
+
+                <div class="accordeon-content">
+                    <div class="contenu">
+                        </p>
+                        <p><a href="http://www.epsi.fr/inscription-en-ligne/introduction" target="_blank">Je postule directement en ligne </a></p>
+                        <p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="accordeon">
+                <h2 class="accordeon-title">Étape 2<span class="plus"></span></h2>
+                <div class="accordeon-content">
+                    <div class="contenu">
+                        </p>
+                        <p>Dès réception de ma candidature, nous vous proposerons de participer à une demi-journée de sélection au cours de laquelle vos connaissances et compétences seront testées, puis vous serez reçu pour un entretien de motivation.</p>
+                        <p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="accordeon">
+                <h2 class="accordeon-title">Étape 3<span class="plus"></span></h2>
+                <div class="accordeon-content">
+                    <div class="contenu">
+                        </p>
+                        <p>Recevez une réponse dans les 5 jours après notre rendez-vous.</p>
+                        <p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h6>
+                    Accédez en un clic à l' <a href="#">espace candidature</a>
+                </h6>
+            </div>
         </div>
     </div>
-
+</div>
+<div>
+</div>
 
 {% endblock %}
 
 {% block myjs %}
-    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+
 {% endblock %}
 
 
