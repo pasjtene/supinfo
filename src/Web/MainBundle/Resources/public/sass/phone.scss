@@ -1,13 +1,11 @@
-.slide{
 
-}
-.left_space{
+.padding_admission_content{
   padding-left: 8em;
-  .justif{
+  .admission_content{
     text-align: justify;
   }
   padding-top: 0.5cm;
-  .wid{
+  .admission_image{
     width: 100%;
   }
 }
@@ -86,13 +84,11 @@
     }
   }
 }
-.bagroun{
+.bagroun_admission{
   background-color: #EFEEF3;
 }
-.tail{
-  height: 100%;
-}
-.hexagon {
+
+.hexagonn {
   position: relative;
   width: 320px;
   height: 184.75px;
@@ -100,8 +96,8 @@
   margin: 92.38px 0;
 }
 
-.hexagon:before,
-.hexagon:after {
+.hexagonn:before,
+.hexagonn:after {
   content: "";
   position: absolute;
   width: 0;
@@ -109,17 +105,17 @@
   border-right: 160px solid transparent;
 }
 
-.hexagon:before {
+.hexagonn:before {
   bottom: 100%;
   border-bottom: 92.38px solid #ffffff;
 }
 
-.hexagon:after {
+.hexagonn:after {
   top: 100%;
   width: 0;
   border-top: 92.38px solid #ffffff;
 }
-.hexa{
+.text_on_hexagon{
   text-align: center;
   font-size: 0.7em;
 }
