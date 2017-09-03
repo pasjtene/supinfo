@@ -3,6 +3,7 @@
 {% block meta %}
     <meta name = "{% trans from 'phone' %} phone.block5 {% endtrans %}" >
     <meta name = "keywords" content = "{% trans from 'phone' %} phone.block4 {% endtrans %}" >
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-8">
 {% endblock %}
 
 {% block title %}
@@ -96,40 +97,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-8">
-
-                    <div class="accordeon">
-
-                        <h2 class="accordeon-title">Étape 1<span class="plus"></span></h2>
-
-                        <div class="accordeon-content">
-                            <div class="contenu">
-                                </p>
-                                <p><a href="http://www.epsi.fr/inscription-en-ligne/introduction" target="_blank">Je postule directement en ligne </a></p>
-                                <p>
-                            </div>
-                            <div class="clear"></div>
+                <div class="col-sm-8 ">
+                    <div  class="etape">
+                        <div class="etape-titre">&eacute;tape 1<div id="plus" >+</div></div>
+                        <div class="etape-contenu">
+                            <a href="#">
+                                je postule directement en ligne
+                            </a>
                         </div>
                     </div>
-                    <div class="accordeon">
-                        <h2 class="accordeon-title">Étape 2<span class="plus"></span></h2>
-                        <div class="accordeon-content">
-                            <div class="contenu">
-                                </p>
-                                <p>Dès réception de ma candidature, nous vous proposerons de participer à une demi-journée de sélection au cours de laquelle vos connaissances et compétences seront testées, puis vous serez reçu pour un entretien de motivation.</p>
-                                <p>
-                            </div>
-                            <div class="clear"></div>
+                    <div class="etape">
+                        <div class="etape-titre">&eacute;tape 2<div id="plus" >+</div></div>
+                        <div class="etape-contenu">
+                            Dès réception de ma candidature, nous vous proposerons de participer à une demi-journée de
+                            sélection au cours de laquelle vos connaissances et compétences seront testées, puis vous
+                            serez reçu pour un entretien de motivation.
                         </div>
                     </div>
-                    <div class="accordeon">
-                        <h2 class="accordeon-title">Étape 3<span class="plus"></span></h2>
-                        <div class="accordeon-content">
-                            <div class="contenu">
-                                </p>
-                                <p>Recevez une réponse dans les 5 jours après notre rendez-vous.</p>
-                                <p>
-                            </div>
+                    <div class="etape">
+                        <div class="etape-titre">&eacute;tape 3<div id="plus" >+</div></div>
+                        <div class="etape-contenu">
+                            Recevez une réponse dans les 5 jours après notre rendez-vous.
                         </div>
                     </div>
                     <div>
@@ -150,7 +138,14 @@
 {% endblock %}
 
 {% block myjs %}
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".etape-titre").click(function(){
+                $(this).siblings(".etape-contenu").slideToggle("slow");
+            });
+        });
+    </script>
 {% endblock %}
 
 
