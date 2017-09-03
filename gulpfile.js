@@ -21,6 +21,10 @@ var jsPaths = [
     './web/bundles/admin/js/*.js'
 ];
 
+var supInfoPaths = [
+    './web/bundles/main/js/supinfo/*.js'
+];
+
 var jsParamsPaths = [
     './web/bundles/app/js/Inc/*.js'
 ];
@@ -115,6 +119,18 @@ var uglifyTask = function()
         .pipe(livereload());
 
     console.log('Uglify JS files successfull !');
+};
+
+var supInfoTask = function()
+{
+    gulp.src(supInfoPaths)
+        .pipe(uglify('supinfo.min.js', {
+            outSourceMap: true
+        }))
+        .pipe(gulp.dest('web/data/js'))
+        .pipe(livereload());
+
+    console.log('Uglify Sup Info JS  files successfull !');
 };
 
 var paramsTask = function()
@@ -246,6 +262,11 @@ gulp.task('sidenav', function()
     sideNavTask();
 });
 
+gulp.task('supinfo', function()
+{
+    supInfoTask();
+});
+
 
 
 // Without this function exec() will not show any output
@@ -300,6 +321,12 @@ var logStdOutAndErr = function (err, stdout, stderr)
         imageTask();
         audioTask();
     }
+
+    else if(currentTask === 'supinfo')
+    {
+        supInfoTask();
+    }
+
 };
 
 gulp.task('watchprod', function ()
