@@ -47,35 +47,13 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         return $this->render('MainBundle:Footer:about.html.twig');
     }
 
-    public function admissionAction(Request $request)
+    /**
+     * @Route("/admission", name="main_admission"))
+     */
+    public function admissionAction()
     {
-        // lien imortant  pour implementer le persist des urls
-        //http://symfony.com/doc/current/event_dispatcher/before_after_filters.html
-        if($request->cookies->get(FormAuthenticator::USER_COOKIE_NAME))
-        {
-            //return $this->redirect($this->generateUrl("main_profile"));
-            return $this->render('MainBundle:views:admission.html.twig');
-        }
-        $days =[];
-        $months =[];
-        $years =[];
-
-        for($i=1; $i<32;$i++){
-            $days[] = $i<10? "0".$i:$i;
-        }
-        for($i=1; $i<13;$i++){
-            $months[] = $i<10? "0".$i:$i;
-        }
-        $year = (int)date("Y");
-        $year = $year -16;
-        for($i=$year; $i>1930;$i--){
-            $years[] = $i;
-        }
-        $array = ["days"=>$days,"months"=>$months, "years"=>$years];
-        //return $this->render('MainBundle:Default:register.html.twig',$array);
         return $this->render('MainBundle:views:admission.html.twig');
     }
-
 
 
 
@@ -104,14 +82,14 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
 
         $client = new RestClient(RestClient::$PUT_METHOD, 'auth/verify/email',$user->getToken(), $data);
 
-       // var_dump($client->getContent());
-       // die();
+        // var_dump($client->getContent());
+        // die();
         if($client->getStatusCode() == 200)
         {
             $contents = \GuzzleHttp\json_decode($client->getContent());
             $message= $this->get('translator')->trans('success.requestMail',["email_resp"=>$user->getEmail()],'alert');
             $array['successMessage'] = $message;
-             //var_dump($array['successMessage']);
+            //var_dump($array['successMessage']);
             // die();
             return $this->redirectToRoute("main_profile",$array);
         }
@@ -262,7 +240,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         $email = $request->get('email');
         $token = $request->get('confirmationtoken');
 
-        ///TODO Envoyer un requete pour vÃ©rifier la validitÃ©
+        ///TODO Envoyer un requete pour vérifier la validité
         if(!isset($email) || !isset($token)){
             return $this->redirect($this->generateUrl("main_login"));
         }
