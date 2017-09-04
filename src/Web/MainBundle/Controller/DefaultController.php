@@ -44,7 +44,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         }
         $array = ["days"=>$days,"months"=>$months, "years"=>$years];
         //return $this->render('MainBundle:Default:register.html.twig',$array);
-        return $this->render('MainBundle:Default:admission.html.twig');
+        return $this->render('MainBundle:Default:home.html.twig');
     }
 
     /**
@@ -241,7 +241,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         $email = $request->get('email');
         $token = $request->get('confirmationtoken');
 
-        ///TODO Envoyer un requete pour vérifier la validité
+        ///TODO Envoyer un requete pour vï¿½rifier la validitï¿½
         if(!isset($email) || !isset($token)){
             return $this->redirect($this->generateUrl("main_login"));
         }
