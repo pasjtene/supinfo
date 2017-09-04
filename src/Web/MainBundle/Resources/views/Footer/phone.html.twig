@@ -8,7 +8,7 @@
 
 {% block title %}
     <div>
-        {% trans from 'phone' %} phone.block16 {% endtrans %}
+        {% trans from 'admission' %} admission.title {% endtrans %}
     </div>
 {% endblock  %}
 
@@ -27,33 +27,33 @@
             <div class="espace">
                 <div id="mains" class="margin_top">
                     <ul>
-                        <li class="drop"><a href="#home">Home</a></li>
+                        <li class="drop"><a href="#home">{% trans from 'admission' %} admission.Navbar {% endtrans %}</a></li>
                         <li>
-                            <a href="{{ path('main_footer_phone') }}">{% trans from 'footer' %} Admission {% endtrans %}</a>
+                            <a href="{{ path('main_footer_phone') }}">{% trans from 'admission' %} admission.title1{% endtrans %} </a>
                         </li>
-                        <li class="drop"><a href="#news">Preregistration</a></li>
+                        <li class="drop"><a href="#news">{% trans from 'admission' %} admission.title2 {% endtrans %}</a></li>
                         <li class="dropdown">
-                            <a href="javascript:void(0)" class="dropbtn">Courses</a>
+                            <a href="javascript:void(0)" class="dropbtn">{% trans from 'admission' %} admission.title3 {% endtrans %}</a>
                             <div class="dropdown-content">
                                 <a href="#">Level 1</a>
                                 <a href="#">Level 2</a>
                                 <a href="#">Level 3</a>
                             </div>
                         </li>
-                        <li class="drop"><a href="#news">Programs</a></li>
-                        <li><a href="#news">Campus</a></li>
-                        <li><a href="#news">Students</a></li>
-                        <li><a href="#news">Diplomas</a></li>
-                        <li><a href="#news">Documentation</a></li>
-                        <li><a href="#news">Business</a></li>
-                        <li><a href="#news">Contacts</a></li>
+                        <li class="drop"><a href="#news">{% trans from 'admission' %} admission.title4 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title5 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title6 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title7 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title8 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title9 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title10 {% endtrans %}</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="secondbar">
             <div  class="title_admission">
-                <h3>INTÉGRER SUPINFO CAMEROUN</h3>
+                <h3> {% trans from 'admission' %} admission.second_bartitle {% endtrans %}</h3>
             </div>
         </div>
         {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
@@ -62,67 +62,64 @@
                 <div class="col-sm-8 ">
                     <img class="admission_image"  src="{{ asset('data/img/adm3.jpg') }}" alt="">
                     <div class="admission_content">
-                        <p><h4>TOUS LES CHEMINS MÈNENT À SUP INFO CAMEROUN</h4></p>
-                        <p><h5>L’ACQUISITION DE COMPÉTENCES : LE COEUR DE NOTRE SYSTÈME D’ADMISSION</h5></p>
+                        <p><h4> {% trans from 'admission' %} admission.content_title {% endtrans %}</h4></p>
+                        <p><h5> {% trans from 'admission' %} admission.title1 {% endtrans %}</h5></p>
                         <p>
-                            Le programme modulaire, basé sur l’acquisition des compétences du parcours Ingénierie Informatique,
-                            permet toutes les admissions post-Bac, Bac+2, Bac+3 et sous conditions, les admissions parallèles.
+                            {% trans from 'admission' %} admission.block1 {% endtrans %}
                         </p>
                         <p>
-                            Notre outil d’évaluation des compétences vous permet d’intégrer Sup Info tout au long de l’année.
+                            {% trans from 'admission' %} admission.block2 {% endtrans %}
                         </p>
                         <p>
-                            Salariés, demandeurs d’emplois, vous pouvez également intégrer Sup Info et bénéficier de
-                            la VAE (Validation des Acquis et de l’Expérience).
+                            {% trans from 'admission' %} admission.block3 {% endtrans %}
                         </p>
                         <p>
-                            Les formations de Sup Info sont éligibles au CPF (Compte Personnel de Formation).
+                            {% trans from 'admission' %} admission.block4 {% endtrans %}
                         </p>
                         <p>
-                            Je candidate en 1 clic ! – ou Les étapes d’admission : un processus efficace, rapide, une réponse personnalisée
+                            {% trans from 'admission' %} admission.block5 {% endtrans %}
                         </p>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="hexagonn">
                         <div class="text_on_hexagon">
-                            <h5>PROGRAMMES SUP INFO CAMEROUN</h5>
+                            <h5>{% trans from 'admission' %} admission.hexagon_text {% endtrans %}</h5>
                             <hr style="background-color: black">
-                            <a href="">PANORAMA DES ÉTUDES </a></br>
-                            <a href="">BACHELOR INFORMATIQUE BAC+3</a></br>
-                            <a href="">INGÉNIERIE INFORMATIQUE BAC+5</a></br>
-                            <a href="">LES TITRES ET DIPLOMES</a></br>
-                            <a href="">LES OUTILS NUMÉRIQUES</a></br>
-                            <a href="">LES SPÉCIALISATIONS</a></br>
+                            <a href=""> {% trans from 'admission' %} admission.title1 {% endtrans %}</a></br>
+                            <a href=""> {% trans from 'admission' %} admission.title2 {% endtrans %}</a></br>
+                            <a href=""> {% trans from 'admission' %} admission.title3 {% endtrans %}</a></br>
+                            <a href="">{% trans from 'admission' %} admission.title4 {% endtrans %}</a></br>
+                            <a href="">{% trans from 'admission' %} admission.title5 {% endtrans %}</a></br>
+                            <a href=""> {%trans from 'admission' %} admission.title6 {% endtrans %}</a></br>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-8 ">
                     <div  class="etape">
-                        <div class="etape-titre">&eacute;tape 1<div id="plus" >+</div></div>
+                        <div class="etape-titre"> {%trans from 'admission' %} admission.title7 {% endtrans %}<div id="plus" >+</div></div>
                         <div class="etape-contenu">
                             <a href="#">
-                                je postule directement en ligne
+                                 {% trans from 'admission' %} admission.title8 {% endtrans %}
                             </a>
                         </div>
                     </div>
                     <div class="etape">
-                        <div class="etape-titre">&eacute;tape 2<div id="plus" >+</div></div>
+                        <div class="etape-titre">{% trans from 'admission' %} admission.title9 {% endtrans %}<div id="plus" >+</div></div>
                         <div class="etape-contenu">
-                            Dès réception de ma candidature, nous vous proposerons de participer à une demi-journée de
-                            sélection au cours de laquelle vos connaissances et compétences seront testées, puis vous
-                            serez reçu pour un entretien de motivation.
+                            {% trans from 'admission' %} admission.title10 {% endtrans %}
                         </div>
                     </div>
                     <div class="etape">
-                        <div class="etape-titre">&eacute;tape 3<div id="plus" >+</div></div>
+                        <div class="etape-titre"> {% trans from 'admission' %} admission.title11 {% endtrans %}<div id="plus" >+</div></div>
                         <div class="etape-contenu">
-                            Recevez une réponse dans les 5 jours après notre rendez-vous.
+                            {% trans from 'admission' %} admission.title12 {% endtrans %}
                         </div>
                     </div>
                     <div>
                         <h6>
-                            Accédez en un clic à l' <a href="#">espace candidature</a>
+                            {% trans from 'admission' %} admission.title13 {% endtrans %}
+                             <a href="#">{% trans from 'admission' %} admission.title14 {% endtrans %}</a>
                         </h6>
                     </div>
                 </div>

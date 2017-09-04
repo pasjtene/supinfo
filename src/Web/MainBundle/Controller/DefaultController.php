@@ -47,13 +47,36 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         return $this->render('MainBundle:Footer:about.html.twig');
     }
 
-    /**
-     * @Route("/admission", name="main_admission"))
-     */
-    public function admissionAction()
+    public function admissionAction(Request $request)
     {
+        // lien imortant  pour implementer le persist des urls
+        //http://symfony.com/doc/current/event_dispatcher/before_after_filters.html
+        if($request->cookies->get(FormAuthenticator::USER_COOKIE_NAME))
+        {
+            //return $this->redirect($this->generateUrl("main_profile"));
+            return $this->render('MainBundle:views:admission.html.twig');
+        }
+        $days =[];
+        $months =[];
+        $years =[];
+
+        for($i=1; $i<32;$i++){
+            $days[] = $i<10? "0".$i:$i;
+        }
+        for($i=1; $i<13;$i++){
+            $months[] = $i<10? "0".$i:$i;
+        }
+        $year = (int)date("Y");
+        $year = $year -16;
+        for($i=$year; $i>1930;$i--){
+            $years[] = $i;
+        }
+        $array = ["days"=>$days,"months"=>$months, "years"=>$years];
+        //return $this->render('MainBundle:Default:register.html.twig',$array);
         return $this->render('MainBundle:views:admission.html.twig');
     }
+
+
 
 
 
