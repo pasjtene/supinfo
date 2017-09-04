@@ -1,42 +1,42 @@
 admission:
   title: Admission
-  Navbar: Homme
-  title1: Admissions
-  title2: Preregistration
-  title3: Courses
-  title4: Programs
-  title5: Campus
-  title6: Students
-  title7: Diplomas
-  title8:  Documentation
-  title9:  Business
-  title10:  Contacts
+  Navbar: Home
+  admiss: Admissions
+  preinscription: Preregistration
+  cours: Courses
+  program: Programs
+  campus: Campus
+  etudiant: Students
+  diplom: Diplomas
+  documentation:  Documentation
+  entreprise:  Business
+  contact:  Contacts
   second_bartitle: INTEGRATE SUPINFO CAMEROON
   content_title: ALL PATHS LEAD TO SUP INFO CAMEROON
-  title11: ACQUISITION OF COMPETENCIES; THE HEART OF OUR ADMISSION SYSTEM
-  block1:  The modular program, based on the acquisition of the skills of the course Computer Engineering,
+  content_title11: ACQUISITION OF COMPETENCIES; THE HEART OF OUR ADMISSION SYSTEM
+  content_block1:  The modular program, based on the acquisition of the skills of the course Computer Engineering,
            allows all admissions post-Bac, Bac + 2, Bac + 3 and under conditions, parallel admissions
-  block2: Our competency assessment tool allows you to integrate Sup Info throughout the year
-  block3: Employees, job seekers, you can also integrate Sup Info and benefit from
+  content_block2: Our competency assessment tool allows you to integrate Sup Info throughout the year
+  content_block3: Employees, job seekers, you can also integrate Sup Info and benefit from
           the VAE (Validation of Acquisitions and Experience).
-  block4:  Sup Info training is eligible for the CPF (Personnel Training Account).
-  block5: I candidate in 1 click! - or Admission steps; an efficient, fast process, a personalized response
+  content_block4:  Sup Info training is eligible for the CPF (Personnel Training Account).
+  content_block5: I candidate in 1 click! - or Admission steps; an efficient, fast process, a personalized response
   hexagon_text: PROGRAMS SUP INFO CAMEROON
-  title12: PANORAMA OF STUDIES
-  title13: BACHELOR COMPUTER SCIENCES BAC + 3
-  title14: COMPUTER ENGINEERING BAC + 5
-  title15: TITLES AND DIPLOMAS
-  title16: DIGITAL TOOLS
-  title17: SPECIALIZATIONS
+  panorama: PANORAMA OF STUDIES
+  bachelor: BACHELOR COMPUTER SCIENCES BAC + 3
+  bac5: COMPUTER ENGINEERING BAC + 5
+  diplome: TITLES AND DIPLOMAS
+  numerique: DIGITAL TOOLS
+  specialisation: SPECIALIZATIONS
   etape1: Step 1
-  title19: I apply directly online
+  etape1_content: I apply directly online
   etape2: Step 2
-  title21: Upon receipt of my application, we will propose you to participate in a half day of
+  title2_content: Upon receipt of my application, we will propose you to participate in a half day of
           selection process during which your knowledge and skills will be tested, and then
           will be received for a motivational interview.
   etape3: Step 3
-  title23: Receive a reply within 5 days after our appointment.
-  title24: Access with one click to
-  title25: application space
+  etape3_content: Receive a reply within 5 days after our appointment.
+  candidature1: Access with one click to
+  candidature2: application space
 
 
