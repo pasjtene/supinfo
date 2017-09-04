@@ -25,7 +25,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         if($request->cookies->get(FormAuthenticator::USER_COOKIE_NAME))
         {
             //return $this->redirect($this->generateUrl("main_profile"));
-            return $this->render('MainBundle:Footer:about.html.twig');
+            return $this->render('MainBundle:Default:admission.html.twig');
         }
         $days =[];
         $months =[];
@@ -44,7 +44,16 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         }
         $array = ["days"=>$days,"months"=>$months, "years"=>$years];
         //return $this->render('MainBundle:Default:register.html.twig',$array);
-        return $this->render('MainBundle:Footer:about.html.twig');
+        return $this->render('MainBundle:Default:home.html.twig');
+    }
+
+    /**
+     * @Route("/admission", name="main_admission"))
+     */
+    public function admissionAction()
+    {
+        $array = [];
+        return $this->render('MainBundle:Default:admission.html.twig', $array);
     }
 
 
@@ -74,14 +83,14 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
 
         $client = new RestClient(RestClient::$PUT_METHOD, 'auth/verify/email',$user->getToken(), $data);
 
-       // var_dump($client->getContent());
-       // die();
+        // var_dump($client->getContent());
+        // die();
         if($client->getStatusCode() == 200)
         {
             $contents = \GuzzleHttp\json_decode($client->getContent());
             $message= $this->get('translator')->trans('success.requestMail',["email_resp"=>$user->getEmail()],'alert');
             $array['successMessage'] = $message;
-             //var_dump($array['successMessage']);
+            //var_dump($array['successMessage']);
             // die();
             return $this->redirectToRoute("main_profile",$array);
         }
@@ -232,7 +241,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         $email = $request->get('email');
         $token = $request->get('confirmationtoken');
 
-        ///TODO Envoyer un requete pour vérifier la validité
+        ///TODO Envoyer un requete pour v�rifier la validit�
         if(!isset($email) || !isset($token)){
             return $this->redirect($this->generateUrl("main_login"));
         }

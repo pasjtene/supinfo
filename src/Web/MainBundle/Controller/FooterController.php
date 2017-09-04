@@ -32,7 +32,7 @@ class FooterController extends Controller implements TokenAuthenticatedControlle
      */
     public function phoneAction()
     {
-        return $this->render('MainBundle:Footer:phone.html.twig');
+        //return $this->render('MainBundle:Footer:phone.html.twig');
     }
     /**
      * @Route("/about", name="main_footer_about"))
@@ -95,6 +95,8 @@ class FooterController extends Controller implements TokenAuthenticatedControlle
     {
         return $this->render('MainBundle:Footer:safety.html.twig');
     }
+
+
 
 
 

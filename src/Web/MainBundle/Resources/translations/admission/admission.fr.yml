@@ -1,0 +1,42 @@
+admission:
+  title: Admission
+  Navbar: Accueil
+  admiss: Admissions
+  preinscription: Préinscription
+  cours: Cours
+  program: Programmes
+  campus: Campus
+  etudiant: Etudiants
+  diplom: Diplôme
+  documentation:  Documentation
+  entreprise:  Entreprise
+  contact:  Contacts
+  second_bartitle:  INTÉGRER SUPINFO CAMEROUN
+  content_title: TOUS LES CHEMINS MÈNENT À SUP INFO CAMEROUN
+  content_title11:  L’ACQUISITION DE COMPÉTENCES; LE COEUR DE NOTRE SYSTÈME D’ADMISSION
+  cxontent_block1:  Le programme modulaire, basé sur l’acquisition des compétences du parcours Ingénierie Informatique,
+           permet toutes les admissions post-Bac, Bac+2, Bac+3 et sous conditions, les admissions parallèles.
+  content_block2: Notre outil d’évaluation des compétences vous permet d’intégrer Sup Info tout au long de l’année.
+  content_block3: Salariés, demandeurs d’emplois, vous pouvez également intégrer Sup Info et bénéficier de
+          la VAE (Validation des Acquis et de l’Expérience).
+  content_block4: Les formations de Sup Info sont éligibles au CPF (Compte Personnel de Formation).
+  content_block5: Je candidate en 1 clic ! – ou Les étapes d’admission;  un processus efficace, rapide, une réponse personnalisée
+  hexagon_text: PROGRAMMES SUP INFO CAMEROUN
+  panorama: PANORAMA DES ÉTUDES
+  bachelor: BACHELOR INFORMATIQUE BAC+3
+  bac5: INGÉNIERIE INFORMATIQUE BAC+5
+  diplome: LES TITRES ET DIPLOMES
+  numerique: LES OUTILS NUMÉRIQUES
+  specialisation: LES SPÉCIALISATIONS
+  etape1: Étape 1
+  etape1_content: je postule directement en ligne
+  etape2: Étape 2
+  etape2_content: Dès réception de ma candidature, nous vous proposerons de participer à une demi-journée de
+          sélection au cours de laquelle vos connaissances et compétences seront testées, puis vous
+          serez reçu pour un entretien de motivation.
+  etape3: Étape 3
+  etape3_content: Recevez une réponse dans les 5 jours après notre rendez-vous.
+  candidature1: Accédez en un clic à l'
+  candidature2: espace candidature
+
+

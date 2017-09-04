@@ -1,0 +1,150 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block meta %}
+    <meta name = "{% trans from 'phone' %} phone.block5 {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'phone' %} phone.block4 {% endtrans %}" >
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-8">
+{% endblock %}
+
+{% block title %}
+    <div>
+        {% trans from 'admission' %} admission.title {% endtrans %}
+    </div>
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+    {# mettre le css si la page t'oublige #}
+
+{% endblock %}
+
+{% block header %}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+{% endblock %}
+{% block  mainLg %}
+    <div class="bagroun_admission">
+        <div class="firstbar ">
+            <div class="espace">
+                <div id="mains" class="margin_top">
+                    <ul>
+                        <li class="drop"><a href="#home">{% trans from 'admission' %} admission.Navbar {% endtrans %}</a></li>
+                        <li>
+                            <a href="{{ path('main_footer_phone') }}">{% trans from 'admission' %} admission.title1{% endtrans %} </a>
+                        </li>
+                        <li class="drop"><a href="#news">{% trans from 'admission' %} admission.title2 {% endtrans %}</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="dropbtn">{% trans from 'admission' %} admission.title3 {% endtrans %}</a>
+                            <div class="dropdown-content">
+                                <a href="#">Level 1</a>
+                                <a href="#">Level 2</a>
+                                <a href="#">Level 3</a>
+                            </div>
+                        </li>
+                        <li class="drop"><a href="#news">{% trans from 'admission' %} admission.title4 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title5 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title6 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title7 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title8 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title9 {% endtrans %}</a></li>
+                        <li><a href="#news">{% trans from 'admission' %} admission.title10 {% endtrans %}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="secondbar">
+            <div  class="title_admission">
+                <h3> {% trans from 'admission' %} admission.second_bartitle {% endtrans %}</h3>
+            </div>
+        </div>
+        {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width...... #}
+        <div class="bagroun_admission padding_admission_content">
+            <div class="row">
+                <div class="col-sm-8 ">
+                    <img class="admission_image"  src="{{ asset('data/img/adm3.jpg') }}" alt="">
+                    <div class="admission_content">
+                        <p><h4> {% trans from 'admission' %} admission.content_title {% endtrans %}</h4></p>
+                        <p><h5> {% trans from 'admission' %} admission.title11 {% endtrans %}</h5></p>
+                        <p>
+                            {% trans from 'admission' %} admission.block1 {% endtrans %}
+                        </p>
+                        <p>
+                            {% trans from 'admission' %} admission.block2 {% endtrans %}
+                        </p>
+                        <p>
+                            {% trans from 'admission' %} admission.block3 {% endtrans %}
+                        </p>
+                        <p>
+                            {% trans from 'admission' %} admission.block4 {% endtrans %}
+                        </p>
+                        <p>
+                            {% trans from 'admission' %} admission.block5 {% endtrans %}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="hexagonn">
+                        <div class="text_on_hexagon">
+                            <h5>{% trans from 'admission' %} admission.hexagon_text {% endtrans %}</h5>
+                            <hr style="background-color: black">
+                            <a href=""> {% trans from 'admission' %} admission.title12 {% endtrans %}</a></br>
+                            <a href=""> {% trans from 'admission' %} admission.title13 {% endtrans %}</a></br>
+                            <a href=""> {% trans from 'admission' %} admission.title14 {% endtrans %}</a></br>
+                            <a href="">{% trans from 'admission' %} admission.title15 {% endtrans %}</a></br>
+                            <a href="">{% trans from 'admission' %} admission.title16 {% endtrans %}</a></br>
+                            <a href=""> {%trans from 'admission' %} admission.title17 {% endtrans %}</a></br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8 ">
+                    <div  class="etape">
+                        <div class="etape-titre"> {%trans from 'admission' %} admission.etape1 {% endtrans %}<div id="plus" >+</div></div>
+                        <div class="etape-contenu">
+                            <a href="#">
+                                {% trans from 'admission' %} admission.etape1_content {% endtrans %}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="etape">
+                        <div class="etape-titre">{% trans from 'admission' %} admission.etape2 {% endtrans %}<div id="plus" >+</div></div>
+                        <div class="etape-contenu">
+                            {% trans from 'admission' %} admission.etape2_content {% endtrans %}
+                        </div>
+                    </div>
+                    <div class="etape">
+                        <div class="etape-titre"> {% trans from 'admission' %} admission.etape3 {% endtrans %}<div id="plus" >+</div></div>
+                        <div class="etape-contenu">
+                            {% trans from 'admission' %} admission.etape3_content {% endtrans %}
+                        </div>
+                    </div>
+                    <div>
+                        <h6>
+                            {% trans from 'admission' %} admission.candidature1 {% endtrans %}
+                            <a href="#">{% trans from 'admission' %} admission.candidature2 {% endtrans %}</a>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block  main %}
+{% endblock %}
+
+{% block myjs %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(".etape-titre").click(function(){
+                $(this).siblings(".etape-contenu").slideToggle("slow");
+            });
+        });
+    </script>
+{% endblock %}
+
+
+
