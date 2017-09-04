@@ -47,6 +47,13 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         return $this->render('MainBundle:Footer:about.html.twig');
     }
 
+    /**
+     * @Route("/admission", name="main_admission"))
+     */
+    public function admissionAction()
+    {
+        return $this->render('MainBundle:views:admission.html.twig');
+    }
 
 
 
