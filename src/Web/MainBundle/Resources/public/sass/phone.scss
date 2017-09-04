@@ -123,32 +123,3 @@
   clear:both
 }
 
-.etape-contenu, .etape-titre {
-  padding: 5px;
-  text-align: center;
-  background-color: #e5eecc;
-  border: solid 1px #c3c3c3;
-}
-
-.etape-contenu {
-  padding: 50px;
-  display: none;
-  text-align: left;
-  background-color: white;
-}
-#plus {
-  text-align: right;
-}
-
-
-.etape-titre:hover{
-  background-color: yellow;
-
-}
-.etape-titre{
-  text-align: left;
-  background-color: white;
-}
-.etape{
-  padding: 0.3em;
-}
