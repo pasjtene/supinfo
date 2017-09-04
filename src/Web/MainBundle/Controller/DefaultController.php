@@ -52,7 +52,8 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
      */
     public function admissionAction()
     {
-        return $this->render('MainBundle:views:admission.html.twig');
+        $array = [];
+        return $this->render('MainBundle:Default:admission.html.twig', $array);
     }
 
 
