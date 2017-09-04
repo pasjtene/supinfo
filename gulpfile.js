@@ -305,6 +305,7 @@ var logStdOutAndErr = function (err, stdout, stderr)
     }
     else if(currentTask === 'all')
     {
+        supInfoTask();
         sassTask();
         concatJsTask();
         concatJsAppTask();
@@ -320,6 +321,7 @@ var logStdOutAndErr = function (err, stdout, stderr)
         paramsTask();
         imageTask();
         audioTask();
+        supInfoTask();
     }
 
     else if(currentTask === 'supinfo')
