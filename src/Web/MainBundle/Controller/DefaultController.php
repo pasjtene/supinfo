@@ -25,7 +25,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         if($request->cookies->get(FormAuthenticator::USER_COOKIE_NAME))
         {
             //return $this->redirect($this->generateUrl("main_profile"));
-            return $this->render('MainBundle:Footer:about.html.twig');
+            return $this->render('MainBundle:Default:admission.html.twig');
         }
         $days =[];
         $months =[];
@@ -44,7 +44,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         }
         $array = ["days"=>$days,"months"=>$months, "years"=>$years];
         //return $this->render('MainBundle:Default:register.html.twig',$array);
-        return $this->render('MainBundle:Footer:about.html.twig');
+        return $this->render('MainBundle:Default:admission.html.twig');
     }
 
     /**
@@ -241,7 +241,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         $email = $request->get('email');
         $token = $request->get('confirmationtoken');
 
-        ///TODO Envoyer un requete pour v�rifier la validit�
+        ///TODO Envoyer un requete pour v?rifier la validit?
         if(!isset($email) || !isset($token)){
             return $this->redirect($this->generateUrl("main_login"));
         }
