@@ -13,7 +13,7 @@ admin:
 main:
     resource: "@MainBundle/Controller/"
     type:     annotation
-    prefix:   /{_locale}
+    prefix:   /{_locale}/admission
     requirements:
             _locale: en|fr
 
