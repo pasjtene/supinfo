@@ -17,7 +17,7 @@ class AdmissionController extends Controller implements TokenAuthenticatedContro
      */
     public function admissionAction()
     {
-        return $this->render('MainBundle:Admission:Admission.html.twig');
+        return $this->render('MainBundle:views:Admission.html.twig');
     }
 
 

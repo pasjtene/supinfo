@@ -96,13 +96,7 @@ class FooterController extends Controller implements TokenAuthenticatedControlle
         return $this->render('MainBundle:Footer:safety.html.twig');
     }
 
-    /**
-     * @Route("/admission", name="main_admission"))
-     */
-    public function admissionAction()
-    {
-        return $this->render('MainBundle:Admission:Admission.html.twig');
-    }
+
 
 
 
