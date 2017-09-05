@@ -10,7 +10,7 @@
 //Limit images download capabilities
 $('.img-content').mousedown(function (e) {
     if(e.button == 2) { // right click
-        alert("Thank you for your interest !!!");
+        //alert("Thank you for your interest !!!");
         return false; // do nothing!
     }
 });

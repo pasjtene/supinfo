@@ -1,5 +1,5 @@
 
-#main_home{
+#main_paralax{
 
   .message_and_image {
     height: 450px;
@@ -216,17 +216,6 @@
     padding-top: 10px !important;
   }
 
-  .contenu {
-   // border: 3px solid green;
-    margin-right: 30%;
-
-  }
-
-  .home-slogan {
-    text-align: justify;
-  font-size: 23px;
-  }
-
 
   .inner {
     width: -webkit-calc(100% - 50px);
@@ -282,7 +271,7 @@
     width: 65%;
     min-height: 700px;
     float:left;
-    // border: 2px solid red;
+   // border: 2px solid red;
     z-index: 100;
     background-color: transparent !important;
   }

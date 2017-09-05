@@ -25,7 +25,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         if($request->cookies->get(FormAuthenticator::USER_COOKIE_NAME))
         {
             //return $this->redirect($this->generateUrl("main_profile"));
-            return $this->render('MainBundle:Footer:about.html.twig');
+            return $this->render('MainBundle:Default:home.html.twig');
         }
         $days =[];
         $months =[];
@@ -44,7 +44,7 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
         }
         $array = ["days"=>$days,"months"=>$months, "years"=>$years];
         //return $this->render('MainBundle:Default:register.html.twig',$array);
-        return $this->render('MainBundle:Footer:about.html.twig');
+        return $this->render('MainBundle:Default:home.html.twig');
     }
 
     /**
@@ -54,6 +54,15 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
     {
         $array = [];
         return $this->render('MainBundle:Default:admission.html.twig', $array);
+    }
+
+    /**
+     * @Route("/paralax", name="main_paralax"))
+     */
+    public function paralaxnAction()
+    {
+        $array = [];
+        return $this->render('MainBundle:Default:paralax.html.twig', $array);
     }
 
 
