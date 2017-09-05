@@ -30,39 +30,46 @@ admission:
   specialisation: LES SPÉCIALISATIONS
   etape1: Étape 1
   content1: |
-            Article1    Critères d'Admission:
+            Article 1:    Critères d'Admission:
   content2: |
-          -- Les élèves des classes terminales toutes séries confondues ou tout étudiants disposant du dit diplome.
+           Les élèves des classes terminales toutes séries confondues ou tout étudiants disposant du dit diplome.
   content3: |
-          -- Les titulaires de tout autre diplôme admis en équivalence ou en dispense par le Ministre de
+           Les titulaires de tout autre diplôme admis en équivalence ou en dispense par le Ministre de
              l’Enseignement Supérieur.
   content4: |
-          --Les candidats inscrits en vue de l’obtention de l’un des diplômes ci - dessus indiqués ne seront
+          Les candidats inscrits en vue de l’obtention de l’un des diplômes ci - dessus indiqués ne seront
           définitivement admis à Sup Info Cameroun, en cas de réussite au concours, que sur présentation de l’original du
           diplôme obtenu à la session d’examens de 2018 ou le cas échéant, de l’attestation de réussite au moment
           de l’inscription fixé par l’Ecole…
   content5: |
-          L’inscription au concours se fait en ligne sur le site web de l’ENSP à l‘adresse
+          L’inscription au concours se fait en ligne sur le site web de Sup Info à l‘adresse
   content6: |
           https://www.supinfocameroun.com/concours
   content7: |
           Les dossiers de candidature comprennent les pièces suivantes :
   content8: |
-          --Une fiche individuelle dûment remplie par le candidat sur le site web du concours de l’Ecole
+          Une fiche individuelle dûment remplie par le candidat sur le site web du concours de l’Ecole
   content9: |
           https://www.supinfocameroun.com/concours.
   content10: |
-          --Une photocopie de la carte nationale d’identité ou un récépissé;
-          --Les relevés de notes des classes de Première et Terminale ou de Lower et Upper Sixth;
-          --Une copie certifiée conforme de l’acte de naissance, datant de moins de trois mois;
-          --Une copie certifiée conforme du Baccalauréat ou du GCE/AL ou de tout autre diplôme reconnu
+          Une photocopie de la carte nationale d’identité ou un récépissé;
+  content102: |
+          Les relevés de notes des classes de Première et Terminale ou de Lower et Upper Sixth;
+  content103: |
+          Une copie certifiée conforme de l’acte de naissance, datant de moins de trois mois;
+  content104: |
+          Une copie certifiée conforme du Baccalauréat ou du GCE/AL ou de tout autre diplôme reconnu
+  content105: |
           équivalent par le Ministère de l’Enseignement Supérieur, ou une Attestation de Réussite à l’un
           de ces diplômes le cas échéant;
-          --Quatre photos d’identité (4x4);
-          --Un certificat médical délivré par un médecin de l’administration;
-          --Une enveloppe timbrée à 500 francs CFA à l’adresse du candidat (format A4).
+  content106: |
+          Quatre photos d’identité (4x4);
+  content107: |
+          Un certificat médical délivré par un médecin de l’administration;
+  content108: |
+          Une enveloppe timbrée à 500 francs CFA à l’adresse du candidat (format A4).
   content11: |
-         Article 3  Droits d'inscription
+         Article 2:  Droits d'inscription
   content12: |
          Les droits d’inscription au concours s’élèvent à vingt  mille (20 000) francs CFA payables
          uniquement par transfert EXPRESS UNION, contre récépissé à joindre obligatoirement au dossier de
