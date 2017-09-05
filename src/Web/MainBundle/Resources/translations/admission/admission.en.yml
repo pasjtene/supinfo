@@ -30,7 +30,7 @@ admission:
   specialisation: SPECIALIZATIONS
   etape1: Step 1
   content1: |
-              Article1    Admission Criteria:
+            Article1    Admission Criteria
   content2: |
             -- Pupils in the final grades of all grades or any student with the said diploma.
   content3: |
@@ -56,8 +56,8 @@ admission:
             --First and Terminal or Lower and Upper Sixth grades;
             --A certified copy of the birth certificate, dated less than three months
             --A certified copy of the Baccalaureate or GCE / AL or any other recognized diploma
-              equivalent by the Ministry of Higher Education, or a Certificate of Success to one
-              of these diplomas where appropriate;
+            equivalent by the Ministry of Higher Education, or a Certificate of Success to one
+            of these diplomas where appropriate;
             --Four passport photos(4x4);
             --A medical certificate issued by a doctor of the administration;
             --A stamped envelope at 500 francs CFA to the candidate's address (format A4)
@@ -65,9 +65,9 @@ admission:
            Article 3  Registration fees
   content12: |
            The entry fee for the competition is twenty thousand (20,000) CFA francs payable
-            only by EXPRESS UNION transfer, against receipt to be attached to the file
-            application. These non-refundable fees are intended to cover expenses
-            the organization of the competition. Any other method of payment is excluded.
+           only by EXPRESS UNION transfer, against receipt to be attached to the file
+           application. These non-refundable fees are intended to cover expenses
+           the organization of the competition. Any other method of payment is excluded.
   content13: |
            Article 4: Complete applications must be sent to Sup Center Cameroon's Sup
   content14: |
@@ -77,18 +77,19 @@ admission:
   content15: |
           Article 6: Physical records and online registration must be completed by April 27, 2018.
   etape1_content: I apply directly online.
-  etape2: Étape 2
+  etape2: Step 2
   etape2_content1: |
            Article 7 Sup Info Cameroon launches a direct competition for the recruitment of students in first year, second year, third year, and fourth
-            (BAC + 3) and design engineer (BAC + 5) at Sup Info Cameroun for the academic year 2018/2019,
-            is launched in the centers of Douala and Yaoundé
-            It consists of two (2) events
-            written psychological tests and a maintenance phase.
-  etape2_content2: Dès réception de votre candidature, nous vous proposerons de participer à une demi-journée de
-        selection process during which your knowledge and skills will be tested, and then
-        will be received for a motivational interview (reserved for candidates wanting to follow a continuing education,
-          online or parallel).
-  etape3: Étape 3
+           (BAC + 3) and design engineer (BAC + 5) at Sup Info Cameroun for the academic year 2018/2019,
+           is launched in the centers of Douala and YaoundÃ©
+           It consists of two (2) events
+           written psychological tests and a maintenance phase.
+  etape2_content2:
+        Upon receipt of your application, we will offer you to participate in a half day of
+        selection process, which will then be tested, and then
+        will be received for a motivational interview (for candidates who want to follow a continuing education,
+        online or parallel).
+  etape3: Step 3
   etape3_content: Receive a response within two weeks of the contest.
   candidature1: Access with one click
   candidature2: application space
