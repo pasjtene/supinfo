@@ -10,7 +10,7 @@ $content-background: #F7F7F7;
      background-size: cover;
      border-bottom: 2px solid grey;
    }
-   #main_about{
+   #main_about2{
      background-color: $content-background;
     border-bottom: 2px solid lightgrey;
      .message_and_image {
@@ -283,13 +283,20 @@ $content-background: #F7F7F7;
      }
 
      .students-img {
-       background: src="{{ asset('data/img/emploi1.jpg') }}"  no-repeat center center fixed;
-
+       /*background: src="{{ asset('data/img/emploi1.jpg') }}"  no-repeat center center fixed;*/
+       /*background-size: 100% auto;*/
+       background-size: cover;
        float: left;
        /*z-index: 1 !important;*/
        position: absolute;
        overflow: hidden;
        margin-left: 200px;
+       background-attachment: fixed;
+       background-position: center;
+       background-repeat: no-repeat;
+       /*position: fixed;
+       z-index: 2;*/
+      // border: 2px solid blue;
      }
 
      .students-img1 {
@@ -302,7 +309,7 @@ $content-background: #F7F7F7;
      }
 
      .img-content {
-       /*border: 2px solid red;*/
+       border: 2px solid red;
        height: 510px;
        overflow: hidden;
      }
