@@ -29,14 +29,67 @@ admission:
   numerique: DIGITAL TOOLS
   specialisation: SPECIALIZATIONS
   etape1: Step 1
-  etape1_content: I apply directly online
-  etape2: Step 2
-  title2_content: Upon receipt of my application, we will propose you to participate in a half day of
-          selection process during which your knowledge and skills will be tested, and then
-          will be received for a motivational interview.
-  etape3: Step 3
-  etape3_content: Receive a reply within 5 days after our appointment.
-  candidature1: Access with one click to
+  content1: |
+              Article1    Admission Criteria:
+  content2: |
+            -- Pupils in the final grades of all grades or any student with the said diploma.
+  content3: |
+            -- Holders of any other diploma recognized as equivalence or exempted by the Minister of
+               Higher Education
+  content4: |
+            --Candidates registered for one of the above-mentioned diplomas
+            to Sup Info Cameroun, in case of success in the competition, only on presentation of the original of the
+            diploma obtained at the 2018 exam session or, if applicable, the certificate of achievement at the
+            of the enrollment fixed by the School
+  content5: |
+            Registration for the competition is made online on the NPHS website at
+  content6: |
+            https://www.supinfocameroun.com/concours
+  content7: |
+            Applications include the following documents :
+  content8: |
+            --An individual application form duly filled in by the candidate on the website of the competition of the School
+  content9: |
+            https://www.supinfocameroun.com/concours.
+  content10: |
+            --A photocopy of the national identity card or a receipt;
+            --First and Terminal or Lower and Upper Sixth grades;
+            --A certified copy of the birth certificate, dated less than three months
+            --A certified copy of the Baccalaureate or GCE / AL or any other recognized diploma
+              equivalent by the Ministry of Higher Education, or a Certificate of Success to one
+              of these diplomas where appropriate;
+            --Four passport photos(4x4);
+            --A medical certificate issued by a doctor of the administration;
+            --A stamped envelope at 500 francs CFA to the candidate's address (format A4)
+  content11: |
+           Article 3  Registration fees
+  content12: |
+           The entry fee for the competition is twenty thousand (20,000) CFA francs payable
+            only by EXPRESS UNION transfer, against receipt to be attached to the file
+            application. These non-refundable fees are intended to cover expenses
+            the organization of the competition. Any other method of payment is excluded.
+  content13: |
+           Article 4: Complete applications must be sent to Sup Center Cameroon's Sup
+  content14: |
+          Article 5: Only candidates who have filed a regulatory dossier within the deadlines
+          summoned to compete. They will have to bring their National Identity Card and the card
+          student or student.
+  content15: |
+          Article 6: Physical records and online registration must be completed by April 27, 2018.
+  etape1_content: I apply directly online.
+  etape2: Étape 2
+  etape2_content1: |
+           Article 7 Sup Info Cameroon launches a direct competition for the recruitment of students in first year, second year, third year, and fourth
+            (BAC + 3) and design engineer (BAC + 5) at Sup Info Cameroun for the academic year 2018/2019,
+            is launched in the centers of Douala and Yaoundé
+            It consists of two (2) events
+            written psychological tests and a maintenance phase.
+  etape2_content2: Dès réception de votre candidature, nous vous proposerons de participer à une demi-journée de
+        selection process during which your knowledge and skills will be tested, and then
+        will be received for a motivational interview (reserved for candidates wanting to follow a continuing education,
+          online or parallel).
+  etape3: Étape 3
+  etape3_content: Receive a response within two weeks of the contest.
+  candidature1: Access with one click
   candidature2: application space
-
 
