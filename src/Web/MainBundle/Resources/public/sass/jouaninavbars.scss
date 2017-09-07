@@ -1,14 +1,10 @@
-.margin_top{
-  margin-top: 1.2cm;
-}
-#mains{
+#main_jouaninavbar{
   ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #335;
-    font-size: 1.1em;
+    background-color: #333;
   }
 
   li {
@@ -24,7 +20,7 @@
   }
 
   li a:hover, .dropdown:hover .dropbtn {
-    background-color: yellowgreen;
+    background-color: red;
   }
 
   li.dropdown {
@@ -48,28 +44,9 @@
     text-align: left;
   }
 
-  .dropdown-content a:hover {background-color: #f1f1f1}
+  .dropdown-content a:hover {background-color: #E8f1f1}
 
   .dropdown:hover .dropdown-content {
     display: block;
-  }
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
-    z-index: 1;
-  }
-
-  .dropdown:hover .dropdown-content {
-    display: block;
-    z-index: 99999999999;
   }
 }

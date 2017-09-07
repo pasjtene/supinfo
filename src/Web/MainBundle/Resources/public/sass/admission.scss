@@ -77,7 +77,7 @@
       text-align: left;
     }
 
-    .dropdown-content a:hover {background-color: #f1f1f1}
+    .dropdown-content a:hover {background-color: #FEEAAB}
 
     .dropdown:hover .dropdown-content {
       display: block;
@@ -86,7 +86,35 @@
 }
 .bagroun_admission{
   background-color: #EFEEF3;
+  height: 100%;
 }
+.first_botton_bar{
+  padding-bottom: 6cm;
+  background-color: #271549;
+  width: 100%;
+}
+  .second_botton_bar {
+    padding-bottom: 1cm;
+    background-color: #77649B;
+    width: 100%;
+  }
+.third_botton_bar {
+  padding-bottom: 0.5cm;
+  background-color: #EFEEF3;
+  width: 100%;
+}
+.fourth_botton_bar {
+  padding-bottom: 3cm;
+  background-color: #FFFFFF;
+  width: 100%;
+}
+
+
+
+
+
+
+
 
 .hexagonn {
   position: relative;
@@ -151,4 +179,39 @@
 }
 .etape{
   padding: 0.3em;
+}
+.botton_circle{
+  z-index: 999999999999999999999;
+  .circle1 {
+    border-radius: 50%;
+    width: 3cm;
+    height: 3cm;
+    margin-left: 7cm;
+    background-color: #FEEAAB;
+  }
+  .circle1:hover{
+    background-color: white;
+  }
+  .circle2 {
+    border-radius: 50%;
+    width: 3cm;
+    height: 3cm;
+    margin-left: 10cm;
+    background-color: #FEEAAB;
+  }
+  .circle2:hover{
+    background-color: white;
+  }
+
+  .circle3 {
+    border-radius: 50%;
+    width: 3cm;
+    height: 3cm;
+    margin-left: 11cm;
+    background-color: #FEEAAB;
+  }
+  .circle3:hover{
+    background-color: white;
+  }
+
 }
