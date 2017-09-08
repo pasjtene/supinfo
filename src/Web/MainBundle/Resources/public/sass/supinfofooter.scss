@@ -1,0 +1,42 @@
+.first_botton_bar{
+  background-color: #271549;
+  width: 100%;
+  left: 0;
+  right: 0;
+  height: 7cm;
+
+
+
+  .footer_flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 1200px;
+    height: 250px;
+    padding: auto;
+
+  }
+
+  .flex-item {
+    width: 400px;
+    height: 100px;
+    margin: 10px;
+  }
+  .vertical_barre{
+    border-right: solid #77649B 2px;
+    text-align: right;
+    padding-right: 1.5%;
+    color: whitesmoke;
+  }
+  .vertical_barre2{
+    border-left: solid #77649B 2px;
+    padding-left: 1.5%;
+    color: #4E4F9B;
+
+  }
+  .logosupinfo{
+    padding: 3.5%;
+  }
+  .logosupinfo:hover{
+    font-size: 45px;
+  }
+}

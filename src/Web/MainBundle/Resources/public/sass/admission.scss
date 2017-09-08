@@ -88,11 +88,7 @@
   background-color: #EFEEF3;
   height: 100%;
 }
-.first_botton_bar{
-  padding-bottom: 6cm;
-  background-color: #271549;
-  width: 100%;
-}
+
   .second_botton_bar {
     padding-bottom: 1cm;
     background-color: #77649B;
@@ -108,13 +104,6 @@
   background-color: #FFFFFF;
   width: 100%;
 }
-
-
-
-
-
-
-
 
 .hexagonn {
   position: relative;
@@ -166,16 +155,30 @@
 }
 #plus {
   text-align: right;
+  color:#FDCE37 ;
+}
+.title_admission_content{
+  color:#FDCE37 ;
+}
+.title_admission_content2{
+  color:#77649B ;
 }
 
-
 .etape-titre:hover{
-  background-color: yellow;
+  background-color: #FDCE37;
 
+}
+.text_near_step{
+  text-decoration: underline;
+  color: black;
 }
 .etape-titre{
   text-align: left;
   background-color: white;
+  color: #77649B ;
+}
+.text_on_hexagon_content{
+  color: #77649B ;
 }
 .etape{
   padding: 0.3em;
@@ -186,8 +189,8 @@
     border-radius: 50%;
     width: 3cm;
     height: 3cm;
-    margin-left: 7cm;
-    background-color: #FEEAAB;
+    margin-left: 5cm;
+    background-color: #FDCE37;
   }
   .circle1:hover{
     background-color: white;
@@ -196,8 +199,8 @@
     border-radius: 50%;
     width: 3cm;
     height: 3cm;
-    margin-left: 10cm;
-    background-color: #FEEAAB;
+    margin-left: 7cm;
+    background-color: #FDCE37;
   }
   .circle2:hover{
     background-color: white;
@@ -207,11 +210,42 @@
     border-radius: 50%;
     width: 3cm;
     height: 3cm;
-    margin-left: 11cm;
-    background-color: #FEEAAB;
+    margin-left: 9cm;
+    background-color: #FDCE37;
   }
   .circle3:hover{
     background-color: white;
+  }
+  .candidature{
+    padding-left: 105%;
+  }
+  .pencils{
+    height: 3cm;
+    width: 2cm;
+    padding-left: 55%;
+    margin-bottom: 2%;
+  }
+  .pencils:hover{
+    border-color:#FDCE37 ;
+  }
+  .books{
+    height: 3cm;
+    width: 2cm;
+    padding-left: 55%;
+    margin-bottom: 2%;
+  }
+  .books:hover{
+    border-color:#FDCE37 ;
+  }
+
+  .envelopes{
+    height: 3cm;
+    width: 2cm;
+    padding-left: 55%;
+    margin-bottom: 2%;
+  }
+  .envelopes:hover{
+    border-color:#FDCE37 ;
   }
 
 }
