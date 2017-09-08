@@ -57,6 +57,15 @@ class DefaultController extends Controller implements TokenAuthenticatedControll
     }
 
     /**
+     * @Route("/programme", name="main_programme"))
+     */
+    public function programmeAction()
+    {
+        $array = [];
+        return $this->render('MainBundle:Default:programme.html.twig', $array);
+    }
+
+    /**
      * @Route("/paralax", name="main_paralax"))
      */
     public function paralaxnAction()

@@ -1,0 +1,164 @@
+.hexagon {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  margin-top: 42px;
+  margin-bottom: 45px;
+  background: #fff;
+  //border:1px solid red;
+}
+
+.hexagon.degrade .triangle-top:before {
+  top: -40px;
+  background: -webkit-linear-gradient(left bottom,#efeef3 50%,transparent 50%);
+  background: linear-gradient(to right top,#efeef3 50%,transparent 50%);
+}
+
+.hexagon.degrade .triangle-top:before {
+  left: 50%;
+}
+
+.hexagon.degrade .triangle-top:before, .hexagon.degrade .triangle-top:after {
+  height: 40px;
+  width: 50%;
+  position: absolute;
+  content: "";
+}
+
+.triangle-top:before {
+  top: -40px;
+  background: -webkit-linear-gradient(left bottom,#fff 50%,transparent 50%);
+  background: linear-gradient(to right top,#fff 50%,transparent 50%);
+}
+
+.triangle-top:before, .triangle-top:after {
+  height: 40px;
+  width: 50%;
+  position: absolute;
+  content: "";
+  //border: 1px solid blue;
+}
+.triangle-top:before {
+  left: 50%;
+}
+
+.hexagon.degrade .triangle-top:after {
+  top: -40px;
+  background: -webkit-linear-gradient(left top,transparent 50%,#efeef3 50%);
+  background: linear-gradient(to right bottom,transparent 50%,#efeef3 50%);
+}
+
+.hexagon.degrade .triangle-top:after {
+  left: 0;
+}
+
+.hexagon.degrade .triangle-top:before, .hexagon.degrade .triangle-top:after {
+  height: 40px;
+  width: 50%;
+  position: absolute;
+  content: "";
+}
+
+.triangle-top:after {
+  top: -40px;
+  background: -webkit-linear-gradient(left top,transparent 50%,#fff 50%);
+  background: linear-gradient(to right bottom,transparent 50%,#fff 50%);
+}
+
+
+.triangle-top:after {
+  left: 0;
+}
+
+.triangle-top:before, .triangle-top:after {
+  height: 40px;
+  width: 50%;
+  position: absolute;
+  content: "";
+}
+
+.hexagon.degrade {
+  background: -webkit-linear-gradient(top,#efeef3 0,#cfccd9 100%);
+  background: linear-gradient(to bottom,#efeef3 0,#cfccd9 100%);
+}
+
+//Triangle bottom
+
+.hexagon.degrade .triangle-bottom:before {
+  bottom: -40px;
+  background: -webkit-linear-gradient(left top,#cfccd9 50%,transparent 50%);
+  background: linear-gradient(to right bottom,#cfccd9 50%,transparent 50%);
+}
+
+.hexagon.degrade .triangle-bottom:before {
+  left: 50%;
+}
+
+.hexagon.degrade .triangle-bottom:before, .hexagon.degrade .triangle-bottom:after {
+  height: 40px;
+  width: 50%;
+  position: absolute;
+  content: "";
+}
+
+.triangle-bottom:before {
+  bottom: -40px;
+  background: -webkit-linear-gradient(left top,#fff 50%,transparent 50%);
+  background: linear-gradient(to right bottom,#fff 50%,transparent 50%);
+}
+
+.triangle-bottom:before {
+  left: 50%;
+}
+
+.triangle-bottom:before, .triangle-bottom:after {
+  height: 40px;
+  width: 50%;
+  position: absolute;
+  content: "";
+}
+
+.hexagon.degrade .triangle-bottom:after {
+  bottom: -40px;
+  background: -webkit-linear-gradient(left bottom,transparent 50%,#cfccd9 50%);
+  background: linear-gradient(to right top,transparent 50%,#cfccd9 50%);
+}
+
+.hexagon.degrade .triangle-bottom:after {
+  left: 0;
+}
+
+.hexagon.degrade .triangle-bottom:before, .hexagon.degrade .triangle-bottom:after {
+  height: 40px;
+  width: 50%;
+  position: absolute;
+  content: "";
+}
+
+.triangle-bottom:after {
+  bottom: -40px;
+  background: -webkit-linear-gradient(left bottom,transparent 50%,#fff 50%);
+  background: linear-gradient(to right top,transparent 50%,#fff 50%);
+}
+
+.triangle-bottom:after {
+  left: 0;
+}
+
+.triangle-bottom:before, .triangle-bottom:after {
+  height: 40px;
+  width: 50%;
+  position: absolute;
+  content: "";
+}

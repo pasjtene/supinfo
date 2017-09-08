@@ -168,6 +168,10 @@
   background-color: #FDCE37;
 
 }
+.text_on_second_bar{
+ text-align: center;
+}
+
 .text_near_step{
   text-decoration: underline;
   color: black;
@@ -184,7 +188,7 @@
   padding: 0.3em;
 }
 .botton_circle{
-  z-index: 999999999999999999999;
+  z-index: 9;
   .circle1 {
     border-radius: 50%;
     width: 3cm;
