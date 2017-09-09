@@ -1,0 +1,317 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block meta %}
+    <meta name = "{% trans from 'about' %} about.block14 {% endtrans %}" >
+    <meta name = "keywords" content = "{% trans from 'about' %} about.block15 {% endtrans %}" >
+    <meta charset="utf-8">
+
+{% endblock %}
+{% block title %}
+    {% trans from 'about' %} about.title {% endtrans %}
+{% endblock  %}
+
+{% block mycss %}
+    {{ parent() }}
+
+    <style>
+        .students-img {
+            border: 3px solid red;
+            background-color: #0000cc;
+            display:block;
+            width: 45%;
+            height: 100%;
+        }
+
+        .parallax {
+            /* The image used
+            background-image: url("img_parallax.jpg");*/
+            border: 2px solid red;
+            /* Set a specific height */
+            min-height: 500px;
+            width: 50%;
+            display:block;
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: left;
+            background-repeat: no-repeat;
+            /*background-size: cover;*/
+            background-size: 50%  auto;
+        }
+    </style>
+    {# mettre le css si la page t'oublige #}
+{% endblock %}
+{% block header %}
+    {% include 'MainBundle:Inc:horizontal-nav.html.twig' %}
+    {% include 'MainBundle:Inc:navbar.html.twig' %}
+
+{% endblock %}
+
+{% block  mainLg %}
+
+    <div id="main_home">
+        <div class="message_and_image">
+            <div class="message_on_image">{% trans from 'about' %} about.block1 {% endtrans %}</div>
+
+            <div id="about_top" style="background-image:url('{{ asset('data/img/about4.jpg') }}')">
+                <img  id="top_img" src="{{ asset('data/img/about4.jpg') }}" alt="">
+                {# il  est possible de travailler directement  ici. si  vous voulez occuper toute la page dans la width #}
+            </div>
+        </div>
+
+        <div class="row line">
+            <div> SupInfo: {% trans from 'about' %} about.block16 {% endtrans %} </div>
+
+        </div>
+
+
+        <div class="row section admission">
+            <h2 class="bloc-title">ADMISSIONS</h2>
+            <div class="inner padding">
+                <div class="flex">
+                    <div class="hexagon degrade admission-hexagon">
+                        <div class="triangle-top"></div>
+                        <div class="titre">ADMISSION AU</div>
+                        <h3>
+                            <i class="icon-fleche-droite grand"></i>
+                            <span class="adm-niv">Niveau 1</span>
+                            <i class="icon-fleche-gauche grand"></i></h3>
+                        <div class="content">
+                            {% trans from 'about' %} about.bac1 {% endtrans %}
+                        </div>
+                        <a class="myButton" href="javascript:;">PLUS D'INFO</a>
+                        <div class="triangle-bottom"></div>
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        <div class="triangle-top"></div>
+                        <div class="titre">ADMISSION AU</div>
+                        <h3>
+                            <i class="icon-fleche-droite grand"></i>
+                            <span class="adm-niv">Niveau 2</span>
+                            <i class="icon-fleche-gauche grand"></i></h3>
+                        <div class="content">
+                            {% trans from 'about' %} about.bac1 {% endtrans %}
+                        </div>
+                        <a class="myButton" href="javascript:;">PLUS D'INFO</a>
+                        <div class="triangle-bottom"></div>
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        <div class="triangle-top"></div>
+                        <div class="titre">ADMISSION AU</div>
+                        <h3>
+                            <i class="icon-fleche-droite grand"></i>
+                            <span class="adm-niv">Niveau 3</span>
+                            <i class="icon-fleche-gauche grand"></i></h3>
+                        <div class="content">
+                            {% trans from 'about' %} about.bac1 {% endtrans %}
+                        </div>
+                        <a class="myButton" href="javascript:;">PLUS D'INFO</a>
+                        <div class="triangle-bottom"></div>
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        <div class="triangle-top"></div>
+                        <div class="titre">ADMISSION AU</div>
+                        <h3>
+                            <i class="icon-fleche-droite grand"></i>
+                            <span class="adm-niv">Niveau 4</span>
+                            <i class="icon-fleche-gauche grand"></i></h3>
+                        <div class="content">
+                            {% trans from 'about' %} about.bac1 {% endtrans %}
+                        </div>
+                        <a class="myButton" href="javascript:;">PLUS D'INFO</a>
+                        <div class="triangle-bottom"></div>
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        <div class="triangle-top"></div>
+                        <div class="titre">ADMISSION AU</div>
+                        <h3>
+                            <i class="icon-fleche-droite grand"></i>
+                            <span class="adm-niv">Niveau 5</span>
+                            <i class="icon-fleche-gauche grand"></i></h3>
+                        <div class="content">
+                            {% trans from 'about' %} about.bac1 {% endtrans %}
+                        </div>
+                        <a class="myButton" href="javascript:;">PLUS D'INFO</a>
+                        <div class="triangle-bottom"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="section programmes-main-div">
+            <h2 class="bloc-title">PROGRAMMES</h2>
+
+            <div class="inner-prog padding">
+                <div class="flex">
+
+                    <div class="programme">
+                        <div class="diamant">
+                            <div class="diamant-shape">
+
+                            </div>
+                            <div class="diamant-content"> &beta; </div>
+                        </div>
+                        <h4>Premiere Annee</h4>
+                        <h3 class="titre-prog">Decouvrir</h3>
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="programme">
+                        <div class="diamant">
+                            <div class="diamant-shape">
+
+                            </div>
+                            <div class="diamant-content"> &kappa; </div>
+                        </div>
+                        <h4>Deuxieme Annee</h4>
+                        <h3 class="titre-prog">Aprendre</h3>
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="programme">
+                        <div class="diamant">
+                            <div class="diamant-shape">
+
+                            </div>
+                            <div class="diamant-content"> &phi; </div>
+                        </div>
+                        <h4>Troisieme Annee</h4>
+                        <h3 class="titre-prog">Maitriser</h3>
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="programme">
+                        <div class="diamant">
+                            <div class="diamant-shape">
+
+                            </div>
+                            <div class="diamant-content"> &omega; </div>
+                        </div>
+                        <h4>Quatrieme Annee</h4>
+                        <h3 class="titre-prog">Perfectioner</h3>
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="programme">
+                        <div class="diamant">
+                            <div class="diamant-shape">
+
+                            </div>
+                            <div class="diamant-content"> &epsilon; </div>
+                        </div>
+                        <h4>Cinquieme Annee</h4>
+                        <h3 class="titre-prog">Expert</h3>
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="section admission parallax-container ">
+            <div class="parallax-window" data-parallax="scroll" data-image-src="{{ asset('data/img/computerstudents2.jpg') }}" data-position="left top">
+
+
+            </div>
+
+            <div class="edito supinfo-slogan">
+                <div class="triangle-left"></div>
+                <div class="contenu">
+                    <div class="supinfo-slogan-titre">{% trans from 'about' %} about.contenu1 {% endtrans %}</div>
+                    <p class="home-slogan">{% trans from 'about' %} about.contenu2 {% endtrans %}</p>
+                    <p><a href="">{% trans from 'about' %} about.contenu3 {% endtrans %}</a></p>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="separator"></div>
+
+
+        <div class="section programmes-main-div">
+            <h2 class="bloc-title">{% trans from 'about' %} about.news {% endtrans %}</h2>
+
+            <div class="inner padding">
+                <div class="flex">
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section admission">
+            <h2 class="bloc-title">CAMPUS</h2>
+            <div class="inner padding">
+                <div class="flex">
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                    <div class="hexagon degrade admission-hexagon">
+                        {% trans from 'about' %} about.bac1 {% endtrans %}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="footer-top">
+            this is the footer top
+        </div>
+        <div class="footer-bottom">
+            this is the footer bottom
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+{% block myjs %}
+    {# mettre des liens vers des pages externe js si c'est  necessaire #}
+{% endblock %}
