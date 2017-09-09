@@ -1,76 +1,74 @@
 programme:
-    bachelor_content1: |
-         PARCOURS SOCLE DEVOPS
-    bachelor_content2: |
-         Bloc de CompÃ©tences nÂ° 1 â€“ DÃ©veloppement dâ€™applications informatiques
-    bachelor_content3: |
-         Apprendre Ã  dÃ©velopper (algorithmique)
-    bachelor_content4: |
-         Langages de dÃ©veloppement
-    bachelor_content5: |
-         Langages de dÃ©veloppement web
-    bachelor_content6: |
-         Bloc de CompÃ©tences nÂ°2 â€“ Administration Infrastructure systÃ¨me & rÃ©seau gestion des donnÃ©es
-    bachelor_content7: |
-         Environnements systÃ¨me
-    bachelor_content8: |
-         RÃ©seaux et topologies
-    bachelor_content9: |
+  content1: PARCOURS SOCLE DEVOPS
+  bachelor_content2: Bloc de Compétences n° 1 – Développement d’applications informatiques
+  bachelor_content3: |
+         Apprendre à développer (algorithmique)
+  bachelor_content4: |
+         Langages de développement
+  bachelor_content5: |
+         Langages de développement web
+  bachelor_content6: |
+         Bloc de Compétences n°2 – Administration Infrastructure système & réseau gestion des données
+  bachelor_content7: |
+         Environnements système
+  bachelor_content8: |
+         Réseaux et topologies
+  bachelor_content9: |
          IP V4 et V6
-    bachelor_content10: |
-         Bloc de CompÃ©tences nÂ°3 â€“ Gestion des donnÃ©es
-    bachelor_content11: |
-         Environnement Ã©conomique et juridique
-    bachelor_content12: |
-         MathÃ©matiques
-    bachelor_content13: |
+  bachelor_content10: |
+         Bloc de Compétences n°3 – Gestion des données
+  bachelor_content11: |
+         Environnement économique et juridique
+  bachelor_content12: |
+         Mathématiques
+  bachelor_content13: |
          Anglais
-    bachelor_content14: |
-         Techniques dâ€™Expression et Communication
-    bachelor_content15: |
-         ModÃ©lisation de bases de donnÃ©es (Merise â€“ Uml
-    bachelor_content16: |
-         Conception et adaptation dâ€™une base de donnÃ©es (SQL Server
-    bachelor_content17: |
-         Bloc de CompÃ©tences nÂ°4 â€“ MÃ©thodes et projets
-    bachelor_content18: |
-         Environnement Ã©conomique et juridique
-    bachelor_content19: |
-         MathÃ©matiques pour lâ€™informatique
-    bachelor_content20: |
-         Bloc de CompÃ©tences nÂ°5 â€“ Communication
-    bachelor_content21: |
+  bachelor_content14: |
+         Techniques d’Expression et Communication
+  bachelor_content15: |
+         Modélisation de bases de données (Merise – Uml
+  bachelor_content16: |
+         Conception et adaptation d’une base de données (SQL Server
+  bachelor_content17: |
+         Bloc de Compétences n°4 – Méthodes et projets
+  bachelor_content18: |
+         Environnement économique et juridique
+  bachelor_content19: |
+         Mathématiques pour l’informatique
+  bachelor_content20: |
+         Bloc de Compétences n°5 – Communication
+  bachelor_content21: |
          Anglais
-    bachelor_content22: |
-         Techniques dâ€™Expression et Communication
-    bachelor_content23: |
+  bachelor_content22: |
+         Techniques d’Expression et Communication
+  bachelor_content23: |
          PARCOURS BTS SIO (EN OPTION AVEC SOUSCRIPTION DU PACK)
-    bachelor_content24: |
-         Algorithmique et mathÃ©matiques
-    bachelor_content25: |
-         Analyse Ã©conomique, managÃ©riale et juridique
-    bachelor_content26: |
-         Projets personnalisÃ©s encadrÃ©s (PPE)
-    bachelor_content27: |
+  bachelor_content24: |
+         Algorithmique et mathématiques
+  bachelor_content25: |
+         Analyse économique, managériale et juridique
+  bachelor_content26: |
+         Projets personnalisés encadrés (PPE)
+  bachelor_content27: |
          STAGE EN ENTREPRISE
-    bachelor_content28: |
-         Stage de 4 Ã  5 semaines
-    bachelor_content29: |
-         COMPÃ‰TENCES Ã€ DÃ‰VELOPPER
-    bachelor_content30: |
-         GÃ©rer des incidents et problÃ¨mes (assistance utilisateur)
-    bachelor_content31: |
-         DÃ©velopper une solution dâ€™infrastructure
-    bachelor_content32: |
-         DÃ©velopper et tester une application Objet
-    bachelor_content33: |
-         DÃ©velopper une application web ou nomade
-    bachelor_content34: |
-         Administrer et superviser une solution dâ€™infrastructure
-    bachelor_content35: |
+  bachelor_content28: |
+         Stage de 4 à 5 semaines
+  bachelor_content29: |
+         COMPÉTENCES À DÉVELOPPER
+  bachelor_content30: |
+         Gérer des incidents et problèmes (assistance utilisateur)
+  bachelor_content31: |
+         Développer une solution d’infrastructure
+  bachelor_content32: |
+         Développer et tester une application Objet
+  bachelor_content33: |
+         Développer une application web ou nomade
+  bachelor_content34: |
+         Administrer et superviser une solution d’infrastructure
+  bachelor_content35: |
          Produire une documentation technique
-    bachelor_content36: |
-         Validation de la 1Ã¨re annÃ©e
-    bachelor_content37: |
+  bachelor_content36: |
+         Validation de la 1ère année
+  bachelor_content37: |
          PROGRAMMES SUP INFO CAMEROUN
 

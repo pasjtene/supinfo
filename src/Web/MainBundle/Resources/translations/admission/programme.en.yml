@@ -1,8 +1,6 @@
 programme:
-  bachelor_content1: |
-    DEVOPS BASE COURSE
-  bachelor_content2: |
-    Competency n° 1 - Development of Computer Applications
+  content1: DEVOPS BASE COURSE
+  bachelor_content2: Competency n° 1 - Development of Computer Applications
   bachelor_content3: |
         Learning to develop (algorithmic)
   bachelor_content4: |
