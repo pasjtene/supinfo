@@ -89,11 +89,11 @@
   height: 100%;
 }
 
-  .second_botton_bar {
-    padding-bottom: 1cm;
-    background-color: #77649B;
-    width: 100%;
-  }
+.second_botton_bar {
+  padding-bottom: 1cm;
+  background-color: #77649B;
+  width: 100%;
+}
 .third_botton_bar {
   padding-bottom: 0.5cm;
   background-color: #EFEEF3;
@@ -168,6 +168,10 @@
   background-color: #FDCE37;
 
 }
+.text_on_second_bar{
+  text-align: center;
+}
+
 .text_near_step{
   text-decoration: underline;
   color: black;
@@ -184,7 +188,7 @@
   padding: 0.3em;
 }
 .botton_circle{
-  z-index: 999999999999999999999;
+  z-index: 9;
   .circle1 {
     border-radius: 50%;
     width: 3cm;

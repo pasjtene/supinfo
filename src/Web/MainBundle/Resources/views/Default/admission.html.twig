@@ -40,7 +40,7 @@
                                 <a href="#">Level 3</a>
                             </div>
                         </li>
-                        <li class="drop"><a href="#news">{% trans from 'admission' %} admission.program {% endtrans %}</a></li>
+                        <li class="drop"><a href="{{ path('main_programme') }}">{% trans from 'admission' %} admission.program {% endtrans %}</a></li>
                         <li><a href="#news">{% trans from 'admission' %} admission.campus {% endtrans %}</a></li>
                         <li><a href="#news">{% trans from 'admission' %} admission.etudiant {% endtrans %}</a></li>
                         <li><a href="#news">{% trans from 'admission' %} admission.diplom {% endtrans %}</a></li>
@@ -257,8 +257,13 @@
                 </div>
             </div>
             <div class="second_botton_bar">
-                <div  class="title_admission">
-                    <h3> {% trans from 'admission' %}  {% endtrans %}</h3>
+                <div  class="text_on_second_bar">
+                    <div class="row">
+                        <h5> {% trans from 'admission' %} admission.text_on_second_bar {% endtrans %}</h5>
+                        <h5>
+                            <a href=" deco_text_on_second_bar"> {% trans from 'admission' %} admission.text_on_second_bar2 {% endtrans %}</a>
+                        </h5>
+                    </div>
                 </div>
             </div>
         </div>

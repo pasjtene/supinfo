@@ -114,22 +114,22 @@
     background: linear-gradient(to right top,#efeef3 50%,transparent 50%);
   }
 
-.hexagon.degrade .triangle-top:before {
-  left: 50%;
-}
+  .hexagon.degrade .triangle-top:before {
+    left: 50%;
+  }
 
-.hexagon.degrade .triangle-top:before, .hexagon.degrade .triangle-top:after {
-  height: 40px;
-  width: 50%;
-  position: absolute;
-  content: "";
-}
+  .hexagon.degrade .triangle-top:before, .hexagon.degrade .triangle-top:after {
+    height: 40px;
+    width: 50%;
+    position: absolute;
+    content: "";
+  }
 
-.triangle-top:before {
-  top: -40px;
-  background: -webkit-linear-gradient(left bottom,#fff 50%,transparent 50%);
-  background: linear-gradient(to right top,#fff 50%,transparent 50%);
-}
+  .triangle-top:before {
+    top: -40px;
+    background: -webkit-linear-gradient(left bottom,#fff 50%,transparent 50%);
+    background: linear-gradient(to right top,#fff 50%,transparent 50%);
+  }
 
   .triangle-top:before, .triangle-top:after {
     height: 40px;
@@ -148,34 +148,34 @@
     background: linear-gradient(to right bottom,transparent 50%,#efeef3 50%);
   }
 
-.hexagon.degrade .triangle-top:after {
-  left: 0;
-}
+  .hexagon.degrade .triangle-top:after {
+    left: 0;
+  }
 
-.hexagon.degrade .triangle-top:before, .hexagon.degrade .triangle-top:after {
-  height: 40px;
-  width: 50%;
-  position: absolute;
-  content: "";
-}
+  .hexagon.degrade .triangle-top:before, .hexagon.degrade .triangle-top:after {
+    height: 40px;
+    width: 50%;
+    position: absolute;
+    content: "";
+  }
 
-.triangle-top:after {
-  top: -40px;
-  background: -webkit-linear-gradient(left top,transparent 50%,#fff 50%);
-  background: linear-gradient(to right bottom,transparent 50%,#fff 50%);
-}
+  .triangle-top:after {
+    top: -40px;
+    background: -webkit-linear-gradient(left top,transparent 50%,#fff 50%);
+    background: linear-gradient(to right bottom,transparent 50%,#fff 50%);
+  }
 
 
-.triangle-top:after {
-  left: 0;
-}
+  .triangle-top:after {
+    left: 0;
+  }
 
-.triangle-top:before, .triangle-top:after {
-  height: 40px;
-  width: 50%;
-  position: absolute;
-  content: "";
-}
+  .triangle-top:before, .triangle-top:after {
+    height: 40px;
+    width: 50%;
+    position: absolute;
+    content: "";
+  }
 
   .hexagon.degrade {
     background: -webkit-linear-gradient(top,#efeef3 0,#cfccd9 100%);
@@ -190,67 +190,67 @@
     background: linear-gradient(to right bottom,#cfccd9 50%,transparent 50%);
   }
 
-.hexagon.degrade .triangle-bottom:before {
-  left: 50%;
-}
+  .hexagon.degrade .triangle-bottom:before {
+    left: 50%;
+  }
 
-.hexagon.degrade .triangle-bottom:before, .hexagon.degrade .triangle-bottom:after {
-  height: 40px;
-  width: 50%;
-  position: absolute;
-  content: "";
-}
+  .hexagon.degrade .triangle-bottom:before, .hexagon.degrade .triangle-bottom:after {
+    height: 40px;
+    width: 50%;
+    position: absolute;
+    content: "";
+  }
 
-.triangle-bottom:before {
-  bottom: -40px;
-  background: -webkit-linear-gradient(left top,#fff 50%,transparent 50%);
-  background: linear-gradient(to right bottom,#fff 50%,transparent 50%);
-}
+  .triangle-bottom:before {
+    bottom: -40px;
+    background: -webkit-linear-gradient(left top,#fff 50%,transparent 50%);
+    background: linear-gradient(to right bottom,#fff 50%,transparent 50%);
+  }
 
-.triangle-bottom:before {
-  left: 50%;
-}
+  .triangle-bottom:before {
+    left: 50%;
+  }
 
-.triangle-bottom:before, .triangle-bottom:after {
-  height: 40px;
-  width: 50%;
-  position: absolute;
-  content: "";
-}
+  .triangle-bottom:before, .triangle-bottom:after {
+    height: 40px;
+    width: 50%;
+    position: absolute;
+    content: "";
+  }
 
-.hexagon.degrade .triangle-bottom:after {
-  bottom: -40px;
-  background: -webkit-linear-gradient(left bottom,transparent 50%,#cfccd9 50%);
-  background: linear-gradient(to right top,transparent 50%,#cfccd9 50%);
-}
+  .hexagon.degrade .triangle-bottom:after {
+    bottom: -40px;
+    background: -webkit-linear-gradient(left bottom,transparent 50%,#cfccd9 50%);
+    background: linear-gradient(to right top,transparent 50%,#cfccd9 50%);
+  }
 
-.hexagon.degrade .triangle-bottom:after {
-  left: 0;
-}
+  .hexagon.degrade .triangle-bottom:after {
+    left: 0;
+  }
 
-.hexagon.degrade .triangle-bottom:before, .hexagon.degrade .triangle-bottom:after {
-  height: 40px;
-  width: 50%;
-  position: absolute;
-  content: "";
-}
+  .hexagon.degrade .triangle-bottom:before, .hexagon.degrade .triangle-bottom:after {
+    height: 40px;
+    width: 50%;
+    position: absolute;
+    content: "";
+  }
 
-.triangle-bottom:after {
-  bottom: -40px;
-  background: -webkit-linear-gradient(left bottom,transparent 50%,#fff 50%);
-  background: linear-gradient(to right top,transparent 50%,#fff 50%);
-}
+  .triangle-bottom:after {
+    bottom: -40px;
+    background: -webkit-linear-gradient(left bottom,transparent 50%,#fff 50%);
+    background: linear-gradient(to right top,transparent 50%,#fff 50%);
+  }
 
-.triangle-bottom:after {
-  left: 0;
-}
+  .triangle-bottom:after {
+    left: 0;
+  }
 
-.triangle-bottom:before, .triangle-bottom:after {
-  height: 40px;
-  width: 50%;
-  position: absolute;
-  content: "";
-}
+  .triangle-bottom:before, .triangle-bottom:after {
+    height: 40px;
+    width: 50%;
+    position: absolute;
+    content: "";
+  }
 
   .admission h3 {
     font-size: 40px;
@@ -342,21 +342,21 @@
     transition: transform .3s,opacity .3s,background-color .3s,-webkit-transform .3s;
   }
 
-.button.border:after, .accordeon-title:after, .onglets-wrapper .onglet-title .lien:after, form input.border[type=submit]:after, form input.border[type=button]:after, .nf-form-cont input.border[type=submit]:after, .nf-form-cont input.border[type=button]:after {
-  background-color: #fff;
-}
+  .button.border:after, .accordeon-title:after, .onglets-wrapper .onglet-title .lien:after, form input.border[type=submit]:after, form input.border[type=button]:after, .nf-form-cont input.border[type=submit]:after, .nf-form-cont input.border[type=button]:after {
+    background-color: #fff;
+  }
 
-.button:after, form input[type=submit]:after, form input[type=button]:after, .nf-form-cont input[type=submit]:after, .nf-form-cont input[type=button]:after {
-  z-index: -2;
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #e4e2e9;
-}
+  .button:after, form input[type=submit]:after, form input[type=button]:after, .nf-form-cont input[type=submit]:after, .nf-form-cont input[type=button]:after {
+    z-index: -2;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #e4e2e9;
+  }
 
   .button.border, .accordeon-title, .onglets-wrapper .onglet-title .lien, form input.border[type=submit], form input.border[type=button], .nf-form-cont input.border[type=submit], .nf-form-cont input.border[type=button] {
     border: 2px solid #fdce37;
@@ -368,31 +368,31 @@
     color: #403574;
   }
 
-.button, form input[type=submit], form input[type=button], .nf-form-cont input[type=submit], .nf-form-cont input[type=button] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  text-decoration: none;
-  border: 2px solid #e4e2e9;
-  font-size: 15px;
-  line-height: 18px;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: #271549;
-  padding: 8px 18px;
-  background-color: transparent;
-  font-family: Source Sans Pro,sans-serif;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-  z-index: 1;
-}
+  .button, form input[type=submit], form input[type=button], .nf-form-cont input[type=submit], .nf-form-cont input[type=button] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-decoration: none;
+    border: 2px solid #e4e2e9;
+    font-size: 15px;
+    line-height: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #271549;
+    padding: 8px 18px;
+    background-color: transparent;
+    font-family: Source Sans Pro,sans-serif;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    z-index: 1;
+  }
 
-a {
-  text-decoration: none;
-}
+  a {
+    text-decoration: none;
+  }
 
   .myButton {
     -moz-box-shadow: 0px 1px 0px 0px #fff6af;
@@ -552,14 +552,14 @@ a {
   }
 
   .contenu {
-   // border: 3px solid green;
+    // border: 3px solid green;
     margin-right: 25%;
 
   }
 
   .home-slogan {
     text-align: justify;
-  font-size: 20px;
+    font-size: 20px;
   }
 
 
