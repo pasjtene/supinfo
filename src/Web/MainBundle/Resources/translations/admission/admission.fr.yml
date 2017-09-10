@@ -106,6 +106,7 @@ admission:
   formatio_cont: FORMATION CONTINUE
   text_on_second_bar: PARTENAIRE DE
   text_on_second_bar2: Bolton Academy
+programme:
   bachelor_content1: PARCOURS SOCLE DEVOPS
   bachelor_content2: Bloc de Compétences n 1 � Développement d'applications informatiques
   bachelor_content3: |
@@ -191,6 +192,9 @@ admission:
   bachelor_content42: |
          Vous êtes intéressé par le Bachelor Informatique : Téléchargez gratuitement la
          documentation ou complétez le dossier de candidature EPSI en ligne.
+  bachelor_content43: BACHELOR INFORMATIQUE – BAC +3
+  bachelor_content44: ACCUEIL
+  bachelor_content45: PROGRAMMES
 
 
 

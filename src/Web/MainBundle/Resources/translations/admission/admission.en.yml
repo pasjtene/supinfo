@@ -105,6 +105,7 @@ admission:
   formatio_cont: CONTINUING EDUCATION
   text_on_second_bar: PARTNER OF
   text_on_second_bar2: Bolton Academy
+programme:
   bachelor_content1: DEVOPS BASE COURSE
   bachelor_content2: Competency n° 1 - Development of Computer Applications
   bachelor_content3: |
@@ -190,3 +191,6 @@ admission:
   bachelor_content42: |
           You are interested in the Bachelor Informatique: Download the free
           documentation or complete the EPSI application form online
+  bachelor_content43: BACHELOR INFORMATIC – BAC +3
+  bachelor_content44: HOME
+  bachelor_content45: PROGRAMS
