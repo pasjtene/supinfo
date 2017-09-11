@@ -64,16 +64,16 @@
     color: white;
     padding-top: 0.5cm;
   }
-  .firstbar{
+  .firstbar_programme{
     color: #271549;
-    .espace{
+    .espace_programme{
       padding-top: 2cm;
       padding-left: 5cm;
       padding-right: 3cm;
     }
     height: 5cm;
     background-color: #271549;
-    #mains{
+    #mains_programme{
       .drop{
         color: black;
       }
@@ -132,7 +132,7 @@
       }
     }
   }
-  .bagroun_admission{
+  .bagroun_programme{
     background-color: #EFEEF3;
     height: 100%;
   }
@@ -142,8 +142,8 @@
     background-color: #77649B;
     width: 100%;
   }
-  .third_botton_bar {
-    padding-bottom: 0.5cm;
+  .third_botton_bar_programme {
+    padding-bottom: 30%;
     background-color: #EFEEF3;
     width: 100%;
   }
@@ -205,10 +205,10 @@
     text-align: right;
     color:#FDCE37 ;
   }
-  .title_admission_content{
+  .title_programme_content{
     color:#FDCE37 ;
   }
-  .title_admission_content2{
+  .title_programme_content2{
     color:#77649B ;
   }
 
@@ -305,5 +305,49 @@
   }
   .link_program{
     font-size: 0.8em;
+  }
+  .padding_programme_content{
+    padding-left: 8em;
+    .admission_content{
+      text-align: justify;
+    }
+    padding-top: 0.5cm;
+    .admission_image{
+      width: 100%;
+    }
+  }
+  .hexagonn {
+    position: relative;
+    width: 320px;
+    height: 184.75px;
+    background-color: #ffffff;
+    margin: 92.38px 0;
+  }
+
+  .hexagonn:before,
+  .hexagonn:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+  }
+
+  .hexagonn:before {
+    bottom: 100%;
+    border-bottom: 92.38px solid #ffffff;
+  }
+
+  .hexagonn:after {
+    top: 100%;
+    width: 0;
+    border-top: 92.38px solid #ffffff;
+  }
+  .text_on_hexagon_programme{
+    text-align: center;
+    font-size: 0.7em;
+  }
+  .clear {
+    clear:both
   }
 }
